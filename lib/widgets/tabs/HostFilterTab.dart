@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
-import '../utils/colors.dart';
+import '../../utils/colors.dart';
 
-class ActivityFilterTab extends StatefulWidget {
-  const ActivityFilterTab({Key? key}) : super(key: key);
+class HostFilterTab extends StatefulWidget {
+  const HostFilterTab({Key? key}) : super(key: key);
 
   @override
-  State<ActivityFilterTab> createState() => _ActivityFilterTabState();
+  State<HostFilterTab> createState() => _HostFilterTabState();
 }
 
-class _ActivityFilterTabState extends State<ActivityFilterTab> {
+class _HostFilterTabState extends State<HostFilterTab> {
   int adultsCount = 0;
 
   String dateRange =
@@ -63,6 +63,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
       ),
       child: Container(
         height: 290,
+        width: double.infinity,
         margin: const EdgeInsets.all(10),
         child: Column(
           children: [
@@ -78,7 +79,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'De - à',
+                      'Entrée - sortie',
                       style: TextStyle(
                         color: grey,
                         fontSize: 15,
@@ -93,7 +94,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                         dateRange,
                         style: TextStyle(
                           color: primaryOrange,
-                          fontSize: 16,
+                          fontSize: 15,
                         ),
                       ),
                     ),
@@ -122,7 +123,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                         fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: 5),
                     Container(
                       margin: const EdgeInsets.only(left: 5),
                       height: 40,
@@ -161,7 +162,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                 )
               ],
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 1),
             const Divider(thickness: 1),
             const SizedBox(height: 3),
             Row(
@@ -234,7 +235,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
               ],
             ),
             const Divider(thickness: 1),
-            const SizedBox(height: 3),
+            const SizedBox(height: 5),
             Row(
               children: [
                 const Spacer(),

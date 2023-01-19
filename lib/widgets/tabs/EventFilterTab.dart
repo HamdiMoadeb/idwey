@@ -2,18 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
-import '../utils/colors.dart';
+import '../../utils/colors.dart';
 
-class HostFilterTab extends StatefulWidget {
-  const HostFilterTab({Key? key}) : super(key: key);
+class EventFilterTab extends StatefulWidget {
+  const EventFilterTab({Key? key}) : super(key: key);
 
   @override
-  State<HostFilterTab> createState() => _HostFilterTabState();
+  State<EventFilterTab> createState() => _EventFilterTabState();
 }
 
-class _HostFilterTabState extends State<HostFilterTab> {
-  int adultsCount = 0;
-
+class _EventFilterTabState extends State<EventFilterTab> {
+  static const List<String> placeItems = <String>[
+    'Où vous allez?',
+    'Plage',
+    'Forêt',
+    'Sahara',
+    'Ville',
+    'Montagne',
+    'Campagne'
+  ];
+  String place = placeItems.first;
   String dateRange =
       '${DateFormat('dd/MM/yyyy').format(DateTime.now())} - ${DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -63,48 +71,9 @@ class _HostFilterTabState extends State<HostFilterTab> {
       ),
       child: Container(
         height: 290,
-        width: double.infinity,
         margin: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Row(
-              children: [
-                FaIcon(
-                  FontAwesomeIcons.solidClock,
-                  size: 28,
-                  color: primaryOrange,
-                ),
-                const SizedBox(width: 15),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Entrée - sortie',
-                      style: TextStyle(
-                        color: grey,
-                        fontSize: 15,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    GestureDetector(
-                      onTap: () {
-                        dateTimeRangePicker();
-                      },
-                      child: Text(
-                        dateRange,
-                        style: TextStyle(
-                          color: primaryOrange,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            const SizedBox(height: 3),
-            const Divider(thickness: 1),
-            const SizedBox(height: 3),
             Row(
               children: [
                 FaIcon(
@@ -123,7 +92,7 @@ class _HostFilterTabState extends State<HostFilterTab> {
                         fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 3),
                     Container(
                       margin: const EdgeInsets.only(left: 5),
                       height: 40,
@@ -162,22 +131,22 @@ class _HostFilterTabState extends State<HostFilterTab> {
                 )
               ],
             ),
-            const SizedBox(height: 1),
+            const SizedBox(height: 3),
             const Divider(thickness: 1),
             const SizedBox(height: 3),
             Row(
               children: [
                 FaIcon(
-                  FontAwesomeIcons.personWalkingLuggage,
-                  size: 28,
+                  FontAwesomeIcons.mapLocationDot,
+                  size: 27,
                   color: primaryOrange,
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Par personnes',
+                      'Emplacement',
                       style: TextStyle(
                         color: grey,
                         fontSize: 15,
@@ -188,43 +157,38 @@ class _HostFilterTabState extends State<HostFilterTab> {
                       width: MediaQuery.of(context).size.width - 80,
                       child: Row(
                         children: [
-                          Text(
-                            'Adultes',
-                            style: TextStyle(
-                              color: primaryOrange,
-                              fontSize: 16,
-                            ),
-                          ),
-                          const Spacer(),
-                          IconButton(
-                            onPressed: () {
-                              if (adultsCount > 1) {
+                          Expanded(
+                            child: DropdownButton<String>(
+                              iconEnabledColor: primaryOrange,
+                              underline: Container(),
+                              items: placeItems.map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width - 130,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            value,
+                                            style: TextStyle(
+                                                color: primaryOrange,
+                                                fontSize: 16),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                              value: place,
+                              onChanged: (newValue) {
                                 setState(() {
-                                  adultsCount--;
+                                  place = newValue!;
                                 });
-                              }
-                            },
-                            icon: const Icon(
-                              Icons.remove,
-                              size: 22,
-                            ),
-                          ),
-                          Text(
-                            '$adultsCount',
-                            style: TextStyle(
-                              color: primaryOrange,
-                              fontSize: 17,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                adultsCount++;
-                              });
-                            },
-                            icon: const Icon(
-                              Icons.add,
-                              size: 22,
+                              },
                             ),
                           ),
                         ],
@@ -235,14 +199,52 @@ class _HostFilterTabState extends State<HostFilterTab> {
               ],
             ),
             const Divider(thickness: 1),
-            const SizedBox(height: 5),
+            const SizedBox(height: 3),
+            Row(
+              children: [
+                FaIcon(
+                  FontAwesomeIcons.solidClock,
+                  size: 28,
+                  color: primaryOrange,
+                ),
+                const SizedBox(width: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'De - à',
+                      style: TextStyle(
+                        color: grey,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    GestureDetector(
+                      onTap: () {
+                        dateTimeRangePicker();
+                      },
+                      child: Text(
+                        dateRange,
+                        style: TextStyle(
+                          color: primaryOrange,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(height: 3),
+            const Divider(thickness: 1),
+            const SizedBox(height: 3),
             Row(
               children: [
                 const Spacer(),
                 SizedBox(
                   height: 35,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {},
                     child: const Text(
                       'RECHERCHER',
                       style: TextStyle(
