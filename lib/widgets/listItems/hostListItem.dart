@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../models/host.dart';
 import '../../utils/colors.dart';
+import '../../utils/utils.dart';
 
 class HostListItem extends StatefulWidget {
-  const HostListItem({Key? key}) : super(key: key);
+  Host host;
+  HostListItem(this.host);
 
   @override
   State<HostListItem> createState() => _HostListItemState();
 }
 
 class _HostListItemState extends State<HostListItem> {
+  bool liked = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width - 30,
       height: 400,
-      margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 20),
+      margin: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
@@ -36,32 +41,34 @@ class _HostListItemState extends State<HostListItem> {
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
-                  child: Image.asset(
-                    'assets/hostcover.jpg',
+                  child: Image.network(
+                    widget.host.IMAGE_URL!,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              Positioned(
-                left: 0,
-                top: 20,
-                child: Container(
-                  width: 80,
-                  height: 26,
-                  padding: const EdgeInsets.only(left: 8, top: 5),
-                  decoration: BoxDecoration(
-                    color: primaryOrange,
-                  ),
-                  child: const Text(
-                    'En Vedette',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-              ),
+              widget.host.is_featured == 1
+                  ? Positioned(
+                      left: 0,
+                      top: 20,
+                      child: Container(
+                        width: 80,
+                        height: 26,
+                        padding: const EdgeInsets.only(left: 8, top: 5),
+                        decoration: BoxDecoration(
+                          color: primaryOrange,
+                        ),
+                        child: Text(
+                          'En Vedette',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
               Positioned(
                 bottom: 0,
                 child: Container(
@@ -73,7 +80,7 @@ class _HostListItemState extends State<HostListItem> {
                     ),
                     color: primaryOrange,
                   ),
-                  child: const Text(
+                  child: Text(
                     'Ferme écologique',
                     style: TextStyle(
                       color: Colors.white,
@@ -96,11 +103,18 @@ class _HostListItemState extends State<HostListItem> {
                     ),
                     color: Colors.black.withOpacity(0.5),
                   ),
-                  child: Center(
-                    child: Icon(
-                      Icons.favorite_outline,
-                      color: Colors.white,
-                      size: 20,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        liked = !liked;
+                      });
+                    },
+                    child: Center(
+                      child: Icon(
+                        Icons.favorite,
+                        color: liked ? likedRed : Colors.white,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ),
@@ -110,7 +124,7 @@ class _HostListItemState extends State<HostListItem> {
           Container(
             margin: EdgeInsets.only(left: 10, top: 15),
             child: Text(
-              'Village Ken',
+              widget.host.title!,
               style: TextStyle(
                 color: titleBlack,
                 fontSize: 17,
@@ -129,7 +143,7 @@ class _HostListItemState extends State<HostListItem> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  'Sousse',
+                  widget.host.address!,
                   style: TextStyle(
                     color: grey,
                     fontSize: 13,
@@ -154,7 +168,7 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        '50',
+                        '${widget.host.perp_max_persons!}',
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -175,7 +189,7 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        'Campagne',
+                        widget.host.location.title!,
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -185,27 +199,29 @@ class _HostListItemState extends State<HostListItem> {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 10),
-                  child: Column(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.slideshare,
-                        size: 14,
-                        color: grey,
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        'Impact',
-                        style: TextStyle(
-                          color: primary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
+                widget.host.impactsocial! == "1"
+                    ? Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.slideshare,
+                              size: 14,
+                              color: grey,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              'Impact',
+                              style: TextStyle(
+                                color: primary,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                      )
+                    : Container(),
               ],
             ),
           ),
@@ -220,7 +236,7 @@ class _HostListItemState extends State<HostListItem> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  '85 DT',
+                  '${removeDecimalZeroFormat(widget.host.price!)} DT',
                   style: TextStyle(
                     color: titleBlack,
                     fontSize: 19,
@@ -228,7 +244,9 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                 ),
                 Text(
-                  ' /personne',
+                  widget.host.roomsList[0].number! == -1
+                      ? ' /personne'
+                      : ' /nuit',
                   style: TextStyle(
                     color: grey,
                     fontSize: 14,

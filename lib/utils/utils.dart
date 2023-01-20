@@ -15,3 +15,10 @@ class CustomClips extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+
+String removeDecimalZeroFormat(String num) {
+  RegExp regex = RegExp(r'([.]*0+)(?!.*\d)');
+
+  String s = num.replaceAll(regex, '');
+  return s;
+}

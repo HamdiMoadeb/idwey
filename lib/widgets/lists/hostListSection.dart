@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:idwey/services/hostCalls.dart';
 import 'package:idwey/widgets/listItems/hostListItem.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../models/host.dart';
+import '../../services/hostCalls.dart';
 import '../../utils/colors.dart';
 
 class HostListSection extends StatefulWidget {
@@ -12,16 +15,30 @@ class HostListSection extends StatefulWidget {
 }
 
 class _HostListSectionState extends State<HostListSection> {
+  List<Host> hosts = [];
+  final AutoScrollController controller = AutoScrollController();
+
+  int _currentFocusedIndex = 0;
+
+  getAllHosts() {
+    HostCalls.getAllHosts().then((list) {
+      setState(() {
+        hosts = list;
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
 
-    HostCalls().getAllHosts();
+    getAllHosts();
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
@@ -67,7 +84,15 @@ class _HostListSectionState extends State<HostListSection> {
                       color: primary,
                       size: 25,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_currentFocusedIndex > 0) {
+                        _currentFocusedIndex--;
+                        controller.scrollToIndex(_currentFocusedIndex,
+                            preferPosition: AutoScrollPosition.begin);
+
+                        setState(() {});
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       shadowColor: Colors.white,
@@ -88,7 +113,14 @@ class _HostListSectionState extends State<HostListSection> {
                       color: primary,
                       size: 25,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_currentFocusedIndex < hosts.length - 1) {
+                        _currentFocusedIndex++;
+                        controller.scrollToIndex(_currentFocusedIndex,
+                            preferPosition: AutoScrollPosition.begin);
+                        setState(() {});
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       shadowColor: Colors.white,
@@ -103,7 +135,32 @@ class _HostListSectionState extends State<HostListSection> {
             ],
           ),
         ),
-        HostListItem(),
+        Container(
+          height: 400,
+          margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
+          child: ListView.builder(
+            controller: controller,
+            physics: PageScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) => AutoScrollTag(
+              key: ValueKey(index),
+              controller: controller,
+              index: index,
+              child: VisibilityDetector(
+                key: Key(index.toString()),
+                onVisibilityChanged: (VisibilityInfo info) {
+                  if (info.visibleFraction == 1) {
+                    setState(() {
+                      _currentFocusedIndex = index;
+                    });
+                  }
+                },
+                child: HostListItem(hosts[index]),
+              ),
+            ),
+            itemCount: hosts.length,
+          ),
+        ),
       ],
     );
   }

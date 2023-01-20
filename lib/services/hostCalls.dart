@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:idwey/models.dart';
+import 'package:idwey/models/host.dart';
 import 'package:idwey/utils/urls.dart';
 
 class HostCalls {
-  Future<List<Host>> getAllHosts() async {
+  static Future<List<Host>> getAllHosts() async {
     List<Host> listHosts = [];
 
     var url = Uri.parse('${Urls.URL_API}hotel/listHost');

@@ -6,6 +6,7 @@ final Color primary = HexColor.fromHex('#07C8B9');
 final Color grey = HexColor.fromHex('#5e6d77');
 final Color titleBlack = HexColor.fromHex('#1a2b50');
 final Color footerBg = HexColor.fromHex('#f5f5f5');
+final Color likedRed = HexColor.fromHex('#EB8F90');
 
 const MaterialColor materialPrimary = MaterialColor(
   0xFF07C8B9,
