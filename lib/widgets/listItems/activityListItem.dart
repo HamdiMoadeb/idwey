@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/models/activity.dart';
 
-import '../../models/host.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 
-class HostListItem extends StatefulWidget {
-  Host host;
-  HostListItem(this.host);
+class ActivityListItem extends StatefulWidget {
+  Activity activity;
+  ActivityListItem(this.activity);
 
   @override
-  State<HostListItem> createState() => _HostListItemState();
+  State<ActivityListItem> createState() => _ActivityListItemState();
 }
 
-class _HostListItemState extends State<HostListItem> {
-  bool liked = false;
-
+class _ActivityListItemState extends State<ActivityListItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 400,
       margin: EdgeInsets.only(left: 15),
+      height: 400,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
@@ -42,35 +40,13 @@ class _HostListItemState extends State<HostListItem> {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(
-                    widget.host.IMAGE_URL!,
+                    widget.activity.IMAGE_URL!,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              widget.host.is_featured == 1
-                  ? Positioned(
-                      left: 0,
-                      top: 20,
-                      child: Container(
-                        width: 80,
-                        height: 26,
-                        padding: const EdgeInsets.only(left: 8, top: 5),
-                        decoration: BoxDecoration(
-                          color: primaryOrange,
-                        ),
-                        child: Text(
-                          'En Vedette',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                    )
-                  : Container(),
               Positioned(
-                bottom: 0,
+                bottom: 10,
                 child: Container(
                   height: 28,
                   padding: const EdgeInsets.only(left: 8, top: 5, right: 8),
@@ -81,7 +57,7 @@ class _HostListItemState extends State<HostListItem> {
                     color: primaryOrange,
                   ),
                   child: Text(
-                    widget.host.term_name!,
+                    widget.activity.cat_name!,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
@@ -103,18 +79,11 @@ class _HostListItemState extends State<HostListItem> {
                     ),
                     color: Colors.black.withOpacity(0.5),
                   ),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        liked = !liked;
-                      });
-                    },
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: liked ? likedRed : Colors.white,
-                        size: 20,
-                      ),
+                  child: Center(
+                    child: Icon(
+                      Icons.favorite_outline,
+                      color: Colors.white,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -124,7 +93,7 @@ class _HostListItemState extends State<HostListItem> {
           Container(
             margin: EdgeInsets.only(left: 10, top: 15),
             child: Text(
-              widget.host.title!,
+              widget.activity.title!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -134,27 +103,30 @@ class _HostListItemState extends State<HostListItem> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 8),
-            child: Row(
-              children: [
-                FaIcon(
-                  FontAwesomeIcons.solidPaperPlane,
-                  size: 11,
-                  color: grey,
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  widget.host.address!,
-                  style: TextStyle(
-                    color: grey,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
+          widget.activity.address!.isNotEmpty
+              ? Container(
+                  margin: EdgeInsets.only(left: 10, top: 8),
+                  child: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.solidPaperPlane,
+                        size: 11,
+                        color: grey,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        widget.activity.address!,
+                        style: TextStyle(
+                          color: grey,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
+                )
+              : Container(),
+          Spacer(),
           Container(
             margin: EdgeInsets.only(left: 10, top: 10),
             child: Row(
@@ -170,7 +142,7 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        '${widget.host.perp_max_persons!}',
+                        '${widget.activity.max_people}',
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -181,17 +153,17 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(right: 12),
+                  margin: EdgeInsets.only(right: 10),
                   child: Column(
                     children: [
                       FaIcon(
-                        FontAwesomeIcons.mapLocationDot,
+                        FontAwesomeIcons.clock,
                         size: 14,
                         color: grey,
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        widget.host.location.title!,
+                        ' H',
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -201,7 +173,7 @@ class _HostListItemState extends State<HostListItem> {
                     ],
                   ),
                 ),
-                widget.host.impactsocial! == "1"
+                widget.activity.impactsocial! == "1"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(
@@ -238,7 +210,7 @@ class _HostListItemState extends State<HostListItem> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  '${removeDecimalZeroFormat(widget.host.price!)} DT',
+                  '${removeDecimalZeroFormat(widget.activity.price!)} DT',
                   style: TextStyle(
                     color: titleBlack,
                     fontSize: 19,
@@ -246,9 +218,7 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                 ),
                 Text(
-                  widget.host.roomsList[0].number! == -1
-                      ? ' /personne'
-                      : ' /nuit',
+                  ' /personne',
                   style: TextStyle(
                     color: grey,
                     fontSize: 14,
