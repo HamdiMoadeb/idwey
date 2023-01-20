@@ -8,6 +8,7 @@ class Host {
   String? address;
   String? impactsocial;
   String? IMAGE_URL;
+  String? term_name;
   List<Room> roomsList;
   HostLocation location;
 
@@ -21,6 +22,7 @@ class Host {
     this.location_id,
     this.perp_max_persons,
     this.price,
+    this.term_name,
     this.roomsList,
     this.location,
   );
@@ -32,7 +34,6 @@ class Host {
     var loc = data['location'];
     HostLocation locationObj =
         (loc != null) ? HostLocation.fromJson(loc) : HostLocation(0, "NA");
-    ;
 
     return Host(
       data['id'] as int,
@@ -44,6 +45,7 @@ class Host {
       data['location_id'] == null ? -1 : data['location_id'] as int,
       data['perp_max_persons'] == null ? -1 : data['perp_max_persons'] as int,
       data['price'] == null ? "" : data['price'] as String,
+      data['term_name'] == null ? "" : data['term_name'] as String,
       roomsList,
       locationObj,
     );
