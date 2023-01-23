@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/colors.dart';
-import 'package:idwey/widgets/ForcesSectionItem.dart';
 import 'package:idwey/widgets/lists/activityListSection.dart';
 import 'package:idwey/widgets/lists/eventListSection.dart';
 import 'package:idwey/widgets/lists/hostListSection.dart';
+import 'package:idwey/widgets/lists/idweySection.dart';
 import 'package:idwey/widgets/lists/productListSection.dart';
 import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
 import 'package:idwey/widgets/tabs/EventFilterTab.dart';
 import 'package:idwey/widgets/tabs/HostFilterTab.dart';
-
-import '../utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -217,98 +215,7 @@ class _HomePageState extends State<HomePage>
             // PRODUCT SECTION
             ProductListSection(),
             // FORCES SECTION
-            Container(
-              height: 1200,
-              child: Stack(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 50),
-                    width: double.infinity,
-                    child: ClipPath(
-                      clipper: CustomClips(),
-                      child: Container(
-                        height: 400,
-                        color: primary,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 150,
-                    child: Container(
-                      height: 1150,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.only(top: 0),
-                      color: primary,
-                      child: Column(
-                        children: [
-                          Text(
-                            'IDWEY',
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Text(
-                            'Nos 4 points forts ↓',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 15),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                      EdgeInsets.symmetric(
-                                          vertical: 17, horizontal: 27)),
-                              elevation: MaterialStateProperty.all<double>(0),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(40),
-                                  side: BorderSide(
-                                    color: Colors.white,
-                                    width: 2,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            child: Text(
-                              'Notre Concept',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                              ),
-                            ),
-                          ),
-                          ForcesSectionItem(
-                              'Démarche environnementale',
-                              'loienv.png',
-                              'une réservation = un arbre planté en Tunisie.'),
-                          ForcesSectionItem(
-                              'Nouvelles formes de tourisme',
-                              'tourisme.png',
-                              'Nous travaillons sur le développement de nouvelles formes de tourisme, à travers nos ambassadeurs experts tels que le géotourisme et le tourisme d\'aventure.'),
-                          ForcesSectionItem(
-                              'Expertise locale et sportive',
-                              'localisation.png',
-                              'IDWEY et ses partenaires locaux mettent à votre disposition des expériences à fortes valeurs ajoutées.'),
-                          ForcesSectionItem(
-                              'Valorisation territoriale',
-                              'evaluation.png',
-                              'En mettant l\'accent sur les aspects du développement durable, IDWEY contribue à la valorisation territoriale et l\'intégration des communautés locales.'),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            IdweySection(),
             // YOUR DESIRES SECTION
             Container(
               margin: EdgeInsets.only(top: 30, left: 15),
