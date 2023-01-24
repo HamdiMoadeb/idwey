@@ -80,4 +80,23 @@ class HomePageCalls {
     }
     return listTestimonial;
   }
+
+  static Future<List<String>> getCarouselLinks() async {
+    List<String> links = [];
+
+    var url = Uri.parse('${Urls.URL_API}formSearch');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      for (Map<String?, dynamic> i in data["list_item"]) {
+        print(i);
+        links.add(i["icon_url"]);
+      }
+    }
+    return links;
+  }
 }

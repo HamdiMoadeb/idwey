@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/services/homePageCalls.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/footer.dart';
 import 'package:idwey/widgets/lists/activityListSection.dart';
@@ -30,11 +31,23 @@ class _HomePageState extends State<HomePage>
   TabController? _tabController;
   ScrollController? scrollController;
 
+  List<String> carouselLinks = [];
+
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     scrollController = ScrollController();
     super.initState();
+
+    getCarouselImages();
+  }
+
+  getCarouselImages() {
+    HomePageCalls.getCarouselLinks().then((list) {
+      setState(() {
+        carouselLinks = list;
+      });
+    });
   }
 
   void scrollToTop() {
@@ -94,18 +107,12 @@ class _HomePageState extends State<HomePage>
                     enableInfiniteScroll: true,
                     autoPlay: true,
                   ),
-                  items: [
-                    "slider1.png",
-                    "slider2.png",
-                    "slider3.png",
-                    "slider4.jpg",
-                    "slider5.jpg"
-                  ].map((i) {
+                  items: carouselLinks.map((i) {
                     return Builder(
                       builder: (BuildContext context) {
                         return SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          child: Image.asset("assets/$i", fit: BoxFit.cover),
+                          child: Image.network(i, fit: BoxFit.cover),
                         );
                       },
                     );
