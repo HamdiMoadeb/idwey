@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:idwey/widgets/footer.dart';
 import 'package:idwey/widgets/lists/activityListSection.dart';
 import 'package:idwey/widgets/lists/desireListSection.dart';
 import 'package:idwey/widgets/lists/destinationListSection.dart';
@@ -27,11 +28,18 @@ class _HomePageState extends State<HomePage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TabController? _tabController;
+  ScrollController? scrollController;
 
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
+    scrollController = ScrollController();
     super.initState();
+  }
+
+  void scrollToTop() {
+    scrollController!.animateTo(0,
+        duration: const Duration(seconds: 2), curve: Curves.linear);
   }
 
   @override
@@ -71,6 +79,7 @@ class _HomePageState extends State<HomePage>
       ),
       endDrawer: const Drawer(),
       body: SingleChildScrollView(
+        controller: scrollController,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -454,250 +463,7 @@ class _HomePageState extends State<HomePage>
               ),
             ),
             // FOOTER
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              padding: EdgeInsets.all(15),
-              width: MediaQuery.of(context).size.width,
-              height: 700,
-              color: footerBg,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 25),
-                  Text(
-                    'BESOIN D\'AIDE?',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                  const SizedBox(height: 5),
-                  const Divider(),
-                  const SizedBox(height: 5),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Appelez-nous',
-                              style: TextStyle(
-                                  color: grey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '+216 31 106 666',
-                              style: TextStyle(
-                                  color: primary,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Horaire',
-                              style: TextStyle(
-                                  color: grey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Lundi -> Vendredi',
-                              style: TextStyle(
-                                  color: primary,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            Text(
-                              '10:00 -> 18:00',
-                              style: TextStyle(
-                                  color: primary,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Adresse',
-                                style: TextStyle(
-                                    color: grey,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14),
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                width: MediaQuery.of(context).size.width - 50,
-                                child: Text(
-                                  '63 Avenue Habib Bourguiba (Immeuble Le Parnasse), 7ème étage. Tunis, Tunisie',
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 35),
-                  Text(
-                    'EXPLORER',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                  const SizedBox(height: 5),
-                  const Divider(),
-                  const SizedBox(height: 5),
-                  Text(
-                    'A propos',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Devenir partenaire',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Condition d\'utilisation ',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Contact',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'FAQs',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 35),
-                  Text(
-                    'SUIVEZ NOUS',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                  const SizedBox(height: 5),
-                  const Divider(),
-                  const SizedBox(height: 5),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Suivez nous',
-                              style: TextStyle(
-                                  color: grey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            SizedBox(height: 10),
-                            Container(
-                              width: 120,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.facebookF,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.instagram,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.linkedin,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.youtube,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            Footer(),
             Container(
               margin: EdgeInsets.only(top: 15),
               child: Center(
@@ -726,7 +492,9 @@ class _HomePageState extends State<HomePage>
               width: 35,
               margin: EdgeInsets.only(left: 10, bottom: 10, top: 5),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  scrollToTop();
+                },
                 icon: FaIcon(
                   FontAwesomeIcons.anglesUp,
                   color: primaryOrange,
