@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:idwey/services/homePageCalls.dart';
-import 'package:idwey/widgets/listItems/desireListItem.dart';
+import 'package:idwey/models/destination.dart';
+import 'package:idwey/widgets/listItems/destinationListItem.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../models/desire.dart';
+import '../../services/homePageCalls.dart';
 import '../../utils/colors.dart';
 
-class DesireListSection extends StatefulWidget {
-  const DesireListSection({Key? key}) : super(key: key);
+class DestinationListSection extends StatefulWidget {
+  const DestinationListSection({Key? key}) : super(key: key);
 
   @override
-  State<DesireListSection> createState() => _DesireListSectionState();
+  State<DestinationListSection> createState() => _DestinationListSectionState();
 }
 
-class _DesireListSectionState extends State<DesireListSection> {
-  List<Desire> desires = [];
+class _DestinationListSectionState extends State<DestinationListSection> {
+  List<Destination> destinations = [];
   final AutoScrollController controller = AutoScrollController();
 
   int _currentFocusedIndex = 0;
 
-  getAllDesires() {
-    HomePageCalls.getAllDesires().then((list) {
+  getAllDestinations() {
+    HomePageCalls.getAllDestinations().then((list) {
       setState(() {
-        desires = list;
+        destinations = list;
       });
     });
   }
@@ -32,7 +32,7 @@ class _DesireListSectionState extends State<DesireListSection> {
   void initState() {
     super.initState();
 
-    getAllDesires();
+    getAllDestinations();
   }
 
   @override
@@ -44,9 +44,9 @@ class _DesireListSectionState extends State<DesireListSection> {
         Container(
           margin: EdgeInsets.only(top: 30, left: 15),
           child: Text(
-            'La Tunisie selon vos envies',
+            'Destination en vogue',
             style: TextStyle(
-              color: primaryOrange,
+              color: primary,
               fontSize: 25,
               fontWeight: FontWeight.w500,
             ),
@@ -55,7 +55,7 @@ class _DesireListSectionState extends State<DesireListSection> {
         Container(
           margin: EdgeInsets.only(top: 8, left: 15, right: 15),
           child: Text(
-            'Parce que vous êtes différents',
+            'Choisissez la destination qui vous parle le plus.',
             style: TextStyle(
               color: grey,
               fontSize: 14,
@@ -75,7 +75,7 @@ class _DesireListSectionState extends State<DesireListSection> {
                 child: ElevatedButton(
                     child: Icon(
                       Icons.navigate_before_sharp,
-                      color: primaryOrange,
+                      color: primary,
                       size: 25,
                     ),
                     onPressed: () {
@@ -83,7 +83,6 @@ class _DesireListSectionState extends State<DesireListSection> {
                         _currentFocusedIndex--;
                         controller.scrollToIndex(_currentFocusedIndex,
                             preferPosition: AutoScrollPosition.begin);
-
                         setState(() {});
                       }
                     },
@@ -104,11 +103,11 @@ class _DesireListSectionState extends State<DesireListSection> {
                 child: ElevatedButton(
                     child: Icon(
                       Icons.navigate_next_sharp,
-                      color: primaryOrange,
+                      color: primary,
                       size: 25,
                     ),
                     onPressed: () {
-                      if (_currentFocusedIndex < desires.length - 1) {
+                      if (_currentFocusedIndex < destinations.length - 1) {
                         _currentFocusedIndex++;
                         controller.scrollToIndex(_currentFocusedIndex,
                             preferPosition: AutoScrollPosition.begin);
@@ -149,10 +148,10 @@ class _DesireListSectionState extends State<DesireListSection> {
                     });
                   }
                 },
-                child: DesireListItem(desires[index]),
+                child: DestinationListItem(destinations[index]),
               ),
             ),
-            itemCount: desires.length,
+            itemCount: destinations.length,
           ),
         ),
       ],
