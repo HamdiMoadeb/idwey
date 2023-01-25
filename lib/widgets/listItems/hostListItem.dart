@@ -20,7 +20,7 @@ class _HostListItemState extends State<HostListItem> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 380,
+      height: 390,
       margin: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -228,6 +228,10 @@ class _HostListItemState extends State<HostListItem> {
             ),
           ),
           Spacer(),
+          const Divider(
+            thickness: 1,
+            height: 1,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -264,7 +268,7 @@ class _HostListItemState extends State<HostListItem> {
               ),
               Spacer(),
               Container(
-                width: 180,
+                width: 170,
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(

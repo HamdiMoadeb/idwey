@@ -7,6 +7,7 @@ import '../models/host.dart';
 import '../services/hostCalls.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/listItems/hostListItem.dart';
+import '../widgets/tabs/HostFilterTab.dart';
 
 class HostPage extends StatefulWidget {
   const HostPage({Key? key}) : super(key: key);
@@ -46,30 +47,41 @@ class _HostPageState extends State<HostPage>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: 230,
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset("assets/hostPageCover.jpg",
-                        fit: BoxFit.cover),
+            Container(
+              child: Stack(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: 230,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Image.asset("assets/hostPageCover.jpg",
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      const Positioned(
+                        top: 90.0,
+                        left: 20,
+                        child: Text(
+                          'Nos hébergements',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 34,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const Positioned(
-                  top: 100.0,
-                  left: 20,
-                  child: Text(
-                    'Nos hébergements',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 34,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 180),
+                    child: HostFilterTab(),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+
             Container(
               padding: EdgeInsets.all(20),
               child: Text(
