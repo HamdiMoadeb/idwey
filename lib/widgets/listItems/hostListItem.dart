@@ -20,7 +20,7 @@ class _HostListItemState extends State<HostListItem> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 400,
+      height: 415,
       margin: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
