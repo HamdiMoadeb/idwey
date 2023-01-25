@@ -21,7 +21,7 @@ class _HostPageState extends State<HostPage>
   List<Host> hosts = [];
   int hostsCount = 0;
   getAllHosts() {
-    HostCalls.getAllHosts().then((list) {
+    HostCalls.getAllHotels().then((list) {
       setState(() {
         hosts = list;
         hostsCount = hosts.length;
