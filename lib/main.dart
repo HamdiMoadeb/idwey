@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Idwey',
       theme: ThemeData(
-        primarySwatch: materialPrimary,
-        splashColor: Colors.white,
-      ),
+          primarySwatch: materialPrimary,
+          splashColor: Colors.white,
+          fontFamily: 'Poppins'),
       home: const HomePage(),
     );
   }

@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage>
               ],
             ),
             Container(
-              height: 290,
+              height: 305,
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 2),
               child: TabBarView(

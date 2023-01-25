@@ -62,10 +62,10 @@ class _HostPageState extends State<HostPage>
                   child: Text(
                     'Nos hébergements',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 34,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Poppins'),
+                      color: Colors.white,
+                      fontSize: 34,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ],
@@ -75,9 +75,9 @@ class _HostPageState extends State<HostPage>
               child: Text(
                 "$hostsCount hébergements trouvés",
                 style: TextStyle(
-                    fontSize: 24.0,
-                    color: Color(0xFF1a2b48),
-                    fontFamily: 'Poppins'),
+                  fontSize: 24.0,
+                  color: Color(0xFF1a2b48),
+                ),
               ),
             ),
             HostList(hosts: hosts),
