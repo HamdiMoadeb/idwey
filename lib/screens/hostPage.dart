@@ -76,7 +76,7 @@ class _HostPageState extends State<HostPage>
                 "$hostsCount hébergements trouvés",
                 style: TextStyle(
                   fontSize: 24.0,
-                  color: Color(0xFF1a2b48),
+                  color: titleBlue,
                 ),
               ),
             ),
