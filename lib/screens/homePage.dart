@@ -343,7 +343,7 @@ class _HomePageState extends State<HomePage>
             ),
             // FORCES SECTION
             Container(
-              height: 1200,
+              height: 1300,
               child: Stack(
                 children: [
                   Container(
