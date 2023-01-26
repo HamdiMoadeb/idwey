@@ -19,13 +19,19 @@ class HostPage extends StatefulWidget {
 class _HostPageState extends State<HostPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollController = ScrollController();
+  int page = 1;
+  int totalPages = 1;
   List<Host> hosts = [];
   int hostsCount = 0;
-  getAllHosts() {
-    HostCalls.getAllHotels().then((list) {
+  bool hasReachPoint = false;
+  getAllHosts(page) {
+    HostCalls.getHostsList(page).then((data) {
       setState(() {
-        hosts = list;
-        hostsCount = hosts.length;
+        hosts += data['hosts'];
+        hostsCount = data['total'];
+        totalPages = data['last_page'];
+        hasReachPoint = false;
       });
     });
   }
@@ -33,7 +39,22 @@ class _HostPageState extends State<HostPage>
   @override
   void initState() {
     super.initState();
-    getAllHosts();
+    scrollController.addListener(_scrollListner);
+    getAllHosts(page);
+  }
+
+  void _scrollListner() {
+    if (scrollController.position.pixels.toInt() >=
+            scrollController.position.maxScrollExtent.toInt() - 1500 &&
+        hasReachPoint == false &&
+        page < totalPages) {
+      setState(() {
+        hasReachPoint = true;
+        page = page + 1;
+        getAllHosts(page);
+      });
+    }
+    ;
   }
 
   @override
@@ -43,6 +64,7 @@ class _HostPageState extends State<HostPage>
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
       body: SingleChildScrollView(
+        controller: scrollController,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
