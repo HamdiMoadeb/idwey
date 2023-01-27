@@ -19,7 +19,7 @@ class HomePageCalls {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      forces = IdweyForces.fromJson(data);
+      forces = IdweyForces.fromJson(data["rows"]);
     }
     return forces;
   }

@@ -9,8 +9,11 @@ class IdweyForces {
     var listItem = data['list_item'] as List;
     List<Forces> list_item = listItem.map((i) => Forces.fromJson(i)).toList();
 
-    return IdweyForces(data['title'] == null ? "" : data['title'] as String,
-        data['slug'] == null ? "" : data['slug'] as String, list_item);
+    return IdweyForces(
+      data['title'] == null ? "" : data['title'] as String,
+      data['slug'] == null ? "" : data['slug'] as String,
+      list_item,
+    );
   }
 }
 

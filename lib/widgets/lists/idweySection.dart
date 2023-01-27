@@ -35,7 +35,7 @@ class _IdweySectionState extends State<IdweySection> {
   Widget build(BuildContext context) {
     return idweyForces != null
         ? Container(
-            height: 1200,
+            height: 1280,
             child: Stack(
               children: [
                 Container(
