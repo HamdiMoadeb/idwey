@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import 'package:flutter/services.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
@@ -54,7 +54,11 @@ class _HostPageState extends State<HostPage>
         getAllHosts(page);
       });
     }
-    ;
+  }
+
+  void scrollToTop() {
+    scrollController.animateTo(0,
+        duration: const Duration(seconds: 2), curve: Curves.linear);
   }
 
   @override
@@ -118,7 +122,7 @@ class _HostPageState extends State<HostPage>
             //footer
             Footer(),
             CreatedBy(),
-            BackToTop(),
+            BackToTop(scrollToTop),
           ],
         ),
       ),

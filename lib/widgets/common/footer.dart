@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../utils/colors.dart';
 
-class Footer extends StatelessWidget {
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+
+class Footer extends StatefulWidget {
   const Footer({Key? key}) : super(key: key);
 
+  @override
+  State<Footer> createState() => _FooterState();
+}
+
+class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -203,25 +210,49 @@ class Footer extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          FaIcon(
-                            FontAwesomeIcons.facebookF,
-                            size: 15,
-                            color: primary,
+                          GestureDetector(
+                            onTap: () {
+                              customLaunchUrl(
+                                  'https://m.facebook.com/103047154422733/');
+                            },
+                            child: FaIcon(
+                              FontAwesomeIcons.facebookF,
+                              size: 15,
+                              color: primary,
+                            ),
                           ),
-                          FaIcon(
-                            FontAwesomeIcons.instagram,
-                            size: 15,
-                            color: primary,
+                          GestureDetector(
+                            onTap: () {
+                              customLaunchUrl(
+                                  'https://www.instagram.com/idwey_tn/');
+                            },
+                            child: FaIcon(
+                              FontAwesomeIcons.instagram,
+                              size: 15,
+                              color: primary,
+                            ),
                           ),
-                          FaIcon(
-                            FontAwesomeIcons.linkedin,
-                            size: 15,
-                            color: primary,
+                          GestureDetector(
+                            onTap: () {
+                              customLaunchUrl(
+                                  'https://www.linkedin.com/company/idwey/');
+                            },
+                            child: FaIcon(
+                              FontAwesomeIcons.linkedin,
+                              size: 15,
+                              color: primary,
+                            ),
                           ),
-                          FaIcon(
-                            FontAwesomeIcons.youtube,
-                            size: 15,
-                            color: primary,
+                          GestureDetector(
+                            onTap: () {
+                              customLaunchUrl(
+                                  'https://www.youtube.com/channel/UCrLukFHd8Fjlnm-R4zQy_dQ');
+                            },
+                            child: FaIcon(
+                              FontAwesomeIcons.youtube,
+                              size: 15,
+                              color: primary,
+                            ),
                           ),
                         ],
                       ),
@@ -269,7 +300,8 @@ class CreatedBy extends StatelessWidget {
 }
 
 class BackToTop extends StatelessWidget {
-  const BackToTop({Key? key}) : super(key: key);
+  Function backtotop;
+  BackToTop(this.backtotop);
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +310,9 @@ class BackToTop extends StatelessWidget {
       width: 35,
       margin: EdgeInsets.only(left: 10, bottom: 10, top: 5),
       child: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          backtotop();
+        },
         icon: FaIcon(
           FontAwesomeIcons.anglesUp,
           color: primaryOrange,

@@ -136,7 +136,7 @@ class _EventListSectionState extends State<EventListSection> {
           ),
         ),
         Container(
-          height: 430,
+          height: 450,
           margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
           child: ListView.builder(
             controller: controller,

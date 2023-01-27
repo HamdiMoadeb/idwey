@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/colors.dart';
-import 'package:idwey/widgets/ForcesSectionItem.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import 'package:idwey/widgets/footer.dart';
 import 'package:idwey/widgets/lists/activityListSection.dart';
 import 'package:idwey/widgets/lists/desireListSection.dart';
 import 'package:idwey/widgets/lists/destinationListSection.dart';
@@ -18,7 +16,7 @@ import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
 import 'package:idwey/widgets/tabs/EventFilterTab.dart';
 import 'package:idwey/widgets/tabs/HostFilterTab.dart';
 
-import '../utils/utils.dart';
+import '../services/homePageCalls.dart';
 import '../widgets/common/footer.dart';
 
 class HomePage extends StatefulWidget {
@@ -451,7 +449,7 @@ class _HomePageState extends State<HomePage>
             ),
             Footer(),
             CreatedBy(),
-            BackToTop(),
+            BackToTop(scrollToTop),
           ],
         ),
       ),
