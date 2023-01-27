@@ -170,7 +170,7 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        '${widget.host.perp_max_persons!}',
+                        '${widget.host.max_person!}',
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -191,7 +191,7 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        widget.host.location.title!,
+                        widget.host.location_name!,
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -254,9 +254,7 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                     ),
                     Text(
-                      widget.host.roomsList[0].number! == -1
-                          ? ' /personne'
-                          : ' /nuit',
+                      widget.host.per_person! == 1 ? ' /personne' : ' /nuit',
                       style: TextStyle(
                         color: grey,
                         fontSize: 14,
