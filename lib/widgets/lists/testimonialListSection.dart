@@ -48,8 +48,8 @@ class _TestimonialListSectionState extends State<TestimonialListSection> {
           ),
         ),
         Container(
-          height: 180,
-          margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
+          height: 210,
+          margin: EdgeInsets.only(top: 5, bottom: 10, right: 15),
           child: ListView.builder(
             physics: PageScrollPhysics(),
             scrollDirection: Axis.horizontal,

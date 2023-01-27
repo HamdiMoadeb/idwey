@@ -73,7 +73,7 @@ class HomePageCalls {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      for (Map<String?, dynamic> i in data["list_item"]) {
+      for (Map<String?, dynamic> i in data["rows"]["list_item"]) {
         print(i);
         listTestimonial.add(Testimonial.fromJson(i));
       }

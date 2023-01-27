@@ -39,6 +39,7 @@ class _TestimonialListItemState extends State<TestimonialListItem> {
                   ),
                   SizedBox(width: 15),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         widget.testimonial.name!,
@@ -51,6 +52,7 @@ class _TestimonialListItemState extends State<TestimonialListItem> {
                       ),
                       SizedBox(height: 5),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: List.generate(
                           widget.testimonial.number_star!,
                           (index) {
