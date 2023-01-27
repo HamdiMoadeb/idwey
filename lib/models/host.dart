@@ -3,7 +3,7 @@ class Host {
   String? title;
   int? max_person;
   int? is_featured;
-  int? per_person;
+  String? per_person;
   String? location_name;
   String? price;
   String? address;
@@ -35,7 +35,7 @@ class Host {
           ? ""
           : data['impactsocial'] as String, // IF NOT NULL RETURNS "Oui"
       data['is_featured'] == null ? -1 : data['is_featured'] as int,
-      data['per_person'] == null ? -1 : data['per_person'] as int,
+      data['per_person'] == null ? "" : data['per_person'] as String,
       data['location_name'] == null ? "" : data['location_name'] as String,
       data['max_person'] == null ? -1 : data['max_person'] as int,
       data['price'] == null ? "" : data['price'] as String,

@@ -20,18 +20,12 @@ class _HostPageState extends State<HostPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
-  int page = 1;
-  int totalPages = 1;
   List<Host> hosts = [];
-  int hostsCount = 0;
-  bool hasReachPoint = false;
-  getAllHosts(page) {
-    HostCalls.getHostsList(page).then((data) {
+
+  getAllHosts() {
+    HostCalls.getHostsList().then((data) {
       setState(() {
-        hosts += data['hosts'];
-        hostsCount = data['total'];
-        totalPages = data['last_page'];
-        hasReachPoint = false;
+        hosts = data;
       });
     });
   }
@@ -39,21 +33,7 @@ class _HostPageState extends State<HostPage>
   @override
   void initState() {
     super.initState();
-    scrollController.addListener(_scrollListner);
-    getAllHosts(page);
-  }
-
-  void _scrollListner() {
-    if (scrollController.position.pixels.toInt() >=
-            scrollController.position.maxScrollExtent.toInt() - 1500 &&
-        hasReachPoint == false &&
-        page < totalPages) {
-      setState(() {
-        hasReachPoint = true;
-        page = page + 1;
-        getAllHosts(page);
-      });
-    }
+    getAllHosts();
   }
 
   void scrollToTop() {
@@ -111,14 +91,14 @@ class _HostPageState extends State<HostPage>
             Container(
               padding: EdgeInsets.all(20),
               child: Text(
-                "$hostsCount hébergements trouvés",
+                "${hosts.length} hébergements trouvés",
                 style: TextStyle(
                   fontSize: 24.0,
                   color: titleBlue,
                 ),
               ),
             ),
-            HostList(hosts: hosts),
+            HostList(),
             //footer
             Footer(),
             CreatedBy(),
@@ -131,9 +111,6 @@ class _HostPageState extends State<HostPage>
 }
 
 class HostList extends StatefulWidget {
-  final List<Host> hosts;
-  const HostList({Key? key, required this.hosts}) : super(key: key);
-
   @override
   State<HostList> createState() => _HostListState();
 }
@@ -141,14 +118,31 @@ class HostList extends StatefulWidget {
 class _HostListState extends State<HostList> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        for (var i = 0; i < widget.hosts.length; i++)
-          Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              child: HostListItem(widget.hosts[i]))
-      ],
+    return FutureBuilder(
+      future: HostCalls.getHostsList(),
+      builder: (context, AsyncSnapshot<List<Host>> snapshot) {
+        print(snapshot.data);
+
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null) {
+          final List<Host> listHosts = snapshot.data!.toList();
+          if (listHosts != null) {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) => Container(
+                  margin: EdgeInsets.only(bottom: 15, right: 15),
+                  child: HostListItem(listHosts[index])),
+              itemCount: listHosts.length,
+            );
+          }
+        }
+        return Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(primary),
+          ),
+        );
+      },
     );
   }
 }

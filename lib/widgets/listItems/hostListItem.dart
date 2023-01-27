@@ -254,7 +254,9 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                     ),
                     Text(
-                      widget.host.per_person! == 1 ? ' /personne' : ' /nuit',
+                      widget.host.per_person! == "personne"
+                          ? ' /personne'
+                          : ' /nuit',
                       style: TextStyle(
                         color: grey,
                         fontSize: 14,
