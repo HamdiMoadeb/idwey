@@ -21,9 +21,21 @@ class _HostPageState extends State<HostPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   List<Host> hosts = [];
+  String address = "", start = "", end = "", adults = "";
+  void updateSearchFields(dynamic searchInputs) {
+    getAllSearchedHosts(searchInputs);
+  }
 
   getAllHosts() {
     HostCalls.getHostsList().then((data) {
+      setState(() {
+        hosts = data;
+      });
+    });
+  }
+
+  getAllSearchedHosts(searchFields) {
+    HostCalls.getSearchedHostsList(searchFields).then((data) {
       setState(() {
         hosts = data;
       });
@@ -82,7 +94,10 @@ class _HostPageState extends State<HostPage>
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 180),
-                    child: HostFilterTab(),
+                    child: HostFilterTab(
+                      onChangeField: (dynamic searchInputs) =>
+                          updateSearchFields(searchInputs),
+                    ),
                   ),
                 ],
               ),
@@ -98,7 +113,9 @@ class _HostPageState extends State<HostPage>
                 ),
               ),
             ),
-            HostList(),
+            HostList(
+              apiCaller: HostCalls.getHostsList(),
+            ),
             //footer
             Footer(),
             CreatedBy(),
@@ -111,18 +128,22 @@ class _HostPageState extends State<HostPage>
 }
 
 class HostList extends StatefulWidget {
+  Future<List<Host>> apiCaller;
+  HostList({Key? key, required this.apiCaller}) : super(key: key);
   @override
   State<HostList> createState() => _HostListState();
 }
 
 class _HostListState extends State<HostList> {
+  void refrechList() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: HostCalls.getHostsList(),
+      future: widget.apiCaller,
       builder: (context, AsyncSnapshot<List<Host>> snapshot) {
-        print(snapshot.data);
-
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.data != null) {
           final List<Host> listHosts = snapshot.data!.toList();
