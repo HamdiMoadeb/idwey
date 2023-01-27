@@ -90,7 +90,27 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
-      endDrawer: const Drawer(),
+      endDrawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 80,
+              color: primary,
+              child: Row(
+                children: [
+                  SizedBox(height: 20),
+                  Icon(
+                    Icons.arrow_circle_right_outlined,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(
