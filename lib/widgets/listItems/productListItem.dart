@@ -92,7 +92,7 @@ class _ProductListItemState extends State<ProductListItem> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  'Jeux de société',
+                  '${widget.product.term_name}',
                   style: TextStyle(
                     color: titleBlack,
                     fontSize: 15,
