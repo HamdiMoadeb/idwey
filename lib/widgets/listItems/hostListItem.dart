@@ -201,7 +201,7 @@ class _HostListItemState extends State<HostListItem> {
                     ],
                   ),
                 ),
-                widget.host.impactsocial! == "1"
+                widget.host.impactsocial! == "Oui"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(

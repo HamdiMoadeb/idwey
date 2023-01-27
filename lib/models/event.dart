@@ -6,7 +6,7 @@ class Event {
   int? is_featured;
   String? difficulty;
   String? duration;
-  int? price;
+  String? price;
   String? address;
   String? impactsocial;
   String? IMAGE_URL;
@@ -33,14 +33,16 @@ class Event {
       data['title'] == null ? "" : data['title'] as String,
       data['address'] == null ? "" : data['address'] as String,
       data['IMAGE_URL'] == null ? "" : data['IMAGE_URL'] as String,
-      data['impactsocial'] == null ? "" : data['impactsocial'] as String,
+      data['impactsocial'] == null
+          ? ""
+          : data['impactsocial'] as String, // IF NOT NULL RETURNS "Oui"
       data['is_featured'] == null ? -1 : data['is_featured'] as int,
       data['start_date'] == null ? "" : data['start_date'] as String,
       data['number'] == null ? -1 : data['number'] as int,
-      data['price'] == null ? -1 : data['price'] as int,
+      data['prix'] == null ? "" : data['prix'] as String,
       data['duration'] == null ? "" : data['duration'] as String,
       data['difficulty'] == null ? "" : data['difficulty'] as String,
-      data['terms_name'] == null ? "" : data['terms_name'] as String,
+      data['term_name'] == null ? "" : data['term_name'] as String,
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../models/event.dart';
 import '../../utils/colors.dart';
+import '../../utils/utils.dart';
 
 class EventListItem extends StatefulWidget {
   Event event;
@@ -18,19 +19,6 @@ class _EventListItemState extends State<EventListItem> {
     DateTime tempDate = DateFormat("yyyy-MM-dd").parse(date);
     String newDate = DateFormat('dd-MM-yyyy').format(tempDate);
     return newDate;
-  }
-
-  String getDifficulty(String value) {
-    switch (value) {
-      case "1":
-        return "Facile";
-      case "2":
-        return "Moyen";
-      case "3":
-        return "Difficile";
-      default:
-        return "";
-    }
   }
 
   @override
@@ -203,7 +191,7 @@ class _EventListItemState extends State<EventListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        getDifficulty(widget.event.difficulty!),
+                        widget.event.difficulty!,
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -213,7 +201,7 @@ class _EventListItemState extends State<EventListItem> {
                     ],
                   ),
                 ),
-                widget.event.impactsocial! == "1"
+                widget.event.impactsocial! == "Oui"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(
@@ -273,7 +261,7 @@ class _EventListItemState extends State<EventListItem> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  '${widget.event.price!} DT',
+                  '${removeDecimalZeroFormat(widget.event.price!)} DT',
                   style: TextStyle(
                     color: titleBlack,
                     fontSize: 19,
