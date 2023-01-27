@@ -8,6 +8,7 @@ class Activity {
   String? impactsocial;
   String? IMAGE_URL;
   String? cat_name;
+  String? duration;
 
   Activity(
     this.id,
@@ -19,6 +20,7 @@ class Activity {
     this.is_featured,
     this.price,
     this.cat_name,
+    this.duration,
   );
 
   factory Activity.fromJson(Map<String?, dynamic> data) {
@@ -32,6 +34,7 @@ class Activity {
       data['is_featured'] == null ? -1 : data['is_featured'] as int,
       data['price'] == null ? "" : data['price'] as String,
       data['cat_name'] == null ? "" : data['cat_name'] as String,
+      data['duration'] == null ? "" : data['duration'] as String,
     );
   }
 }

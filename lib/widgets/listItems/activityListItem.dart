@@ -152,28 +152,30 @@ class _ActivityListItemState extends State<ActivityListItem> {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 10),
-                  child: Column(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.clock,
-                        size: 14,
-                        color: grey,
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        ' H',
-                        style: TextStyle(
-                          color: primary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
+                widget.activity.duration!.isNotEmpty
+                    ? Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.clock,
+                              size: 14,
+                              color: grey,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              '${widget.activity.duration} H',
+                              style: TextStyle(
+                                color: primary,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                widget.activity.impactsocial! == "1"
+                      )
+                    : Container(),
+                widget.activity.impactsocial! == "Oui"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(
