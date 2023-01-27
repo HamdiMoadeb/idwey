@@ -20,7 +20,7 @@ class _HostListItemState extends State<HostListItem> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 400,
+      height: 390,
       margin: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -227,65 +227,74 @@ class _HostListItemState extends State<HostListItem> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 8),
-            child: Row(
-              children: [
-                FaIcon(
-                  FontAwesomeIcons.bolt,
-                  size: 14,
-                  color: Colors.amber,
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  '${removeDecimalZeroFormat(widget.host.price!)} DT',
-                  style: TextStyle(
-                    color: titleBlack,
-                    fontSize: 19,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  widget.host.roomsList[0].number! == -1
-                      ? ' /personne'
-                      : ' /nuit',
-                  style: TextStyle(
-                    color: grey,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
           Spacer(),
-          Container(
-            width: double.infinity,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(15),
-                bottomLeft: Radius.circular(15),
+          const Divider(
+            thickness: 1,
+            height: 1,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.bolt,
+                      size: 14,
+                      color: Colors.amber,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      '${removeDecimalZeroFormat(widget.host.price!)} DT',
+                      style: TextStyle(
+                        color: titleBlack,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      widget.host.roomsList[0].number! == -1
+                          ? ' /personne'
+                          : ' /nuit',
+                      style: TextStyle(
+                        color: grey,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              color: primaryOrange,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Votre réservation = ',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
+              Spacer(),
+              Container(
+                width: 170,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(15),
                   ),
+                  color: primaryOrange,
                 ),
-                FaIcon(
-                  FontAwesomeIcons.tree,
-                  size: 15,
-                  color: Colors.green,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      'Votre réservation = ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    FaIcon(
+                      FontAwesomeIcons.tree,
+                      size: 15,
+                      color: Colors.green,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

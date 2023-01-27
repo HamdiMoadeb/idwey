@@ -136,7 +136,7 @@ class _HostListSectionState extends State<HostListSection> {
           ),
         ),
         Container(
-          height: 400,
+          height: 420,
           margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
           child: ListView.builder(
             controller: controller,

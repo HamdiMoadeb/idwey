@@ -62,7 +62,7 @@ class _HostFilterTabState extends State<HostFilterTab> {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Container(
-        height: 290,
+        height: 280,
         width: double.infinity,
         margin: const EdgeInsets.all(10),
         child: Column(

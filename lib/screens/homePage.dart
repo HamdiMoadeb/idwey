@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/ForcesSectionItem.dart';
+import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:idwey/widgets/lists/activityListSection.dart';
 import 'package:idwey/widgets/lists/eventListSection.dart';
 import 'package:idwey/widgets/lists/hostListSection.dart';
@@ -12,6 +13,7 @@ import 'package:idwey/widgets/tabs/EventFilterTab.dart';
 import 'package:idwey/widgets/tabs/HostFilterTab.dart';
 
 import '../utils/utils.dart';
+import '../widgets/common/footer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -42,32 +44,8 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: Colors.white,
-      drawerEnableOpenDragGesture: false,
-      endDrawerEnableOpenDragGesture: true,
-      appBar: AppBar(
-        elevation: 2,
-        backgroundColor: primaryGrey,
-        title: SizedBox(
-          width: 150,
-          height: 50,
-          child: Image.asset('assets/logoidwey.png'),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.menu_rounded,
-              size: 30,
-            ),
-            onPressed: () {
-              _scaffoldKey.currentState?.openEndDrawer();
-            },
-          ),
-        ],
-      ),
-      endDrawer: const Drawer(),
+    return CommonScaffold(
+      scaffoldKey: _scaffoldKey,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -195,7 +173,7 @@ class _HomePageState extends State<HomePage>
               ],
             ),
             Container(
-              height: 290,
+              height: 305,
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 2),
               child: TabBarView(
@@ -365,7 +343,7 @@ class _HomePageState extends State<HomePage>
             ),
             // FORCES SECTION
             Container(
-              height: 1200,
+              height: 1300,
               child: Stack(
                 children: [
                   Container(
@@ -786,7 +764,7 @@ class _HomePageState extends State<HomePage>
             ),
             Container(
               width: double.infinity,
-              height: 400,
+              height: 410,
               margin: EdgeInsets.only(left: 15, right: 15, top: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -1020,287 +998,9 @@ class _HomePageState extends State<HomePage>
                     "https://idwey.tn/uploads/0000/logopartenaire/ifm.png"),
               ),
             ),
-            // FOOTER
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              padding: EdgeInsets.all(15),
-              width: MediaQuery.of(context).size.width,
-              height: 700,
-              color: footerBg,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 25),
-                  Text(
-                    'BESOIN D\'AIDE?',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                  const SizedBox(height: 5),
-                  const Divider(),
-                  const SizedBox(height: 5),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Appelez-nous',
-                              style: TextStyle(
-                                  color: grey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '+216 31 106 666',
-                              style: TextStyle(
-                                  color: primary,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Horaire',
-                              style: TextStyle(
-                                  color: grey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Lundi -> Vendredi',
-                              style: TextStyle(
-                                  color: primary,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            Text(
-                              '10:00 -> 18:00',
-                              style: TextStyle(
-                                  color: primary,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Adresse',
-                                style: TextStyle(
-                                    color: grey,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14),
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                width: MediaQuery.of(context).size.width - 50,
-                                child: Text(
-                                  '63 Avenue Habib Bourguiba (Immeuble Le Parnasse), 7ème étage. Tunis, Tunisie',
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 35),
-                  Text(
-                    'EXPLORER',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                  const SizedBox(height: 5),
-                  const Divider(),
-                  const SizedBox(height: 5),
-                  Text(
-                    'A propos',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Devenir partenaire',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Condition d\'utilisation ',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Contact',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'FAQs',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(height: 35),
-                  Text(
-                    'SUIVEZ NOUS',
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                  const SizedBox(height: 5),
-                  const Divider(),
-                  const SizedBox(height: 5),
-                  IntrinsicHeight(
-                    child: Row(
-                      children: [
-                        VerticalDivider(
-                          width: 20,
-                          thickness: 3,
-                          color: primaryOrange,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Suivez nous',
-                              style: TextStyle(
-                                  color: grey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            ),
-                            SizedBox(height: 10),
-                            Container(
-                              width: 120,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.facebookF,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.instagram,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.linkedin,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.youtube,
-                                    size: 15,
-                                    color: primary,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 15),
-              child: Center(
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Made with ❤️ in Tunisia © 2023, Powered by ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'IDWEY',
-                        style: TextStyle(
-                          color: primaryOrange,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 35,
-              width: 35,
-              margin: EdgeInsets.only(left: 10, bottom: 10, top: 5),
-              child: IconButton(
-                onPressed: () {},
-                icon: FaIcon(
-                  FontAwesomeIcons.anglesUp,
-                  color: primaryOrange,
-                  size: 20,
-                ),
-              ),
-            ),
+            Footer(),
+            CreatedBy(),
+            BackToTop(),
           ],
         ),
       ),

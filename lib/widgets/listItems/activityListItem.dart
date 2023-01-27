@@ -19,7 +19,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
       margin: EdgeInsets.only(left: 15),
-      height: 400,
+      height: 410,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(

@@ -37,7 +37,7 @@ class _EventListItemState extends State<EventListItem> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 440,
+      height: 450,
       margin: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
