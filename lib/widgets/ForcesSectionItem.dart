@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:idwey/models/idweyForces.dart';
 
 class ForcesSectionItem extends StatefulWidget {
-  String image;
-  String title;
-  String description;
+  Forces force;
 
-  ForcesSectionItem(this.title, this.image, this.description);
+  ForcesSectionItem(this.force);
 
   @override
   State<ForcesSectionItem> createState() => _ForcesSectionItemState();
@@ -21,10 +20,10 @@ class _ForcesSectionItemState extends State<ForcesSectionItem> {
             margin: EdgeInsets.only(top: 40, bottom: 20),
             width: 70,
             height: 70,
-            child: Image.asset('assets/${widget.image}'),
+            child: Image.network('${widget.force.icon_url}'),
           ),
           Text(
-            widget.title.toUpperCase(),
+            widget.force.name!.toUpperCase(),
             style: TextStyle(
               color: Colors.white,
               fontSize: 17,
@@ -35,7 +34,7 @@ class _ForcesSectionItemState extends State<ForcesSectionItem> {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 25),
             child: Text(
-              widget.description,
+              widget.force.desc!,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
