@@ -4,9 +4,12 @@ import 'package:intl/intl.dart';
 
 import '../../utils/colors.dart';
 
-class HostFilterTab extends StatefulWidget {
-  const HostFilterTab({Key? key}) : super(key: key);
+typedef void InputsCallBack(dynamic searchInputs);
 
+class HostFilterTab extends StatefulWidget {
+  const HostFilterTab({Key? key, required this.onChangeField})
+      : super(key: key);
+  final InputsCallBack onChangeField;
   @override
   State<HostFilterTab> createState() => _HostFilterTabState();
 }
@@ -14,6 +17,17 @@ class HostFilterTab extends StatefulWidget {
 class _HostFilterTabState extends State<HostFilterTab> {
   int adultsCount = 0;
 
+  Map<String, String> searchInputs = {
+    'start': '',
+    'end': '',
+    'address': '',
+    'adults': ''
+  };
+  TextEditingController address = TextEditingController();
+  String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  String end = DateFormat('dd/MM/yyyy').format(
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
+  );
   String dateRange =
       '${DateFormat('dd/MM/yyyy').format(DateTime.now())} - ${DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -51,6 +65,8 @@ class _HostFilterTabState extends State<HostFilterTab> {
       setState(() {
         dateRange =
             '${DateFormat('dd/MM/yyyy').format(picked.start)} - ${DateFormat('dd/MM/yyyy').format(picked.end)}';
+        start = '${DateFormat('dd/MM/yyyy').format(picked.start)}';
+        end = '${DateFormat('dd/MM/yyyy').format(picked.end)}';
       });
     }
   }
@@ -129,6 +145,7 @@ class _HostFilterTabState extends State<HostFilterTab> {
                       height: 40,
                       width: 200,
                       child: TextField(
+                        controller: address,
                         decoration: InputDecoration(
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -242,7 +259,17 @@ class _HostFilterTabState extends State<HostFilterTab> {
                 SizedBox(
                   height: 35,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        searchInputs = {
+                          'start': start,
+                          'end': end,
+                          'address': address.text,
+                          'adults': adultsCount.toString()
+                        };
+                      });
+                      widget.onChangeField(searchInputs);
+                    },
                     child: const Text(
                       'RECHERCHER',
                       style: TextStyle(

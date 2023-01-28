@@ -196,8 +196,8 @@ class _HomePageState extends State<HomePage>
               margin: const EdgeInsets.symmetric(horizontal: 2),
               child: TabBarView(
                 controller: _tabController,
-                children: const [
-                  HostFilterTab(),
+                children: [
+                  HostFilterTab(onChangeField: (dynamic searchInputs) => {}),
                   EventFilterTab(),
                   ActivityFilterTab(),
                 ],

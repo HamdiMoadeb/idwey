@@ -20,20 +20,18 @@ class _HostPageState extends State<HostPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
-  List<Host> hosts = [];
 
-  getAllHosts() {
-    HostCalls.getHostsList().then((data) {
-      setState(() {
-        hosts = data;
-      });
+  dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
+
+  void updateSearchFields(dynamic searchInputs) {
+    setState(() {
+      this.searchInputs = searchInputs;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    getAllHosts();
   }
 
   void scrollToTop() {
@@ -82,23 +80,18 @@ class _HostPageState extends State<HostPage>
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 180),
-                    child: HostFilterTab(),
+                    child: HostFilterTab(
+                      onChangeField: (dynamic searchInputs) =>
+                          updateSearchFields(searchInputs),
+                    ),
                   ),
                 ],
               ),
             ),
 
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "${hosts.length} hébergements trouvés",
-                style: TextStyle(
-                  fontSize: 24.0,
-                  color: titleBlue,
-                ),
-              ),
+            HostList(
+              searchInputs: searchInputs,
             ),
-            HostList(),
             //footer
             Footer(),
             CreatedBy(),
@@ -111,6 +104,9 @@ class _HostPageState extends State<HostPage>
 }
 
 class HostList extends StatefulWidget {
+  dynamic searchInputs;
+
+  HostList({Key? key, required this.searchInputs}) : super(key: key);
   @override
   State<HostList> createState() => _HostListState();
 }
@@ -119,24 +115,38 @@ class _HostListState extends State<HostList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: HostCalls.getHostsList(),
+      future: HostCalls.getHostsList(widget.searchInputs),
       builder: (context, AsyncSnapshot<List<Host>> snapshot) {
-        print(snapshot.data);
-
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.data != null) {
           final List<Host> listHosts = snapshot.data!.toList();
+
           if (listHosts != null) {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) => Container(
-                  margin: EdgeInsets.only(bottom: 15, right: 15),
-                  child: HostListItem(listHosts[index])),
-              itemCount: listHosts.length,
+            return Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    "${listHosts.length} hébergements trouvés",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: titleBlue,
+                    ),
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) => Container(
+                      margin: EdgeInsets.only(bottom: 15, right: 15),
+                      child: HostListItem(listHosts[index])),
+                  itemCount: listHosts.length,
+                ),
+              ],
             );
           }
         }
+
         return Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(primary),
