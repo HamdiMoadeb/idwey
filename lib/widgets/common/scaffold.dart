@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:idwey/screens/eventPage.dart';
 import 'package:idwey/screens/homePage.dart';
 import 'package:idwey/screens/hostPage.dart';
 import 'package:idwey/utils/colors.dart';
@@ -55,6 +56,17 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => HostPage(),
+                          ));
+                    }),
+              ),
+              Container(
+                child: ListTile(
+                    title: const Text('Nos Événements'),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EventPage(),
                           ));
                     }),
               ),

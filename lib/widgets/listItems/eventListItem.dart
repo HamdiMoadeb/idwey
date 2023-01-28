@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -46,9 +47,19 @@ class _EventListItemState extends State<EventListItem> {
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
-                  child: Image.network(
-                    widget.event.IMAGE_URL!,
-                    fit: BoxFit.cover,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.event.IMAGE_URL!,
+                    fit: BoxFit.fill,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
               ),
@@ -123,6 +134,8 @@ class _EventListItemState extends State<EventListItem> {
                       const SizedBox(width: 5),
                       Text(
                         widget.event.address!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: grey,
                           fontSize: 13,

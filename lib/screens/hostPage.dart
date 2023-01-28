@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
+import '../widgets/common/footer.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
-import '../widgets/common/footer.dart';
 import '../widgets/listItems/hostListItem.dart';
 import '../widgets/tabs/HostFilterTab.dart';
 
@@ -147,9 +147,12 @@ class _HostListState extends State<HostList> {
           }
         }
 
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(primary),
+        return Container(
+          margin: EdgeInsets.only(top: 30),
+          child: Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(primary),
+            ),
           ),
         );
       },
