@@ -4,14 +4,25 @@ import 'package:intl/intl.dart';
 
 import '../../utils/colors.dart';
 
-class EventFilterTab extends StatefulWidget {
-  const EventFilterTab({Key? key}) : super(key: key);
+typedef void InputsCallBack(dynamic searchInputs);
 
+class EventFilterTab extends StatefulWidget {
+  const EventFilterTab({Key? key, required this.onChangeField})
+      : super(key: key);
+  final InputsCallBack onChangeField;
   @override
   State<EventFilterTab> createState() => _EventFilterTabState();
 }
 
 class _EventFilterTabState extends State<EventFilterTab> {
+  TextEditingController address = TextEditingController();
+  Map<String, String> searchInputs = {
+    'start': '',
+    'end': '',
+    'address': '',
+    'location_id': ''
+  };
+
   static const List<String> placeItems = <String>[
     'Où vous allez?',
     'Plage',
@@ -22,6 +33,10 @@ class _EventFilterTabState extends State<EventFilterTab> {
     'Campagne'
   ];
   String place = placeItems.first;
+  String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  String end = DateFormat('dd/MM/yyyy').format(
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
+  );
   String dateRange =
       '${DateFormat('dd/MM/yyyy').format(DateTime.now())} - ${DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -59,6 +74,8 @@ class _EventFilterTabState extends State<EventFilterTab> {
       setState(() {
         dateRange =
             '${DateFormat('dd/MM/yyyy').format(picked.start)} - ${DateFormat('dd/MM/yyyy').format(picked.end)}';
+        start = '${DateFormat('dd/MM/yyyy').format(picked.start)}';
+        end = '${DateFormat('dd/MM/yyyy').format(picked.end)}';
       });
     }
   }
@@ -98,6 +115,7 @@ class _EventFilterTabState extends State<EventFilterTab> {
                       height: 40,
                       width: 200,
                       child: TextField(
+                        controller: address,
                         decoration: InputDecoration(
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -244,7 +262,17 @@ class _EventFilterTabState extends State<EventFilterTab> {
                 SizedBox(
                   height: 35,
                   child: ElevatedButton(
-                    onPressed: () async {},
+                    onPressed: () {
+                      setState(() {
+                        searchInputs = {
+                          'start': start,
+                          'end': end,
+                          'address': address.text,
+                          'location_id': place
+                        };
+                      });
+                      widget.onChangeField(searchInputs);
+                    },
                     child: const Text(
                       'RECHERCHER',
                       style: TextStyle(

@@ -37,7 +37,7 @@ class _HostListItemState extends State<HostListItem> {
                 height: 220,
                 width: double.infinity,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),

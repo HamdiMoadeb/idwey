@@ -24,4 +24,28 @@ class EventCalls {
     }
     return listEvents;
   }
+
+  //api for our hosts page
+  static Future<List<Event>> getEventsList(dynamic searchInputs) async {
+    List<Event> listEvents = [];
+    String start = searchInputs['start'];
+    String end = searchInputs['end'];
+    String address = searchInputs['address'];
+    String location_id = searchInputs['location_id'];
+    var url = Uri.parse(
+        '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end');
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      for (Map<String?, dynamic> i in data["rows"]) {
+        listEvents.add(Event.fromJson(i));
+      }
+    }
+
+    return listEvents;
+  }
 }

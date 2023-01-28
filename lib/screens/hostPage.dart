@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
+import '../widgets/common/footer.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
-import '../widgets/common/footer.dart';
 import '../widgets/listItems/hostListItem.dart';
 import '../widgets/tabs/HostFilterTab.dart';
 
@@ -24,32 +24,14 @@ class _HostPageState extends State<HostPage>
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   List<Host> hosts = [];
 
-  getAllHosts() {
-    HostCalls.getHostsList(searchInputs).then((data) {
-      setState(() {
-        hosts = data;
-      });
-    });
-  }
-
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
-      this.searchInputs = {
-        'start': searchInputs['start'],
-        'end': searchInputs['end'],
-        'address': searchInputs['address'],
-        'adults': searchInputs['adults'].toString()
-      };
-      getAllHosts();
-      HostList(
-        searchInputs: searchInputs,
-      );
+      this.searchInputs = searchInputs;
     });
   }
 
   @override
   void initState() {
-    getAllHosts();
     super.initState();
   }
 
@@ -108,16 +90,6 @@ class _HostPageState extends State<HostPage>
               ),
             ),
 
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "${hosts.length} hébergements trouvés",
-                style: TextStyle(
-                  fontSize: 24.0,
-                  color: titleBlue,
-                ),
-              ),
-            ),
             HostList(
               searchInputs: searchInputs,
             ),
@@ -151,13 +123,27 @@ class _HostListState extends State<HostList> {
           final List<Host> listHosts = snapshot.data!.toList();
 
           if (listHosts != null) {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) => Container(
-                  margin: EdgeInsets.only(bottom: 15, right: 15),
-                  child: HostListItem(listHosts[index])),
-              itemCount: listHosts.length,
+            return Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    "${listHosts.length} hébergements trouvés",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: titleBlue,
+                    ),
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) => Container(
+                      margin: EdgeInsets.only(bottom: 15, right: 15),
+                      child: HostListItem(listHosts[index])),
+                  itemCount: listHosts.length,
+                ),
+              ],
             );
           }
         }
