@@ -22,7 +22,6 @@ class _HostPageState extends State<HostPage>
   final scrollController = ScrollController();
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
-  List<Host> hosts = [];
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
