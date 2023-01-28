@@ -32,32 +32,12 @@ class _EventPageState extends State<EventPage> {
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
-      this.searchInputs = {
-        'start': searchInputs['start'],
-        'end': searchInputs['end'],
-        'address': searchInputs['address'],
-        'location_id': searchInputs['location_id']
-      };
-      getAllEvents();
-      EventList(
-        searchInputs: searchInputs,
-      );
-    });
-  }
-
-  List<Event> events = [];
-
-  getAllEvents() {
-    EventCalls.getEventsList(searchInputs).then((data) {
-      setState(() {
-        events = data;
-      });
+      this.searchInputs = searchInputs;
     });
   }
 
   @override
   void initState() {
-    getAllEvents();
     super.initState();
   }
 
@@ -112,16 +92,6 @@ class _EventPageState extends State<EventPage> {
                   ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  "${events.length} Événements trouvés",
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    color: titleBlue,
-                  ),
-                ),
-              ),
               EventList(
                 searchInputs: searchInputs,
               ),
@@ -155,20 +125,37 @@ class _EventListState extends State<EventList> {
           final List<Event> listEvents = snapshot.data!.toList();
 
           if (listEvents != null) {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) => Container(
-                  margin: EdgeInsets.only(bottom: 15, right: 15),
-                  child: EventListItem(listEvents[index])),
-              itemCount: listEvents.length,
+            return Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    "${listEvents.length} Événements trouvés",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: titleBlue,
+                    ),
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) => Container(
+                      margin: EdgeInsets.only(bottom: 15, right: 15),
+                      child: EventListItem(listEvents[index])),
+                  itemCount: listEvents.length,
+                ),
+              ],
             );
           }
         }
 
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(primary),
+        return Container(
+          margin: EdgeInsets.only(top: 30),
+          child: Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(primary),
+            ),
           ),
         );
       },

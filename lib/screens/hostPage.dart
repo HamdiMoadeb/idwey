@@ -148,9 +148,12 @@ class _HostListState extends State<HostList> {
           }
         }
 
-        return Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(primary),
+        return Container(
+          margin: EdgeInsets.only(top: 30),
+          child: Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(primary),
+            ),
           ),
         );
       },
