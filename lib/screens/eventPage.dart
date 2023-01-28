@@ -127,13 +127,16 @@ class _EventListState extends State<EventList> {
           if (listEvents != null) {
             return Column(
               children: [
-                Container(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    "${listEvents.length} Événements trouvés",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: titleBlue,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "${listEvents.length} Événements trouvés",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: titleBlue,
+                      ),
                     ),
                   ),
                 ),

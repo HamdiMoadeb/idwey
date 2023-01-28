@@ -120,13 +120,16 @@ class _ActivityListState extends State<ActivityList> {
           if (listActivities != null) {
             return Column(
               children: [
-                Container(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    "${listActivities.length} hébergements trouvés",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: titleBlue,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "${listActivities.length} activités trouvés",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: titleBlue,
+                      ),
                     ),
                   ),
                 ),

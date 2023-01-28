@@ -124,13 +124,16 @@ class _HostListState extends State<HostList> {
           if (listHosts != null) {
             return Column(
               children: [
-                Container(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    "${listHosts.length} hébergements trouvés",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: titleBlue,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "${listHosts.length} hébergements trouvés",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: titleBlue,
+                      ),
                     ),
                   ),
                 ),
