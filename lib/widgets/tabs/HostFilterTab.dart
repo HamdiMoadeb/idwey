@@ -16,8 +16,18 @@ class HostFilterTab extends StatefulWidget {
 
 class _HostFilterTabState extends State<HostFilterTab> {
   int adultsCount = 0;
-  dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
+
+  Map<String, String> searchInputs = {
+    'start': '',
+    'end': '',
+    'address': '',
+    'adults': ''
+  };
   TextEditingController address = TextEditingController();
+  String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  String end = DateFormat('dd/MM/yyyy').format(
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
+  );
   String dateRange =
       '${DateFormat('dd/MM/yyyy').format(DateTime.now())} - ${DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -55,12 +65,8 @@ class _HostFilterTabState extends State<HostFilterTab> {
       setState(() {
         dateRange =
             '${DateFormat('dd/MM/yyyy').format(picked.start)} - ${DateFormat('dd/MM/yyyy').format(picked.end)}';
-        searchInputs = {
-          'start': '${DateFormat('dd/MM/yyyy').format(picked.start)}',
-          'end': '${DateFormat('dd/MM/yyyy').format(picked.end)}',
-          'address': address.text,
-          'adults': adultsCount
-        };
+        start = '${DateFormat('dd/MM/yyyy').format(picked.start)}';
+        end = '${DateFormat('dd/MM/yyyy').format(picked.end)}';
       });
     }
   }
@@ -254,6 +260,14 @@ class _HostFilterTabState extends State<HostFilterTab> {
                   height: 35,
                   child: ElevatedButton(
                     onPressed: () {
+                      setState(() {
+                        searchInputs = {
+                          'start': start,
+                          'end': end,
+                          'address': address.text,
+                          'adults': adultsCount.toString()
+                        };
+                      });
                       widget.onChangeField(searchInputs);
                     },
                     child: const Text(

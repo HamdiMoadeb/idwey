@@ -20,32 +20,37 @@ class _HostPageState extends State<HostPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+
+  dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   List<Host> hosts = [];
-  String address = "", start = "", end = "", adults = "";
-  void updateSearchFields(dynamic searchInputs) {
-    getAllSearchedHosts(searchInputs);
-  }
 
   getAllHosts() {
-    HostCalls.getHostsList().then((data) {
+    HostCalls.getHostsList(searchInputs).then((data) {
       setState(() {
         hosts = data;
       });
     });
   }
 
-  getAllSearchedHosts(searchFields) {
-    HostCalls.getSearchedHostsList(searchFields).then((data) {
-      setState(() {
-        hosts = data;
-      });
+  void updateSearchFields(dynamic searchInputs) {
+    setState(() {
+      this.searchInputs = {
+        'start': searchInputs['start'],
+        'end': searchInputs['end'],
+        'address': searchInputs['address'],
+        'adults': searchInputs['adults'].toString()
+      };
+      getAllHosts();
+      HostList(
+        searchInputs: searchInputs,
+      );
     });
   }
 
   @override
   void initState() {
-    super.initState();
     getAllHosts();
+    super.initState();
   }
 
   void scrollToTop() {
@@ -114,7 +119,7 @@ class _HostPageState extends State<HostPage>
               ),
             ),
             HostList(
-              apiCaller: HostCalls.getHostsList(),
+              searchInputs: searchInputs,
             ),
             //footer
             Footer(),
@@ -128,25 +133,23 @@ class _HostPageState extends State<HostPage>
 }
 
 class HostList extends StatefulWidget {
-  Future<List<Host>> apiCaller;
-  HostList({Key? key, required this.apiCaller}) : super(key: key);
+  dynamic searchInputs;
+
+  HostList({Key? key, required this.searchInputs}) : super(key: key);
   @override
   State<HostList> createState() => _HostListState();
 }
 
 class _HostListState extends State<HostList> {
-  void refrechList() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: widget.apiCaller,
+      future: HostCalls.getHostsList(widget.searchInputs),
       builder: (context, AsyncSnapshot<List<Host>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.data != null) {
           final List<Host> listHosts = snapshot.data!.toList();
+
           if (listHosts != null) {
             return ListView.builder(
               shrinkWrap: true,
@@ -158,6 +161,7 @@ class _HostListState extends State<HostList> {
             );
           }
         }
+
         return Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(primary),

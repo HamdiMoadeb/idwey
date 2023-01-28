@@ -25,36 +25,16 @@ class HostCalls {
   }
 
   //api for our hosts page
-  static Future<List<Host>> getHostsList() async {
+  static Future<List<Host>> getHostsList(dynamic searchInputs) async {
     List<Host> listHosts = [];
-
-    var url = Uri.parse('${Urls.URL_API}hotel');
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-
-      for (Map<String?, dynamic> i in data["rows"]) {
-        listHosts.add(Host.fromJson(i));
-      }
-    }
-
-    return listHosts;
-  }
-
-  //api for our hosts page
-  static Future<List<Host>> getSearchedHostsList(dynamic searchFields) async {
-    List<Host> listHosts = [];
-    String start = searchFields['start'],
-        end = searchFields['end'],
-        address = searchFields['address'],
-        adults = searchFields['adults'].toString();
-    print('this is====> ' + address + end + start);
+    String start = searchInputs['start'];
+    String end = searchInputs['end'];
+    String address = searchInputs['address'];
+    String adults = searchInputs['adults'];
     var url = Uri.parse(
         '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults');
+    print(url);
     var response = await http.get(url);
-
     print('Response status: ${response.statusCode}');
 
     if (response.statusCode == 200) {
