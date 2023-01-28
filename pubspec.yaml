@@ -34,7 +34,7 @@ dependencies:
   visibility_detector: ^0.2.2
   url_launcher: ^6.1.7
   android_intent_plus: ^3.1.5
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:

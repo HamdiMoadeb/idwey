@@ -134,6 +134,8 @@ class _EventListItemState extends State<EventListItem> {
                       const SizedBox(width: 5),
                       Text(
                         widget.event.address!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: grey,
                           fontSize: 13,

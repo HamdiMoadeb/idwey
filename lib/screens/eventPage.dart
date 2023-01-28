@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import '../widgets/common/footer.dart';
 
 import '../models/event.dart';
 import '../services/eventCalls.dart';
+import '../widgets/common/footer.dart';
 import '../widgets/listItems/eventListItem.dart';
 import '../widgets/tabs/EventFilterTab.dart';
 
@@ -62,7 +62,7 @@ class _EventPageState extends State<EventPage> {
                           height: 230,
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,
-                            child: Image.asset("assets/eventPageCover.jpg",
+                            child: Image.asset("assets/eventcover.jpg",
                                 fit: BoxFit.cover),
                           ),
                         ),
