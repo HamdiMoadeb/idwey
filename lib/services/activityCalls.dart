@@ -23,4 +23,28 @@ class ActivityCalls {
     }
     return listActivity;
   }
+
+  //api for our hosts page
+  static Future<List<Activity>> getActivityList(dynamic searchInputs) async {
+    List<Activity> listActivities = [];
+    String start = searchInputs['start'];
+    String end = searchInputs['end'];
+    String address = searchInputs['address'];
+    String adults = searchInputs['adults'];
+    var url = Uri.parse(
+        '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults');
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      for (Map<String?, dynamic> i in data["rows"]) {
+        listActivities.add(Activity.fromJson(i));
+      }
+    }
+
+    return listActivities;
+  }
 }

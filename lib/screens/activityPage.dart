@@ -2,29 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-
-import '../models/event.dart';
-import '../services/eventCalls.dart';
 import '../widgets/common/footer.dart';
-import '../widgets/listItems/eventListItem.dart';
-import '../widgets/tabs/EventFilterTab.dart';
 
-class EventPage extends StatefulWidget {
-  const EventPage({Key? key}) : super(key: key);
+import '../models/activity.dart';
+import '../services/activityCalls.dart';
+import '../widgets/listItems/activityListItem.dart';
+import '../widgets/tabs/ActivityFilterTab.dart';
+
+class ActivityPage extends StatefulWidget {
+  const ActivityPage({Key? key}) : super(key: key);
 
   @override
-  State<EventPage> createState() => _EventPageState();
+  State<ActivityPage> createState() => _ActivityPageState();
 }
 
-class _EventPageState extends State<EventPage> {
+class _ActivityPageState extends State<ActivityPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
-  dynamic searchInputs = {
-    'start': '',
-    'end': '',
-    'address': '',
-    'location_id': ''
-  };
+  dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
+
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
@@ -62,15 +58,15 @@ class _EventPageState extends State<EventPage> {
                           height: 230,
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,
-                            child: Image.asset("assets/eventcover.jpg",
+                            child: Image.asset("assets/activitycover.jpg",
                                 fit: BoxFit.cover),
                           ),
                         ),
-                        Positioned.fill(
+                        const Positioned.fill(
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              'Calendrier \n d\'événements',
+                              'Ateliers et activités',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -84,7 +80,7 @@ class _EventPageState extends State<EventPage> {
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 180),
-                      child: EventFilterTab(
+                      child: ActivityFilterTab(
                         onChangeField: (dynamic searchInputs) =>
                             updateSearchFields(searchInputs),
                       ),
@@ -92,9 +88,7 @@ class _EventPageState extends State<EventPage> {
                   ],
                 ),
               ),
-              EventList(
-                searchInputs: searchInputs,
-              ),
+              ActivityList(searchInputs: searchInputs),
               //footer
               Footer(),
               CreatedBy(),
@@ -105,26 +99,25 @@ class _EventPageState extends State<EventPage> {
   }
 }
 
-class EventList extends StatefulWidget {
+class ActivityList extends StatefulWidget {
   dynamic searchInputs;
-
-  EventList({Key? key, required this.searchInputs}) : super(key: key);
+  ActivityList({Key? key, required this.searchInputs}) : super(key: key);
 
   @override
-  State<EventList> createState() => _EventListState();
+  State<ActivityList> createState() => _ActivityListState();
 }
 
-class _EventListState extends State<EventList> {
+class _ActivityListState extends State<ActivityList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: EventCalls.getEventsList(widget.searchInputs),
-      builder: (context, AsyncSnapshot<List<Event>> snapshot) {
+      future: ActivityCalls.getActivityList(widget.searchInputs),
+      builder: (context, AsyncSnapshot<List<Activity>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.data != null) {
-          final List<Event> listEvents = snapshot.data!.toList();
+          final List<Activity> listActivities = snapshot.data!.toList();
 
-          if (listEvents != null) {
+          if (listActivities != null) {
             return Column(
               children: [
                 Align(
@@ -132,7 +125,7 @@ class _EventListState extends State<EventList> {
                   child: Container(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      "${listEvents.length} Événements trouvés",
+                      "${listActivities.length} activités trouvés",
                       style: TextStyle(
                         fontSize: 24.0,
                         color: titleBlue,
@@ -145,8 +138,8 @@ class _EventListState extends State<EventList> {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Container(
                       margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: EventListItem(listEvents[index])),
-                  itemCount: listEvents.length,
+                      child: ActivityListItem(listActivities[index])),
+                  itemCount: listActivities.length,
                 ),
               ],
             );

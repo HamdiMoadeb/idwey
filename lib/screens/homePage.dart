@@ -199,7 +199,8 @@ class _HomePageState extends State<HomePage>
                 children: [
                   HostFilterTab(onChangeField: (dynamic searchInputs) => {}),
                   EventFilterTab(onChangeField: (dynamic searchInputs) => {}),
-                  ActivityFilterTab(),
+                  ActivityFilterTab(
+                      onChangeField: (dynamic searchInputs) => {}),
                 ],
               ),
             ),
