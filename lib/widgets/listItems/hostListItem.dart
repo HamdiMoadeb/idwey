@@ -44,7 +44,7 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: widget.host.IMAGE_URL!,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
                       child: SizedBox(

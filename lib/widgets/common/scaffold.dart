@@ -4,6 +4,7 @@ import 'package:idwey/screens/activityPage.dart';
 import 'package:idwey/screens/eventPage.dart';
 import 'package:idwey/screens/homePage.dart';
 import 'package:idwey/screens/hostPage.dart';
+import 'package:idwey/screens/productPage.dart';
 import 'package:idwey/utils/colors.dart';
 
 //common scaffold
@@ -79,6 +80,17 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ActivityPage(),
+                          ));
+                    }),
+              ),
+              Container(
+                child: ListTile(
+                    title: const Text('Nos Produits'),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductPage(),
                           ));
                     }),
               ),

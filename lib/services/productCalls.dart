@@ -23,4 +23,23 @@ class ProductCalls {
     }
     return listProducts;
   }
+
+  static Future<List<Product>> getProductList() async {
+    List<Product> listProducts = [];
+
+    var url = Uri.parse('${Urls.URL_API}product');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      for (Map<String?, dynamic> i in data["rows"]) {
+        print(i);
+        listProducts.add(Product.fromJson(i));
+      }
+    }
+    return listProducts;
+  }
 }
