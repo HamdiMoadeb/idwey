@@ -44,7 +44,7 @@ class _ActivityListSectionState extends State<ActivityListSection> {
         Container(
           margin: EdgeInsets.only(top: 30, left: 15),
           child: Text(
-            'Expériences à vivre',
+            'Ateliers et Activités',
             style: TextStyle(
               color: primary,
               fontSize: 25,
@@ -61,10 +61,10 @@ class _ActivityListSectionState extends State<ActivityListSection> {
         Container(
           margin: EdgeInsets.only(top: 8, left: 15, bottom: 5, right: 15),
           child: Text(
-            'Vous appréciez la découverte ? Vivez l\'expérience !',
+            'Vous avez besoin d’un bouffé d’air! Choisissez votre date et partez à la découverte des nouvelles activités.',
             style: TextStyle(
               color: grey,
-              fontSize: 14,
+              fontSize: 13,
               fontWeight: FontWeight.w400,
             ),
           ),

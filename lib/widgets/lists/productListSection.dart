@@ -39,11 +39,22 @@ class _ProductListSectionState extends State<ProductListSection> {
         Container(
           margin: EdgeInsets.only(top: 30, left: 15),
           child: Text(
-            'Produits',
+            'Jeux et Produits ',
             style: TextStyle(
               color: primary,
               fontSize: 25,
               fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 5),
+          child: Text(
+            'Animez vos soirées en jouant 100% tunisien.',
+            style: TextStyle(
+              color: grey,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),

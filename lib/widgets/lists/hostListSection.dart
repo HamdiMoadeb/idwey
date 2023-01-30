@@ -44,10 +44,10 @@ class _HostListSectionState extends State<HostListSection> {
         Container(
           margin: EdgeInsets.only(top: 30, left: 15),
           child: Text(
-            'Logements authentiques',
+            'Logements et maisons d\'hôtes',
             style: TextStyle(
               color: primary,
-              fontSize: 25,
+              fontSize: 23,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -61,7 +61,7 @@ class _HostListSectionState extends State<HostListSection> {
         Container(
           margin: EdgeInsets.only(top: 8, left: 15, right: 15),
           child: Text(
-            'Vous cherchez où passer la nuit ? Y\'a pas mieux que les logements authentiques',
+            'Vous cherchez où passer la nuit ? Y\'a pas mieux que ces logements de qualité',
             style: TextStyle(
               color: grey,
               fontSize: 14,
