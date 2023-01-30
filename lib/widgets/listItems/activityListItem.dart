@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/models/activity.dart';
@@ -19,7 +20,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
       margin: EdgeInsets.only(left: 15),
-      height: 410,
+      height: 420,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
@@ -39,9 +40,23 @@ class _ActivityListItemState extends State<ActivityListItem> {
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
-                  child: Image.network(
-                    widget.activity.IMAGE_URL!,
-                    fit: BoxFit.cover,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.activity.IMAGE_URL!,
+                    fit: BoxFit.fill,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.error,
+                      size: 50.0,
+                      color: primaryOrange,
+                    ),
                   ),
                 ),
               ),

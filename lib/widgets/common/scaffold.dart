@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:idwey/screens/activityPage.dart';
 import 'package:idwey/screens/eventPage.dart';
 import 'package:idwey/screens/homePage.dart';
 import 'package:idwey/screens/hostPage.dart';
@@ -73,7 +74,18 @@ class _CommonScaffoldState extends State<CommonScaffold> {
               ),
               Container(
                 child: ListTile(
-                    title: const Text('Nos produits'),
+                    title: const Text('Nos Activités'),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ActivityPage(),
+                          ));
+                    }),
+              ),
+              Container(
+                child: ListTile(
+                    title: const Text('Nos Produits'),
                     onTap: () {
                       Navigator.pushReplacement(
                           context,

@@ -4,9 +4,12 @@ import 'package:intl/intl.dart';
 
 import '../../utils/colors.dart';
 
-class ActivityFilterTab extends StatefulWidget {
-  const ActivityFilterTab({Key? key}) : super(key: key);
+typedef void InputsCallBack(dynamic searchInputs);
 
+class ActivityFilterTab extends StatefulWidget {
+  const ActivityFilterTab({Key? key, required this.onChangeField})
+      : super(key: key);
+  final InputsCallBack onChangeField;
   @override
   State<ActivityFilterTab> createState() => _ActivityFilterTabState();
 }
@@ -14,6 +17,17 @@ class ActivityFilterTab extends StatefulWidget {
 class _ActivityFilterTabState extends State<ActivityFilterTab> {
   int adultsCount = 0;
 
+  Map<String, String> searchInputs = {
+    'start': '',
+    'end': '',
+    'address': '',
+    'adults': ''
+  };
+  TextEditingController address = TextEditingController();
+  String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  String end = DateFormat('dd/MM/yyyy').format(
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
+  );
   String dateRange =
       '${DateFormat('dd/MM/yyyy').format(DateTime.now())} - ${DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -51,6 +65,8 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
       setState(() {
         dateRange =
             '${DateFormat('dd/MM/yyyy').format(picked.start)} - ${DateFormat('dd/MM/yyyy').format(picked.end)}';
+        start = '${DateFormat('dd/MM/yyyy').format(picked.start)}';
+        end = '${DateFormat('dd/MM/yyyy').format(picked.end)}';
       });
     }
   }
@@ -62,7 +78,8 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Container(
-        height: 290,
+        height: 280,
+        width: double.infinity,
         margin: const EdgeInsets.all(10),
         child: Column(
           children: [
@@ -78,7 +95,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'De - à',
+                      'Entrée - sortie',
                       style: TextStyle(
                         color: grey,
                         fontSize: 15,
@@ -93,7 +110,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                         dateRange,
                         style: TextStyle(
                           color: primaryOrange,
-                          fontSize: 16,
+                          fontSize: 15,
                         ),
                       ),
                     ),
@@ -122,12 +139,13 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                         fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: 5),
                     Container(
                       margin: const EdgeInsets.only(left: 5),
                       height: 40,
                       width: 200,
                       child: TextField(
+                        controller: address,
                         decoration: InputDecoration(
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -161,7 +179,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                 )
               ],
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 1),
             const Divider(thickness: 1),
             const SizedBox(height: 3),
             Row(
@@ -234,14 +252,24 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
               ],
             ),
             const Divider(thickness: 1),
-            const SizedBox(height: 3),
+            const SizedBox(height: 5),
             Row(
               children: [
                 const Spacer(),
                 SizedBox(
                   height: 35,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        searchInputs = {
+                          'start': start,
+                          'end': end,
+                          'address': address.text,
+                          'adults': adultsCount.toString()
+                        };
+                      });
+                      widget.onChangeField(searchInputs);
+                    },
                     child: const Text(
                       'RECHERCHER',
                       style: TextStyle(
