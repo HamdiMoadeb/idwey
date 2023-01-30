@@ -1,5 +1,6 @@
+import 'package:flag/flag.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:idwey/screens/activityPage.dart';
 import 'package:idwey/screens/eventPage.dart';
 import 'package:idwey/screens/homePage.dart';
@@ -34,67 +35,419 @@ class _CommonScaffoldState extends State<CommonScaffold> {
           scaffoldKey: widget.scaffoldKey,
         ),
       ),
-      endDrawer: Drawer(
-        child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.all(50),
-            children: [
-              Container(
-                child: ListTile(
-                    title: const Text('Accueil'),
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              margin: EdgeInsets.only(top: 30),
+              color: primary,
+              height: 45,
+              padding: EdgeInsets.only(right: 10),
+              child: Row(
+                children: [
+                  Spacer(),
+                  GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ));
-                    }),
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_circle_left_outlined,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  ),
+                ],
               ),
-              Container(
-                child: ListTile(
-                    title: const Text('Nos Hébergement'),
-                    onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HostPage(),
-                          ));
-                    }),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 10, top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                    child: Text(
+                      'Se connecter',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                    child: Text(
+                      'S\'inscrire',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Container(
-                child: ListTile(
-                    title: const Text('Nos Événements'),
-                    onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EventPage(),
-                          ));
-                    }),
+            ),
+            Divider(color: Colors.grey, height: 1),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                expandedAlignment: Alignment.topLeft,
+                collapsedTextColor: primary,
+                textColor: primary,
+                childrenPadding: EdgeInsets.zero,
+                title: Text(
+                  'TND',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton.icon(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.black,
+                        ),
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        label: Text(
+                          'EUR',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton.icon(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.black,
+                        ),
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        label: Text(
+                          'USD',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              Container(
-                child: ListTile(
-                    title: const Text('Nos Activités'),
-                    onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ActivityPage(),
-                          ));
-                    }),
+            ),
+            Divider(color: Colors.grey, height: 2),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                expandedAlignment: Alignment.topLeft,
+                collapsedTextColor: primary,
+                textColor: primary,
+                childrenPadding: EdgeInsets.zero,
+                title: Row(
+                  children: [
+                    Flag.fromCode(
+                      FlagsCode.FR,
+                      height: 15,
+                      width: 20,
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      'Français',
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton.icon(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.black,
+                        ),
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        label: Row(
+                          children: [
+                            Flag.fromCode(
+                              FlagsCode.GB,
+                              height: 15,
+                              width: 20,
+                              fit: BoxFit.fill,
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              'English',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              Container(
-                child: ListTile(
-                    title: const Text('Nos Produits'),
-                    onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProductPage(),
-                          ));
-                    }),
+            ),
+            const Divider(color: Colors.grey, height: 2, thickness: 0.5),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                expandedAlignment: Alignment.topLeft,
+                collapsedTextColor: primary,
+                textColor: primary,
+                childrenPadding: EdgeInsets.zero,
+                title: Text(
+                  'Nos Services',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                children: [
+                  const Divider(
+                      color: Colors.grey,
+                      height: 1,
+                      indent: 20,
+                      endIndent: 20,
+                      thickness: 0.5),
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HostPage(),
+                              ));
+                        },
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        child: Text(
+                          'Hébergements',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(
+                      color: Colors.grey,
+                      height: 2,
+                      indent: 20,
+                      endIndent: 20,
+                      thickness: 0.5),
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EventPage(),
+                              ));
+                        },
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        child: Text(
+                          'Événements',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(
+                      color: Colors.grey,
+                      height: 2,
+                      indent: 20,
+                      endIndent: 20,
+                      thickness: 0.5),
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        child: Text(
+                          'Circuits et Expériences',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(
+                      color: Colors.grey,
+                      height: 1,
+                      indent: 20,
+                      endIndent: 20,
+                      thickness: 0.5),
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ActivityPage(),
+                              ));
+                        },
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        child: Text(
+                          'Atelier et Activités',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(
+                      color: Colors.grey,
+                      height: 1,
+                      indent: 20,
+                      endIndent: 20,
+                      thickness: 0.5),
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductPage(),
+                              ));
+                        },
+                        style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                        child: Text(
+                          'Produits',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ]),
+            ),
+            const Divider(
+                color: Colors.grey,
+                height: 1,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Qui sommes nous ?',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+                color: Colors.grey,
+                height: 1,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Inspirations',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+                color: Colors.grey,
+                height: 2,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Assurance',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+                color: Colors.grey,
+                height: 1,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+          ]),
+        ),
       ),
     );
   }
@@ -114,12 +467,24 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 2,
+      automaticallyImplyLeading: false,
+      leadingWidth: 0,
       backgroundColor: primaryGrey,
-      title: SizedBox(
-        width: 150,
-        height: 50,
-        child: Image.asset('assets/logoidwey.png'),
+      title: GestureDetector(
+        onTap: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ));
+        },
+        child: SizedBox(
+          width: 150,
+          height: 50,
+          child: Image.asset('assets/logoidwey.png'),
+        ),
       ),
+      leading: Container(),
       actions: [
         IconButton(
           icon: const Icon(
@@ -127,7 +492,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             size: 30,
           ),
           onPressed: () {
-            widget.scaffoldKey.currentState?.openEndDrawer();
+            widget.scaffoldKey.currentState?.openDrawer();
           },
         ),
       ],
