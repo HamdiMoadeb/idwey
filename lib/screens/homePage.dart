@@ -19,6 +19,7 @@ import 'package:idwey/widgets/tabs/HostFilterTab.dart';
 
 import '../services/homePageCalls.dart';
 import '../widgets/common/footer.dart';
+import '../widgets/lists/partnerListSection.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -224,76 +225,8 @@ class _HomePageState extends State<HomePage>
             // TESTIMONIAL SECTION
             TestimonialListSection(),
             // PARTNERS SECTION
-            Container(
-              margin: EdgeInsets.only(right: 15, top: 30),
-              child: Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 15),
-                    child: Text(
-                      'Ils nous font confiance',
-                      style: TextStyle(
-                        color: primary,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  Container(
-                    width: 30,
-                    height: 30,
-                    margin: EdgeInsets.only(right: 10),
-                    child: ElevatedButton(
-                        child: Icon(
-                          Icons.navigate_before_sharp,
-                          color: primary,
-                          size: 25,
-                        ),
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          shadowColor: Colors.white,
-                          shape: CircleBorder(
-                              side: BorderSide(
-                            color: Colors.grey.shade300,
-                          )),
-                          padding: EdgeInsets.zero,
-                          primary: Colors.white,
-                        )),
-                  ),
-                  Container(
-                    width: 30,
-                    height: 30,
-                    child: ElevatedButton(
-                        child: Icon(
-                          Icons.navigate_next_sharp,
-                          color: primary,
-                          size: 25,
-                        ),
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          shadowColor: Colors.white,
-                          shape: CircleBorder(
-                              side: BorderSide(
-                            color: Colors.grey.shade300,
-                          )),
-                          padding: EdgeInsets.zero,
-                          primary: Colors.white,
-                        )),
-                  ),
-                ],
-              ),
-            ),
-            Center(
-              child: Container(
-                width: 300,
-                height: 150,
-                child: Image.network(
-                    "https://idwey.tn/uploads/0000/logopartenaire/ifm.png"),
-              ),
-            ),
+            PartnerListSection(),
+            //FOOTER
             Footer(),
             CreatedBy(),
             BackToTop(scrollToTop),
