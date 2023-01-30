@@ -73,24 +73,30 @@ class _DestinationListItemState extends State<DestinationListItem> {
                     ),
                     child: Column(
                       children: [
-                        Text(
-                          '65 événements',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '29 hébergements',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '8 activités',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
+                        widget.destination.nb_events != 0
+                            ? Text(
+                                '${widget.destination.nb_events} événements',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(width: 0),
+                        widget.destination.nb_hotels != 0
+                            ? Text(
+                                '${widget.destination.nb_hotels} hébergements',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(width: 0),
+                        widget.destination.nb_activities != 0
+                            ? Text(
+                                '${widget.destination.nb_activities} activités',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(width: 0),
                       ],
                     ),
                   ),

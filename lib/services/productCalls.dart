@@ -17,7 +17,6 @@ class ProductCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
-        print(i);
         listProducts.add(Product.fromJson(i));
       }
     }
@@ -36,7 +35,6 @@ class ProductCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
-        print(i);
         listProducts.add(Product.fromJson(i));
       }
     }

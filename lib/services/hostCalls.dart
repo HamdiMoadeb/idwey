@@ -17,7 +17,6 @@ class HostCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
-        print(i);
         listHosts.add(Host.fromJson(i));
       }
     }
@@ -33,7 +32,6 @@ class HostCalls {
     String adults = searchInputs['adults'];
     var url = Uri.parse(
         '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults');
-    print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 
