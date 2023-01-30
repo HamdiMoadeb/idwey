@@ -42,7 +42,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: widget.activity.IMAGE_URL!,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
                       child: SizedBox(

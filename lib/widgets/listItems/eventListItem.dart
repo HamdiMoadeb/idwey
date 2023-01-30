@@ -49,7 +49,7 @@ class _EventListItemState extends State<EventListItem> {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: widget.event.IMAGE_URL!,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
                       child: SizedBox(
