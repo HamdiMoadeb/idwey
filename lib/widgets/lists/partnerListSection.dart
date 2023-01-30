@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:idwey/models/activity.dart';
-import 'package:idwey/services/activityCalls.dart';
-import 'package:idwey/widgets/listItems/activityListItem.dart';
+import 'package:idwey/widgets/listItems/partnerListItem.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../services/homePageCalls.dart';
 import '../../utils/colors.dart';
 
-class ActivityListSection extends StatefulWidget {
-  const ActivityListSection({Key? key}) : super(key: key);
+class PartnerListSection extends StatefulWidget {
+  const PartnerListSection({Key? key}) : super(key: key);
 
   @override
-  State<ActivityListSection> createState() => _ActivityListSectionState();
+  State<PartnerListSection> createState() => _PartnerListSectionState();
 }
 
-class _ActivityListSectionState extends State<ActivityListSection> {
-  List<Activity> activities = [];
+class _PartnerListSectionState extends State<PartnerListSection> {
+  List<String> partners = [];
   final AutoScrollController controller = AutoScrollController();
 
   int _currentFocusedIndex = 0;
 
-  getAllActivities() {
-    ActivityCalls.getAllActivities().then((list) {
+  getAllPartners() {
+    HomePageCalls.getAllPartners().then((list) {
       setState(() {
-        activities = list;
+        partners = list;
       });
     });
   }
@@ -32,7 +31,7 @@ class _ActivityListSectionState extends State<ActivityListSection> {
   void initState() {
     super.initState();
 
-    getAllActivities();
+    getAllPartners();
   }
 
   @override
@@ -42,37 +41,20 @@ class _ActivityListSectionState extends State<ActivityListSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 30, left: 15),
-          child: Text(
-            'Ateliers et Activités',
-            style: TextStyle(
-              color: primary,
-              fontSize: 25,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-        const Divider(
-          thickness: 1,
-          height: 10,
-          indent: 15,
-          endIndent: 15,
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 8, left: 15, bottom: 5, right: 15),
-          child: Text(
-            'Vous avez besoin d’un bouffé d’air! Choisissez votre date et partez à la découverte des nouvelles activités.',
-            style: TextStyle(
-              color: grey,
-              fontSize: 13,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-        Container(
           margin: EdgeInsets.only(right: 15),
           child: Row(
             children: [
+              Container(
+                margin: EdgeInsets.only(left: 15),
+                child: Text(
+                  'Ils nous font confiance',
+                  style: TextStyle(
+                    color: primary,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
               Spacer(),
               Container(
                 width: 30,
@@ -114,7 +96,7 @@ class _ActivityListSectionState extends State<ActivityListSection> {
                       size: 25,
                     ),
                     onPressed: () {
-                      if (_currentFocusedIndex < activities.length - 1) {
+                      if (_currentFocusedIndex < partners.length - 1) {
                         _currentFocusedIndex++;
                         controller.scrollToIndex(_currentFocusedIndex,
                             preferPosition: AutoScrollPosition.begin);
@@ -136,7 +118,7 @@ class _ActivityListSectionState extends State<ActivityListSection> {
           ),
         ),
         Container(
-          height: 420,
+          height: 150,
           margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
           child: ListView.builder(
             controller: controller,
@@ -155,10 +137,10 @@ class _ActivityListSectionState extends State<ActivityListSection> {
                     });
                   }
                 },
-                child: ActivityListItem(activities[index]),
+                child: PartnerListItem(partners[index]),
               ),
             ),
-            itemCount: activities.length,
+            itemCount: partners.length,
           ),
         ),
       ],

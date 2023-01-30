@@ -6,6 +6,7 @@ import 'package:idwey/models/idweyForces.dart';
 import 'package:idwey/models/testimonial.dart';
 import 'package:idwey/utils/urls.dart';
 
+import '../models/blog.dart';
 import '../models/desire.dart';
 
 class HomePageCalls {
@@ -36,7 +37,6 @@ class HomePageCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
-        print(i);
         listDesires.add(Desire.fromJson(i));
       }
     }
@@ -55,7 +55,6 @@ class HomePageCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
-        print(i);
         listDestination.add(Destination.fromJson(i));
       }
     }
@@ -74,7 +73,6 @@ class HomePageCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]["list_item"]) {
-        print(i);
         listTestimonial.add(Testimonial.fromJson(i));
       }
     }
@@ -93,10 +91,45 @@ class HomePageCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["list_item"]) {
-        print(i);
         links.add(i["icon_url"]);
       }
     }
     return links;
+  }
+
+  static Future<List<Blog>> getAllBlogs() async {
+    List<Blog> getAllBlogs = [];
+
+    var url = Uri.parse('${Urls.URL_API}blog/listBlog');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      for (Map<String?, dynamic> i in data["rows"]) {
+        getAllBlogs.add(Blog.fromJson(i));
+      }
+    }
+    return getAllBlogs;
+  }
+
+  static Future<List<String>> getAllPartners() async {
+    List<String> allPartners = [];
+
+    var url = Uri.parse('${Urls.URL_API}partners');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      for (Map<String?, dynamic> i in data["rows"]["list_item"]) {
+        allPartners.add(i["image_url"].toString());
+      }
+    }
+    return allPartners;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:idwey/models/destination.dart';
 
@@ -28,11 +29,21 @@ class _DestinationListItemState extends State<DestinationListItem> {
             height: 300,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(60),
-              child: Image.network(
-                widget.destination.image_id!,
+              child: CachedNetworkImage(
+                imageUrl: widget.destination.image_id!,
                 fit: BoxFit.cover,
                 color: Colors.black.withOpacity(0.4),
                 colorBlendMode: BlendMode.darken,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: CircularProgressIndicator(
+                        value: downloadProgress.progress),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
           ),
@@ -62,24 +73,30 @@ class _DestinationListItemState extends State<DestinationListItem> {
                     ),
                     child: Column(
                       children: [
-                        Text(
-                          '65 événements',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '29 hébergements',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '8 activités',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
+                        widget.destination.nb_events != 0
+                            ? Text(
+                                '${widget.destination.nb_events} événements',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(width: 0),
+                        widget.destination.nb_hotels != 0
+                            ? Text(
+                                '${widget.destination.nb_hotels} hébergements',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(width: 0),
+                        widget.destination.nb_activities != 0
+                            ? Text(
+                                '${widget.destination.nb_activities} activités',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(width: 0),
                       ],
                     ),
                   ),

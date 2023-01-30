@@ -18,7 +18,6 @@ class EventCalls {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
-        print(i);
         listEvents.add(Event.fromJson(i));
       }
     }
@@ -34,7 +33,6 @@ class EventCalls {
     String location_id = searchInputs['location_id'];
     var url = Uri.parse(
         '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end');
-    print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 
