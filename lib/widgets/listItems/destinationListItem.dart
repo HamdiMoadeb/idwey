@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:idwey/models/destination.dart';
 
@@ -28,11 +29,21 @@ class _DestinationListItemState extends State<DestinationListItem> {
             height: 300,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(60),
-              child: Image.network(
-                widget.destination.image_id!,
+              child: CachedNetworkImage(
+                imageUrl: widget.destination.image_id!,
                 fit: BoxFit.cover,
                 color: Colors.black.withOpacity(0.4),
                 colorBlendMode: BlendMode.darken,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: CircularProgressIndicator(
+                        value: downloadProgress.progress),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
           ),
