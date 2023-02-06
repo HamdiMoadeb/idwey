@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idwey/screens/homePage.dart';
+import 'package:idwey/screens/splachPage.dart';
 import 'package:idwey/utils/colors.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: materialPrimary,
           splashColor: Colors.white,
           fontFamily: 'Poppins'),
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }
