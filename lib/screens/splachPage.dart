@@ -1,7 +1,7 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:idwey/screens/homePage.dart';
-import 'package:idwey/utils/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -27,12 +27,12 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: primaryGrey,
+        color: Colors.white,
         child: Center(
           child: Container(
             child: Image.asset(
-              "assets/logoidwey.png",
-              width: 200,
+              "assets/idwey.png",
+              width: 250,
               fit: BoxFit.contain,
             ),
           ),
