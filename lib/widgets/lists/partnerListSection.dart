@@ -41,20 +41,20 @@ class _PartnerListSectionState extends State<PartnerListSection> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
+          margin: EdgeInsets.only(top: 30, left: 15),
+          child: Text(
+            'Ils nous font confiance',
+            style: TextStyle(
+              color: primary,
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        Container(
           margin: EdgeInsets.only(right: 15),
           child: Row(
             children: [
-              Container(
-                margin: EdgeInsets.only(left: 15),
-                child: Text(
-                  'Ils nous font confiance',
-                  style: TextStyle(
-                    color: primary,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
               Spacer(),
               Container(
                 width: 30,
