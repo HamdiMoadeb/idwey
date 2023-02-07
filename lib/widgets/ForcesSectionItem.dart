@@ -36,6 +36,8 @@ class _ForcesSectionItemState extends State<ForcesSectionItem> {
             child: Text(
               widget.force.desc!,
               textAlign: TextAlign.center,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,

@@ -35,7 +35,7 @@ class _IdweySectionState extends State<IdweySection> {
   Widget build(BuildContext context) {
     return idweyForces != null
         ? Container(
-            height: 1280,
+            height: 1350,
             child: Stack(
               children: [
                 Container(
@@ -52,7 +52,7 @@ class _IdweySectionState extends State<IdweySection> {
                 Positioned(
                   top: 150,
                   child: Container(
-                    height: 1150,
+                    height: 1250,
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.only(top: 0),
                     color: primary,
