@@ -69,6 +69,8 @@ class _TestimonialListItemState extends State<TestimonialListItem> {
                 margin: EdgeInsets.only(bottom: 5, top: 10),
                 child: Text(
                   widget.testimonial.desc!,
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: grey,
                     fontSize: 14,
