@@ -136,7 +136,7 @@ class _ActivityListSectionState extends State<ActivityListSection> {
           ),
         ),
         Container(
-          height: 420,
+          height: 430,
           margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
           child: ListView.builder(
             controller: controller,
