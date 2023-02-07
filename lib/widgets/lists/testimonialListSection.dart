@@ -39,7 +39,7 @@ class _TestimonialListSectionState extends State<TestimonialListSection> {
         Container(
           margin: EdgeInsets.only(top: 20, left: 15),
           child: Text(
-            'Avis des cliens',
+            'Avis des clients',
             style: TextStyle(
               color: primary,
               fontSize: 25,
