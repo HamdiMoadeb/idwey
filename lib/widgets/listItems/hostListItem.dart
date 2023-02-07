@@ -63,14 +63,13 @@ class _HostListItemState extends State<HostListItem> {
                       left: 0,
                       top: 20,
                       child: Container(
-                        width: 80,
                         height: 26,
                         padding: const EdgeInsets.only(left: 8, top: 5),
                         decoration: BoxDecoration(
                           color: primaryOrange,
                         ),
                         child: Text(
-                          'En Vedette',
+                          'En Vedette  ',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
