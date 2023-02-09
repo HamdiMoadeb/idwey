@@ -39,7 +39,7 @@ class _TestimonialListSectionState extends State<TestimonialListSection> {
         Container(
           margin: EdgeInsets.only(top: 20, left: 15),
           child: Text(
-            'Avis des cliens',
+            'Avis des clients',
             style: TextStyle(
               color: primary,
               fontSize: 25,
@@ -48,7 +48,7 @@ class _TestimonialListSectionState extends State<TestimonialListSection> {
           ),
         ),
         Container(
-          height: 210,
+          height: 230,
           margin: EdgeInsets.only(top: 5, bottom: 10, right: 15),
           child: ListView.builder(
             physics: PageScrollPhysics(),

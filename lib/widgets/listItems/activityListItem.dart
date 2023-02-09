@@ -20,7 +20,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
       margin: EdgeInsets.only(left: 15),
-      height: 420,
+      height: 430,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
@@ -217,7 +217,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, top: 8),
+            margin: EdgeInsets.only(left: 10, top: 8, bottom: 10),
             child: Row(
               children: [
                 FaIcon(

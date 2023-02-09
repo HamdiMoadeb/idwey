@@ -8,7 +8,8 @@ import '../../utils/utils.dart';
 
 class HostListItem extends StatefulWidget {
   Host host;
-  HostListItem(this.host);
+  bool fromHomepage;
+  HostListItem(this.host, this.fromHomepage);
 
   @override
   State<HostListItem> createState() => _HostListItemState();
@@ -21,7 +22,7 @@ class _HostListItemState extends State<HostListItem> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 390,
+      height: 420,
       margin: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -63,14 +64,13 @@ class _HostListItemState extends State<HostListItem> {
                       left: 0,
                       top: 20,
                       child: Container(
-                        width: 80,
                         height: 26,
                         padding: const EdgeInsets.only(left: 8, top: 5),
                         decoration: BoxDecoration(
                           color: primaryOrange,
                         ),
                         child: Text(
-                          'En Vedette',
+                          'En Vedette  ',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
@@ -212,6 +212,31 @@ class _HostListItemState extends State<HostListItem> {
                     ],
                   ),
                 ),
+                widget.host.per_person!.isNotEmpty
+                    ? Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.solidBookmark,
+                              size: 14,
+                              color: grey,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              widget.host.per_person! == "personne"
+                                  ? 'Par Personne'
+                                  : 'Maison Entière',
+                              style: TextStyle(
+                                color: primary,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : Container(),
                 widget.host.impactsocial! == "Oui"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
@@ -238,74 +263,67 @@ class _HostListItemState extends State<HostListItem> {
               ],
             ),
           ),
-          Spacer(),
-          const Divider(
-            thickness: 1,
-            height: 1,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.bolt,
-                      size: 14,
-                      color: Colors.amber,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      '${removeDecimalZeroFormat(widget.host.price!)} DT',
-                      style: TextStyle(
-                        color: titleBlack,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      widget.host.per_person! == "personne"
-                          ? ' /personne'
-                          : ' /nuit',
-                      style: TextStyle(
-                        color: grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
+          Container(
+            margin: EdgeInsets.only(left: 10, top: 8),
+            child: Row(
+              children: [
+                FaIcon(
+                  FontAwesomeIcons.bolt,
+                  size: 14,
+                  color: Colors.amber,
                 ),
-              ),
-              Spacer(),
-              Container(
-                width: 170,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(15),
+                const SizedBox(width: 5),
+                Text(
+                  '${removeDecimalZeroFormat(widget.host.price!)} DT',
+                  style: TextStyle(
+                    color: titleBlack,
+                    fontSize: 19,
+                    fontWeight: FontWeight.w600,
                   ),
-                  color: primaryOrange,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'Votre réservation = ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    FaIcon(
-                      FontAwesomeIcons.tree,
-                      size: 15,
-                      color: Colors.green,
-                    ),
-                  ],
+                Text(
+                  widget.host.per_person! == "personne"
+                      ? ' /personne'
+                      : ' /nuit',
+                  style: TextStyle(
+                    color: grey,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
+              ],
+            ),
+          ),
+          Spacer(),
+          Container(
+            width: double.infinity,
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
               ),
-            ],
+              color: primaryOrange,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.fromHomepage
+                      ? 'Votre réservation = '
+                      : 'Réserver Maintenant = ',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                FaIcon(
+                  FontAwesomeIcons.tree,
+                  size: 15,
+                  color: Colors.green,
+                ),
+              ],
+            ),
           ),
         ],
       ),

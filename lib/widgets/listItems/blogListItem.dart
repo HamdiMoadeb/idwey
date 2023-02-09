@@ -25,7 +25,7 @@ class _BlogListItemState extends State<BlogListItem> {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
       margin: EdgeInsets.only(left: 15),
-      height: 410,
+      height: 420,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
       ),
@@ -87,7 +87,8 @@ class _BlogListItemState extends State<BlogListItem> {
           Container(
             margin: EdgeInsets.only(left: 5, bottom: 15),
             child: Text(
-              widget.blog.title!,
+              '${widget.blog.title!}',
+              maxLines: 2,
               style: TextStyle(
                 color: titleBlack,
                 fontSize: 17,
@@ -98,7 +99,9 @@ class _BlogListItemState extends State<BlogListItem> {
           Container(
             margin: EdgeInsets.only(left: 5, bottom: 15),
             child: Text(
-              widget.blog.content!,
+              '${widget.blog.content!}',
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
               style: TextStyle(
                 color: grey,
                 fontSize: 13,
@@ -107,7 +110,7 @@ class _BlogListItemState extends State<BlogListItem> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 5),
+            margin: EdgeInsets.only(left: 5, bottom: 5),
             child: Text(
               'Lire Plus',
               style: TextStyle(

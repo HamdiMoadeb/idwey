@@ -95,7 +95,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Entrée - sortie',
+                      'De - à',
                       style: TextStyle(
                         color: grey,
                         fontSize: 15,

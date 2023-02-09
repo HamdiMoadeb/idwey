@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import '../widgets/common/footer.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
+import '../widgets/common/footer.dart';
 import '../widgets/listItems/hostListItem.dart';
 import '../widgets/tabs/HostFilterTab.dart';
 
@@ -64,15 +64,21 @@ class _HostPageState extends State<HostPage>
                               fit: BoxFit.cover),
                         ),
                       ),
-                      const Positioned(
-                        top: 90.0,
-                        left: 20,
-                        child: Text(
-                          'Nos hébergements',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 34,
-                            fontWeight: FontWeight.w500,
+                      Positioned.fill(
+                        child: Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Logements et maisons \nd\'hôtes',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -142,7 +148,7 @@ class _HostListState extends State<HostList> {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Container(
                       margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: HostListItem(listHosts[index])),
+                      child: HostListItem(listHosts[index], false)),
                   itemCount: listHosts.length,
                 ),
               ],

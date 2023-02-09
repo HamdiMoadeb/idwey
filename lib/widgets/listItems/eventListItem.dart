@@ -64,7 +64,7 @@ class _EventListItemState extends State<EventListItem> {
                 ),
               ),
               Positioned(
-                bottom: 10,
+                bottom: 0,
                 child: Container(
                   height: 28,
                   padding: const EdgeInsets.only(left: 8, top: 5, right: 8),

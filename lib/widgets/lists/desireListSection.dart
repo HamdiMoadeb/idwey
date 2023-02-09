@@ -47,7 +47,7 @@ class _DesireListSectionState extends State<DesireListSection> {
             'La Tunisie selon vos envies',
             style: TextStyle(
               color: primaryOrange,
-              fontSize: 25,
+              fontSize: 23,
               fontWeight: FontWeight.w500,
             ),
           ),
