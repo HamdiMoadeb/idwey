@@ -25,14 +25,18 @@ class EventCalls {
   }
 
   //api for our hosts page
-  static Future<List<Event>> getEventsList(dynamic searchInputs) async {
+  static Future<List<Event>> getEventsList(
+      dynamic searchInputs, int skip) async {
     List<Event> listEvents = [];
     String start = searchInputs['start'];
     String end = searchInputs['end'];
     String address = searchInputs['address'];
-    String location_id = searchInputs['location_id'];
+    String location_id = searchInputs['location_id'] == 'Où vous allez?'
+        ? ''
+        : searchInputs['location_id'];
     var url = Uri.parse(
-        '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end');
+        '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip');
+    print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 

@@ -18,9 +18,45 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  List<Product> listProducts = [];
+  bool loading = false;
+  int listLengthFromLastCall = 0;
+
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
+  }
+
+  callProducts() {
+    setState(() {
+      loading = true;
+    });
+    ProductCalls.getProductList(listProducts.length).then((list) async {
+      setState(() {
+        listLengthFromLastCall = list.length;
+        listProducts.addAll(list);
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    callProducts();
+
+    scrollController.addListener(() {
+      if ((scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        callProducts();
+      }
+    });
   }
 
   @override
@@ -67,72 +103,47 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
               ),
-              const ProductList(),
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        "${listProducts.length} produits trouvés",
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          color: titleBlue,
+                        ),
+                      ),
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) => Container(
+                        margin: EdgeInsets.only(bottom: 15, right: 15),
+                        child: ProductListItem(listProducts[index])),
+                    itemCount: listProducts.length,
+                  ),
+                ],
+              ),
+              loading
+                  ? Container(
+                      margin: EdgeInsets.only(top: 30),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(primary),
+                        ),
+                      ),
+                    )
+                  : Container(),
               //footer
               Footer(),
               CreatedBy(),
               BackToTop(scrollToTop),
             ]),
       ),
-    );
-  }
-}
-
-class ProductList extends StatefulWidget {
-  const ProductList({Key? key}) : super(key: key);
-
-  @override
-  State<ProductList> createState() => _ProductListState();
-}
-
-class _ProductListState extends State<ProductList> {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: ProductCalls.getProductList(),
-      builder: (context, AsyncSnapshot<List<Product>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.data != null) {
-          final List<Product> listProducts = snapshot.data!.toList();
-
-          if (listProducts != null) {
-            return Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      "${listProducts.length} produits trouvés",
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        color: titleBlue,
-                      ),
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) => Container(
-                      margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: ProductListItem(listProducts[index])),
-                  itemCount: listProducts.length,
-                ),
-              ],
-            );
-          }
-        }
-
-        return Container(
-          margin: EdgeInsets.only(top: 30),
-          child: Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(primary),
-            ),
-          ),
-        );
-      },
     );
   }
 }

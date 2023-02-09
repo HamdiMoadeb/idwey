@@ -20,18 +20,50 @@ class _HostPageState extends State<HostPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  List<Host> listHosts = [];
+  bool loading = false;
+  int listLengthFromLastCall = 0;
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
+      listHosts.clear();
       this.searchInputs = searchInputs;
+    });
+    callHosts();
+  }
+
+  callHosts() {
+    setState(() {
+      loading = true;
+    });
+    HostCalls.getHostsList(searchInputs, listHosts.length).then((list) async {
+      setState(() {
+        listLengthFromLastCall = list.length;
+        listHosts.addAll(list);
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
     });
   }
 
   @override
   void initState() {
     super.initState();
+    callHosts();
+
+    scrollController.addListener(() {
+      if ((scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        callHosts();
+      }
+    });
   }
 
   void scrollToTop() {
@@ -94,41 +126,7 @@ class _HostPageState extends State<HostPage>
                 ],
               ),
             ),
-
-            HostList(
-              searchInputs: searchInputs,
-            ),
-            //footer
-            Footer(),
-            CreatedBy(),
-            BackToTop(scrollToTop),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HostList extends StatefulWidget {
-  dynamic searchInputs;
-
-  HostList({Key? key, required this.searchInputs}) : super(key: key);
-  @override
-  State<HostList> createState() => _HostListState();
-}
-
-class _HostListState extends State<HostList> {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: HostCalls.getHostsList(widget.searchInputs),
-      builder: (context, AsyncSnapshot<List<Host>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.data != null) {
-          final List<Host> listHosts = snapshot.data!.toList();
-
-          if (listHosts != null) {
-            return Column(
+            Column(
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
@@ -152,19 +150,24 @@ class _HostListState extends State<HostList> {
                   itemCount: listHosts.length,
                 ),
               ],
-            );
-          }
-        }
-
-        return Container(
-          margin: EdgeInsets.only(top: 30),
-          child: Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(primary),
             ),
-          ),
-        );
-      },
+            loading
+                ? Container(
+                    margin: EdgeInsets.only(top: 30),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(primary),
+                      ),
+                    ),
+                  )
+                : Container(),
+            //footer
+            Footer(),
+            CreatedBy(),
+            BackToTop(scrollToTop),
+          ],
+        ),
+      ),
     );
   }
 }
