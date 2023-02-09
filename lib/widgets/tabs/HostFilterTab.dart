@@ -260,6 +260,7 @@ class _HostFilterTabState extends State<HostFilterTab> {
                   height: 35,
                   child: ElevatedButton(
                     onPressed: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
                       setState(() {
                         searchInputs = {
                           'start': start,
