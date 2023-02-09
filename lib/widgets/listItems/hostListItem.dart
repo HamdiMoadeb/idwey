@@ -211,6 +211,31 @@ class _HostListItemState extends State<HostListItem> {
                     ],
                   ),
                 ),
+                widget.host.per_person!.isNotEmpty
+                    ? Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.solidBookmark,
+                              size: 14,
+                              color: grey,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              widget.host.per_person! == "personne"
+                                  ? 'Par Personne'
+                                  : 'Maison Entière',
+                              style: TextStyle(
+                                color: primary,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : Container(),
                 widget.host.impactsocial! == "Oui"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
