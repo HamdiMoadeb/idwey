@@ -148,7 +148,7 @@ class _HostListState extends State<HostList> {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Container(
                       margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: HostListItem(listHosts[index])),
+                      child: HostListItem(listHosts[index], false)),
                   itemCount: listHosts.length,
                 ),
               ],

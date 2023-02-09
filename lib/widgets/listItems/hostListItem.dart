@@ -8,7 +8,8 @@ import '../../utils/utils.dart';
 
 class HostListItem extends StatefulWidget {
   Host host;
-  HostListItem(this.host);
+  bool fromHomepage;
+  HostListItem(this.host, this.fromHomepage);
 
   @override
   State<HostListItem> createState() => _HostListItemState();
@@ -306,9 +307,11 @@ class _HostListItemState extends State<HostListItem> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  'Votre réservation = ',
+                  widget.fromHomepage
+                      ? 'Votre réservation = '
+                      : 'Réserver Maintenant = ',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
