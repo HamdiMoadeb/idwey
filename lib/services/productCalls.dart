@@ -23,10 +23,10 @@ class ProductCalls {
     return listProducts;
   }
 
-  static Future<List<Product>> getProductList() async {
+  static Future<List<Product>> getProductList(int skip) async {
     List<Product> listProducts = [];
 
-    var url = Uri.parse('${Urls.URL_API}product');
+    var url = Uri.parse('${Urls.URL_API}product?limit=20&offset=$skip');
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
