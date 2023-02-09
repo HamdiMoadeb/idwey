@@ -24,14 +24,16 @@ class ActivityCalls {
   }
 
   //api for our hosts page
-  static Future<List<Activity>> getActivityList(dynamic searchInputs) async {
+  static Future<List<Activity>> getActivityList(
+      dynamic searchInputs, int skip) async {
     List<Activity> listActivities = [];
     String start = searchInputs['start'];
     String end = searchInputs['end'];
     String address = searchInputs['address'];
     String adults = searchInputs['adults'];
     var url = Uri.parse(
-        '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults');
+        '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
+    print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 

@@ -260,6 +260,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                   height: 35,
                   child: ElevatedButton(
                     onPressed: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
                       setState(() {
                         searchInputs = {
                           'start': start,

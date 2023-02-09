@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import '../widgets/common/footer.dart';
 
 import '../models/activity.dart';
 import '../services/activityCalls.dart';
+import '../widgets/common/footer.dart';
 import '../widgets/listItems/activityListItem.dart';
 import '../widgets/tabs/ActivityFilterTab.dart';
 
@@ -20,6 +20,9 @@ class _ActivityPageState extends State<ActivityPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
+  List<Activity> listActivities = [];
+  bool loading = false;
+  int listLengthFromLastCall = 0;
 
   void scrollToTop() {
     scrollController.animateTo(0,
@@ -28,13 +31,43 @@ class _ActivityPageState extends State<ActivityPage> {
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
+      listActivities.clear();
       this.searchInputs = searchInputs;
+    });
+    callActivities();
+  }
+
+  callActivities() {
+    setState(() {
+      loading = true;
+    });
+    ActivityCalls.getActivityList(searchInputs, listActivities.length)
+        .then((list) async {
+      setState(() {
+        listLengthFromLastCall = list.length;
+        listActivities.addAll(list);
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
     });
   }
 
   @override
   void initState() {
     super.initState();
+    callActivities();
+
+    scrollController.addListener(() {
+      if ((scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        callActivities();
+      }
+    });
   }
 
   @override
@@ -88,73 +121,47 @@ class _ActivityPageState extends State<ActivityPage> {
                   ],
                 ),
               ),
-              ActivityList(searchInputs: searchInputs),
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        "${listActivities.length} activités trouvés",
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          color: titleBlue,
+                        ),
+                      ),
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) => Container(
+                        margin: EdgeInsets.only(bottom: 15, right: 15),
+                        child: ActivityListItem(listActivities[index])),
+                    itemCount: listActivities.length,
+                  ),
+                ],
+              ),
+              loading
+                  ? Container(
+                      margin: EdgeInsets.only(top: 30),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(primary),
+                        ),
+                      ),
+                    )
+                  : Container(),
               //footer
               Footer(),
               CreatedBy(),
               BackToTop(scrollToTop),
             ]),
       ),
-    );
-  }
-}
-
-class ActivityList extends StatefulWidget {
-  dynamic searchInputs;
-  ActivityList({Key? key, required this.searchInputs}) : super(key: key);
-
-  @override
-  State<ActivityList> createState() => _ActivityListState();
-}
-
-class _ActivityListState extends State<ActivityList> {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: ActivityCalls.getActivityList(widget.searchInputs),
-      builder: (context, AsyncSnapshot<List<Activity>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.data != null) {
-          final List<Activity> listActivities = snapshot.data!.toList();
-
-          if (listActivities != null) {
-            return Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      "${listActivities.length} activités trouvés",
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        color: titleBlue,
-                      ),
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) => Container(
-                      margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: ActivityListItem(listActivities[index])),
-                  itemCount: listActivities.length,
-                ),
-              ],
-            );
-          }
-        }
-
-        return Container(
-          margin: EdgeInsets.only(top: 30),
-          child: Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(primary),
-            ),
-          ),
-        );
-      },
     );
   }
 }
