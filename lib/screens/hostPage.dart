@@ -38,11 +38,14 @@ class _HostPageState extends State<HostPage>
     setState(() {
       loading = true;
     });
-    HostCalls.getHostsList(searchInputs, listHosts.length).then((list) {
+    HostCalls.getHostsList(searchInputs, listHosts.length).then((list) async {
       setState(() {
-        loading = false;
         listLengthFromLastCall = list.length;
         listHosts.addAll(list);
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
       });
     });
   }
@@ -53,7 +56,7 @@ class _HostPageState extends State<HostPage>
     callHosts();
 
     scrollController.addListener(() {
-      if ((scrollController.position.pixels + 1700) >=
+      if ((scrollController.position.pixels + 2000) >=
               scrollController.position.maxScrollExtent &&
           !scrollController.position.outOfRange &&
           !loading &&

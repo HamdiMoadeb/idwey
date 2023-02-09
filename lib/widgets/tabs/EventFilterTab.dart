@@ -263,6 +263,7 @@ class _EventFilterTabState extends State<EventFilterTab> {
                   height: 35,
                   child: ElevatedButton(
                     onPressed: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
                       setState(() {
                         searchInputs = {
                           'start': start,

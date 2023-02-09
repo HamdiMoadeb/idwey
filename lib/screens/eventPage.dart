@@ -19,12 +19,17 @@ class EventPage extends StatefulWidget {
 class _EventPageState extends State<EventPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  List<Event> listEvents = [];
+  bool loading = false;
+  int listLengthFromLastCall = 0;
+
   dynamic searchInputs = {
     'start': '',
     'end': '',
     'address': '',
     'location_id': ''
   };
+
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
@@ -32,13 +37,43 @@ class _EventPageState extends State<EventPage> {
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
+      listEvents.clear();
       this.searchInputs = searchInputs;
+    });
+    callEvents();
+  }
+
+  callEvents() {
+    setState(() {
+      loading = true;
+    });
+    EventCalls.getEventsList(searchInputs, listEvents.length)
+        .then((list) async {
+      setState(() {
+        listLengthFromLastCall = list.length;
+        listEvents.addAll(list);
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
     });
   }
 
   @override
   void initState() {
     super.initState();
+    callEvents();
+
+    scrollController.addListener(() {
+      if ((scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        callEvents();
+      }
+    });
   }
 
   @override
@@ -92,76 +127,47 @@ class _EventPageState extends State<EventPage> {
                   ],
                 ),
               ),
-              EventList(
-                searchInputs: searchInputs,
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        "${listEvents.length} Événements trouvés",
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          color: titleBlue,
+                        ),
+                      ),
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) => Container(
+                        margin: EdgeInsets.only(bottom: 15, right: 15),
+                        child: EventListItem(listEvents[index])),
+                    itemCount: listEvents.length,
+                  ),
+                ],
               ),
+              loading
+                  ? Container(
+                      margin: EdgeInsets.only(top: 30),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(primary),
+                        ),
+                      ),
+                    )
+                  : Container(),
               //footer
               Footer(),
               CreatedBy(),
               BackToTop(scrollToTop),
             ]),
       ),
-    );
-  }
-}
-
-class EventList extends StatefulWidget {
-  dynamic searchInputs;
-
-  EventList({Key? key, required this.searchInputs}) : super(key: key);
-
-  @override
-  State<EventList> createState() => _EventListState();
-}
-
-class _EventListState extends State<EventList> {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: EventCalls.getEventsList(widget.searchInputs),
-      builder: (context, AsyncSnapshot<List<Event>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.data != null) {
-          final List<Event> listEvents = snapshot.data!.toList();
-
-          if (listEvents != null) {
-            return Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      "${listEvents.length} Événements trouvés",
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        color: titleBlue,
-                      ),
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) => Container(
-                      margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: EventListItem(listEvents[index])),
-                  itemCount: listEvents.length,
-                ),
-              ],
-            );
-          }
-        }
-
-        return Container(
-          margin: EdgeInsets.only(top: 30),
-          child: Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(primary),
-            ),
-          ),
-        );
-      },
     );
   }
 }

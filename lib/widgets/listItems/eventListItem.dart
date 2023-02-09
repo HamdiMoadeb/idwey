@@ -123,8 +123,9 @@ class _EventListItemState extends State<EventListItem> {
           ),
           widget.event.address!.isNotEmpty
               ? Container(
-                  margin: EdgeInsets.only(left: 10, top: 8),
+                  margin: EdgeInsets.only(left: 10, top: 8, right: 5),
                   child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       FaIcon(
                         FontAwesomeIcons.solidPaperPlane,
@@ -132,14 +133,17 @@ class _EventListItemState extends State<EventListItem> {
                         color: grey,
                       ),
                       const SizedBox(width: 5),
-                      Text(
-                        widget.event.address!,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: grey,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
+                      Container(
+                        width: MediaQuery.of(context).size.width - 70,
+                        child: Text(
+                          widget.event.address!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: grey,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ],
@@ -172,27 +176,29 @@ class _EventListItemState extends State<EventListItem> {
             margin: EdgeInsets.only(left: 10, top: 10),
             child: Row(
               children: [
-                Container(
-                  margin: EdgeInsets.only(right: 12),
-                  child: Column(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.userGroup,
-                        size: 14,
-                        color: grey,
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        '${widget.event.number!}',
-                        style: TextStyle(
-                          color: primary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
+                widget.event.number! > 0
+                    ? Container(
+                        margin: EdgeInsets.only(right: 12),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.userGroup,
+                              size: 14,
+                              color: grey,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              '${widget.event.number!}',
+                              style: TextStyle(
+                                color: primary,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                      )
+                    : Container(),
                 Container(
                   margin: EdgeInsets.only(right: 12),
                   child: Column(
