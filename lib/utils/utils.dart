@@ -1,9 +1,13 @@
 import 'dart:io';
 
 import 'package:android_intent_plus/android_intent.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'colors.dart';
 
 class CustomClips extends CustomClipper<Path> {
   @override
@@ -55,5 +59,32 @@ Future<void> customLaunchUrl(String url) async {
     } else {
       throw "Could not launch $url";
     }
+  }
+}
+
+checkInternetConnectivity(context) async {
+  var connectivityResult = await (Connectivity().checkConnectivity());
+  if (connectivityResult != ConnectivityResult.mobile &&
+      connectivityResult != ConnectivityResult.wifi) {
+    CoolAlert.show(
+        context: context,
+        widget: WillPopScope(
+          onWillPop: () async => false,
+          child: Container(),
+        ),
+        type: CoolAlertType.info,
+        loopAnimation: true,
+        title: 'Pas de connexion Internet',
+        text:
+            "Vous êtes hors ligne, veuillez vérifier votre connexion Internet.",
+        confirmBtnColor: primaryOrange,
+        barrierDismissible: false,
+        showCancelBtn: false,
+        confirmBtnText: 'Réessayez',
+        backgroundColor: Colors.black,
+        onConfirmBtnTap: () {
+          Navigator.pop(context);
+          checkInternetConnectivity(context);
+        });
   }
 }

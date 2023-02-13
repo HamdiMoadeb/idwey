@@ -5,6 +5,7 @@ import 'package:idwey/widgets/common/scaffold.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
+import '../utils/utils.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/listItems/hostListItem.dart';
 import '../widgets/tabs/HostFilterTab.dart';
@@ -53,6 +54,9 @@ class _HostPageState extends State<HostPage>
   @override
   void initState() {
     super.initState();
+
+    checkInternetConnectivity(context);
+
     callHosts();
 
     scrollController.addListener(() {

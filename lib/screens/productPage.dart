@@ -5,6 +5,7 @@ import 'package:idwey/widgets/common/scaffold.dart';
 
 import '../models/product.dart';
 import '../services/productCalls.dart';
+import '../utils/utils.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/listItems/productListItem.dart';
 
@@ -47,6 +48,8 @@ class _ProductPageState extends State<ProductPage> {
   void initState() {
     super.initState();
     callProducts();
+
+    checkInternetConnectivity(context);
 
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=

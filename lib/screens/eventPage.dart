@@ -5,6 +5,7 @@ import 'package:idwey/widgets/common/scaffold.dart';
 
 import '../models/event.dart';
 import '../services/eventCalls.dart';
+import '../utils/utils.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/listItems/eventListItem.dart';
 import '../widgets/tabs/EventFilterTab.dart';
@@ -63,6 +64,9 @@ class _EventPageState extends State<EventPage> {
   @override
   void initState() {
     super.initState();
+
+    checkInternetConnectivity(context);
+
     callEvents();
 
     scrollController.addListener(() {
