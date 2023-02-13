@@ -5,6 +5,7 @@ import 'package:idwey/widgets/common/scaffold.dart';
 
 import '../models/activity.dart';
 import '../services/activityCalls.dart';
+import '../utils/utils.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/listItems/activityListItem.dart';
 import '../widgets/tabs/ActivityFilterTab.dart';
@@ -57,6 +58,8 @@ class _ActivityPageState extends State<ActivityPage> {
   @override
   void initState() {
     super.initState();
+    checkInternetConnectivity(context);
+
     callActivities();
 
     scrollController.addListener(() {

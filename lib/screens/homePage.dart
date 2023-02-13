@@ -19,6 +19,7 @@ import 'package:idwey/widgets/tabs/EventFilterTab.dart';
 import 'package:idwey/widgets/tabs/HostFilterTab.dart';
 
 import '../services/homePageCalls.dart';
+import '../utils/utils.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/lists/partnerListSection.dart';
 
@@ -43,6 +44,8 @@ class _HomePageState extends State<HomePage>
     _tabController = TabController(length: 3, vsync: this);
     scrollController = ScrollController();
     super.initState();
+
+    checkInternetConnectivity(context);
 
     getCarouselImages();
   }
