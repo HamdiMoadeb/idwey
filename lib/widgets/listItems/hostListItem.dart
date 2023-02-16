@@ -65,16 +65,18 @@ class _HostListItemState extends State<HostListItem> {
                       top: 20,
                       child: Container(
                         height: 26,
-                        padding: const EdgeInsets.only(left: 8, top: 5),
+                        padding: const EdgeInsets.only(left: 8),
                         decoration: BoxDecoration(
                           color: primaryOrange,
                         ),
-                        child: Text(
-                          'En Vedette  ',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13,
+                        child: Center(
+                          child: Text(
+                            'En Vedette  ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
                           ),
                         ),
                       ),
