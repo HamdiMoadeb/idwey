@@ -65,9 +65,7 @@ class _EventPageState extends State<EventPage> {
   void initState() {
     super.initState();
 
-    checkInternetConnectivity(context);
-
-    callEvents();
+    checkInternetConnectivity(context, callEvents);
 
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=

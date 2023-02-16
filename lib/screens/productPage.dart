@@ -47,9 +47,8 @@ class _ProductPageState extends State<ProductPage> {
   @override
   void initState() {
     super.initState();
-    callProducts();
 
-    checkInternetConnectivity(context);
+    checkInternetConnectivity(context, callProducts);
 
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=

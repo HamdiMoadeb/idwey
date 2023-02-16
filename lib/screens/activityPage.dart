@@ -58,9 +58,7 @@ class _ActivityPageState extends State<ActivityPage> {
   @override
   void initState() {
     super.initState();
-    checkInternetConnectivity(context);
-
-    callActivities();
+    checkInternetConnectivity(context, callActivities);
 
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=

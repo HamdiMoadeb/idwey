@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage>
   ScrollController? scrollController;
 
   List<String> carouselLinks = [];
+  bool offline = false;
 
   @override
   void initState() {
@@ -45,16 +46,21 @@ class _HomePageState extends State<HomePage>
     scrollController = ScrollController();
     super.initState();
 
-    checkInternetConnectivity(context);
-
-    getCarouselImages();
+    checkInternetConnectivity(context, getCarouselImages);
   }
 
   getCarouselImages() {
     HomePageCalls.getCarouselLinks().then((list) {
-      setState(() {
-        carouselLinks = list;
-      });
+      if (list != null) {
+        setState(() {
+          carouselLinks = list;
+          offline = false;
+        });
+      } else {
+        setState(() {
+          offline = true;
+        });
+      }
     });
   }
 
@@ -67,6 +73,35 @@ class _HomePageState extends State<HomePage>
   void dispose() {
     super.dispose();
     _tabController!.dispose();
+  }
+
+  getListsWidgets() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // HOST SECTION
+        HostListSection(),
+        // EVENT SECTION
+        EventListSection(),
+        // ACTIVITY SECTION
+        ActivityListSection(),
+        // PRODUCT SECTION
+        ProductListSection(),
+        // FORCES SECTION
+        IdweySection(),
+        // YOUR DESIRES SECTION
+        DesireListSection(),
+        // DESTINATION SECTION
+        DestinationListSection(),
+        // INSPIRATION SECTION
+        BlogListSection(),
+        // TESTIMONIAL SECTION
+        TestimonialListSection(),
+        // PARTNERS SECTION
+        PartnerListSection(),
+      ],
+    );
   }
 
   @override
@@ -224,26 +259,7 @@ class _HomePageState extends State<HomePage>
                 ],
               ),
             ),
-            // HOST SECTION
-            HostListSection(),
-            // EVENT SECTION
-            EventListSection(),
-            // ACTIVITY SECTION
-            ActivityListSection(),
-            // PRODUCT SECTION
-            ProductListSection(),
-            // FORCES SECTION
-            IdweySection(),
-            // YOUR DESIRES SECTION
-            DesireListSection(),
-            // DESTINATION SECTION
-            DestinationListSection(),
-            // INSPIRATION SECTION
-            BlogListSection(),
-            // TESTIMONIAL SECTION
-            TestimonialListSection(),
-            // PARTNERS SECTION
-            PartnerListSection(),
+            offline ? Container() : getListsWidgets(),
             //FOOTER
             Footer(),
             CreatedBy(),
