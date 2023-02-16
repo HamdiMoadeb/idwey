@@ -55,9 +55,7 @@ class _HostPageState extends State<HostPage>
   void initState() {
     super.initState();
 
-    checkInternetConnectivity(context);
-
-    callHosts();
+    checkInternetConnectivity(context, callHosts);
 
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=

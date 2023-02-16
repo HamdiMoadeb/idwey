@@ -62,10 +62,11 @@ Future<void> customLaunchUrl(String url) async {
   }
 }
 
-checkInternetConnectivity(context) async {
+checkInternetConnectivity(context, Function isConnectedCallback) async {
   var connectivityResult = await (Connectivity().checkConnectivity());
   if (connectivityResult != ConnectivityResult.mobile &&
       connectivityResult != ConnectivityResult.wifi) {
+    isConnectedCallback();
     CoolAlert.show(
         context: context,
         widget: WillPopScope(
@@ -84,7 +85,9 @@ checkInternetConnectivity(context) async {
         backgroundColor: Colors.black,
         onConfirmBtnTap: () {
           Navigator.pop(context);
-          checkInternetConnectivity(context);
+          checkInternetConnectivity(context, isConnectedCallback);
         });
+  } else {
+    isConnectedCallback();
   }
 }
