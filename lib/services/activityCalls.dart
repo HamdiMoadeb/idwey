@@ -24,8 +24,7 @@ class ActivityCalls {
   }
 
   //api for our hosts page
-  static Future<List<Activity>> getActivityList(
-      dynamic searchInputs, int skip) async {
+  static Future<Map> getActivityList(dynamic searchInputs, int skip) async {
     List<Activity> listActivities = [];
     String start = searchInputs['start'];
     String end = searchInputs['end'];
@@ -37,14 +36,21 @@ class ActivityCalls {
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 
+    Map result = {
+      'list': [],
+      'total': 0,
+    };
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
         listActivities.add(Activity.fromJson(i));
       }
+      result["total"] = data["total"];
+      result["list"] = listActivities;
     }
 
-    return listActivities;
+    return result;
   }
 }

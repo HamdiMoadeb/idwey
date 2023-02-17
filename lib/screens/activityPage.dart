@@ -24,6 +24,7 @@ class _ActivityPageState extends State<ActivityPage> {
   List<Activity> listActivities = [];
   bool loading = false;
   int listLengthFromLastCall = 0;
+  int total = 0;
 
   void scrollToTop() {
     scrollController.animateTo(0,
@@ -43,10 +44,11 @@ class _ActivityPageState extends State<ActivityPage> {
       loading = true;
     });
     ActivityCalls.getActivityList(searchInputs, listActivities.length)
-        .then((list) async {
+        .then((result) async {
       setState(() {
-        listLengthFromLastCall = list.length;
-        listActivities.addAll(list);
+        listLengthFromLastCall = result["list"].length;
+        listActivities.addAll(result["list"]);
+        total = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -129,7 +131,7 @@ class _ActivityPageState extends State<ActivityPage> {
                     child: Container(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        "${listActivities.length} activités trouvés",
+                        "${total} activités trouvés",
                         style: TextStyle(
                           fontSize: 24.0,
                           color: titleBlue,

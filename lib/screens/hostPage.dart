@@ -24,6 +24,7 @@ class _HostPageState extends State<HostPage>
   List<Host> listHosts = [];
   bool loading = false;
   int listLengthFromLastCall = 0;
+  int totalNb = 0;
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
 
@@ -39,10 +40,11 @@ class _HostPageState extends State<HostPage>
     setState(() {
       loading = true;
     });
-    HostCalls.getHostsList(searchInputs, listHosts.length).then((list) async {
+    HostCalls.getHostsList(searchInputs, listHosts.length).then((result) async {
       setState(() {
-        listLengthFromLastCall = list.length;
-        listHosts.addAll(list);
+        listLengthFromLastCall = result["list"].length;
+        listHosts.addAll(result["list"]);
+        totalNb = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -135,7 +137,7 @@ class _HostPageState extends State<HostPage>
                   child: Container(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      "${listHosts.length} hébergements trouvés",
+                      "${totalNb} hébergements trouvés",
                       style: TextStyle(
                         fontSize: 24.0,
                         color: titleBlue,

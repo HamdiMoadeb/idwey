@@ -25,8 +25,7 @@ class EventCalls {
   }
 
   //api for our hosts page
-  static Future<List<Event>> getEventsList(
-      dynamic searchInputs, int skip) async {
+  static Future<Map> getEventsList(dynamic searchInputs, int skip) async {
     List<Event> listEvents = [];
     String start = searchInputs['start'];
     String end = searchInputs['end'];
@@ -40,14 +39,21 @@ class EventCalls {
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 
+    Map result = {
+      'list': [],
+      'total': 0,
+    };
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
         listEvents.add(Event.fromJson(i));
       }
+      result["total"] = data["total"];
+      result["list"] = listEvents;
     }
 
-    return listEvents;
+    return result;
   }
 }
