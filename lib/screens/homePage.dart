@@ -10,6 +10,7 @@ import 'package:idwey/widgets/lists/blogListSection.dart';
 import 'package:idwey/widgets/lists/desireListSection.dart';
 import 'package:idwey/widgets/lists/destinationListSection.dart';
 import 'package:idwey/widgets/lists/eventListSection.dart';
+import 'package:idwey/widgets/lists/experienceListSection.dart';
 import 'package:idwey/widgets/lists/hostListSection.dart';
 import 'package:idwey/widgets/lists/idweySection.dart';
 import 'package:idwey/widgets/lists/productListSection.dart';
@@ -84,6 +85,8 @@ class _HomePageState extends State<HomePage>
         HostListSection(),
         // EVENT SECTION
         EventListSection(),
+        // EXPERIENCE SECTION
+        ExperienceListSection(),
         // ACTIVITY SECTION
         ActivityListSection(),
         // PRODUCT SECTION
