@@ -97,6 +97,14 @@ class _DestinationListItemState extends State<DestinationListItem> {
                                 ),
                               )
                             : Container(width: 0),
+                        widget.destination.nb_experiences != 0
+                            ? Text(
+                                '${widget.destination.nb_experiences} expériences',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(width: 0),
                       ],
                     ),
                   ),
