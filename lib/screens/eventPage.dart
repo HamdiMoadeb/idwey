@@ -22,6 +22,7 @@ class _EventPageState extends State<EventPage> {
   final scrollController = ScrollController();
   List<Event> listEvents = [];
   bool loading = false;
+  bool showFAB = false;
   int listLengthFromLastCall = 0;
   int total = 0;
 
@@ -77,6 +78,18 @@ class _EventPageState extends State<EventPage> {
           !(listLengthFromLastCall < 20)) {
         callEvents();
       }
+      scrollController.addListener(() {
+        if (scrollController.position.pixels > 1000) {
+          setState(() {
+            showFAB = true;
+          });
+        }
+        if (scrollController.position.pixels < 1000) {
+          setState(() {
+            showFAB = false;
+          });
+        }
+      });
     });
   }
 
@@ -86,6 +99,8 @@ class _EventPageState extends State<EventPage> {
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
+      backtotop: scrollToTop,
+      showFab: showFAB,
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(

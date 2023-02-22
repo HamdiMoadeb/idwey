@@ -23,6 +23,7 @@ class _ActivityPageState extends State<ActivityPage> {
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   List<Activity> listActivities = [];
   bool loading = false;
+  bool showFAB = false;
   int listLengthFromLastCall = 0;
   int total = 0;
 
@@ -70,6 +71,19 @@ class _ActivityPageState extends State<ActivityPage> {
           !(listLengthFromLastCall < 20)) {
         callActivities();
       }
+
+      scrollController.addListener(() {
+        if (scrollController.position.pixels > 1000) {
+          setState(() {
+            showFAB = true;
+          });
+        }
+        if (scrollController.position.pixels < 1000) {
+          setState(() {
+            showFAB = false;
+          });
+        }
+      });
     });
   }
 
@@ -79,6 +93,8 @@ class _ActivityPageState extends State<ActivityPage> {
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
+      backtotop: scrollToTop,
+      showFab: showFAB,
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(

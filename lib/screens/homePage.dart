@@ -36,18 +36,31 @@ class _HomePageState extends State<HomePage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TabController? _tabController;
-  ScrollController? scrollController;
+  final scrollController = ScrollController();
 
   List<String> carouselLinks = [];
   bool offline = false;
+  bool showFAB = false;
 
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
-    scrollController = ScrollController();
     super.initState();
 
     checkInternetConnectivity(context, getCarouselImages);
+
+    scrollController.addListener(() {
+      if (scrollController.position.pixels > 1000) {
+        setState(() {
+          showFAB = true;
+        });
+      }
+      if (scrollController.position.pixels < 1000) {
+        setState(() {
+          showFAB = false;
+        });
+      }
+    });
   }
 
   getCarouselImages() {
@@ -66,7 +79,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void scrollToTop() {
-    scrollController!.animateTo(0,
+    scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
   }
 
@@ -113,6 +126,8 @@ class _HomePageState extends State<HomePage>
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
+      backtotop: scrollToTop,
+      showFab: showFAB,
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(

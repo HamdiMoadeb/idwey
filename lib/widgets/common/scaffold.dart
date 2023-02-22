@@ -1,6 +1,7 @@
 import 'package:flag/flag.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/screens/activityPage.dart';
 import 'package:idwey/screens/eventPage.dart';
 import 'package:idwey/screens/homePage.dart';
@@ -12,8 +13,14 @@ import 'package:idwey/utils/colors.dart';
 class CommonScaffold extends StatefulWidget {
   final Widget body;
   final GlobalKey<ScaffoldState> scaffoldKey;
-  const CommonScaffold(
-      {Key? key, required this.body, required this.scaffoldKey})
+  final Function backtotop;
+  final bool showFab;
+  CommonScaffold(
+      {Key? key,
+      required this.body,
+      required this.scaffoldKey,
+      required this.showFab,
+      required this.backtotop})
       : super(key: key);
 
   @override
@@ -35,6 +42,21 @@ class _CommonScaffoldState extends State<CommonScaffold> {
           scaffoldKey: widget.scaffoldKey,
         ),
       ),
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: widget.showFab
+          ? FloatingActionButton(
+              backgroundColor: Colors.white,
+              onPressed: () {
+                widget.backtotop();
+              },
+              child: FaIcon(
+                FontAwesomeIcons.anglesUp,
+                color: primaryOrange,
+                size: 20,
+              ),
+            )
+          : Container(),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       drawer: Drawer(
         child: SingleChildScrollView(
           child:
