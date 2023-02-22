@@ -24,7 +24,7 @@ class HostCalls {
   }
 
   //api for our hosts page
-  static Future<List<Host>> getHostsList(dynamic searchInputs, int skip) async {
+  static Future<Map> getHostsList(dynamic searchInputs, int skip) async {
     List<Host> listHosts = [];
     String start = searchInputs['start'];
     String end = searchInputs['end'];
@@ -36,14 +36,21 @@ class HostCalls {
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 
+    Map result = {
+      'list': [],
+      'total': 0,
+    };
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
       for (Map<String?, dynamic> i in data["rows"]) {
         listHosts.add(Host.fromJson(i));
       }
+      result["total"] = data["total"];
+      result["list"] = listHosts;
     }
 
-    return listHosts;
+    return result;
   }
 }

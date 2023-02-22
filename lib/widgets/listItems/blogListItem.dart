@@ -54,15 +54,19 @@ class _BlogListItemState extends State<BlogListItem> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 5, top: 10),
+            margin: EdgeInsets.only(left: 5, top: 10, right: 5),
             child: Row(
               children: [
-                Text(
-                  '${widget.blog.cat_name!.toUpperCase()}',
-                  style: TextStyle(
-                    color: titleBlack,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
+                Flexible(
+                  child: Text(
+                    '${widget.blog.cat_name!.toUpperCase()}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: titleBlack,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 5),

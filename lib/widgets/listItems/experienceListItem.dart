@@ -1,29 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/models/experience.dart';
 
-import '../../models/host.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 
-class HostListItem extends StatefulWidget {
-  Host host;
-  bool fromHomepage;
-  HostListItem(this.host, this.fromHomepage);
+class ExperienceListItem extends StatefulWidget {
+  Experience experience;
+  ExperienceListItem(this.experience);
 
   @override
-  State<HostListItem> createState() => _HostListItemState();
+  State<ExperienceListItem> createState() => _ExperienceListItemState();
 }
 
-class _HostListItemState extends State<HostListItem> {
-  bool liked = false;
-
+class _ExperienceListItemState extends State<ExperienceListItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 420,
       margin: EdgeInsets.only(left: 15),
+      height: 430,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
@@ -39,12 +36,12 @@ class _HostListItemState extends State<HostListItem> {
                 height: 220,
                 width: double.infinity,
                 child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl: widget.host.IMAGE_URL!,
+                    imageUrl: widget.experience.IMAGE_URL!,
                     fit: BoxFit.cover,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
@@ -55,11 +52,15 @@ class _HostListItemState extends State<HostListItem> {
                             value: downloadProgress.progress),
                       ),
                     ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.error,
+                      size: 50.0,
+                      color: primaryOrange,
+                    ),
                   ),
                 ),
               ),
-              widget.host.is_featured == 1
+              widget.experience.is_featured == 1
                   ? Positioned(
                       left: 0,
                       top: 20,
@@ -94,7 +95,7 @@ class _HostListItemState extends State<HostListItem> {
                     color: primaryOrange,
                   ),
                   child: Text(
-                    widget.host.term_name!,
+                    widget.experience.cat_name!,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
@@ -116,18 +117,11 @@ class _HostListItemState extends State<HostListItem> {
                     ),
                     color: Colors.black.withOpacity(0.5),
                   ),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        liked = !liked;
-                      });
-                    },
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        color: liked ? likedRed : Colors.white,
-                        size: 20,
-                      ),
+                  child: Center(
+                    child: Icon(
+                      Icons.favorite_outline,
+                      color: Colors.white,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -137,7 +131,7 @@ class _HostListItemState extends State<HostListItem> {
           Container(
             margin: EdgeInsets.only(left: 10, top: 15),
             child: Text(
-              widget.host.title!,
+              widget.experience.title!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -147,27 +141,30 @@ class _HostListItemState extends State<HostListItem> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 10, top: 8),
-            child: Row(
-              children: [
-                FaIcon(
-                  FontAwesomeIcons.solidPaperPlane,
-                  size: 11,
-                  color: grey,
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  widget.host.address!,
-                  style: TextStyle(
-                    color: grey,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
+          widget.experience.address!.isNotEmpty
+              ? Container(
+                  margin: EdgeInsets.only(left: 10, top: 8),
+                  child: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.solidPaperPlane,
+                        size: 11,
+                        color: grey,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        widget.experience.address!,
+                        style: TextStyle(
+                          color: grey,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
+                )
+              : Container(),
+          Spacer(),
           Container(
             margin: EdgeInsets.only(left: 10, top: 10),
             child: Row(
@@ -183,7 +180,7 @@ class _HostListItemState extends State<HostListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        '${widget.host.max_person!}',
+                        '${widget.experience.max_people}',
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -193,42 +190,20 @@ class _HostListItemState extends State<HostListItem> {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 12),
-                  child: Column(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.mapLocationDot,
-                        size: 14,
-                        color: grey,
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        widget.host.location_name!,
-                        style: TextStyle(
-                          color: primary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                widget.host.per_person!.isNotEmpty
+                widget.experience.duration!.isNotEmpty &&
+                        widget.experience.duration! != "0"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(
                           children: [
                             FaIcon(
-                              FontAwesomeIcons.solidBookmark,
+                              FontAwesomeIcons.clock,
                               size: 14,
                               color: grey,
                             ),
                             const SizedBox(height: 3),
                             Text(
-                              widget.host.per_person! == "personne"
-                                  ? 'Par Personne'
-                                  : 'Maison Entière',
+                              '${widget.experience.duration} H',
                               style: TextStyle(
                                 color: primary,
                                 fontSize: 13,
@@ -239,7 +214,7 @@ class _HostListItemState extends State<HostListItem> {
                         ),
                       )
                     : Container(),
-                widget.host.impactsocial! == "Oui"
+                widget.experience.impactsocial! == "Oui"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(
@@ -266,7 +241,7 @@ class _HostListItemState extends State<HostListItem> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, top: 8),
+            margin: EdgeInsets.only(left: 10, top: 8, bottom: 10),
             child: Row(
               children: [
                 FaIcon(
@@ -276,7 +251,7 @@ class _HostListItemState extends State<HostListItem> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  '${removeDecimalZeroFormat(widget.host.price!)} DT',
+                  '${removeDecimalZeroFormat(widget.experience.price!)} DT',
                   style: TextStyle(
                     color: titleBlack,
                     fontSize: 19,
@@ -284,9 +259,7 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                 ),
                 Text(
-                  widget.host.per_person! == "personne"
-                      ? ' /personne'
-                      : ' /nuit',
+                  ' /personne',
                   style: TextStyle(
                     color: grey,
                     fontSize: 14,
@@ -309,11 +282,9 @@ class _HostListItemState extends State<HostListItem> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text(
-                  widget.fromHomepage
-                      ? 'Votre réservation = '
-                      : 'Réserver Maintenant = ',
+                  'Votre réservation = ',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,

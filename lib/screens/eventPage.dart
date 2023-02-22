@@ -22,7 +22,9 @@ class _EventPageState extends State<EventPage> {
   final scrollController = ScrollController();
   List<Event> listEvents = [];
   bool loading = false;
+  bool showFAB = false;
   int listLengthFromLastCall = 0;
+  int total = 0;
 
   dynamic searchInputs = {
     'start': '',
@@ -49,10 +51,11 @@ class _EventPageState extends State<EventPage> {
       loading = true;
     });
     EventCalls.getEventsList(searchInputs, listEvents.length)
-        .then((list) async {
+        .then((result) async {
       setState(() {
-        listLengthFromLastCall = list.length;
-        listEvents.addAll(list);
+        listLengthFromLastCall = result["list"].length;
+        listEvents.addAll(result["list"]);
+        total = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -75,6 +78,18 @@ class _EventPageState extends State<EventPage> {
           !(listLengthFromLastCall < 20)) {
         callEvents();
       }
+      scrollController.addListener(() {
+        if (scrollController.position.pixels > 1000) {
+          setState(() {
+            showFAB = true;
+          });
+        }
+        if (scrollController.position.pixels < 1000) {
+          setState(() {
+            showFAB = false;
+          });
+        }
+      });
     });
   }
 
@@ -84,6 +99,8 @@ class _EventPageState extends State<EventPage> {
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
+      backtotop: scrollToTop,
+      showFab: showFAB,
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(
@@ -136,7 +153,7 @@ class _EventPageState extends State<EventPage> {
                     child: Container(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        "${listEvents.length} Événements trouvés",
+                        "${total} Événements trouvés",
                         style: TextStyle(
                           fontSize: 24.0,
                           color: titleBlue,
