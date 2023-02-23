@@ -172,27 +172,29 @@ class _HostListItemState extends State<HostListItem> {
             margin: EdgeInsets.only(left: 10, top: 10),
             child: Row(
               children: [
-                Container(
-                  margin: EdgeInsets.only(right: 12),
-                  child: Column(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.userGroup,
-                        size: 14,
-                        color: grey,
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        '${widget.host.max_person!}',
-                        style: TextStyle(
-                          color: primary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
+                widget.host.max_person! > 0
+                    ? Container(
+                        margin: EdgeInsets.only(right: 12),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.userGroup,
+                              size: 14,
+                              color: grey,
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              '${widget.host.max_person!}',
+                              style: TextStyle(
+                                color: primary,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                      )
+                    : Container(),
                 Container(
                   margin: EdgeInsets.only(right: 12),
                   child: Column(
@@ -269,6 +271,16 @@ class _HostListItemState extends State<HostListItem> {
             margin: EdgeInsets.only(left: 10, top: 8),
             child: Row(
               children: [
+                widget.host.has_room == 1
+                    ? Text(
+                        'de  ',
+                        style: TextStyle(
+                          color: grey,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      )
+                    : Container(),
                 FaIcon(
                   FontAwesomeIcons.bolt,
                   size: 14,

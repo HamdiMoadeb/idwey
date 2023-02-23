@@ -3,6 +3,7 @@ class Host {
   String? title;
   int? max_person;
   int? is_featured;
+  int? has_room;
   String? per_person;
   String? location_name;
   String? price;
@@ -23,6 +24,7 @@ class Host {
     this.max_person,
     this.price,
     this.term_name,
+    this.has_room,
   );
 
   factory Host.fromJson(Map<String?, dynamic> data) {
@@ -40,6 +42,7 @@ class Host {
       data['max_person'] == null ? -1 : data['max_person'] as int,
       data['price'] == null ? "" : data['price'] as String,
       data['term_name'] == null ? "" : data['term_name'] as String,
+      data['has_room'] == null ? -1 : data['has_room'] as int,
     );
   }
 }
