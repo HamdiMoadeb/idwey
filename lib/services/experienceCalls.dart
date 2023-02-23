@@ -23,4 +23,34 @@ class ExperienceCalls {
     }
     return listExperience;
   }
+
+  static Future<Map> getExperienceList(dynamic searchInputs, int skip) async {
+    List<Experience> listExperiences = [];
+    String start = searchInputs['start'];
+    String end = searchInputs['end'];
+    String address = searchInputs['address'];
+    String adults = searchInputs['adults'];
+    var url = Uri.parse(
+        '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+    Map result = {
+      'list': [],
+      'total': 0,
+    };
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      for (Map<String?, dynamic> i in data["rows"]) {
+        listExperiences.add(Experience.fromJson(i));
+      }
+      result["total"] = data["total"];
+      result["list"] = listExperiences;
+    }
+
+    return result;
+  }
 }
