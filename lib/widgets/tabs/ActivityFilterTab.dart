@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../../utils/colors.dart';
+import '../../utils/utils.dart';
 
 typedef void InputsCallBack(dynamic searchInputs);
 
@@ -16,6 +17,7 @@ class ActivityFilterTab extends StatefulWidget {
 
 class _ActivityFilterTabState extends State<ActivityFilterTab> {
   int adultsCount = 0;
+  String addressValue = "Adresse";
 
   Map<String, String> searchInputs = {
     'start': '',
@@ -23,7 +25,6 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
     'address': '',
     'adults': ''
   };
-  TextEditingController address = TextEditingController();
   String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
   String end = DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -142,37 +143,50 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                     const SizedBox(height: 5),
                     Container(
                       margin: const EdgeInsets.only(left: 5),
-                      height: 40,
                       width: 200,
-                      child: TextField(
-                        controller: address,
+                      height: 40,
+                      child: DropdownButtonFormField(
+                        icon: Visibility(
+                            visible: false, child: Icon(Icons.arrow_downward)),
+                        items:
+                            cities.map<DropdownMenuItem<String>>((String city) {
+                          return DropdownMenuItem<String>(
+                            value: city,
+                            child: Text(
+                              city,
+                              style: TextStyle(
+                                color: city == 'Adresse'
+                                    ? Colors.grey.shade500
+                                    : Colors.black,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() => addressValue = newValue!);
+                        },
+                        value: addressValue,
                         decoration: InputDecoration(
-                            border: const OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                              borderSide: BorderSide(color: Colors.white),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade200),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.only(top: 5, left: 10),
-                            filled: true,
-                            hintStyle: TextStyle(color: Colors.grey.shade400),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade200),
-                            ),
-                            hintText: "Adresse",
-                            fillColor: Colors.white70),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(color: Colors.grey.shade200),
+                          ),
+                          contentPadding:
+                              const EdgeInsets.only(top: 5, left: 20),
+                          hintStyle: TextStyle(color: Colors.grey.shade400),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(color: Colors.grey.shade200),
+                          ),
+                          hintText: "Adresse",
+                          fillColor: Colors.white70,
+                        ),
                       ),
                     ),
                   ],
@@ -265,7 +279,8 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                         searchInputs = {
                           'start': start,
                           'end': end,
-                          'address': address.text,
+                          'address':
+                              addressValue == "Adresse" ? "" : addressValue,
                           'adults': adultsCount.toString()
                         };
                       });

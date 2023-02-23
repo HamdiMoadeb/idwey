@@ -32,6 +32,34 @@ String removeDecimalZeroFormat(String num) {
   return s;
 }
 
+List<String> cities = [
+  "Adresse",
+  "Tunis",
+  "Ariana",
+  "Ben Arous",
+  "Nabeul",
+  "Manouba",
+  "Zaghouan",
+  "Bizerte",
+  "Béja",
+  "Jendouba",
+  "El Kef",
+  "Siliana",
+  "Sousse",
+  "Monastir",
+  "Mahdia",
+  "Sfax",
+  "Kairouan",
+  "Kasserine",
+  "Sidi Bouzid",
+  "Gabès",
+  "Medenine",
+  "Tataouine",
+  "Gafsa",
+  "Tozeur",
+  "Kebili"
+];
+
 @override
 Future<void> customLaunchUrl(String url) async {
   final Uri uri = Uri.parse(url);
