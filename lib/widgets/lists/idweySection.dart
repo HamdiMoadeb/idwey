@@ -40,7 +40,7 @@ class _IdweySectionState extends State<IdweySection> {
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 50),
-                  width: double.infinity,
+                  width: MediaQuery.of(context).size.width,
                   child: ClipPath(
                     clipper: CustomClips(),
                     child: Container(

@@ -26,6 +26,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   bool loading = false;
+  bool showFAB = false;
   HostDetail hostDetail =
       HostDetail(0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '');
   String currentImage = '';
@@ -61,6 +62,8 @@ class _HostDetailsPageState extends State<HostDetailsPage>
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      showFab: showFAB,
+      backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
       body: SingleChildScrollView(
         controller: scrollController,

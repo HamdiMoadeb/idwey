@@ -59,7 +59,7 @@ class _ProductListSectionState extends State<ProductListSection> {
           ),
         ),
         Container(
-          height: 400,
+          height: 410,
           margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
           child: ListView.builder(
             physics: PageScrollPhysics(),

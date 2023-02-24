@@ -15,7 +15,7 @@ class CustomClips extends CustomClipper<Path> {
     Path path = Path();
     path.moveTo(0, 100);
     path.lineTo(0, size.height);
-    path.lineTo(size.width, size.height);
+    path.lineTo(size.width + 150, size.height + 100);
     path.lineTo(size.height, 0);
     path.close();
     return path;
@@ -31,6 +31,34 @@ String removeDecimalZeroFormat(String num) {
   String s = num.replaceAll(regex, '');
   return s;
 }
+
+List<String> cities = [
+  "Adresse",
+  "Tunis",
+  "Ariana",
+  "Ben Arous",
+  "Nabeul",
+  "Manouba",
+  "Zaghouan",
+  "Bizerte",
+  "Béja",
+  "Jendouba",
+  "El Kef",
+  "Siliana",
+  "Sousse",
+  "Monastir",
+  "Mahdia",
+  "Sfax",
+  "Kairouan",
+  "Kasserine",
+  "Sidi Bouzid",
+  "Gabès",
+  "Medenine",
+  "Tataouine",
+  "Gafsa",
+  "Tozeur",
+  "Kebili"
+];
 
 @override
 Future<void> customLaunchUrl(String url) async {

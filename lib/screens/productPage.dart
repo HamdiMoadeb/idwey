@@ -21,6 +21,7 @@ class _ProductPageState extends State<ProductPage> {
   final scrollController = ScrollController();
   List<Product> listProducts = [];
   bool loading = false;
+  bool showFAB = false;
   int listLengthFromLastCall = 0;
 
   void scrollToTop() {
@@ -58,6 +59,19 @@ class _ProductPageState extends State<ProductPage> {
           !(listLengthFromLastCall < 20)) {
         callProducts();
       }
+
+      scrollController.addListener(() {
+        if (scrollController.position.pixels > 1000) {
+          setState(() {
+            showFAB = true;
+          });
+        }
+        if (scrollController.position.pixels < 1000) {
+          setState(() {
+            showFAB = false;
+          });
+        }
+      });
     });
   }
 
@@ -67,6 +81,8 @@ class _ProductPageState extends State<ProductPage> {
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
+      backtotop: scrollToTop,
+      showFab: showFAB,
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(

@@ -1,20 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:idwey/models/activity.dart';
+import 'package:idwey/models/experience.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 
-class ActivityListItem extends StatefulWidget {
-  Activity activity;
-  ActivityListItem(this.activity);
+class ExperienceListItem extends StatefulWidget {
+  Experience experience;
+  ExperienceListItem(this.experience);
 
   @override
-  State<ActivityListItem> createState() => _ActivityListItemState();
+  State<ExperienceListItem> createState() => _ExperienceListItemState();
 }
 
-class _ActivityListItemState extends State<ActivityListItem> {
+class _ExperienceListItemState extends State<ExperienceListItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,7 +41,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                     topRight: Radius.circular(15),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl: widget.activity.IMAGE_URL!,
+                    imageUrl: widget.experience.IMAGE_URL!,
                     fit: BoxFit.cover,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
@@ -60,6 +60,29 @@ class _ActivityListItemState extends State<ActivityListItem> {
                   ),
                 ),
               ),
+              widget.experience.is_featured == 1
+                  ? Positioned(
+                      left: 0,
+                      top: 20,
+                      child: Container(
+                        height: 26,
+                        padding: const EdgeInsets.only(left: 8),
+                        decoration: BoxDecoration(
+                          color: primaryOrange,
+                        ),
+                        child: Center(
+                          child: Text(
+                            'En Vedette  ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
               Positioned(
                 bottom: 0,
                 child: Container(
@@ -72,7 +95,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                     color: primaryOrange,
                   ),
                   child: Text(
-                    widget.activity.cat_name!,
+                    widget.experience.cat_name!,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
@@ -108,7 +131,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
           Container(
             margin: EdgeInsets.only(left: 10, top: 15),
             child: Text(
-              widget.activity.title!,
+              widget.experience.title!,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -118,7 +141,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
               ),
             ),
           ),
-          widget.activity.address!.isNotEmpty
+          widget.experience.address!.isNotEmpty
               ? Container(
                   margin: EdgeInsets.only(left: 10, top: 8),
                   child: Row(
@@ -130,7 +153,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        widget.activity.address!,
+                        widget.experience.address!,
                         style: TextStyle(
                           color: grey,
                           fontSize: 13,
@@ -157,7 +180,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                       ),
                       const SizedBox(height: 3),
                       Text(
-                        '${widget.activity.max_people}',
+                        '${widget.experience.max_people}',
                         style: TextStyle(
                           color: primary,
                           fontSize: 13,
@@ -167,7 +190,8 @@ class _ActivityListItemState extends State<ActivityListItem> {
                     ],
                   ),
                 ),
-                widget.activity.duration!.isNotEmpty
+                widget.experience.duration!.isNotEmpty &&
+                        widget.experience.duration! != "0"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(
@@ -179,7 +203,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                             ),
                             const SizedBox(height: 3),
                             Text(
-                              '${widget.activity.duration} H',
+                              '${widget.experience.duration} H',
                               style: TextStyle(
                                 color: primary,
                                 fontSize: 13,
@@ -190,7 +214,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                         ),
                       )
                     : Container(),
-                widget.activity.impactsocial! == "Oui"
+                widget.experience.impactsocial! == "Oui"
                     ? Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Column(
@@ -227,7 +251,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  '${removeDecimalZeroFormat(widget.activity.price!)} DT',
+                  '${removeDecimalZeroFormat(widget.experience.price!)} DT',
                   style: TextStyle(
                     color: titleBlack,
                     fontSize: 19,

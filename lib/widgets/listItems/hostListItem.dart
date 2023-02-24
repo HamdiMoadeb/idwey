@@ -31,7 +31,7 @@ class _HostListItemState extends State<HostListItem> {
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 30,
-        height: 420,
+        height: 430,
         margin: EdgeInsets.only(left: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -74,16 +74,18 @@ class _HostListItemState extends State<HostListItem> {
                         top: 20,
                         child: Container(
                           height: 26,
-                          padding: const EdgeInsets.only(left: 8, top: 5),
+                          padding: const EdgeInsets.only(left: 8),
                           decoration: BoxDecoration(
                             color: primaryOrange,
                           ),
-                          child: Text(
-                            'En Vedette  ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
+                          child: Center(
+                            child: Text(
+                              'En Vedette  ',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 13,
+                              ),
                             ),
                           ),
                         ),
@@ -179,27 +181,29 @@ class _HostListItemState extends State<HostListItem> {
               margin: EdgeInsets.only(left: 10, top: 10),
               child: Row(
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 12),
-                    child: Column(
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.userGroup,
-                          size: 14,
-                          color: grey,
-                        ),
-                        const SizedBox(height: 3),
-                        Text(
-                          '${widget.host.max_person!}',
-                          style: TextStyle(
-                            color: primary,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
+                  widget.host.max_person! > 0
+                      ? Container(
+                          margin: EdgeInsets.only(right: 12),
+                          child: Column(
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.userGroup,
+                                size: 14,
+                                color: grey,
+                              ),
+                              const SizedBox(height: 3),
+                              Text(
+                                '${widget.host.max_person!}',
+                                style: TextStyle(
+                                  color: primary,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        )
+                      : Container(),
                   Container(
                     margin: EdgeInsets.only(right: 12),
                     child: Column(
@@ -276,6 +280,16 @@ class _HostListItemState extends State<HostListItem> {
               margin: EdgeInsets.only(left: 10, top: 8),
               child: Row(
                 children: [
+                  widget.host.has_room == 1
+                      ? Text(
+                          'de  ',
+                          style: TextStyle(
+                            color: grey,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      : Container(),
                   FaIcon(
                     FontAwesomeIcons.bolt,
                     size: 14,

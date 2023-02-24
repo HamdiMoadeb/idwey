@@ -19,7 +19,7 @@ class _ProductListItemState extends State<ProductListItem> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 30,
-      height: 400,
+      height: 410,
       margin: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),

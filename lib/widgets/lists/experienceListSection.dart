@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:idwey/widgets/listItems/hostListItem.dart';
+import 'package:idwey/models/experience.dart';
+import 'package:idwey/services/experienceCalls.dart';
+import 'package:idwey/widgets/listItems/experienceListItem.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../models/host.dart';
-import '../../services/hostCalls.dart';
 import '../../utils/colors.dart';
 
-class HostListSection extends StatefulWidget {
-  const HostListSection({Key? key}) : super(key: key);
+class ExperienceListSection extends StatefulWidget {
+  const ExperienceListSection({Key? key}) : super(key: key);
 
   @override
-  State<HostListSection> createState() => _HostListSectionState();
+  State<ExperienceListSection> createState() => _ExperienceListSectionState();
 }
 
-class _HostListSectionState extends State<HostListSection> {
-  List<Host> hosts = [];
+class _ExperienceListSectionState extends State<ExperienceListSection> {
+  List<Experience> experiences = [];
   final AutoScrollController controller = AutoScrollController();
 
   int _currentFocusedIndex = 0;
 
-  getAllHosts() {
-    HostCalls.getAllHosts().then((list) {
+  getAllExps() {
+    ExperienceCalls.getAllExperiences().then((list) {
       setState(() {
-        hosts = list;
+        experiences = list;
       });
     });
   }
@@ -32,7 +32,7 @@ class _HostListSectionState extends State<HostListSection> {
   void initState() {
     super.initState();
 
-    getAllHosts();
+    getAllExps();
   }
 
   @override
@@ -44,7 +44,7 @@ class _HostListSectionState extends State<HostListSection> {
         Container(
           margin: EdgeInsets.only(top: 30, left: 15),
           child: Text(
-            'Logements et maisons d\'hôtes',
+            'Circuits et Expériences',
             style: TextStyle(
               color: primary,
               fontSize: 23,
@@ -61,7 +61,7 @@ class _HostListSectionState extends State<HostListSection> {
         Container(
           margin: EdgeInsets.only(top: 8, left: 15, right: 15),
           child: Text(
-            'Vous cherchez où passer la nuit ? Y\'a pas mieux que ces logements de qualité',
+            'Réservez, à la date souhaitée, pour découvrir des expériences uniques à impact.',
             style: TextStyle(
               color: grey,
               fontSize: 14,
@@ -114,7 +114,7 @@ class _HostListSectionState extends State<HostListSection> {
                       size: 25,
                     ),
                     onPressed: () {
-                      if (_currentFocusedIndex < hosts.length - 1) {
+                      if (_currentFocusedIndex < experiences.length - 1) {
                         _currentFocusedIndex++;
                         controller.scrollToIndex(_currentFocusedIndex,
                             preferPosition: AutoScrollPosition.begin);
@@ -136,7 +136,7 @@ class _HostListSectionState extends State<HostListSection> {
           ),
         ),
         Container(
-          height: 430,
+          height: 440,
           margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
           child: ListView.builder(
             controller: controller,
@@ -155,10 +155,10 @@ class _HostListSectionState extends State<HostListSection> {
                     });
                   }
                 },
-                child: HostListItem(hosts[index], true),
+                child: ExperienceListItem(experiences[index]),
               ),
             ),
-            itemCount: hosts.length,
+            itemCount: experiences.length,
           ),
         ),
       ],
