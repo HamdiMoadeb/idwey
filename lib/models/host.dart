@@ -43,3 +43,88 @@ class Host {
     );
   }
 }
+
+class HostDetail {
+  int id;
+  String title;
+  int max_person;
+  int is_featured;
+  String per_person;
+  String location_name;
+  String price;
+  String address;
+  String impactsocial;
+  String term_name;
+  String content;
+  String banner_image_url;
+  List<Images> gallery_images_url;
+  String check_in_time;
+  String check_out_time;
+  List<String> type;
+
+  HostDetail(
+      this.id,
+      this.title,
+      this.content,
+      this.address,
+      this.impactsocial,
+      this.type,
+      this.is_featured,
+      this.per_person,
+      this.location_name,
+      this.max_person,
+      this.price,
+      this.term_name,
+      this.banner_image_url,
+      this.gallery_images_url,
+      this.check_in_time,
+      this.check_out_time);
+
+  factory HostDetail.fromJson(Map<String?, dynamic> data) {
+    var listImages = data['gallery_images_url'] as List;
+    List<Images> images = listImages.map((i) => Images.fromJson(i)).toList();
+    images.removeLast();
+    var row = data['row'];
+    var typeFromJson = data['attributes']['5']['child'];
+    List<String> types = new List<String>.from(typeFromJson);
+
+    return HostDetail(
+      row['id'] == null ? 0 : row['id'] as int,
+      row['title'] == null ? "" : row['title'] as String,
+      row['content'] == null ? "" : row['content'] as String,
+      row['address'] == null ? "" : row['address'] as String,
+      row['impactsocial'] == null
+          ? ""
+          : row['impactsocial'] as String, // IF NOT NULL RETURNS "Oui"
+      data['attributes']['5']['child'] == null ? [] : types,
+      row['is_featured'] == null ? -1 : row['is_featured'] as int,
+      row['per_person'] == null ? "" : row['per_person'] as String,
+      row['location_name'] == null ? "" : row['location_name'] as String,
+      row['max_person'] == null ? -1 : row['max_person'] as int,
+      row['price'] == null ? "" : row['price'] as String,
+      row['term_name'] == null ? "" : row['term_name'] as String,
+      data['banner_image_url'] == null
+          ? ""
+          : data['banner_image_url'] as String,
+      data['gallery_images_url'] == null ? [] : images,
+      row['check_in_time'] == null ? "" : row['check_in_time'] as String,
+      row['check_out_time'] == null ? "" : row['check_out_time'] as String,
+    );
+  }
+}
+
+class Images {
+  dynamic large;
+  dynamic thumb;
+  Images(
+    this.large,
+    this.thumb,
+  );
+
+  factory Images.fromJson(Map<String?, dynamic> data) {
+    return Images(
+      data['large'] == false ? "" : data['large'],
+      data['thumb'] == false ? "" : data['thumb'],
+    );
+  }
+}

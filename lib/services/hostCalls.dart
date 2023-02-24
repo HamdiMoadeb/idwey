@@ -46,4 +46,23 @@ class HostCalls {
 
     return listHosts;
   }
+
+  //api for our hosts page
+  static Future<HostDetail> getHostDetails(int? id) async {
+    HostDetail hostDetail = new HostDetail(
+        0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '');
+    var url = Uri.parse('${Urls.URL_API}hotel/detail/$id');
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      hostDetail = HostDetail.fromJson(data);
+    }
+    print(hostDetail.content);
+
+    return hostDetail;
+  }
 }
