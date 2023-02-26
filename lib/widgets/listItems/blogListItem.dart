@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:idwey/screens/blogPage.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/blog.dart';
@@ -115,16 +116,25 @@ class _BlogListItemState extends State<BlogListItem> {
           ),
           Container(
             margin: EdgeInsets.only(left: 5, bottom: 5),
-            child: Text(
-              'Lire Plus',
-              style: TextStyle(
-                shadows: [Shadow(color: titleBlack, offset: Offset(0, -5))],
-                color: Colors.transparent,
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                decoration: TextDecoration.underline,
-                decorationColor: Colors.blue.shade700,
-                decorationThickness: 3,
+            child: GestureDetector(
+              onTap: () => {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BlogPage(id: widget.blog.id),
+                    ))
+              },
+              child: Text(
+                'Lire Plus',
+                style: TextStyle(
+                  shadows: [Shadow(color: titleBlack, offset: Offset(0, -5))],
+                  color: Colors.transparent,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.blue.shade700,
+                  decorationThickness: 3,
+                ),
               ),
             ),
           ),
