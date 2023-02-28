@@ -10,6 +10,8 @@ import 'package:idwey/screens/hostPage.dart';
 import 'package:idwey/screens/productPage.dart';
 import 'package:idwey/utils/colors.dart';
 
+import '../../screens/blogPage.dart';
+
 //common scaffold
 class CommonScaffold extends StatefulWidget {
   final Widget body;
@@ -433,7 +435,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
               children: [
                 SizedBox(width: 10),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BlogPage(),
+                        ));
+                  },
                   style: ButtonStyle(
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                   child: Text(
