@@ -24,6 +24,7 @@ class _BlogPageState extends State<BlogPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   List<Blog> listBlogs = [];
+  int listLengthFromLastCall = 0;
   bool loading = false;
   bool showFAB = false;
 
@@ -31,9 +32,10 @@ class _BlogPageState extends State<BlogPage>
     setState(() {
       loading = true;
     });
-    BlogCalls.getAllBlogs().then((result) async {
+    BlogCalls.getAllBlogs(listBlogs.length).then((result) async {
       setState(() {
-        listBlogs = result;
+        listLengthFromLastCall = result.length;
+        listBlogs.addAll(result);
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -51,6 +53,26 @@ class _BlogPageState extends State<BlogPage>
   void initState() {
     super.initState();
     checkInternetConnectivity(context, callBlogs);
+    scrollController.addListener(() {
+      if ((scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 10)) {
+        callBlogs();
+      }
+
+      if (scrollController.position.pixels > 1000) {
+        setState(() {
+          showFAB = true;
+        });
+      }
+      if (scrollController.position.pixels < 1000) {
+        setState(() {
+          showFAB = false;
+        });
+      }
+    });
   }
 
   @override
@@ -66,6 +88,84 @@ class _BlogPageState extends State<BlogPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+              child: Stack(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: 230,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Image.asset("assets/blogCover.jpg",
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Blog',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 15.0, left: 15, right: 15),
+              child: Row(
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ));
+                      },
+                      child: NavText("Accueil")),
+                  Container(
+                    width: 8,
+                    height: 8,
+                    margin: EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                        color: primaryGrey,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  NavText("Blog")
+                ],
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.only(top: 10, bottom: 20),
+                child: const Divider(thickness: 1)),
+            Column(
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) => Container(
+                      margin: EdgeInsets.only(bottom: 40, right: 15),
+                      child: BlogPageItems(
+                        blog: listBlogs[index],
+                      )),
+                  itemCount: listBlogs.length,
+                ),
+              ],
+            ),
             loading
                 ? Container(
                     margin: EdgeInsets.only(top: 30),
@@ -75,92 +175,7 @@ class _BlogPageState extends State<BlogPage>
                       ),
                     ),
                   )
-                : Column(
-                    children: [
-                      Container(
-                        child: Stack(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  height: 230,
-                                  child: SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Image.asset("assets/blogCover.jpg",
-                                        fit: BoxFit.cover),
-                                  ),
-                                ),
-                                Positioned.fill(
-                                  child: Container(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Blog',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 28,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.only(top: 15.0, left: 15, right: 15),
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomePage(),
-                                      ));
-                                },
-                                child: NavText("Accueil")),
-                            Container(
-                              width: 8,
-                              height: 8,
-                              margin: EdgeInsets.symmetric(horizontal: 15),
-                              decoration: BoxDecoration(
-                                  color: primaryGrey,
-                                  borderRadius: BorderRadius.circular(10)),
-                            ),
-                            NavText("Blog")
-                          ],
-                        ),
-                      ),
-                      Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 20),
-                          child: const Divider(thickness: 1)),
-                      Column(
-                        children: [
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) =>
-                                Container(
-                                    margin:
-                                        EdgeInsets.only(bottom: 40, right: 15),
-                                    child: BlogPageItems(
-                                      blog: listBlogs[index],
-                                    )),
-                            itemCount: listBlogs.length,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                : Container(),
             Footer(),
             CreatedBy(),
             BackToTop(scrollToTop),

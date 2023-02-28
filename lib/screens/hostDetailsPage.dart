@@ -50,6 +50,18 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   void initState() {
     super.initState();
     checkInternetConnectivity(context, callHosts);
+    scrollController.addListener(() {
+      if (scrollController.position.pixels > 1000) {
+        setState(() {
+          showFAB = true;
+        });
+      }
+      if (scrollController.position.pixels < 1000) {
+        setState(() {
+          showFAB = false;
+        });
+      }
+    });
   }
 
   void scrollToTop() {
