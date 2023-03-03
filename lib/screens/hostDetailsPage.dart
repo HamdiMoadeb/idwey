@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +7,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
+import '../widgets/common/CalanderCommon.dart';
+import '../widgets/common/ImageCommon.dart';
+import '../widgets/common/MapCommon.dart';
+import '../widgets/common/detailsWidgets.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/common/scaffold.dart';
 
@@ -27,8 +34,9 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   final scrollController = ScrollController();
   bool loading = false;
   bool showFAB = false;
-  HostDetail hostDetail =
-      HostDetail(0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '');
+  bool isLiked = false;
+  HostDetail hostDetail = HostDetail(
+      0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '', 0, 0, []);
   String currentImage = '';
   callHosts() {
     setState(() {
@@ -48,20 +56,8 @@ class _HostDetailsPageState extends State<HostDetailsPage>
 
   @override
   void initState() {
-    super.initState();
     checkInternetConnectivity(context, callHosts);
-    scrollController.addListener(() {
-      if (scrollController.position.pixels > 1000) {
-        setState(() {
-          showFAB = true;
-        });
-      }
-      if (scrollController.position.pixels < 1000) {
-        setState(() {
-          showFAB = false;
-        });
-      }
-    });
+    super.initState();
   }
 
   void scrollToTop() {
@@ -77,361 +73,259 @@ class _HostDetailsPageState extends State<HostDetailsPage>
       showFab: showFAB,
       backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
-      body: SingleChildScrollView(
-        controller: scrollController,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            loading
-                ? Container(
-                    height: 300,
-                    margin: EdgeInsets.all(30),
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(primary),
-                      ),
-                    ),
-                  )
-                : Column(
-                    children: [
-                      Stack(
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            controller: scrollController,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                loading
+                    ? Container(
+                        height: 300,
+                        margin: EdgeInsets.all(30),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(primary),
+                          ),
+                        ),
+                      )
+                    : Column(
                         children: [
-                          Container(
-                            height: 230,
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: CachedNetworkImage(
-                                imageUrl: hostDetail.banner_image_url,
-                                fit: BoxFit.cover,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Center(
-                                  child: SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: CircularProgressIndicator(
-                                        value: downloadProgress.progress),
-                                  ),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            ),
+                          ImageBanner(
+                            banner_image_url: hostDetail.banner_image_url,
+                            isLiked: isLiked,
+                            callBack: () {
+                              setState(() {
+                                isLiked = !isLiked;
+                              });
+                            },
                           ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              padding: EdgeInsets.only(top: 20.0, left: 20.0),
-                              child: Text(
-                                hostDetail.title,
-                                style: TextStyle(
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.w500,
-                                    color: titleBlack),
-                              )),
-                          Container(
-                            padding: EdgeInsets.only(left: 20.0),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.location_pin,
-                                  size: 14,
-                                  color: materialPrimary.shade100,
-                                ),
-                                SizedBox(
-                                  width: 3.0,
-                                ),
-                                Text(
-                                  hostDetail.address,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: materialPrimary.shade100),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SectionDivider(),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Column(
-                              children: [
-                                hostDetail.type.length != 0
-                                    ? DetailIcons(
-                                        icon: FontAwesomeIcons.fontAwesome,
-                                        type: 'Type',
-                                        description: hostDetail.type[0],
-                                      )
-                                    : Container(),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                DetailIcons(
-                                  icon: Icons.group,
-                                  type: 'Personnes',
-                                  description: hostDetail.max_person.toString(),
-                                ),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                DetailIcons(
-                                  icon: FontAwesomeIcons.mapLocationDot,
-                                  type: 'Emplacement',
-                                  description: hostDetail.location_name,
-                                ),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                hostDetail.impactsocial != ""
-                                    ? DetailIcons(
-                                        icon: FontAwesomeIcons.slideshare,
-                                        type: 'Impact social',
-                                        description: hostDetail.impactsocial,
-                                      )
-                                    : Container(),
-                              ],
-                            ),
-                          ),
-                          SectionDivider(),
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 300,
-                                width: double.maxFinite,
-                                child: CachedNetworkImage(
-                                  imageUrl: currentImage,
-                                  fit: BoxFit.cover,
-                                  progressIndicatorBuilder:
-                                      (context, url, downloadProgress) =>
-                                          Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircularProgressIndicator(
-                                          value: downloadProgress.progress),
+                                  padding:
+                                      EdgeInsets.only(top: 20.0, left: 20.0),
+                                  child: Text(
+                                    hostDetail.title,
+                                    style: TextStyle(
+                                        fontSize: 28.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: titleBlack),
+                                  )),
+                              Container(
+                                padding: EdgeInsets.only(left: 20.0),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.location_pin,
+                                      size: 14,
+                                      color: materialPrimary.shade100,
                                     ),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                    SizedBox(
+                                      width: 3.0,
+                                    ),
+                                    Text(
+                                      hostDetail.address,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: materialPrimary.shade100),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                height: 20,
+                              SectionDivider(),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Column(
+                                  children: [
+                                    hostDetail.type.length != 0
+                                        ? DetailIcons(
+                                            icon: FontAwesomeIcons.fontAwesome,
+                                            type: 'Type',
+                                            description: hostDetail.type[0],
+                                          )
+                                        : Container(),
+                                    SizedBox(
+                                      height: 12,
+                                    ),
+                                    DetailIcons(
+                                      icon: Icons.group,
+                                      type: 'Personnes',
+                                      description:
+                                          hostDetail.max_person.toString(),
+                                    ),
+                                    SizedBox(
+                                      height: 12,
+                                    ),
+                                    DetailIcons(
+                                      icon: FontAwesomeIcons.mapLocationDot,
+                                      type: 'Emplacement',
+                                      description: hostDetail.location_name,
+                                    ),
+                                    SizedBox(
+                                      height: 12,
+                                    ),
+                                    hostDetail.impactsocial != ""
+                                        ? DetailIcons(
+                                            icon: FontAwesomeIcons.slideshare,
+                                            type: 'Impact social',
+                                            description:
+                                                hostDetail.impactsocial,
+                                          )
+                                        : Container(),
+                                  ],
+                                ),
                               ),
-                              hostDetail.gallery_images_url.length != 0
-                                  ? CarouselSlider.builder(
-                                      itemCount:
-                                          hostDetail.gallery_images_url.length,
-                                      options: CarouselOptions(
-                                        height: 100,
-                                        viewportFraction: 0.3,
-                                        enlargeCenterPage: true,
-                                        onPageChanged: (index, reason) {
-                                          setState(() {
-                                            currentImage = hostDetail
-                                                .gallery_images_url[index]
-                                                .large;
-                                          });
-                                        },
-                                      ),
-                                      itemBuilder:
-                                          (BuildContext context, int index, _) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              currentImage = hostDetail
-                                                  .gallery_images_url[index]
-                                                  .large;
-                                            });
-                                          },
-                                          child: Container(
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 5),
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: currentImage ==
-                                                        hostDetail
-                                                            .gallery_images_url[
-                                                                index]
-                                                            .large
-                                                    ? Colors.blue
-                                                    : Colors.transparent,
-                                                width: 2,
-                                              ),
-                                            ),
-                                            child: Container(
-                                              width: 100,
-                                              height: 100,
-                                              child: CachedNetworkImage(
-                                                imageUrl: hostDetail
-                                                    .gallery_images_url[index]
-                                                    .thumb,
-                                                fit: BoxFit.cover,
-                                                progressIndicatorBuilder:
-                                                    (context, url,
-                                                            downloadProgress) =>
-                                                        Center(
-                                                  child: SizedBox(
-                                                    width: 50,
-                                                    height: 50,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                            value:
-                                                                downloadProgress
-                                                                    .progress),
-                                                  ),
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                              ),
-                                            ),
+                              SectionDivider(),
+                              ImageGallery(
+                                currentImage: currentImage,
+                                isLiked: isLiked,
+                                gallery_images_url:
+                                    hostDetail.gallery_images_url,
+                                callBack: () {
+                                  setState(() {
+                                    isLiked = !isLiked;
+                                  });
+                                },
+                              ),
+                              SectionTitle(title: 'DESCRIPTION'),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 20),
+                                child: HtmlWidget(
+                                  hostDetail.content,
+                                ),
+                              ),
+                              SectionTitle(
+                                  title: 'Disponibilité'.toUpperCase()),
+                              CustomCalendar(),
+                              SectionTitle(
+                                title: 'Règlement'.toUpperCase(),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Entrée',
+                                      style:
+                                          TextStyle(color: grey, fontSize: 18),
+                                    ),
+                                    Text(
+                                      '${hostDetail.check_in_time} H',
+                                      style:
+                                          TextStyle(color: grey, fontSize: 18),
+                                    ),
+                                    Text(
+                                      'Sortie',
+                                      style:
+                                          TextStyle(color: grey, fontSize: 18),
+                                    ),
+                                    Text(
+                                      '${hostDetail.check_out_time} H',
+                                      style:
+                                          TextStyle(color: grey, fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SectionTitle(
+                                title: 'Emplacement'.toUpperCase(),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(left: 20.0),
+                                margin:
+                                    EdgeInsets.only(bottom: 20.0, top: 10.0),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      FontAwesomeIcons.locationArrow,
+                                      size: 14,
+                                      color: grey,
+                                    ),
+                                    SizedBox(
+                                      width: 5.0,
+                                    ),
+                                    Text(
+                                      hostDetail.address,
+                                      style:
+                                          TextStyle(fontSize: 14, color: grey),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                  height: 300,
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 15.0),
+                                  child: MapPosition(
+                                      title: hostDetail.title,
+                                      lat: hostDetail.map_lat!,
+                                      lng: hostDetail.map_lng!)),
+                              SectionTitle(
+                                title: 'Commodités'.toUpperCase(),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 15.0),
+                                child: Column(
+                                  children: [
+                                    for (var item in hostDetail.convenience!)
+                                      ConvenienceItem(title: item),
+                                  ],
+                                ),
+                              ),
+                              SectionTitle(
+                                title: 'type de propriété'.toUpperCase(),
+                              ),
+                              hostDetail.type.length != 0
+                                  ? Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            IcoFontIcons.tag,
+                                            size: 30.0,
+                                            color: grey,
                                           ),
-                                        );
-                                      },
+                                          SizedBox(
+                                            width: 15.0,
+                                          ),
+                                          Text(
+                                            hostDetail.type[0],
+                                            style: TextStyle(
+                                                color: materialPrimary),
+                                          )
+                                        ],
+                                      ),
                                     )
                                   : Container(),
+                              SectionTitle(
+                                title: 'avis'.toUpperCase(),
+                              ),
+                              RateStats()
                             ],
                           ),
-                          Title(title: 'DESCRIPTION'),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 20),
-                            child: HtmlWidget(
-                              hostDetail.content,
-                            ),
-                          ),
-                          Title(
-                            title: 'Règlement'.toUpperCase(),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Entrée',
-                                  style: TextStyle(color: grey, fontSize: 18),
-                                ),
-                                Text(
-                                  '${hostDetail.check_in_time} H',
-                                  style: TextStyle(color: grey, fontSize: 18),
-                                ),
-                                Text(
-                                  'Sortie',
-                                  style: TextStyle(color: grey, fontSize: 18),
-                                ),
-                                Text(
-                                  '${hostDetail.check_out_time} H',
-                                  style: TextStyle(color: grey, fontSize: 18),
-                                ),
-                              ],
-                            ),
-                          )
                         ],
                       ),
-                    ],
-                  ),
-            Footer(),
-            CreatedBy(),
-            BackToTop(scrollToTop),
-          ],
-        ),
+                Footer(),
+                CreatedBy(),
+                BackToTop(scrollToTop),
+              ],
+            ),
+          ),
+          !loading
+              ? BottomReservationBar(
+                  per_person: hostDetail.per_person,
+                  price: hostDetail.price,
+                )
+              : Container()
+        ],
       ),
     );
-  }
-}
-
-class DetailIcons extends StatelessWidget {
-  IconData icon;
-  String description;
-  String type;
-  DetailIcons(
-      {Key? key,
-      required this.icon,
-      required this.description,
-      required this.type})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          size: 35.0,
-          color: titleBlue,
-        ),
-        SizedBox(
-          width: 20.0,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              type,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-            ),
-            Text(
-              description,
-              style: TextStyle(fontSize: 14, color: grey),
-            )
-          ],
-        )
-      ],
-    );
-  }
-}
-
-class Title extends StatelessWidget {
-  String title;
-  Title({Key? key, required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 40),
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            children: [
-              Container(
-                width: 7,
-                height: 30,
-                color: primaryOrange,
-              ),
-              SizedBox(
-                width: 8,
-              ),
-              Text(
-                title,
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                    color: titleBlack),
-              )
-            ],
-          ),
-        ),
-        Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: const Divider(thickness: 1)),
-      ],
-    );
-  }
-}
-
-class SectionDivider extends StatelessWidget {
-  const SectionDivider({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        margin: EdgeInsets.only(top: 10, bottom: 20),
-        child: const Divider(thickness: 1));
   }
 }
