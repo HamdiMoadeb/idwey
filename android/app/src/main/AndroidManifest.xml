@@ -10,7 +10,18 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyALDxgH2FzVkQehbKuvikm8SO_NeMhwwzI"/>
+           android:value="AIzaSyC7MbkP9xG6aDIi3pfmVX9S6W7plT7FLvo"/>
+
+       <provider
+           android:name="androidx.core.content.FileProvider"
+           android:authorities="${applicationId}.provider"
+           android:exported="false"
+           android:grantUriPermissions="true">
+           <meta-data
+               android:name="android.support.FILE_PROVIDER_PATHS"
+               android:resource="@xml/provider_paths"/>
+       </provider>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

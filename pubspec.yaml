@@ -43,6 +43,7 @@ dependencies:
   google_maps_flutter: ^2.2.4
   percent_indicator: ^4.2.2
   table_calendar: ^3.0.9
+  flutter_share: ^2.0.0
 
 dev_dependencies:
   flutter_test:

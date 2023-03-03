@@ -9,10 +9,16 @@ class ImageBanner extends StatefulWidget {
   String banner_image_url;
   bool isLiked;
   Function() callBack;
+  String title;
+  String text;
+  String linkUrl;
   ImageBanner(
       {Key? key,
       required this.banner_image_url,
       required this.isLiked,
+      required this.title,
+      required this.text,
+      required this.linkUrl,
       required this.callBack})
       : super(key: key);
 
@@ -52,8 +58,10 @@ class _ImageBannerState extends State<ImageBanner> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DropDownSocialButton(
-                appearanceColor: false,
-              ),
+                  appearanceColor: false,
+                  title: widget.title,
+                  text: widget.text,
+                  linkUrl: widget.linkUrl),
               SizedBox(
                 width: 10,
               ),
@@ -78,12 +86,18 @@ class ImageGallery extends StatefulWidget {
   String currentImage;
   bool isLiked;
   List<Images> gallery_images_url;
+  String title;
+  String text;
+  String linkUrl;
   Function() callBack;
   ImageGallery(
       {Key? key,
       required this.currentImage,
       required this.isLiked,
       required this.gallery_images_url,
+      required this.title,
+      required this.text,
+      required this.linkUrl,
       required this.callBack})
       : super(key: key);
 
@@ -123,8 +137,10 @@ class _ImageGalleryState extends State<ImageGallery> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DropDownSocialButton(
-                    appearanceColor: true,
-                  ),
+                      appearanceColor: true,
+                      title: widget.title,
+                      text: widget.text,
+                      linkUrl: widget.linkUrl),
                   SizedBox(
                     width: 10,
                   ),

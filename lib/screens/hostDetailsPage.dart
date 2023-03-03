@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
@@ -38,6 +39,15 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   HostDetail hostDetail = HostDetail(
       0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '', 0, 0, []);
   String currentImage = '';
+  String slug = '';
+  String replaceWhitespaces(String s) {
+    if (s == null) {
+      return '';
+    }
+
+    return s.replaceAll(' ', '-');
+  }
+
   callHosts() {
     setState(() {
       loading = true;
@@ -93,6 +103,10 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                     : Column(
                         children: [
                           ImageBanner(
+                            title: hostDetail.title,
+                            text: "Partager maintenant",
+                            linkUrl:
+                                "https://idwey.tn/fr/hebergement/maison-hote/tunisie/${replaceWhitespaces(hostDetail.title)}",
                             banner_image_url: hostDetail.banner_image_url,
                             isLiked: isLiked,
                             callBack: () {
@@ -180,6 +194,9 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                               ),
                               SectionDivider(),
                               ImageGallery(
+                                title: hostDetail.title,
+                                text: "Partager maintenant",
+                                linkUrl: replaceWhitespaces(hostDetail.title),
                                 currentImage: currentImage,
                                 isLiked: isLiked,
                                 gallery_images_url:

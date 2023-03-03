@@ -1,3 +1,4 @@
+import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -168,28 +169,37 @@ class _AnimatedHeartButtonState extends State<AnimatedHeartButton>
 
 class DropDownSocialButton extends StatefulWidget {
   bool appearanceColor;
-  DropDownSocialButton({Key? key, required this.appearanceColor})
+  String title;
+  String text;
+  String linkUrl;
+  DropDownSocialButton(
+      {Key? key,
+      required this.appearanceColor,
+      required this.title,
+      required this.text,
+      required this.linkUrl})
       : super(key: key);
 
   @override
   State<DropDownSocialButton> createState() => _DropDownSocialButtonState();
 }
 
-class _DropDownSocialButtonState extends State<DropDownSocialButton>
-    with TickerProviderStateMixin {
-  AnimationController? _iconsAnimationController;
+class _DropDownSocialButtonState extends State<DropDownSocialButton> {
+  Future<void> share(String title, String text, String linkUrl) async {
+    await FlutterShare.share(
+      title: widget.title,
+      text: widget.text,
+      linkUrl: widget.linkUrl,
+    );
+  }
 
   void _onTap() {
-    print("worked");
+    share(widget.title, widget.title, widget.title);
   }
 
   @override
   void initState() {
     super.initState();
-    _iconsAnimationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 125),
-    );
   }
 
   @override
@@ -457,7 +467,12 @@ class BottomReservationBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
           width: MediaQuery.of(context).size.width,
           height: 75,
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              top: BorderSide(width: 0.2, color: grey),
+            ),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
