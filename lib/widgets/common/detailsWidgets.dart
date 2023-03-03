@@ -359,115 +359,15 @@ class RateStats extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "Excellent",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(color: materialPrimary),
-                    ),
-                  ),
-                  new LinearPercentIndicator(
-                    width: 220.0,
-                    lineHeight: 8.0,
-                    percent: 0,
-                    barRadius: Radius.circular(10),
-                    progressColor: Colors.red,
-                  ),
-                  Text("0", style: TextStyle(color: materialPrimary)),
-                ],
-              ),
+              RatingProgressRow(title: "Excellent", percent: 0),
               SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "Trés bien",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(color: materialPrimary),
-                    ),
-                  ),
-                  new LinearPercentIndicator(
-                    width: 220.0,
-                    lineHeight: 8.0,
-                    percent: 0,
-                    barRadius: Radius.circular(10),
-                    progressColor: Colors.red,
-                  ),
-                  Text("0", style: TextStyle(color: materialPrimary)),
-                ],
-              ),
+              RatingProgressRow(title: "Trés bien", percent: 0),
               SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "Moyenne",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(color: materialPrimary),
-                    ),
-                  ),
-                  new LinearPercentIndicator(
-                    width: 220.0,
-                    lineHeight: 8.0,
-                    percent: 0,
-                    barRadius: Radius.circular(10),
-                    progressColor: Colors.red,
-                  ),
-                  Text("0", style: TextStyle(color: materialPrimary)),
-                ],
-              ),
+              RatingProgressRow(title: "Moyenne", percent: 0),
               SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "Pauvre",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(color: materialPrimary),
-                    ),
-                  ),
-                  new LinearPercentIndicator(
-                    width: 220.0,
-                    lineHeight: 8.0,
-                    percent: 0,
-                    barRadius: Radius.circular(10),
-                    progressColor: Colors.red,
-                  ),
-                  Text("0", style: TextStyle(color: materialPrimary)),
-                ],
-              ),
+              RatingProgressRow(title: "Pauvre", percent: 0),
               SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 70,
-                    child: Text(
-                      "Terrible",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(color: materialPrimary),
-                    ),
-                  ),
-                  new LinearPercentIndicator(
-                    width: 220.0,
-                    lineHeight: 8.0,
-                    percent: 0,
-                    barRadius: Radius.circular(10),
-                    progressColor: Colors.red,
-                  ),
-                  Text("0", style: TextStyle(color: materialPrimary)),
-                ],
-              ),
+              RatingProgressRow(title: "Terrible", percent: 0),
             ],
           ),
         ),
@@ -505,6 +405,38 @@ class RateStats extends StatelessWidget {
                 ],
               ),
             )),
+      ],
+    );
+  }
+}
+
+class RatingProgressRow extends StatelessWidget {
+  double percent;
+  String title;
+  RatingProgressRow({Key? key, required this.percent, required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 70,
+          child: Text(
+            title,
+            textAlign: TextAlign.right,
+            style: TextStyle(color: materialPrimary),
+          ),
+        ),
+        new LinearPercentIndicator(
+          width: 220.0,
+          lineHeight: 8.0,
+          percent: percent,
+          barRadius: Radius.circular(10),
+          progressColor: Colors.red,
+        ),
+        Text("0", style: TextStyle(color: materialPrimary)),
       ],
     );
   }
