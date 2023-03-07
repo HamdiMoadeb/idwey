@@ -41,6 +41,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
       return '';
     }
 
+    s = s.replaceAll('\'', '');
     return s.replaceAll(' ', '-');
   }
 

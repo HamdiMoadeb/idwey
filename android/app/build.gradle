@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.idwey"
+        applicationId "com.outsider.idwey"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         compileSdkVersion 33

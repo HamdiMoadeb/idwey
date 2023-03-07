@@ -1,4 +1,4 @@
-package com.example.idwey
+package com.outsider.idwey
 
 import io.flutter.embedding.android.FlutterActivity
 
