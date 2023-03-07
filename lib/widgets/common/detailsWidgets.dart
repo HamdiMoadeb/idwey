@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:idwey/utils/utils.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import 'package:icofont_flutter/icofont_flutter.dart';
-
 import '../../utils/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class DetailIcons extends StatelessWidget {
   IconData icon;
@@ -25,7 +24,7 @@ class DetailIcons extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: 35.0,
+          size: 32,
           color: titleBlue,
         ),
         SizedBox(
@@ -36,11 +35,11 @@ class DetailIcons extends StatelessWidget {
           children: [
             Text(
               type,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
             Text(
               description,
-              style: TextStyle(fontSize: 14, color: grey),
+              style: TextStyle(fontSize: 13, color: grey),
             )
           ],
         )
@@ -278,6 +277,24 @@ class ConvenienceItem extends StatelessWidget {
           color: grey,
           size: 35,
         );
+      case "Internet":
+        return Icon(
+          IcoFontIcons.wifi,
+          color: grey,
+          size: 35,
+        );
+      case "Télévision":
+        return Icon(
+          IcoFontIcons.monitor,
+          color: grey,
+          size: 35,
+        );
+      case "Accès plage ou bord de mer":
+        return Icon(
+          IcoFontIcons.beach,
+          color: grey,
+          size: 35,
+        );
       default:
         return Icon(
           Icons.help_outline,
@@ -439,11 +456,10 @@ class RatingProgressRow extends StatelessWidget {
             style: TextStyle(color: materialPrimary),
           ),
         ),
-        new LinearPercentIndicator(
+        LinearPercentIndicator(
           width: 220.0,
           lineHeight: 8.0,
           percent: percent,
-          barRadius: Radius.circular(10),
           progressColor: Colors.red,
         ),
         Text("0", style: TextStyle(color: materialPrimary)),
@@ -466,7 +482,7 @@ class BottomReservationBar extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
           width: MediaQuery.of(context).size.width,
-          height: 75,
+          height: 70,
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border(
@@ -484,7 +500,7 @@ class BottomReservationBar extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: '${price} DT',
+                        text: '${removeDecimalZeroFormat(price)} DT',
                         style: TextStyle(
                             color: titleBlack,
                             fontSize: 18,
@@ -532,7 +548,7 @@ class BottomReservationBar extends StatelessWidget {
                         SizedBox(
                           width: 10.0,
                         ),
-                        Text("0 avis", style: TextStyle(color: grey))
+                        Text("0 Avis", style: TextStyle(color: grey))
                       ],
                     )
                   ],
@@ -541,24 +557,25 @@ class BottomReservationBar extends StatelessWidget {
               Container(
                 width: 170,
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 decoration: BoxDecoration(
                     color: primaryOrange,
                     borderRadius: BorderRadius.circular(5)),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Réserver".toUpperCase(),
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
                       "Maintenant".toUpperCase(),
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                   ],

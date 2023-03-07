@@ -1,14 +1,10 @@
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
@@ -144,6 +140,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                       hostDetail.address,
                                       style: TextStyle(
                                           fontSize: 14,
+                                          fontWeight: FontWeight.w500,
                                           color: materialPrimary.shade100),
                                     ),
                                   ],
@@ -156,7 +153,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                   children: [
                                     hostDetail.type.length != 0
                                         ? DetailIcons(
-                                            icon: FontAwesomeIcons.fontAwesome,
+                                            icon: FontAwesomeIcons.house,
                                             type: 'Type',
                                             description: hostDetail.type[0],
                                           )
@@ -230,22 +227,22 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                     Text(
                                       'Entrée',
                                       style:
-                                          TextStyle(color: grey, fontSize: 18),
+                                          TextStyle(color: grey, fontSize: 16),
                                     ),
                                     Text(
                                       '${hostDetail.check_in_time} H',
                                       style:
-                                          TextStyle(color: grey, fontSize: 18),
+                                          TextStyle(color: grey, fontSize: 16),
                                     ),
                                     Text(
                                       'Sortie',
                                       style:
-                                          TextStyle(color: grey, fontSize: 18),
+                                          TextStyle(color: grey, fontSize: 16),
                                     ),
                                     Text(
                                       '${hostDetail.check_out_time} H',
                                       style:
-                                          TextStyle(color: grey, fontSize: 18),
+                                          TextStyle(color: grey, fontSize: 16),
                                     ),
                                   ],
                                 ),
@@ -332,6 +329,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                 Footer(),
                 CreatedBy(),
                 BackToTop(scrollToTop),
+                SizedBox(height: 70),
               ],
             ),
           ),
