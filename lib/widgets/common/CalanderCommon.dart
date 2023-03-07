@@ -1,5 +1,5 @@
-import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../../utils/colors.dart';
 
@@ -17,12 +17,26 @@ class _CustomCalendarState extends State<CustomCalendar> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15.0),
+      height: 400,
       child: TableCalendar(
         calendarFormat: _calendarFormat,
         focusedDay: _focusedDay,
+        shouldFillViewport: true,
+        availableGestures: AvailableGestures.horizontalSwipe,
+        eventLoader: (day) {
+          if (day.day == DateTime.now().day + 1) {
+            return ['Cyclic event'];
+          }
+          return [];
+        },
         selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
         onDaySelected: (selectedDay, focusedDay) {
-          setState(() {});
+          setState(() {
+            _selectedDay = selectedDay;
+            _focusedDay = focusedDay;
+          });
+          print(selectedDay);
+          print(focusedDay);
         },
         daysOfWeekHeight: 40,
         daysOfWeekStyle: DaysOfWeekStyle(
@@ -61,7 +75,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
               color: materialPrimary),
         ),
         firstDay: DateTime.now(),
-        lastDay: DateTime(2024, 1, 30),
+        lastDay: DateTime(2100, 1, 1),
       ),
     );
   }

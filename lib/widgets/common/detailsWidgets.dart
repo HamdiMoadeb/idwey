@@ -295,6 +295,24 @@ class ConvenienceItem extends StatelessWidget {
           color: grey,
           size: 35,
         );
+      case "Jeux":
+        return Icon(
+          IcoFontIcons.diceMultiple,
+          color: grey,
+          size: 35,
+        );
+      case "Pas d'alcool":
+        return Icon(
+          IcoFontIcons.notAllowed,
+          color: grey,
+          size: 35,
+        );
+      case "Animaux acceptés":
+        return Icon(
+          IcoFontIcons.catDog,
+          color: grey,
+          size: 35,
+        );
       default:
         return Icon(
           Icons.help_outline,
@@ -560,7 +578,7 @@ class BottomReservationBar extends StatelessWidget {
                 //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 decoration: BoxDecoration(
                     color: primaryOrange,
-                    borderRadius: BorderRadius.circular(5)),
+                    borderRadius: BorderRadius.circular(2)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -569,14 +587,14 @@ class BottomReservationBar extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
-                          fontWeight: FontWeight.w600),
+                          fontWeight: FontWeight.w500),
                     ),
                     Text(
                       "Maintenant".toUpperCase(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
-                          fontWeight: FontWeight.w600),
+                          fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),
