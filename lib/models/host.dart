@@ -64,6 +64,9 @@ class HostDetail {
   String check_in_time;
   String check_out_time;
   List<String> type;
+  double? map_lat;
+  double? map_lng;
+  List<String>? convenience;
 
   HostDetail(
       this.id,
@@ -81,7 +84,10 @@ class HostDetail {
       this.banner_image_url,
       this.gallery_images_url,
       this.check_in_time,
-      this.check_out_time);
+      this.check_out_time,
+      this.map_lat,
+      this.map_lng,
+      this.convenience);
 
   factory HostDetail.fromJson(Map<String?, dynamic> data) {
     var listImages = data['gallery_images_url'] as List;
@@ -90,6 +96,8 @@ class HostDetail {
     var row = data['row'];
     var typeFromJson = data['attributes']['5']['child'];
     List<String> types = new List<String>.from(typeFromJson);
+    var convenienceFromJson = data['attributes']['6']['child'];
+    List<String> conveniences = new List<String>.from(convenienceFromJson);
 
     return HostDetail(
       row['id'] == null ? 0 : row['id'] as int,
@@ -112,6 +120,9 @@ class HostDetail {
       data['gallery_images_url'] == null ? [] : images,
       row['check_in_time'] == null ? "" : row['check_in_time'] as String,
       row['check_out_time'] == null ? "" : row['check_out_time'] as String,
+      row['map_lat'] == null ? 0 : double.parse(row['map_lat']),
+      row['map_lng'] == null ? 0 : double.parse(row['map_lng']),
+      data['attributes']['6']['child'] == null ? [] : conveniences,
     );
   }
 }
@@ -130,4 +141,12 @@ class Images {
       data['thumb'] == false ? "" : data['thumb'],
     );
   }
+}
+
+class Event {
+  String? title;
+
+  Event(
+    this.title,
+  );
 }

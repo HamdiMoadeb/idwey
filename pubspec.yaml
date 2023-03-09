@@ -40,6 +40,10 @@ dependencies:
   cool_alert: ^1.1.0
   flutter_widget_from_html: ^0.8.5
   icofont_flutter: ^1.4.0
+  google_maps_flutter: ^2.2.0
+  percent_indicator: ^3.0.1
+  table_calendar: ^3.0.9
+  flutter_share: ^2.0.0
 
 dev_dependencies:
   flutter_test:

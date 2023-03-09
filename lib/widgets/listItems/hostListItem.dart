@@ -23,11 +23,12 @@ class _HostListItemState extends State<HostListItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HostDetailsPage(id: widget.host.id),
-            ))
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HostDetailsPage(id: widget.host.id),
+          ),
+        )
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 30,

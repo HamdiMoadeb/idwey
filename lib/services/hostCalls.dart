@@ -57,7 +57,7 @@ class HostCalls {
   //api for our hosts page
   static Future<HostDetail> getHostDetails(int? id) async {
     HostDetail hostDetail = new HostDetail(
-        0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '');
+        0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '', 0, 0, []);
     var url = Uri.parse('${Urls.URL_API}hotel/detail/$id');
     print(url);
     var response = await http.get(url);
