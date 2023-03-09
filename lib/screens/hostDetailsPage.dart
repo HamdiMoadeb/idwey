@@ -193,7 +193,8 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                               ImageGallery(
                                 title: hostDetail.title,
                                 text: "Partager maintenant",
-                                linkUrl: replaceWhitespaces(hostDetail.title),
+                                linkUrl:
+                                    "https://idwey.tn/fr/hebergement/maison-hote/tunisie/${replaceWhitespaces(hostDetail.title)}",
                                 currentImage: currentImage,
                                 isLiked: isLiked,
                                 gallery_images_url:
