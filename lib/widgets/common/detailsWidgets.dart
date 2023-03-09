@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/utils/utils.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -227,107 +226,13 @@ class _DropDownSocialButtonState extends State<DropDownSocialButton> {
 class ConvenienceItem extends StatelessWidget {
   String title;
   ConvenienceItem({Key? key, required this.title}) : super(key: key);
-  Icon getIcon(String status) {
-    switch (status) {
-      case "Douche":
-        return Icon(
-          IcoFontIcons.bathtub,
-          color: grey,
-          size: 35,
-        );
-      case "Parking gratuit":
-        return Icon(
-          IcoFontIcons.car,
-          color: grey,
-          size: 35,
-        );
-      case "Piscine":
-        return Icon(
-          IcoFontIcons.swimmer,
-          color: grey,
-          size: 35,
-        );
-      case "Cuisine équipé":
-        return Icon(
-          IcoFontIcons.checked,
-          color: grey,
-          size: 35,
-        );
-      case "Convient aux familles avec enfants":
-        return Icon(
-          IcoFontIcons.users,
-          color: grey,
-          size: 30,
-        );
-      case "Climatisation":
-        return Icon(
-          Icons.ac_unit_sharp,
-          color: grey,
-          size: 35,
-        );
-      case "Équipements de base":
-        return Icon(
-          IcoFontIcons.hanger,
-          color: grey,
-          size: 35,
-        );
-      case "Petit déjeuner":
-        return Icon(
-          IcoFontIcons.tea,
-          color: grey,
-          size: 35,
-        );
-      case "Internet":
-        return Icon(
-          IcoFontIcons.wifi,
-          color: grey,
-          size: 35,
-        );
-      case "Télévision":
-        return Icon(
-          IcoFontIcons.monitor,
-          color: grey,
-          size: 35,
-        );
-      case "Accès plage ou bord de mer":
-        return Icon(
-          IcoFontIcons.beach,
-          color: grey,
-          size: 35,
-        );
-      case "Jeux":
-        return Icon(
-          IcoFontIcons.diceMultiple,
-          color: grey,
-          size: 35,
-        );
-      case "Pas d'alcool":
-        return Icon(
-          IcoFontIcons.notAllowed,
-          color: grey,
-          size: 35,
-        );
-      case "Animaux acceptés":
-        return Icon(
-          IcoFontIcons.catDog,
-          color: grey,
-          size: 35,
-        );
-      default:
-        return Icon(
-          Icons.help_outline,
-          color: grey,
-          size: 35,
-        );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        getIcon(title),
+        getIconByTitle(title),
         SizedBox(
           width: 15,
         ),

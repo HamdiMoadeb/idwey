@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:icofont_flutter/icofont_flutter.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
@@ -302,11 +301,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                           horizontal: 15.0),
                                       child: Row(
                                         children: [
-                                          Icon(
-                                            IcoFontIcons.tag,
-                                            size: 30.0,
-                                            color: grey,
-                                          ),
+                                          getIconByTitle(hostDetail.type[0]),
                                           SizedBox(
                                             width: 15.0,
                                           ),
