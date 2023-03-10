@@ -62,13 +62,15 @@ class ProductDetails {
       row['id'] as int,
       row['title'] == null ? "" : row['title'] as String,
       row['slug'] == null ? "" : row['title'] as String,
-      row['content'] == null ? "" : row['title'] as String,
+      row['content'] == null ? "" : row['content'] as String,
       row['price'] == null ? "" : row['price'] as String,
-      row['sale_price'] == null ? "" : row['price'] as String,
+      row['sale_price'] == null ? "" : row['sale_price'] as String,
       row['term_name'] == null ? "" : row['term_name'] as String,
-      row['banner_image_url'] == null ? "" : row['banner_image_url'] as String,
-      row['gallery_images_url'] == null ? [] : images,
-      row['attributes']['5']['child'] == null ? [] : types,
+      data['banner_image_url'] == null
+          ? ""
+          : data['banner_image_url'] as String,
+      data['gallery_images_url'] == null ? [] : images,
+      data['attributes']['3']['child'] == null ? [] : types,
     );
   }
 }
