@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/utils/utils.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -219,6 +220,35 @@ class _DropDownSocialButtonState extends State<DropDownSocialButton> {
           size: 20,
         ),
       ),
+    );
+  }
+}
+
+class StyleItem extends StatelessWidget {
+  String title;
+  StyleItem({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(
+          IcoFontIcons.checkCircled,
+          color: primaryOrange,
+          size: 16,
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 5),
+          child: Text(
+            title,
+            style: TextStyle(color: materialPrimary),
+          ),
+        )
+      ],
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'imageGallery.dart';
+
 class Activity {
   int? id;
   String? title;
@@ -78,14 +80,23 @@ class ActivityDetail {
       this.convenience);
 
   factory ActivityDetail.fromJson(Map<String?, dynamic> data) {
-    var listImages = data['gallery_images_url'] as List;
-    List<Images> images = listImages.map((i) => Images.fromJson(i)).toList();
-    images.removeLast();
+    var listImages = data['gallery_images_url'] == null
+        ? []
+        : data['gallery_images_url'] as List;
+    List<Images> images = [];
+    List<String> conveniences = [];
+    if (listImages.length != 0) {
+      images = listImages.map((i) => Images.fromJson(i)).toList();
+      images.removeLast();
+    }
     var row = data['row'];
-    var styleFromJson = data['attributes']['5']['child'];
+    var styleFromJson = data['attributes']['1']['child'];
     List<String> styles = new List<String>.from(styleFromJson);
-    var convenienceFromJson = data['attributes']['6']['child'];
-    List<String> conveniences = new List<String>.from(convenienceFromJson);
+    var convenienceFromJson = data['attributes']['2'] ?? [] as List;
+
+    if (convenienceFromJson.length != 0) {
+      conveniences = new List<String>.from(convenienceFromJson['child']);
+    }
 
     return ActivityDetail(
       row['id'] == null ? 0 : row['id'] as int,
@@ -108,23 +119,7 @@ class ActivityDetail {
       data['attributes']['1']['child'] == null ? [] : styles,
       row['map_lat'] == null ? 0 : double.parse(row['map_lat']),
       row['map_lng'] == null ? 0 : double.parse(row['map_lng']),
-      data['attributes']['6']['child'] == null ? [] : conveniences,
-    );
-  }
-}
-
-class Images {
-  dynamic large;
-  dynamic thumb;
-  Images(
-    this.large,
-    this.thumb,
-  );
-
-  factory Images.fromJson(Map<String?, dynamic> data) {
-    return Images(
-      data['large'] == false ? "" : data['large'],
-      data['thumb'] == false ? "" : data['thumb'],
+      data['attributes']['2'] == null ? [] : conveniences,
     );
   }
 }
