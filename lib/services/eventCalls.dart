@@ -56,4 +56,24 @@ class EventCalls {
 
     return result;
   }
+
+  //api for  event details
+  static Future<EventDetails> getEventDetails(int id) async {
+    EventDetails eventDetail;
+
+    var url = Uri.parse('${Urls.URL_API}event/detail/${id}');
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      eventDetail = EventDetails.fromJson(data);
+      }
+
+    }
+
+    return eventDetail;
+  }
 }
