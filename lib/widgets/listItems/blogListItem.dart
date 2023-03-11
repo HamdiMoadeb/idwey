@@ -157,130 +157,142 @@ class BlogPageItems extends StatefulWidget {
 class _BlogPageItemsState extends State<BlogPageItems> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width - 30,
-        height: 450,
-        margin: EdgeInsets.only(left: 15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(
-            color: Colors.grey.shade300,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ArticleDetailsPage(id: widget.blog.id!),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 220,
-                  width: double.infinity,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.blog.image_id!,
-                      fit: BoxFit.cover,
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CircularProgressIndicator(
-                              value: downloadProgress.progress),
-                        ),
+        );
+      },
+      child: Container(
+          width: MediaQuery.of(context).size.width - 30,
+          height: 450,
+          margin: EdgeInsets.only(left: 15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(
+              color: Colors.grey.shade300,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    height: 220,
+                    width: double.infinity,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
                       ),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.blog.image_id!,
+                        fit: BoxFit.cover,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                                value: downloadProgress.progress),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                     ),
                   ),
+                  Positioned(
+                    left: 0,
+                    bottom: 0,
+                    child: Container(
+                      height: 32,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
+                      decoration: BoxDecoration(
+                          color: primaryOrange,
+                          borderRadius:
+                              BorderRadius.only(topRight: Radius.circular(15))),
+                      child: Center(
+                        child: Text(
+                          '${widget.blog.cat_name}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 15.0, top: 15.0, bottom: 5),
+                child: Text(
+                  '${widget.blog.title}',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: titleBlack),
                 ),
-                Positioned(
-                  left: 0,
-                  bottom: 0,
-                  child: Container(
-                    height: 32,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              ),
+              Row(
+                children: [
+                  Container(
+                      width: 30,
+                      margin: EdgeInsets.symmetric(horizontal: 15),
+                      child: Image.asset(
+                        "assets/idwey.png",
+                        fit: BoxFit.fill,
+                      )),
+                  Text(
+                    'Par Idwey'.toUpperCase(),
+                    style: TextStyle(
+                        color: grey, fontWeight: FontWeight.w500, fontSize: 14),
+                  ),
+                  Container(
+                    width: 8,
+                    height: 8,
+                    margin: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
-                        color: primaryOrange,
-                        borderRadius:
-                            BorderRadius.only(topRight: Radius.circular(15))),
-                    child: Center(
-                      child: Text(
-                        '${widget.blog.cat_name}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
+                        color: primaryGrey,
+                        borderRadius: BorderRadius.circular(10)),
                   ),
-                )
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 15.0, top: 15.0, bottom: 5),
-              child: Text(
-                '${widget.blog.title}',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: titleBlack),
+                  Text(
+                    getDateFormat(widget.blog.created_at!),
+                    style: TextStyle(
+                        color: grey, fontWeight: FontWeight.w500, fontSize: 14),
+                  ),
+                ],
               ),
-            ),
-            Row(
-              children: [
-                Container(
-                    width: 30,
-                    margin: EdgeInsets.symmetric(horizontal: 15),
-                    child: Image.asset(
-                      "assets/idwey.png",
-                      fit: BoxFit.fill,
-                    )),
-                Text(
-                  'Par Idwey'.toUpperCase(),
+              Container(
+                margin: EdgeInsets.only(left: 15.0, top: 15.0, bottom: 5),
+                padding: EdgeInsets.only(right: 15),
+                child: Text(
+                  '${widget.blog.content?.trimLeft()}',
                   style: TextStyle(
-                      color: grey, fontWeight: FontWeight.w500, fontSize: 14),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: primary),
                 ),
-                Container(
-                  width: 8,
-                  height: 8,
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                      color: primaryGrey,
-                      borderRadius: BorderRadius.circular(10)),
-                ),
-                Text(
-                  getDateFormat(widget.blog.created_at!),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 15, bottom: 15, top: 5),
+                child: Text(
+                  'Lire Plus'.toUpperCase(),
                   style: TextStyle(
-                      color: grey, fontWeight: FontWeight.w500, fontSize: 14),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: primaryOrange),
                 ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 15.0, top: 15.0, bottom: 5),
-              padding: EdgeInsets.only(right: 15),
-              child: Text(
-                '${widget.blog.content?.trimLeft()}',
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w500, color: primary),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 15, bottom: 15, top: 5),
-              child: Text(
-                'Lire Plus'.toUpperCase(),
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: primaryOrange),
-              ),
-            ),
-          ],
-        ));
+            ],
+          )),
+    );
   }
 }
