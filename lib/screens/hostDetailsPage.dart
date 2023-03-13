@@ -35,14 +35,6 @@ class _HostDetailsPageState extends State<HostDetailsPage>
       0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '', 0, 0, []);
   String currentImage = '';
   String slug = '';
-  String replaceWhitespaces(String s) {
-    if (s == null) {
-      return '';
-    }
-
-    s = s.replaceAll('\'', '');
-    return s.replaceAll(' ', '-');
-  }
 
   callHosts() {
     setState(() {

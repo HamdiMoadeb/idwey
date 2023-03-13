@@ -61,7 +61,7 @@ class ProductDetails {
     return ProductDetails(
       row['id'] as int,
       row['title'] == null ? "" : row['title'] as String,
-      row['slug'] == null ? "" : row['title'] as String,
+      row['slug'] == null ? "" : row['slug'] as String,
       row['content'] == null ? "" : row['content'] as String,
       row['price'] == null ? "" : row['price'] as String,
       row['sale_price'] == null ? "" : row['sale_price'] as String,

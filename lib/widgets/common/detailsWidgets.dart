@@ -426,6 +426,7 @@ class BottomReservationBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     RichText(
+                      textAlign: TextAlign.center,
                       text: TextSpan(
                         text: '',
                         children: <TextSpan>[
@@ -435,7 +436,7 @@ class BottomReservationBar extends StatelessWidget {
                                 color:
                                     sale_price != '' ? Colors.red : titleBlack,
                                 fontSize: sale_price != '' ? 16 : 18,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 decoration: sale_price != ''
                                     ? TextDecoration.lineThrough
                                     : TextDecoration.none,
@@ -447,7 +448,7 @@ class BottomReservationBar extends StatelessWidget {
                                   style: TextStyle(
                                       color: titleBlack,
                                       fontSize: 18,
-                                      fontWeight: FontWeight.w400))
+                                      fontWeight: FontWeight.w500))
                               : TextSpan(),
                           per_person != ''
                               ? TextSpan(
@@ -455,7 +456,7 @@ class BottomReservationBar extends StatelessWidget {
                                   style: TextStyle(
                                       color: grey,
                                       fontSize: 18,
-                                      fontWeight: FontWeight.w400))
+                                      fontWeight: FontWeight.w500))
                               : TextSpan(),
                         ],
                       ),
