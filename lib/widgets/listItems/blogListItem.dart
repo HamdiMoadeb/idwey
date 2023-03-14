@@ -152,7 +152,7 @@ class BlogPageItems extends StatefulWidget {
   Blog blog;
   Function() categoryFilter;
 
-  BlogPageItems({Key? key, required this.blog, required this.categoryFilter})
+  BlogPageItems({Key? key, required this.blog, required this.categoryFilter()})
       : super(key: key);
 
   @override
