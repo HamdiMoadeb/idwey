@@ -47,7 +47,7 @@ class _BlogPageState extends State<BlogPage>
 
   void scrollToTop() {
     scrollController.animateTo(0,
-        duration: const Duration(seconds: 2), curve: Curves.linear);
+        duration: const Duration(seconds: 1), curve: Curves.linear);
   }
 
   @override
@@ -89,7 +89,7 @@ class _BlogPageState extends State<BlogPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlogHeader(),
+            BlogHeader(category: category,),
             Column(
               children: [
                 ListView.builder(
@@ -99,10 +99,15 @@ class _BlogPageState extends State<BlogPage>
                       margin: EdgeInsets.only(bottom: 40, right: 15),
                       child: BlogPageItems(
                         categoryFilter: () {
-                          setState(() {
-                            category = listBlogs[index].cat_name!;
+                          scrollToTop();
+                          Future.delayed(scrollController.position.pixels==0 ? Duration(milliseconds: 0) : Duration(milliseconds: 1100) , () {
+                            setState(() {
+                              loading = true;
+                              category = listBlogs[index].cat_name!.toLowerCase();
+                              listBlogs = [];
+                            });
+                            callBlogs();
                           });
-                          callBlogs();
                         },
                         blog: listBlogs[index],
                       )),

@@ -86,7 +86,7 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage>
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          BlogHeader(isBlogPage: false),
+                          BlogHeader(articleTitle: articleDetail.title!,),
                           Container(
                             height: 220,
                             width: double.infinity,
