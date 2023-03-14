@@ -260,6 +260,15 @@ Icon getIconByTitle(String status) {
   }
 }
 
+String replaceWhitespaces(String s) {
+  if (s == null) {
+    return '';
+  }
+
+  s = s.replaceAll('\'', '');
+  return s.replaceAll(' ', '-');
+}
+
 List<String> cities = [
   "Adresse",
   "Tunis",

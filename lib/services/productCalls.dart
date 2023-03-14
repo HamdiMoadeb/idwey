@@ -40,4 +40,20 @@ class ProductCalls {
     }
     return listProducts;
   }
+
+  static Future<ProductDetails> getProductDetails(int id) async {
+    ProductDetails productDetails =
+        ProductDetails(0, '', '', '', '', '', '', '', [], []);
+
+    var url = Uri.parse('${Urls.URL_API}product/detail/$id');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      productDetails = ProductDetails.fromJson(data);
+    }
+    return productDetails;
+  }
 }
