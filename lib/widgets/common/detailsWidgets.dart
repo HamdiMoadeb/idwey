@@ -394,8 +394,12 @@ class RatingProgressRow extends StatelessWidget {
 class BottomReservationBar extends StatelessWidget {
   String price;
   String per_person;
+  String sale_price;
   BottomReservationBar(
-      {Key? key, required this.price, required this.per_person})
+      {Key? key,
+      required this.price,
+      this.per_person = "",
+      this.sale_price = ""})
       : super(key: key);
 
   @override
@@ -422,19 +426,38 @@ class BottomReservationBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     RichText(
+                      textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: '${removeDecimalZeroFormat(price)} DT',
-                        style: TextStyle(
-                            color: titleBlack,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
+                        text: '',
                         children: <TextSpan>[
                           TextSpan(
-                              text: ' /${per_person}',
+                              text: ' ${removeDecimalZeroFormat(price)} DT',
                               style: TextStyle(
-                                  color: grey,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600)),
+                                color:
+                                    sale_price != '' ? Colors.red : titleBlack,
+                                fontSize: sale_price != '' ? 16 : 18,
+                                fontWeight: FontWeight.w500,
+                                decoration: sale_price != ''
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none,
+                              )),
+                          sale_price != ''
+                              ? TextSpan(
+                                  text:
+                                      ' ${removeDecimalZeroFormat(sale_price)} DT',
+                                  style: TextStyle(
+                                      color: titleBlack,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500))
+                              : TextSpan(),
+                          per_person != ''
+                              ? TextSpan(
+                                  text: ' /${per_person}',
+                                  style: TextStyle(
+                                      color: grey,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500))
+                              : TextSpan(),
                         ],
                       ),
                     ),
