@@ -53,4 +53,27 @@ class ActivityCalls {
 
     return result;
   }
+
+  //api for our hosts page
+  static Future<ActivityDetail> getActivityDetails(int id) async {
+    ActivityDetail activityDetail = new ActivityDetail(
+        0, '', '', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
+    var url = Uri.parse('${Urls.URL_API}activity/detail/${id}');
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+    Map result = {
+      'list': [],
+      'total': 0,
+    };
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      activityDetail = ActivityDetail.fromJson(data);
+    }
+
+    return activityDetail;
+  }
 }
