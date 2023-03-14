@@ -28,12 +28,12 @@ class _BlogPageState extends State<BlogPage>
   int listLengthFromLastCall = 0;
   bool loading = false;
   bool showFAB = false;
-
+  String category = '';
   callBlogs() {
     setState(() {
       loading = true;
     });
-    BlogCalls.getAllBlogs(listBlogs.length).then((result) async {
+    BlogCalls.getAllBlogs(listBlogs.length, category).then((result) async {
       setState(() {
         listLengthFromLastCall = result.length;
         listBlogs.addAll(result);
@@ -98,6 +98,12 @@ class _BlogPageState extends State<BlogPage>
                   itemBuilder: (BuildContext context, int index) => Container(
                       margin: EdgeInsets.only(bottom: 40, right: 15),
                       child: BlogPageItems(
+                        categoryFilter: () {
+                          setState(() {
+                            category = listBlogs[index].cat_name!;
+                          });
+                          callBlogs();
+                        },
                         blog: listBlogs[index],
                       )),
                   itemCount: listBlogs.length,

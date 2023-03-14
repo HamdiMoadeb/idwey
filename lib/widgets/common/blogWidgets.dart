@@ -7,7 +7,12 @@ import '../../utils/colors.dart';
 class BlogHeader extends StatelessWidget {
   String articleTitle;
   bool isBlogPage;
-  BlogHeader({Key? key, this.isBlogPage = true, this.articleTitle = ""})
+  String category;
+  BlogHeader(
+      {Key? key,
+      this.isBlogPage = true,
+      this.articleTitle = "",
+      this.category = ""})
       : super(key: key);
 
   @override
@@ -79,7 +84,7 @@ class BlogHeader extends StatelessWidget {
               SeprationDot(),
               Flexible(
                 child: Text(
-                  articleTitle,
+                  category != "" ? category : articleTitle,
                   style: TextStyle(
                       color: grey, fontWeight: FontWeight.w500, fontSize: 12),
                 ),
