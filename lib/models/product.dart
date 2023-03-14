@@ -1,4 +1,4 @@
-import 'host.dart';
+import 'imageGallery.dart';
 
 class Product {
   int? id;

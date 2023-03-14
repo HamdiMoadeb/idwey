@@ -227,7 +227,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                       EdgeInsets.symmetric(horizontal: 15.0),
                                   child: Column(
                                     children: [
-                                      for (var item in activityDetails.style!)
+                                      for (var item in activityDetails.style)
                                         StyleItem(title: item),
                                     ],
                                   ),
@@ -263,8 +263,8 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                         EdgeInsets.symmetric(horizontal: 15.0),
                                     child: MapPosition(
                                         title: activityDetails.title,
-                                        lat: activityDetails.map_lat!,
-                                        lng: activityDetails.map_lng!)),
+                                        lat: activityDetails.map_lat,
+                                        lng: activityDetails.map_lng)),
                                 SectionTitle(
                                   title: 'avis'.toUpperCase(),
                                 ),
