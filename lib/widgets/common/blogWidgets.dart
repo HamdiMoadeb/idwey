@@ -8,11 +8,9 @@ import '../listItems/blogListItem.dart';
 
 class BlogHeader extends StatelessWidget {
   String articleTitle;
-  bool isBlogPage;
   String category;
   BlogHeader(
       {Key? key,
-      this.isBlogPage = true,
       this.articleTitle = "",
       this.category = ""})
       : super(key: key);
@@ -74,7 +72,7 @@ class BlogHeader extends StatelessWidget {
               SeprationDot(),
               GestureDetector(
                 onTap: () {
-                  if (isBlogPage == false)
+
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -83,7 +81,7 @@ class BlogHeader extends StatelessWidget {
                 },
                 child: NavText("Blog"),
               ),
-              SeprationDot(),
+              category != ""  || articleTitle != "" ? SeprationDot() : Container(),
               Flexible(
                 child: Text(
                   category != "" ? category : articleTitle,
