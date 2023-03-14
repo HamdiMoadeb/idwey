@@ -26,3 +26,36 @@ class Blog {
     );
   }
 }
+
+class ArticleDetail {
+  int? id;
+  String? title;
+  String? slug;
+  String? content;
+  String? image_url;
+  String? created_at;
+  String? cat_name;
+
+  ArticleDetail(
+    this.id,
+    this.title,
+    this.slug,
+    this.content,
+    this.image_url,
+    this.created_at,
+    this.cat_name,
+  );
+
+  factory ArticleDetail.fromJson(Map<String?, dynamic> data) {
+    var row = data['row'];
+    return ArticleDetail(
+      row['id'] as int,
+      row['title'] == null ? "" : row['title'] as String,
+      row['slug'] == null ? "" : row['slug'] as String,
+      row['content'] == null ? "" : row['content'] as String,
+      data['image_url'] == null ? "" : data['image_url'] as String,
+      row['created_at'] == null ? "" : row['created_at'] as String,
+      row['cat_name'] == null ? "" : row['cat_name'] as String,
+    );
+  }
+}

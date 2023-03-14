@@ -7,6 +7,7 @@ import 'package:idwey/widgets/listItems/blogListItem.dart';
 import '../models/blog.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';
+import '../widgets/common/blogWidgets.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/common/scaffold.dart';
 
@@ -88,70 +89,7 @@ class _BlogPageState extends State<BlogPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: Stack(
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 230,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Image.asset("assets/blogCover.jpg",
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                      Positioned.fill(
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Blog',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 15.0, left: 15, right: 15),
-              child: Row(
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ));
-                      },
-                      child: NavText("Accueil")),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    margin: EdgeInsets.symmetric(horizontal: 15),
-                    decoration: BoxDecoration(
-                        color: primaryGrey,
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  NavText("Blog")
-                ],
-              ),
-            ),
-            Container(
-                margin: EdgeInsets.only(top: 10, bottom: 20),
-                child: const Divider(thickness: 1)),
+            BlogHeader(),
             Column(
               children: [
                 ListView.builder(
@@ -181,23 +119,6 @@ class _BlogPageState extends State<BlogPage>
             BackToTop(scrollToTop),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class NavText extends StatelessWidget {
-  String title;
-  NavText(this.title);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(),
-      child: Text(
-        title,
-        style: TextStyle(
-            color: primary, fontWeight: FontWeight.w600, fontSize: 14),
       ),
     );
   }
