@@ -15,7 +15,9 @@ getDateFormat(String date) {
 
 class BlogListItem extends StatefulWidget {
   Blog blog;
-  BlogListItem(this.blog);
+  BlogListItem(
+    this.blog,
+  );
 
   @override
   State<BlogListItem> createState() => _BlogListItemState();
@@ -148,7 +150,10 @@ class _BlogListItemState extends State<BlogListItem> {
 
 class BlogPageItems extends StatefulWidget {
   Blog blog;
-  BlogPageItems({Key? key, required this.blog}) : super(key: key);
+  Function() categoryFilter;
+
+  BlogPageItems({Key? key, required this.blog, required this.categoryFilter})
+      : super(key: key);
 
   @override
   State<BlogPageItems> createState() => _BlogPageItemsState();
@@ -209,21 +214,26 @@ class _BlogPageItemsState extends State<BlogPageItems> {
                   Positioned(
                     left: 0,
                     bottom: 0,
-                    child: Container(
-                      height: 32,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      decoration: BoxDecoration(
-                          color: primaryOrange,
-                          borderRadius:
-                              BorderRadius.only(topRight: Radius.circular(15))),
-                      child: Center(
-                        child: Text(
-                          '${widget.blog.cat_name}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
+                    child: GestureDetector(
+                      onTap: () {
+                        widget.categoryFilter();
+                      },
+                      child: Container(
+                        height: 32,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 5),
+                        decoration: BoxDecoration(
+                            color: primaryOrange,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(15))),
+                        child: Center(
+                          child: Text(
+                            '${widget.blog.cat_name}',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ),
