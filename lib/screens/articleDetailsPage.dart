@@ -151,31 +151,9 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage>
                                   color: titleBlack),
                             ),
                           ),
-                          Row(
-                            children: [
-                              Container(
-                                  width: 30,
-                                  margin: EdgeInsets.symmetric(horizontal: 15),
-                                  child: Image.asset(
-                                    "assets/idwey.png",
-                                    fit: BoxFit.fill,
-                                  )),
-                              Text(
-                                'Par Idwey'.toUpperCase(),
-                                style: TextStyle(
-                                    color: grey,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14),
-                              ),
-                              SeprationDot(),
-                              Text(
-                                getDateFormat(articleDetail.created_at!),
-                                style: TextStyle(
-                                    color: grey,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14),
-                              ),
-                            ],
+                          AuthorAndDate(
+                            author: 'Idwey',
+                            date: articleDetail.created_at,
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(

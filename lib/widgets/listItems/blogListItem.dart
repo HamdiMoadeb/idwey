@@ -6,12 +6,8 @@ import 'package:intl/intl.dart';
 
 import '../../models/blog.dart';
 import '../../utils/colors.dart';
-
-getDateFormat(String date) {
-  DateTime tempDate = DateFormat("yyyy-MM-dd").parse(date);
-  String newDate = DateFormat('dd/MM/yyyy').format(tempDate);
-  return newDate;
-}
+import '../../utils/utils.dart';
+import '../common/blogWidgets.dart';
 
 class BlogListItem extends StatefulWidget {
   Blog blog;
@@ -251,34 +247,9 @@ class _BlogPageItemsState extends State<BlogPageItems> {
                       color: titleBlack),
                 ),
               ),
-              Row(
-                children: [
-                  Container(
-                      width: 30,
-                      margin: EdgeInsets.symmetric(horizontal: 15),
-                      child: Image.asset(
-                        "assets/idwey.png",
-                        fit: BoxFit.fill,
-                      )),
-                  Text(
-                    'Par Idwey'.toUpperCase(),
-                    style: TextStyle(
-                        color: grey, fontWeight: FontWeight.w500, fontSize: 14),
-                  ),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        color: primaryGrey,
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  Text(
-                    getDateFormat(widget.blog.created_at!),
-                    style: TextStyle(
-                        color: grey, fontWeight: FontWeight.w500, fontSize: 14),
-                  ),
-                ],
+              AuthorAndDate(
+                author: 'Idwey',
+                date: widget.blog.created_at,
               ),
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 15.0, bottom: 5),

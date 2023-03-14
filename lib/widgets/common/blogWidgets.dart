@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../screens/blogPage.dart';
 import '../../screens/homePage.dart';
 import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../listItems/blogListItem.dart';
 
 class BlogHeader extends StatelessWidget {
   String articleTitle;
@@ -130,6 +132,38 @@ class NavText extends StatelessWidget {
         style: TextStyle(
             color: primary, fontWeight: FontWeight.w600, fontSize: 14),
       ),
+    );
+  }
+}
+
+class AuthorAndDate extends StatelessWidget {
+  String? author;
+  String? date;
+  AuthorAndDate({this.author, this.date});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+            width: 30,
+            margin: EdgeInsets.symmetric(horizontal: 15),
+            child: Image.asset(
+              "assets/idwey.png",
+              fit: BoxFit.fill,
+            )),
+        Text(
+          'Par $author'.toUpperCase(),
+          style:
+              TextStyle(color: grey, fontWeight: FontWeight.w500, fontSize: 14),
+        ),
+        SeprationDot(),
+        Text(
+          getDateFormat(date!),
+          style:
+              TextStyle(color: grey, fontWeight: FontWeight.w500, fontSize: 14),
+        ),
+      ],
     );
   }
 }
