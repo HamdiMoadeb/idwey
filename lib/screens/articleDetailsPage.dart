@@ -10,6 +10,7 @@ import '../utils/utils.dart';
 import '../widgets/common/blogWidgets.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/common/scaffold.dart';
+import '../widgets/listItems/blogListItem.dart';
 import 'blogPage.dart';
 import 'homePage.dart';
 
@@ -149,6 +150,32 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage>
                                   fontWeight: FontWeight.w600,
                                   color: titleBlack),
                             ),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                  width: 30,
+                                  margin: EdgeInsets.symmetric(horizontal: 15),
+                                  child: Image.asset(
+                                    "assets/idwey.png",
+                                    fit: BoxFit.fill,
+                                  )),
+                              Text(
+                                'Par Idwey'.toUpperCase(),
+                                style: TextStyle(
+                                    color: grey,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
+                              ),
+                              SeprationDot(),
+                              Text(
+                                getDateFormat(articleDetail.created_at!),
+                                style: TextStyle(
+                                    color: grey,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
+                              ),
+                            ],
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(
