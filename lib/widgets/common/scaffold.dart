@@ -7,6 +7,7 @@ import 'package:idwey/screens/eventPage.dart';
 import 'package:idwey/screens/experiencePage.dart';
 import 'package:idwey/screens/homePage.dart';
 import 'package:idwey/screens/hostPage.dart';
+import 'package:idwey/screens/loginPage.dart';
 import 'package:idwey/screens/productPage.dart';
 import 'package:idwey/utils/colors.dart';
 
@@ -91,7 +92,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ));
+                    },
                     style: ButtonStyle(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                     child: Text(
