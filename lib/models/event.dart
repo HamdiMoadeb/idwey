@@ -1,4 +1,4 @@
-import 'host.dart';
+import 'imageGallery.dart';
 
 class Event {
   int? id;
@@ -97,7 +97,7 @@ class EventDetails {
     var listImages = data['gallery_images_url'] as List;
     List<Images> images = listImages.map((i) => Images.fromJson(i)).toList();
     images.removeLast();
-    var convenienceFromJson = data['attributes']['6']['child'];
+    var convenienceFromJson = data['attributes']['10']['child'];
     List<String> conveniences = new List<String>.from(convenienceFromJson);
     return EventDetails(
       row['id'] as int,
@@ -122,7 +122,7 @@ class EventDetails {
       data['gallery_images_url'] == null ? [] : images,
       row['map_lat'] == null ? 0 : double.parse(row['map_lat']),
       row['map_lng'] == null ? 0 : double.parse(row['map_lng']),
-      data['attributes']['6']['child'] == null ? [] : conveniences,
+      data['attributes']['10']['child'] == null ? [] : conveniences,
     );
   }
 }

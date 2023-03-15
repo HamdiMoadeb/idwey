@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
-import 'package:idwey/models/activity.dart';
 
+import '../models/activity.dart';
 import '../services/activityCalls.dart';
 import '../utils/colors.dart';
 import '../utils/utils.dart';

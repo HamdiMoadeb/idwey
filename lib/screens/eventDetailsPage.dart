@@ -4,8 +4,10 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/event.dart';
+import 'package:idwey/services/eventCalls.dart';
 
 import '../utils/colors.dart';
+import '../utils/utils.dart';
 import '../widgets/common/ImageCommon.dart';
 import '../widgets/common/MapCommon.dart';
 import '../widgets/common/detailsWidgets.dart';
@@ -30,6 +32,29 @@ class _EventDetailsPageState extends State<EventDetailsPage>
   bool showMore = false;
   String currentImage = '';
   EventDetails eventDetails = EventDetails(0, '', '','', '', 0, '', '', 0, '', '', '', '', '', '', [], 0, 0, []);
+  callEvents() {
+    setState(() {
+      loading = true;
+    });
+    EventCalls.getEventDetails(widget.id!).then((event) async {
+      setState(() {
+        eventDetails = event;
+        if (event.gallery_images_url.length != 0)
+          currentImage = event.gallery_images_url[0].large;
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    checkInternetConnectivity(context, callEvents);
+    super.initState();
+  }
+
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
@@ -66,7 +91,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                           text: "Partager maintenant",
                           linkUrl:
                               "https://idwey.tn/fr/event/${eventDetails.slug}",
-                          banner_image_url: '',
+                          banner_image_url: eventDetails.banner_image_url,
                           isLiked: isLiked,
                           callBack: () {
                             setState(() {
@@ -119,7 +144,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                     color: primaryOrange,
                   ),
                   SizedBox(
-                    width: 3.0,
+                    width: 5.0,
                   ),
                   Text(
                     eventDetails.start_date!,
@@ -140,7 +165,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                     icon: Icons.group,
                     type: 'Personnes',
                     description:
-                    eventDetails.number.toString(),
+                    "${eventDetails.number.toString()} personnes",
                   ),
                   SizedBox(
                     height: 12,
@@ -149,7 +174,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                   DetailIcons(
                     icon: IcoFontIcons.wallClock,
                     type: 'Difficulté',
-                    description: eventDetails.duration!,
+                    description: "${eventDetails.duration} heures",
                   ): const SizedBox(),
                   SizedBox(
                     height: 12,
@@ -157,7 +182,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                   DetailIcons(
                     icon: IcoFontIcons.flash,
                     type: 'Difficulté',
-                    description: eventDetails.difficulty!,
+                    description: "${eventDetails.difficulty}",
                   ),
                   SizedBox(
                     height: 12,
@@ -170,6 +195,9 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                     eventDetails.impactsocial!,
                   )
                       : const SizedBox(),
+                  SizedBox(
+                    height: 12,
+                  ),
                 ],
               ),
             ),
@@ -251,11 +279,12 @@ class _EventDetailsPageState extends State<EventDetailsPage>
               title: 'avis'.toUpperCase(),
             ),
             RateStats(),
-            Footer(),
-            CreatedBy(),
-            BackToTop(scrollToTop),
-            SizedBox(height: 70),
+
           ],),
+                        Footer(),
+                        CreatedBy(),
+                        BackToTop(scrollToTop),
+                        SizedBox(height: 70),
                       ],
                     ),
 
@@ -268,34 +297,6 @@ class _EventDetailsPageState extends State<EventDetailsPage>
         )
             : Container()
       ]),
-    );
-  }
-}
-class StyleItem extends StatelessWidget {
-  String title;
-  StyleItem({Key? key, required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(
-          IcoFontIcons.checkCircled,
-          color: primaryOrange,
-          size: 16,
-        ),
-        SizedBox(
-          width: 5,
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 5),
-          child: Text(
-            title,
-            style: TextStyle(color: materialPrimary),
-          ),
-        )
-      ],
     );
   }
 }
