@@ -57,7 +57,7 @@ class ActivityCalls {
   //api for our hosts page
   static Future<ActivityDetail> getActivityDetails(int id) async {
     ActivityDetail activityDetail = new ActivityDetail(
-        0, '', '', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
+        0, '', '','', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
     var url = Uri.parse('${Urls.URL_API}activity/detail/${id}');
     print(url);
     var response = await http.get(url);

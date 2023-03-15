@@ -46,6 +46,7 @@ class ActivityDetail {
   String title;
   String slug;
   String content;
+  String location_name;
   int max_people;
   int is_featured;
   String price;
@@ -65,6 +66,7 @@ class ActivityDetail {
       this.title,
       this.slug,
       this.content,
+      this.location_name,
       this.max_people,
       this.is_featured,
       this.price,
@@ -103,6 +105,7 @@ class ActivityDetail {
       row['title'] == null ? "" : row['title'] as String,
       row['slug'] == null ? "" : row['slug'] as String,
       row['content'] == null ? "" : row['content'] as String,
+      row['location_name'] == null ? "" : row['location_name'] as String,
       row['max_people'] == null ? -1 : row['max_people'] as int,
       row['is_featured'] == null ? -1 : row['is_featured'] as int,
       row['price'] == null ? "" : row['price'] as String,

@@ -30,7 +30,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
   bool showFAB = false;
   bool isLiked = false;
   ActivityDetail activityDetails = ActivityDetail(
-      0, '', '', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
+      0, '', '','', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
   String currentImage = '';
   String slug = '';
 
@@ -179,7 +179,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                       DetailIcons(
                                         icon: IcoFontIcons.islandAlt,
                                         type: 'Emplacement',
-                                        description: "missing",
+                                        description: activityDetails.location_name,
                                       ),
                                       SizedBox(
                                         height: 12,
@@ -228,6 +228,18 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                   child: Column(
                                     children: [
                                       for (var item in activityDetails.style)
+                                        StyleItem(title: item),
+                                    ],
+                                  ),
+                                ),
+                                SectionTitle(
+                                  title: 'Commodités'.toUpperCase(),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                                  child: Column(
+                                    children: [
+                                      for (var item in activityDetails.convenience!)
                                         StyleItem(title: item),
                                     ],
                                   ),
