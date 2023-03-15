@@ -94,7 +94,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                             title: activityDetails.title,
                             text: "Partager maintenant",
                             linkUrl:
-                                "https://idwey.tn/fr/hebergement/maison-hote/tunisie/${activityDetails.slug}",
+                                "https://idwey.tn/fr/activity/${activityDetails.slug}",
                             banner_image_url: activityDetails.banner_image_url,
                             isLiked: isLiked,
                             callBack: () {
@@ -179,7 +179,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                       DetailIcons(
                                         icon: IcoFontIcons.islandAlt,
                                         type: 'Emplacement',
-                                        description: "missing",
+                                        description: activityDetails.address,
                                       ),
                                       SizedBox(
                                         height: 12,
@@ -201,7 +201,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                         title: activityDetails.title,
                                         text: "Partager maintenant",
                                         linkUrl:
-                                            "https://idwey.tn/fr/hebergement/maison-hote/tunisie/${activityDetails.slug}",
+                                            "https://idwey.tn/fr/activity/${activityDetails.slug}",
                                         currentImage: currentImage,
                                         isLiked: isLiked,
                                         gallery_images_url:
