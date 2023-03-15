@@ -15,10 +15,10 @@ class CustomClips extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-    path.moveTo(0, 100);
-    path.lineTo(0, size.height);
-    path.lineTo(size.width + 150, size.height + 100);
-    path.lineTo(size.height, 0);
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width , 100 );
+    path.lineTo(0, 100);
+    path.lineTo(size.width, 0);
     path.close();
     return path;
   }
