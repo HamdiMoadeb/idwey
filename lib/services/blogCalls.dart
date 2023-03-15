@@ -5,10 +5,10 @@ import '../models/blog.dart';
 import '../utils/urls.dart';
 
 class BlogCalls {
-  static Future<List<Blog>> getAllBlogs(int skip) async {
+  static Future<List<Blog>> getAllBlogs(int skip, String cat) async {
     List<Blog> getAllBlogs = [];
-    print('yoo');
-    var url = Uri.parse('${Urls.URL_API}blog?offset=$skip&limit=10');
+    var url =
+        Uri.parse('${Urls.URL_API}blog?offset=$skip&limit=10&category=$cat');
     print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -22,5 +22,19 @@ class BlogCalls {
       }
     }
     return getAllBlogs;
+  }
+
+  static Future<ArticleDetail> getArticleDetails(int id) async {
+    ArticleDetail article = ArticleDetail(0, '', '', '', '', '', '');
+    var url = Uri.parse('${Urls.URL_API}blog/detail/$id');
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      article = ArticleDetail.fromJson(data);
+    }
+    return article;
   }
 }
