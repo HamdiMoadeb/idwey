@@ -233,6 +233,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                     ],
                                   ),
                                 ),
+                                if(activityDetails.convenience!.length !=0) ...[
                                 SectionTitle(
                                   title: 'Commodités'.toUpperCase(),
                                 ),
@@ -246,7 +247,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                         StyleItem(title: item),
                                     ],
                                   ),
-                                ),
+                                ),]else SizedBox(),
                                 SectionTitle(
                                     title: 'EMPLACEMENT DE L’ACTIVITÉ'
                                         .toUpperCase()),
