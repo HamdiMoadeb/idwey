@@ -59,7 +59,8 @@ class EventCalls {
 
   //api for  event details
   static Future<EventDetails> getEventDetails(int id) async {
-    EventDetails eventDetail = EventDetails(0, '','', '', '', 0, '', '', 0, '', '', '', '', '', '', [], 0, 0, []);
+    EventDetails eventDetail = EventDetails(0, '', '', '', '', '', 0, '', '', 0,
+        '', '', '', '', '', '', '', [], 0, 0, []);
     var url = Uri.parse('${Urls.URL_API}event/detail/${id}');
     print(url);
     var response = await http.get(url);

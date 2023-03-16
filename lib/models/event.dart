@@ -53,12 +53,14 @@ class EventDetails {
   int? id;
   String? title;
   String? content;
+  String location_name;
   String? start_date;
   String? end_date;
   int? number;
   int? is_featured;
   String? difficulty;
   String? duration;
+  String distance;
   String? price;
   String? address;
   String? impactsocial;
@@ -71,26 +73,27 @@ class EventDetails {
   List<String>? convenience;
 
   EventDetails(
-    this.id,
-    this.title,
-    this.content,
-    this.address,
-    this.impactsocial,
-    this.is_featured,
-    this.start_date,
+      this.id,
+      this.title,
+      this.content,
+      this.address,
+      this.impactsocial,
+      this.location_name,
+      this.is_featured,
+      this.start_date,
       this.end_date,
-    this.number,
-    this.price,
-    this.duration,
-    this.difficulty,
-    this.terms_name,
-    this.slug,
+      this.number,
+      this.price,
+      this.duration,
+      this.distance,
+      this.difficulty,
+      this.terms_name,
+      this.slug,
       this.banner_image_url,
       this.gallery_images_url,
       this.map_lat,
       this.map_lng,
-      this.convenience
-      );
+      this.convenience);
 
   factory EventDetails.fromJson(Map<String?, dynamic> data) {
     dynamic row = data['row'];
@@ -107,12 +110,14 @@ class EventDetails {
       row['impactsocial'] == null
           ? ""
           : row['impactsocial'] as String, // IF NOT NULL RETURNS "Oui"
+      row['location_name'] == null ? "" : row['location_name'] as String,
       row['is_featured'] == null ? -1 : row['is_featured'] as int,
       row['start_date'] == null ? "" : row['start_date'] as String,
       row['end_date'] == null ? "" : row['end_date'] as String,
       row['number'] == null ? -1 : row['number'] as int,
       row['prix'] == null ? "" : row['prix'] as String,
       row['duration'] == null ? "" : row['duration'] as String,
+      row['distance'] == null ? "" : row['distance'] as String,
       row['difficulty'] == null ? "" : row['difficulty'] as String,
       row['term_name'] == null ? "" : row['term_name'] as String,
       row['slug'] == null ? "" : row['slug'] as String,
