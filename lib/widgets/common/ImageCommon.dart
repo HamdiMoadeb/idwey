@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/host.dart';
+import '../../models/imageGallery.dart';
 import 'detailsWidgets.dart';
 
 class ImageBanner extends StatefulWidget {

@@ -6,6 +6,7 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'colors.dart';
@@ -296,6 +297,12 @@ List<String> cities = [
   "Tozeur",
   "Kebili"
 ];
+
+getDateFormat(String date) {
+  DateTime tempDate = DateFormat("yyyy-MM-dd").parse(date);
+  String newDate = DateFormat('dd/MM/yyyy').format(tempDate);
+  return newDate;
+}
 
 @override
 Future<void> customLaunchUrl(String url) async {

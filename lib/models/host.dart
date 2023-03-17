@@ -1,3 +1,5 @@
+import 'imageGallery.dart';
+
 class Host {
   int? id;
   String? title;
@@ -123,22 +125,6 @@ class HostDetail {
       row['map_lat'] == null ? 0 : double.parse(row['map_lat']),
       row['map_lng'] == null ? 0 : double.parse(row['map_lng']),
       data['attributes']['6']['child'] == null ? [] : conveniences,
-    );
-  }
-}
-
-class Images {
-  dynamic large;
-  dynamic thumb;
-  Images(
-    this.large,
-    this.thumb,
-  );
-
-  factory Images.fromJson(Map<String?, dynamic> data) {
-    return Images(
-      data['large'] == false ? "" : data['large'],
-      data['thumb'] == false ? "" : data['thumb'],
     );
   }
 }

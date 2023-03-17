@@ -53,4 +53,21 @@ class ExperienceCalls {
 
     return result;
   }
+
+  static Future<ExperienceDetails> getExperienceDetails(int? id) async {
+    ExperienceDetails experienceDetail = new ExperienceDetails(0, '', '', '', '', '', '', 0, '', 0, '', '', '', [], 0, 0, []);
+    var url = Uri.parse('${Urls.URL_API}experience/detail/$id');
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      experienceDetail = ExperienceDetails.fromJson(data);
+    }
+    print(experienceDetail.content);
+
+    return experienceDetail;
+  }
 }
