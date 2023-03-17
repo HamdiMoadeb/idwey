@@ -97,9 +97,14 @@ class EventDetails {
 
   factory EventDetails.fromJson(Map<String?, dynamic> data) {
     dynamic row = data['row'];
-    var listImages = data['gallery_images_url'] as List;
-    List<Images> images = listImages.map((i) => Images.fromJson(i)).toList();
-    images.removeLast();
+    var listImages = data['gallery_images_url'] == null
+        ? []
+        : data['gallery_images_url'] as List;
+    List<Images> images = [];
+    if (listImages.length != 0) {
+      images = listImages.map((i) => Images.fromJson(i)).toList();
+      images.removeLast();
+    }
     var convenienceFromJson = data['attributes']['10']['child'];
     List<String> conveniences = new List<String>.from(convenienceFromJson);
     return EventDetails(

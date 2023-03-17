@@ -26,6 +26,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  bool isExpanded = false;
   bool loading = false;
   bool showFAB = false;
   bool isLiked = false;
@@ -222,6 +223,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                 ],
                               ),
                             ),
+                            SectionDivider(),
                             eventDetails.gallery_images_url.length != 0
                                 ? ImageGallery(
                                     title: eventDetails.title!,
@@ -240,13 +242,37 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                   )
                                 : SizedBox(),
                             SectionTitle(title: 'DESCRIPTION'),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20),
-                              child: HtmlWidget(
-                                eventDetails.content!,
-                              ),
-                            ),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  LayoutBuilder(
+                                      builder: (context, constraints) {
+                                    final double maxHeight = isExpanded
+                                        ? double.infinity
+                                        : (constraints.maxHeight > 200
+                                            ? 200
+                                            : constraints.maxHeight);
+                                    return ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        maxHeight:
+                                            isExpanded ? maxHeight : 200.0,
+                                      ),
+                                      child: HtmlWidget(
+                                        eventDetails.content!,
+                                      ),
+                                    );
+                                  }),
+                                  SizedBox(height: 8.0),
+                                  GestureDetector(
+                                    onTap: () {
+                                      print(isExpanded);
+                                      setState(() {
+                                        isExpanded = !isExpanded;
+                                      });
+                                    },
+                                    child: Text('click me'),
+                                  ),
+                                ]),
                             SectionTitle(
                               title: 'Commodités'.toUpperCase(),
                             ),
@@ -305,12 +331,12 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                             RateStats(),
                           ],
                         ),
-                        Footer(),
-                        CreatedBy(),
-                        BackToTop(scrollToTop),
-                        SizedBox(height: 70),
                       ],
                     ),
+              Footer(),
+              CreatedBy(),
+              BackToTop(scrollToTop),
+              SizedBox(height: 70),
             ],
           ),
         ),
