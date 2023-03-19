@@ -34,6 +34,32 @@ String removeDecimalZeroFormat(String num) {
   return s;
 }
 
+String? validateEmail(String? value) {
+  final pattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+  final regExp = RegExp(pattern);
+
+  if (!regExp.hasMatch(value!)) {
+    return 'S\'il vous plaît, mettez une adresse email valide';
+  }
+  return '';
+}
+
+String? validatePassword(String? value) {
+  if (value!.isEmpty || value.length < 8) {
+    return 'Le mot de passe doit comporter au moins 8 caractères';
+  }
+
+  final hasLetters = RegExp(r'[a-zA-Z]').hasMatch(value);
+  final hasNumbers = RegExp(r'\d').hasMatch(value);
+  final hasSpecialCharacters = RegExp(r'[!@#\$&*~]').hasMatch(value);
+
+  if (!hasLetters || !hasNumbers || !hasSpecialCharacters) {
+    return 'Le mot de passe doit contenir au moins une lettre, un chiffre et un caractère spécial (!@#\$&*~)';
+  }
+
+  return '';
+}
+
 Icon getIconByTitle(String status) {
   switch (status) {
     case "Douche":
