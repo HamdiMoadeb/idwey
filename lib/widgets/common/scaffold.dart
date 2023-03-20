@@ -2,6 +2,7 @@ import 'package:flag/flag.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/screens/RegisterPage.dart';
 import 'package:idwey/screens/activityPage.dart';
 import 'package:idwey/screens/eventPage.dart';
 import 'package:idwey/screens/experiencePage.dart';
@@ -110,7 +111,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPage(),
+                          ));
+                    },
                     style: ButtonStyle(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                     child: Text(

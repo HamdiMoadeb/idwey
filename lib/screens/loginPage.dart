@@ -1,9 +1,10 @@
-import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/screens/RegisterPage.dart';
 
 import '../utils/colors.dart';
+import '../widgets/common/buttonWidget.dart';
 import '../widgets/common/inputWidget.dart';
 import '../widgets/common/scaffold.dart';
 
@@ -109,54 +110,16 @@ class _LoginPageState extends State<LoginPage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 38,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: facebookColor,
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.facebook,
-                          color: Colors.white,
-                          size: 15,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Facebook',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
+                  SocialMediaLoginButton(
+                    buttonColor: facebookColor,
+                    buttonText: 'Facebook',
+                    icon: Icons.facebook,
                   ),
-                  SizedBox(height: 5),
-                  Container(
-                    height: 38,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: googleColor,
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.google,
-                          color: Colors.white,
-                          size: 15,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Google',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: 5),
+                  SocialMediaLoginButton(
+                    buttonColor: googleColor,
+                    buttonText: 'Google',
+                    icon: FontAwesomeIcons.google,
                   ),
                 ],
               ),
@@ -170,7 +133,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(width: 8),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPage(),
+                          ));
+                    },
                     child: Text(
                       'S\'inscrire',
                       style: TextStyle(color: primaryOrange),
