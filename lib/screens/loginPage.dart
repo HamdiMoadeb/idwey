@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/screens/RegisterPage.dart';
+import 'package:idwey/screens/forgetPasswordPage.dart';
 
 import '../utils/colors.dart';
 import '../widgets/common/buttonWidget.dart';
@@ -24,6 +25,13 @@ class _LoginPageState extends State<LoginPage> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {}
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -67,11 +75,20 @@ class _LoginPageState extends State<LoginPage> {
                       onChanged: (value) {},
                     ),
                     SizedBox(height: 8),
-                    Container(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        'Mot de passe oublié?',
-                        style: TextStyle(color: primaryOrange, fontSize: 12),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ForgetPasswordPage(),
+                            ));
+                      },
+                      child: Container(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          'Mot de passe oublié?',
+                          style: TextStyle(color: primaryOrange, fontSize: 12),
+                        ),
                       ),
                     ),
                     SizedBox(height: 15),

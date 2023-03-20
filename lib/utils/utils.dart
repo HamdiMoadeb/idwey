@@ -11,6 +11,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'colors.dart';
 
+enum UserType {
+  client,
+  vendor,
+}
+
 class CustomClips extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

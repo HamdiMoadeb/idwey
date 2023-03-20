@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../utils/colors.dart';
+import '../utils/utils.dart';
 import '../widgets/common/buttonWidget.dart';
 import '../widgets/common/inputWidget.dart';
 import '../widgets/common/scaffold.dart';
@@ -11,11 +12,6 @@ import 'loginPage.dart';
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPage createState() => _RegisterPage();
-}
-
-enum UserType {
-  client,
-  vendor,
 }
 
 class _RegisterPage extends State<RegisterPage> {
@@ -248,14 +244,17 @@ class _RegisterPage extends State<RegisterPage> {
                             switch (_userType) {
                               case UserType.client:
                                 String name = _clientNameController.text;
+                                String lastName =
+                                    _clientLastNameController.text;
                                 print('Client name: $name');
+                                print('client last name: $lastName');
                                 break;
                               case UserType.vendor:
                                 String name = _clientNameController.text;
                                 String lastName =
                                     _clientLastNameController.text;
-                                print('Vendor name: $name');
-                                print('Vendor last name: $lastName');
+                                print('commercial name: $name');
+                                print('commercial last name: $lastName');
                                 break;
                               default:
                                 break;
