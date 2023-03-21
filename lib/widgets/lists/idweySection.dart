@@ -38,19 +38,16 @@ class _IdweySectionState extends State<IdweySection> {
             height: 1350,
             child: Stack(
               children: [
-                Container(
-                  margin: EdgeInsets.only(top: 50),
-                  width: MediaQuery.of(context).size.width,
-                  child: ClipPath(
-                    clipper: CustomClips(),
-                    child: Container(
-                      height: 400,
-                      color: primary,
-                    ),
+                ClipPath(
+                  clipper: CustomClips(),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 100,
+                    color: primary,
                   ),
                 ),
                 Positioned(
-                  top: 150,
+                  top:100,
                   child: Container(
                     height: 1250,
                     width: MediaQuery.of(context).size.width,
@@ -117,6 +114,7 @@ class _IdweySectionState extends State<IdweySection> {
               ],
             ),
           )
-        : Container();
+        : Container()
+    ;
   }
 }

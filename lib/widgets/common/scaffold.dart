@@ -2,15 +2,17 @@ import 'package:flag/flag.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:idwey/screens/activityPage.dart';
-import 'package:idwey/screens/eventPage.dart';
-import 'package:idwey/screens/experiencePage.dart';
+import 'package:idwey/screens/authPages/RegisterPage.dart';
 import 'package:idwey/screens/homePage.dart';
-import 'package:idwey/screens/hostPage.dart';
-import 'package:idwey/screens/productPage.dart';
+import 'package:idwey/screens/listPages/activityPage.dart';
+import 'package:idwey/screens/listPages/eventPage.dart';
+import 'package:idwey/screens/listPages/experiencePage.dart';
+import 'package:idwey/screens/listPages/hostPage.dart';
+import 'package:idwey/screens/listPages/productPage.dart';
 import 'package:idwey/utils/colors.dart';
 
-import '../../screens/blogPage.dart';
+import '../../screens/authPages/loginPage.dart';
+import '../../screens/listPages/blogPage.dart';
 
 //common scaffold
 class CommonScaffold extends StatefulWidget {
@@ -91,7 +93,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ));
+                    },
                     style: ButtonStyle(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                     child: Text(
@@ -103,7 +111,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPage(),
+                          ));
+                    },
                     style: ButtonStyle(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                     child: Text(

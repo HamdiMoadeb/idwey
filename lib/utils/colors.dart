@@ -8,6 +8,8 @@ final Color titleBlack = HexColor.fromHex('#1a2b50');
 final Color footerBg = HexColor.fromHex('#f5f5f5');
 final Color likedRed = HexColor.fromHex('#EB8F90');
 final Color titleBlue = HexColor.fromHex('#1a2b48');
+final Color facebookColor = HexColor.fromHex("#395899");
+final Color googleColor = HexColor.fromHex("#f34a38");
 
 const MaterialColor materialPrimary = MaterialColor(
   0xFF07C8B9,

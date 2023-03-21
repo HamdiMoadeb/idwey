@@ -7,8 +7,8 @@ import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:idwey/widgets/listItems/experienceListItem.dart';
 import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
 
-import '../utils/utils.dart';
-import '../widgets/common/footer.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/footer.dart';
 
 class ExperiencePage extends StatefulWidget {
   const ExperiencePage({Key? key}) : super(key: key);

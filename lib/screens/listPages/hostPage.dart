@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 
-import '../models/host.dart';
-import '../services/hostCalls.dart';
-import '../utils/utils.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/listItems/hostListItem.dart';
-import '../widgets/tabs/HostFilterTab.dart';
+import '../../models/host.dart';
+import '../../services/hostCalls.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/listItems/hostListItem.dart';
+import '../../widgets/tabs/HostFilterTab.dart';
 
 class HostPage extends StatefulWidget {
   const HostPage({Key? key}) : super(key: key);

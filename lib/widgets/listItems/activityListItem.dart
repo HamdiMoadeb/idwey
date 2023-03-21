@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/models/activity.dart';
-import 'package:idwey/screens/activityDetailsPage.dart';
+import 'package:idwey/screens/detailsPages/activityDetailsPage.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
