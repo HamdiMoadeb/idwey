@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
@@ -26,6 +27,13 @@ class _HostPageState extends State<HostPage>
   bool showFAB = false;
   int listLengthFromLastCall = 0;
   int totalNb = 0;
+
+  SfRangeSliderThemeData _sliderTheme = SfRangeSliderThemeData(
+    thumbRadius: 12.0,
+    activeTrackColor: Colors.green,
+    inactiveTrackColor: Colors.grey[300],
+    overlayColor: Colors.green.withOpacity(0.2),
+  );
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
 
@@ -148,6 +156,125 @@ class _HostPageState extends State<HostPage>
             ),
             Column(
               children: [
+                SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(width: 0.3, color: grey)),
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 15),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 5,
+                              height: 20,
+                              decoration: BoxDecoration(color: primaryOrange),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Filtrer par'.toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: titleBlack),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                          color: Colors.grey,
+                          height: 1,
+                          indent: 0,
+                          thickness: 0.5),
+                      Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ExpansionTile(
+                              expandedCrossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                              expandedAlignment: Alignment.topLeft,
+                              collapsedTextColor: titleBlack,
+                              textColor: titleBlack,
+                              childrenPadding: EdgeInsets.zero,
+                              title: Text(
+                                'Filtrer par prix',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              children: [])),
+                      const Divider(
+                          color: Colors.grey,
+                          height: 1,
+                          indent: 0,
+                          thickness: 0.5),
+                      Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ExpansionTile(
+                              expandedCrossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                              expandedAlignment: Alignment.topLeft,
+                              collapsedTextColor: titleBlack,
+                              textColor: titleBlack,
+                              childrenPadding: EdgeInsets.zero,
+                              title: Text(
+                                'Type de propriété',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              children: [Text('data')])),
+                      const Divider(
+                          color: Colors.grey,
+                          height: 1,
+                          indent: 0,
+                          thickness: 0.5),
+                      Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ExpansionTile(
+                              expandedCrossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                              expandedAlignment: Alignment.topLeft,
+                              collapsedTextColor: titleBlack,
+                              textColor: titleBlack,
+                              childrenPadding: EdgeInsets.zero,
+                              title: Text(
+                                'Commodités',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              children: [Text('data')])),
+                      const Divider(
+                          color: Colors.grey,
+                          height: 1,
+                          indent: 0,
+                          thickness: 0.5),
+                      Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ExpansionTile(
+                              expandedCrossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                              expandedAlignment: Alignment.topLeft,
+                              collapsedTextColor: titleBlack,
+                              textColor: titleBlack,
+                              childrenPadding: EdgeInsets.zero,
+                              title: Text(
+                                'Host Service',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              children: [Text('data')])),
+                    ],
+                  ),
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
