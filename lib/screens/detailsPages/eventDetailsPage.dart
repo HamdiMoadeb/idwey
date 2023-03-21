@@ -6,13 +6,13 @@ import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/event.dart';
 import 'package:idwey/services/eventCalls.dart';
 
-import '../utils/colors.dart';
-import '../utils/utils.dart';
-import '../widgets/common/ImageCommon.dart';
-import '../widgets/common/MapCommon.dart';
-import '../widgets/common/detailsWidgets.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/scaffold.dart';
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/ImageCommon.dart';
+import '../../widgets/common/MapCommon.dart';
+import '../../widgets/common/detailsWidgets.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/scaffold.dart';
 
 class EventDetailsPage extends StatefulWidget {
   int? id;
@@ -175,7 +175,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                   eventDetails.duration != ''
                                       ? DetailIcons(
                                           icon: IcoFontIcons.wallClock,
-                                          type: 'Difficulté',
+                                          type: 'Duration',
                                           description:
                                               "${eventDetails.duration} heures",
                                         )

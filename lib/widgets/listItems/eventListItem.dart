@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:idwey/screens/eventDetailsPage.dart';
+import 'package:idwey/screens/detailsPages/eventDetailsPage.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/event.dart';
@@ -26,12 +26,12 @@ class _EventListItemState extends State<EventListItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-            builder: (context) => EventDetailsPage(id: widget.event.id),
-        ));
+              builder: (context) => EventDetailsPage(id: widget.event.id),
+            ));
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 30,
