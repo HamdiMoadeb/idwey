@@ -242,37 +242,12 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                   )
                                 : SizedBox(),
                             SectionTitle(title: 'DESCRIPTION'),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  LayoutBuilder(
-                                      builder: (context, constraints) {
-                                    final double maxHeight = isExpanded
-                                        ? double.infinity
-                                        : (constraints.maxHeight > 200
-                                            ? 200
-                                            : constraints.maxHeight);
-                                    return ConstrainedBox(
-                                      constraints: BoxConstraints(
-                                        maxHeight:
-                                            isExpanded ? maxHeight : 200.0,
-                                      ),
-                                      child: HtmlWidget(
-                                        eventDetails.content!,
-                                      ),
-                                    );
-                                  }),
-                                  SizedBox(height: 8.0),
-                                  GestureDetector(
-                                    onTap: () {
-                                      print(isExpanded);
-                                      setState(() {
-                                        isExpanded = !isExpanded;
-                                      });
-                                    },
-                                    child: Text('click me'),
-                                  ),
-                                ]),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              child: HtmlWidget(
+                                eventDetails.content!,
+                              ),
+                            ),
                             SectionTitle(
                               title: 'Commodités'.toUpperCase(),
                             ),
