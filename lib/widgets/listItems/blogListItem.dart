@@ -40,6 +40,7 @@ class _BlogListItemState extends State<BlogListItem> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               height: 220,
