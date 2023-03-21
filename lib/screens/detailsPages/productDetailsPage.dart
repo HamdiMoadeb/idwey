@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-import '../models/product.dart';
-import '../services/productCalls.dart';
-import '../utils/colors.dart';
-import '../utils/utils.dart';
-import '../widgets/common/ImageCommon.dart';
-import '../widgets/common/detailsWidgets.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/scaffold.dart';
+import '../../models/product.dart';
+import '../../services/productCalls.dart';
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/ImageCommon.dart';
+import '../../widgets/common/detailsWidgets.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/scaffold.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   int id;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../utils/colors.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/inputWidget.dart';
-import '../widgets/common/scaffold.dart';
+import '../../utils/colors.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/inputWidget.dart';
+import '../../widgets/common/scaffold.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({Key? key}) : super(key: key);

@@ -5,14 +5,11 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:idwey/models/blog.dart';
 import 'package:idwey/services/blogCalls.dart';
 
-import '../utils/colors.dart';
-import '../utils/utils.dart';
-import '../widgets/common/blogWidgets.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/scaffold.dart';
-import '../widgets/listItems/blogListItem.dart';
-import 'blogPage.dart';
-import 'homePage.dart';
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/blogWidgets.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/scaffold.dart';
 
 class ArticleDetailsPage extends StatefulWidget {
   int id;
@@ -87,7 +84,9 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage>
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          BlogHeader(articleTitle: articleDetail.title!,),
+                          BlogHeader(
+                            articleTitle: articleDetail.title!,
+                          ),
                           Container(
                             height: 220,
                             width: double.infinity,

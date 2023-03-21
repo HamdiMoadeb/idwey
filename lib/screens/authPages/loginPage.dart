@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:idwey/screens/RegisterPage.dart';
-import 'package:idwey/screens/forgetPasswordPage.dart';
+import 'package:idwey/screens/authPages/RegisterPage.dart';
+import 'package:idwey/screens/authPages/forgetPasswordPage.dart';
 
-import '../utils/colors.dart';
-import '../widgets/common/buttonWidget.dart';
-import '../widgets/common/inputWidget.dart';
-import '../widgets/common/scaffold.dart';
+import '../../utils/colors.dart';
+import '../../widgets/common/buttonWidget.dart';
+import '../../widgets/common/inputWidget.dart';
+import '../../widgets/common/scaffold.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

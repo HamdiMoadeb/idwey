@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:idwey/models/experience.dart';
-import 'package:idwey/services/experienceCalls.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import 'package:idwey/widgets/listItems/experienceListItem.dart';
-import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
 
-import '../utils/utils.dart';
-import '../widgets/common/footer.dart';
+import '../../models/host.dart';
+import '../../services/hostCalls.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/listItems/hostListItem.dart';
+import '../../widgets/tabs/HostFilterTab.dart';
 
-class ExperiencePage extends StatefulWidget {
-  const ExperiencePage({Key? key}) : super(key: key);
+class HostPage extends StatefulWidget {
+  const HostPage({Key? key}) : super(key: key);
 
   @override
-  State<ExperiencePage> createState() => _ExperiencePageState();
+  State<HostPage> createState() => _HostPageState();
 }
 
-class _ExperiencePageState extends State<ExperiencePage>
+class _HostPageState extends State<HostPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
-  List<Experience> listExps = [];
+  List<Host> listHosts = [];
   bool loading = false;
   bool showFAB = false;
   int listLengthFromLastCall = 0;
@@ -31,21 +31,20 @@ class _ExperiencePageState extends State<ExperiencePage>
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
-      listExps.clear();
+      listHosts.clear();
       this.searchInputs = searchInputs;
     });
-    callExps();
+    callHosts();
   }
 
-  callExps() {
+  callHosts() {
     setState(() {
       loading = true;
     });
-    ExperienceCalls.getExperienceList(searchInputs, listExps.length)
-        .then((result) async {
+    HostCalls.getHostsList(searchInputs, listHosts.length).then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
-        listExps.addAll(result["list"]);
+        listHosts.addAll(result["list"]);
         totalNb = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
@@ -59,7 +58,7 @@ class _ExperiencePageState extends State<ExperiencePage>
   void initState() {
     super.initState();
 
-    checkInternetConnectivity(context, callExps);
+    checkInternetConnectivity(context, callHosts);
 
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=
@@ -67,7 +66,7 @@ class _ExperiencePageState extends State<ExperiencePage>
           !scrollController.position.outOfRange &&
           !loading &&
           !(listLengthFromLastCall < 20)) {
-        callExps();
+        callHosts();
       }
 
       scrollController.addListener(() {
@@ -113,7 +112,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                         height: 230,
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          child: Image.asset("assets/experienceCover.jpg",
+                          child: Image.asset("assets/hostPageCover.jpg",
                               fit: BoxFit.cover),
                         ),
                       ),
@@ -123,7 +122,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Circuits et Expériences',
+                                'Logements et maisons \nd\'hôtes',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -139,7 +138,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 180),
-                    child: ActivityFilterTab(
+                    child: HostFilterTab(
                       onChangeField: (dynamic searchInputs) =>
                           updateSearchFields(searchInputs),
                     ),
@@ -154,7 +153,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                   child: Container(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      "${totalNb} expériences trouvés",
+                      "${totalNb} hébergements trouvés",
                       style: TextStyle(
                         fontSize: 24.0,
                         color: titleBlue,
@@ -167,8 +166,8 @@ class _ExperiencePageState extends State<ExperiencePage>
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Container(
                       margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: ExperienceListItem(listExps[index])),
-                  itemCount: listExps.length,
+                      child: HostListItem(listHosts[index], false)),
+                  itemCount: listHosts.length,
                 ),
               ],
             ),

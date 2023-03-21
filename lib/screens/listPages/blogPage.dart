@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:idwey/screens/homePage.dart';
 import 'package:idwey/services/blogCalls.dart';
 import 'package:idwey/widgets/listItems/blogListItem.dart';
 
-import '../models/blog.dart';
-import '../utils/colors.dart';
-import '../utils/utils.dart';
-import '../widgets/common/blogWidgets.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/scaffold.dart';
+import '../../models/blog.dart';
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/blogWidgets.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/scaffold.dart';
 
 class BlogPage extends StatefulWidget {
   const BlogPage({
@@ -89,7 +88,9 @@ class _BlogPageState extends State<BlogPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlogHeader(category: category,),
+            BlogHeader(
+              category: category,
+            ),
             Column(
               children: [
                 ListView.builder(
@@ -100,10 +101,14 @@ class _BlogPageState extends State<BlogPage>
                       child: BlogPageItems(
                         categoryFilter: () {
                           scrollToTop();
-                          Future.delayed(scrollController.position.pixels==0 ? Duration(milliseconds: 0) : Duration(milliseconds: 1100) , () {
+                          Future.delayed(
+                              scrollController.position.pixels == 0
+                                  ? Duration(milliseconds: 0)
+                                  : Duration(milliseconds: 1100), () {
                             setState(() {
                               loading = true;
-                              category = listBlogs[index].cat_name!.toLowerCase();
+                              category =
+                                  listBlogs[index].cat_name!.toLowerCase();
                               listBlogs = [];
                             });
                             callBlogs();
