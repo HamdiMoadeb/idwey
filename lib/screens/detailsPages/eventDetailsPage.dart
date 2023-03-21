@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/event.dart';
 import 'package:idwey/services/eventCalls.dart';
+import 'package:intl/intl.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
@@ -148,7 +149,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                     width: 5.0,
                                   ),
                                   Text(
-                                    eventDetails.start_date!,
+                                    DateFormat('dd-MM-yyyy').format(DateTime.parse(eventDetails.start_date!)),
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500,
@@ -175,7 +176,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                   eventDetails.duration != ''
                                       ? DetailIcons(
                                           icon: IcoFontIcons.wallClock,
-                                          type: 'Duration',
+                                          type: 'Durées',
                                           description:
                                               "${eventDetails.duration} heures",
                                         )
