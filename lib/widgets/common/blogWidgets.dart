@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/blogPage.dart';
 import '../../screens/homePage.dart';
+import '../../screens/listPages/blogPage.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
-import '../listItems/blogListItem.dart';
 
 class BlogHeader extends StatelessWidget {
   String articleTitle;
   String category;
-  BlogHeader(
-      {Key? key,
-      this.articleTitle = "",
-      this.category = ""})
+  BlogHeader({Key? key, this.articleTitle = "", this.category = ""})
       : super(key: key);
 
   @override
@@ -72,16 +68,17 @@ class BlogHeader extends StatelessWidget {
               SeprationDot(),
               GestureDetector(
                 onTap: () {
-
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BlogPage(),
-                        ));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BlogPage(),
+                      ));
                 },
                 child: NavText("Blog"),
               ),
-              category != ""  || articleTitle != "" ? SeprationDot() : Container(),
+              category != "" || articleTitle != ""
+                  ? SeprationDot()
+                  : Container(),
               Flexible(
                 child: Text(
                   category != "" ? category : articleTitle,

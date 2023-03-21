@@ -207,7 +207,7 @@ class _HomePageState extends State<HomePage>
                               Text(
                                 'Hébergement',
                                 style: TextStyle(
-                                  fontSize: 12.5,
+                                  fontSize: 12,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -228,7 +228,7 @@ class _HomePageState extends State<HomePage>
                               Text(
                                 'Événement',
                                 style: TextStyle(
-                                  fontSize: 12.5,
+                                  fontSize: 12,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -249,7 +249,7 @@ class _HomePageState extends State<HomePage>
                               Text(
                                 'Activité',
                                 style: TextStyle(
-                                  fontSize: 12.5,
+                                  fontSize: 12,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                 ),
