@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../models/host.dart';
 import '../services/hostCalls.dart';
@@ -27,13 +26,6 @@ class _HostPageState extends State<HostPage>
   bool showFAB = false;
   int listLengthFromLastCall = 0;
   int totalNb = 0;
-
-  SfRangeSliderThemeData _sliderTheme = SfRangeSliderThemeData(
-    thumbRadius: 12.0,
-    activeTrackColor: Colors.green,
-    inactiveTrackColor: Colors.grey[300],
-    overlayColor: Colors.green.withOpacity(0.2),
-  );
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
 
