@@ -3,59 +3,40 @@ import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 
-import '../models/event.dart';
-import '../services/eventCalls.dart';
-import '../utils/utils.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/listItems/eventListItem.dart';
-import '../widgets/tabs/EventFilterTab.dart';
+import '../../models/product.dart';
+import '../../services/productCalls.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/listItems/productListItem.dart';
 
-class EventPage extends StatefulWidget {
-  const EventPage({Key? key}) : super(key: key);
+class ProductPage extends StatefulWidget {
+  const ProductPage({Key? key}) : super(key: key);
 
   @override
-  State<EventPage> createState() => _EventPageState();
+  State<ProductPage> createState() => _ProductPageState();
 }
 
-class _EventPageState extends State<EventPage> {
+class _ProductPageState extends State<ProductPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
-  List<Event> listEvents = [];
+  List<Product> listProducts = [];
   bool loading = false;
   bool showFAB = false;
   int listLengthFromLastCall = 0;
-  int total = 0;
-
-  dynamic searchInputs = {
-    'start': '',
-    'end': '',
-    'address': '',
-    'location_id': ''
-  };
 
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
   }
 
-  void updateSearchFields(dynamic searchInputs) {
-    setState(() {
-      listEvents.clear();
-      this.searchInputs = searchInputs;
-    });
-    callEvents();
-  }
-
-  callEvents() {
+  callProducts() {
     setState(() {
       loading = true;
     });
-    EventCalls.getEventsList(searchInputs, listEvents.length)
-        .then((result) async {
+    ProductCalls.getProductList(listProducts.length).then((list) async {
       setState(() {
-        listLengthFromLastCall = result["list"].length;
-        listEvents.addAll(result["list"]);
-        total = result["total"];
+        listLengthFromLastCall = list.length;
+        listProducts.addAll(list);
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -68,7 +49,7 @@ class _EventPageState extends State<EventPage> {
   void initState() {
     super.initState();
 
-    checkInternetConnectivity(context, callEvents);
+    checkInternetConnectivity(context, callProducts);
 
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=
@@ -76,8 +57,9 @@ class _EventPageState extends State<EventPage> {
           !scrollController.position.outOfRange &&
           !loading &&
           !(listLengthFromLastCall < 20)) {
-        callEvents();
+        callProducts();
       }
+
       scrollController.addListener(() {
         if (scrollController.position.pixels > 1000) {
           setState(() {
@@ -116,15 +98,15 @@ class _EventPageState extends State<EventPage> {
                           height: 230,
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,
-                            child: Image.asset("assets/eventcover.jpg",
+                            child: Image.asset("assets/productcover.jpg",
                                 fit: BoxFit.cover),
                           ),
                         ),
-                        Positioned.fill(
+                        const Positioned.fill(
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              'Calendrier \n d\'événements',
+                              'Jeux et produits',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -136,13 +118,6 @@ class _EventPageState extends State<EventPage> {
                         ),
                       ],
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 180),
-                      child: EventFilterTab(
-                        onChangeField: (dynamic searchInputs) =>
-                            updateSearchFields(searchInputs),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -153,7 +128,7 @@ class _EventPageState extends State<EventPage> {
                     child: Container(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        "${total} Événements trouvés",
+                        "${listProducts.length} produits trouvés",
                         style: TextStyle(
                           fontSize: 24.0,
                           color: titleBlue,
@@ -166,8 +141,8 @@ class _EventPageState extends State<EventPage> {
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) => Container(
                         margin: EdgeInsets.only(bottom: 15, right: 15),
-                        child: EventListItem(listEvents[index])),
-                    itemCount: listEvents.length,
+                        child: ProductListItem(listProducts[index])),
+                    itemCount: listProducts.length,
                   ),
                 ],
               ),

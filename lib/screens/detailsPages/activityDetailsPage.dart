@@ -5,14 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/activity.dart';
 
-import '../services/activityCalls.dart';
-import '../utils/colors.dart';
-import '../utils/utils.dart';
-import '../widgets/common/ImageCommon.dart';
-import '../widgets/common/MapCommon.dart';
-import '../widgets/common/detailsWidgets.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/scaffold.dart';
+import '../../services/activityCalls.dart';
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/ImageCommon.dart';
+import '../../widgets/common/MapCommon.dart';
+import '../../widgets/common/detailsWidgets.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/scaffold.dart';
 
 class ActivityDetailsPage extends StatefulWidget {
   int id;
@@ -233,21 +233,24 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                     ],
                                   ),
                                 ),
-                                if(activityDetails.convenience!.length !=0) ...[
-                                SectionTitle(
-                                  title: 'Commodités'.toUpperCase(),
-                                ),
-                                Container(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 15.0),
-                                  child: Column(
-                                    children: [
-                                      for (var item
-                                          in activityDetails.convenience!)
-                                        StyleItem(title: item),
-                                    ],
+                                if (activityDetails.convenience!.length !=
+                                    0) ...[
+                                  SectionTitle(
+                                    title: 'Commodités'.toUpperCase(),
                                   ),
-                                ),]else SizedBox(),
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15.0),
+                                    child: Column(
+                                      children: [
+                                        for (var item
+                                            in activityDetails.convenience!)
+                                          StyleItem(title: item),
+                                      ],
+                                    ),
+                                  ),
+                                ] else
+                                  SizedBox(),
                                 SectionTitle(
                                     title: 'EMPLACEMENT DE L’ACTIVITÉ'
                                         .toUpperCase()),

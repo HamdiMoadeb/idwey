@@ -4,15 +4,15 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 
-import '../models/experience.dart';
-import '../services/experienceCalls.dart';
-import '../utils/colors.dart';
-import '../utils/utils.dart';
-import '../widgets/common/ImageCommon.dart';
-import '../widgets/common/MapCommon.dart';
-import '../widgets/common/detailsWidgets.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/scaffold.dart';
+import '../../models/experience.dart';
+import '../../services/experienceCalls.dart';
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/ImageCommon.dart';
+import '../../widgets/common/MapCommon.dart';
+import '../../widgets/common/detailsWidgets.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/scaffold.dart';
 
 class ExperienceDetailsPage extends StatefulWidget {
   int? id;

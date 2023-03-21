@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 
-import '../models/activity.dart';
-import '../services/activityCalls.dart';
-import '../utils/utils.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/listItems/activityListItem.dart';
-import '../widgets/tabs/ActivityFilterTab.dart';
+import '../../models/activity.dart';
+import '../../services/activityCalls.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/listItems/activityListItem.dart';
+import '../../widgets/tabs/ActivityFilterTab.dart';
 
 class ActivityPage extends StatefulWidget {
   const ActivityPage({Key? key}) : super(key: key);

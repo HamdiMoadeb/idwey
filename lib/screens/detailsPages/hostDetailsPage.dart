@@ -5,16 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../models/host.dart';
-import '../services/hostCalls.dart';
-import '../utils/colors.dart';
-import '../utils/utils.dart';
-import '../widgets/common/CalanderCommon.dart';
-import '../widgets/common/ImageCommon.dart';
-import '../widgets/common/MapCommon.dart';
-import '../widgets/common/detailsWidgets.dart';
-import '../widgets/common/footer.dart';
-import '../widgets/common/scaffold.dart';
+import '../../models/host.dart';
+import '../../services/hostCalls.dart';
+import '../../utils/colors.dart';
+import '../../utils/utils.dart';
+import '../../widgets/common/CalanderCommon.dart';
+import '../../widgets/common/ImageCommon.dart';
+import '../../widgets/common/MapCommon.dart';
+import '../../widgets/common/detailsWidgets.dart';
+import '../../widgets/common/footer.dart';
+import '../../widgets/common/scaffold.dart';
 
 class HostDetailsPage extends StatefulWidget {
   int? id;

@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:idwey/screens/articleDetailsPage.dart';
-import 'package:idwey/screens/blogPage.dart';
-import 'package:intl/intl.dart';
+import 'package:idwey/screens/detailsPages/articleDetailsPage.dart';
 
 import '../../models/blog.dart';
 import '../../utils/colors.dart';

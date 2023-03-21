@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/models/experience.dart';
 
-import '../../screens/experienceDetailsPage.dart';
+import '../../screens/detailsPages/experienceDetailsPage.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 
@@ -19,11 +19,12 @@ class _ExperienceListItemState extends State<ExperienceListItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ExperienceDetailsPage(id: widget.experience.id!),
+            builder: (context) =>
+                ExperienceDetailsPage(id: widget.experience.id!),
           ),
         );
       },
