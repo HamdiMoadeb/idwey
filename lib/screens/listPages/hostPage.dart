@@ -11,6 +11,8 @@ import '../../widgets/common/footer.dart';
 import '../../widgets/listItems/hostListItem.dart';
 import '../../widgets/tabs/HostFilterTab.dart';
 
+
+
 class HostPage extends StatefulWidget {
   const HostPage({Key? key}) : super(key: key);
 
@@ -23,13 +25,24 @@ class _HostPageState extends State<HostPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   List<Host> listHosts = [];
+  List<Convenience> listConvience = [];
+  List<Convenience> listHotelService = [];
+  List<Convenience> listPropertyType = [];
+  List<int> terms = [];
   bool loading = false;
   bool showFAB = false;
   int listLengthFromLastCall = 0;
   int totalNb = 0;
-  double _lowerValue = 50;
-  double _upperValue = 180;
+  double max=0;
+  double min=0;
+  double _lowerValue = 0;
+  double _upperValue = 0;
+
+  bool _showAllConv = false;
+  bool _showAllProp = false;
+  bool _showAllHotel = false;
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
+  dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
@@ -39,15 +52,28 @@ class _HostPageState extends State<HostPage>
     callHosts();
   }
 
+  isExist(int x){
+    print(terms.contains(x));
+    if(!terms.contains(x))
+      terms.add(x);
+  }
+
   callHosts() {
     setState(() {
       loading = true;
     });
-    HostCalls.getHostsList(searchInputs, listHosts.length).then((result) async {
+    HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs).then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
         listHosts.addAll(result["list"]);
         totalNb = result["total"];
+        max = double.parse(result["priceRange"][1]);
+        min = double.parse(result["priceRange"][0]);
+        _lowerValue= min+1;
+        _upperValue =max-1;
+        listConvience = result["listConvenience"];
+        listHotelService =result["listHotelService"];
+        listPropertyType =result["listPropertyType"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -95,6 +121,12 @@ class _HostPageState extends State<HostPage>
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
+      List<Convenience> displayedListConvience =
+      _showAllConv ? listConvience : listConvience.sublist(0, 3);
+      List<Convenience> displayedListHotelService =
+      _showAllHotel ? listHotelService : listHotelService.sublist(0, 3);
+      List<Convenience> displayedListPropertyType =
+      _showAllProp ? listPropertyType : listPropertyType.sublist(0, 3);
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
@@ -211,8 +243,8 @@ class _HostPageState extends State<HostPage>
                                     children: [
                                       FlutterSlider(
                                         values: [_lowerValue, _upperValue],
-                                        max: 200,
-                                        min: 0,
+                                        max: max,
+                                        min: min,
                                         trackBar: FlutterSliderTrackBar(
                                             inactiveTrackBarHeight: 12,
                                             activeTrackBarHeight: 12,
@@ -291,31 +323,31 @@ class _HostPageState extends State<HostPage>
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 0,
                                                 label: Text(
-                                                  '0',
+                                                    removeDecimalZeroFormat('$min'),
                                                   style: TextStyle(
                                                       fontSize: 9, color: grey),
                                                 )),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 25,
-                                                label: Text('50',
+                                                label: Text(removeDecimalZeroFormat('${(max-min)*0.25}'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 50,
-                                                label: Text('100',
+                                                label: Text(removeDecimalZeroFormat('${(max-min)*0.5}'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 75,
-                                                label: Text('50',
+                                                label: Text(removeDecimalZeroFormat('${(max-min)*0.75}'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 100,
-                                                label: Text('200',
+                                                label: Text(removeDecimalZeroFormat('$max'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
@@ -330,7 +362,9 @@ class _HostPageState extends State<HostPage>
                                         },
                                       ),
                                       TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+
+                                          },
                                           child: Text(
                                             'Appliquer',
                                             style: TextStyle(
@@ -362,7 +396,34 @@ class _HostPageState extends State<HostPage>
                                 style: TextStyle(
                                     fontSize: 14, fontWeight: FontWeight.w500),
                               ),
-                              children: [Text('data')])),
+                              children: [
+                                 Column(
+                                  children: [
+                                    ...displayedListPropertyType.map(
+                                          (item) => CheckboxListTile(
+                                        title: Text(item.name!),
+                                        value: item.checked,
+                                        onChanged: (bool? value) {
+                                          setState(() {
+                                            item.checked = value ?? false;
+                                            isExist(item.id!);
+                                          });
+                                          print(terms.length);
+                                        },
+                                      ),
+                                    ),
+                                    if (!_showAllProp)
+                                      TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            _showAllProp = !_showAllProp;
+                                          });
+                                        },
+                                        child: Text(!_showAllProp ?'See more':'See less'),
+                                      ),
+                                  ]
+
+                              )])),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
@@ -370,20 +431,46 @@ class _HostPageState extends State<HostPage>
                           thickness: 0.5),
                       Theme(
                           data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              expandedAlignment: Alignment.topLeft,
-                              collapsedTextColor: titleBlack,
-                              textColor: titleBlack,
-                              childrenPadding: EdgeInsets.zero,
-                              title: Text(
-                                'Commodités',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                              children: [Text('data')])),
+                              .copyWith(dividerColor: Colors.transparent,),
+                          child:  ExpansionTile(
+
+                                expandedCrossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                expandedAlignment: Alignment.topLeft,
+                                collapsedTextColor: titleBlack,
+                                textColor: titleBlack,
+                                childrenPadding: EdgeInsets.zero,
+                                title: Text(
+                                  'Commodités',
+                                  style: TextStyle(
+                                      fontSize: 14, fontWeight: FontWeight.w500),
+                                ),
+                                children: [Column(
+                                    children: [
+                                      ...displayedListConvience.map(
+                                            (item) => CheckboxListTile(
+                                          title: Text(item.name!),
+                                          value: item.checked,
+                                          onChanged: (bool? value) {
+                                            setState(() {
+                                              item.checked = value ?? false;
+                                            });
+                                          },
+                                        ),
+                                      ),
+
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              _showAllConv = !_showAllConv;
+                                            });
+                                          },
+                                          child: Text(!_showAllConv ?'See more':'See less'),)
+
+                                    ]
+
+                                )]),
+                          ),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
@@ -404,7 +491,31 @@ class _HostPageState extends State<HostPage>
                                 style: TextStyle(
                                     fontSize: 14, fontWeight: FontWeight.w500),
                               ),
-                              children: [Text('data')])),
+                              children: [Column(
+                                  children: [
+                                    ...displayedListHotelService.map(
+                                          (item) => CheckboxListTile(
+                                        title: Text(item.name!),
+                                        value: item.checked,
+                                        onChanged: (bool? value) {
+                                          setState(() {
+                                            item.checked = value ?? false;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    if (!_showAllHotel)
+                                      TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            _showAllHotel = !_showAllHotel;
+                                          });
+                                        },
+                                        child: Text(!_showAllHotel ?'See more':'See less'),
+                                      ),
+                                  ]
+
+                              )])),
                     ],
                   ),
                 ),

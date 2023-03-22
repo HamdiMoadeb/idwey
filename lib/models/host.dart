@@ -129,10 +129,18 @@ class HostDetail {
   }
 }
 
-class Event {
-  String? title;
+class Convenience {
+  int? id;
+  String? name;
+  bool checked;
 
-  Event(
-    this.title,
-  );
+  Convenience({this.id, this.name, this.checked = false});
+
+  factory Convenience.fromJson(Map<String?, dynamic> data) {
+
+
+    return Convenience(id: data['id'],name: data['name']);
+  }
 }
+
+
