@@ -114,28 +114,30 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                       fontWeight: FontWeight.w500,
                                       color: titleBlack),
                                 )),
-                            Container(
-                              padding: EdgeInsets.only(left: 20.0),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.location_pin,
-                                    size: 14,
-                                    color: materialPrimary.shade100,
-                                  ),
-                                  SizedBox(
-                                    width: 3.0,
-                                  ),
-                                  Text(
-                                    eventDetails.address!,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: materialPrimary.shade100),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            eventDetails.address!.isNotEmpty
+                                ? Container(
+                                    padding: EdgeInsets.only(left: 20.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.location_pin,
+                                          size: 14,
+                                          color: materialPrimary.shade100,
+                                        ),
+                                        SizedBox(
+                                          width: 3.0,
+                                        ),
+                                        Text(
+                                          eventDetails.address!,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: materialPrimary.shade100),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Container(),
                             Container(
                               padding: EdgeInsets.only(left: 20.0),
                               child: Row(
@@ -149,7 +151,9 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                     width: 5.0,
                                   ),
                                   Text(
-                                    DateFormat('dd-MM-yyyy').format(DateTime.parse(eventDetails.start_date!)),
+                                    DateFormat('dd-MM-yyyy').format(
+                                        DateTime.parse(
+                                            eventDetails.start_date!)),
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500,
@@ -176,7 +180,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                   eventDetails.duration != ''
                                       ? DetailIcons(
                                           icon: IcoFontIcons.wallClock,
-                                          type: 'Durées',
+                                          type: 'Durée',
                                           description:
                                               "${eventDetails.duration} heures",
                                         )
@@ -206,16 +210,18 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                         )
                                       : SizedBox(),
                                   SizedBox(
-                                    height: eventDetails.impactsocial != ''
-                                        ? 12
-                                        : 0,
+                                    height:
+                                        eventDetails.impactsocial!.isNotEmpty &&
+                                                eventDetails.impactsocial == "1"
+                                            ? 12
+                                            : 0,
                                   ),
-                                  eventDetails.impactsocial != ""
+                                  eventDetails.impactsocial!.isNotEmpty &&
+                                          eventDetails.impactsocial == "1"
                                       ? DetailIcons(
                                           icon: FontAwesomeIcons.slideshare,
                                           type: 'Impact social',
-                                          description:
-                                              eventDetails.impactsocial!,
+                                          description: 'Oui',
                                         )
                                       : const SizedBox(),
                                   SizedBox(
