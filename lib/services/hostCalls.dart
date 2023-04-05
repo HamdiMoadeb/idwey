@@ -24,11 +24,12 @@ class HostCalls {
   }
 
   //api for our hosts page
-  static Future<Map> getHostsList(dynamic searchInputs, int skip, dynamic filterInputs) async {
+  static Future<Map> getHostsList(
+      dynamic searchInputs, int skip, dynamic filterInputs) async {
     List<Host> listHosts = [];
-    List<Convenience> listConvenience = [];
-    List<Convenience> listHotelService = [];
-    List<Convenience> listPropertyType = [];
+    List<Terms> listConvenience = [];
+    List<Terms> listHotelService = [];
+    List<Terms> listPropertyType = [];
     List<String> priceRange = [];
     String start = searchInputs['start'];
     String end = searchInputs['end'];
@@ -36,12 +37,26 @@ class HostCalls {
     String adults = searchInputs['adults'];
     String max = filterInputs['max'];
     String min = filterInputs['min'];
+    List<dynamic> termsList = filterInputs['terms'];
+    String terms = "";
+    var url;
+    print(termsList.length);
+    if (termsList.length > 0) {
+      terms = termsList[0].toString();
+      for (var i = 0; i < termsList.length; i++) {
+        terms += '&terms%5B%5D=' + termsList[i].toString();
+      }
+    }
 
-    var url = Uri.parse(
-        '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
+    if (max != '' && min != '')
+      url = Uri.parse(
+          '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max$terms');
+    else
+      url = Uri.parse(
+          '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
+
     print(url);
     var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
 
     Map result = {
       'list': [],
@@ -55,13 +70,13 @@ class HostCalls {
         listHosts.add(Host.fromJson(i));
       }
       for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
-        listConvenience.add(Convenience.fromJson(i));
+        listConvenience.add(Terms.fromJson(i));
       }
       for (Map<String?, dynamic> i in data["attributes"][0]["terms"]) {
-        listPropertyType.add(Convenience.fromJson(i));
+        listPropertyType.add(Terms.fromJson(i));
       }
       for (Map<String?, dynamic> i in data["attributes"][2]["terms"]) {
-        listHotelService.add(Convenience.fromJson(i));
+        listHotelService.add(Terms.fromJson(i));
       }
       priceRange = new List<String>.from(data["hotel_min_max_price"]);
       result["total"] = data["total"];
@@ -69,7 +84,7 @@ class HostCalls {
       result["listConvenience"] = listConvenience;
       result["listHotelService"] = listHotelService;
       result["listPropertyType"] = listPropertyType;
-      result["priceRange"]= priceRange;
+      result["priceRange"] = priceRange;
     }
     return result;
   }

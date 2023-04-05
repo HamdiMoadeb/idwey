@@ -11,8 +11,6 @@ import '../../widgets/common/footer.dart';
 import '../../widgets/listItems/hostListItem.dart';
 import '../../widgets/tabs/HostFilterTab.dart';
 
-
-
 class HostPage extends StatefulWidget {
   const HostPage({Key? key}) : super(key: key);
 
@@ -25,16 +23,16 @@ class _HostPageState extends State<HostPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   List<Host> listHosts = [];
-  List<Convenience> listConvience = [];
-  List<Convenience> listHotelService = [];
-  List<Convenience> listPropertyType = [];
+  List<Terms> listConvience = [];
+  List<Terms> listHotelService = [];
+  List<Terms> listPropertyType = [];
   List<int> terms = [];
   bool loading = false;
   bool showFAB = false;
   int listLengthFromLastCall = 0;
   int totalNb = 0;
-  double max=0;
-  double min=0;
+  double max = 0;
+  double min = 0;
   double _lowerValue = 0;
   double _upperValue = 0;
 
@@ -52,28 +50,53 @@ class _HostPageState extends State<HostPage>
     callHosts();
   }
 
-  isExist(int x){
+  isExist(int x, bool checked) {
     print(terms.contains(x));
-    if(!terms.contains(x))
-      terms.add(x);
+    if (checked) {
+      if (!terms.contains(x)) terms.add(x);
+    } else {
+      if (terms.contains(x)) terms.remove(x);
+    }
+  }
+
+  filtredHosts() {
+    setState(() {
+      loading = true;
+    });
+    HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
+        .then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listHosts.addAll(result["list"]);
+        totalNb = result["total"];
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
+    });
   }
 
   callHosts() {
     setState(() {
       loading = true;
     });
-    HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs).then((result) async {
+    HostCalls.getHostsList(
+            searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
+        .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
         listHosts.addAll(result["list"]);
         totalNb = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
-        _lowerValue= min+1;
-        _upperValue =max-1;
+        filterInputs['min'] = min.toInt().toString();
+        filterInputs['max'] = max.toInt().toString();
+        _lowerValue = min;
+        _upperValue = max;
         listConvience = result["listConvenience"];
-        listHotelService =result["listHotelService"];
-        listPropertyType =result["listPropertyType"];
+        listHotelService = result["listHotelService"];
+        listPropertyType = result["listPropertyType"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -89,12 +112,23 @@ class _HostPageState extends State<HostPage>
     checkInternetConnectivity(context, callHosts);
 
     scrollController.addListener(() {
-      if ((scrollController.position.pixels + 2000) >=
-              scrollController.position.maxScrollExtent &&
-          !scrollController.position.outOfRange &&
-          !loading &&
-          !(listLengthFromLastCall < 20)) {
-        callHosts();
+      print(min);
+      if (terms.length == 0 && min == 0 && max == 0) {
+        if ((scrollController.position.pixels + 2000) >=
+                scrollController.position.maxScrollExtent &&
+            !scrollController.position.outOfRange &&
+            !loading &&
+            !(listLengthFromLastCall < 20)) {
+          callHosts();
+        }
+      } else {
+        if ((scrollController.position.pixels + 2000) >=
+                scrollController.position.maxScrollExtent &&
+            !scrollController.position.outOfRange &&
+            !loading &&
+            !(listLengthFromLastCall < 20)) {
+          filtredHosts();
+        }
       }
 
       scrollController.addListener(() {
@@ -121,12 +155,21 @@ class _HostPageState extends State<HostPage>
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
-      List<Convenience> displayedListConvience =
-      _showAllConv ? listConvience : listConvience.sublist(0, 3);
-      List<Convenience> displayedListHotelService =
-      _showAllHotel ? listHotelService : listHotelService.sublist(0, 3);
-      List<Convenience> displayedListPropertyType =
-      _showAllProp ? listPropertyType : listPropertyType.sublist(0, 3);
+    List<Terms> displayedListConvience = [];
+    List<Terms> displayedListHotelService = [];
+    List<Terms> displayedListPropertyType = [];
+
+    if (listConvience.isNotEmpty &&
+        listHotelService.isNotEmpty &&
+        listPropertyType.isNotEmpty) {
+      displayedListConvience =
+          _showAllConv ? listConvience : listConvience.sublist(0, 3);
+      displayedListHotelService =
+          _showAllHotel ? listHotelService : listHotelService.sublist(0, 3);
+      displayedListPropertyType =
+          _showAllProp ? listPropertyType : listPropertyType.sublist(0, 3);
+    }
+
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
@@ -239,7 +282,8 @@ class _HostPageState extends State<HostPage>
                                   margin: EdgeInsets.only(
                                       top: 10, left: 20, right: 20, bottom: 10),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       FlutterSlider(
                                         values: [_lowerValue, _upperValue],
@@ -323,31 +367,40 @@ class _HostPageState extends State<HostPage>
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 0,
                                                 label: Text(
-                                                    removeDecimalZeroFormat('$min'),
+                                                  removeDecimalZeroFormat(
+                                                      '$min'),
                                                   style: TextStyle(
                                                       fontSize: 9, color: grey),
                                                 )),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 25,
-                                                label: Text(removeDecimalZeroFormat('${(max-min)*0.25}'),
+                                                label: Text(
+                                                    removeDecimalZeroFormat(
+                                                        '${(max - min) * 0.25}'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 50,
-                                                label: Text(removeDecimalZeroFormat('${(max-min)*0.5}'),
+                                                label: Text(
+                                                    removeDecimalZeroFormat(
+                                                        '${(max - min) * 0.5}'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 75,
-                                                label: Text(removeDecimalZeroFormat('${(max-min)*0.75}'),
+                                                label: Text(
+                                                    removeDecimalZeroFormat(
+                                                        '${(max - min) * 0.75}'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
                                             FlutterSliderHatchMarkLabel(
                                                 percent: 100,
-                                                label: Text(removeDecimalZeroFormat('$max'),
+                                                label: Text(
+                                                    removeDecimalZeroFormat(
+                                                        '$max'),
                                                     style: TextStyle(
                                                         fontSize: 9,
                                                         color: grey))),
@@ -363,7 +416,17 @@ class _HostPageState extends State<HostPage>
                                       ),
                                       TextButton(
                                           onPressed: () {
-
+                                            setState(() {
+                                              filterInputs["min"] = _lowerValue
+                                                  .toInt()
+                                                  .toString();
+                                              filterInputs["max"] = _upperValue
+                                                  .toInt()
+                                                  .toString();
+                                              listHosts = [];
+                                              listLengthFromLastCall = 0;
+                                            });
+                                            filtredHosts();
                                           },
                                           child: Text(
                                             'Appliquer',
@@ -397,80 +460,89 @@ class _HostPageState extends State<HostPage>
                                     fontSize: 14, fontWeight: FontWeight.w500),
                               ),
                               children: [
-                                 Column(
-                                  children: [
-                                    ...displayedListPropertyType.map(
-                                          (item) => CheckboxListTile(
-                                        title: Text(item.name!),
-                                        value: item.checked,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            item.checked = value ?? false;
-                                            isExist(item.id!);
-                                          });
-                                          print(terms.length);
-                                        },
-                                      ),
+                                Column(children: [
+                                  ...displayedListPropertyType.map(
+                                    (item) => CheckboxListTile(
+                                      title: Text(item.name!),
+                                      value: item.checked,
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          item.checked = value ?? false;
+                                          isExist(item.id!, value!);
+                                          filterInputs['terms'] = terms;
+                                          listHosts = [];
+                                          listLengthFromLastCall = 0;
+                                        });
+                                        filtredHosts();
+                                        print(terms.length);
+                                      },
                                     ),
-                                    if (!_showAllProp)
-                                      TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            _showAllProp = !_showAllProp;
-                                          });
-                                        },
-                                        child: Text(!_showAllProp ?'See more':'See less'),
-                                      ),
-                                  ]
-
-                              )])),
+                                  ),
+                                  if (!_showAllProp)
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          _showAllProp = !_showAllProp;
+                                        });
+                                      },
+                                      child: Text(!_showAllProp
+                                          ? 'See more'
+                                          : 'See less'),
+                                    ),
+                                ])
+                              ])),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
                       Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent,),
-                          child:  ExpansionTile(
-
-                                expandedCrossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                expandedAlignment: Alignment.topLeft,
-                                collapsedTextColor: titleBlack,
-                                textColor: titleBlack,
-                                childrenPadding: EdgeInsets.zero,
-                                title: Text(
-                                  'Commodités',
-                                  style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.w500),
+                        data: Theme.of(context).copyWith(
+                          dividerColor: Colors.transparent,
+                        ),
+                        child: ExpansionTile(
+                            expandedCrossAxisAlignment:
+                                CrossAxisAlignment.start,
+                            expandedAlignment: Alignment.topLeft,
+                            collapsedTextColor: titleBlack,
+                            textColor: titleBlack,
+                            childrenPadding: EdgeInsets.zero,
+                            title: Text(
+                              'Commodités',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w500),
+                            ),
+                            children: [
+                              Column(children: [
+                                ...displayedListConvience.map(
+                                  (item) => CheckboxListTile(
+                                    title: Text(item.name!),
+                                    value: item.checked,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        item.checked = value ?? false;
+                                        isExist(item.id!, value!);
+                                        filterInputs['terms'] = terms;
+                                        listHosts = [];
+                                        listLengthFromLastCall = 0;
+                                      });
+                                      filtredHosts();
+                                      print(terms.length);
+                                    },
+                                  ),
                                 ),
-                                children: [Column(
-                                    children: [
-                                      ...displayedListConvience.map(
-                                            (item) => CheckboxListTile(
-                                          title: Text(item.name!),
-                                          value: item.checked,
-                                          onChanged: (bool? value) {
-                                            setState(() {
-                                              item.checked = value ?? false;
-                                            });
-                                          },
-                                        ),
-                                      ),
-
-                                        TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              _showAllConv = !_showAllConv;
-                                            });
-                                          },
-                                          child: Text(!_showAllConv ?'See more':'See less'),)
-
-                                    ]
-
-                                )]),
-                          ),
+                                TextButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _showAllConv = !_showAllConv;
+                                    });
+                                  },
+                                  child: Text(
+                                      !_showAllConv ? 'See more' : 'See less'),
+                                )
+                              ])
+                            ]),
+                      ),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
@@ -491,31 +563,38 @@ class _HostPageState extends State<HostPage>
                                 style: TextStyle(
                                     fontSize: 14, fontWeight: FontWeight.w500),
                               ),
-                              children: [Column(
-                                  children: [
-                                    ...displayedListHotelService.map(
-                                          (item) => CheckboxListTile(
-                                        title: Text(item.name!),
-                                        value: item.checked,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            item.checked = value ?? false;
-                                          });
-                                        },
-                                      ),
+                              children: [
+                                Column(children: [
+                                  ...displayedListHotelService.map(
+                                    (item) => CheckboxListTile(
+                                      title: Text(item.name!),
+                                      value: item.checked,
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          item.checked = value ?? false;
+                                          isExist(item.id!, value!);
+                                          filterInputs['terms'] = terms;
+                                          listHosts = [];
+                                          listLengthFromLastCall = 0;
+                                        });
+                                        filtredHosts();
+                                        print(terms.length);
+                                      },
                                     ),
-                                    if (!_showAllHotel)
-                                      TextButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            _showAllHotel = !_showAllHotel;
-                                          });
-                                        },
-                                        child: Text(!_showAllHotel ?'See more':'See less'),
-                                      ),
-                                  ]
-
-                              )])),
+                                  ),
+                                  if (!_showAllHotel)
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          _showAllHotel = !_showAllHotel;
+                                        });
+                                      },
+                                      child: Text(!_showAllHotel
+                                          ? 'See more'
+                                          : 'See less'),
+                                    ),
+                                ])
+                              ])),
                     ],
                   ),
                 ),

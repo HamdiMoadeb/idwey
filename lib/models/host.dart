@@ -129,18 +129,14 @@ class HostDetail {
   }
 }
 
-class Convenience {
+class Terms {
   int? id;
   String? name;
   bool checked;
 
-  Convenience({this.id, this.name, this.checked = false});
+  Terms({this.id, this.name, this.checked = false});
 
-  factory Convenience.fromJson(Map<String?, dynamic> data) {
-
-
-    return Convenience(id: data['id'],name: data['name']);
+  factory Terms.fromJson(Map<String?, dynamic> data) {
+    return Terms(id: data['id'], name: data['name']);
   }
 }
-
-
