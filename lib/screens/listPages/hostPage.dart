@@ -478,17 +478,15 @@ class _HostPageState extends State<HostPage>
                                       },
                                     ),
                                   ),
-                                  if (!_showAllProp)
-                                    TextButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _showAllProp = !_showAllProp;
-                                        });
-                                      },
-                                      child: Text(!_showAllProp
-                                          ? 'See more'
-                                          : 'See less'),
-                                    ),
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _showAllProp = !_showAllProp;
+                                      });
+                                    },
+                                    child:
+                                        Text(!_showAllProp ? 'Plus' : 'Moins'),
+                                  ),
                                 ])
                               ])),
                       const Divider(
@@ -537,8 +535,7 @@ class _HostPageState extends State<HostPage>
                                       _showAllConv = !_showAllConv;
                                     });
                                   },
-                                  child: Text(
-                                      !_showAllConv ? 'See more' : 'See less'),
+                                  child: Text(!_showAllConv ? 'plus' : 'Moins'),
                                 )
                               ])
                             ]),
@@ -589,9 +586,8 @@ class _HostPageState extends State<HostPage>
                                           _showAllHotel = !_showAllHotel;
                                         });
                                       },
-                                      child: Text(!_showAllHotel
-                                          ? 'See more'
-                                          : 'See less'),
+                                      child: Text(
+                                          !_showAllHotel ? 'Plus' : 'Moins'),
                                     ),
                                 ])
                               ])),
