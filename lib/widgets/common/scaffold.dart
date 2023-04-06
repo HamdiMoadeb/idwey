@@ -67,7 +67,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
-              margin: EdgeInsets.only(top: 30),
+              margin: EdgeInsets.only(top: 30, bottom: 20),
               color: primary,
               height: 45,
               padding: EdgeInsets.only(right: 10),
@@ -256,168 +256,168 @@ class _CommonScaffoldState extends State<CommonScaffold> {
             //   ),
             // ),
             // const Divider(color: Colors.grey, height: 2, thickness: 0.5),
-            Theme(
-              data:
-                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
-              child: ExpansionTile(
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                expandedAlignment: Alignment.topLeft,
-                collapsedTextColor: primary,
-                textColor: primary,
-                childrenPadding: EdgeInsets.zero,
-                title: Text(
-                  'Nos Services',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HostPage(),
+                        ));
+                  },
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Hébergements',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
-                children: [
-                  const Divider(
-                      color: Colors.grey,
-                      height: 1,
-                      indent: 20,
-                      endIndent: 20,
-                      thickness: 0.5),
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HostPage(),
-                              ));
-                        },
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        child: Text(
-                          'Hébergements',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                      color: Colors.grey,
-                      height: 2,
-                      indent: 20,
-                      endIndent: 20,
-                      thickness: 0.5),
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EventPage(),
-                              ));
-                        },
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        child: Text(
-                          'Événements',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                      color: Colors.grey,
-                      height: 2,
-                      indent: 20,
-                      endIndent: 20,
-                      thickness: 0.5),
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ExperiencePage(),
-                              ));
-                        },
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        child: Text(
-                          'Circuits et Expériences',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                      color: Colors.grey,
-                      height: 1,
-                      indent: 20,
-                      endIndent: 20,
-                      thickness: 0.5),
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ActivityPage(),
-                              ));
-                        },
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        child: Text(
-                          'Atelier et Activités',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                      color: Colors.grey,
-                      height: 1,
-                      indent: 20,
-                      endIndent: 20,
-                      thickness: 0.5),
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProductPage(),
-                              ));
-                        },
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        child: Text(
-                          'Produits',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              ],
             ),
+            const Divider(
+                color: Colors.grey,
+                height: 2,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EventPage(),
+                        ));
+                  },
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Événements',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+                color: Colors.grey,
+                height: 2,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ExperiencePage(),
+                        ));
+                  },
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Circuits et Expériences',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+                color: Colors.grey,
+                height: 1,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ActivityPage(),
+                        ));
+                  },
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Atelier et Activités',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+                color: Colors.grey,
+                height: 1,
+                indent: 20,
+                endIndent: 20,
+                thickness: 0.5),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductPage(),
+                        ));
+                  },
+                  style: ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                  child: Text(
+                    'Produits',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            // Theme(
+            //   data:
+            //       Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            //   child: ExpansionTile(
+            //     expandedCrossAxisAlignment: CrossAxisAlignment.start,
+            //     expandedAlignment: Alignment.topLeft,
+            //     collapsedTextColor: primary,
+            //     textColor: primary,
+            //     childrenPadding: EdgeInsets.zero,
+            //     title: Text(
+            //       'Nos Services',
+            //       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            //     ),
+            //     children: [
+            //       const Divider(
+            //           color: Colors.grey,
+            //           height: 1,
+            //           indent: 20,
+            //           endIndent: 20,
+            //           thickness: 0.5),
+            //     ],
+            //   ),
+            // ),
             const Divider(
                 color: Colors.grey,
                 height: 1,
