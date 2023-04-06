@@ -18,7 +18,7 @@ class _FooterState extends State<Footer> {
       margin: EdgeInsets.only(top: 30),
       padding: EdgeInsets.all(15),
       width: MediaQuery.of(context).size.width,
-      height: 800,
+      height: 500,
       color: footerBg,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +139,8 @@ class _FooterState extends State<Footer> {
               ],
             ),
           ),
-          const SizedBox(height: 35),
+          //commented to deploy on store
+          /*  const SizedBox(height: 35),
           Text(
             'EXPLORER',
             style: TextStyle(
@@ -176,7 +177,7 @@ class _FooterState extends State<Footer> {
             'FAQs',
             style: TextStyle(
                 color: primary, fontWeight: FontWeight.w400, fontSize: 14),
-          ),
+          ),*/
           const SizedBox(height: 35),
           Text(
             'SUIVEZ NOUS',
