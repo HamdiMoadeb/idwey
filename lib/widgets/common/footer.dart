@@ -18,7 +18,7 @@ class _FooterState extends State<Footer> {
       margin: EdgeInsets.only(top: 30),
       padding: EdgeInsets.all(15),
       width: MediaQuery.of(context).size.width,
-      height: 800,
+      height: 500,
       color: footerBg,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
