@@ -87,173 +87,175 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(left: 10, top: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ));
-                    },
-                    style: ButtonStyle(
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                    child: Text(
-                      'Se connecter',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
-                          ));
-                    },
-                    style: ButtonStyle(
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                    child: Text(
-                      'S\'inscrire',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(color: Colors.grey, height: 1),
-            Theme(
-              data:
-                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
-              child: ExpansionTile(
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                expandedAlignment: Alignment.topLeft,
-                collapsedTextColor: primary,
-                textColor: primary,
-                childrenPadding: EdgeInsets.zero,
-                title: Text(
-                  'TND',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                ),
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_right_alt,
-                          color: Colors.black,
-                        ),
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        label: Text(
-                          'EUR',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_right_alt,
-                          color: Colors.black,
-                        ),
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        label: Text(
-                          'USD',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Divider(color: Colors.grey, height: 2),
-            Theme(
-              data:
-                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
-              child: ExpansionTile(
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                expandedAlignment: Alignment.topLeft,
-                collapsedTextColor: primary,
-                textColor: primary,
-                childrenPadding: EdgeInsets.zero,
-                title: Row(
-                  children: [
-                    Flag.fromCode(
-                      FlagsCode.FR,
-                      height: 15,
-                      width: 20,
-                      fit: BoxFit.fill,
-                    ),
-                    SizedBox(width: 5),
-                    Text(
-                      'Français',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(width: 30),
-                      TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_right_alt,
-                          color: Colors.black,
-                        ),
-                        style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                        label: Row(
-                          children: [
-                            Flag.fromCode(
-                              FlagsCode.GB,
-                              height: 15,
-                              width: 20,
-                              fit: BoxFit.fill,
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              'English',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const Divider(color: Colors.grey, height: 2, thickness: 0.5),
+            //commented to deploy
+            // Container(
+            //   margin: EdgeInsets.only(left: 10, top: 10),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       TextButton(
+            //         onPressed: () {
+            //           Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) => const LoginPage(),
+            //               ));
+            //         },
+            //         style: ButtonStyle(
+            //             tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+            //         child: Text(
+            //           'Se connecter',
+            //           style: TextStyle(
+            //             fontSize: 15,
+            //             fontWeight: FontWeight.w500,
+            //           ),
+            //         ),
+            //       ),
+            //       TextButton(
+            //         onPressed: () {
+            //           Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                 builder: (context) => RegisterPage(),
+            //               ));
+            //         },
+            //         style: ButtonStyle(
+            //             tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+            //         child: Text(
+            //           'S\'inscrire',
+            //           style: TextStyle(
+            //             fontSize: 15,
+            //             fontWeight: FontWeight.w500,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            //comented to deploy
+            // Divider(color: Colors.grey, height: 1),
+            // Theme(
+            //   data:
+            //       Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            //   child: ExpansionTile(
+            //     expandedCrossAxisAlignment: CrossAxisAlignment.start,
+            //     expandedAlignment: Alignment.topLeft,
+            //     collapsedTextColor: primary,
+            //     textColor: primary,
+            //     childrenPadding: EdgeInsets.zero,
+            //     title: Text(
+            //       'TND',
+            //       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            //     ),
+            //     children: [
+            //       Row(
+            //         children: [
+            //           SizedBox(width: 30),
+            //           TextButton.icon(
+            //             onPressed: () {},
+            //             icon: Icon(
+            //               Icons.arrow_right_alt,
+            //               color: Colors.black,
+            //             ),
+            //             style: ButtonStyle(
+            //                 tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+            //             label: Text(
+            //               'EUR',
+            //               style: TextStyle(
+            //                 fontSize: 14,
+            //                 fontWeight: FontWeight.w500,
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Row(
+            //         children: [
+            //           SizedBox(width: 30),
+            //           TextButton.icon(
+            //             onPressed: () {},
+            //             icon: Icon(
+            //               Icons.arrow_right_alt,
+            //               color: Colors.black,
+            //             ),
+            //             style: ButtonStyle(
+            //                 tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+            //             label: Text(
+            //               'USD',
+            //               style: TextStyle(
+            //                 fontSize: 14,
+            //                 fontWeight: FontWeight.w500,
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Divider(color: Colors.grey, height: 2),
+            // Theme(
+            //   data:
+            //       Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            //   child: ExpansionTile(
+            //     expandedCrossAxisAlignment: CrossAxisAlignment.start,
+            //     expandedAlignment: Alignment.topLeft,
+            //     collapsedTextColor: primary,
+            //     textColor: primary,
+            //     childrenPadding: EdgeInsets.zero,
+            //     title: Row(
+            //       children: [
+            //         Flag.fromCode(
+            //           FlagsCode.FR,
+            //           height: 15,
+            //           width: 20,
+            //           fit: BoxFit.fill,
+            //         ),
+            //         SizedBox(width: 5),
+            //         Text(
+            //           'Français',
+            //           style:
+            //               TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            //         ),
+            //       ],
+            //     ),
+            //     children: [
+            //       Row(
+            //         children: [
+            //           SizedBox(width: 30),
+            //           TextButton.icon(
+            //             onPressed: () {},
+            //             icon: Icon(
+            //               Icons.arrow_right_alt,
+            //               color: Colors.black,
+            //             ),
+            //             style: ButtonStyle(
+            //                 tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+            //             label: Row(
+            //               children: [
+            //                 Flag.fromCode(
+            //                   FlagsCode.GB,
+            //                   height: 15,
+            //                   width: 20,
+            //                   fit: BoxFit.fill,
+            //                 ),
+            //                 SizedBox(width: 5),
+            //                 Text(
+            //                   'English',
+            //                   style: TextStyle(
+            //                     fontSize: 14,
+            //                     fontWeight: FontWeight.w500,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // const Divider(color: Colors.grey, height: 2, thickness: 0.5),
             Theme(
               data:
                   Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -422,23 +424,24 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                 indent: 20,
                 endIndent: 20,
                 thickness: 0.5),
-            Row(
-              children: [
-                SizedBox(width: 10),
-                TextButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                  child: Text(
-                    'Qui sommes nous ?',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            //commented to deploy
+            // Row(
+            //   children: [
+            //     SizedBox(width: 10),
+            //     TextButton(
+            //       onPressed: () {},
+            //       style: ButtonStyle(
+            //           tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+            //       child: Text(
+            //         'Qui sommes nous ?',
+            //         style: TextStyle(
+            //           fontSize: 14,
+            //           fontWeight: FontWeight.w500,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             const Divider(
                 color: Colors.grey,
                 height: 1,
@@ -468,35 +471,36 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                 ),
               ],
             ),
-            const Divider(
-                color: Colors.grey,
-                height: 2,
-                indent: 20,
-                endIndent: 20,
-                thickness: 0.5),
-            Row(
-              children: [
-                SizedBox(width: 10),
-                TextButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                  child: Text(
-                    'Assurance',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const Divider(
-                color: Colors.grey,
-                height: 1,
-                indent: 20,
-                endIndent: 20,
-                thickness: 0.5),
+            // const Divider(
+            //     color: Colors.grey,
+            //     height: 2,
+            //     indent: 20,
+            //     endIndent: 20,
+            //     thickness: 0.5),
+            //commented to deploy
+            // Row(
+            //   children: [
+            //     SizedBox(width: 10),
+            //     TextButton(
+            //       onPressed: () {},
+            //       style: ButtonStyle(
+            //           tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+            //       child: Text(
+            //         'Assurance',
+            //         style: TextStyle(
+            //           fontSize: 14,
+            //           fontWeight: FontWeight.w500,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // const Divider(
+            //     color: Colors.grey,
+            //     height: 1,
+            //     indent: 20,
+            //     endIndent: 20,
+            //     thickness: 0.5),
           ]),
         ),
       ),
