@@ -33,7 +33,7 @@ class CustomClips extends CustomClipper<Path> {
 }
 
 String removeDecimalZeroFormat(String num) {
-  RegExp regex = RegExp(r'([.]*0+)(?!.*\d)');
+  RegExp regex = RegExp(r'([.]*[0-9]+)(?!.*\d)');
 
   String s = num.replaceAll(regex, '');
   return s;
