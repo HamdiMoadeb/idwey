@@ -360,31 +360,32 @@ class RateStats extends StatelessWidget {
             style: TextStyle(color: grey),
           ),
         ),
-        Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 15.0),
-            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-            height: 50,
-            decoration: BoxDecoration(
-                color: primaryGrey,
-                border: Border(
-                  left: BorderSide(
-                    width: 5.0,
-                    color: materialPrimary,
-                  ),
-                )),
-            child: RichText(
-              text: TextSpan(
-                text: 'Vous devez ',
-                style: TextStyle(color: materialPrimary, fontSize: 14),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: 'vous connecter ',
-                      style: TextStyle(color: primaryOrange)),
-                  TextSpan(text: 'pour écrire un avis'),
-                ],
-              ),
-            )),
+        //commented for deployment
+        // Container(
+        //     alignment: Alignment.center,
+        //     margin: EdgeInsets.symmetric(horizontal: 15.0),
+        //     padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+        //     height: 50,
+        //     decoration: BoxDecoration(
+        //         color: primaryGrey,
+        //         border: Border(
+        //           left: BorderSide(
+        //             width: 5.0,
+        //             color: materialPrimary,
+        //           ),
+        //         )),
+        //     child: RichText(
+        //       text: TextSpan(
+        //         text: 'Vous devez ',
+        //         style: TextStyle(color: materialPrimary, fontSize: 14),
+        //         children: <TextSpan>[
+        //           TextSpan(
+        //               text: 'vous connecter ',
+        //               style: TextStyle(color: primaryOrange)),
+        //           TextSpan(text: 'pour écrire un avis'),
+        //         ],
+        //       ),
+        //     )),
       ],
     );
   }
@@ -530,33 +531,34 @@ class BottomReservationBar extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                width: 170,
-                alignment: Alignment.center,
-                //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                decoration: BoxDecoration(
-                    color: primaryOrange,
-                    borderRadius: BorderRadius.circular(2)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Réserver".toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      "Maintenant".toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              )
+              //commented for deployment
+              // Container(
+              //   width: 170,
+              //   alignment: Alignment.center,
+              //   //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              //   decoration: BoxDecoration(
+              //       color: primaryOrange,
+              //       borderRadius: BorderRadius.circular(2)),
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Text(
+              //         "Réserver".toUpperCase(),
+              //         style: TextStyle(
+              //             color: Colors.white,
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.w500),
+              //       ),
+              //       Text(
+              //         "Maintenant".toUpperCase(),
+              //         style: TextStyle(
+              //             color: Colors.white,
+              //             fontSize: 14,
+              //             fontWeight: FontWeight.w500),
+              //       ),
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ));
