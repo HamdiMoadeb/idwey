@@ -153,12 +153,14 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                     SizedBox(
                                       height: 12,
                                     ),
-                                    DetailIcons(
-                                      icon: Icons.group,
-                                      type: 'Personnes',
-                                      description:
-                                          hostDetail.max_person.toString(),
-                                    ),
+                                    hostDetail.max_person > 1
+                                        ? DetailIcons(
+                                            icon: Icons.group,
+                                            type: 'Personnes',
+                                            description: hostDetail.max_person
+                                                .toString(),
+                                          )
+                                        : Container(),
                                     SizedBox(
                                       height: 12,
                                     ),

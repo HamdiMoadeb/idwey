@@ -21,7 +21,7 @@ class CustomClips extends CustomClipper<Path> {
   Path getClip(Size size) {
     Path path = Path();
     path.lineTo(size.width, 0);
-    path.lineTo(size.width , 100 );
+    path.lineTo(size.width, 100);
     path.lineTo(0, 100);
     path.lineTo(size.width, 0);
     path.close();
