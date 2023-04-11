@@ -24,14 +24,47 @@ class ActivityCalls {
   }
 
   //api for our hosts page
-  static Future<Map> getActivityList(dynamic searchInputs, int skip) async {
+  static Future<Map> getActivityList(
+      dynamic searchInputs, int skip, dynamic filterInputs) async {
     List<Activity> listActivities = [];
     String start = searchInputs['start'];
     String end = searchInputs['end'];
     String address = searchInputs['address'];
     String adults = searchInputs['adults'];
-    var url = Uri.parse(
-        '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
+    List<String> priceRange = [];
+    String max = filterInputs['max'];
+    String min = filterInputs['min'];
+    List<dynamic> termsList = filterInputs['terms'];
+    List<dynamic> catIDList = filterInputs['catID'];
+
+    List<Terms> activity_category = [];
+    List<Terms> listConvenience = [];
+    List<Terms> listStyles = [];
+
+    String terms = "";
+    String catID = "";
+
+    var url;
+    print(termsList.length);
+    if (termsList.length > 0) {
+      terms = termsList[0].toString();
+      for (var i = 0; i < termsList.length; i++) {
+        terms += '&terms%5B%5D=' + termsList[i].toString();
+      }
+    }
+    if (catIDList.length > 0) {
+      catID = catIDList[0].toString();
+      for (var i = 0; i < catIDList.length; i++) {
+        catID += '&cat_id%5B%5D=' + catIDList[i].toString();
+      }
+    }
+
+    if (max != '' && min != '')
+      url = Uri.parse(
+          '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max$terms$catID');
+    else
+      url = Uri.parse(
+          '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
     print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -47,8 +80,24 @@ class ActivityCalls {
       for (Map<String?, dynamic> i in data["rows"]) {
         listActivities.add(Activity.fromJson(i));
       }
+      for (Map<String?, dynamic> i in data["activity_category"]) {
+        activity_category.add(Terms.fromJson(i));
+      }
+      for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
+        listConvenience.add(Terms.fromJson(i));
+      }
+      for (Map<String?, dynamic> i in data["attributes"][0]["terms"]) {
+        listStyles.add(Terms.fromJson(i));
+      }
+      priceRange = new List<String>.from(data["activity_min_max_price"]);
+
       result["total"] = data["total"];
       result["list"] = listActivities;
+      result["listConvenience"] = listConvenience;
+      result["listStyles"] = listStyles;
+      result["activity_category"] = activity_category;
+      result["priceRange"] = priceRange;
+      print(priceRange[1]);
     }
 
     return result;
@@ -57,7 +106,7 @@ class ActivityCalls {
   //api for our hosts page
   static Future<ActivityDetail> getActivityDetails(int id) async {
     ActivityDetail activityDetail = new ActivityDetail(
-        0, '', '','', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
+        0, '', '', '', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
     var url = Uri.parse('${Urls.URL_API}activity/detail/${id}');
     print(url);
     var response = await http.get(url);
