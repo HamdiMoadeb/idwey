@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:idwey/models/activity.dart';
 import 'package:idwey/utils/urls.dart';
 
+import '../models/sharedModel.dart';
+
 class ActivityCalls {
   static Future<List<Activity>> getAllActivities() async {
     List<Activity> listActivity = [];
@@ -47,13 +49,11 @@ class ActivityCalls {
     var url;
     print(termsList.length);
     if (termsList.length > 0) {
-      terms = termsList[0].toString();
       for (var i = 0; i < termsList.length; i++) {
         terms += '&terms%5B%5D=' + termsList[i].toString();
       }
     }
     if (catIDList.length > 0) {
-      catID = catIDList[0].toString();
       for (var i = 0; i < catIDList.length; i++) {
         catID += '&cat_id%5B%5D=' + catIDList[i].toString();
       }

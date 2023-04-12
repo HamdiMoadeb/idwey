@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:idwey/models/host.dart';
 import 'package:idwey/utils/urls.dart';
 
+import '../models/sharedModel.dart';
+
 class HostCalls {
   static Future<List<Host>> getAllHosts() async {
     List<Host> listHosts = [];
@@ -42,7 +44,6 @@ class HostCalls {
     var url;
     print(termsList.length);
     if (termsList.length > 0) {
-      terms = termsList[0].toString();
       for (var i = 0; i < termsList.length; i++) {
         terms += '&terms%5B%5D=' + termsList[i].toString();
       }

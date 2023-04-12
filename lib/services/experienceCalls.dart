@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:idwey/utils/urls.dart';
 
 import '../models/experience.dart';
+import '../models/sharedModel.dart';
 
 class ExperienceCalls {
   static Future<List<Experience>> getAllExperiences() async {
@@ -35,22 +36,30 @@ class ExperienceCalls {
     String max = filterInputs['max'];
     String min = filterInputs['min'];
     List<dynamic> termsList = filterInputs['terms'];
+    List<dynamic> catIDList = filterInputs['catID'];
+
     List<Terms> activity_category = [];
     List<Terms> listConvenience = [];
-
     String terms = "";
+    String catID = "";
+
     var url;
     print(termsList.length);
     if (termsList.length > 0) {
-      terms = termsList[0].toString();
       for (var i = 0; i < termsList.length; i++) {
-        terms += '&cat_id%5B%5D=' + termsList[i].toString();
+        terms += '&terms%5B%5D=' + termsList[i].toString();
+      }
+    }
+
+    if (catIDList.length > 0) {
+      for (var i = 0; i < catIDList.length; i++) {
+        catID += '&cat_id%5B%5D=' + catIDList[i].toString();
       }
     }
 
     if (max != '' && min != '')
       url = Uri.parse(
-          '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max$terms');
+          '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max$catID$terms');
     else
       url = Uri.parse(
           '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');

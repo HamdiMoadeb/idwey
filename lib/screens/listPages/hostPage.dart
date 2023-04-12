@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-import 'package:another_xlider/another_xlider.dart';
 
 import '../../models/host.dart';
+import '../../models/sharedModel.dart';
 import '../../services/hostCalls.dart';
 import '../../utils/utils.dart';
+import '../../widgets/common/filterWidget.dart';
 import '../../widgets/common/footer.dart';
 import '../../widgets/listItems/hostListItem.dart';
 import '../../widgets/tabs/HostFilterTab.dart';
@@ -262,335 +263,103 @@ class _HostPageState extends State<HostPage>
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
-                      Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              expandedAlignment: Alignment.topLeft,
-                              collapsedTextColor: titleBlack,
-                              textColor: titleBlack,
-                              childrenPadding: EdgeInsets.zero,
-                              title: Text(
-                                'Filtrer par prix',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      top: 10, left: 20, right: 20, bottom: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      FlutterSlider(
-                                        values: [_lowerValue, _upperValue],
-                                        max: max,
-                                        min: min,
-                                        trackBar: FlutterSliderTrackBar(
-                                            inactiveTrackBarHeight: 12,
-                                            activeTrackBarHeight: 12,
-                                            activeTrackBar: BoxDecoration(
-                                                color: primaryOrange),
-                                            inactiveTrackBar: BoxDecoration(
-                                                color: secondaryGrey,
-                                                borderRadius:
-                                                    BorderRadius.circular(3))),
-                                        handler: FlutterSliderHandler(
-                                          decoration: BoxDecoration(),
-                                          child: Material(
-                                            type: MaterialType.canvas,
-                                            color: primaryOrange,
-                                            elevation: 0,
-                                            child: SizedBox(
-                                              width: 2,
-                                              height: 16,
-                                            ),
-                                          ),
-                                        ),
-                                        rightHandler: FlutterSliderHandler(
-                                          decoration: BoxDecoration(),
-                                          child: Material(
-                                            type: MaterialType.canvas,
-                                            color: primaryOrange,
-                                            elevation: 0,
-                                            child: SizedBox(
-                                              width: 2,
-                                              height: 16,
-                                            ),
-                                          ),
-                                        ),
-                                        rangeSlider: true,
-                                        handlerAnimation:
-                                            FlutterSliderHandlerAnimation(
-                                          curve: Curves.elasticOut,
-                                          reverseCurve: null,
-                                          duration: Duration(milliseconds: 700),
-                                        ),
-                                        tooltip: FlutterSliderTooltip(
-                                            leftPrefix: Text(
-                                              'DT ',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            rightPrefix: Text(
-                                              'DT ',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            alwaysShowTooltip: true,
-                                            textStyle: TextStyle(
-                                                fontSize: 11,
-                                                color: Colors.white),
-                                            boxStyle: FlutterSliderTooltipBox(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    color: primaryOrange)),
-                                            positionOffset:
-                                                FlutterSliderTooltipPositionOffset(
-                                                    top: -10)),
-                                        hatchMark: FlutterSliderHatchMark(
-                                          density: 0.2,
-                                          smallDensity: 2,
-                                          linesDistanceFromTrackBar: 2,
-                                          displayLines: true,
-                                          labelsDistanceFromTrackBar: 55,
-                                          labels: [
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 0,
-                                                label: Text(
-                                                  removeDecimalZeroFormat(
-                                                      '$min'),
-                                                  style: TextStyle(
-                                                      fontSize: 9, color: grey),
-                                                )),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 25,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '${(max - min) * 0.25}'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 50,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '${(max - min) * 0.5}'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 75,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '${(max - min) * 0.75}'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 100,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '$max'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                          ],
-                                        ),
-                                        onDragging: (handlerIndex, lowerValue,
-                                            upperValue) {
-                                          setState(() {
-                                            _lowerValue = lowerValue;
-                                            _upperValue = upperValue;
-                                          });
-                                        },
-                                      ),
-                                      TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              filterInputs["min"] = _lowerValue
-                                                  .toInt()
-                                                  .toString();
-                                              filterInputs["max"] = _upperValue
-                                                  .toInt()
-                                                  .toString();
-                                              listHosts = [];
-                                              listLengthFromLastCall = 0;
-                                            });
-                                            filtredHosts();
-                                          },
-                                          child: Text(
-                                            'Appliquer',
-                                            style: TextStyle(
-                                                color: primaryOrange,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14),
-                                          ))
-                                    ],
-                                  ),
-                                ),
-                              ])),
+                      PriceRangeSlider(
+                          max: max,
+                          min: min,
+                          lowerValue: _lowerValue,
+                          upperValue: _upperValue,
+                          priceRangeChange: (lowerV, upperV) {
+                            setState(() {
+                              _lowerValue = lowerV;
+                              _upperValue = upperV;
+                            });
+                          },
+                          callBack: () {
+                            setState(() {
+                              filterInputs["min"] =
+                                  _lowerValue.toInt().toString();
+                              filterInputs["max"] =
+                                  _upperValue.toInt().toString();
+                              listHosts = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredHosts();
+                          }),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
-                      Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              expandedAlignment: Alignment.topLeft,
-                              collapsedTextColor: titleBlack,
-                              textColor: titleBlack,
-                              childrenPadding: EdgeInsets.zero,
-                              title: Text(
-                                'Type de propriété',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                              children: [
-                                Column(children: [
-                                  ...displayedListPropertyType.map(
-                                    (item) => CheckboxListTile(
-                                      title: Text(item.name!),
-                                      value: item.checked,
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          item.checked = value ?? false;
-                                          isExist(item.id!, value!);
-                                          filterInputs['terms'] = terms;
-                                          listHosts = [];
-                                          listLengthFromLastCall = 0;
-                                        });
-                                        filtredHosts();
-                                        print(terms.length);
-                                      },
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _showAllProp = !_showAllProp;
-                                      });
-                                    },
-                                    child:
-                                        Text(!_showAllProp ? 'Plus' : 'Moins'),
-                                  ),
-                                ])
-                              ])),
+                      FilterTab(
+                          title: 'Type de propriété',
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!);
+                              filterInputs['terms'] = terms;
+                              listHosts = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredHosts();
+                            print(terms.length);
+                          },
+                          showMoreFunction: () {
+                            setState(() {
+                              _showAllProp = !_showAllProp;
+                            });
+                          },
+                          displayedList: displayedListPropertyType,
+                          showAllAct: _showAllProp),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
-                      Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor: Colors.transparent,
-                        ),
-                        child: ExpansionTile(
-                            expandedCrossAxisAlignment:
-                                CrossAxisAlignment.start,
-                            expandedAlignment: Alignment.topLeft,
-                            collapsedTextColor: titleBlack,
-                            textColor: titleBlack,
-                            childrenPadding: EdgeInsets.zero,
-                            title: Text(
-                              'Commodités',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w500),
-                            ),
-                            children: [
-                              Column(children: [
-                                ...displayedListConvience.map(
-                                  (item) => CheckboxListTile(
-                                    title: Text(item.name!),
-                                    value: item.checked,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        item.checked = value ?? false;
-                                        isExist(item.id!, value!);
-                                        filterInputs['terms'] = terms;
-                                        listHosts = [];
-                                        listLengthFromLastCall = 0;
-                                      });
-                                      filtredHosts();
-                                      print(terms.length);
-                                    },
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _showAllConv = !_showAllConv;
-                                    });
-                                  },
-                                  child: Text(!_showAllConv ? 'plus' : 'Moins'),
-                                )
-                              ])
-                            ]),
-                      ),
+                      FilterTab(
+                          title: 'Commodités',
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!);
+                              filterInputs['terms'] = terms;
+                              listHosts = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredHosts();
+                            print(terms.length);
+                          },
+                          showMoreFunction: () {
+                            setState(() {
+                              _showAllConv = !_showAllConv;
+                            });
+                          },
+                          displayedList: displayedListConvience,
+                          showAllAct: _showAllConv),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
-                      Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              expandedAlignment: Alignment.topLeft,
-                              collapsedTextColor: titleBlack,
-                              textColor: titleBlack,
-                              childrenPadding: EdgeInsets.zero,
-                              title: Text(
-                                'Host Service',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                              children: [
-                                Column(children: [
-                                  ...displayedListHotelService.map(
-                                    (item) => CheckboxListTile(
-                                      title: Text(item.name!),
-                                      value: item.checked,
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          item.checked = value ?? false;
-                                          isExist(item.id!, value!);
-                                          filterInputs['terms'] = terms;
-                                          listHosts = [];
-                                          listLengthFromLastCall = 0;
-                                        });
-                                        filtredHosts();
-                                        print(terms.length);
-                                      },
-                                    ),
-                                  ),
-                                  if (!_showAllHotel)
-                                    TextButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _showAllHotel = !_showAllHotel;
-                                        });
-                                      },
-                                      child: Text(
-                                          !_showAllHotel ? 'Plus' : 'Moins'),
-                                    ),
-                                ])
-                              ])),
+                      FilterTab(
+                          title: 'Host Service',
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!);
+                              filterInputs['terms'] = terms;
+                              listHosts = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredHosts();
+                            print(terms.length);
+                          },
+                          showMoreFunction: () {
+                            setState(() {
+                              _showAllHotel = !_showAllHotel;
+                            });
+                          },
+                          displayedList: displayedListHotelService,
+                          showAllAct: _showAllHotel),
                     ],
                   ),
                 ),

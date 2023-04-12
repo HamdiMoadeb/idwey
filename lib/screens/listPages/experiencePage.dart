@@ -8,6 +8,7 @@ import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:idwey/widgets/listItems/experienceListItem.dart';
 import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
 
+import '../../models/sharedModel.dart';
 import '../../utils/utils.dart';
 import '../../widgets/common/filterWidget.dart';
 import '../../widgets/common/footer.dart';
@@ -34,6 +35,8 @@ class _ExperiencePageState extends State<ExperiencePage>
   double max = 0;
   double min = 0;
   List<int> terms = [];
+  List<int> catID = [];
+
   double _lowerValue = 0;
   double _upperValue = 0;
 
@@ -41,7 +44,7 @@ class _ExperiencePageState extends State<ExperiencePage>
   bool _showAllAct = false;
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
-  dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
+  dynamic filterInputs = {'min': '', 'max': '', 'terms': [], 'catID': []};
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
@@ -51,12 +54,12 @@ class _ExperiencePageState extends State<ExperiencePage>
     callExps();
   }
 
-  isExist(int x, bool checked) {
-    print(terms.contains(x));
+  isExist(int x, bool checked, List<dynamic> list) {
+    print(list.contains(x));
     if (checked) {
-      if (!terms.contains(x)) terms.add(x);
+      if (!list.contains(x)) list.add(x);
     } else {
-      if (terms.contains(x)) terms.remove(x);
+      if (list.contains(x)) list.remove(x);
     }
   }
 
@@ -83,9 +86,8 @@ class _ExperiencePageState extends State<ExperiencePage>
     setState(() {
       loading = true;
     });
-    ExperienceCalls.getExperienceList(
-            searchInputs, listExps.length, {'min': '', 'max': '', 'terms': []})
-        .then((result) async {
+    ExperienceCalls.getExperienceList(searchInputs, listExps.length,
+        {'min': '', 'max': '', 'terms': [], 'catID': []}).then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
         listExps.addAll(result["list"]);
@@ -256,190 +258,45 @@ class _ExperiencePageState extends State<ExperiencePage>
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
-                      Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              expandedAlignment: Alignment.topLeft,
-                              collapsedTextColor: titleBlack,
-                              textColor: titleBlack,
-                              childrenPadding: EdgeInsets.zero,
-                              title: Text(
-                                'Filtrer par prix',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      top: 10, left: 20, right: 20, bottom: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      FlutterSlider(
-                                        values: [_lowerValue, _upperValue],
-                                        max: max,
-                                        min: min,
-                                        trackBar: FlutterSliderTrackBar(
-                                            inactiveTrackBarHeight: 12,
-                                            activeTrackBarHeight: 12,
-                                            activeTrackBar: BoxDecoration(
-                                                color: primaryOrange),
-                                            inactiveTrackBar: BoxDecoration(
-                                                color: secondaryGrey,
-                                                borderRadius:
-                                                    BorderRadius.circular(3))),
-                                        handler: FlutterSliderHandler(
-                                          decoration: BoxDecoration(),
-                                          child: Material(
-                                            type: MaterialType.canvas,
-                                            color: primaryOrange,
-                                            elevation: 0,
-                                            child: SizedBox(
-                                              width: 2,
-                                              height: 16,
-                                            ),
-                                          ),
-                                        ),
-                                        rightHandler: FlutterSliderHandler(
-                                          decoration: BoxDecoration(),
-                                          child: Material(
-                                            type: MaterialType.canvas,
-                                            color: primaryOrange,
-                                            elevation: 0,
-                                            child: SizedBox(
-                                              width: 2,
-                                              height: 16,
-                                            ),
-                                          ),
-                                        ),
-                                        rangeSlider: true,
-                                        handlerAnimation:
-                                            FlutterSliderHandlerAnimation(
-                                          curve: Curves.elasticOut,
-                                          reverseCurve: null,
-                                          duration: Duration(milliseconds: 700),
-                                        ),
-                                        tooltip: FlutterSliderTooltip(
-                                            leftPrefix: Text(
-                                              'DT ',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            rightPrefix: Text(
-                                              'DT ',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            alwaysShowTooltip: true,
-                                            textStyle: TextStyle(
-                                                fontSize: 11,
-                                                color: Colors.white),
-                                            boxStyle: FlutterSliderTooltipBox(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    color: primaryOrange)),
-                                            positionOffset:
-                                                FlutterSliderTooltipPositionOffset(
-                                                    top: -10)),
-                                        hatchMark: FlutterSliderHatchMark(
-                                          density: 0.2,
-                                          smallDensity: 2,
-                                          linesDistanceFromTrackBar: 2,
-                                          displayLines: true,
-                                          labelsDistanceFromTrackBar: 55,
-                                          labels: [
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 0,
-                                                label: Text(
-                                                  removeDecimalZeroFormat(
-                                                      '$min'),
-                                                  style: TextStyle(
-                                                      fontSize: 9, color: grey),
-                                                )),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 25,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '${(max - min) * 0.25}'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 50,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '${(max - min) * 0.5}'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 75,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '${(max - min) * 0.75}'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                            FlutterSliderHatchMarkLabel(
-                                                percent: 100,
-                                                label: Text(
-                                                    removeDecimalZeroFormat(
-                                                        '$max'),
-                                                    style: TextStyle(
-                                                        fontSize: 9,
-                                                        color: grey))),
-                                          ],
-                                        ),
-                                        onDragging: (handlerIndex, lowerValue,
-                                            upperValue) {
-                                          setState(() {
-                                            _lowerValue = lowerValue;
-                                            _upperValue = upperValue;
-                                          });
-                                        },
-                                      ),
-                                      TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              filterInputs["min"] = _lowerValue
-                                                  .toInt()
-                                                  .toString();
-                                              filterInputs["max"] = _upperValue
-                                                  .toInt()
-                                                  .toString();
-                                              listExps = [];
-                                              listLengthFromLastCall = 0;
-                                            });
-                                            filtredExperience();
-                                          },
-                                          child: Text(
-                                            'Appliquer',
-                                            style: TextStyle(
-                                                color: primaryOrange,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14),
-                                          ))
-                                    ],
-                                  ),
-                                ),
-                              ])),
+                      PriceRangeSlider(
+                          max: max,
+                          min: min,
+                          lowerValue: _lowerValue,
+                          upperValue: _upperValue,
+                          priceRangeChange: (lowerV, upperV) {
+                            setState(() {
+                              _lowerValue = lowerV;
+                              _upperValue = upperV;
+                            });
+                          },
+                          callBack: () {
+                            setState(() {
+                              filterInputs["min"] =
+                                  _lowerValue.toInt().toString();
+                              filterInputs["max"] =
+                                  _upperValue.toInt().toString();
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredExperience();
+                          }),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
                       FilterTab(
-                          filtringListFunction: () {},
+                          title: 'Type de l\'expérience',
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!, catID);
+                              filterInputs['catID'] = catID;
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredExperience();
+                          },
                           showMoreFunction: () {
                             setState(() {
                               _showAllAct = !_showAllAct;
@@ -447,102 +304,31 @@ class _ExperiencePageState extends State<ExperiencePage>
                           },
                           displayedList: displayedListActivityCategory,
                           showAllAct: _showAllAct),
-                      Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                              expandedCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                              expandedAlignment: Alignment.topLeft,
-                              collapsedTextColor: titleBlack,
-                              textColor: titleBlack,
-                              childrenPadding: EdgeInsets.zero,
-                              title: Text(
-                                'Type de l\'expérience',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                              children: [
-                                Column(children: [
-                                  ...displayedListActivityCategory.map(
-                                    (item) => CheckboxListTile(
-                                      title: Text(item.name!),
-                                      value: item.checked,
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          item.checked = value ?? false;
-                                          isExist(item.id!, value!);
-                                          filterInputs['terms'] = terms;
-                                          listExps = [];
-                                          listLengthFromLastCall = 0;
-                                        });
-                                        filtredExperience();
-                                        print(terms.length);
-                                      },
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _showAllAct = !_showAllAct;
-                                      });
-                                    },
-                                    child:
-                                        Text(!_showAllAct ? 'Plus' : 'Moins'),
-                                  ),
-                                ])
-                              ])),
                       const Divider(
                           color: Colors.grey,
                           height: 1,
                           indent: 0,
                           thickness: 0.5),
-                      Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor: Colors.transparent,
-                        ),
-                        child: ExpansionTile(
-                            expandedCrossAxisAlignment:
-                                CrossAxisAlignment.start,
-                            expandedAlignment: Alignment.topLeft,
-                            collapsedTextColor: titleBlack,
-                            textColor: titleBlack,
-                            childrenPadding: EdgeInsets.zero,
-                            title: Text(
-                              'Commodités',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w500),
-                            ),
-                            children: [
-                              Column(children: [
-                                ...displayedListConvience.map(
-                                  (item) => CheckboxListTile(
-                                    title: Text(item.name!),
-                                    value: item.checked,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        item.checked = value ?? false;
-                                        isExist(item.id!, value!);
-                                        filterInputs['terms'] = terms;
-                                        listExps = [];
-                                        listLengthFromLastCall = 0;
-                                      });
-                                      filtredExperience();
-                                      print(terms.length);
-                                    },
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _showAllConv = !_showAllConv;
-                                    });
-                                  },
-                                  child: Text(!_showAllConv ? 'plus' : 'Moins'),
-                                )
-                              ])
-                            ]),
-                      ),
+                      FilterTab(
+                          title: 'Commodités',
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value;
+                              isExist(item.id!, value!, terms);
+                              filterInputs['terms'] = terms;
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredExperience();
+                            print(terms.length);
+                          },
+                          showMoreFunction: () {
+                            setState(() {
+                              _showAllAct = !_showAllAct;
+                            });
+                          },
+                          displayedList: displayedListConvience,
+                          showAllAct: _showAllAct),
                     ],
                   ),
                 ),
