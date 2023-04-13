@@ -13,7 +13,12 @@ import '../../widgets/listItems/hostListItem.dart';
 import '../../widgets/tabs/HostFilterTab.dart';
 
 class HostPage extends StatefulWidget {
-  const HostPage({Key? key}) : super(key: key);
+  dynamic searchInputs;
+
+  HostPage({
+    Key? key,
+    required this.searchInputs,
+  }) : super(key: key);
 
   @override
   State<HostPage> createState() => _HostPageState();
@@ -113,7 +118,6 @@ class _HostPageState extends State<HostPage>
     checkInternetConnectivity(context, callHosts);
 
     scrollController.addListener(() {
-      print(min);
       if (terms.length == 0 && min == 0 && max == 0) {
         if ((scrollController.position.pixels + 2000) >=
                 scrollController.position.maxScrollExtent &&
@@ -217,6 +221,7 @@ class _HostPageState extends State<HostPage>
                   Container(
                     margin: const EdgeInsets.only(top: 180),
                     child: HostFilterTab(
+                      shouldNavigate: false,
                       onChangeField: (dynamic searchInputs) =>
                           updateSearchFields(searchInputs),
                     ),

@@ -264,7 +264,9 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HostPage(),
+                          builder: (context) => HostPage(
+                            searchInputs: '',
+                          ),
                         ));
                   },
                   style: ButtonStyle(
@@ -293,7 +295,9 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => EventPage(),
+                          builder: (context) => EventPage(
+                            searchInputs: '',
+                          ),
                         ));
                   },
                   style: ButtonStyle(
@@ -351,7 +355,9 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ActivityPage(),
+                          builder: (context) => ActivityPage(
+                            searchInputs: '',
+                          ),
                         ));
                   },
                   style: ButtonStyle(

@@ -14,7 +14,12 @@ import '../../widgets/listItems/activityListItem.dart';
 import '../../widgets/tabs/ActivityFilterTab.dart';
 
 class ActivityPage extends StatefulWidget {
-  const ActivityPage({Key? key}) : super(key: key);
+  dynamic searchInputs;
+
+  ActivityPage({
+    Key? key,
+    required this.searchInputs,
+  }) : super(key: key);
 
   @override
   State<ActivityPage> createState() => _ActivityPageState();
@@ -212,6 +217,7 @@ class _ActivityPageState extends State<ActivityPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 180),
                       child: ActivityFilterTab(
+                        shouldNavigate: false,
                         onChangeField: (dynamic searchInputs) =>
                             updateSearchFields(searchInputs),
                       ),

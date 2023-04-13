@@ -13,7 +13,11 @@ import '../../widgets/listItems/eventListItem.dart';
 import '../../widgets/tabs/EventFilterTab.dart';
 
 class EventPage extends StatefulWidget {
-  const EventPage({Key? key}) : super(key: key);
+  dynamic searchInputs;
+  EventPage({
+    Key? key,
+    required this.searchInputs,
+  }) : super(key: key);
 
   @override
   State<EventPage> createState() => _EventPageState();
@@ -118,7 +122,7 @@ class _EventPageState extends State<EventPage> {
     super.initState();
 
     checkInternetConnectivity(context, callEvents);
-
+    if (widget.searchInputs != '') searchInputs = widget.searchInputs;
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=
               scrollController.position.maxScrollExtent &&
@@ -154,6 +158,7 @@ class _EventPageState extends State<EventPage> {
           _showAllConv ? listConvience : listConvience.sublist(0, 3);
       displayedListType = _showAllType ? listType : listType.sublist(0, 3);
     }
+    print(widget.searchInputs);
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
@@ -196,6 +201,7 @@ class _EventPageState extends State<EventPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 180),
                       child: EventFilterTab(
+                        shouldNavigate: false,
                         onChangeField: (dynamic searchInputs) =>
                             updateSearchFields(searchInputs),
                       ),

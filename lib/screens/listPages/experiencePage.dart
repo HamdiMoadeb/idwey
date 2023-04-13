@@ -212,6 +212,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                   Container(
                     margin: const EdgeInsets.only(top: 180),
                     child: ActivityFilterTab(
+                      shouldNavigate: false,
                       onChangeField: (dynamic searchInputs) =>
                           updateSearchFields(searchInputs),
                     ),

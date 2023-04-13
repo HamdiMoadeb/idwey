@@ -270,9 +270,14 @@ class _HomePageState extends State<HomePage>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  HostFilterTab(onChangeField: (dynamic searchInputs) => {}),
-                  EventFilterTab(onChangeField: (dynamic searchInputs) => {}),
+                  HostFilterTab(
+                      shouldNavigate: true,
+                      onChangeField: (dynamic searchInputs) => {}),
+                  EventFilterTab(
+                      shouldNavigate: true,
+                      onChangeField: (dynamic searchInputs) => {}),
                   ActivityFilterTab(
+                      shouldNavigate: true,
                       onChangeField: (dynamic searchInputs) => {}),
                 ],
               ),
