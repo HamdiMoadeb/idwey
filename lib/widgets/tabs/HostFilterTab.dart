@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
+import '../../screens/listPages/hostPage.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 
 typedef void InputsCallBack(dynamic searchInputs);
 
 class HostFilterTab extends StatefulWidget {
-  const HostFilterTab({Key? key, required this.onChangeField})
+  bool shouldNavigate;
+
+  HostFilterTab(
+      {Key? key, required this.onChangeField, required this.shouldNavigate})
       : super(key: key);
   final InputsCallBack onChangeField;
   @override
@@ -284,6 +288,13 @@ class _HostFilterTabState extends State<HostFilterTab> {
                           'adults': adultsCount.toString()
                         };
                       });
+                      if (widget.shouldNavigate)
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HostPage(searchInputs: searchInputs),
+                            ));
                       widget.onChangeField(searchInputs);
                     },
                     child: const Text(

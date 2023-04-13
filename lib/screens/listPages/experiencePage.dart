@@ -1,3 +1,4 @@
+import 'package:another_xlider/another_xlider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idwey/models/experience.dart';
@@ -7,7 +8,9 @@ import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:idwey/widgets/listItems/experienceListItem.dart';
 import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
 
+import '../../models/sharedModel.dart';
 import '../../utils/utils.dart';
+import '../../widgets/common/filterWidget.dart';
 import '../../widgets/common/footer.dart';
 
 class ExperiencePage extends StatefulWidget {
@@ -22,12 +25,26 @@ class _ExperiencePageState extends State<ExperiencePage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   List<Experience> listExps = [];
+  List<Terms> listConvience = [];
+  List<Terms> activity_category = [];
+
   bool loading = false;
   bool showFAB = false;
   int listLengthFromLastCall = 0;
   int totalNb = 0;
+  double max = 0;
+  double min = 0;
+  List<int> terms = [];
+  List<int> catID = [];
+
+  double _lowerValue = 0;
+  double _upperValue = 0;
+
+  bool _showAllConv = false;
+  bool _showAllAct = false;
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
+  dynamic filterInputs = {'min': '', 'max': '', 'terms': [], 'catID': []};
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
@@ -37,16 +54,52 @@ class _ExperiencePageState extends State<ExperiencePage>
     callExps();
   }
 
-  callExps() {
+  isExist(int x, bool checked, List<dynamic> list) {
+    print(list.contains(x));
+    if (checked) {
+      if (!list.contains(x)) list.add(x);
+    } else {
+      if (list.contains(x)) list.remove(x);
+    }
+  }
+
+  filtredExperience() {
     setState(() {
       loading = true;
     });
-    ExperienceCalls.getExperienceList(searchInputs, listExps.length)
+    ExperienceCalls.getExperienceList(
+            searchInputs, listExps.length, filterInputs)
         .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
         listExps.addAll(result["list"]);
         totalNb = result["total"];
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
+    });
+  }
+
+  callExps() {
+    setState(() {
+      loading = true;
+    });
+    ExperienceCalls.getExperienceList(searchInputs, listExps.length,
+        {'min': '', 'max': '', 'terms': [], 'catID': []}).then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listExps.addAll(result["list"]);
+        totalNb = result["total"];
+        max = double.parse(result["priceRange"][1]);
+        min = double.parse(result["priceRange"][0]);
+        filterInputs['min'] = min.toInt().toString();
+        filterInputs['max'] = max.toInt().toString();
+        _lowerValue = min;
+        _upperValue = max;
+        listConvience = result["listConvenience"];
+        activity_category = result["activity_category"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -62,12 +115,22 @@ class _ExperiencePageState extends State<ExperiencePage>
     checkInternetConnectivity(context, callExps);
 
     scrollController.addListener(() {
-      if ((scrollController.position.pixels + 2000) >=
-              scrollController.position.maxScrollExtent &&
-          !scrollController.position.outOfRange &&
-          !loading &&
-          !(listLengthFromLastCall < 20)) {
-        callExps();
+      if (terms.length == 0 && min == 0 && max == 0) {
+        if ((scrollController.position.pixels + 2000) >=
+                scrollController.position.maxScrollExtent &&
+            !scrollController.position.outOfRange &&
+            !loading &&
+            !(listLengthFromLastCall < 20)) {
+          callExps();
+        }
+      } else {
+        if ((scrollController.position.pixels + 2000) >=
+                scrollController.position.maxScrollExtent &&
+            !scrollController.position.outOfRange &&
+            !loading &&
+            !(listLengthFromLastCall < 20)) {
+          callExps();
+        }
       }
 
       scrollController.addListener(() {
@@ -94,6 +157,15 @@ class _ExperiencePageState extends State<ExperiencePage>
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
+    List<Terms> displayedListConvience = [];
+    List<Terms> displayedListActivityCategory = [];
+
+    if (listConvience.isNotEmpty && activity_category.isNotEmpty) {
+      displayedListConvience =
+          _showAllConv ? listConvience : listConvience.sublist(0, 3);
+      displayedListActivityCategory =
+          _showAllAct ? activity_category : activity_category.sublist(0, 3);
+    }
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
@@ -140,6 +212,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                   Container(
                     margin: const EdgeInsets.only(top: 180),
                     child: ActivityFilterTab(
+                      shouldNavigate: false,
                       onChangeField: (dynamic searchInputs) =>
                           updateSearchFields(searchInputs),
                     ),
@@ -149,6 +222,117 @@ class _ExperiencePageState extends State<ExperiencePage>
             ),
             Column(
               children: [
+                SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(width: 0.3, color: grey)),
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 15),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 5,
+                              height: 20,
+                              decoration: BoxDecoration(color: primaryOrange),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Filtrer par'.toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: titleBlack),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                          color: Colors.grey,
+                          height: 1,
+                          indent: 0,
+                          thickness: 0.5),
+                      PriceRangeSlider(
+                          max: max,
+                          min: min,
+                          lowerValue: _lowerValue,
+                          upperValue: _upperValue,
+                          priceRangeChange: (lowerV, upperV) {
+                            setState(() {
+                              _lowerValue = lowerV;
+                              _upperValue = upperV;
+                            });
+                          },
+                          callBack: () {
+                            setState(() {
+                              filterInputs["min"] =
+                                  _lowerValue.toInt().toString();
+                              filterInputs["max"] =
+                                  _upperValue.toInt().toString();
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredExperience();
+                          }),
+                      const Divider(
+                          color: Colors.grey,
+                          height: 1,
+                          indent: 0,
+                          thickness: 0.5),
+                      FilterTab(
+                          title: 'Type de l\'expérience',
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!, catID);
+                              filterInputs['catID'] = catID;
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredExperience();
+                          },
+                          showMoreFunction: () {
+                            setState(() {
+                              _showAllAct = !_showAllAct;
+                            });
+                          },
+                          displayedList: displayedListActivityCategory,
+                          showAllAct: _showAllAct),
+                      const Divider(
+                          color: Colors.grey,
+                          height: 1,
+                          indent: 0,
+                          thickness: 0.5),
+                      FilterTab(
+                          title: 'Commodités',
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value;
+                              isExist(item.id!, value!, terms);
+                              filterInputs['terms'] = terms;
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            filtredExperience();
+                            print(terms.length);
+                          },
+                          showMoreFunction: () {
+                            setState(() {
+                              _showAllAct = !_showAllAct;
+                            });
+                          },
+                          displayedList: displayedListConvience,
+                          showAllAct: _showAllAct),
+                    ],
+                  ),
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(

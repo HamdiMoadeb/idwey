@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/screens/listPages/eventPage.dart';
 import 'package:intl/intl.dart';
 
 import '../../utils/colors.dart';
@@ -8,7 +9,9 @@ import '../../utils/utils.dart';
 typedef void InputsCallBack(dynamic searchInputs);
 
 class EventFilterTab extends StatefulWidget {
-  const EventFilterTab({Key? key, required this.onChangeField})
+  bool shouldNavigate;
+  EventFilterTab(
+      {Key? key, required this.onChangeField, required this.shouldNavigate})
       : super(key: key);
   final InputsCallBack onChangeField;
   @override
@@ -278,15 +281,23 @@ class _EventFilterTabState extends State<EventFilterTab> {
                   child: ElevatedButton(
                     onPressed: () {
                       FocusManager.instance.primaryFocus?.unfocus();
+
                       setState(() {
                         searchInputs = {
                           'start': start,
                           'end': end,
                           'address':
                               addressValue == "Adresse" ? "" : addressValue,
-                          'location_id': place
+                          'location_id': place == "Où vous allez?" ? "" : place
                         };
                       });
+                      if (widget.shouldNavigate)
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EventPage(searchInputs: searchInputs),
+                            ));
                       widget.onChangeField(searchInputs);
                     },
                     child: const Text(
