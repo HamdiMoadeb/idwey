@@ -100,6 +100,7 @@ class _HostPageState extends State<HostPage>
         filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
+        searchInputs = result["searchInputs"];
         listConvience = result["listConvenience"];
         listHotelService = result["listHotelService"];
         listPropertyType = result["listPropertyType"];
@@ -116,7 +117,9 @@ class _HostPageState extends State<HostPage>
     super.initState();
 
     checkInternetConnectivity(context, callHosts);
+    if (widget.searchInputs != '') searchInputs = widget.searchInputs;
 
+    print(searchInputs["address"]);
     scrollController.addListener(() {
       if (terms.length == 0 && min == 0 && max == 0) {
         if ((scrollController.position.pixels + 2000) >=
@@ -222,6 +225,7 @@ class _HostPageState extends State<HostPage>
                     margin: const EdgeInsets.only(top: 180),
                     child: HostFilterTab(
                       shouldNavigate: false,
+                      defaultInputs: searchInputs,
                       onChangeField: (dynamic searchInputs) =>
                           updateSearchFields(searchInputs),
                     ),
@@ -365,6 +369,29 @@ class _HostPageState extends State<HostPage>
                           },
                           displayedList: displayedListHotelService,
                           showAllAct: _showAllHotel),
+                      Container(
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              listHosts = [];
+                              searchInputs = {
+                                'start': '',
+                                'end': '',
+                                'address': '',
+                                'adults': ''
+                              };
+                              filterInputs = {
+                                'min': '',
+                                'max': '',
+                                'terms': []
+                              };
+                            });
+
+                            callHosts();
+                          },
+                          child: Text('Effacer les filtres'),
+                        ),
+                      )
                     ],
                   ),
                 ),

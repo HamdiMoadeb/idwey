@@ -124,6 +124,7 @@ class _ActivityPageState extends State<ActivityPage> {
   void initState() {
     super.initState();
     checkInternetConnectivity(context, callActivities);
+    if (widget.searchInputs != '') searchInputs = widget.searchInputs;
 
     scrollController.addListener(() {
       if (terms.length == 0 && min == 0 && max == 0) {
@@ -218,6 +219,7 @@ class _ActivityPageState extends State<ActivityPage> {
                       margin: const EdgeInsets.only(top: 180),
                       child: ActivityFilterTab(
                         shouldNavigate: false,
+                        defaultInputs: searchInputs,
                         onChangeField: (dynamic searchInputs) =>
                             updateSearchFields(searchInputs),
                       ),
@@ -361,6 +363,30 @@ class _ActivityPageState extends State<ActivityPage> {
                             },
                             displayedList: displayedListConvience,
                             showAllAct: _showAllAct),
+                        Container(
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                listActivities = [];
+                                searchInputs = {
+                                  'start': '',
+                                  'end': '',
+                                  'address': '',
+                                  'adults': ''
+                                };
+                                filterInputs = {
+                                  'min': '',
+                                  'max': '',
+                                  'terms': [],
+                                  'catID': []
+                                };
+                              });
+
+                              callActivities();
+                            },
+                            child: Text('Effacer les filtres'),
+                          ),
+                        )
                       ],
                     ),
                   ),

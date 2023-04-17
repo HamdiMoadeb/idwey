@@ -86,6 +86,7 @@ class HostCalls {
       result["listHotelService"] = listHotelService;
       result["listPropertyType"] = listPropertyType;
       result["priceRange"] = priceRange;
+      result["searchInputs"] = searchInputs;
     }
     return result;
   }

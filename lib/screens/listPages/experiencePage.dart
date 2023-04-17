@@ -213,6 +213,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                     margin: const EdgeInsets.only(top: 180),
                     child: ActivityFilterTab(
                       shouldNavigate: false,
+                      defaultInputs: searchInputs,
                       onChangeField: (dynamic searchInputs) =>
                           updateSearchFields(searchInputs),
                     ),
@@ -330,6 +331,30 @@ class _ExperiencePageState extends State<ExperiencePage>
                           },
                           displayedList: displayedListConvience,
                           showAllAct: _showAllAct),
+                      Container(
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              listExps = [];
+                              searchInputs = {
+                                'start': '',
+                                'end': '',
+                                'address': '',
+                                'adults': ''
+                              };
+                              filterInputs = {
+                                'min': '',
+                                'max': '',
+                                'terms': [],
+                                'catID': []
+                              };
+                            });
+
+                            callExps();
+                          },
+                          child: Text('Effacer les filtres'),
+                        ),
+                      )
                     ],
                   ),
                 ),
