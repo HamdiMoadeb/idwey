@@ -107,6 +107,7 @@ class _EventPageState extends State<EventPage> {
         filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
+        searchInputs = result["searchInputs"];
         listConvience = result["listConvenience"];
         listType = result["listType"];
       });
@@ -202,6 +203,7 @@ class _EventPageState extends State<EventPage> {
                       margin: const EdgeInsets.only(top: 180),
                       child: EventFilterTab(
                         shouldNavigate: false,
+                        defaultInputs: searchInputs,
                         onChangeField: (dynamic searchInputs) =>
                             updateSearchFields(searchInputs),
                       ),
@@ -320,6 +322,30 @@ class _EventPageState extends State<EventPage> {
                             },
                             displayedList: displayedListConvience,
                             showAllAct: _showAllConv),
+                        Container(
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                listEvents = [];
+                                filterInputs = {
+                                  'min': '',
+                                  'max': '',
+                                  'terms': []
+                                };
+
+                                searchInputs = {
+                                  'start': '',
+                                  'end': '',
+                                  'address': '',
+                                  'location_id': ''
+                                };
+                              });
+
+                              callEvents();
+                            },
+                            child: Text('Effacer les filtres'),
+                          ),
+                        )
                       ],
                     ),
                   ),

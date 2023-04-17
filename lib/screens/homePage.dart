@@ -272,12 +272,30 @@ class _HomePageState extends State<HomePage>
                 children: [
                   HostFilterTab(
                       shouldNavigate: true,
+                      defaultInputs: {
+                        'start': '',
+                        'end': '',
+                        'address': 'Adresse',
+                        'adults': ''
+                      },
                       onChangeField: (dynamic searchInputs) => {}),
                   EventFilterTab(
                       shouldNavigate: true,
+                      defaultInputs: {
+                        'start': '',
+                        'end': '',
+                        'address': 'Adresse',
+                        'location_id': 'Où vous allez?'
+                      },
                       onChangeField: (dynamic searchInputs) => {}),
                   ActivityFilterTab(
                       shouldNavigate: true,
+                      defaultInputs: {
+                        'start': '',
+                        'end': '',
+                        'address': 'Adresse',
+                        'adults': ''
+                      },
                       onChangeField: (dynamic searchInputs) => {}),
                 ],
               ),

@@ -10,10 +10,12 @@ typedef void InputsCallBack(dynamic searchInputs);
 
 class HostFilterTab extends StatefulWidget {
   bool shouldNavigate;
-
+  dynamic defaultInputs;
   HostFilterTab(
-      {Key? key, required this.onChangeField, required this.shouldNavigate})
-      : super(key: key);
+      {Key? key,
+      required this.onChangeField,
+      required this.shouldNavigate,
+      this.defaultInputs});
   final InputsCallBack onChangeField;
   @override
   State<HostFilterTab> createState() => _HostFilterTabState();
@@ -74,6 +76,28 @@ class _HostFilterTabState extends State<HostFilterTab> {
         end = '${DateFormat('dd/MM/yyyy').format(picked.end)}';
       });
     }
+  }
+
+  @override
+  void initState() {
+    print(widget.defaultInputs);
+    addressValue = widget.defaultInputs['address'] != ""
+        ? widget.defaultInputs['address']
+        : 'Adresse';
+    adultsCount = widget.defaultInputs['adults'] != ""
+        ? int.parse(widget.defaultInputs['adults'])
+        : 0;
+    start = widget.defaultInputs['start'] != ""
+        ? widget.defaultInputs['start']
+        : DateFormat('dd/MM/yyyy').format(DateTime.now());
+    end = widget.defaultInputs['end'] != ""
+        ? widget.defaultInputs['end']
+        : DateFormat('dd/MM/yyyy').format(
+            DateTime(DateTime.now().year, DateTime.now().month,
+                DateTime.now().day + 1),
+          );
+    dateRange = '$start - $end';
+    super.initState();
   }
 
   @override

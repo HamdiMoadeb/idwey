@@ -84,6 +84,7 @@ class EventCalls {
       result["listConvenience"] = listConvenience;
       result["listType"] = listTypes;
       result["priceRange"] = priceRange;
+      result["searchInputs"] = searchInputs;
     }
 
     return result;
