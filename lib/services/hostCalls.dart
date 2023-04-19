@@ -45,13 +45,14 @@ class HostCalls {
     print(termsList.length);
     if (termsList.length > 0) {
       for (var i = 0; i < termsList.length; i++) {
-        terms += '&terms%5B%5D=' + termsList[i].toString();
+        if (i < termsList.length - 1) terms += termsList[i].toString() + ',';
+        if (i == termsList.length - 1) terms += termsList[i].toString();
       }
     }
 
     if (max != '' && min != '')
       url = Uri.parse(
-          '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max$terms');
+          '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms');
     else
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');

@@ -47,19 +47,21 @@ class ExperienceCalls {
     print(termsList.length);
     if (termsList.length > 0) {
       for (var i = 0; i < termsList.length; i++) {
-        terms += '&terms%5B%5D=' + termsList[i].toString();
+        if (i < termsList.length - 1) terms += termsList[i].toString() + ',';
+        if (i == termsList.length - 1) terms += termsList[i].toString();
       }
     }
 
     if (catIDList.length > 0) {
       for (var i = 0; i < catIDList.length; i++) {
-        catID += '&cat_id%5B%5D=' + catIDList[i].toString();
+        if (i < catIDList.length - 1) catID += catIDList[i].toString() + ',';
+        if (i == catIDList.length - 1) catID += catIDList[i].toString();
       }
     }
 
     if (max != '' && min != '')
       url = Uri.parse(
-          '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max$catID$terms');
+          '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&cat_id=$catID&terms=$terms');
     else
       url = Uri.parse(
           '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
