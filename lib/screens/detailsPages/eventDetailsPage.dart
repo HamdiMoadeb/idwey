@@ -255,18 +255,25 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                 eventDetails.content!,
                               ),
                             ),
-                            SectionTitle(
-                              title: 'Commodités'.toUpperCase(),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 15.0),
-                              child: Column(
+                            if (eventDetails.convenience!.length > 0)
+                              Column(
                                 children: [
-                                  for (var item in eventDetails.convenience!)
-                                    StyleItem(title: item),
+                                  SectionTitle(
+                                    title: 'Commodités'.toUpperCase(),
+                                  ),
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15.0),
+                                    child: Column(
+                                      children: [
+                                        for (var item
+                                            in eventDetails.convenience!)
+                                          StyleItem(title: item),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
-                            ),
                             eventDetails.map_lat != 0 &&
                                     eventDetails.map_lng != 0
                                 ? Column(
