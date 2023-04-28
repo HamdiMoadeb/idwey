@@ -201,6 +201,8 @@ class _EventPageState extends State<EventPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 180),
                       child: EventFilterTab(
+                        positionKey: posKey,
+                        scrollController: scrollController,
                         shouldNavigate: false,
                         defaultInputs: searchInputs,
                         onChangeField: (dynamic searchInputs) =>

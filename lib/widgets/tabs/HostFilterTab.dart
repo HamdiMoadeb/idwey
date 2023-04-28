@@ -17,7 +17,9 @@ class HostFilterTab extends StatefulWidget {
       {Key? key,
       required this.onChangeField,
       required this.shouldNavigate,
-      this.defaultInputs});
+      this.defaultInputs,
+      this.scrollController,
+      this.positionKey});
   final InputsCallBack onChangeField;
   @override
   State<HostFilterTab> createState() => _HostFilterTabState();
@@ -321,6 +323,11 @@ class _HostFilterTabState extends State<HostFilterTab> {
                               builder: (context) =>
                                   HostPage(searchInputs: searchInputs),
                             ));
+                      if (!widget.shouldNavigate)
+                        Scrollable.ensureVisible(
+                            widget.positionKey!.currentContext!,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.linear);
                       widget.onChangeField(searchInputs);
                     },
                     child: const Text(
