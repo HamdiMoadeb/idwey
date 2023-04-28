@@ -32,7 +32,7 @@ class _BlogListItemState extends State<BlogListItem> {
       child: Container(
         width: MediaQuery.of(context).size.width - 30,
         margin: EdgeInsets.only(left: 15),
-        height: 420,
+        height: 450,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
         ),
@@ -168,7 +168,7 @@ class _BlogPageItemsState extends State<BlogPageItems> {
       },
       child: Container(
           width: MediaQuery.of(context).size.width - 30,
-          height: 450,
+          height: 460,
           margin: EdgeInsets.only(left: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -237,7 +237,8 @@ class _BlogPageItemsState extends State<BlogPageItems> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(left: 15.0, top: 15.0, bottom: 5),
+                margin: EdgeInsets.only(
+                    left: 15.0, top: 15.0, bottom: 5, right: 15.0),
                 child: Text(
                   '${widget.blog.title}',
                   style: TextStyle(

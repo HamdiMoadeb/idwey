@@ -119,7 +119,7 @@ class _BlogListSectionState extends State<BlogListSection> {
           ),
         ),
         Container(
-          height: 430,
+          height: 450,
           margin: EdgeInsets.only(top: 5, bottom: 10, right: 15),
           child: ListView.builder(
             controller: controller,
