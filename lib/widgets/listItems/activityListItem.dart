@@ -71,6 +71,29 @@ class _ActivityListItemState extends State<ActivityListItem> {
                     ),
                   ),
                 ),
+                widget.activity.is_featured == 1
+                    ? Positioned(
+                        left: 0,
+                        top: 20,
+                        child: Container(
+                          height: 26,
+                          padding: const EdgeInsets.only(left: 8),
+                          decoration: BoxDecoration(
+                            color: primaryOrange,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'En Vedette  ',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
                 Positioned(
                   bottom: 0,
                   child: Container(
