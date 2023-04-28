@@ -10,7 +10,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyC7MbkP9xG6aDIi3pfmVX9S6W7plT7FLvo"/>
+           android:value="AIzaSyCXSzW-78ZHUMSx9AvQzl5XYpXrbW0hwZk"/>
 
        <provider
            android:name="androidx.core.content.FileProvider"

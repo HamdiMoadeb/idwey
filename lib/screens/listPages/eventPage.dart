@@ -41,6 +41,7 @@ class _EventPageState extends State<EventPage> {
 
   bool _showAllConv = false;
   bool _showAllType = false;
+  var posKey = GlobalKey();
 
   dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
 
@@ -65,7 +66,6 @@ class _EventPageState extends State<EventPage> {
   }
 
   isExist(int x, bool checked) {
-    print(terms.contains(x));
     if (checked) {
       if (!terms.contains(x)) terms.add(x);
     } else {
@@ -159,7 +159,6 @@ class _EventPageState extends State<EventPage> {
           _showAllConv ? listConvience : listConvience.sublist(0, 3);
       displayedListType = _showAllType ? listType : listType.sublist(0, 3);
     }
-    print(widget.searchInputs);
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
@@ -352,6 +351,7 @@ class _EventPageState extends State<EventPage> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
+                      key: posKey,
                       padding: EdgeInsets.all(20),
                       child: Text(
                         "${total} Événements trouvés",

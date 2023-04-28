@@ -11,6 +11,8 @@ typedef void InputsCallBack(dynamic searchInputs);
 class EventFilterTab extends StatefulWidget {
   bool shouldNavigate;
   dynamic defaultInputs;
+  ScrollController? scrollController;
+  GlobalKey? positionKey;
   EventFilterTab(
       {Key? key,
       required this.onChangeField,

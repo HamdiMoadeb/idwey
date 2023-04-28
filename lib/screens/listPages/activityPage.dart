@@ -30,6 +30,7 @@ class _ActivityPageState extends State<ActivityPage> {
   final scrollController = ScrollController();
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': [], 'catID': []};
+  var posKey = GlobalKey();
 
   List<Activity> listActivities = [];
   List<Terms> listConvience = [];
@@ -47,7 +48,6 @@ class _ActivityPageState extends State<ActivityPage> {
 
   double _lowerValue = 0;
   double _upperValue = 0;
-
   bool _showAllConv = false;
   bool _showAllAct = false;
   bool _showAllStyle = false;
@@ -218,11 +218,12 @@ class _ActivityPageState extends State<ActivityPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 180),
                       child: ActivityFilterTab(
-                        shouldNavigate: false,
-                        defaultInputs: searchInputs,
-                        onChangeField: (dynamic searchInputs) =>
-                            updateSearchFields(searchInputs),
-                      ),
+                          scrollController: scrollController,
+                          positionKey: posKey,
+                          shouldNavigate: false,
+                          defaultInputs: searchInputs,
+                          onChangeField: (dynamic searchInputs) =>
+                              updateSearchFields(searchInputs)),
                     ),
                   ],
                 ),
@@ -393,6 +394,7 @@ class _ActivityPageState extends State<ActivityPage> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
+                      key: posKey,
                       padding: EdgeInsets.all(20),
                       child: Text(
                         "${total} activités trouvés",
