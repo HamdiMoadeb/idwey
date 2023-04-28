@@ -28,6 +28,8 @@ class _HostPageState extends State<HostPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  var posKey = GlobalKey();
+
   List<Host> listHosts = [];
   List<Terms> listConvience = [];
   List<Terms> listHotelService = [];
@@ -224,6 +226,8 @@ class _HostPageState extends State<HostPage>
                   Container(
                     margin: const EdgeInsets.only(top: 180),
                     child: HostFilterTab(
+                      positionKey: posKey,
+                      scrollController: scrollController,
                       shouldNavigate: false,
                       defaultInputs: searchInputs,
                       onChangeField: (dynamic searchInputs) =>
@@ -398,6 +402,7 @@ class _HostPageState extends State<HostPage>
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
+                    key: posKey,
                     padding: EdgeInsets.all(20),
                     child: Text(
                       "${totalNb} hébergements trouvés",

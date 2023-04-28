@@ -11,11 +11,15 @@ typedef void InputsCallBack(dynamic searchInputs);
 class ActivityFilterTab extends StatefulWidget {
   bool shouldNavigate;
   dynamic defaultInputs;
+  ScrollController? scrollController;
+  GlobalKey? positionKey;
   ActivityFilterTab(
       {Key? key,
       required this.onChangeField,
       required this.shouldNavigate,
-      required this.defaultInputs})
+      required this.defaultInputs,
+      this.scrollController,
+      this.positionKey})
       : super(key: key);
   final InputsCallBack onChangeField;
   @override
@@ -321,6 +325,11 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                                   ActivityPage(searchInputs: searchInputs),
                             ));
                       widget.onChangeField(searchInputs);
+                      if (!widget.shouldNavigate)
+                        Scrollable.ensureVisible(
+                            widget.positionKey!.currentContext!,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.linear);
                     },
                     child: const Text(
                       'RECHERCHER',

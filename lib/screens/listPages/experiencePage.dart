@@ -42,6 +42,7 @@ class _ExperiencePageState extends State<ExperiencePage>
 
   bool _showAllConv = false;
   bool _showAllAct = false;
+  var posKey = GlobalKey();
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': [], 'catID': []};
@@ -52,6 +53,11 @@ class _ExperiencePageState extends State<ExperiencePage>
       this.searchInputs = searchInputs;
     });
     callExps();
+  }
+
+  void scrollToList() {
+    scrollController.animateTo(500,
+        duration: const Duration(seconds: 2), curve: Curves.linear);
   }
 
   isExist(int x, bool checked, List<dynamic> list) {
@@ -212,7 +218,9 @@ class _ExperiencePageState extends State<ExperiencePage>
                   Container(
                     margin: const EdgeInsets.only(top: 180),
                     child: ActivityFilterTab(
+                      scrollController: scrollController,
                       shouldNavigate: false,
+                      positionKey: posKey,
                       defaultInputs: searchInputs,
                       onChangeField: (dynamic searchInputs) =>
                           updateSearchFields(searchInputs),
@@ -361,6 +369,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
+                    key: posKey,
                     padding: EdgeInsets.all(20),
                     child: Text(
                       "${totalNb} expériences trouvés",

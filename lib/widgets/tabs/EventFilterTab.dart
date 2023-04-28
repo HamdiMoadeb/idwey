@@ -11,11 +11,15 @@ typedef void InputsCallBack(dynamic searchInputs);
 class EventFilterTab extends StatefulWidget {
   bool shouldNavigate;
   dynamic defaultInputs;
+  ScrollController? scrollController;
+  GlobalKey? positionKey;
   EventFilterTab(
       {Key? key,
       required this.onChangeField,
       required this.shouldNavigate,
-      this.defaultInputs})
+      this.defaultInputs,
+      this.scrollController,
+      this.positionKey})
       : super(key: key);
 
   final InputsCallBack onChangeField;
@@ -324,6 +328,11 @@ class _EventFilterTabState extends State<EventFilterTab> {
                               builder: (context) =>
                                   EventPage(searchInputs: searchInputs),
                             ));
+                      if (!widget.shouldNavigate)
+                        Scrollable.ensureVisible(
+                            widget.positionKey!.currentContext!,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.linear);
                       widget.onChangeField(searchInputs);
                     },
                     child: const Text(
