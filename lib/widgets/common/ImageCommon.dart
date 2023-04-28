@@ -130,32 +130,6 @@ class _ImageGalleryState extends State<ImageGallery> {
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
-            Positioned(
-              right: 20.0,
-              top: 20.0,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DropDownSocialButton(
-                      appearanceColor: true,
-                      title: widget.title,
-                      text: widget.text,
-                      linkUrl: widget.linkUrl),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  AnimatedHeartButton(
-                      appearanceColor: true,
-                      funCallback: () {
-                        setState(() {
-                          widget.callBack();
-                          widget.isLiked = !widget.isLiked;
-                        });
-                      },
-                      isLiked: widget.isLiked),
-                ],
-              ),
-            )
           ],
         ),
         SizedBox(
