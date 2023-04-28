@@ -63,20 +63,20 @@ class _ExperiencePageState extends State<ExperiencePage>
     }
   }
 
-  filtredExperience() {
+  filtredExperience() async {
     setState(() {
       loading = true;
     });
-    ExperienceCalls.getExperienceList(
+    await ExperienceCalls.getExperienceList(
             searchInputs, listExps.length, filterInputs)
         .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
-        listExps.addAll(result["list"]);
+        if (!(listLengthFromLastCall < 20))
+          listExps.addAll(result["list"]);
+        else
+          listExps = result["list"];
         totalNb = result["total"];
-      });
-      await Future.delayed(Duration(seconds: 1));
-      setState(() {
         loading = false;
       });
     });
@@ -101,7 +101,6 @@ class _ExperiencePageState extends State<ExperiencePage>
         listConvience = result["listConvenience"];
         activity_category = result["activity_category"];
       });
-      await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
@@ -115,7 +114,7 @@ class _ExperiencePageState extends State<ExperiencePage>
     checkInternetConnectivity(context, callExps);
 
     scrollController.addListener(() {
-      if (terms.length == 0 && min == 0 && max == 0) {
+      if (terms.length == 0 && min == 0 && max == 0 && catID.length == 0) {
         if ((scrollController.position.pixels + 2000) >=
                 scrollController.position.maxScrollExtent &&
             !scrollController.position.outOfRange &&
@@ -129,7 +128,7 @@ class _ExperiencePageState extends State<ExperiencePage>
             !scrollController.position.outOfRange &&
             !loading &&
             !(listLengthFromLastCall < 20)) {
-          callExps();
+          filtredExperience();
         }
       }
 
@@ -291,10 +290,11 @@ class _ExperiencePageState extends State<ExperiencePage>
                           title: 'Type de l\'expérience',
                           filtringListFunction: (item, value) {
                             setState(() {
-                              item.checked = value ?? false;
+                              listExps.clear();
+                              item.checked = value;
                               isExist(item.id!, value!, catID);
                               filterInputs['catID'] = catID;
-                              listExps = [];
+
                               listLengthFromLastCall = 0;
                             });
                             filtredExperience();
@@ -322,7 +322,6 @@ class _ExperiencePageState extends State<ExperiencePage>
                               listLengthFromLastCall = 0;
                             });
                             filtredExperience();
-                            print(terms.length);
                           },
                           showMoreFunction: () {
                             setState(() {
