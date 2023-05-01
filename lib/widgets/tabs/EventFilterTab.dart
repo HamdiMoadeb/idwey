@@ -89,6 +89,8 @@ class _EventFilterTabState extends State<EventFilterTab> {
             '${DateFormat('dd/MM/yyyy').format(picked.start)} - ${DateFormat('dd/MM/yyyy').format(picked.end)}';
         start = '${DateFormat('dd/MM/yyyy').format(picked.start)}';
         end = '${DateFormat('dd/MM/yyyy').format(picked.end)}';
+        searchInputs['start'] = start;
+        searchInputs['end'] = end;
       });
     }
   }
@@ -305,6 +307,53 @@ class _EventFilterTabState extends State<EventFilterTab> {
             const SizedBox(height: 3),
             Row(
               children: [
+                if (widget.shouldNavigate == false)
+                  SizedBox(
+                    height: 35,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        setState(() {
+                          start =
+                              '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
+                          end =
+                              '${DateFormat('dd/MM/yyyy').format(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1))}';
+                          dateRange = '${start} - ${end}';
+                          addressValue = "Adresse";
+                          place = "Où vous allez?";
+                          searchInputs = {
+                            'start': '',
+                            'end': '',
+                            'address': "",
+                            'location_id': ""
+                          };
+                        });
+                        widget.onChangeField(searchInputs);
+                        if (!widget.shouldNavigate)
+                          Scrollable.ensureVisible(
+                              widget.positionKey!.currentContext!,
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.linear);
+                      },
+                      child: const Text(
+                        'Vider les champs',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(primaryOrange),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            side: BorderSide(color: primaryOrange),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 const Spacer(),
                 SizedBox(
                   height: 35,
@@ -313,13 +362,10 @@ class _EventFilterTabState extends State<EventFilterTab> {
                       FocusManager.instance.primaryFocus?.unfocus();
 
                       setState(() {
-                        searchInputs = {
-                          'start': start,
-                          'end': end,
-                          'address':
-                              addressValue == "Adresse" ? "" : addressValue,
-                          'location_id': place == "Où vous allez?" ? "" : place
-                        };
+                        searchInputs['address'] =
+                            addressValue == "Adresse" ? "" : addressValue;
+                        searchInputs['location_id'] =
+                            place == "Où vous allez?" ? "" : place;
                       });
                       if (widget.shouldNavigate)
                         Navigator.push(
