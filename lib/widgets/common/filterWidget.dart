@@ -116,12 +116,13 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     FlutterSlider(
+                      minimumDistance: 110,
                       values: [widget.lowerValue, widget.upperValue],
                       max: widget.max,
                       min: widget.min,
                       trackBar: FlutterSliderTrackBar(
-                          inactiveTrackBarHeight: 12,
-                          activeTrackBarHeight: 12,
+                          inactiveTrackBarHeight: 10,
+                          activeTrackBarHeight: 10,
                           activeTrackBar: BoxDecoration(color: primaryOrange),
                           inactiveTrackBar: BoxDecoration(
                               color: secondaryGrey,
@@ -197,19 +198,19 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                               percent: 25,
                               label: Text(
                                   removeDecimalZeroFormat(
-                                      '${(widget.max - widget.min) * 0.25}'),
+                                      '${widget.min + (widget.max - widget.min) / 4}'),
                                   style: TextStyle(fontSize: 9, color: grey))),
                           FlutterSliderHatchMarkLabel(
                               percent: 50,
                               label: Text(
                                   removeDecimalZeroFormat(
-                                      '${(widget.max - widget.min) * 0.5}'),
+                                      '${widget.min + (widget.max - widget.min) / 2}'),
                                   style: TextStyle(fontSize: 9, color: grey))),
                           FlutterSliderHatchMarkLabel(
                               percent: 75,
                               label: Text(
                                   removeDecimalZeroFormat(
-                                      '${(widget.max - widget.min) * 0.75}'),
+                                      '${widget.min + (widget.max - widget.min) / 2 + (widget.max - widget.min) / 4}'),
                                   style: TextStyle(fontSize: 9, color: grey))),
                           FlutterSliderHatchMarkLabel(
                               percent: 100,

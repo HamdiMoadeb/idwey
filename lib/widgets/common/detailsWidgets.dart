@@ -286,7 +286,7 @@ class RateStats extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.all(15.0),
+          margin: EdgeInsets.all(12.0),
           height: 350,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
