@@ -75,7 +75,10 @@ class _HostPageState extends State<HostPage>
         .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
-        listHosts.addAll(result["list"]);
+        if (!(listLengthFromLastCall < 20))
+          listHosts.addAll(result["list"]);
+        else
+          listHosts = result["list"];
         totalNb = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
@@ -378,6 +381,7 @@ class _HostPageState extends State<HostPage>
                           onPressed: () {
                             setState(() {
                               listHosts = [];
+                              terms = [];
                               searchInputs = {
                                 'start': '',
                                 'end': '',

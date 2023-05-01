@@ -23,12 +23,6 @@ class _CustomCalendarState extends State<CustomCalendar> {
         focusedDay: _focusedDay,
         shouldFillViewport: true,
         availableGestures: AvailableGestures.horizontalSwipe,
-        eventLoader: (day) {
-          if (day.day == DateTime.now().day + 1) {
-            return ['Cyclic event'];
-          }
-          return [];
-        },
         selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
         onDaySelected: (selectedDay, focusedDay) {
           setState(() {
