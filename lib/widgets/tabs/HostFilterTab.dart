@@ -78,6 +78,8 @@ class _HostFilterTabState extends State<HostFilterTab> {
             '${DateFormat('dd/MM/yyyy').format(picked.start)} - ${DateFormat('dd/MM/yyyy').format(picked.end)}';
         start = '${DateFormat('dd/MM/yyyy').format(picked.start)}';
         end = '${DateFormat('dd/MM/yyyy').format(picked.end)}';
+        searchInputs['start'] = start;
+        searchInputs['end'] = end;
       });
     }
   }
@@ -301,6 +303,54 @@ class _HostFilterTabState extends State<HostFilterTab> {
             const SizedBox(height: 5),
             Row(
               children: [
+                if (widget.shouldNavigate == false)
+                  SizedBox(
+                    height: 35,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        setState(() {
+                          start =
+                              '${DateFormat('dd/MM/yyyy').format(DateTime.now())}';
+                          end =
+                              '${DateFormat('dd/MM/yyyy').format(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1))}';
+                          dateRange = '${start} - ${end}';
+                          addressValue = "Adresse";
+                          adultsCount = 0;
+                          searchInputs = {
+                            'start': '',
+                            'end': '',
+                            'address': "",
+                            'adults': ""
+                          };
+                        });
+
+                        widget.onChangeField(searchInputs);
+                        if (!widget.shouldNavigate)
+                          Scrollable.ensureVisible(
+                              widget.positionKey!.currentContext!,
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.linear);
+                      },
+                      child: const Text(
+                        'Vider les champs',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(primaryOrange),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            side: BorderSide(color: primaryOrange),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 const Spacer(),
                 SizedBox(
                   height: 35,
@@ -308,13 +358,10 @@ class _HostFilterTabState extends State<HostFilterTab> {
                     onPressed: () {
                       FocusManager.instance.primaryFocus?.unfocus();
                       setState(() {
-                        searchInputs = {
-                          'start': start,
-                          'end': end,
-                          'address':
-                              addressValue == "Adresse" ? "" : addressValue,
-                          'adults': adultsCount.toString()
-                        };
+                        searchInputs['address'] =
+                            addressValue == "Adresse" ? "" : addressValue;
+                        searchInputs['adults'] =
+                            adultsCount == 0 ? "" : adultsCount.toString();
                       });
                       if (widget.shouldNavigate)
                         Navigator.push(
