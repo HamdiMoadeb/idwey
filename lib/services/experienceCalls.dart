@@ -92,7 +92,7 @@ class ExperienceCalls {
       result["total"] = data["total"];
       result["list"] = listExperiences;
       result["priceRange"] = priceRange;
-      print(priceRange[1]);
+      print(listExperiences.length);
     }
 
     return result;
