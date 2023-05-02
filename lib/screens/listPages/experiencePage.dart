@@ -296,17 +296,18 @@ class _ExperiencePageState extends State<ExperiencePage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Type de l\'expérience',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              listExps.clear();
-                              item.checked = value;
-                              isExist(item.id!, value!, catID);
-                              filterInputs['catID'] = catID;
-
-                              listLengthFromLastCall = 0;
-                            });
-                            filtredExperience();
-                          },
+                          filtringListFunction: loading
+                              ? (item, value) {}
+                              : (item, value) {
+                                  setState(() {
+                                    item.checked = value ?? false;
+                                    isExist(item.id!, value!, catID);
+                                    filterInputs['catID'] = catID;
+                                    listExps = [];
+                                    listLengthFromLastCall = 0;
+                                  });
+                                  filtredExperience();
+                                },
                           showMoreFunction: () {
                             setState(() {
                               _showAllAct = !_showAllAct;
@@ -321,16 +322,19 @@ class _ExperiencePageState extends State<ExperiencePage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Commodités',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              item.checked = value;
-                              isExist(item.id!, value!, terms);
-                              filterInputs['terms'] = terms;
-                              listExps = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            filtredExperience();
-                          },
+                          filtringListFunction: loading
+                              ? (item, value) {}
+                              : (item, value) {
+                                  setState(() {
+                                    item.checked = value;
+                                    isExist(item.id!, value!, terms);
+                                    filterInputs['terms'] = terms;
+                                    listExps = [];
+                                    listLengthFromLastCall = 0;
+                                  });
+                                  filtredExperience();
+                                  print(terms.length);
+                                },
                           showMoreFunction: () {
                             setState(() {
                               _showAllAct = !_showAllAct;

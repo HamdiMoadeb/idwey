@@ -308,17 +308,19 @@ class _HostPageState extends State<HostPage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Type de propriété',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              item.checked = value ?? false;
-                              isExist(item.id!, value!);
-                              filterInputs['terms'] = terms;
-                              listHosts = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            filtredHosts();
-                            print(terms.length);
-                          },
+                          filtringListFunction: loading
+                              ? (item, value) {}
+                              : (item, value) {
+                                  setState(() {
+                                    item.checked = value ?? false;
+                                    isExist(item.id!, value!);
+                                    filterInputs['terms'] = terms;
+                                    listHosts = [];
+                                    listLengthFromLastCall = 0;
+                                  });
+                                  filtredHosts();
+                                  print(terms.length);
+                                },
                           showMoreFunction: () {
                             setState(() {
                               _showAllProp = !_showAllProp;
@@ -333,17 +335,19 @@ class _HostPageState extends State<HostPage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Commodités',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              item.checked = value ?? false;
-                              isExist(item.id!, value!);
-                              filterInputs['terms'] = terms;
-                              listHosts = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            filtredHosts();
-                            print(terms.length);
-                          },
+                          filtringListFunction: loading
+                              ? (item, value) {}
+                              : (item, value) {
+                                  setState(() {
+                                    item.checked = value ?? false;
+                                    isExist(item.id!, value!);
+                                    filterInputs['terms'] = terms;
+                                    listHosts = [];
+                                    listLengthFromLastCall = 0;
+                                  });
+                                  filtredHosts();
+                                  print(terms.length);
+                                },
                           showMoreFunction: () {
                             setState(() {
                               _showAllConv = !_showAllConv;
@@ -358,17 +362,19 @@ class _HostPageState extends State<HostPage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Host Service',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              item.checked = value ?? false;
-                              isExist(item.id!, value!);
-                              filterInputs['terms'] = terms;
-                              listHosts = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            filtredHosts();
-                            print(terms.length);
-                          },
+                          filtringListFunction: loading
+                              ? (item, value) {}
+                              : (item, value) {
+                                  setState(() {
+                                    item.checked = value ?? false;
+                                    isExist(item.id!, value!);
+                                    filterInputs['terms'] = terms;
+                                    listHosts = [];
+                                    listLengthFromLastCall = 0;
+                                  });
+                                  filtredHosts();
+                                  print(terms.length);
+                                },
                           showMoreFunction: () {
                             setState(() {
                               _showAllHotel = !_showAllHotel;

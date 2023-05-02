@@ -280,17 +280,19 @@ class _EventPageState extends State<EventPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Type de l\'événement',
-                            filtringListFunction: (item, value) {
-                              setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!);
-                                filterInputs['terms'] = terms;
-                                listEvents = [];
-                                listLengthFromLastCall = 0;
-                              });
-                              filtredEvents();
-                              print(terms.length);
-                            },
+                            filtringListFunction: loading
+                                ? (item, value) {}
+                                : (item, value) {
+                                    setState(() {
+                                      item.checked = value ?? false;
+                                      isExist(item.id!, value!);
+                                      filterInputs['terms'] = terms;
+                                      listEvents = [];
+                                      listLengthFromLastCall = 0;
+                                    });
+                                    filtredEvents();
+                                    print(terms.length);
+                                  },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllType = !_showAllType;
@@ -305,17 +307,19 @@ class _EventPageState extends State<EventPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Commodités',
-                            filtringListFunction: (item, value) {
-                              setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!);
-                                filterInputs['terms'] = terms;
-                                listEvents = [];
-                                listLengthFromLastCall = 0;
-                              });
-                              filtredEvents();
-                              print(terms.length);
-                            },
+                            filtringListFunction: loading
+                                ? (item, value) {}
+                                : (item, value) {
+                                    setState(() {
+                                      item.checked = value ?? false;
+                                      isExist(item.id!, value!);
+                                      filterInputs['terms'] = terms;
+                                      listEvents = [];
+                                      listLengthFromLastCall = 0;
+                                    });
+                                    filtredEvents();
+                                    print(terms.length);
+                                  },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllConv = !_showAllConv;

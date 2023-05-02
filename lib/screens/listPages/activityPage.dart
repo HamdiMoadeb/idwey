@@ -296,17 +296,19 @@ class _ActivityPageState extends State<ActivityPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Type de l\'activité',
-                            filtringListFunction: (item, value) {
-                              setState(() {
-                                item.checked = value;
-                                isExist(item.id!, value!, catID);
-                                filterInputs['catID'] = catID;
-                                listActivities = [];
-                                listLengthFromLastCall = 0;
-                              });
-                              filtredActivities();
-                              print(catID.length);
-                            },
+                            filtringListFunction: loading
+                                ? (item, value) {}
+                                : (item, value) {
+                                    setState(() {
+                                      item.checked = value;
+                                      isExist(item.id!, value!, catID);
+                                      filterInputs['catID'] = catID;
+                                      listActivities = [];
+                                      listLengthFromLastCall = 0;
+                                    });
+                                    filtredActivities();
+                                    print(catID.length);
+                                  },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllAct = !_showAllAct;
@@ -321,17 +323,19 @@ class _ActivityPageState extends State<ActivityPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Style',
-                            filtringListFunction: (item, value) {
-                              setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!, terms);
-                                filterInputs['terms'] = terms;
-                                listActivities = [];
-                                listLengthFromLastCall = 0;
-                              });
-                              filtredActivities();
-                              print(terms.length);
-                            },
+                            filtringListFunction: loading
+                                ? (item, value) {}
+                                : (item, value) {
+                                    setState(() {
+                                      item.checked = value ?? false;
+                                      isExist(item.id!, value!, terms);
+                                      filterInputs['terms'] = terms;
+                                      listActivities = [];
+                                      listLengthFromLastCall = 0;
+                                    });
+                                    filtredActivities();
+                                    print(terms.length);
+                                  },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllStyle = !_showAllStyle;
@@ -346,17 +350,19 @@ class _ActivityPageState extends State<ActivityPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Commodités',
-                            filtringListFunction: (item, value) {
-                              setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!, terms);
-                                filterInputs['terms'] = terms;
-                                listActivities = [];
-                                listLengthFromLastCall = 0;
-                              });
-                              filtredActivities();
-                              print(terms.length);
-                            },
+                            filtringListFunction: loading
+                                ? (item, value) {}
+                                : (item, value) {
+                                    setState(() {
+                                      item.checked = value ?? false;
+                                      isExist(item.id!, value!, terms);
+                                      filterInputs['terms'] = terms;
+                                      listActivities = [];
+                                      listLengthFromLastCall = 0;
+                                    });
+                                    filtredActivities();
+                                    print(terms.length);
+                                  },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllAct = !_showAllAct;
