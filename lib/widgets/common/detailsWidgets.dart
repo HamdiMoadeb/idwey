@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/utils/utils.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../utils/colors.dart';
@@ -562,5 +564,91 @@ class BottomReservationBar extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+class OwnerWidget extends StatelessWidget {
+  String image;
+  String name;
+  String date;
+  OwnerWidget(
+      {Key? key, required this.image, required this.name, required this.date})
+      : super(key: key);
+
+  String formatDate(String dateStr) {
+    DateTime date = DateTime.parse(dateStr);
+    String month = DateFormat.MMM().format(date);
+    String year = DateFormat.y().format(date);
+    return "$month $year";
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.maxFinite,
+      height: 80,
+      padding: EdgeInsets.all(13),
+      margin: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+          border: Border.all(width: 1, color: primaryGrey),
+          borderRadius: BorderRadius.circular(15)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: 50,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+            width: 50,
+            child: ClipOval(
+              child: image != "" && image.isNotEmpty
+                  ? CachedNetworkImage(
+                      imageUrl: image,
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    )
+                  : Container(
+                      color: materialPrimary,
+                      child: Center(
+                        child: Text(
+                          name[0].toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35,
+                          ),
+                        ),
+                      ),
+                    ),
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: TextStyle(
+                  color: materialPrimary,
+                ),
+              ),
+              Text(
+                "Member depuis ${formatDate(date)}",
+                style: TextStyle(color: grey),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

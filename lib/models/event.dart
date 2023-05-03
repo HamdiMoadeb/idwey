@@ -71,6 +71,9 @@ class EventDetails {
   double? map_lat;
   double? map_lng;
   List<String>? convenience;
+  String business_name;
+  String created_at;
+  String author_image_url;
 
   EventDetails(
       this.id,
@@ -93,7 +96,10 @@ class EventDetails {
       this.gallery_images_url,
       this.map_lat,
       this.map_lng,
-      this.convenience);
+      this.convenience,
+      this.business_name,
+      this.created_at,
+      this.author_image_url);
 
   factory EventDetails.fromJson(Map<String?, dynamic> data) {
     dynamic row = data['row'];
@@ -135,6 +141,15 @@ class EventDetails {
       row['map_lat'] == null ? 0 : double.parse(row['map_lat']),
       row['map_lng'] == null ? 0 : double.parse(row['map_lng']),
       data['attributes']['10'] == null ? [] : conveniences,
+      row['author']['business_name'] == null
+          ? ""
+          : row['author']['business_name'] as String,
+      row['author']['created_at'] == null
+          ? ""
+          : row['author']['created_at'] as String,
+      data['author_image_url'] == false
+          ? ""
+          : data['author_image_url'] as String,
     );
   }
 }
