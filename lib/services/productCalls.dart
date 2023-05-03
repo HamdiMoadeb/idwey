@@ -43,7 +43,7 @@ class ProductCalls {
 
   static Future<ProductDetails> getProductDetails(int id) async {
     ProductDetails productDetails =
-        ProductDetails(0, '', '', '', '', '', '', '', [], []);
+        ProductDetails(0, '', '', '', '', '', '', '', [], [], '', '', '');
 
     var url = Uri.parse('${Urls.URL_API}product/detail/$id');
     var response = await http.get(url);

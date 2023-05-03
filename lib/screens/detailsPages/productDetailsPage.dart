@@ -27,7 +27,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
   bool showFAB = false;
   bool isLiked = false;
   ProductDetails productDetails =
-      ProductDetails(0, '', '', '', '', '', '', '', [], []);
+      ProductDetails(0, '', '', '', '', '', '', '', [], [], '', '', '');
 
   String currentImage = '';
 
@@ -86,59 +86,65 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                            ImageBanner(
-                              title: productDetails.title!,
-                              text: "Partager maintenant",
-                              linkUrl:
-                                  "https://idwey.tn/fr/product/${productDetails.slug}",
-                              banner_image_url: productDetails.banner_image_url,
-                              isLiked: isLiked,
-                              callBack: () {
-                                setState(() {
-                                  isLiked = !isLiked;
-                                });
-                              },
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.only(top: 20.0, left: 20.0),
-                                    child: Text(
-                                      '${productDetails.title}',
-                                      style: TextStyle(
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.w500,
-                                          color: titleBlack),
-                                    ),
+                          ImageBanner(
+                            title: productDetails.title!,
+                            text: "Partager maintenant",
+                            linkUrl:
+                                "https://idwey.tn/fr/product/${productDetails.slug}",
+                            banner_image_url: productDetails.banner_image_url,
+                            isLiked: isLiked,
+                            callBack: () {
+                              setState(() {
+                                isLiked = !isLiked;
+                              });
+                            },
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding:
+                                      EdgeInsets.only(top: 20.0, left: 20.0),
+                                  child: Text(
+                                    '${productDetails.title}',
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: titleBlack),
                                   ),
-                                ]),
-                            SectionDivider(),
-                            ImageGallery(
-                              title: productDetails.title!,
-                              text: "Partager maintenant",
-                              linkUrl:
-                                  "https://idwey.tn/fr/product/${productDetails.slug}",
-                              currentImage: currentImage,
-                              isLiked: isLiked,
-                              gallery_images_url:
-                                  productDetails.gallery_images_url,
-                              callBack: () {
-                                setState(() {
-                                  isLiked = !isLiked;
-                                });
-                              },
+                                ),
+                              ]),
+                          SectionDivider(),
+                          ImageGallery(
+                            title: productDetails.title!,
+                            text: "Partager maintenant",
+                            linkUrl:
+                                "https://idwey.tn/fr/product/${productDetails.slug}",
+                            currentImage: currentImage,
+                            isLiked: isLiked,
+                            gallery_images_url:
+                                productDetails.gallery_images_url,
+                            callBack: () {
+                              setState(() {
+                                isLiked = !isLiked;
+                              });
+                            },
+                          ),
+                          SectionTitle(title: 'DESCRIPTION'),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20),
+                            child: HtmlWidget(
+                              productDetails.content!,
                             ),
-                            SectionTitle(title: 'DESCRIPTION'),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20),
-                              child: HtmlWidget(
-                                productDetails.content!,
-                              ),
-                            ),
-                          ]),
+                          ),
+                          OwnerWidget(
+                            name: productDetails.business_name,
+                            image: productDetails.author_image_url,
+                            date: productDetails.created_at,
+                          )
+                        ],
+                      ),
                 Footer(),
                 CreatedBy(),
                 BackToTop(scrollToTop),

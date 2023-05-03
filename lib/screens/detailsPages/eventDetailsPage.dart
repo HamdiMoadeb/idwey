@@ -33,8 +33,9 @@ class _EventDetailsPageState extends State<EventDetailsPage>
   bool isLiked = false;
   bool showMore = false;
   String currentImage = '';
+
   EventDetails eventDetails = EventDetails(0, '', '', '', '', '', 0, '', '', 0,
-      '', '', '', '', '', '', '', [], 0, 0, []);
+      '', '', '', '', '', '', '', [], 0, 0, [], '', '', '');
   callEvents() {
     setState(() {
       loading = true;
@@ -46,6 +47,11 @@ class _EventDetailsPageState extends State<EventDetailsPage>
           currentImage = event.gallery_images_url[0].large;
       });
       await Future.delayed(Duration(seconds: 1));
+      print(eventDetails.author_image_url);
+      print(eventDetails.author_image_url);
+
+      print(eventDetails.author_image_url);
+
       setState(() {
         loading = false;
       });
@@ -320,6 +326,11 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                             RateStats(),
                           ],
                         ),
+                        OwnerWidget(
+                          name: eventDetails.business_name,
+                          image: eventDetails.author_image_url,
+                          date: eventDetails.created_at,
+                        )
                       ],
                     ),
               Footer(),

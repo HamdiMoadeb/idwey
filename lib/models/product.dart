@@ -37,6 +37,9 @@ class ProductDetails {
   String banner_image_url;
   List<Images> gallery_images_url;
   List<String> type;
+  String business_name;
+  String created_at;
+  String author_image_url;
 
   ProductDetails(
       this.id,
@@ -48,7 +51,10 @@ class ProductDetails {
       this.term_name,
       this.banner_image_url,
       this.gallery_images_url,
-      this.type);
+      this.type,
+      this.business_name,
+      this.created_at,
+      this.author_image_url);
 
   factory ProductDetails.fromJson(Map<String?, dynamic> data) {
     var listImages = data['gallery_images_url'] as List;
@@ -71,6 +77,15 @@ class ProductDetails {
           : data['banner_image_url'] as String,
       data['gallery_images_url'] == null ? [] : images,
       data['attributes']['3']['child'] == null ? [] : types,
+      row['author']['business_name'] == null
+          ? ""
+          : row['author']['business_name'] as String,
+      row['author']['created_at'] == null
+          ? ""
+          : row['author']['created_at'] as String,
+      data['author_image_url'] == false
+          ? ""
+          : data['author_image_url'] as String,
     );
   }
 }
