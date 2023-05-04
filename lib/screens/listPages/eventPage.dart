@@ -123,14 +123,7 @@ class _EventPageState extends State<EventPage> {
         listConvience = result["listConvenience"];
         listType = result["listType"];
       });
-      Fluttertoast.showToast(
-          backgroundColor: Colors.black.withOpacity(0.8),
-          msg: "Filtre appliqué",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.white,
-          fontSize: 14.0);
+
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
