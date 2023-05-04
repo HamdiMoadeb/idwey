@@ -48,15 +48,6 @@ class _FilterTabState extends State<FilterTab> {
                     title: Text(item.name!),
                     value: item.checked,
                     onChanged: (bool? value) {
-                      Fluttertoast.showToast(
-                          backgroundColor: Colors.black.withOpacity(0.8),
-                          msg: "Filtre appliqué",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          textColor: Colors.white,
-                          fontSize: 14.0);
-
                       widget.filtringListFunction(item, value!);
                     },
                   ),

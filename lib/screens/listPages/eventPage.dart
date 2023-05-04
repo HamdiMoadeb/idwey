@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 
@@ -51,6 +54,7 @@ class _EventPageState extends State<EventPage> {
     'address': '',
     'location_id': ''
   };
+  Timer? _timer;
 
   void scrollToTop() {
     scrollController.animateTo(0,
@@ -84,6 +88,14 @@ class _EventPageState extends State<EventPage> {
         listEvents = result["list"];
         total = result["total"];
       });
+      Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg: "Filtre appliqué",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
@@ -111,6 +123,14 @@ class _EventPageState extends State<EventPage> {
         listConvience = result["listConvenience"];
         listType = result["listType"];
       });
+      Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg: "Filtre appliqué",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
@@ -145,6 +165,12 @@ class _EventPageState extends State<EventPage> {
         }
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -271,7 +297,12 @@ class _EventPageState extends State<EventPage> {
                                 listEvents = [];
                                 listLengthFromLastCall = 0;
                               });
-                              filtredEvents();
+                              _timer?.cancel();
+
+                              _timer = Timer(Duration(seconds: 1), () {
+                                // Call your function here
+                                filtredEvents();
+                              });
                             }),
                         const Divider(
                             color: Colors.grey,
@@ -280,19 +311,22 @@ class _EventPageState extends State<EventPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Type de l\'événement',
-                            filtringListFunction: loading
-                                ? (item, value) {}
-                                : (item, value) {
-                                    setState(() {
-                                      item.checked = value ?? false;
-                                      isExist(item.id!, value!);
-                                      filterInputs['terms'] = terms;
-                                      listEvents = [];
-                                      listLengthFromLastCall = 0;
-                                    });
-                                    filtredEvents();
-                                    print(terms.length);
-                                  },
+                            filtringListFunction: (item, value) {
+                              setState(() {
+                                item.checked = value ?? false;
+                                isExist(item.id!, value!);
+                                filterInputs['terms'] = terms;
+                                listEvents = [];
+                                listLengthFromLastCall = 0;
+                              });
+                              _timer?.cancel();
+
+                              _timer = Timer(Duration(seconds: 1), () {
+                                // Call your function here
+                                filtredEvents();
+                              });
+                              print(terms.length);
+                            },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllType = !_showAllType;
@@ -307,19 +341,23 @@ class _EventPageState extends State<EventPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Commodités',
-                            filtringListFunction: loading
-                                ? (item, value) {}
-                                : (item, value) {
-                                    setState(() {
-                                      item.checked = value ?? false;
-                                      isExist(item.id!, value!);
-                                      filterInputs['terms'] = terms;
-                                      listEvents = [];
-                                      listLengthFromLastCall = 0;
-                                    });
-                                    filtredEvents();
-                                    print(terms.length);
-                                  },
+                            filtringListFunction: (item, value) {
+                              setState(() {
+                                item.checked = value ?? false;
+                                isExist(item.id!, value!);
+                                filterInputs['terms'] = terms;
+                                listEvents = [];
+                                listLengthFromLastCall = 0;
+                              });
+                              _timer?.cancel();
+
+                              _timer = Timer(Duration(seconds: 1), () {
+                                // Call your function here
+                                filtredEvents();
+                              });
+
+                              print(terms.length);
+                            },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllConv = !_showAllConv;
