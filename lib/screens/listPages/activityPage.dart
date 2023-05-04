@@ -174,7 +174,8 @@ class _ActivityPageState extends State<ActivityPage> {
           _showAllConv ? listConvience : listConvience.sublist(0, 3);
       displayedListActivityCategory =
           _showAllAct ? activity_category : activity_category.sublist(0, 3);
-      displayedListStyles = _showAllAct ? listStyles : listStyles.sublist(0, 3);
+      displayedListStyles =
+          _showAllStyle ? listStyles : listStyles.sublist(0, 3);
     }
     return CommonScaffold(
       scaffoldKey: _scaffoldKey,
