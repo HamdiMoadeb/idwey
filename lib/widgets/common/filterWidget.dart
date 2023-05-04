@@ -198,19 +198,19 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                               percent: 25,
                               label: Text(
                                   removeDecimalZeroFormat(
-                                      '${widget.min + (widget.max - widget.min) / 4}'),
+                                      '${widget.min + ((widget.max - widget.min) / 4).round()}'),
                                   style: TextStyle(fontSize: 9, color: grey))),
                           FlutterSliderHatchMarkLabel(
                               percent: 50,
                               label: Text(
                                   removeDecimalZeroFormat(
-                                      '${widget.min + (widget.max - widget.min) / 2}'),
+                                      '${widget.min + ((widget.max - widget.min) / 2).round()}'),
                                   style: TextStyle(fontSize: 9, color: grey))),
                           FlutterSliderHatchMarkLabel(
                               percent: 75,
                               label: Text(
                                   removeDecimalZeroFormat(
-                                      '${widget.min + (widget.max - widget.min) / 2 + (widget.max - widget.min) / 4}'),
+                                      '${widget.min + ((widget.max - widget.min) * 0.75).round()}'),
                                   style: TextStyle(fontSize: 9, color: grey))),
                           FlutterSliderHatchMarkLabel(
                               percent: 100,
