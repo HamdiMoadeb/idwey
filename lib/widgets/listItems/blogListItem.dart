@@ -255,7 +255,9 @@ class _BlogPageItemsState extends State<BlogPageItems> {
                 margin: EdgeInsets.only(left: 15.0, top: 15.0, bottom: 5),
                 padding: EdgeInsets.only(right: 15),
                 child: Text(
-                  '${widget.blog.content?.trimLeft()}',
+                  widget.blog.content!.length > 100
+                      ? '${widget.blog.content?.trimLeft().substring(0, 100)}...'
+                      : '${widget.blog.content?.trimLeft()}',
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
