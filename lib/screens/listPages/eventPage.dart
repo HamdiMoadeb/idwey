@@ -337,13 +337,6 @@ class _EventPageState extends State<EventPage> {
                                   'max': '',
                                   'terms': []
                                 };
-
-                                searchInputs = {
-                                  'start': '',
-                                  'end': '',
-                                  'address': '',
-                                  'location_id': ''
-                                };
                               });
 
                               callEvents();

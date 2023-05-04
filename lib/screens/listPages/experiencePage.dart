@@ -337,22 +337,17 @@ class _ExperiencePageState extends State<ExperiencePage>
                                 },
                           showMoreFunction: () {
                             setState(() {
-                              _showAllAct = !_showAllAct;
+                              _showAllConv = !_showAllConv;
                             });
                           },
                           displayedList: displayedListConvience,
-                          showAllAct: _showAllAct),
+                          showAllAct: _showAllConv),
                       Container(
                         child: TextButton(
                           onPressed: () {
                             setState(() {
                               listExps = [];
-                              searchInputs = {
-                                'start': '',
-                                'end': '',
-                                'address': '',
-                                'adults': ''
-                              };
+
                               filterInputs = {
                                 'min': '',
                                 'max': '',

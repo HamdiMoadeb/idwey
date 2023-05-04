@@ -375,12 +375,6 @@ class _ActivityPageState extends State<ActivityPage> {
                             onPressed: () {
                               setState(() {
                                 listActivities = [];
-                                searchInputs = {
-                                  'start': '',
-                                  'end': '',
-                                  'address': '',
-                                  'adults': ''
-                                };
                                 filterInputs = {
                                   'min': '',
                                   'max': '',
