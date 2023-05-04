@@ -365,11 +365,11 @@ class _ActivityPageState extends State<ActivityPage> {
                                   },
                             showMoreFunction: () {
                               setState(() {
-                                _showAllAct = !_showAllAct;
+                                _showAllConv = !_showAllConv;
                               });
                             },
                             displayedList: displayedListConvience,
-                            showAllAct: _showAllAct),
+                            showAllAct: _showAllConv),
                         Container(
                           child: TextButton(
                             onPressed: () {
