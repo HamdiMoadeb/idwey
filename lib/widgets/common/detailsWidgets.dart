@@ -413,7 +413,7 @@ class RatingProgressRow extends StatelessWidget {
           ),
         ),
         LinearPercentIndicator(
-          width: 220.0,
+          width: 195.0,
           lineHeight: 8.0,
           percent: percent,
           progressColor: Colors.red,
