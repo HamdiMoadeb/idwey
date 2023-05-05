@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/screens/listPages/eventPage.dart';
 import 'package:intl/intl.dart';
 
+import '../../models/event.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 
@@ -13,13 +14,15 @@ class EventFilterTab extends StatefulWidget {
   dynamic defaultInputs;
   ScrollController? scrollController;
   GlobalKey? positionKey;
+  List<Location>? listLocation;
   EventFilterTab(
       {Key? key,
       required this.onChangeField,
       required this.shouldNavigate,
       this.defaultInputs,
       this.scrollController,
-      this.positionKey})
+      this.positionKey,
+      this.listLocation})
       : super(key: key);
 
   final InputsCallBack onChangeField;
@@ -29,23 +32,16 @@ class EventFilterTab extends StatefulWidget {
 
 class _EventFilterTabState extends State<EventFilterTab> {
   String addressValue = "Adresse";
-  Map<String, String> searchInputs = {
+
+  Map<String, dynamic> searchInputs = {
     'start': '',
     'end': '',
     'address': '',
-    'location_id': ''
+    'location_id': 0
   };
 
-  static const List<String> placeItems = <String>[
-    'Où vous allez?',
-    'Plage',
-    'Forêt',
-    'Sahara',
-    'Ville',
-    'Montagne',
-    'Campagne'
-  ];
-  String place = placeItems.first;
+  int place = 0;
+  int selectedIndex = 0;
   String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
   String end = DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -100,9 +96,11 @@ class _EventFilterTabState extends State<EventFilterTab> {
     addressValue = widget.defaultInputs['address'] != ""
         ? widget.defaultInputs['address']
         : "Adresse";
-    place = widget.defaultInputs['location_id'] != ""
-        ? widget.defaultInputs['location_id']
-        : 'Où vous allez?';
+    if (widget.listLocation!.isNotEmpty) {
+      selectedIndex = widget.listLocation!.indexWhere(
+          (location) => location.id == widget.defaultInputs['location_id']);
+      place = widget.listLocation!.elementAt(selectedIndex).id;
+    }
     start = widget.defaultInputs['start'] != ""
         ? widget.defaultInputs['start']
         : DateFormat('dd/MM/yyyy').format(DateTime.now());
@@ -113,6 +111,7 @@ class _EventFilterTabState extends State<EventFilterTab> {
                 DateTime.now().day + 1),
           );
     dateRange = '$start - $end';
+
     super.initState();
   }
 
@@ -225,36 +224,46 @@ class _EventFilterTabState extends State<EventFilterTab> {
                       child: Row(
                         children: [
                           Expanded(
-                            child: DropdownButton<String>(
+                            child: DropdownButton<int>(
                               iconEnabledColor: primaryOrange,
                               underline: Container(),
-                              items: placeItems.map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width - 130,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            value,
-                                            style: TextStyle(
-                                                color: primaryOrange,
-                                                fontSize: 16),
+                              items: widget.listLocation!
+                                  .map((location) => DropdownMenuItem<int>(
+                                        value: location.id,
+                                        child: SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              130,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Flexible(
+                                                child: Text(
+                                                  location.name,
+                                                  style: TextStyle(
+                                                    color: primaryOrange,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
+                                      ))
+                                  .toList(),
                               value: place,
                               onChanged: (newValue) {
                                 setState(() {
-                                  place = newValue!;
+                                  selectedIndex =
+                                      widget.listLocation!.indexWhere(
+                                    (location) => location.id == newValue,
+                                  );
+                                  place = widget.listLocation!
+                                      .elementAt(selectedIndex)
+                                      .id;
                                 });
+                                print(place);
                               },
                             ),
                           ),
@@ -320,7 +329,7 @@ class _EventFilterTabState extends State<EventFilterTab> {
                               '${DateFormat('dd/MM/yyyy').format(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1))}';
                           dateRange = '${start} - ${end}';
                           addressValue = "Adresse";
-                          place = "Où vous allez?";
+                          place = 0;
                           searchInputs = {
                             'start': '',
                             'end': '',
@@ -364,21 +373,24 @@ class _EventFilterTabState extends State<EventFilterTab> {
                       setState(() {
                         searchInputs['address'] =
                             addressValue == "Adresse" ? "" : addressValue;
-                        searchInputs['location_id'] =
-                            place == "Où vous allez?" ? "" : place;
+                        searchInputs['location_id'] = place;
                       });
-                      if (widget.shouldNavigate)
+                      if (widget.shouldNavigate) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  EventPage(searchInputs: searchInputs),
+                              builder: (context) => EventPage(
+                                searchInputs: searchInputs,
+                                listLocations: widget.listLocation,
+                              ),
                             ));
-                      if (!widget.shouldNavigate)
+                      }
+                      if (!widget.shouldNavigate) {
                         Scrollable.ensureVisible(
                             widget.positionKey!.currentContext!,
                             duration: const Duration(seconds: 1),
                             curve: Curves.linear);
+                      }
                       widget.onChangeField(searchInputs);
                     },
                     child: const Text(

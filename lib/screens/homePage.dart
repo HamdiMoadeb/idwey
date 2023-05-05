@@ -18,7 +18,9 @@ import 'package:idwey/widgets/lists/testimonialListSection.dart';
 import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
 import 'package:idwey/widgets/tabs/EventFilterTab.dart';
 import 'package:idwey/widgets/tabs/HostFilterTab.dart';
+import '../../models/event.dart';
 
+import '../services/eventCalls.dart';
 import '../services/homePageCalls.dart';
 import '../utils/utils.dart';
 import '../widgets/common/footer.dart';
@@ -41,14 +43,14 @@ class _HomePageState extends State<HomePage>
   List<String> carouselLinks = [];
   bool offline = false;
   bool showFAB = false;
-
+  List<Location> listLocation = [];
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     super.initState();
 
     checkInternetConnectivity(context, getCarouselImages);
-
+    callEvents();
     scrollController.addListener(() {
       if (scrollController.position.pixels > 1000) {
         setState(() {
@@ -81,6 +83,17 @@ class _HomePageState extends State<HomePage>
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
+  }
+
+  callEvents() {
+    EventCalls.getEventsList(
+        {'start': '', 'end': '', 'address': '', 'location_id': 0},
+        listLocation!.length,
+        {'min': '', 'max': '', 'terms': []}).then((result) async {
+      setState(() {
+        listLocation = result["list_location"];
+      });
+    });
   }
 
   @override
@@ -200,14 +213,14 @@ class _HomePageState extends State<HomePage>
                             children: const [
                               FaIcon(
                                 FontAwesomeIcons.solidBuilding,
-                                size: 15,
+                                size: 13,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 8),
                               Text(
                                 'Hébergement',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10.5,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -221,14 +234,14 @@ class _HomePageState extends State<HomePage>
                             children: const [
                               FaIcon(
                                 FontAwesomeIcons.calendarDays,
-                                size: 15,
+                                size: 13,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 8),
                               Text(
                                 'Événement',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10.5,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -242,14 +255,14 @@ class _HomePageState extends State<HomePage>
                             children: const [
                               FaIcon(
                                 FontAwesomeIcons.umbrellaBeach,
-                                size: 15,
+                                size: 13,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 8),
                               Text(
                                 'Activité',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10.5,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -280,12 +293,13 @@ class _HomePageState extends State<HomePage>
                       },
                       onChangeField: (dynamic searchInputs) => {}),
                   EventFilterTab(
+                      listLocation: listLocation,
                       shouldNavigate: true,
                       defaultInputs: {
                         'start': '',
                         'end': '',
                         'address': 'Adresse',
-                        'location_id': 'Où vous allez?'
+                        'location_id': 0
                       },
                       onChangeField: (dynamic searchInputs) => {}),
                   ActivityFilterTab(

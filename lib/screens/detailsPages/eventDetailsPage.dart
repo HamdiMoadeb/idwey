@@ -47,11 +47,6 @@ class _EventDetailsPageState extends State<EventDetailsPage>
           currentImage = event.gallery_images_url[0].large;
       });
       await Future.delayed(Duration(seconds: 1));
-      print(eventDetails.author_image_url);
-      print(eventDetails.author_image_url);
-
-      print(eventDetails.author_image_url);
-
       setState(() {
         loading = false;
       });

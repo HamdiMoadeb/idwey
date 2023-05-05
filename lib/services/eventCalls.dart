@@ -32,11 +32,12 @@ class EventCalls {
     String start = searchInputs['start'];
     String end = searchInputs['end'];
     String address = searchInputs['address'];
-    String location_id = searchInputs['location_id'] == 'Où vous allez?'
+    String location_id = searchInputs['location_id'] == 0
         ? ''
-        : searchInputs['location_id'];
+        : searchInputs['location_id'].toString();
     List<Terms> listConvenience = [];
     List<Terms> listTypes = [];
+    List<Location> listLocations = [];
     List<String> priceRange = [];
 
     String max = filterInputs['max'];
@@ -51,6 +52,7 @@ class EventCalls {
         if (i == termsList.length - 1) terms += termsList[i].toString();
       }
     }
+    print(searchInputs['location_id']);
     if (max != '' && min != '')
       url = Uri.parse(
           '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms');
@@ -78,6 +80,14 @@ class EventCalls {
       for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
         listTypes.add(Terms.fromJson(i));
       }
+      for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
+        listTypes.add(Terms.fromJson(i));
+      }
+      for (Map<String?, dynamic> i in data["list_location"]) {
+        listLocations.add(Location.fromJson(i));
+      }
+      Location placeHolderLocation = Location(0, 'Où vous allez?');
+      listLocations.insert(0, placeHolderLocation);
       priceRange = new List<String>.from(data["event_min_max_price"]);
 
       result["total"] = data["total"];
@@ -85,6 +95,7 @@ class EventCalls {
       result["listConvenience"] = listConvenience;
       result["listType"] = listTypes;
       result["priceRange"] = priceRange;
+      result["list_location"] = listLocations;
       result["searchInputs"] = searchInputs;
     }
 
@@ -104,7 +115,7 @@ class EventCalls {
       final data = jsonDecode(response.body);
       eventDetail = EventDetails.fromJson(data);
     }
-    print(eventDetail);
+
     return eventDetail;
   }
 }

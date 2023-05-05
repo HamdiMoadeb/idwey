@@ -297,6 +297,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                         MaterialPageRoute(
                           builder: (context) => EventPage(
                             searchInputs: '',
+                            listLocations: [],
                           ),
                         ));
                   },
