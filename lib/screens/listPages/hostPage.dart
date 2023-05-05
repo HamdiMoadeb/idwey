@@ -388,12 +388,7 @@ class _HostPageState extends State<HostPage>
                             setState(() {
                               listHosts = [];
                               terms = [];
-                              searchInputs = {
-                                'start': '',
-                                'end': '',
-                                'address': '',
-                                'adults': ''
-                              };
+
                               filterInputs = {
                                 'min': '',
                                 'max': '',
