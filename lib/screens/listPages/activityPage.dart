@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:another_xlider/another_xlider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 
@@ -51,6 +54,7 @@ class _ActivityPageState extends State<ActivityPage> {
   bool _showAllConv = false;
   bool _showAllAct = false;
   bool _showAllStyle = false;
+  Timer? _timer;
 
   void scrollToTop() {
     scrollController.animateTo(0,
@@ -113,6 +117,14 @@ class _ActivityPageState extends State<ActivityPage> {
         activity_category = result["activity_category"];
         listStyles = result["listStyles"];
       });
+      Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg: "Filtre appliqué",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
@@ -158,6 +170,12 @@ class _ActivityPageState extends State<ActivityPage> {
         }
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -297,19 +315,23 @@ class _ActivityPageState extends State<ActivityPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Type de l\'activité',
-                            filtringListFunction: loading
-                                ? (item, value) {}
-                                : (item, value) {
-                                    setState(() {
-                                      item.checked = value;
-                                      isExist(item.id!, value!, catID);
-                                      filterInputs['catID'] = catID;
-                                      listActivities = [];
-                                      listLengthFromLastCall = 0;
-                                    });
-                                    filtredActivities();
-                                    print(catID.length);
-                                  },
+                            filtringListFunction: (item, value) {
+                              setState(() {
+                                item.checked = value;
+                                isExist(item.id!, value!, catID);
+                                filterInputs['catID'] = catID;
+                                listActivities = [];
+                                listLengthFromLastCall = 0;
+                              });
+                              _timer?.cancel();
+
+                              _timer = Timer(Duration(seconds: 1), () {
+                                // Call your function here
+                                filtredActivities();
+                              });
+
+                              print(catID.length);
+                            },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllAct = !_showAllAct;
@@ -324,19 +346,22 @@ class _ActivityPageState extends State<ActivityPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Style',
-                            filtringListFunction: loading
-                                ? (item, value) {}
-                                : (item, value) {
-                                    setState(() {
-                                      item.checked = value ?? false;
-                                      isExist(item.id!, value!, terms);
-                                      filterInputs['terms'] = terms;
-                                      listActivities = [];
-                                      listLengthFromLastCall = 0;
-                                    });
-                                    filtredActivities();
-                                    print(terms.length);
-                                  },
+                            filtringListFunction: (item, value) {
+                              setState(() {
+                                item.checked = value ?? false;
+                                isExist(item.id!, value!, terms);
+                                filterInputs['terms'] = terms;
+                                listActivities = [];
+                                listLengthFromLastCall = 0;
+                              });
+                              _timer?.cancel();
+
+                              _timer = Timer(Duration(seconds: 1), () {
+                                // Call your function here
+                                filtredActivities();
+                              });
+                              print(terms.length);
+                            },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllStyle = !_showAllStyle;
@@ -351,19 +376,22 @@ class _ActivityPageState extends State<ActivityPage> {
                             thickness: 0.5),
                         FilterTab(
                             title: 'Commodités',
-                            filtringListFunction: loading
-                                ? (item, value) {}
-                                : (item, value) {
-                                    setState(() {
-                                      item.checked = value ?? false;
-                                      isExist(item.id!, value!, terms);
-                                      filterInputs['terms'] = terms;
-                                      listActivities = [];
-                                      listLengthFromLastCall = 0;
-                                    });
-                                    filtredActivities();
-                                    print(terms.length);
-                                  },
+                            filtringListFunction: (item, value) {
+                              setState(() {
+                                item.checked = value ?? false;
+                                isExist(item.id!, value!, terms);
+                                filterInputs['terms'] = terms;
+                                listActivities = [];
+                                listLengthFromLastCall = 0;
+                              });
+                              _timer?.cancel();
+
+                              _timer = Timer(Duration(seconds: 1), () {
+                                // Call your function here
+                                filtredActivities();
+                              });
+                              print(terms.length);
+                            },
                             showMoreFunction: () {
                               setState(() {
                                 _showAllConv = !_showAllConv;

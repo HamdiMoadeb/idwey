@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 
@@ -49,6 +52,7 @@ class _HostPageState extends State<HostPage>
   bool _showAllHotel = false;
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
+  Timer? _timer;
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
@@ -71,6 +75,7 @@ class _HostPageState extends State<HostPage>
     setState(() {
       loading = true;
     });
+
     HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
         .then((result) async {
       setState(() {
@@ -80,10 +85,15 @@ class _HostPageState extends State<HostPage>
         else
           listHosts = result["list"];
         totalNb = result["total"];
-      });
-      await Future.delayed(Duration(seconds: 1));
-      setState(() {
         loading = false;
+        Fluttertoast.showToast(
+            backgroundColor: Colors.black.withOpacity(0.8),
+            msg: "Filtre appliqué",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            textColor: Colors.white,
+            fontSize: 14.0);
       });
     });
   }
@@ -162,6 +172,12 @@ class _HostPageState extends State<HostPage>
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -308,19 +324,23 @@ class _HostPageState extends State<HostPage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Type de propriété',
-                          filtringListFunction: loading
-                              ? (item, value) {}
-                              : (item, value) {
-                                  setState(() {
-                                    item.checked = value ?? false;
-                                    isExist(item.id!, value!);
-                                    filterInputs['terms'] = terms;
-                                    listHosts = [];
-                                    listLengthFromLastCall = 0;
-                                  });
-                                  filtredHosts();
-                                  print(terms.length);
-                                },
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!);
+                              filterInputs['terms'] = terms;
+                              listHosts = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              // Call your function here
+                              filtredHosts();
+                            });
+
+                            print(terms.length);
+                          },
                           showMoreFunction: () {
                             setState(() {
                               _showAllProp = !_showAllProp;
@@ -335,19 +355,22 @@ class _HostPageState extends State<HostPage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Commodités',
-                          filtringListFunction: loading
-                              ? (item, value) {}
-                              : (item, value) {
-                                  setState(() {
-                                    item.checked = value ?? false;
-                                    isExist(item.id!, value!);
-                                    filterInputs['terms'] = terms;
-                                    listHosts = [];
-                                    listLengthFromLastCall = 0;
-                                  });
-                                  filtredHosts();
-                                  print(terms.length);
-                                },
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!);
+                              filterInputs['terms'] = terms;
+                              listHosts = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              // Call your function here
+                              filtredHosts();
+                            });
+                            print(terms.length);
+                          },
                           showMoreFunction: () {
                             setState(() {
                               _showAllConv = !_showAllConv;
@@ -362,19 +385,22 @@ class _HostPageState extends State<HostPage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Host Service',
-                          filtringListFunction: loading
-                              ? (item, value) {}
-                              : (item, value) {
-                                  setState(() {
-                                    item.checked = value ?? false;
-                                    isExist(item.id!, value!);
-                                    filterInputs['terms'] = terms;
-                                    listHosts = [];
-                                    listLengthFromLastCall = 0;
-                                  });
-                                  filtredHosts();
-                                  print(terms.length);
-                                },
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!);
+                              filterInputs['terms'] = terms;
+                              listHosts = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              // Call your function here
+                              filtredHosts();
+                            });
+                            print(terms.length);
+                          },
                           showMoreFunction: () {
                             setState(() {
                               _showAllHotel = !_showAllHotel;

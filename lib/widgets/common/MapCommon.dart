@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,6 @@ class _MapPositionState extends State<MapPosition> {
   @override
   void initState() {
     markers.add(Marker(
-      //add marker on google map
       markerId: MarkerId("location"),
       position: LatLng(widget.lat, widget.lng), //position of marker
       infoWindow: InfoWindow(
@@ -41,12 +42,20 @@ class _MapPositionState extends State<MapPosition> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(widget.lat, widget.lng),
-          zoom: 11.0,
-        ),
-        markers: markers);
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      child: GoogleMap(
+          zoomControlsEnabled: false,
+          gestureRecognizers: {
+            Factory<OneSequenceGestureRecognizer>(
+                () => EagerGestureRecognizer())
+          },
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: LatLng(widget.lat, widget.lng),
+            zoom: 11.0,
+          ),
+          markers: markers),
+    );
   }
 }

@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:another_xlider/another_xlider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:idwey/models/experience.dart';
 import 'package:idwey/services/experienceCalls.dart';
 import 'package:idwey/utils/colors.dart';
@@ -46,6 +49,7 @@ class _ExperiencePageState extends State<ExperiencePage>
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': [], 'catID': []};
+  Timer? _timer;
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
@@ -85,6 +89,14 @@ class _ExperiencePageState extends State<ExperiencePage>
         totalNb = result["total"];
         loading = false;
       });
+      Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg: "Filtre appliqué",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
     });
   }
 
@@ -156,6 +168,12 @@ class _ExperiencePageState extends State<ExperiencePage>
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -296,18 +314,21 @@ class _ExperiencePageState extends State<ExperiencePage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Type de l\'expérience',
-                          filtringListFunction: loading
-                              ? (item, value) {}
-                              : (item, value) {
-                                  setState(() {
-                                    item.checked = value ?? false;
-                                    isExist(item.id!, value!, catID);
-                                    filterInputs['catID'] = catID;
-                                    listExps = [];
-                                    listLengthFromLastCall = 0;
-                                  });
-                                  filtredExperience();
-                                },
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value ?? false;
+                              isExist(item.id!, value!, catID);
+                              filterInputs['catID'] = catID;
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              // Call your function here
+                              filtredExperience();
+                            });
+                          },
                           showMoreFunction: () {
                             setState(() {
                               _showAllAct = !_showAllAct;
@@ -322,19 +343,22 @@ class _ExperiencePageState extends State<ExperiencePage>
                           thickness: 0.5),
                       FilterTab(
                           title: 'Commodités',
-                          filtringListFunction: loading
-                              ? (item, value) {}
-                              : (item, value) {
-                                  setState(() {
-                                    item.checked = value;
-                                    isExist(item.id!, value!, terms);
-                                    filterInputs['terms'] = terms;
-                                    listExps = [];
-                                    listLengthFromLastCall = 0;
-                                  });
-                                  filtredExperience();
-                                  print(terms.length);
-                                },
+                          filtringListFunction: (item, value) {
+                            setState(() {
+                              item.checked = value;
+                              isExist(item.id!, value!, terms);
+                              filterInputs['terms'] = terms;
+                              listExps = [];
+                              listLengthFromLastCall = 0;
+                            });
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              // Call your function here
+                              filtredExperience();
+                            });
+                            print(terms.length);
+                          },
                           showMoreFunction: () {
                             setState(() {
                               _showAllConv = !_showAllConv;
