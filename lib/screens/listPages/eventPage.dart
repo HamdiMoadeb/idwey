@@ -14,10 +14,9 @@ import '../../widgets/tabs/EventFilterTab.dart';
 
 class EventPage extends StatefulWidget {
   dynamic searchInputs;
-  EventPage({
-    Key? key,
-    required this.searchInputs,
-  }) : super(key: key);
+  List<Location>? listLocations;
+  EventPage({Key? key, required this.searchInputs, this.listLocations})
+      : super(key: key);
 
   @override
   State<EventPage> createState() => _EventPageState();
@@ -49,7 +48,7 @@ class _EventPageState extends State<EventPage> {
     'start': '',
     'end': '',
     'address': '',
-    'location_id': ''
+    'location_id': 0
   };
 
   void scrollToTop() {
@@ -105,6 +104,10 @@ class _EventPageState extends State<EventPage> {
         min = double.parse(result["priceRange"][0]);
         filterInputs['min'] = min.toInt().toString();
         filterInputs['max'] = max.toInt().toString();
+        if (widget.listLocations!.isEmpty) {
+          widget.listLocations = result['list_location'];
+        }
+
         _lowerValue = min;
         _upperValue = max;
         searchInputs = result["searchInputs"];
@@ -123,7 +126,14 @@ class _EventPageState extends State<EventPage> {
     super.initState();
 
     checkInternetConnectivity(context, callEvents);
-    if (widget.searchInputs != '') searchInputs = widget.searchInputs;
+    if (widget.searchInputs != '') {
+      searchInputs = widget.searchInputs;
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        Scrollable.ensureVisible(posKey.currentContext!,
+            duration: const Duration(seconds: 1), curve: Curves.linear);
+      });
+    }
+
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 2000) >=
               scrollController.position.maxScrollExtent &&
@@ -201,6 +211,7 @@ class _EventPageState extends State<EventPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 180),
                       child: EventFilterTab(
+                        listLocation: widget.listLocations,
                         positionKey: posKey,
                         scrollController: scrollController,
                         shouldNavigate: false,

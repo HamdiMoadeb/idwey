@@ -76,36 +76,38 @@ class EventDetails {
   String author_image_url;
 
   EventDetails(
-      this.id,
-      this.title,
-      this.content,
-      this.address,
-      this.impactsocial,
-      this.location_name,
-      this.is_featured,
-      this.start_date,
-      this.end_date,
-      this.number,
-      this.price,
-      this.duration,
-      this.distance,
-      this.difficulty,
-      this.terms_name,
-      this.slug,
-      this.banner_image_url,
-      this.gallery_images_url,
-      this.map_lat,
-      this.map_lng,
-      this.convenience,
-      this.business_name,
-      this.created_at,
-      this.author_image_url);
+    this.id,
+    this.title,
+    this.content,
+    this.address,
+    this.impactsocial,
+    this.location_name,
+    this.is_featured,
+    this.start_date,
+    this.end_date,
+    this.number,
+    this.price,
+    this.duration,
+    this.distance,
+    this.difficulty,
+    this.terms_name,
+    this.slug,
+    this.banner_image_url,
+    this.gallery_images_url,
+    this.map_lat,
+    this.map_lng,
+    this.convenience,
+    this.business_name,
+    this.created_at,
+    this.author_image_url,
+  );
 
   factory EventDetails.fromJson(Map<String?, dynamic> data) {
     dynamic row = data['row'];
     var listImages = data['gallery_images_url'] == null
         ? []
         : data['gallery_images_url'] as List;
+
     List<Images> images = [];
     if (listImages.length != 0) {
       images = listImages.map((i) => Images.fromJson(i)).toList();
@@ -150,6 +152,22 @@ class EventDetails {
       data['author_image_url'] == false
           ? ""
           : data['author_image_url'] as String,
+    );
+  }
+}
+
+class Location {
+  int id;
+  String name;
+
+  Location(
+    this.id,
+    this.name,
+  );
+  factory Location.fromJson(Map<String?, dynamic> data) {
+    return Location(
+      data['id'] as int,
+      data['name'] == null ? "" : data['name'] as String,
     );
   }
 }
