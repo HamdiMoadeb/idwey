@@ -79,6 +79,7 @@ class PriceRangeSlider extends StatefulWidget {
   double min = 0;
   double lowerValue = 0;
   double upperValue = 0;
+
   Function() callBack;
   Function(double upperValue, double lowerValue) priceRangeChange;
   PriceRangeSlider(
@@ -96,6 +97,10 @@ class PriceRangeSlider extends StatefulWidget {
 }
 
 class _PriceRangeSliderState extends State<PriceRangeSlider> {
+  double minDist = 0;
+  @override
+  void initState() {}
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -122,7 +127,6 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           FlutterSlider(
-                            minimumDistance: 110,
                             values: [widget.lowerValue, widget.upperValue],
                             max: widget.max,
                             min: widget.min,
@@ -165,30 +169,24 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                               duration: Duration(milliseconds: 700),
                             ),
                             tooltip: FlutterSliderTooltip(
-                                leftPrefix: Text(
-                                  'DT ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                rightPrefix: Text(
-                                  'DT ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                alwaysShowTooltip: true,
-                                textStyle: TextStyle(
-                                    fontSize: 11, color: Colors.white),
-                                boxStyle: FlutterSliderTooltipBox(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: primaryOrange)),
-                                positionOffset:
-                                    FlutterSliderTooltipPositionOffset(
-                                        top: -10)),
+                              alwaysShowTooltip: true,
+                              textStyle:
+                                  TextStyle(fontSize: 9, color: Colors.white),
+                              boxStyle: FlutterSliderTooltipBox(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      color: primaryOrange)),
+                              positionOffset:
+                                  FlutterSliderTooltipPositionOffset(top: -8),
+                              format: (value) {
+                                if (widget.upperValue - widget.lowerValue <=
+                                    minDist) {
+                                  return 'DT ${widget.lowerValue} - DT ${widget.upperValue} ';
+                                } else {
+                                  return 'DT ${value}';
+                                }
+                              },
+                            ),
                             hatchMark: FlutterSliderHatchMark(
                               density: 0.2,
                               smallDensity: 2,
@@ -234,6 +232,12 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                               ],
                             ),
                             onDragging: (handlerIndex, lowerValue, upperValue) {
+                              setState(() {
+                                minDist = ((widget.max - widget.min) * 0.1) +
+                                    widget.min;
+                              });
+                              print(((widget.max - widget.min) * 0.1) +
+                                  widget.min);
                               widget.priceRangeChange(lowerValue, upperValue);
                             },
                           ),
