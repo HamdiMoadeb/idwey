@@ -113,220 +113,137 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                       margin: EdgeInsets.only(
                           top: 10, left: 20, right: 20, bottom: 10),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          FlutterSlider(
-                            values: [widget.lowerValue, widget.upperValue],
-                            max: widget.max,
-                            min: widget.min,
-                            trackBar: FlutterSliderTrackBar(
-                                inactiveTrackBarHeight: 10,
-                                activeTrackBarHeight: 10,
-                                activeTrackBar:
-                                    BoxDecoration(color: primaryOrange),
-                                inactiveTrackBar: BoxDecoration(
-                                    color: secondaryGrey,
-                                    borderRadius: BorderRadius.circular(3))),
-                            handler: FlutterSliderHandler(
-                              decoration: BoxDecoration(),
-                              child: Material(
-                                type: MaterialType.canvas,
-                                color: primaryOrange,
-                                elevation: 0,
-                                child: SizedBox(
-                                  width: 2,
-                                  height: 16,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            FlutterSlider(
+                              values: [widget.lowerValue, widget.upperValue],
+                              max: widget.max,
+                              min: widget.min,
+                              trackBar: FlutterSliderTrackBar(
+                                  inactiveTrackBarHeight: 10,
+                                  activeTrackBarHeight: 10,
+                                  activeTrackBar:
+                                      BoxDecoration(color: primaryOrange),
+                                  inactiveTrackBar: BoxDecoration(
+                                      color: secondaryGrey,
+                                      borderRadius: BorderRadius.circular(3))),
+                              handler: FlutterSliderHandler(
+                                decoration: BoxDecoration(),
+                                child: Material(
+                                  type: MaterialType.canvas,
+                                  color: primaryOrange,
+                                  elevation: 0,
+                                  child: SizedBox(
+                                    width: 2,
+                                    height: 16,
+                                  ),
                                 ),
                               ),
-                            ),
-                            rightHandler: FlutterSliderHandler(
-                              decoration: BoxDecoration(),
-                              child: Material(
-                                type: MaterialType.canvas,
-                                color: primaryOrange,
-                                elevation: 0,
-                                child: SizedBox(
-                                  width: 2,
-                                  height: 16,
+                              rightHandler: FlutterSliderHandler(
+                                decoration: BoxDecoration(),
+                                child: Material(
+                                  type: MaterialType.canvas,
+                                  color: primaryOrange,
+                                  elevation: 0,
+                                  child: SizedBox(
+                                    width: 2,
+                                    height: 16,
+                                  ),
                                 ),
                               ),
-                            ),
-                            rangeSlider: true,
-                            handlerAnimation: FlutterSliderHandlerAnimation(
-                              curve: Curves.elasticOut,
-                              reverseCurve: null,
-                              duration: Duration(milliseconds: 700),
-                            ),
-                            tooltip: FlutterSliderTooltip(
-                              alwaysShowTooltip: true,
-                              textStyle:
-                                  TextStyle(fontSize: 9, color: Colors.white),
-                              boxStyle: FlutterSliderTooltipBox(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(3),
-                                      color: primaryOrange)),
-                              positionOffset:
-                                  FlutterSliderTooltipPositionOffset(top: -8),
-                              format: (value) {
-                                if (widget.upperValue - widget.lowerValue <=
-                                    minDist) {
-                                  return 'DT ${widget.lowerValue} - DT ${widget.upperValue} ';
-                                } else {
-                                  return 'DT ${value}';
-                                }
+                              rangeSlider: true,
+                              handlerAnimation: FlutterSliderHandlerAnimation(
+                                curve: Curves.elasticOut,
+                                reverseCurve: null,
+                                duration: Duration(milliseconds: 700),
+                              ),
+                              tooltip: FlutterSliderTooltip(
+                                alwaysShowTooltip: true,
+                                textStyle:
+                                    TextStyle(fontSize: 9, color: Colors.white),
+                                boxStyle: FlutterSliderTooltipBox(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(3),
+                                        color: primaryOrange)),
+                                positionOffset:
+                                    FlutterSliderTooltipPositionOffset(top: -8),
+                                format: (value) {
+                                  if (widget.upperValue - widget.lowerValue <=
+                                      minDist) {
+                                    return 'DT ${widget.lowerValue} - DT ${widget.upperValue} ';
+                                  } else {
+                                    return 'DT ${value}';
+                                  }
+                                },
+                              ),
+                              hatchMark: FlutterSliderHatchMark(
+                                density: 0.2,
+                                smallDensity: 2,
+                                linesDistanceFromTrackBar: 2,
+                                displayLines: true,
+                                labelsDistanceFromTrackBar: 55,
+                                labels: [
+                                  FlutterSliderHatchMarkLabel(
+                                      percent: 0,
+                                      label: Text(
+                                        removeDecimalZeroFormat(
+                                            '${widget.min}'),
+                                        style:
+                                            TextStyle(fontSize: 9, color: grey),
+                                      )),
+                                  FlutterSliderHatchMarkLabel(
+                                      percent: 25,
+                                      label: Text(
+                                          removeDecimalZeroFormat(
+                                              '${widget.min + ((widget.max - widget.min) / 4).round()}'),
+                                          style: TextStyle(
+                                              fontSize: 9, color: grey))),
+                                  FlutterSliderHatchMarkLabel(
+                                      percent: 50,
+                                      label: Text(
+                                          removeDecimalZeroFormat(
+                                              '${widget.min + ((widget.max - widget.min) / 2).round()}'),
+                                          style: TextStyle(
+                                              fontSize: 9, color: grey))),
+                                  FlutterSliderHatchMarkLabel(
+                                      percent: 75,
+                                      label: Text(
+                                          removeDecimalZeroFormat(
+                                              '${widget.min + ((widget.max - widget.min) * 0.75).round()}'),
+                                          style: TextStyle(
+                                              fontSize: 9, color: grey))),
+                                  FlutterSliderHatchMarkLabel(
+                                      percent: 100,
+                                      label: Text(
+                                          removeDecimalZeroFormat(
+                                              '${widget.max}'),
+                                          style: TextStyle(
+                                              fontSize: 9, color: grey))),
+                                ],
+                              ),
+                              onDragging:
+                                  (handlerIndex, lowerValue, upperValue) {
+                                setState(() {
+                                  minDist = ((widget.max - widget.min) * 0.1) +
+                                      widget.min;
+                                });
+                                print(((widget.max - widget.min) * 0.1) +
+                                    widget.min);
+                                widget.priceRangeChange(lowerValue, upperValue);
                               },
                             ),
-                            hatchMark: FlutterSliderHatchMark(
-                              density: 0.2,
-                              smallDensity: 2,
-                              linesDistanceFromTrackBar: 2,
-                              displayLines: true,
-                              labelsDistanceFromTrackBar: 55,
-                              labels: [
-                                FlutterSliderHatchMarkLabel(
-                                    percent: 0,
-                                    label: Text(
-                                      removeDecimalZeroFormat('${widget.min}'),
-                                      style:
-                                          TextStyle(fontSize: 9, color: grey),
-                                    )),
-                                FlutterSliderHatchMarkLabel(
-                                    percent: 25,
-                                    label: Text(
-                                        removeDecimalZeroFormat(
-                                            '${widget.min + (widget.max - widget.min) / 4}'),
-                                        style: TextStyle(
-                                            fontSize: 9, color: grey))),
-                                FlutterSliderHatchMarkLabel(
-                                    percent: 50,
-                                    label: Text(
-                                        removeDecimalZeroFormat(
-                                            '${widget.min + (widget.max - widget.min) / 2}'),
-                                        style: TextStyle(
-                                            fontSize: 9, color: grey))),
-                                FlutterSliderHatchMarkLabel(
-                                    percent: 75,
-                                    label: Text(
-                                        removeDecimalZeroFormat(
-                                            '${widget.min + (widget.max - widget.min) / 2 + (widget.max - widget.min) / 4}'),
-                                        style: TextStyle(
-                                            fontSize: 9, color: grey))),
-                                FlutterSliderHatchMarkLabel(
-                                    percent: 100,
-                                    label: Text(
-                                        removeDecimalZeroFormat(
-                                            '${widget.max}'),
-                                        style: TextStyle(
-                                            fontSize: 9, color: grey))),
-                              ],
-                            ),
-                            onDragging: (handlerIndex, lowerValue, upperValue) {
-                              setState(() {
-                                minDist = ((widget.max - widget.min) * 0.1) +
-                                    widget.min;
-                              });
-                              print(((widget.max - widget.min) * 0.1) +
-                                  widget.min);
-                              widget.priceRangeChange(lowerValue, upperValue);
-                            },
-                          ),
-<<<<<<< HEAD
-                        ),
-                      ),
-                      rightHandler: FlutterSliderHandler(
-                        decoration: BoxDecoration(),
-                        child: Material(
-                          type: MaterialType.canvas,
-                          color: primaryOrange,
-                          elevation: 0,
-                          child: SizedBox(
-                            width: 2,
-                            height: 16,
-                          ),
-                        ),
-                      ),
-                      rangeSlider: true,
-                      handlerAnimation: FlutterSliderHandlerAnimation(
-                        curve: Curves.elasticOut,
-                        reverseCurve: null,
-                        duration: Duration(milliseconds: 700),
-                      ),
-                      tooltip: FlutterSliderTooltip(
-                          leftPrefix: Text(
-                            'DT ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          rightPrefix: Text(
-                            'DT ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          alwaysShowTooltip: true,
-                          textStyle:
-                              TextStyle(fontSize: 11, color: Colors.white),
-                          boxStyle: FlutterSliderTooltipBox(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: primaryOrange)),
-                          positionOffset:
-                              FlutterSliderTooltipPositionOffset(top: -10)),
-                      hatchMark: FlutterSliderHatchMark(
-                        density: 0.2,
-                        smallDensity: 2,
-                        linesDistanceFromTrackBar: 2,
-                        displayLines: true,
-                        labelsDistanceFromTrackBar: 55,
-                        labels: [
-                          FlutterSliderHatchMarkLabel(
-                              percent: 0,
-                              label: Text(
-                                removeDecimalZeroFormat('${widget.min}'),
-                                style: TextStyle(fontSize: 9, color: grey),
-                              )),
-                          FlutterSliderHatchMarkLabel(
-                              percent: 25,
-                              label: Text(
-                                  removeDecimalZeroFormat(
-                                      '${widget.min + ((widget.max - widget.min) / 4).round()}'),
-                                  style: TextStyle(fontSize: 9, color: grey))),
-                          FlutterSliderHatchMarkLabel(
-                              percent: 50,
-                              label: Text(
-                                  removeDecimalZeroFormat(
-                                      '${widget.min + ((widget.max - widget.min) / 2).round()}'),
-                                  style: TextStyle(fontSize: 9, color: grey))),
-                          FlutterSliderHatchMarkLabel(
-                              percent: 75,
-                              label: Text(
-                                  removeDecimalZeroFormat(
-                                      '${widget.min + ((widget.max - widget.min) * 0.75).round()}'),
-                                  style: TextStyle(fontSize: 9, color: grey))),
-                          FlutterSliderHatchMarkLabel(
-                              percent: 100,
-                              label: Text(
-                                  removeDecimalZeroFormat('${widget.max}'),
-                                  style: TextStyle(fontSize: 9, color: grey))),
-=======
-                          TextButton(
-                              onPressed: () {
-                                widget.callBack();
-                              },
-                              child: Text(
-                                'Appliquer',
-                                style: TextStyle(
-                                    color: primaryOrange,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14),
-                              ))
->>>>>>> dev
-                        ],
-                      ),
-                    )
+                            TextButton(
+                                onPressed: () {
+                                  widget.callBack();
+                                },
+                                child: Text(
+                                  'Appliquer',
+                                  style: TextStyle(
+                                      color: primaryOrange,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14),
+                                ))
+                          ]))
                   : Container(),
             ]));
   }
