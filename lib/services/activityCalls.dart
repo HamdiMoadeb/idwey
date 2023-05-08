@@ -61,12 +61,17 @@ class ActivityCalls {
       }
     }
 
-    if (max != '' && min != '')
+    if (max != '' && min != '' && termsList.isNotEmpty && catID.isNotEmpty) {
       url = Uri.parse(
           '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms&cat_id=$catID');
-    else
+    } else if (catID.isNotEmpty ||
+        termsList.isNotEmpty && max == '' && min == '') {
+      url = Uri.parse(
+          '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&terms=$terms&cat_id=$catID');
+    } else {
       url = Uri.parse(
           '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
+    }
     print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
