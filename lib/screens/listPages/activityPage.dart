@@ -90,6 +90,14 @@ class _ActivityPageState extends State<ActivityPage> {
         total = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
+       Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg: "Filtre appliqué",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
       setState(() {
         loading = false;
       });
@@ -119,14 +127,7 @@ class _ActivityPageState extends State<ActivityPage> {
         activity_category = result["activity_category"];
         listStyles = result["listStyles"];
       });
-      Fluttertoast.showToast(
-          backgroundColor: Colors.black.withOpacity(0.8),
-          msg: "Filtre appliqué",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.white,
-          fontSize: 14.0);
+     
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
