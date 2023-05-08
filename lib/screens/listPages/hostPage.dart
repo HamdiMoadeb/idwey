@@ -73,25 +73,25 @@ class _HostPageState extends State<HostPage>
     setState(() {
       loading = true;
     });
-
+    if (listLengthFromLastCall == 0 &&
+        (terms.length != 0 ||
+            filterInputs["min"] != "" ||
+            filterInputs["max"] != ""))
+      Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg: "Filtre appliqué",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
     HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
         .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
-        if (!(listLengthFromLastCall < 20))
-          listHosts.addAll(result["list"]);
-        else
-          listHosts = result["list"];
+        listHosts.addAll(result["list"]);
         totalNb = result["total"];
         loading = false;
-        Fluttertoast.showToast(
-            backgroundColor: Colors.black.withOpacity(0.8),
-            msg: "Filtre appliqué",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            textColor: Colors.white,
-            fontSize: 14.0);
       });
     });
   }
@@ -100,6 +100,7 @@ class _HostPageState extends State<HostPage>
     setState(() {
       loading = true;
     });
+
     HostCalls.getHostsList(
             searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
         .then((result) async {
@@ -109,8 +110,6 @@ class _HostPageState extends State<HostPage>
         totalNb = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
-        filterInputs['min'] = min.toInt().toString();
-        filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
         if (widget.cities!.isEmpty) {
@@ -140,24 +139,26 @@ class _HostPageState extends State<HostPage>
             duration: const Duration(seconds: 1), curve: Curves.linear);
       });
     }
-    print(searchInputs["address"]);
+
     scrollController.addListener(() {
-      if (terms.length == 0 && min == 0 && max == 0) {
-        if ((scrollController.position.pixels + 2000) >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange &&
-            !loading &&
-            !(listLengthFromLastCall < 20)) {
-          callHosts();
-        }
-      } else {
-        if ((scrollController.position.pixels + 2000) >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange &&
-            !loading &&
-            !(listLengthFromLastCall < 20)) {
-          filtredHosts();
-        }
+      if ((terms.length == 0 &&
+              filterInputs["min"] == "" &&
+              filterInputs["max"] == "") &&
+          (scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        callHosts();
+      } else if ((terms.length != 0 ||
+              filterInputs["min"] != "" ||
+              filterInputs["max"] != "") &&
+          (scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        filtredHosts();
       }
 
       scrollController.addListener(() {

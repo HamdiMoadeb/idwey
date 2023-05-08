@@ -268,11 +268,18 @@ class ConvenienceItem extends StatelessWidget {
         SizedBox(
           width: 15,
         ),
-        Container(
-          padding: EdgeInsets.only(top: 8),
-          child: Text(
-            title,
-            style: TextStyle(color: materialPrimary),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.only(
+              top: 5,
+            ),
+            child: Text(
+              title,
+              style: TextStyle(color: materialPrimary),
+              softWrap: true,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         )
       ],

@@ -83,13 +83,10 @@ class _EventPageState extends State<EventPage> {
     setState(() {
       loading = true;
     });
-    EventCalls.getEventsList(searchInputs, listEvents.length, filterInputs)
-        .then((result) async {
-      setState(() {
-        listLengthFromLastCall = result["list"].length;
-        listEvents = result["list"];
-        total = result["total"];
-      });
+    if (listLengthFromLastCall == 0 &&
+        (terms.length != 0 ||
+            filterInputs["min"] != "" ||
+            filterInputs["max"] != ""))
       Fluttertoast.showToast(
           backgroundColor: Colors.black.withOpacity(0.8),
           msg: "Filtre appliqué",
@@ -98,6 +95,15 @@ class _EventPageState extends State<EventPage> {
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 14.0);
+
+    EventCalls.getEventsList(searchInputs, listEvents.length, filterInputs)
+        .then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listEvents.addAll(result["list"]);
+        total = result["total"];
+      });
+
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
@@ -117,8 +123,6 @@ class _EventPageState extends State<EventPage> {
         total = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
-        filterInputs['min'] = min.toInt().toString();
-        filterInputs['max'] = max.toInt().toString();
         if (widget.listLocations!.isEmpty) {
           widget.listLocations = result['list_location'];
         }
