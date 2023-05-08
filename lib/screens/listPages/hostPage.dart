@@ -14,11 +14,9 @@ import '../../widgets/tabs/HostFilterTab.dart';
 
 class HostPage extends StatefulWidget {
   dynamic searchInputs;
-
-  HostPage({
-    Key? key,
-    required this.searchInputs,
-  }) : super(key: key);
+  List<String>? cities;
+  HostPage({Key? key, required this.searchInputs, this.cities})
+      : super(key: key);
 
   @override
   State<HostPage> createState() => _HostPageState();
@@ -105,6 +103,9 @@ class _HostPageState extends State<HostPage>
         filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
+        if (widget.cities!.isEmpty) {
+          widget.cities = result['cities'];
+        }
         searchInputs = result["searchInputs"];
         listConvience = result["listConvenience"];
         listHotelService = result["listHotelService"];
@@ -122,8 +123,13 @@ class _HostPageState extends State<HostPage>
     super.initState();
 
     checkInternetConnectivity(context, callHosts);
-    if (widget.searchInputs != '') searchInputs = widget.searchInputs;
-
+    if (widget.searchInputs != '') {
+      searchInputs = widget.searchInputs;
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        Scrollable.ensureVisible(posKey.currentContext!,
+            duration: const Duration(seconds: 1), curve: Curves.linear);
+      });
+    }
     print(searchInputs["address"]);
     scrollController.addListener(() {
       if (terms.length == 0 && min == 0 && max == 0) {
@@ -229,6 +235,7 @@ class _HostPageState extends State<HostPage>
                   Container(
                     margin: const EdgeInsets.only(top: 180),
                     child: HostFilterTab(
+                      cities: widget.cities,
                       positionKey: posKey,
                       scrollController: scrollController,
                       shouldNavigate: false,

@@ -15,7 +15,10 @@ import '../../widgets/tabs/EventFilterTab.dart';
 class EventPage extends StatefulWidget {
   dynamic searchInputs;
   List<Location>? listLocations;
-  EventPage({Key? key, required this.searchInputs, this.listLocations})
+  List<String>? cities;
+
+  EventPage(
+      {Key? key, required this.searchInputs, this.listLocations, this.cities})
       : super(key: key);
 
   @override
@@ -106,6 +109,9 @@ class _EventPageState extends State<EventPage> {
         filterInputs['max'] = max.toInt().toString();
         if (widget.listLocations!.isEmpty) {
           widget.listLocations = result['list_location'];
+        }
+        if (widget.cities!.isEmpty) {
+          widget.cities = result['cities'];
         }
 
         _lowerValue = min;
@@ -211,6 +217,7 @@ class _EventPageState extends State<EventPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 180),
                       child: EventFilterTab(
+                        cities: widget.cities,
                         listLocation: widget.listLocations,
                         positionKey: posKey,
                         scrollController: scrollController,

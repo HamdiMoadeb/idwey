@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/services/activityCalls.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:idwey/widgets/lists/activityListSection.dart';
@@ -22,6 +23,7 @@ import '../../models/event.dart';
 
 import '../services/eventCalls.dart';
 import '../services/homePageCalls.dart';
+import '../services/hostCalls.dart';
 import '../utils/utils.dart';
 import '../widgets/common/footer.dart';
 import '../widgets/lists/partnerListSection.dart';
@@ -44,6 +46,9 @@ class _HomePageState extends State<HomePage>
   bool offline = false;
   bool showFAB = false;
   List<Location> listLocation = [];
+  List<String> cities = [];
+  List<String> activityCities = [];
+  List<String> eventCities = [];
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
@@ -51,6 +56,8 @@ class _HomePageState extends State<HomePage>
 
     checkInternetConnectivity(context, getCarouselImages);
     callEvents();
+    callHotels();
+    callActivities();
     scrollController.addListener(() {
       if (scrollController.position.pixels > 1000) {
         setState(() {
@@ -92,6 +99,30 @@ class _HomePageState extends State<HomePage>
         {'min': '', 'max': '', 'terms': []}).then((result) async {
       setState(() {
         listLocation = result["list_location"];
+        eventCities = result["cities"];
+      });
+    });
+  }
+
+  callHotels() {
+    HostCalls.getHostsList(
+        {'start': '', 'end': '', 'address': '', 'adults': ''},
+        cities!.length,
+        {'min': '', 'max': '', 'terms': []}).then((result) async {
+      setState(() {
+        print(result['cities'].runtimeType);
+        cities = result["cities"];
+      });
+    });
+  }
+
+  callActivities() {
+    ActivityCalls.getActivityList(
+        {'start': '', 'end': '', 'address': '', 'adults': ''},
+        activityCities!.length,
+        {'min': '', 'max': '', 'terms': [], 'catID': []}).then((result) async {
+      setState(() {
+        activityCities = result["cities"];
       });
     });
   }
@@ -284,6 +315,7 @@ class _HomePageState extends State<HomePage>
                 controller: _tabController,
                 children: [
                   HostFilterTab(
+                      cities: cities,
                       shouldNavigate: true,
                       defaultInputs: {
                         'start': '',
@@ -293,6 +325,7 @@ class _HomePageState extends State<HomePage>
                       },
                       onChangeField: (dynamic searchInputs) => {}),
                   EventFilterTab(
+                      cities: eventCities,
                       listLocation: listLocation,
                       shouldNavigate: true,
                       defaultInputs: {
@@ -303,6 +336,7 @@ class _HomePageState extends State<HomePage>
                       },
                       onChangeField: (dynamic searchInputs) => {}),
                   ActivityFilterTab(
+                      cities: activityCities,
                       shouldNavigate: true,
                       defaultInputs: {
                         'start': '',

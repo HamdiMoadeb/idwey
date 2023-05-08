@@ -97,6 +97,8 @@ class EventCalls {
       result["priceRange"] = priceRange;
       result["list_location"] = listLocations;
       result["searchInputs"] = searchInputs;
+      result["cities"] =
+          List<String>.from(data["cities"].map((city) => city.toString()));
     }
 
     return result;

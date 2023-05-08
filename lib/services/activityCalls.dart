@@ -100,8 +100,8 @@ class ActivityCalls {
       result["activity_category"] = activity_category;
       result["priceRange"] = priceRange;
       result["searchInputs"] = searchInputs;
-
-      print(priceRange[1]);
+      result["cities"] =
+          List<String>.from(data["cities"].map((city) => city.toString()));
     }
 
     return result;

@@ -15,11 +15,10 @@ import '../../widgets/tabs/ActivityFilterTab.dart';
 
 class ActivityPage extends StatefulWidget {
   dynamic searchInputs;
+  List<String>? cities;
 
-  ActivityPage({
-    Key? key,
-    required this.searchInputs,
-  }) : super(key: key);
+  ActivityPage({Key? key, required this.searchInputs, this.cities})
+      : super(key: key);
 
   @override
   State<ActivityPage> createState() => _ActivityPageState();
@@ -109,6 +108,9 @@ class _ActivityPageState extends State<ActivityPage> {
         filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
+        if (widget.cities!.isEmpty) {
+          widget.cities = result['cities'];
+        }
         listConvience = result["listConvenience"];
         activity_category = result["activity_category"];
         listStyles = result["listStyles"];
@@ -124,7 +126,13 @@ class _ActivityPageState extends State<ActivityPage> {
   void initState() {
     super.initState();
     checkInternetConnectivity(context, callActivities);
-    if (widget.searchInputs != '') searchInputs = widget.searchInputs;
+    if (widget.searchInputs != '') {
+      searchInputs = widget.searchInputs;
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        Scrollable.ensureVisible(posKey.currentContext!,
+            duration: const Duration(seconds: 1), curve: Curves.linear);
+      });
+    }
 
     scrollController.addListener(() {
       if (terms.length == 0 && min == 0 && max == 0) {
@@ -219,6 +227,7 @@ class _ActivityPageState extends State<ActivityPage> {
                     Container(
                       margin: const EdgeInsets.only(top: 180),
                       child: ActivityFilterTab(
+                          cities: widget.cities,
                           scrollController: scrollController,
                           positionKey: posKey,
                           shouldNavigate: false,

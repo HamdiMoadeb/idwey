@@ -64,7 +64,7 @@ class HostCalls {
       'list': [],
       'total': 0,
     };
-
+    print(url);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
@@ -80,6 +80,7 @@ class HostCalls {
       for (Map<String?, dynamic> i in data["attributes"][2]["terms"]) {
         listHotelService.add(Terms.fromJson(i));
       }
+
       priceRange = new List<String>.from(data["hotel_min_max_price"]);
       result["total"] = data["total"];
       result["list"] = listHosts;
@@ -88,6 +89,8 @@ class HostCalls {
       result["listPropertyType"] = listPropertyType;
       result["priceRange"] = priceRange;
       result["searchInputs"] = searchInputs;
+      result["cities"] =
+          List<String>.from(data["cities"].map((city) => city.toString()));
     }
     return result;
   }

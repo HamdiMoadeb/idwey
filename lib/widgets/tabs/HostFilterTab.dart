@@ -13,13 +13,15 @@ class HostFilterTab extends StatefulWidget {
   dynamic defaultInputs;
   ScrollController? scrollController;
   GlobalKey? positionKey;
+  List<String>? cities;
   HostFilterTab(
       {Key? key,
       required this.onChangeField,
       required this.shouldNavigate,
       this.defaultInputs,
       this.scrollController,
-      this.positionKey});
+      this.positionKey,
+      this.cities});
   final InputsCallBack onChangeField;
   @override
   State<HostFilterTab> createState() => _HostFilterTabState();
@@ -27,8 +29,8 @@ class HostFilterTab extends StatefulWidget {
 
 class _HostFilterTabState extends State<HostFilterTab> {
   int adultsCount = 0;
-  String addressValue = "Adresse";
-
+  String? addressValue;
+  int selectedIndex = 0;
   Map<String, String> searchInputs = {
     'start': '',
     'end': '',
@@ -86,7 +88,6 @@ class _HostFilterTabState extends State<HostFilterTab> {
 
   @override
   void initState() {
-    print(widget.defaultInputs);
     addressValue = widget.defaultInputs['address'] != ""
         ? widget.defaultInputs['address']
         : 'Adresse';
@@ -102,6 +103,7 @@ class _HostFilterTabState extends State<HostFilterTab> {
             DateTime(DateTime.now().year, DateTime.now().month,
                 DateTime.now().day + 1),
           );
+
     dateRange = '$start - $end';
     super.initState();
   }
@@ -176,53 +178,69 @@ class _HostFilterTabState extends State<HostFilterTab> {
                     ),
                     const SizedBox(height: 5),
                     Container(
-                      margin: const EdgeInsets.only(left: 5),
-                      width: 200,
-                      height: 40,
-                      child: DropdownButtonFormField(
-                        icon: Visibility(
-                            visible: false, child: Icon(Icons.arrow_downward)),
-                        items:
-                            cities.map<DropdownMenuItem<String>>((String city) {
-                          return DropdownMenuItem<String>(
-                            value: city,
-                            child: Text(
-                              city,
-                              style: TextStyle(
-                                color: city == 'Adresse'
-                                    ? Colors.grey.shade500
-                                    : Colors.black,
+                        margin: const EdgeInsets.only(left: 5),
+                        width: 200,
+                        height: 40,
+                        child: DropdownButtonFormField(
+                          icon: Visibility(
+                              visible: false,
+                              child: Icon(Icons.arrow_downward)),
+                          items: [
+                            DropdownMenuItem<String>(
+                              value: 'Adresse',
+                              child: Text(
+                                'Adresse',
+                                style: TextStyle(
+                                  color: Colors.grey.shade500,
+                                ),
                               ),
                             ),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() => addressValue = newValue!);
-                        },
-                        value: addressValue,
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            borderSide: BorderSide(color: Colors.white),
+                            ...widget.cities!
+                                .where((city) => city != 'Adresse')
+                                .map<DropdownMenuItem<String>>((String city) {
+                              return DropdownMenuItem<String>(
+                                value: city,
+                                child: Text(
+                                  city,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ],
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              addressValue = newValue!;
+                              selectedIndex = widget.cities!.indexOf(newValue);
+                            });
+                          },
+                          value: addressValue,
+                          decoration: InputDecoration(
+                            border: const OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade200),
+                            ),
+                            contentPadding:
+                                const EdgeInsets.only(top: 5, left: 20),
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade200),
+                            ),
+                            hintText: "Adresse",
+                            fillColor: Colors.white70,
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                            borderSide: BorderSide(color: Colors.grey.shade200),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.only(top: 5, left: 20),
-                          hintStyle: TextStyle(color: Colors.grey.shade400),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                            borderSide: BorderSide(color: Colors.grey.shade200),
-                          ),
-                          hintText: "Adresse",
-                          fillColor: Colors.white70,
-                        ),
-                      ),
-                    ),
+                        )),
                   ],
                 )
               ],
@@ -359,7 +377,7 @@ class _HostFilterTabState extends State<HostFilterTab> {
                       FocusManager.instance.primaryFocus?.unfocus();
                       setState(() {
                         searchInputs['address'] =
-                            addressValue == "Adresse" ? "" : addressValue;
+                            (addressValue == "Adresse" ? "" : addressValue)!;
                         searchInputs['adults'] =
                             adultsCount == 0 ? "" : adultsCount.toString();
                       });
@@ -367,8 +385,10 @@ class _HostFilterTabState extends State<HostFilterTab> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  HostPage(searchInputs: searchInputs),
+                              builder: (context) => HostPage(
+                                searchInputs: searchInputs,
+                                cities: widget.cities,
+                              ),
                             ));
                       if (!widget.shouldNavigate)
                         Scrollable.ensureVisible(
