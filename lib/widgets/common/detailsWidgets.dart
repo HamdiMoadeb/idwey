@@ -616,6 +616,7 @@ class OwnerWidget extends StatelessWidget {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     )
                   : Container(
+                      alignment: Alignment.center,
                       color: materialPrimary,
                       child: Center(
                         child: Text(
