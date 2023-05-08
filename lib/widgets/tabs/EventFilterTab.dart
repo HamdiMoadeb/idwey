@@ -15,6 +15,8 @@ class EventFilterTab extends StatefulWidget {
   ScrollController? scrollController;
   GlobalKey? positionKey;
   List<Location>? listLocation;
+  List<String>? cities;
+
   EventFilterTab(
       {Key? key,
       required this.onChangeField,
@@ -22,7 +24,8 @@ class EventFilterTab extends StatefulWidget {
       this.defaultInputs,
       this.scrollController,
       this.positionKey,
-      this.listLocation})
+      this.listLocation,
+      this.cities})
       : super(key: key);
 
   final InputsCallBack onChangeField;
@@ -31,8 +34,6 @@ class EventFilterTab extends StatefulWidget {
 }
 
 class _EventFilterTabState extends State<EventFilterTab> {
-  String addressValue = "Adresse";
-
   Map<String, dynamic> searchInputs = {
     'start': '',
     'end': '',
@@ -42,6 +43,8 @@ class _EventFilterTabState extends State<EventFilterTab> {
 
   int place = 0;
   int selectedIndex = 0;
+  String? addressValue;
+  int selectedIndexAddress = 0;
   String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
   String end = DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -152,22 +155,36 @@ class _EventFilterTabState extends State<EventFilterTab> {
                       child: DropdownButtonFormField(
                         icon: Visibility(
                             visible: false, child: Icon(Icons.arrow_downward)),
-                        items:
-                            cities.map<DropdownMenuItem<String>>((String city) {
-                          return DropdownMenuItem<String>(
-                            value: city,
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: 'Adresse',
                             child: Text(
-                              city,
+                              'Adresse',
                               style: TextStyle(
-                                color: city == 'Adresse'
-                                    ? Colors.grey.shade500
-                                    : Colors.black,
+                                color: Colors.grey.shade500,
                               ),
                             ),
-                          );
-                        }).toList(),
+                          ),
+                          ...widget.cities!
+                              .where((city) => city != 'Adresse')
+                              .map<DropdownMenuItem<String>>((String city) {
+                            return DropdownMenuItem<String>(
+                              value: city,
+                              child: Text(
+                                city,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ],
                         onChanged: (String? newValue) {
-                          setState(() => addressValue = newValue!);
+                          setState(() {
+                            addressValue = newValue!;
+                            selectedIndexAddress =
+                                widget.cities!.indexOf(newValue);
+                          });
                         },
                         value: addressValue,
                         decoration: InputDecoration(
@@ -381,6 +398,7 @@ class _EventFilterTabState extends State<EventFilterTab> {
                             MaterialPageRoute(
                               builder: (context) => EventPage(
                                 searchInputs: searchInputs,
+                                cities: widget.cities,
                                 listLocations: widget.listLocation,
                               ),
                             ));

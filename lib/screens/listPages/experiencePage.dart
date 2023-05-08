@@ -39,7 +39,7 @@ class _ExperiencePageState extends State<ExperiencePage>
   double min = 0;
   List<int> terms = [];
   List<int> catID = [];
-
+  List<String> cities = [];
   double _lowerValue = 0;
   double _upperValue = 0;
 
@@ -116,6 +116,9 @@ class _ExperiencePageState extends State<ExperiencePage>
         filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
+        if (cities!.isEmpty) {
+          cities = result['cities'];
+        }
         listConvience = result["listConvenience"];
         activity_category = result["activity_category"];
       });
@@ -235,6 +238,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                   Container(
                     margin: const EdgeInsets.only(top: 180),
                     child: ActivityFilterTab(
+                      cities: cities,
                       scrollController: scrollController,
                       shouldNavigate: false,
                       positionKey: posKey,

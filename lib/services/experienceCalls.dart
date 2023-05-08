@@ -92,7 +92,8 @@ class ExperienceCalls {
       result["total"] = data["total"];
       result["list"] = listExperiences;
       result["priceRange"] = priceRange;
-      print(listExperiences.length);
+      result["cities"] =
+          List<String>.from(data["cities"].map((city) => city.toString()));
     }
 
     return result;

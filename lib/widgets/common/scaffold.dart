@@ -266,6 +266,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                         MaterialPageRoute(
                           builder: (context) => HostPage(
                             searchInputs: '',
+                            cities: [],
                           ),
                         ));
                   },
@@ -297,6 +298,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                         MaterialPageRoute(
                           builder: (context) => EventPage(
                             searchInputs: '',
+                            cities: [],
                             listLocations: [],
                           ),
                         ));
@@ -358,6 +360,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                         MaterialPageRoute(
                           builder: (context) => ActivityPage(
                             searchInputs: '',
+                            cities: [],
                           ),
                         ));
                   },

@@ -13,13 +13,15 @@ class ActivityFilterTab extends StatefulWidget {
   dynamic defaultInputs;
   ScrollController? scrollController;
   GlobalKey? positionKey;
+  List<String>? cities;
   ActivityFilterTab(
       {Key? key,
       required this.onChangeField,
       required this.shouldNavigate,
       required this.defaultInputs,
       this.scrollController,
-      this.positionKey})
+      this.positionKey,
+      this.cities})
       : super(key: key);
   final InputsCallBack onChangeField;
   @override
@@ -28,8 +30,8 @@ class ActivityFilterTab extends StatefulWidget {
 
 class _ActivityFilterTabState extends State<ActivityFilterTab> {
   int adultsCount = 0;
-  String addressValue = "Adresse";
-
+  String? addressValue;
+  int selectedIndex = 0;
   Map<String, String> searchInputs = {
     'start': '',
     'end': '',
@@ -183,22 +185,35 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                       child: DropdownButtonFormField(
                         icon: Visibility(
                             visible: false, child: Icon(Icons.arrow_downward)),
-                        items:
-                            cities.map<DropdownMenuItem<String>>((String city) {
-                          return DropdownMenuItem<String>(
-                            value: city,
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: 'Adresse',
                             child: Text(
-                              city,
+                              'Adresse',
                               style: TextStyle(
-                                color: city == 'Adresse'
-                                    ? Colors.grey.shade500
-                                    : Colors.black,
+                                color: Colors.grey.shade500,
                               ),
                             ),
-                          );
-                        }).toList(),
+                          ),
+                          ...widget.cities!
+                              .where((city) => city != 'Adresse')
+                              .map<DropdownMenuItem<String>>((String city) {
+                            return DropdownMenuItem<String>(
+                              value: city,
+                              child: Text(
+                                city,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ],
                         onChanged: (String? newValue) {
-                          setState(() => addressValue = newValue!);
+                          setState(() {
+                            addressValue = newValue!;
+                            selectedIndex = widget.cities!.indexOf(newValue);
+                          });
                         },
                         value: addressValue,
                         decoration: InputDecoration(
@@ -366,7 +381,7 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                       FocusManager.instance.primaryFocus?.unfocus();
                       setState(() {
                         searchInputs['address'] =
-                            addressValue == "Adresse" ? "" : addressValue;
+                            (addressValue == "Adresse" ? "" : addressValue)!;
                         searchInputs['adults'] =
                             adultsCount == 0 ? "" : adultsCount.toString();
                       });
@@ -374,8 +389,10 @@ class _ActivityFilterTabState extends State<ActivityFilterTab> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  ActivityPage(searchInputs: searchInputs),
+                              builder: (context) => ActivityPage(
+                                searchInputs: searchInputs,
+                                cities: widget.cities,
+                              ),
                             ));
                       widget.onChangeField(searchInputs);
                       if (!widget.shouldNavigate)
