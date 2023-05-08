@@ -82,9 +82,15 @@ class ExperienceDetails {
       this.convenience);
 
   factory ExperienceDetails.fromJson(Map<String?, dynamic> data) {
-    var listImages = data['gallery_images_url'] as List;
-    List<Images> images = listImages.map((i) => Images.fromJson(i)).toList();
-    images.removeLast();
+    var listImages = data['gallery_images_url'] == null
+        ? []
+        : data['gallery_images_url'] as List;
+
+    List<Images> images = [];
+    if (listImages.length != 0) {
+      images = listImages.map((i) => Images.fromJson(i)).toList();
+      images.removeLast();
+    }
     var row = data['row'];
     var convenienceFromJson = data['attributes']['11']['child'];
     List<String> conveniences = new List<String>.from(convenienceFromJson);

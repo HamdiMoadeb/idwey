@@ -41,7 +41,8 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
     ExperienceCalls.getExperienceDetails(widget.id).then((experience) async {
       setState(() {
         experienceDetail = experience;
-        currentImage = experience.gallery_images_url[0].large;
+        if (experience.gallery_images_url.length != 0)
+          currentImage = experience.gallery_images_url[0].large;
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -106,7 +107,7 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
                             children: [
                               Container(
                                   padding:
-                                  EdgeInsets.only(top: 20.0, left: 20.0),
+                                      EdgeInsets.only(top: 20.0, left: 20.0),
                                   child: Text(
                                     experienceDetail.title!,
                                     style: TextStyle(
@@ -142,75 +143,78 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
                                 child: Column(
                                   children: [
                                     experienceDetail.duration != ""
-                                        ?
-                                    DetailIcons(
-                                      icon: IcoFontIcons.wallClock,
-                                      type: 'Durée',
-                                      description:
-                                      "${experienceDetail.duration} heures",
-                                    ):SizedBox(),
+                                        ? DetailIcons(
+                                            icon: IcoFontIcons.wallClock,
+                                            type: 'Durée',
+                                            description:
+                                                "${experienceDetail.duration} heures",
+                                          )
+                                        : SizedBox(),
                                     SizedBox(
                                       height: 12,
                                     ),
                                     experienceDetail.cat_name != ""
-                                        ?
-                                    DetailIcons(
-                                      icon: IcoFontIcons.tracking,
-                                      type: 'Type de l\'expérience',
-                                      description:
-                                      "${experienceDetail.cat_name}",
-                                    ):SizedBox(),
+                                        ? DetailIcons(
+                                            icon: IcoFontIcons.tracking,
+                                            type: 'Type de l\'expérience',
+                                            description:
+                                                "${experienceDetail.cat_name}",
+                                          )
+                                        : SizedBox(),
                                     SizedBox(
                                       height: 12,
                                     ),
                                     experienceDetail.max_people != 0
-                                        ?
-                                    DetailIcons(
-                                      icon: Icons.group,
-                                      type: 'Capacité',
-                                      description:
-                                      "${experienceDetail.max_people} personnes",
-                                    ): SizedBox(),
+                                        ? DetailIcons(
+                                            icon: Icons.group,
+                                            type: 'Capacité',
+                                            description:
+                                                "${experienceDetail.max_people} personnes",
+                                          )
+                                        : SizedBox(),
                                     SizedBox(
                                       height: 12,
                                     ),
                                     experienceDetail.location_name != ""
-                                        ?
-                                    DetailIcons(
-                                      icon: IcoFontIcons.islandAlt,
-                                      type: 'Emplacement',
-                                      description: experienceDetail.location_name,
-                                    ): SizedBox(),
+                                        ? DetailIcons(
+                                            icon: IcoFontIcons.islandAlt,
+                                            type: 'Emplacement',
+                                            description:
+                                                experienceDetail.location_name,
+                                          )
+                                        : SizedBox(),
                                     SizedBox(
                                       height: 12,
                                     ),
                                     experienceDetail.impactsocial != ""
                                         ? DetailIcons(
-                                      icon: FontAwesomeIcons.slideshare,
-                                      type: 'Impact social',
-                                      description:
-                                      experienceDetail.impactsocial!,
-                                    )
+                                            icon: FontAwesomeIcons.slideshare,
+                                            type: 'Impact social',
+                                            description:
+                                                experienceDetail.impactsocial!,
+                                          )
                                         : Container(),
                                   ],
                                 ),
                               ),
                               SectionDivider(),
-                              ImageGallery(
-                                title: experienceDetail.title!,
-                                text: "Partager maintenant",
-                                linkUrl:
-                                "https://idwey.tn/fr/experience/${experienceDetail.slug}",
-                                currentImage: currentImage,
-                                isLiked: isLiked,
-                                gallery_images_url:
-                                experienceDetail.gallery_images_url,
-                                callBack: () {
-                                  setState(() {
-                                    isLiked = !isLiked;
-                                  });
-                                },
-                              ),
+                              experienceDetail.gallery_images_url.length != 0
+                                  ? ImageGallery(
+                                      title: experienceDetail.title!,
+                                      text: "Partager maintenant",
+                                      linkUrl:
+                                          "https://idwey.tn/fr/experience/${experienceDetail.slug}",
+                                      currentImage: currentImage,
+                                      isLiked: isLiked,
+                                      gallery_images_url:
+                                          experienceDetail.gallery_images_url,
+                                      callBack: () {
+                                        setState(() {
+                                          isLiked = !isLiked;
+                                        });
+                                      },
+                                    )
+                                  : SizedBox(),
                               SectionTitle(title: 'DESCRIPTION'),
                               Container(
                                 padding: EdgeInsets.symmetric(
@@ -219,28 +223,31 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
                                   experienceDetail.content,
                                 ),
                               ),
-                              if(experienceDetail.convenience!.length !=0) ...[
+                              if (experienceDetail.convenience!.length !=
+                                  0) ...[
                                 SectionTitle(
                                   title: 'Commodités'.toUpperCase(),
                                 ),
                                 Container(
                                   padding:
-                                  EdgeInsets.symmetric(horizontal: 15.0),
+                                      EdgeInsets.symmetric(horizontal: 15.0),
                                   child: Column(
                                     children: [
                                       for (var item
-                                      in experienceDetail.convenience!)
+                                          in experienceDetail.convenience!)
                                         StyleItem(title: item),
                                     ],
                                   ),
-                                ),]else SizedBox(),
+                                ),
+                              ] else
+                                SizedBox(),
                               SectionTitle(
                                   title: 'EMPLACEMENT DE L’ACTIVITÉ'
                                       .toUpperCase()),
                               Container(
                                 padding: EdgeInsets.only(left: 20.0),
                                 margin:
-                                EdgeInsets.only(bottom: 20.0, top: 10.0),
+                                    EdgeInsets.only(bottom: 20.0, top: 10.0),
                                 child: Row(
                                   children: [
                                     Icon(
@@ -253,8 +260,8 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
                                     ),
                                     Text(
                                       experienceDetail.address!,
-                                      style: TextStyle(
-                                          fontSize: 14, color: grey),
+                                      style:
+                                          TextStyle(fontSize: 14, color: grey),
                                     ),
                                   ],
                                 ),
@@ -262,12 +269,11 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
                               Container(
                                   height: 300,
                                   padding:
-                                  EdgeInsets.symmetric(horizontal: 15.0),
+                                      EdgeInsets.symmetric(horizontal: 15.0),
                                   child: MapPosition(
                                       title: experienceDetail.title!,
                                       lat: experienceDetail.map_lat,
                                       lng: experienceDetail.map_lng)),
-
                             ],
                           ),
                         ],
