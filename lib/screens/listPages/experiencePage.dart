@@ -78,10 +78,10 @@ class _ExperiencePageState extends State<ExperiencePage>
       loading = true;
     });
     if (listLengthFromLastCall == 0 &&
-        (terms.length != 0 ||
-            catID.length != 0 ||
+        (terms.isNotEmpty ||
+            catID.isNotEmpty ||
             filterInputs["min"] != "" ||
-            filterInputs["max"] != ""))
+            filterInputs["max"] != "")) {
       Fluttertoast.showToast(
           backgroundColor: Colors.black.withOpacity(0.8),
           msg: "Filtre appliqué",
@@ -90,6 +90,7 @@ class _ExperiencePageState extends State<ExperiencePage>
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 14.0);
+    }
     await ExperienceCalls.getExperienceList(
             searchInputs, listExps.length, filterInputs)
         .then((result) async {
@@ -145,7 +146,8 @@ class _ExperiencePageState extends State<ExperiencePage>
           !loading &&
           !(listLengthFromLastCall < 20)) {
         callExps();
-      } else if ((catID.isNotEmpty && terms.isNotEmpty ||
+      } else if ((catID.isNotEmpty ||
+              terms.isNotEmpty ||
               filterInputs["min"] != "" ||
               filterInputs["max"] != "") &&
           (scrollController.position.pixels + 2000) >=

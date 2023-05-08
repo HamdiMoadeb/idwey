@@ -82,10 +82,10 @@ class _ActivityPageState extends State<ActivityPage> {
       loading = true;
     });
     if (listLengthFromLastCall == 0 &&
-        (terms.length != 0 ||
-            catID.length != 0 ||
+        (terms.isNotEmpty ||
+            catID.isNotEmpty ||
             filterInputs["min"] != "" ||
-            filterInputs["max"] != ""))
+            filterInputs["max"] != "")) {
       Fluttertoast.showToast(
           backgroundColor: Colors.black.withOpacity(0.8),
           msg: "Filtre appliqué",
@@ -94,6 +94,7 @@ class _ActivityPageState extends State<ActivityPage> {
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 14.0);
+    }
     ActivityCalls.getActivityList(
             searchInputs, listActivities.length, filterInputs)
         .then((result) async {
@@ -103,14 +104,7 @@ class _ActivityPageState extends State<ActivityPage> {
         total = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
-       Fluttertoast.showToast(
-          backgroundColor: Colors.black.withOpacity(0.8),
-          msg: "Filtre appliqué",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.white,
-          fontSize: 14.0);
+
       setState(() {
         loading = false;
       });
@@ -138,7 +132,7 @@ class _ActivityPageState extends State<ActivityPage> {
         activity_category = result["activity_category"];
         listStyles = result["listStyles"];
       });
-     
+
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
@@ -168,7 +162,8 @@ class _ActivityPageState extends State<ActivityPage> {
           !loading &&
           !(listLengthFromLastCall < 20)) {
         callActivities();
-      } else if ((terms.length != 0 ||
+      } else if ((catID.isNotEmpty ||
+              terms.isNotEmpty ||
               filterInputs["min"] != "" ||
               filterInputs["max"] != "") &&
           (scrollController.position.pixels + 2000) >=
