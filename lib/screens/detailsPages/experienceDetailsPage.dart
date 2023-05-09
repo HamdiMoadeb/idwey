@@ -285,6 +285,11 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
               ],
             ),
           ),
+          !loading
+              ? BottomReservationBar(
+                  price: experienceDetail.price!,
+                )
+              : Container()
         ],
       ),
     );
