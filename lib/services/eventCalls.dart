@@ -45,21 +45,26 @@ class EventCalls {
     List<dynamic> termsList = filterInputs['terms'];
     String terms = "";
     var url;
-    print(termsList.length);
     if (termsList.length > 0) {
       for (var i = 0; i < termsList.length; i++) {
         if (i < termsList.length - 1) terms += termsList[i].toString() + ',';
         if (i == termsList.length - 1) terms += termsList[i].toString();
       }
     }
-    print(searchInputs['location_id']);
-    if (max != '' && min != '')
+
+    if (max != '' && min != '' && termsList.isNotEmpty)
       url = Uri.parse(
           '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms');
+    else if (max != '' && min != '' && termsList.isEmpty)
+      url = Uri.parse(
+          '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip&price_range=$min%3B$max');
+    else if (termsList.isNotEmpty && max == '' && min == '')
+      url = Uri.parse(
+          '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip&terms=$terms');
     else
       url = Uri.parse(
           '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip');
-    print(url);
+
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
 

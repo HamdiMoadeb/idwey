@@ -56,7 +56,11 @@ class _ExperiencePageState extends State<ExperiencePage>
       listExps.clear();
       this.searchInputs = searchInputs;
     });
-    callExps();
+    _timer?.cancel();
+
+    _timer = Timer(Duration(seconds: 1), () {
+      callExps();
+    });
   }
 
   void scrollToList() {
@@ -77,18 +81,11 @@ class _ExperiencePageState extends State<ExperiencePage>
     setState(() {
       loading = true;
     });
-    await ExperienceCalls.getExperienceList(
-            searchInputs, listExps.length, filterInputs)
-        .then((result) async {
-      setState(() {
-        listLengthFromLastCall = result["list"].length;
-        if (!(listLengthFromLastCall < 20))
-          listExps.addAll(result["list"]);
-        else
-          listExps = result["list"];
-        totalNb = result["total"];
-        loading = false;
-      });
+    if (listLengthFromLastCall == 0 &&
+        (terms.isNotEmpty ||
+            catID.isNotEmpty ||
+            filterInputs["min"] != "" ||
+            filterInputs["max"] != "")) {
       Fluttertoast.showToast(
           backgroundColor: Colors.black.withOpacity(0.8),
           msg: "Filtre appliqué",
@@ -97,6 +94,16 @@ class _ExperiencePageState extends State<ExperiencePage>
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 14.0);
+    }
+    await ExperienceCalls.getExperienceList(
+            searchInputs, listExps.length, filterInputs)
+        .then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listExps.addAll(result["list"]);
+        totalNb = result["total"];
+        loading = false;
+      });
     });
   }
 
@@ -112,8 +119,6 @@ class _ExperiencePageState extends State<ExperiencePage>
         totalNb = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
-        filterInputs['min'] = min.toInt().toString();
-        filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
         if (cities!.isEmpty) {
@@ -135,22 +140,26 @@ class _ExperiencePageState extends State<ExperiencePage>
     checkInternetConnectivity(context, callExps);
 
     scrollController.addListener(() {
-      if (terms.length == 0 && min == 0 && max == 0 && catID.length == 0) {
-        if ((scrollController.position.pixels + 2000) >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange &&
-            !loading &&
-            !(listLengthFromLastCall < 20)) {
-          callExps();
-        }
-      } else {
-        if ((scrollController.position.pixels + 2000) >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange &&
-            !loading &&
-            !(listLengthFromLastCall < 20)) {
-          filtredExperience();
-        }
+      if ((catID.isEmpty &&
+              terms.isEmpty &&
+              filterInputs["min"] == "" &&
+              filterInputs["max"] == "") &&
+          (scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        callExps();
+      } else if ((catID.isNotEmpty ||
+              terms.isNotEmpty ||
+              filterInputs["min"] != "" ||
+              filterInputs["max"] != "") &&
+          (scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        filtredExperience();
       }
 
       scrollController.addListener(() {
@@ -309,7 +318,11 @@ class _ExperiencePageState extends State<ExperiencePage>
                               listExps = [];
                               listLengthFromLastCall = 0;
                             });
-                            filtredExperience();
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              filtredExperience();
+                            });
                           }),
                       const Divider(
                           color: Colors.grey,
@@ -383,8 +396,11 @@ class _ExperiencePageState extends State<ExperiencePage>
                                 'catID': []
                               };
                             });
+                            _timer?.cancel();
 
-                            callExps();
+                            _timer = Timer(Duration(seconds: 1), () {
+                              callExps();
+                            });
                           },
                           child: Text('Effacer les filtres'),
                         ),

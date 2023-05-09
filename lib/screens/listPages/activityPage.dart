@@ -65,7 +65,10 @@ class _ActivityPageState extends State<ActivityPage> {
       listActivities.clear();
       this.searchInputs = searchInputs;
     });
-    callActivities();
+    _timer?.cancel();
+    _timer = Timer(Duration(seconds: 1), () {
+      callActivities();
+    });
   }
 
   isExist(int x, bool checked, List<dynamic> list) {
@@ -81,6 +84,20 @@ class _ActivityPageState extends State<ActivityPage> {
     setState(() {
       loading = true;
     });
+    if (listLengthFromLastCall == 0 &&
+        (terms.isNotEmpty ||
+            catID.isNotEmpty ||
+            filterInputs["min"] != "" ||
+            filterInputs["max"] != "")) {
+      Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg: "Filtre appliqué",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
+    }
     ActivityCalls.getActivityList(
             searchInputs, listActivities.length, filterInputs)
         .then((result) async {
@@ -90,14 +107,7 @@ class _ActivityPageState extends State<ActivityPage> {
         total = result["total"];
       });
       await Future.delayed(Duration(seconds: 1));
-       Fluttertoast.showToast(
-          backgroundColor: Colors.black.withOpacity(0.8),
-          msg: "Filtre appliqué",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.white,
-          fontSize: 14.0);
+
       setState(() {
         loading = false;
       });
@@ -116,8 +126,6 @@ class _ActivityPageState extends State<ActivityPage> {
         total = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
-        filterInputs['min'] = min.toInt().toString();
-        filterInputs['max'] = max.toInt().toString();
         _lowerValue = min;
         _upperValue = max;
         if (widget.cities!.isEmpty) {
@@ -127,7 +135,7 @@ class _ActivityPageState extends State<ActivityPage> {
         activity_category = result["activity_category"];
         listStyles = result["listStyles"];
       });
-     
+
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
@@ -148,22 +156,25 @@ class _ActivityPageState extends State<ActivityPage> {
     }
 
     scrollController.addListener(() {
-      if (terms.length == 0 && min == 0 && max == 0) {
-        if ((scrollController.position.pixels + 2000) >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange &&
-            !loading &&
-            !(listLengthFromLastCall < 20)) {
-          callActivities();
-        }
-      } else {
-        if ((scrollController.position.pixels + 2000) >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange &&
-            !loading &&
-            !(listLengthFromLastCall < 20)) {
-          callActivities();
-        }
+      if ((terms.length == 0 &&
+              filterInputs["min"] == "" &&
+              filterInputs["max"] == "") &&
+          (scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        callActivities();
+      } else if ((catID.isNotEmpty ||
+              terms.isNotEmpty ||
+              filterInputs["min"] != "" ||
+              filterInputs["max"] != "") &&
+          (scrollController.position.pixels + 2000) >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange &&
+          !loading &&
+          !(listLengthFromLastCall < 20)) {
+        filtredActivities();
       }
 
       scrollController.addListener(() {
@@ -316,7 +327,10 @@ class _ActivityPageState extends State<ActivityPage> {
                                 listActivities = [];
                                 listLengthFromLastCall = 0;
                               });
-                              filtredActivities();
+                              _timer?.cancel();
+                              _timer = Timer(Duration(seconds: 1), () {
+                                filtredActivities();
+                              });
                             }),
                         const Divider(
                             color: Colors.grey,
@@ -421,8 +435,10 @@ class _ActivityPageState extends State<ActivityPage> {
                                   'catID': []
                                 };
                               });
-
-                              callActivities();
+                              _timer?.cancel();
+                              _timer = Timer(Duration(seconds: 1), () {
+                                callActivities();
+                              });
                             },
                             child: Text('Effacer les filtres'),
                           ),
