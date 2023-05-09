@@ -68,7 +68,10 @@ class _EventPageState extends State<EventPage> {
       listEvents.clear();
       this.searchInputs = searchInputs;
     });
-    callEvents();
+    _timer?.cancel();
+    _timer = Timer(Duration(seconds: 1), () {
+      callEvents();
+    });
   }
 
   isExist(int x, bool checked) {
@@ -335,7 +338,6 @@ class _EventPageState extends State<EventPage> {
                                 listLengthFromLastCall = 0;
                               });
                               _timer?.cancel();
-
                               _timer = Timer(Duration(seconds: 1), () {
                                 // Call your function here
                                 filtredEvents();
@@ -391,8 +393,10 @@ class _EventPageState extends State<EventPage> {
                                   'terms': []
                                 };
                               });
-
-                              callEvents();
+                              _timer?.cancel();
+                              _timer = Timer(Duration(seconds: 1), () {
+                                callEvents();
+                              });
                             },
                             child: Text('Effacer les filtres'),
                           ),

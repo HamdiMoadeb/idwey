@@ -56,7 +56,11 @@ class _ExperiencePageState extends State<ExperiencePage>
       listExps.clear();
       this.searchInputs = searchInputs;
     });
-    callExps();
+    _timer?.cancel();
+
+    _timer = Timer(Duration(seconds: 1), () {
+      callExps();
+    });
   }
 
   void scrollToList() {
@@ -314,7 +318,11 @@ class _ExperiencePageState extends State<ExperiencePage>
                               listExps = [];
                               listLengthFromLastCall = 0;
                             });
-                            filtredExperience();
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              filtredExperience();
+                            });
                           }),
                       const Divider(
                           color: Colors.grey,
@@ -388,8 +396,11 @@ class _ExperiencePageState extends State<ExperiencePage>
                                 'catID': []
                               };
                             });
+                            _timer?.cancel();
 
-                            callExps();
+                            _timer = Timer(Duration(seconds: 1), () {
+                              callExps();
+                            });
                           },
                           child: Text('Effacer les filtres'),
                         ),

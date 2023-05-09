@@ -53,6 +53,9 @@ class HostCalls {
     if (max != '' && min != '' && termsList.isNotEmpty)
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms');
+    else if (max != '' && min != '' && termsList.isEmpty)
+      url = Uri.parse(
+          '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max');
     else if (termsList.isNotEmpty && max == '' && min == '')
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&terms=$terms');

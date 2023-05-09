@@ -44,7 +44,6 @@ class ExperienceCalls {
     String catID = "";
 
     var url;
-    print(termsList.length);
     if (termsList.length > 0) {
       for (var i = 0; i < termsList.length; i++) {
         if (i < termsList.length - 1) terms += termsList[i].toString() + ',';
@@ -59,9 +58,12 @@ class ExperienceCalls {
       }
     }
 
-    if (max != '' && min != '' && termsList.isNotEmpty && catID.isNotEmpty) {
+    if (max != '' && min != '' && termsList.isNotEmpty || catID.isNotEmpty) {
       url = Uri.parse(
           '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&cat_id=$catID&terms=$terms');
+    } else if (catID.isEmpty && termsList.isEmpty && max != '' && min != '') {
+      url = Uri.parse(
+          '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max');
     } else if (catID.isNotEmpty ||
         termsList.isNotEmpty && max == '' && min == '') {
       url = Uri.parse(
@@ -70,6 +72,7 @@ class ExperienceCalls {
       url = Uri.parse(
           '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
     }
+    print(url);
 
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');

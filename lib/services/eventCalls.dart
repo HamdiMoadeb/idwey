@@ -55,6 +55,9 @@ class EventCalls {
     if (max != '' && min != '' && termsList.isNotEmpty)
       url = Uri.parse(
           '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms');
+    else if (max != '' && min != '' && termsList.isEmpty)
+      url = Uri.parse(
+          '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip&price_range=$min%3B$max');
     else if (termsList.isNotEmpty && max == '' && min == '')
       url = Uri.parse(
           '${Urls.URL_API}event?address=$address&location_id=$location_id&start=$start&end=$end&limit=20&offset=$skip&terms=$terms');

@@ -57,7 +57,12 @@ class _HostPageState extends State<HostPage>
       listHosts.clear();
       this.searchInputs = searchInputs;
     });
-    callHosts();
+    _timer?.cancel();
+
+    _timer = Timer(Duration(seconds: 1), () {
+      // Call your function here
+      callHosts();
+    });
   }
 
   isExist(int x, bool checked) {
@@ -85,6 +90,7 @@ class _HostPageState extends State<HostPage>
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 14.0);
+    print(filterInputs);
     HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
         .then((result) async {
       setState(() {
@@ -323,7 +329,12 @@ class _HostPageState extends State<HostPage>
                               listHosts = [];
                               listLengthFromLastCall = 0;
                             });
-                            filtredHosts();
+                            _timer?.cancel();
+
+                            _timer = Timer(Duration(seconds: 1), () {
+                              // Call your function here
+                              filtredHosts();
+                            });
                           }),
                       const Divider(
                           color: Colors.grey,
@@ -429,8 +440,12 @@ class _HostPageState extends State<HostPage>
                                 'terms': []
                               };
                             });
+                            _timer?.cancel();
 
-                            callHosts();
+                            _timer = Timer(Duration(seconds: 1), () {
+                              // Call your function here
+                              callHosts();
+                            });
                           },
                           child: Text('Effacer les filtres'),
                         ),

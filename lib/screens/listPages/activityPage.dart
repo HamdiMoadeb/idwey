@@ -65,7 +65,10 @@ class _ActivityPageState extends State<ActivityPage> {
       listActivities.clear();
       this.searchInputs = searchInputs;
     });
-    callActivities();
+    _timer?.cancel();
+    _timer = Timer(Duration(seconds: 1), () {
+      callActivities();
+    });
   }
 
   isExist(int x, bool checked, List<dynamic> list) {
@@ -324,7 +327,10 @@ class _ActivityPageState extends State<ActivityPage> {
                                 listActivities = [];
                                 listLengthFromLastCall = 0;
                               });
-                              filtredActivities();
+                              _timer?.cancel();
+                              _timer = Timer(Duration(seconds: 1), () {
+                                filtredActivities();
+                              });
                             }),
                         const Divider(
                             color: Colors.grey,
@@ -429,8 +435,10 @@ class _ActivityPageState extends State<ActivityPage> {
                                   'catID': []
                                 };
                               });
-
-                              callActivities();
+                              _timer?.cancel();
+                              _timer = Timer(Duration(seconds: 1), () {
+                                callActivities();
+                              });
                             },
                             child: Text('Effacer les filtres'),
                           ),
