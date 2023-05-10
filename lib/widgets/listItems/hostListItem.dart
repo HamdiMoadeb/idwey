@@ -10,7 +10,9 @@ import '../../utils/utils.dart';
 class HostListItem extends StatefulWidget {
   Host host;
   bool fromHomepage;
-  HostListItem(this.host, this.fromHomepage);
+  int? currencyValue;
+  String currency;
+  HostListItem(this.host, this.fromHomepage, this.currencyValue, this.currency);
 
   @override
   State<HostListItem> createState() => _HostListItemState();
@@ -298,7 +300,7 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '${removeDecimalZeroFormat(widget.host.price!)} DT',
+                    '${removeDecimalZeroFormat(widget.currency != 'TND' ? currencyConverteur(widget.currencyValue!, widget.host.price!) : widget.host.price!)} ${widget.currency}',
                     style: TextStyle(
                       color: titleBlack,
                       fontSize: 19,

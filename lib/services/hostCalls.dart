@@ -91,6 +91,9 @@ class HostCalls {
       result["searchInputs"] = searchInputs;
       result["cities"] =
           List<String>.from(data["cities"].map((city) => city.toString()));
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
+      print('*********************${result["eur"]}');
     }
     return result;
   }

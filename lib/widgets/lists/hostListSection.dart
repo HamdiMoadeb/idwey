@@ -155,7 +155,7 @@ class _HostListSectionState extends State<HostListSection> {
                     });
                   }
                 },
-                child: HostListItem(hosts[index], true),
+                child: HostListItem(hosts[index], true, 1, 'DT'),
               ),
             ),
             itemCount: hosts.length,

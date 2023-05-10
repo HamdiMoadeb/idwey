@@ -10,6 +10,8 @@ import 'package:idwey/screens/listPages/experiencePage.dart';
 import 'package:idwey/screens/listPages/hostPage.dart';
 import 'package:idwey/screens/listPages/productPage.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:idwey/utils/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../screens/authPages/loginPage.dart';
 import '../../screens/listPages/blogPage.dart';
@@ -20,12 +22,15 @@ class CommonScaffold extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   final Function backtotop;
   final bool showFab;
+  Future<void>? changeCurrency;
+
   CommonScaffold(
       {Key? key,
       required this.body,
       required this.scaffoldKey,
       required this.showFab,
-      required this.backtotop})
+      required this.backtotop,
+      this.changeCurrency})
       : super(key: key);
 
   @override
@@ -33,6 +38,17 @@ class CommonScaffold extends StatefulWidget {
 }
 
 class _CommonScaffoldState extends State<CommonScaffold> {
+  String selectedCurrency = '';
+  final List<String> _currencies = currency;
+  bool _isExpanded = false;
+  GlobalKey expansionTile = GlobalKey();
+
+  @override
+  void initState() {
+    selectedCurrency = _currencies[0];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,67 +148,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
             //     ],
             //   ),
             // ),
-            //comented to deploy
-            // Divider(color: Colors.grey, height: 1),
-            // Theme(
-            //   data:
-            //       Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            //   child: ExpansionTile(
-            //     expandedCrossAxisAlignment: CrossAxisAlignment.start,
-            //     expandedAlignment: Alignment.topLeft,
-            //     collapsedTextColor: primary,
-            //     textColor: primary,
-            //     childrenPadding: EdgeInsets.zero,
-            //     title: Text(
-            //       'TND',
-            //       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            //     ),
-            //     children: [
-            //       Row(
-            //         children: [
-            //           SizedBox(width: 30),
-            //           TextButton.icon(
-            //             onPressed: () {},
-            //             icon: Icon(
-            //               Icons.arrow_right_alt,
-            //               color: Colors.black,
-            //             ),
-            //             style: ButtonStyle(
-            //                 tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-            //             label: Text(
-            //               'EUR',
-            //               style: TextStyle(
-            //                 fontSize: 14,
-            //                 fontWeight: FontWeight.w500,
-            //               ),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //       Row(
-            //         children: [
-            //           SizedBox(width: 30),
-            //           TextButton.icon(
-            //             onPressed: () {},
-            //             icon: Icon(
-            //               Icons.arrow_right_alt,
-            //               color: Colors.black,
-            //             ),
-            //             style: ButtonStyle(
-            //                 tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-            //             label: Text(
-            //               'USD',
-            //               style: TextStyle(
-            //                 fontSize: 14,
-            //                 fontWeight: FontWeight.w500,
-            //               ),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
+
             // Divider(color: Colors.grey, height: 2),
             // Theme(
             //   data:
@@ -428,12 +384,12 @@ class _CommonScaffoldState extends State<CommonScaffold> {
             //     ],
             //   ),
             // ),
-            const Divider(
-                color: Colors.grey,
-                height: 1,
-                indent: 20,
-                endIndent: 20,
-                thickness: 0.5),
+            // const Divider(
+            //     color: Colors.grey,
+            //     height: 1,
+            //     indent: 20,
+            //     endIndent: 20,
+            //     thickness: 0.5),
             //commented to deploy
             // Row(
             //   children: [
@@ -480,6 +436,105 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Divider(color: Colors.grey, height: 1),
+            Theme(
+              data:
+                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                key: ValueKey(selectedCurrency),
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                expandedAlignment: Alignment.topLeft,
+                collapsedTextColor: primary,
+                textColor: primary,
+                childrenPadding: EdgeInsets.zero,
+                title: Text(
+                  selectedCurrency,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton.icon(
+                        onPressed: () async {
+                          setState(() {
+                            selectedCurrency = _currencies.removeAt(1);
+                            _currencies.insert(0, selectedCurrency);
+                            _isExpanded = false;
+                          });
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString(
+                              'selectedCurrency', selectedCurrency);
+                          String x =
+                              prefs.getString('selectedCurrency').toString();
+                          widget.changeCurrency!;
+                          print(x);
+                        },
+                        icon: Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.black,
+                        ),
+                        style: ButtonStyle(
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        label: Text(
+                          _currencies[1],
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: 30),
+                      TextButton.icon(
+                        onPressed: () async {
+                          setState(() {
+                            selectedCurrency = _currencies.removeAt(2);
+                            _currencies.insert(0, selectedCurrency);
+                            _isExpanded = false;
+                          });
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setString(
+                              'selectedCurrency', selectedCurrency);
+                          String y = prefs.getString('selectedCurrency')!;
+                          print(y);
+                          widget.changeCurrency!;
+                        },
+                        icon: Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.black,
+                        ),
+                        style: ButtonStyle(
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        label: Text(
+                          _currencies[2],
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+                initiallyExpanded: _isExpanded,
+                onExpansionChanged: (isExpanded) {
+                  setState(() {
+                    _isExpanded = isExpanded;
+                  });
+                },
+              ),
             ),
             // const Divider(
             //     color: Colors.grey,

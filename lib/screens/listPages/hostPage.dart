@@ -14,6 +14,7 @@ import '../../widgets/common/filterWidget.dart';
 import '../../widgets/common/footer.dart';
 import '../../widgets/listItems/hostListItem.dart';
 import '../../widgets/tabs/HostFilterTab.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HostPage extends StatefulWidget {
   dynamic searchInputs;
@@ -30,7 +31,7 @@ class _HostPageState extends State<HostPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   var posKey = GlobalKey();
-
+  SharedPreferences? prefs;
   List<Host> listHosts = [];
   List<Terms> listConvience = [];
   List<Terms> listHotelService = [];
@@ -50,7 +51,14 @@ class _HostPageState extends State<HostPage>
   bool _showAllHotel = false;
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
+  dynamic currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+
   Timer? _timer;
+  String selectedCurrency = '';
 
   void updateSearchFields(dynamic searchInputs) {
     setState(() {
@@ -96,10 +104,11 @@ class _HostPageState extends State<HostPage>
     });
   }
 
-  callHosts() {
+  callHosts() async {
     setState(() {
       loading = true;
     });
+    await _loadSelectedCurrency();
     HostCalls.getHostsList(
             searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
         .then((result) async {
@@ -111,6 +120,8 @@ class _HostPageState extends State<HostPage>
         min = double.parse(result["priceRange"][0]);
         filterInputs['min'] = min.toInt().toString();
         filterInputs['max'] = max.toInt().toString();
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
         _lowerValue = min;
         _upperValue = max;
         if (widget.cities!.isEmpty) {
@@ -121,10 +132,21 @@ class _HostPageState extends State<HostPage>
         listHotelService = result["listHotelService"];
         listPropertyType = result["listPropertyType"];
       });
+      print('**************');
+      print(selectedCurrency);
+      print(currencies['EUR']);
+      print('****************${currencies[selectedCurrency]}');
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -206,6 +228,7 @@ class _HostPageState extends State<HostPage>
     }
 
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
       showFab: showFAB,
@@ -456,7 +479,11 @@ class _HostPageState extends State<HostPage>
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Container(
                       margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: HostListItem(listHosts[index], false)),
+                      child: HostListItem(
+                          listHosts[index],
+                          false,
+                          currencies[selectedCurrency]['value'],
+                          currencies[selectedCurrency]['symbol'])),
                   itemCount: listHosts.length,
                 ),
               ],

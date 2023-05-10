@@ -328,6 +328,7 @@ List<String> cities = [
   "Tozeur",
   "Kebili"
 ];
+List<String> currency = ["TND", "EUR", "USD"];
 
 getDateFormat(String date) {
   DateTime tempDate = DateFormat("yyyy-MM-dd").parse(date);
@@ -393,4 +394,9 @@ checkInternetConnectivity(context, Function isConnectedCallback) async {
   } else {
     isConnectedCallback();
   }
+}
+
+String currencyConverteur(int currencyValue, String priceValue) {
+  double newValue = currencyValue.toDouble() * double.parse(priceValue);
+  return newValue.toString();
 }
