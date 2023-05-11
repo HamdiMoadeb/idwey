@@ -10,6 +10,7 @@ import '../../widgets/common/ImageCommon.dart';
 import '../../widgets/common/detailsWidgets.dart';
 import '../../widgets/common/footer.dart';
 import '../../widgets/common/scaffold.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   int id;
@@ -23,27 +24,43 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+
   bool loading = false;
   bool showFAB = false;
   bool isLiked = false;
   ProductDetails productDetails =
       ProductDetails(0, '', '', '', '', '', '', '', [], [], '', '', '');
+  SharedPreferences? prefs;
 
   String currentImage = '';
-
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
   callProduct() {
     setState(() {
       loading = true;
     });
-    ProductCalls.getProductDetails(widget.id).then((product) async {
+    ProductCalls.getProductDetails(widget.id).then((result) async {
       setState(() {
-        productDetails = product;
-        currentImage = product.gallery_images_url[0].large;
+        productDetails = result['productDetails'];
+        currentImage = result['productDetails'].gallery_images_url[0].large;
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -63,6 +80,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       showFab: showFAB,
       backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
@@ -156,7 +174,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
               ? BottomReservationBar(
                   per_person: "",
                   sale_price: productDetails.sale_price!,
-                  price: productDetails.price!,
+                  price:
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, productDetails.price!) : productDetails.price!)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],

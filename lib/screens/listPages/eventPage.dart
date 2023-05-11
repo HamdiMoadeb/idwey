@@ -14,6 +14,7 @@ import '../../widgets/common/filterWidget.dart';
 import '../../widgets/common/footer.dart';
 import '../../widgets/listItems/eventListItem.dart';
 import '../../widgets/tabs/EventFilterTab.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EventPage extends StatefulWidget {
   dynamic searchInputs;
@@ -31,6 +32,14 @@ class EventPage extends StatefulWidget {
 class _EventPageState extends State<EventPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
+
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
   List<Event> listEvents = [];
   List<Terms> listConvience = [];
   List<Terms> listType = [];
@@ -114,10 +123,12 @@ class _EventPageState extends State<EventPage> {
     });
   }
 
-  callEvents() {
+  callEvents() async {
     setState(() {
       loading = true;
     });
+    await _loadSelectedCurrency();
+
     EventCalls.getEventsList(searchInputs, listEvents.length,
         {'min': '', 'max': '', 'terms': []}).then((result) async {
       setState(() {
@@ -126,6 +137,8 @@ class _EventPageState extends State<EventPage> {
         total = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
         if (widget.listLocations!.isEmpty) {
           widget.listLocations = result['list_location'];
         }
@@ -144,6 +157,13 @@ class _EventPageState extends State<EventPage> {
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -202,6 +222,7 @@ class _EventPageState extends State<EventPage> {
       displayedListType = _showAllType ? listType : listType.sublist(0, 3);
     }
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
       showFab: showFAB,
@@ -385,18 +406,22 @@ class _EventPageState extends State<EventPage> {
                         Container(
                           child: TextButton(
                             onPressed: () {
-                              setState(() {
-                                listEvents = [];
-                                filterInputs = {
-                                  'min': '',
-                                  'max': '',
-                                  'terms': []
-                                };
-                              });
-                              _timer?.cancel();
-                              _timer = Timer(Duration(seconds: 1), () {
-                                callEvents();
-                              });
+                              if (terms.isNotEmpty ||
+                                  (filterInputs['min'] != '' &&
+                                      filterInputs['max'] != '')) {
+                                setState(() {
+                                  listEvents = [];
+                                  filterInputs = {
+                                    'min': '',
+                                    'max': '',
+                                    'terms': []
+                                  };
+                                });
+                                _timer?.cancel();
+                                _timer = Timer(Duration(seconds: 1), () {
+                                  callEvents();
+                                });
+                              }
                             },
                             child: Text('Effacer les filtres'),
                           ),
@@ -423,7 +448,10 @@ class _EventPageState extends State<EventPage> {
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) => Container(
                         margin: EdgeInsets.only(bottom: 15, right: 15),
-                        child: EventListItem(listEvents[index])),
+                        child: EventListItem(
+                            listEvents[index],
+                            currencies[selectedCurrency]['value'],
+                            currencies[selectedCurrency]['symbol'])),
                     itemCount: listEvents.length,
                   ),
                 ],

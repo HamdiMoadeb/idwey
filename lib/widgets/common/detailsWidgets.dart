@@ -296,7 +296,7 @@ class RateStats extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.all(12.0),
-          height: 350,
+          height: 380,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: primaryGrey)),
@@ -412,7 +412,7 @@ class RatingProgressRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 70,
+          width: 80,
           child: Text(
             title,
             textAlign: TextAlign.right,
@@ -420,7 +420,7 @@ class RatingProgressRow extends StatelessWidget {
           ),
         ),
         LinearPercentIndicator(
-          width: 195.0,
+          width: 190.0,
           lineHeight: 8.0,
           percent: percent,
           progressColor: Colors.red,
@@ -471,7 +471,7 @@ class BottomReservationBar extends StatelessWidget {
                         text: '',
                         children: <TextSpan>[
                           TextSpan(
-                              text: ' ${removeDecimalZeroFormat(price)} DT',
+                              text: '${price}',
                               style: TextStyle(
                                 color:
                                     sale_price != '' ? Colors.red : titleBlack,
@@ -623,14 +623,18 @@ class OwnerWidget extends StatelessWidget {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     )
                   : Container(
+                      width: 50,
+                      height: 50,
                       alignment: Alignment.center,
                       color: materialPrimary,
                       child: Center(
-                        child: Text(
-                          name[0].toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 35,
+                        child: Container(
+                          child: Text(
+                            name[0].toUpperCase(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                            ),
                           ),
                         ),
                       ),

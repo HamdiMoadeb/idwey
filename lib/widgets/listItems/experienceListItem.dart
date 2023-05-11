@@ -9,7 +9,9 @@ import '../../utils/utils.dart';
 
 class ExperienceListItem extends StatefulWidget {
   Experience experience;
-  ExperienceListItem(this.experience);
+  int? currencyValue;
+  String currency;
+  ExperienceListItem(this.experience, this.currencyValue, this.currency);
 
   @override
   State<ExperienceListItem> createState() => _ExperienceListItemState();
@@ -262,7 +264,7 @@ class _ExperienceListItemState extends State<ExperienceListItem> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '${removeDecimalZeroFormat(widget.experience.price!)} DT',
+                    '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.experience.price!) : widget.experience.price!)} ${widget.currency}',
                     style: TextStyle(
                       color: titleBlack,
                       fontSize: 19,

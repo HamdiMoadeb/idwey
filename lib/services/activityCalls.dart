@@ -7,9 +7,11 @@ import 'package:idwey/utils/urls.dart';
 import '../models/sharedModel.dart';
 
 class ActivityCalls {
-  static Future<List<Activity>> getAllActivities() async {
+  static Future<Map> getAllActivities() async {
     List<Activity> listActivity = [];
-
+    Map result = {
+      'list': [],
+    };
     var url = Uri.parse('${Urls.URL_API}activity/listActivity');
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -20,9 +22,13 @@ class ActivityCalls {
 
       for (Map<String?, dynamic> i in data["rows"]) {
         listActivity.add(Activity.fromJson(i));
+        result["list"] = listActivity;
+
+        result["eur"] = data["eur"];
+        result["usd"] = data["usd"];
       }
     }
-    return listActivity;
+    return result;
   }
 
   //api for our hosts page
@@ -61,7 +67,7 @@ class ActivityCalls {
       }
     }
 
-    if (max != '' && min != '' && termsList.isNotEmpty || catID.isNotEmpty) {
+    if (max != '' && min != '' && (termsList.isNotEmpty || catID.isNotEmpty)) {
       url = Uri.parse(
           '${Urls.URL_API}activity?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms&cat_id=$catID');
     } else if (catID.isEmpty && termsList.isEmpty && max != '' && min != '') {
@@ -108,6 +114,8 @@ class ActivityCalls {
       result["activity_category"] = activity_category;
       result["priceRange"] = priceRange;
       result["searchInputs"] = searchInputs;
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
       result["cities"] =
           List<String>.from(data["cities"].map((city) => city.toString()));
     }
@@ -116,25 +124,27 @@ class ActivityCalls {
   }
 
   //api for our hosts page
-  static Future<ActivityDetail> getActivityDetails(int id) async {
+  static Future<Map> getActivityDetails(int id) async {
     ActivityDetail activityDetail = new ActivityDetail(
         0, '', '', '', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
     var url = Uri.parse('${Urls.URL_API}activity/detail/${id}');
+    Map result = {
+      'list': [],
+    };
     print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
-
-    Map result = {
-      'list': [],
-      'total': 0,
-    };
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
       activityDetail = ActivityDetail.fromJson(data);
+      result['activityDetail'] = activityDetail;
+
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
     }
 
-    return activityDetail;
+    return result;
   }
 }

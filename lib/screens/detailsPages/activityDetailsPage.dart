@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/activity.dart';
 import '../../services/activityCalls.dart';
@@ -25,12 +26,20 @@ class ActivityDetailsPage extends StatefulWidget {
 class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
+
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   bool loading = false;
   bool showFAB = false;
   bool isLiked = false;
   ActivityDetail activityDetails = ActivityDetail(
       0, '', '', '', '', 0, 0, '', '', '', '', '', '', [], [], 0, 0, []);
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
   String currentImage = '';
   String slug = '';
 
@@ -38,16 +47,23 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
     setState(() {
       loading = true;
     });
-    ActivityCalls.getActivityDetails(widget.id).then((activity) async {
+    ActivityCalls.getActivityDetails(widget.id).then((result) async {
       setState(() {
-        activityDetails = activity;
-        if (activity.gallery_images_url.length != 0)
-          currentImage = activity.gallery_images_url[0].large;
+        activityDetails = result['activityDetail'];
+        if (result['activityDetail'].gallery_images_url.length != 0)
+          currentImage = result['activityDetail'].gallery_images_url[0].large;
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -67,6 +83,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       showFab: showFAB,
       backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
@@ -301,7 +318,8 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
           !loading
               ? BottomReservationBar(
                   per_person: "",
-                  price: activityDetails.price,
+                  price:
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, activityDetails.price!) : activityDetails.price!)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],

@@ -300,7 +300,7 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '${removeDecimalZeroFormat(widget.currency != 'TND' ? currencyConverteur(widget.currencyValue!, widget.host.price!) : widget.host.price!)} ${widget.currency}',
+                    '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.host.price!) : widget.host.price!)} ${widget.currency}',
                     style: TextStyle(
                       color: titleBlack,
                       fontSize: 19,

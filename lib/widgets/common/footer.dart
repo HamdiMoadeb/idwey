@@ -205,7 +205,7 @@ class _FooterState extends State<Footer> {
                           fontWeight: FontWeight.w400,
                           fontSize: 14),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     Container(
                       width: 120,
                       child: Row(

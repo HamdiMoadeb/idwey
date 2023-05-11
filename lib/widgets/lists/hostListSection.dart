@@ -8,7 +8,10 @@ import '../../services/hostCalls.dart';
 import '../../utils/colors.dart';
 
 class HostListSection extends StatefulWidget {
-  const HostListSection({Key? key}) : super(key: key);
+  String? selectedCurrency;
+  Map? currencies;
+  HostListSection({Key? key, this.selectedCurrency, this.currencies})
+      : super(key: key);
 
   @override
   State<HostListSection> createState() => _HostListSectionState();
@@ -21,9 +24,11 @@ class _HostListSectionState extends State<HostListSection> {
   int _currentFocusedIndex = 0;
 
   getAllHosts() {
-    HostCalls.getAllHosts().then((list) {
+    HostCalls.getAllHosts().then((result) {
       setState(() {
-        hosts = list;
+        hosts = result['list'];
+        widget.currencies!['EUR']['value'] = result["eur"];
+        widget.currencies!['USD']['value'] = result["usd"];
       });
     });
   }
@@ -155,7 +160,11 @@ class _HostListSectionState extends State<HostListSection> {
                     });
                   }
                 },
-                child: HostListItem(hosts[index], true, 1, 'DT'),
+                child: HostListItem(
+                    hosts[index],
+                    true,
+                    widget.currencies![widget.selectedCurrency]['value'],
+                    widget.currencies![widget.selectedCurrency]['symbol']),
               ),
             ),
             itemCount: hosts.length,

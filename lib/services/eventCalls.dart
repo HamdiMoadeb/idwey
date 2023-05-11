@@ -7,9 +7,11 @@ import '../models/event.dart';
 import '../models/sharedModel.dart';
 
 class EventCalls {
-  static Future<List<Event>> getAllEvents() async {
+  static Future<Map> getAllEvents() async {
     List<Event> listEvents = [];
-
+    Map result = {
+      'list': [],
+    };
     var url = Uri.parse('${Urls.URL_API}event/listEvent');
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -21,8 +23,12 @@ class EventCalls {
       for (Map<String?, dynamic> i in data["rows"]) {
         listEvents.add(Event.fromJson(i));
       }
+      result["list"] = listEvents;
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
     }
-    return listEvents;
+
+    return result;
   }
 
   //api for our hosts page
@@ -79,15 +85,13 @@ class EventCalls {
       for (Map<String?, dynamic> i in data["rows"]) {
         listEvents.add(Event.fromJson(i));
       }
-      for (Map<String?, dynamic> i in data["attributes"][0]["terms"]) {
+      for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
         listConvenience.add(Terms.fromJson(i));
       }
-      for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
+      for (Map<String?, dynamic> i in data["attributes"][0]["terms"]) {
         listTypes.add(Terms.fromJson(i));
       }
-      for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
-        listTypes.add(Terms.fromJson(i));
-      }
+
       for (Map<String?, dynamic> i in data["list_location"]) {
         listLocations.add(Location.fromJson(i));
       }
@@ -102,6 +106,8 @@ class EventCalls {
       result["priceRange"] = priceRange;
       result["list_location"] = listLocations;
       result["searchInputs"] = searchInputs;
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
       result["cities"] =
           List<String>.from(data["cities"].map((city) => city.toString()));
     }
@@ -110,10 +116,13 @@ class EventCalls {
   }
 
   //api for  event details
-  static Future<EventDetails> getEventDetails(int id) async {
+  static Future<Map> getEventDetails(int id) async {
     EventDetails eventDetail = EventDetails(0, '', '', '', '', '', 0, '', '', 0,
         '', '', '', '', '', '', '', [], 0, 0, [], '', '', '');
     var url = Uri.parse('${Urls.URL_API}event/detail/${id}');
+    Map result = {
+      'list': [],
+    };
     print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -121,8 +130,12 @@ class EventCalls {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       eventDetail = EventDetails.fromJson(data);
+      result['eventDetail'] = eventDetail;
+
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
     }
 
-    return eventDetail;
+    return result;
   }
 }

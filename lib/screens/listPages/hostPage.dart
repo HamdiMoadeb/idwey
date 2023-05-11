@@ -51,7 +51,7 @@ class _HostPageState extends State<HostPage>
   bool _showAllHotel = false;
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
-  dynamic currencies = {
+  Map currencies = {
     'TND': {'value': 1, 'symbol': 'DT'},
     'EUR': {'value': 0, 'symbol': '€'},
     'USD': {'value': 0, 'symbol': '\$'},
@@ -61,15 +61,15 @@ class _HostPageState extends State<HostPage>
   String selectedCurrency = '';
 
   void updateSearchFields(dynamic searchInputs) {
-    setState(() {
-      listHosts.clear();
-      this.searchInputs = searchInputs;
-    });
     _timer?.cancel();
 
-    _timer = Timer(Duration(seconds: 1), () {
+    _timer = Timer(Duration(seconds: 1), () async {
+      setState(() {
+        listHosts.clear();
+        this.searchInputs = searchInputs;
+      });
       // Call your function here
-      callHosts();
+      await callHosts();
     });
   }
 
@@ -98,7 +98,6 @@ class _HostPageState extends State<HostPage>
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 14.0);
-    print(filterInputs);
     HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
         .then((result) async {
       setState(() {
@@ -124,8 +123,6 @@ class _HostPageState extends State<HostPage>
         totalNb = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
-        filterInputs['min'] = min.toInt().toString();
-        filterInputs['max'] = max.toInt().toString();
         currencies['EUR']['value'] = result["eur"];
         currencies['USD']['value'] = result["usd"];
         _lowerValue = min;
@@ -138,10 +135,6 @@ class _HostPageState extends State<HostPage>
         listHotelService = result["listHotelService"];
         listPropertyType = result["listPropertyType"];
       });
-      print('**************');
-      print(selectedCurrency);
-      print(currencies['EUR']);
-      print('****************${currencies[selectedCurrency]}');
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
@@ -454,22 +447,25 @@ class _HostPageState extends State<HostPage>
                       Container(
                         child: TextButton(
                           onPressed: () {
-                            setState(() {
-                              listHosts = [];
-                              terms = [];
+                            if (terms.isNotEmpty ||
+                                (filterInputs['min'] != '' &&
+                                    filterInputs['max'] != '')) {
+                              setState(() {
+                                listHosts = [];
+                                terms = [];
 
-                              filterInputs = {
-                                'min': '',
-                                'max': '',
-                                'terms': []
-                              };
-                            });
-                            _timer?.cancel();
-
-                            _timer = Timer(Duration(seconds: 1), () {
-                              // Call your function here
-                              callHosts();
-                            });
+                                filterInputs = {
+                                  'min': '',
+                                  'max': '',
+                                  'terms': []
+                                };
+                              });
+                              _timer?.cancel();
+                              _timer = Timer(Duration(seconds: 1), () {
+                                // Call your function here
+                                callHosts();
+                              });
+                            }
                           },
                           child: Text('Effacer les filtres'),
                         ),

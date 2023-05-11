@@ -10,7 +10,9 @@ import '../../utils/utils.dart';
 
 class EventListItem extends StatefulWidget {
   Event event;
-  EventListItem(this.event);
+  int? currencyValue;
+  String currency;
+  EventListItem(this.event, this.currencyValue, this.currency);
 
   @override
   State<EventListItem> createState() => _EventListItemState();
@@ -21,6 +23,10 @@ class _EventListItemState extends State<EventListItem> {
     DateTime tempDate = DateFormat("yyyy-MM-dd").parse(date);
     String newDate = DateFormat('dd-MM-yyyy').format(tempDate);
     return newDate;
+  }
+
+  String addSpaceAfterComma(String str) {
+    return str.replaceAll(',', ', ');
   }
 
   @override
@@ -35,7 +41,7 @@ class _EventListItemState extends State<EventListItem> {
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 30,
-        height: 450,
+        height: 460,
         margin: EdgeInsets.only(left: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -84,7 +90,9 @@ class _EventListItemState extends State<EventListItem> {
                       color: primaryOrange,
                     ),
                     child: Text(
-                      widget.event.terms_name!,
+                      widget.event.terms_name!.length < 30
+                          ? addSpaceAfterComma(widget.event.terms_name!)
+                          : '${addSpaceAfterComma(widget.event.terms_name!.substring(0, 30))}...',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
@@ -289,7 +297,7 @@ class _EventListItemState extends State<EventListItem> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '${removeDecimalZeroFormat(widget.event.price!)} DT',
+                    '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.event.price!) : widget.event.price!)} ${widget.currency}',
                     style: TextStyle(
                       color: titleBlack,
                       fontSize: 19,

@@ -9,7 +9,9 @@ import '../../utils/utils.dart';
 
 class ProductListItem extends StatefulWidget {
   Product product;
-  ProductListItem(this.product);
+  int? currencyValue;
+  String currency;
+  ProductListItem(this.product, this.currencyValue, this.currency);
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
@@ -134,7 +136,7 @@ class _ProductListItemState extends State<ProductListItem> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '${removeDecimalZeroFormat(widget.product.price!)} DT',
+                    '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.product.price!) : widget.product.price!)} ${widget.currency}',
                     style: TextStyle(
                       color: titleBlack,
                       fontSize: 19,

@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:idwey/services/activityCalls.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage>
 
   TabController? _tabController;
   final scrollController = ScrollController();
-
+  SharedPreferences? prefs;
   List<String> carouselLinks = [];
   bool offline = false;
   bool showFAB = false;
@@ -49,6 +50,20 @@ class _HomePageState extends State<HomePage>
   List<String> cities = [];
   List<String> activityCities = [];
   List<String> eventCities = [];
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
+    });
+  }
+
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
@@ -72,7 +87,8 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  getCarouselImages() {
+  getCarouselImages() async {
+    await _loadSelectedCurrency();
     HomePageCalls.getCarouselLinks().then((list) {
       if (list != null) {
         setState(() {
@@ -139,15 +155,30 @@ class _HomePageState extends State<HomePage>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // HOST SECTION
-        HostListSection(),
+        HostListSection(
+          selectedCurrency: selectedCurrency,
+          currencies: currencies,
+        ),
         // EVENT SECTION
-        EventListSection(),
+        EventListSection(
+          selectedCurrency: selectedCurrency,
+          currencies: currencies,
+        ),
         // EXPERIENCE SECTION
-        ExperienceListSection(),
+        ExperienceListSection(
+          selectedCurrency: selectedCurrency,
+          currencies: currencies,
+        ),
         // ACTIVITY SECTION
-        ActivityListSection(),
+        ActivityListSection(
+          selectedCurrency: selectedCurrency,
+          currencies: currencies,
+        ),
         // PRODUCT SECTION
-        ProductListSection(),
+        ProductListSection(
+          selectedCurrency: selectedCurrency,
+          currencies: currencies,
+        ),
         // FORCES SECTION
         IdweySection(),
         // YOUR DESIRES SECTION
@@ -169,6 +200,7 @@ class _HomePageState extends State<HomePage>
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
       showFab: showFAB,

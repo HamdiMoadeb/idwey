@@ -7,9 +7,11 @@ import '../models/experience.dart';
 import '../models/sharedModel.dart';
 
 class ExperienceCalls {
-  static Future<List<Experience>> getAllExperiences() async {
+  static Future<Map> getAllExperiences() async {
     List<Experience> listExperience = [];
-
+    Map result = {
+      'list': [],
+    };
     var url = Uri.parse('${Urls.URL_API}experience/listExperience');
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -21,8 +23,13 @@ class ExperienceCalls {
       for (Map<String?, dynamic> i in data["rows"]) {
         listExperience.add(Experience.fromJson(i));
       }
+      result["list"] = listExperience;
+
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
     }
-    return listExperience;
+
+    return result;
   }
 
   static Future<Map> getExperienceList(
@@ -58,7 +65,7 @@ class ExperienceCalls {
       }
     }
 
-    if (max != '' && min != '' && termsList.isNotEmpty || catID.isNotEmpty) {
+    if (max != '' && min != '' && (termsList.isNotEmpty || catID.isNotEmpty)) {
       url = Uri.parse(
           '${Urls.URL_API}experience?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&cat_id=$catID&terms=$terms');
     } else if (catID.isEmpty && termsList.isEmpty && max != '' && min != '') {
@@ -100,6 +107,8 @@ class ExperienceCalls {
       result["total"] = data["total"];
       result["list"] = listExperiences;
       result["priceRange"] = priceRange;
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
       result["cities"] =
           List<String>.from(data["cities"].map((city) => city.toString()));
     }
@@ -107,10 +116,13 @@ class ExperienceCalls {
     return result;
   }
 
-  static Future<ExperienceDetails> getExperienceDetails(int? id) async {
+  static Future<Map> getExperienceDetails(int? id) async {
     ExperienceDetails experienceDetail = new ExperienceDetails(
         0, '', '', '', '', '', '', 0, '', 0, '', '', '', [], 0, 0, []);
     var url = Uri.parse('${Urls.URL_API}experience/detail/$id');
+    Map result = {
+      'list': [],
+    };
     print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -119,9 +131,12 @@ class ExperienceCalls {
       final data = jsonDecode(response.body);
 
       experienceDetail = ExperienceDetails.fromJson(data);
-    }
-    print(experienceDetail.content);
+      result['experienceDetail'] = experienceDetail;
 
-    return experienceDetail;
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
+    }
+
+    return result;
   }
 }

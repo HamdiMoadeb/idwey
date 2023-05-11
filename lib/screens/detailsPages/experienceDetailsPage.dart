@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/experience.dart';
 import '../../services/experienceCalls.dart';
@@ -26,11 +27,19 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
+
   bool loading = false;
   bool showFAB = false;
   bool isLiked = false;
   ExperienceDetails experienceDetail = new ExperienceDetails(
       0, '', '', '', '', '', '', 0, '', 0, '', '', '', [], 0, 0, []);
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
   String currentImage = '';
   String slug = '';
 
@@ -38,16 +47,25 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
     setState(() {
       loading = true;
     });
-    ExperienceCalls.getExperienceDetails(widget.id).then((experience) async {
+    ExperienceCalls.getExperienceDetails(widget.id).then((result) async {
       setState(() {
-        experienceDetail = experience;
-        if (experience.gallery_images_url.length != 0)
-          currentImage = experience.gallery_images_url[0].large;
+        experienceDetail = result['experienceDetail'];
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
+        if (result['experienceDetail'].gallery_images_url.length != 0)
+          currentImage = result['experienceDetail'].gallery_images_url[0].large;
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -67,6 +85,7 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       showFab: showFAB,
       backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
@@ -287,7 +306,8 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
           ),
           !loading
               ? BottomReservationBar(
-                  price: experienceDetail.price!,
+                  price:
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, experienceDetail.price!) : experienceDetail.price!)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],

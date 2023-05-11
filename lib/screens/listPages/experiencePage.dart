@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:another_xlider/another_xlider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,6 +9,7 @@ import 'package:idwey/utils/colors.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:idwey/widgets/listItems/experienceListItem.dart';
 import 'package:idwey/widgets/tabs/ActivityFilterTab.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/sharedModel.dart';
 import '../../utils/utils.dart';
@@ -27,6 +27,8 @@ class _ExperiencePageState extends State<ExperiencePage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
+
   List<Experience> listExps = [];
   List<Terms> listConvience = [];
   List<Terms> activity_category = [];
@@ -49,17 +51,24 @@ class _ExperiencePageState extends State<ExperiencePage>
 
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': [], 'catID': []};
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
+
   Timer? _timer;
 
   void updateSearchFields(dynamic searchInputs) {
-    setState(() {
-      listExps.clear();
-      this.searchInputs = searchInputs;
-    });
     _timer?.cancel();
 
-    _timer = Timer(Duration(seconds: 1), () {
-      callExps();
+    _timer = Timer(Duration(seconds: 1), () async {
+      setState(() {
+        listExps.clear();
+        this.searchInputs = searchInputs;
+      });
+      await callExps();
     });
   }
 
@@ -95,22 +104,27 @@ class _ExperiencePageState extends State<ExperiencePage>
           textColor: Colors.white,
           fontSize: 14.0);
     }
+    print('this is the length before');
+    print(listExps.length);
     await ExperienceCalls.getExperienceList(
             searchInputs, listExps.length, filterInputs)
-        .then((result) async {
+        .then((result) {
       setState(() {
         listLengthFromLastCall = result["list"].length;
         listExps.addAll(result["list"]);
         totalNb = result["total"];
         loading = false;
       });
+      print('this is the length after');
+      print(listExps.length);
     });
   }
 
-  callExps() {
+  callExps() async {
     setState(() {
       loading = true;
     });
+    await _loadSelectedCurrency();
     ExperienceCalls.getExperienceList(searchInputs, listExps.length,
         {'min': '', 'max': '', 'terms': [], 'catID': []}).then((result) async {
       setState(() {
@@ -119,6 +133,8 @@ class _ExperiencePageState extends State<ExperiencePage>
         totalNb = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
         _lowerValue = min;
         _upperValue = max;
         if (cities!.isEmpty) {
@@ -130,6 +146,13 @@ class _ExperiencePageState extends State<ExperiencePage>
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -202,6 +225,7 @@ class _ExperiencePageState extends State<ExperiencePage>
           _showAllAct ? activity_category : activity_category.sublist(0, 3);
     }
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
       showFab: showFAB,
@@ -309,19 +333,21 @@ class _ExperiencePageState extends State<ExperiencePage>
                               _upperValue = upperV;
                             });
                           },
-                          callBack: () {
+                          callBack: () async {
                             setState(() {
                               filterInputs["min"] =
                                   _lowerValue.toInt().toString();
                               filterInputs["max"] =
                                   _upperValue.toInt().toString();
-                              listExps = [];
-                              listLengthFromLastCall = 0;
                             });
                             _timer?.cancel();
 
-                            _timer = Timer(Duration(seconds: 1), () {
-                              filtredExperience();
+                            _timer = Timer(Duration(seconds: 1), () async {
+                              setState(() {
+                                listExps = [];
+                                listLengthFromLastCall = 0;
+                              });
+                              await filtredExperience();
                             });
                           }),
                       const Divider(
@@ -336,14 +362,15 @@ class _ExperiencePageState extends State<ExperiencePage>
                               item.checked = value ?? false;
                               isExist(item.id!, value!, catID);
                               filterInputs['catID'] = catID;
-                              listExps = [];
-                              listLengthFromLastCall = 0;
                             });
                             _timer?.cancel();
+                            _timer = Timer(Duration(seconds: 1), () async {
+                              setState(() {
+                                listExps = [];
+                                listLengthFromLastCall = 0;
+                              });
 
-                            _timer = Timer(Duration(seconds: 1), () {
-                              // Call your function here
-                              filtredExperience();
+                              await filtredExperience();
                             });
                           },
                           showMoreFunction: () {
@@ -365,14 +392,15 @@ class _ExperiencePageState extends State<ExperiencePage>
                               item.checked = value;
                               isExist(item.id!, value!, terms);
                               filterInputs['terms'] = terms;
-                              listExps = [];
-                              listLengthFromLastCall = 0;
                             });
                             _timer?.cancel();
 
-                            _timer = Timer(Duration(seconds: 1), () {
-                              // Call your function here
-                              filtredExperience();
+                            _timer = Timer(Duration(seconds: 1), () async {
+                              setState(() {
+                                listExps = [];
+                                listLengthFromLastCall = 0;
+                              });
+                              await filtredExperience();
                             });
                             print(terms.length);
                           },
@@ -385,22 +413,27 @@ class _ExperiencePageState extends State<ExperiencePage>
                           showAllAct: _showAllConv),
                       Container(
                         child: TextButton(
-                          onPressed: () {
-                            setState(() {
-                              listExps = [];
+                          onPressed: () async {
+                            if (terms.isNotEmpty ||
+                                catID.isNotEmpty ||
+                                (filterInputs['min'] != '' &&
+                                    filterInputs['max'] != '')) {
+                              _timer?.cancel();
 
-                              filterInputs = {
-                                'min': '',
-                                'max': '',
-                                'terms': [],
-                                'catID': []
-                              };
-                            });
-                            _timer?.cancel();
+                              _timer = Timer(Duration(seconds: 1), () async {
+                                setState(() {
+                                  listExps = [];
 
-                            _timer = Timer(Duration(seconds: 1), () {
-                              callExps();
-                            });
+                                  filterInputs = {
+                                    'min': '',
+                                    'max': '',
+                                    'terms': [],
+                                    'catID': []
+                                  };
+                                });
+                                await callExps();
+                              });
+                            }
                           },
                           child: Text('Effacer les filtres'),
                         ),
@@ -427,7 +460,10 @@ class _ExperiencePageState extends State<ExperiencePage>
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) => Container(
                       margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: ExperienceListItem(listExps[index])),
+                      child: ExperienceListItem(
+                          listExps[index],
+                          currencies[selectedCurrency]['value'],
+                          currencies[selectedCurrency]['symbol'])),
                   itemCount: listExps.length,
                 ),
               ],
