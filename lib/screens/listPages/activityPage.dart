@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:another_xlider/another_xlider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,6 +14,7 @@ import '../../widgets/common/filterWidget.dart';
 import '../../widgets/common/footer.dart';
 import '../../widgets/listItems/activityListItem.dart';
 import '../../widgets/tabs/ActivityFilterTab.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ActivityPage extends StatefulWidget {
   dynamic searchInputs;
@@ -30,8 +30,16 @@ class ActivityPage extends StatefulWidget {
 class _ActivityPageState extends State<ActivityPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': [], 'catID': []};
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
+
   var posKey = GlobalKey();
 
   List<Activity> listActivities = [];
@@ -114,10 +122,11 @@ class _ActivityPageState extends State<ActivityPage> {
     });
   }
 
-  callActivities() {
+  callActivities() async {
     setState(() {
       loading = true;
     });
+    await _loadSelectedCurrency();
     ActivityCalls.getActivityList(searchInputs, listActivities.length,
         {'min': '', 'max': '', 'terms': [], 'catID': []}).then((result) async {
       setState(() {
@@ -126,6 +135,8 @@ class _ActivityPageState extends State<ActivityPage> {
         total = result["total"];
         max = double.parse(result["priceRange"][1]);
         min = double.parse(result["priceRange"][0]);
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
         _lowerValue = min;
         _upperValue = max;
         if (widget.cities!.isEmpty) {
@@ -140,6 +151,13 @@ class _ActivityPageState extends State<ActivityPage> {
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -216,6 +234,7 @@ class _ActivityPageState extends State<ActivityPage> {
           _showAllStyle ? listStyles : listStyles.sublist(0, 3);
     }
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
       showFab: showFAB,
@@ -426,19 +445,24 @@ class _ActivityPageState extends State<ActivityPage> {
                         Container(
                           child: TextButton(
                             onPressed: () {
-                              setState(() {
-                                listActivities = [];
-                                filterInputs = {
-                                  'min': '',
-                                  'max': '',
-                                  'terms': [],
-                                  'catID': []
-                                };
-                              });
-                              _timer?.cancel();
-                              _timer = Timer(Duration(seconds: 1), () {
-                                callActivities();
-                              });
+                              if (terms.isNotEmpty ||
+                                  catID.isNotEmpty ||
+                                  (filterInputs['min'] != '' &&
+                                      filterInputs['max'] != '')) {
+                                setState(() {
+                                  listActivities = [];
+                                  filterInputs = {
+                                    'min': '',
+                                    'max': '',
+                                    'terms': [],
+                                    'catID': []
+                                  };
+                                });
+                                _timer?.cancel();
+                                _timer = Timer(Duration(seconds: 1), () {
+                                  callActivities();
+                                });
+                              }
                             },
                             child: Text('Effacer les filtres'),
                           ),
@@ -465,7 +489,10 @@ class _ActivityPageState extends State<ActivityPage> {
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) => Container(
                         margin: EdgeInsets.only(bottom: 15, right: 15),
-                        child: ActivityListItem(listActivities[index])),
+                        child: ActivityListItem(
+                            listActivities[index],
+                            currencies[selectedCurrency]['value'],
+                            currencies[selectedCurrency]['symbol'])),
                     itemCount: listActivities.length,
                   ),
                 ],

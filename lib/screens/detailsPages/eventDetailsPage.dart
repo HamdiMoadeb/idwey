@@ -6,6 +6,7 @@ import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/event.dart';
 import 'package:idwey/services/eventCalls.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
@@ -27,6 +28,8 @@ class _EventDetailsPageState extends State<EventDetailsPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
+
   bool isExpanded = false;
   bool loading = false;
   bool showFAB = false;
@@ -36,20 +39,35 @@ class _EventDetailsPageState extends State<EventDetailsPage>
 
   EventDetails eventDetails = EventDetails(0, '', '', '', '', '', 0, '', '', 0,
       '', '', '', '', '', '', '', [], 0, 0, [], '', '', '');
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
   callEvents() {
     setState(() {
       loading = true;
     });
-    EventCalls.getEventDetails(widget.id!).then((event) async {
+    EventCalls.getEventDetails(widget.id!).then((result) async {
       setState(() {
-        eventDetails = event;
-        if (event.gallery_images_url.length != 0)
-          currentImage = event.gallery_images_url[0].large;
+        eventDetails = result['eventDetail'];
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
+        if (result['eventDetail'].gallery_images_url.length != 0)
+          currentImage = result['eventDetail'].gallery_images_url[0].large;
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -69,6 +87,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       showFab: showFAB,
       backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
@@ -337,7 +356,8 @@ class _EventDetailsPageState extends State<EventDetailsPage>
         ),
         !loading
             ? BottomReservationBar(
-                price: eventDetails.price!,
+                price:
+                    '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, eventDetails.price!) : eventDetails.price!)} ${currencies[selectedCurrency]['symbol']}',
               )
             : Container()
       ]),

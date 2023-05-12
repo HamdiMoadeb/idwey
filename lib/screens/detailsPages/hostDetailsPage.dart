@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/host.dart';
 import '../../services/hostCalls.dart';
@@ -28,27 +29,47 @@ class _HostDetailsPageState extends State<HostDetailsPage>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
+
   bool loading = false;
   bool showFAB = false;
   bool isLiked = false;
   HostDetail hostDetail = HostDetail(
       0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '', 0, 0, []);
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
+
   String currentImage = '';
   String slug = '';
 
-  callHosts() {
+  callHosts() async {
     setState(() {
       loading = true;
     });
-    HostCalls.getHostDetails(widget.id).then((host) async {
+    await _loadSelectedCurrency();
+
+    HostCalls.getHostDetails(widget.id).then((result) async {
       setState(() {
-        hostDetail = host;
-        currentImage = host.gallery_images_url[0].large;
+        hostDetail = result['hostDetail'];
+        currentImage = result['hostDetail'].gallery_images_url[0].large;
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -68,6 +89,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       showFab: showFAB,
       backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
@@ -327,7 +349,8 @@ class _HostDetailsPageState extends State<HostDetailsPage>
           !loading
               ? BottomReservationBar(
                   per_person: hostDetail.per_person,
-                  price: hostDetail.price,
+                  price:
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, hostDetail.price!) : hostDetail.price!)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],

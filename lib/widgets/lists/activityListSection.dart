@@ -8,7 +8,10 @@ import 'package:visibility_detector/visibility_detector.dart';
 import '../../utils/colors.dart';
 
 class ActivityListSection extends StatefulWidget {
-  const ActivityListSection({Key? key}) : super(key: key);
+  String? selectedCurrency;
+  Map? currencies;
+  ActivityListSection({Key? key, this.selectedCurrency, this.currencies})
+      : super(key: key);
 
   @override
   State<ActivityListSection> createState() => _ActivityListSectionState();
@@ -21,9 +24,11 @@ class _ActivityListSectionState extends State<ActivityListSection> {
   int _currentFocusedIndex = 0;
 
   getAllActivities() {
-    ActivityCalls.getAllActivities().then((list) {
+    ActivityCalls.getAllActivities().then((result) {
       setState(() {
-        activities = list;
+        activities = result['list'];
+        widget.currencies!['EUR']['value'] = result["eur"];
+        widget.currencies!['USD']['value'] = result["usd"];
       });
     });
   }
@@ -155,7 +160,10 @@ class _ActivityListSectionState extends State<ActivityListSection> {
                     });
                   }
                 },
-                child: ActivityListItem(activities[index]),
+                child: ActivityListItem(
+                    activities[index],
+                    widget.currencies![widget.selectedCurrency]['value'],
+                    widget.currencies![widget.selectedCurrency]['symbol']),
               ),
             ),
             itemCount: activities.length,

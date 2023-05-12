@@ -8,7 +8,10 @@ import '../../models/event.dart';
 import '../../utils/colors.dart';
 
 class EventListSection extends StatefulWidget {
-  const EventListSection({Key? key}) : super(key: key);
+  String? selectedCurrency;
+  Map? currencies;
+  EventListSection({Key? key, this.selectedCurrency, this.currencies})
+      : super(key: key);
 
   @override
   State<EventListSection> createState() => _EventListSectionState();
@@ -21,9 +24,11 @@ class _EventListSectionState extends State<EventListSection> {
   int _currentFocusedIndex = 0;
 
   getAllEvents() {
-    EventCalls.getAllEvents().then((list) {
+    EventCalls.getAllEvents().then((result) {
       setState(() {
-        events = list;
+        events = result['list'];
+        widget.currencies!['EUR']['value'] = result["eur"];
+        widget.currencies!['USD']['value'] = result["usd"];
       });
     });
   }
@@ -136,7 +141,7 @@ class _EventListSectionState extends State<EventListSection> {
           ),
         ),
         Container(
-          height: 450,
+          height: 460,
           margin: EdgeInsets.only(top: 5, bottom: 20, right: 15),
           child: ListView.builder(
             controller: controller,
@@ -155,7 +160,10 @@ class _EventListSectionState extends State<EventListSection> {
                     });
                   }
                 },
-                child: EventListItem(events[index]),
+                child: EventListItem(
+                    events[index],
+                    widget.currencies![widget.selectedCurrency]['value'],
+                    widget.currencies![widget.selectedCurrency]['symbol']),
               ),
             ),
             itemCount: events.length,

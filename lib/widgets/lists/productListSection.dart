@@ -6,7 +6,10 @@ import 'package:idwey/widgets/listItems/productListItem.dart';
 import '../../utils/colors.dart';
 
 class ProductListSection extends StatefulWidget {
-  const ProductListSection({Key? key}) : super(key: key);
+  String? selectedCurrency;
+  Map? currencies;
+  ProductListSection({Key? key, this.selectedCurrency, this.currencies})
+      : super(key: key);
 
   @override
   State<ProductListSection> createState() => _ProductListSectionState();
@@ -16,9 +19,11 @@ class _ProductListSectionState extends State<ProductListSection> {
   List<Product> products = [];
 
   getAllProducts() {
-    ProductCalls.getAllProducts().then((list) {
+    ProductCalls.getAllProducts().then((result) {
       setState(() {
-        products = list;
+        products = result['list'];
+        widget.currencies!['EUR']['value'] = result["eur"];
+        widget.currencies!['USD']['value'] = result["usd"];
       });
     });
   }
@@ -64,8 +69,10 @@ class _ProductListSectionState extends State<ProductListSection> {
           child: ListView.builder(
             physics: PageScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) =>
-                ProductListItem(products[index]),
+            itemBuilder: (BuildContext context, int index) => ProductListItem(
+                products[index],
+                widget.currencies![widget.selectedCurrency]['value'],
+                widget.currencies![widget.selectedCurrency]['symbol']),
             itemCount: products.length,
           ),
         ),

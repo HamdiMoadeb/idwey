@@ -8,6 +8,7 @@ import '../../services/productCalls.dart';
 import '../../utils/utils.dart';
 import '../../widgets/common/footer.dart';
 import '../../widgets/listItems/productListItem.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -19,29 +20,47 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
+  SharedPreferences? prefs;
+
   List<Product> listProducts = [];
   bool loading = false;
   bool showFAB = false;
   int listLengthFromLastCall = 0;
+  Map currencies = {
+    'TND': {'value': 1, 'symbol': 'DT'},
+    'EUR': {'value': 0, 'symbol': '€'},
+    'USD': {'value': 0, 'symbol': '\$'},
+  };
+  String selectedCurrency = '';
 
   void scrollToTop() {
     scrollController.animateTo(0,
         duration: const Duration(seconds: 2), curve: Curves.linear);
   }
 
-  callProducts() {
+  callProducts() async {
     setState(() {
       loading = true;
     });
-    ProductCalls.getProductList(listProducts.length).then((list) async {
+    await _loadSelectedCurrency();
+    ProductCalls.getProductList(listProducts.length).then((result) async {
       setState(() {
-        listLengthFromLastCall = list.length;
-        listProducts.addAll(list);
+        listLengthFromLastCall = result['list'].length;
+        listProducts.addAll(result['list']);
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
         loading = false;
       });
+    });
+  }
+
+  Future<void> _loadSelectedCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
     });
   }
 
@@ -80,6 +99,7 @@ class _ProductPageState extends State<ProductPage> {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
     return CommonScaffold(
+      changeCurrency: _loadSelectedCurrency(),
       scaffoldKey: _scaffoldKey,
       backtotop: scrollToTop,
       showFab: showFAB,
@@ -141,7 +161,10 @@ class _ProductPageState extends State<ProductPage> {
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) => Container(
                         margin: EdgeInsets.only(bottom: 15, right: 15),
-                        child: ProductListItem(listProducts[index])),
+                        child: ProductListItem(
+                            listProducts[index],
+                            currencies[selectedCurrency]['value'],
+                            currencies[selectedCurrency]['symbol'])),
                     itemCount: listProducts.length,
                   ),
                 ],

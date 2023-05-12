@@ -8,7 +8,10 @@ import 'package:visibility_detector/visibility_detector.dart';
 import '../../utils/colors.dart';
 
 class ExperienceListSection extends StatefulWidget {
-  const ExperienceListSection({Key? key}) : super(key: key);
+  String? selectedCurrency;
+  Map? currencies;
+  ExperienceListSection({Key? key, this.selectedCurrency, this.currencies})
+      : super(key: key);
 
   @override
   State<ExperienceListSection> createState() => _ExperienceListSectionState();
@@ -21,9 +24,11 @@ class _ExperienceListSectionState extends State<ExperienceListSection> {
   int _currentFocusedIndex = 0;
 
   getAllExps() {
-    ExperienceCalls.getAllExperiences().then((list) {
+    ExperienceCalls.getAllExperiences().then((result) {
       setState(() {
-        experiences = list;
+        experiences = result['list'];
+        widget.currencies!['EUR']['value'] = result["eur"];
+        widget.currencies!['USD']['value'] = result["usd"];
       });
     });
   }
@@ -155,7 +160,10 @@ class _ExperienceListSectionState extends State<ExperienceListSection> {
                     });
                   }
                 },
-                child: ExperienceListItem(experiences[index]),
+                child: ExperienceListItem(
+                    experiences[index],
+                    widget.currencies![widget.selectedCurrency]['value'],
+                    widget.currencies![widget.selectedCurrency]['symbol']),
               ),
             ),
             itemCount: experiences.length,

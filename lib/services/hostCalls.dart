@@ -7,9 +7,11 @@ import 'package:idwey/utils/urls.dart';
 import '../models/sharedModel.dart';
 
 class HostCalls {
-  static Future<List<Host>> getAllHosts() async {
+  static Future<Map> getAllHosts() async {
     List<Host> listHosts = [];
-
+    Map result = {
+      'list': [],
+    };
     var url = Uri.parse('${Urls.URL_API}hotel/listHost');
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -21,8 +23,12 @@ class HostCalls {
       for (Map<String?, dynamic> i in data["rows"]) {
         listHosts.add(Host.fromJson(i));
       }
+      result["list"] = listHosts;
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
     }
-    return listHosts;
+
+    return result;
   }
 
   //api for our hosts page
@@ -63,7 +69,6 @@ class HostCalls {
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
 
-    print(url);
     var response = await http.get(url);
 
     Map result = {
@@ -97,15 +102,20 @@ class HostCalls {
       result["searchInputs"] = searchInputs;
       result["cities"] =
           List<String>.from(data["cities"].map((city) => city.toString()));
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
     }
     return result;
   }
 
   //api for our hosts page
-  static Future<HostDetail> getHostDetails(int? id) async {
+  static Future<Map> getHostDetails(int? id) async {
     HostDetail hostDetail = new HostDetail(
         0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '', 0, 0, []);
     var url = Uri.parse('${Urls.URL_API}hotel/detail/$id');
+    Map result = {
+      'list': [],
+    };
     print(url);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
@@ -114,9 +124,11 @@ class HostCalls {
       final data = jsonDecode(response.body);
 
       hostDetail = HostDetail.fromJson(data);
+      result['hostDetail'] = hostDetail;
+      result["eur"] = data["eur"];
+      result["usd"] = data["usd"];
     }
-    print(hostDetail.content);
 
-    return hostDetail;
+    return result;
   }
 }

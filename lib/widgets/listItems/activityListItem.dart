@@ -9,7 +9,9 @@ import '../../utils/utils.dart';
 
 class ActivityListItem extends StatefulWidget {
   Activity activity;
-  ActivityListItem(this.activity);
+  int? currencyValue;
+  String currency;
+  ActivityListItem(this.activity, this.currencyValue, this.currency);
 
   @override
   State<ActivityListItem> createState() => _ActivityListItemState();
@@ -261,7 +263,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '${removeDecimalZeroFormat(widget.activity.price!)} DT',
+                    '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.activity.price!) : widget.activity.price!)} ${widget.currency}',
                     style: TextStyle(
                       color: titleBlack,
                       fontSize: 19,
