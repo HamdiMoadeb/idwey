@@ -113,7 +113,7 @@ class HostDetail {
       row['is_featured'] == null ? -1 : row['is_featured'] as int,
       row['per_person'] == null ? "" : row['per_person'] as String,
       row['location_name'] == null ? "" : row['location_name'] as String,
-      row['max_person'] == null ? -1 : row['max_person'] as int,
+      row['max_person'] == null ? -1 : int.parse(row['max_person'].toString()),
       row['price'] == null ? "" : row['price'] as String,
       row['term_name'] == null ? "" : row['term_name'] as String,
       data['banner_image_url'] == null
