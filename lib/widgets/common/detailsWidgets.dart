@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:idwey/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -435,9 +436,11 @@ class BottomReservationBar extends StatelessWidget {
   String price;
   String per_person;
   String sale_price;
+  StateEvent stateEvent;
   BottomReservationBar(
       {Key? key,
       required this.price,
+      this.stateEvent = StateEvent.isAvailable,
       this.per_person = "",
       this.sale_price = ""})
       : super(key: key);
@@ -447,9 +450,9 @@ class BottomReservationBar extends StatelessWidget {
     return Positioned(
         bottom: 0,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
           width: MediaQuery.of(context).size.width,
-          height: 70,
+          height: 80,
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border(
@@ -541,33 +544,18 @@ class BottomReservationBar extends StatelessWidget {
                 ),
               ),
               //commented for deployment
-              // Container(
-              //   width: 170,
-              //   alignment: Alignment.center,
-              //   //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              //   decoration: BoxDecoration(
-              //       color: primaryOrange,
-              //       borderRadius: BorderRadius.circular(2)),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       Text(
-              //         "Réserver".toUpperCase(),
-              //         style: TextStyle(
-              //             color: Colors.white,
-              //             fontSize: 14,
-              //             fontWeight: FontWeight.w500),
-              //       ),
-              //       Text(
-              //         "Maintenant".toUpperCase(),
-              //         style: TextStyle(
-              //             color: Colors.white,
-              //             fontSize: 14,
-              //             fontWeight: FontWeight.w500),
-              //       ),
-              //     ],
-              //   ),
-              // )
+              stateEvent == StateEvent.isFull
+                  ? ReservationButton(
+                      text: "évenement \ncomplet",
+                      color: redColor,
+                    )
+                  : stateEvent == StateEvent.isExpired
+                      ? ReservationButton(
+                          text: "évenement \nexpiré", color: disabledColor)
+                      : ReservationButton(
+                          text: "réserver \nmaintenant",
+                          color: primaryOrange,
+                        ),
             ],
           ),
         ));
@@ -660,6 +648,33 @@ class OwnerWidget extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class ReservationButton extends StatelessWidget {
+  String text;
+  Color? color;
+  ReservationButton({Key? key, this.color, required this.text})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 170,
+      alignment: Alignment.center,
+      //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      decoration: BoxDecoration(
+          color: color ?? primaryOrange,
+          borderRadius: BorderRadius.circular(2)),
+      child: Text(
+        text.toUpperCase(),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+        textAlign: TextAlign.center,
       ),
     );
   }

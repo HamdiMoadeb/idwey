@@ -11,6 +11,10 @@ final Color likedRed = HexColor.fromHex('#EB8F90');
 final Color titleBlue = HexColor.fromHex('#1a2b48');
 final Color facebookColor = HexColor.fromHex("#395899");
 final Color googleColor = HexColor.fromHex("#f34a38");
+final Color disabledColor = HexColor.fromHex("#abaaaa");
+final Color disabledColorWithOpacity = HexColor.fromHex("#abaaaacc");
+final Color redColor = HexColor.fromHex("#b50505");
+final Color redColorWithOpacity = HexColor.fromHex("#b50505cc");
 
 const MaterialColor materialPrimary = MaterialColor(
   0xFF07C8B9,
