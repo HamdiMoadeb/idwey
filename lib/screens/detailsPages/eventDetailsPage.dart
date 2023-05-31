@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/event.dart';
 import 'package:idwey/services/eventCalls.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,7 +39,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
   String currentImage = '';
 
   EventDetails eventDetails = EventDetails(0, '', '', '', '', '', 0, '', '', 0,
-      '', '', '', '', '', '', '', [], 0, 0, [], '', '', '');
+      '', '', '', '', '', '', '', [], 0, 0, [], '', '', '', 0, 1);
   Map currencies = {
     'TND': {'value': 1, 'symbol': 'DT'},
     'EUR': {'value': 0, 'symbol': '€'},
@@ -356,6 +357,11 @@ class _EventDetailsPageState extends State<EventDetailsPage>
         ),
         !loading
             ? BottomReservationBar(
+                stateEvent: eventDetails.isFull == 1
+                    ? StateEvent.isFull
+                    : eventDetails.isExpired == 1
+                        ? StateEvent.isExpired
+                        : StateEvent.isAvailable,
                 price:
                     '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, eventDetails.price!) : eventDetails.price!)} ${currencies[selectedCurrency]['symbol']}',
               )

@@ -118,7 +118,7 @@ class EventCalls {
   //api for  event details
   static Future<Map> getEventDetails(int id) async {
     EventDetails eventDetail = EventDetails(0, '', '', '', '', '', 0, '', '', 0,
-        '', '', '', '', '', '', '', [], 0, 0, [], '', '', '');
+        '', '', '', '', '', '', '', [], 0, 0, [], '', '', '', 0, 0);
     var url = Uri.parse('${Urls.URL_API}event/detail/${id}');
     Map result = {
       'list': [],
