@@ -29,6 +29,18 @@ class _EventListItemState extends State<EventListItem> {
     return str.replaceAll(',', ', ');
   }
 
+  Widget buildBottomButton() {
+    return widget.event.isExpired == 1
+        ? BottomButton(
+            text: '',
+            color: Colors.grey,
+          )
+        : BottomButton(
+            text: 'Book Now',
+            color: primaryOrange,
+          );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -87,7 +99,11 @@ class _EventListItemState extends State<EventListItem> {
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(10),
                       ),
-                      color: primaryOrange,
+                      color: widget.event.isFull == 1
+                          ? redColorWithOpacity
+                          : widget.event.isExpired == 1
+                              ? disabledColorWithOpacity
+                              : primaryOrange,
                     ),
                     child: Text(
                       widget.event.terms_name!.length < 30
@@ -316,36 +332,64 @@ class _EventListItemState extends State<EventListItem> {
               ),
             ),
             Spacer(),
-            Container(
-              width: double.infinity,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(15),
-                  bottomLeft: Radius.circular(15),
-                ),
-                color: primaryOrange,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Votre réservation = ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  FaIcon(
-                    FontAwesomeIcons.tree,
-                    size: 15,
-                    color: Colors.green,
-                  ),
-                ],
-              ),
-            ),
+            widget.event.isFull == 1
+                ? BottomButton(
+                    text: 'évenement complet',
+                    color: redColor,
+                  )
+                : widget.event.isExpired == 1
+                    ? BottomButton(
+                        text: 'évenement expiré',
+                        color: disabledColor,
+                      )
+                    : BottomButton(
+                        text: 'votre réservation',
+                        color: primaryOrange,
+                      ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  String? text;
+
+  Color? color;
+
+  BottomButton({Key? key, this.text, this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(15),
+          bottomLeft: Radius.circular(15),
+        ),
+        color: color ?? primaryOrange,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            text ?? '',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          color == primaryOrange
+              ? FaIcon(
+                  FontAwesomeIcons.tree,
+                  size: 15,
+                  color: Colors.green,
+                )
+              : SizedBox.shrink(),
+        ],
       ),
     );
   }

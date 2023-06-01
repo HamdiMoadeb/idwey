@@ -13,6 +13,8 @@ class Event {
   String? impactsocial;
   String? IMAGE_URL;
   String? terms_name;
+  int? isExpired;
+  int? isFull;
 
   Event(
     this.id,
@@ -27,6 +29,8 @@ class Event {
     this.duration,
     this.difficulty,
     this.terms_name,
+    this.isExpired,
+    this.isFull,
   );
 
   factory Event.fromJson(Map<String?, dynamic> data) {
@@ -45,6 +49,8 @@ class Event {
       data['duration'] == null ? "" : data['duration'] as String,
       data['difficulty'] == null ? "" : data['difficulty'] as String,
       data['term_name'] == null ? "" : data['term_name'] as String,
+      data['isExpired'] == null ? -1 : data['isExpired'] as int,
+      data['isFull'] == null ? -1 : data['isFull'] as int,
     );
   }
 }
@@ -74,6 +80,8 @@ class EventDetails {
   String business_name;
   String created_at;
   String author_image_url;
+  int? isExpired;
+  int? isFull;
 
   EventDetails(
     this.id,
@@ -100,6 +108,8 @@ class EventDetails {
     this.business_name,
     this.created_at,
     this.author_image_url,
+    this.isExpired,
+    this.isFull,
   );
 
   factory EventDetails.fromJson(Map<String?, dynamic> data) {
@@ -152,6 +162,8 @@ class EventDetails {
       data['author_image_url'] == false
           ? ""
           : data['author_image_url'] as String,
+      row['isExpired'] == null ? -1 : row['isExpired'] as int,
+      row['isfull'] == null ? -1 : row['isfull'] as int,
     );
   }
 }
