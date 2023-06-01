@@ -50,6 +50,8 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
     ActivityCalls.getActivityDetails(widget.id).then((result) async {
       setState(() {
         activityDetails = result['activityDetail'];
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
         if (result['activityDetail'].gallery_images_url.length != 0)
           currentImage = result['activityDetail'].gallery_images_url[0].large;
       });
@@ -319,7 +321,9 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
               ? BottomReservationBar(
                   per_person: "",
                   price:
-                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, activityDetails.price!) : activityDetails.price!)} ${currencies[selectedCurrency]['symbol']}',
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ?
+                      currencyConverteur(currencies[selectedCurrency]['value']!, activityDetails.price) :
+                      activityDetails.price)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],

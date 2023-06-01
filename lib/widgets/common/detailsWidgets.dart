@@ -595,7 +595,7 @@ class OwnerWidget extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
             width: 50,
             child: ClipOval(
-              child: image != "" && image.isNotEmpty
+              child: image != "" && image.isEmpty
                   ? CachedNetworkImage(
                       imageUrl: image,
                       fit: BoxFit.cover,
@@ -619,6 +619,7 @@ class OwnerWidget extends StatelessWidget {
                         child: Container(
                           child: Text(
                             name[0].toUpperCase(),
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,

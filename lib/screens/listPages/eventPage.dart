@@ -352,8 +352,8 @@ class _EventPageState extends State<EventPage> {
                             title: 'Type de l\'événement',
                             filtringListFunction: (item, value) {
                               setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!);
+                                item.checked = value;
+                                isExist(item.id!, value);
                                 filterInputs['terms'] = terms;
                                 listEvents = [];
                                 listLengthFromLastCall = 0;
@@ -381,8 +381,8 @@ class _EventPageState extends State<EventPage> {
                             title: 'Commodités',
                             filtringListFunction: (item, value) {
                               setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!);
+                                item.checked = value;
+                                isExist(item.id!, value);
                                 filterInputs['terms'] = terms;
                                 listEvents = [];
                                 listLengthFromLastCall = 0;

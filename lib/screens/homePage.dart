@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage>
   callEvents() {
     EventCalls.getEventsList(
         {'start': '', 'end': '', 'address': '', 'location_id': 0},
-        listLocation!.length,
+        listLocation.length,
         {'min': '', 'max': '', 'terms': []}).then((result) async {
       setState(() {
         listLocation = result["list_location"];
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage>
   callHotels() {
     HostCalls.getHostsList(
         {'start': '', 'end': '', 'address': '', 'adults': ''},
-        cities!.length,
+        cities.length,
         {'min': '', 'max': '', 'terms': []}).then((result) async {
       setState(() {
         print(result['cities'].runtimeType);
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage>
   callActivities() {
     ActivityCalls.getActivityList(
         {'start': '', 'end': '', 'address': '', 'adults': ''},
-        activityCities!.length,
+        activityCities.length,
         {'min': '', 'max': '', 'terms': [], 'catID': []}).then((result) async {
       setState(() {
         activityCities = result["cities"];

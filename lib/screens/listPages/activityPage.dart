@@ -361,7 +361,7 @@ class _ActivityPageState extends State<ActivityPage> {
                             filtringListFunction: (item, value) {
                               setState(() {
                                 item.checked = value;
-                                isExist(item.id!, value!, catID);
+                                isExist(item.id!, value, catID);
                                 filterInputs['catID'] = catID;
                                 listActivities = [];
                                 listLengthFromLastCall = 0;
@@ -391,8 +391,8 @@ class _ActivityPageState extends State<ActivityPage> {
                             title: 'Style',
                             filtringListFunction: (item, value) {
                               setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!, terms);
+                                item.checked = value;
+                                isExist(item.id!, value, terms);
                                 filterInputs['terms'] = terms;
                                 listActivities = [];
                                 listLengthFromLastCall = 0;
@@ -421,8 +421,8 @@ class _ActivityPageState extends State<ActivityPage> {
                             title: 'Commodités',
                             filtringListFunction: (item, value) {
                               setState(() {
-                                item.checked = value ?? false;
-                                isExist(item.id!, value!, terms);
+                                item.checked = value;
+                                isExist(item.id!, value, terms);
                                 filterInputs['terms'] = terms;
                                 listActivities = [];
                                 listLengthFromLastCall = 0;

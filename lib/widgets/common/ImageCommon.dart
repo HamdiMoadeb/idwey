@@ -106,6 +106,15 @@ class ImageGallery extends StatefulWidget {
 }
 
 class _ImageGalleryState extends State<ImageGallery> {
+
+  String currentImage = '';
+  @override
+  void initState() {
+    currentImage = widget.currentImage;
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -116,7 +125,7 @@ class _ImageGalleryState extends State<ImageGallery> {
               height: 300,
               width: double.maxFinite,
               child: CachedNetworkImage(
-                imageUrl: widget.currentImage,
+                imageUrl: currentImage,
                 fit: BoxFit.cover,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     Center(
@@ -144,7 +153,7 @@ class _ImageGalleryState extends State<ImageGallery> {
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
                     setState(() {
-                      widget.currentImage =
+                      currentImage =
                           widget.gallery_images_url[index].large;
                     });
                   },
@@ -152,8 +161,9 @@ class _ImageGalleryState extends State<ImageGallery> {
                 itemBuilder: (BuildContext context, int index, _) {
                   return GestureDetector(
                     onTap: () {
+                      print( currentImage);
                       setState(() {
-                        widget.currentImage =
+                        currentImage =
                             widget.gallery_images_url[index].large;
                       });
                     },
@@ -161,7 +171,7 @@ class _ImageGalleryState extends State<ImageGallery> {
                       margin: EdgeInsets.symmetric(horizontal: 5),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: widget.currentImage ==
+                          color: currentImage ==
                                   widget.gallery_images_url[index].large
                               ? Colors.blue
                               : Colors.transparent,

@@ -362,8 +362,8 @@ class _HostPageState extends State<HostPage>
                           title: 'Type de propriété',
                           filtringListFunction: (item, value) {
                             setState(() {
-                              item.checked = value ?? false;
-                              isExist(item.id!, value!);
+                              item.checked = value;
+                              isExist(item.id!, value);
                               filterInputs['terms'] = terms;
                               listHosts = [];
                               listLengthFromLastCall = 0;
@@ -393,8 +393,8 @@ class _HostPageState extends State<HostPage>
                           title: 'Commodités',
                           filtringListFunction: (item, value) {
                             setState(() {
-                              item.checked = value ?? false;
-                              isExist(item.id!, value!);
+                              item.checked = value;
+                              isExist(item.id!, value);
                               filterInputs['terms'] = terms;
                               listHosts = [];
                               listLengthFromLastCall = 0;
@@ -423,8 +423,8 @@ class _HostPageState extends State<HostPage>
                           title: 'Host Service',
                           filtringListFunction: (item, value) {
                             setState(() {
-                              item.checked = value ?? false;
-                              isExist(item.id!, value!);
+                              item.checked = value ;
+                              isExist(item.id!, value);
                               filterInputs['terms'] = terms;
                               listHosts = [];
                               listLengthFromLastCall = 0;

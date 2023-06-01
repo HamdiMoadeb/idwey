@@ -350,7 +350,9 @@ class _HostDetailsPageState extends State<HostDetailsPage>
               ? BottomReservationBar(
                   per_person: hostDetail.per_person,
                   price:
-                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, hostDetail.price!) : hostDetail.price!)} ${currencies[selectedCurrency]['symbol']}',
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ?
+                      currencyConverteur(currencies[selectedCurrency]['value']!, hostDetail.price) :
+                      hostDetail.price)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],

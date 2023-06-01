@@ -137,7 +137,7 @@ class _ExperiencePageState extends State<ExperiencePage>
         currencies['USD']['value'] = result["usd"];
         _lowerValue = min;
         _upperValue = max;
-        if (cities!.isEmpty) {
+        if (cities.isEmpty) {
           cities = result['cities'];
         }
         listConvience = result["listConvenience"];
@@ -359,8 +359,8 @@ class _ExperiencePageState extends State<ExperiencePage>
                           title: 'Type de l\'expérience',
                           filtringListFunction: (item, value) {
                             setState(() {
-                              item.checked = value ?? false;
-                              isExist(item.id!, value!, catID);
+                              item.checked = value;
+                              isExist(item.id!, value, catID);
                               filterInputs['catID'] = catID;
                             });
                             _timer?.cancel();
@@ -390,7 +390,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                           filtringListFunction: (item, value) {
                             setState(() {
                               item.checked = value;
-                              isExist(item.id!, value!, terms);
+                              isExist(item.id!, value, terms);
                               filterInputs['terms'] = terms;
                             });
                             _timer?.cancel();
