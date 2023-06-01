@@ -240,9 +240,7 @@ class _HostListItemState extends State<HostListItem> {
                               ),
                               const SizedBox(height: 3),
                               Text(
-                                widget.host.per_person! == "personne"
-                                    ? 'Par Personne'
-                                    : 'Maison Entière',
+                                widget.host.typeHost ?? '',
                                 style: TextStyle(
                                   color: primary,
                                   fontSize: 13,

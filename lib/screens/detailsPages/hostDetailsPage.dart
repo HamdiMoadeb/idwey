@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/widgets/listItems/ChaletListItem.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/host.dart';
@@ -34,8 +35,8 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   bool loading = false;
   bool showFAB = false;
   bool isLiked = false;
-  HostDetail hostDetail = HostDetail(
-      0, '', '', '', '', [], 0, '', '', 0, '', '', '', [], '', '', 0, 0, []);
+  HostDetail hostDetail = HostDetail(0, '', '', '', '', [], 0, '', '', 0, '',
+      '', '', [], '', '', 0, 0, [], '', []);
   Map currencies = {
     'TND': {'value': 1, 'symbol': 'DT'},
     'EUR': {'value': 0, 'symbol': '€'},
@@ -220,6 +221,23 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                     isLiked = !isLiked;
                                   });
                                 },
+                              ),
+                              SectionTitle(
+                                  title: 'Chalets disponibles'.toUpperCase()),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: hostDetail.rooms?.length,
+                                  itemBuilder: (context, index) {
+                                    return ChaletListItem(
+                                        hostDetail.rooms?[index],
+                                        false,
+                                        1,
+                                        selectedCurrency);
+                                  }),
+                              Container(
+                                height: 500,
+                                color: Colors.red,
+                                width: 200,
                               ),
                               SectionTitle(title: 'DESCRIPTION'),
                               Container(

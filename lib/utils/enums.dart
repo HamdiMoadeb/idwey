@@ -3,3 +3,9 @@ enum StateEvent {
   isFull,
   isAvailable,
 }
+
+enum TypeHost {
+  parPersonne,
+  parChalet,
+  maisonEntiere,
+}

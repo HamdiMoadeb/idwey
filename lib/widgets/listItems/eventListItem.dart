@@ -109,7 +109,7 @@ class _EventListItemState extends State<EventListItem> {
                       widget.event.terms_name!.length < 30
                           ? addSpaceAfterComma(widget.event.terms_name!)
                           : '${addSpaceAfterComma(widget.event.terms_name!.substring(0, 30))}...',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
                         fontSize: 13,
