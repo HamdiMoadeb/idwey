@@ -78,7 +78,7 @@ class _EventListItemState extends State<EventListItem> {
                     ),
                   ),
                 ),
-                Positioned(
+                widget.event.terms_name!.isNotEmpty ? Positioned(
                   bottom: 0,
                   child: Container(
                     height: 28,
@@ -100,7 +100,7 @@ class _EventListItemState extends State<EventListItem> {
                       ),
                     ),
                   ),
-                ),
+                ) : Container(),
                 Positioned(
                   top: 0,
                   right: 0,
