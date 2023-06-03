@@ -234,11 +234,6 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                         1,
                                         selectedCurrency);
                                   }),
-                              Container(
-                                height: 500,
-                                color: Colors.red,
-                                width: 200,
-                              ),
                               SectionTitle(title: 'DESCRIPTION'),
                               Container(
                                 padding: EdgeInsets.symmetric(
