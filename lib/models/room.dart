@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:idwey/models/imageGallery.dart';
+
 Room roomFromJson(String str) => Room.fromJson(json.decode(str));
 
 String roomToJson(Room data) => json.encode(data.toJson());
@@ -13,7 +15,7 @@ class Room {
   final String? title;
   final dynamic content;
   final String? imageId;
-  final List<Gallery>? gallery;
+  final List<Images>? gallery;
   final dynamic video;
   final String? price;
   final int? parentId;
@@ -60,8 +62,8 @@ class Room {
         imageId: json["image_id"],
         gallery: json["gallery"] == null
             ? []
-            : List<Gallery>.from(
-                json["gallery"]!.map((x) => Gallery.fromJson(x))),
+            : List<Images>.from(
+                json["gallery"]!.map((x) => Images.fromJson(x))),
         video: json["video"],
         price: json["price"],
         parentId: json["parent_id"],
@@ -106,25 +108,5 @@ class Room {
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
         "perp_child_price": perpChildPrice,
-      };
-}
-
-class Gallery {
-  final dynamic large;
-  final dynamic thumb;
-
-  Gallery({
-    this.large,
-    this.thumb,
-  });
-
-  factory Gallery.fromJson(Map<String, dynamic> json) => Gallery(
-        large: json["large"],
-        thumb: json["thumb"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "large": large,
-        "thumb": thumb,
       };
 }

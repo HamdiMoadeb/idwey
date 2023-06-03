@@ -12,4 +12,9 @@ class Images {
       data['thumb'] == false ? "" : data['thumb'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        "large": large,
+        "thumb": thumb,
+      };
 }

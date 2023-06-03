@@ -1,12 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/widgets/common/ImageCommon.dart';
+import 'package:idwey/widgets/common/dialog_image_slider.dart';
 
 import '../../models/host.dart';
 import '../../models/room.dart';
 import '../../screens/detailsPages/hostDetailsPage.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
+import '../common/full_screen_image.dart';
 
 class ChaletListItem extends StatefulWidget {
   Room? room;
@@ -22,17 +25,57 @@ class ChaletListItem extends StatefulWidget {
 
 class _ChaletListItemState extends State<ChaletListItem> {
   bool liked = false;
+  String currentImage = '';
+  bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HostDetailsPage(id: widget.room?.id ?? 0),
-          ),
-        )
+        widget.room?.gallery?.length != 0
+            ? showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return SizedBox(
+                    height: 450,
+                    width: MediaQuery.of(context).size.width,
+                    child: AlertDialog(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            widget.room?.title ?? "",
+                            style: TextStyle(color: primary),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: FaIcon(FontAwesomeIcons.xmark,
+                                  color: grey, size: 20)),
+                        ],
+                      ),
+                      content: SizedBox(
+                        height: 420,
+                        width: 500,
+                        child: ImageSlider(
+                          title: widget.room?.title ?? "",
+                          text: "Partager maintenant",
+                          gallery_images_url: widget.room?.gallery ?? [],
+                          callBack: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        FullScreenImage(room: widget.room)));
+                          },
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              )
+            : null,
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 30,
