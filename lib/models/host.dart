@@ -1,3 +1,5 @@
+import 'package:idwey/models/room.dart';
+
 import 'imageGallery.dart';
 
 class Host {
@@ -13,6 +15,8 @@ class Host {
   String? impactsocial;
   String? IMAGE_URL;
   String? term_name;
+  String? typeHost;
+  final List<Room>? rooms;
 
   Host(
     this.id,
@@ -27,6 +31,8 @@ class Host {
     this.price,
     this.term_name,
     this.has_room,
+    this.typeHost,
+    this.rooms,
   );
 
   factory Host.fromJson(Map<String?, dynamic> data) {
@@ -45,6 +51,10 @@ class Host {
       data['price'] == null ? "" : data['price'] as String,
       data['term_name'] == null ? "" : data['term_name'] as String,
       data['has_room'] == null ? -1 : data['has_room'] as int,
+      data['type_host'] == null ? "" : data['type_host'] as String,
+      data["rooms"] == null
+          ? []
+          : List<Room>.from(data["rooms"]!.map((x) => Room.fromJson(x))),
     );
   }
 }
@@ -69,27 +79,32 @@ class HostDetail {
   double? map_lat;
   double? map_lng;
   List<String>? convenience;
+  String? typeHost;
+  List<Room>? rooms;
 
   HostDetail(
-      this.id,
-      this.title,
-      this.content,
-      this.address,
-      this.impactsocial,
-      this.type,
-      this.is_featured,
-      this.per_person,
-      this.location_name,
-      this.max_person,
-      this.price,
-      this.term_name,
-      this.banner_image_url,
-      this.gallery_images_url,
-      this.check_in_time,
-      this.check_out_time,
-      this.map_lat,
-      this.map_lng,
-      this.convenience);
+    this.id,
+    this.title,
+    this.content,
+    this.address,
+    this.impactsocial,
+    this.type,
+    this.is_featured,
+    this.per_person,
+    this.location_name,
+    this.max_person,
+    this.price,
+    this.term_name,
+    this.banner_image_url,
+    this.gallery_images_url,
+    this.check_in_time,
+    this.check_out_time,
+    this.map_lat,
+    this.map_lng,
+    this.convenience,
+    this.typeHost,
+    this.rooms,
+  );
 
   factory HostDetail.fromJson(Map<String?, dynamic> data) {
     var listImages = data['gallery_images_url'] as List;
@@ -125,6 +140,10 @@ class HostDetail {
       row['map_lat'] == null ? 0 : double.parse(row['map_lat']),
       row['map_lng'] == null ? 0 : double.parse(row['map_lng']),
       data['attributes']['6']['child'] == null ? [] : conveniences,
+      row['type_host'] == null ? "" : row['type_host'] as String,
+      data["rooms"] == null
+          ? []
+          : List<Room>.from(data["rooms"]!.map((x) => Room.fromJson(x))),
     );
   }
 }
