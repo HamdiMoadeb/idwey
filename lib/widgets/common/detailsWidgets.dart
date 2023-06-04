@@ -544,18 +544,18 @@ class BottomReservationBar extends StatelessWidget {
                 ),
               ),
               //commented for deployment
-              stateEvent == StateEvent.isFull
-                  ? ReservationButton(
-                      text: "évenement \ncomplet",
-                      color: redColor,
-                    )
-                  : stateEvent == StateEvent.isExpired
-                      ? ReservationButton(
-                          text: "évenement \nexpiré", color: disabledColor)
-                      : ReservationButton(
-                          text: "réserver \nmaintenant",
-                          color: primaryOrange,
-                        ),
+              // stateEvent == StateEvent.isFull
+              //     ? ReservationButton(
+              //         text: "évenement \ncomplet",
+              //         color: redColor,
+              //       )
+              //     : stateEvent == StateEvent.isExpired
+              //         ? ReservationButton(
+              //             text: "évenement \nexpiré", color: disabledColor)
+              //         : ReservationButton(
+              //             text: "réserver \nmaintenant",
+              //             color: primaryOrange,
+              //           ),
             ],
           ),
         ));
@@ -654,29 +654,29 @@ class OwnerWidget extends StatelessWidget {
   }
 }
 
-class ReservationButton extends StatelessWidget {
-  String text;
-  Color? color;
-  ReservationButton({Key? key, this.color, required this.text})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 170,
-      alignment: Alignment.center,
-      //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      decoration: BoxDecoration(
-          color: color ?? primaryOrange,
-          borderRadius: BorderRadius.circular(2)),
-      child: Text(
-        text.toUpperCase(),
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-}
+// class ReservationButton extends StatelessWidget {
+//   String text;
+//   Color? color;
+//   ReservationButton({Key? key, this.color, required this.text})
+//       : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 170,
+//       alignment: Alignment.center,
+//       //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+//       decoration: BoxDecoration(
+//           color: color ?? primaryOrange,
+//           borderRadius: BorderRadius.circular(2)),
+//       child: Text(
+//         text.toUpperCase(),
+//         style: const TextStyle(
+//           color: Colors.white,
+//           fontSize: 14,
+//           fontWeight: FontWeight.w500,
+//         ),
+//         textAlign: TextAlign.center,
+//       ),
+//     );
+//   }
+// }
