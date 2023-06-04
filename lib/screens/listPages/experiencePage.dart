@@ -120,7 +120,7 @@ class _ExperiencePageState extends State<ExperiencePage>
     });
   }
 
-  callExps() async {
+  callExpsFirstTime() async {
     setState(() {
       loading = true;
     });
@@ -149,6 +149,27 @@ class _ExperiencePageState extends State<ExperiencePage>
     });
   }
 
+  callExps() async {
+    setState(() {
+      loading = true;
+    });
+    await _loadSelectedCurrency();
+    ExperienceCalls.getExperienceList(searchInputs, listExps.length,
+        filterInputs).then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listExps.addAll(result["list"]);
+        totalNb = result["total"];
+
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
+      });
+      setState(() {
+        loading = false;
+      });
+    });
+  }
+
   Future<void> _loadSelectedCurrency() async {
     prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -160,7 +181,7 @@ class _ExperiencePageState extends State<ExperiencePage>
   void initState() {
     super.initState();
 
-    checkInternetConnectivity(context, callExps);
+    checkInternetConnectivity(context, callExpsFirstTime);
 
     scrollController.addListener(() {
       if ((catID.isEmpty &&
@@ -431,7 +452,7 @@ class _ExperiencePageState extends State<ExperiencePage>
                                     'catID': []
                                   };
                                 });
-                                await callExps();
+                                await callExpsFirstTime();
                               });
                             }
                           },

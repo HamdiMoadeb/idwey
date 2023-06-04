@@ -122,7 +122,7 @@ class _ActivityPageState extends State<ActivityPage> {
     });
   }
 
-  callActivities() async {
+  callActivitiesFirstTime() async {
     setState(() {
       loading = true;
     });
@@ -154,6 +154,29 @@ class _ActivityPageState extends State<ActivityPage> {
     });
   }
 
+  callActivities() async {
+    setState(() {
+      loading = true;
+    });
+    await _loadSelectedCurrency();
+    ActivityCalls.getActivityList(searchInputs, listActivities.length,
+        filterInputs).then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listActivities.addAll(result["list"]);
+        total = result["total"];
+
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
+      });
+
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
+    });
+  }
+
   Future<void> _loadSelectedCurrency() async {
     prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -164,7 +187,7 @@ class _ActivityPageState extends State<ActivityPage> {
   @override
   void initState() {
     super.initState();
-    checkInternetConnectivity(context, callActivities);
+    checkInternetConnectivity(context, callActivitiesFirstTime);
     if (widget.searchInputs != '') {
       searchInputs = widget.searchInputs;
       WidgetsBinding.instance!.addPostFrameCallback((_) {
@@ -460,7 +483,7 @@ class _ActivityPageState extends State<ActivityPage> {
                                 });
                                 _timer?.cancel();
                                 _timer = Timer(Duration(seconds: 1), () {
-                                  callActivities();
+                                  callActivitiesFirstTime();
                                 });
                               }
                             },

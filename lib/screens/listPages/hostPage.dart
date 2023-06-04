@@ -109,13 +109,13 @@ class _HostPageState extends State<HostPage>
     });
   }
 
-  callHosts() async {
+  callHostsFirstTime() async {
     setState(() {
       loading = true;
     });
     await _loadSelectedCurrency();
     HostCalls.getHostsList(
-            searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
+        searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
         .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
@@ -142,6 +142,30 @@ class _HostPageState extends State<HostPage>
     });
   }
 
+  callHosts() async {
+    setState(() {
+      loading = true;
+    });
+    await _loadSelectedCurrency();
+    HostCalls.getHostsList(
+            searchInputs, listHosts.length, filterInputs)
+        .then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listHosts.addAll(result["list"]);
+        totalNb = result["total"];
+
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
+
+      });
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
+    });
+  }
+
   Future<void> _loadSelectedCurrency() async {
     prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -153,7 +177,7 @@ class _HostPageState extends State<HostPage>
   void initState() {
     super.initState();
 
-    checkInternetConnectivity(context, callHosts);
+    checkInternetConnectivity(context, callHostsFirstTime);
     if (widget.searchInputs != '') {
       searchInputs = widget.searchInputs;
       WidgetsBinding.instance!.addPostFrameCallback((_) {
@@ -463,7 +487,7 @@ class _HostPageState extends State<HostPage>
                               _timer?.cancel();
                               _timer = Timer(Duration(seconds: 1), () {
                                 // Call your function here
-                                callHosts();
+                                callHostsFirstTime();
                               });
                             }
                           },

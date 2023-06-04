@@ -123,7 +123,7 @@ class _EventPageState extends State<EventPage> {
     });
   }
 
-  callEvents() async {
+  callEventsFirstTime() async {
     setState(() {
       loading = true;
     });
@@ -160,6 +160,30 @@ class _EventPageState extends State<EventPage> {
     });
   }
 
+  callEvents() async {
+    setState(() {
+      loading = true;
+    });
+    await _loadSelectedCurrency();
+
+    EventCalls.getEventsList(searchInputs, listEvents.length,
+        filterInputs).then((result) async {
+      setState(() {
+        listLengthFromLastCall = result["list"].length;
+        listEvents.addAll(result["list"]);
+        total = result["total"];
+
+        currencies['EUR']['value'] = result["eur"];
+        currencies['USD']['value'] = result["usd"];
+      });
+
+      await Future.delayed(Duration(seconds: 1));
+      setState(() {
+        loading = false;
+      });
+    });
+  }
+
   Future<void> _loadSelectedCurrency() async {
     prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -171,7 +195,7 @@ class _EventPageState extends State<EventPage> {
   void initState() {
     super.initState();
 
-    checkInternetConnectivity(context, callEvents);
+    checkInternetConnectivity(context, callEventsFirstTime);
     if (widget.searchInputs != '') {
       searchInputs = widget.searchInputs;
       WidgetsBinding.instance!.addPostFrameCallback((_) {
@@ -419,7 +443,7 @@ class _EventPageState extends State<EventPage> {
                                 });
                                 _timer?.cancel();
                                 _timer = Timer(Duration(seconds: 1), () {
-                                  callEvents();
+                                  callEventsFirstTime();
                                 });
                               }
                             },
