@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/utils/enums.dart';
 
 import '../../models/host.dart';
 import '../../screens/detailsPages/hostDetailsPage.dart';
@@ -28,7 +29,14 @@ class _HostListItemState extends State<HostListItem> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HostDetailsPage(id: widget.host.id),
+            builder: (context) => HostDetailsPage(
+              id: widget.host.id,
+              typeHost: widget.host.typeHost == "Par Chalet "
+                  ? TypeHost.parChalet
+                  : widget.host.typeHost == "Par Personne"
+                      ? TypeHost.parPersonne
+                      : TypeHost.maisonEntiere,
+            ),
           ),
         )
       },

@@ -80,7 +80,7 @@ class _ChaletListItemState extends State<ChaletListItem> {
       child: Container(
         width: MediaQuery.of(context).size.width - 30,
         // height: 430,
-        margin: EdgeInsets.only(left: 16, bottom: 16),
+        margin: EdgeInsets.only(left: 16, bottom: 16, right: 16),
         padding: EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -224,7 +224,7 @@ class _ChaletListItemState extends State<ChaletListItem> {
                               ),
                               const SizedBox(width: 10),
                               Text(
-                                "${widget.room?.price ?? ''} ${widget.currency} / ${'night'}",
+                                '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.room?.price ?? "") : widget.room?.price ?? "")} ${widget.currency} /night',
                                 style: TextStyle(
                                   color: grey,
                                   fontSize: 15,
