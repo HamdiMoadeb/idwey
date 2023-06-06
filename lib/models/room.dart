@@ -59,8 +59,8 @@ class Room {
         id: json["id"],
         title: json["title"],
         content: json["content"],
-        imageId: json["image_id"],
-        gallery: json["gallery"] == null
+        imageId: json["image_id"] is String ? json["image_id"] : null,
+        gallery: json["gallery"] == null || json["gallery"] == ""
             ? []
             : List<Images>.from(
                 json["gallery"]!.map((x) => Images.fromJson(x))),
@@ -89,7 +89,7 @@ class Room {
         "id": id,
         "title": title,
         "content": content,
-        "image_id": imageId,
+        // "image_id": imageId,
         "gallery": gallery == null
             ? []
             : List<dynamic>.from(gallery!.map((x) => x.toJson())),

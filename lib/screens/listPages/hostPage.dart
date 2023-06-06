@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:idwey/utils/constants.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 
 import '../../models/host.dart';
@@ -51,11 +52,6 @@ class _HostPageState extends State<HostPage>
   bool _showAllHotel = false;
   dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
   dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
-  Map currencies = {
-    'TND': {'value': 1, 'symbol': 'DT'},
-    'EUR': {'value': 0, 'symbol': '€'},
-    'USD': {'value': 0, 'symbol': '\$'},
-  };
 
   Timer? _timer;
   String selectedCurrency = '';
@@ -115,7 +111,7 @@ class _HostPageState extends State<HostPage>
     });
     await _loadSelectedCurrency();
     HostCalls.getHostsList(
-        searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
+            searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
         .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
@@ -147,8 +143,7 @@ class _HostPageState extends State<HostPage>
       loading = true;
     });
     await _loadSelectedCurrency();
-    HostCalls.getHostsList(
-            searchInputs, listHosts.length, filterInputs)
+    HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
         .then((result) async {
       setState(() {
         listLengthFromLastCall = result["list"].length;
@@ -157,7 +152,6 @@ class _HostPageState extends State<HostPage>
 
         currencies['EUR']['value'] = result["eur"];
         currencies['USD']['value'] = result["usd"];
-
       });
       await Future.delayed(Duration(seconds: 1));
       setState(() {
@@ -447,7 +441,7 @@ class _HostPageState extends State<HostPage>
                           title: 'Host Service',
                           filtringListFunction: (item, value) {
                             setState(() {
-                              item.checked = value ;
+                              item.checked = value;
                               isExist(item.id!, value);
                               filterInputs['terms'] = terms;
                               listHosts = [];

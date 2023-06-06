@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/utils/constants.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:idwey/widgets/listItems/ChaletListItem.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,7 +22,9 @@ import '../../widgets/common/scaffold.dart';
 
 class HostDetailsPage extends StatefulWidget {
   int? id;
-  HostDetailsPage({Key? key, required this.id}) : super(key: key);
+  TypeHost? typeHost;
+  HostDetailsPage({Key? key, required this.id, required typeHost})
+      : super(key: key);
 
   @override
   State<HostDetailsPage> createState() => _HostDetailsPageState();
@@ -37,11 +41,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   bool isLiked = false;
   HostDetail hostDetail = HostDetail(0, '', '', '', '', [], 0, '', '', 0, '',
       '', '', [], '', '', 0, 0, [], '', []);
-  Map currencies = {
-    'TND': {'value': 1, 'symbol': 'DT'},
-    'EUR': {'value': 0, 'symbol': '€'},
-    'USD': {'value': 0, 'symbol': '\$'},
-  };
+
   String selectedCurrency = '';
 
   String currentImage = '';
@@ -222,21 +222,29 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                   });
                                 },
                               ),
-                              SectionTitle(
-                                  title: 'Chalets disponibles'.toUpperCase()),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: hostDetail.rooms?.length,
-                                  itemBuilder: (context, index) {
-                                    return ChaletListItem(
-                                        hostDetail.rooms?[index],
-                                        false,
-                                        1,
-                                        selectedCurrency);
-                                  }),
+                              widget.typeHost == TypeHost.parChalet
+                                  ? SectionTitle(
+                                      title:
+                                          'Chalets disponibles'.toUpperCase())
+                                  : SizedBox.shrink(),
+                              widget.typeHost == TypeHost.parChalet
+                                  ? ListView.builder(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: hostDetail.rooms?.length,
+                                      itemBuilder: (context, index) {
+                                        return ChaletListItem(
+                                            hostDetail.rooms?[index],
+                                            false,
+                                            1,
+                                            currencies[selectedCurrency]
+                                                ['symbol']);
+                                      })
+                                  : SizedBox.shrink(),
                               SectionTitle(title: 'DESCRIPTION'),
                               Container(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     vertical: 10.0, horizontal: 20),
                                 child: HtmlWidget(
                                   hostDetail.content,
@@ -363,9 +371,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
               ? BottomReservationBar(
                   per_person: hostDetail.per_person,
                   price:
-                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ?
-                      currencyConverteur(currencies[selectedCurrency]['value']!, hostDetail.price) :
-                      hostDetail.price)} ${currencies[selectedCurrency]['symbol']}',
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, hostDetail.price) : hostDetail.price)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],
