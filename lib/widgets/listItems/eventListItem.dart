@@ -341,16 +341,16 @@ class _EventListItemState extends State<EventListItem> {
             Spacer(),
             widget.event.isFull == 1
                 ? BottomButton(
-                    text: 'évenement complet',
+                    text: 'Événement complet',
                     color: redColor,
                   )
                 : widget.event.isExpired == 1
                     ? BottomButton(
-                        text: 'évenement expiré',
+                        text: 'Événement expiré',
                         color: disabledColor,
                       )
                     : BottomButton(
-                        text: 'votre réservation',
+                        text: 'Votre réservation = ',
                         color: primaryOrange,
                       ),
           ],
