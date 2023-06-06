@@ -29,6 +29,15 @@ class _EventListItemState extends State<EventListItem> {
     return str.replaceAll(',', ', ');
   }
 
+  String getTagsfromString(String text){
+    List<String> tags = text.split(",");
+    if(tags.length > 2){
+      return '${tags[0]}, ${tags[1]}...';
+    }else{
+      return addSpaceAfterComma(text);
+    }
+  }
+
   Widget buildBottomButton() {
     return widget.event.isExpired == 1
         ? BottomButton(
@@ -106,9 +115,7 @@ class _EventListItemState extends State<EventListItem> {
                               : primaryOrange,
                     ),
                     child: Text(
-                      widget.event.terms_name!.length < 30
-                          ? addSpaceAfterComma(widget.event.terms_name!)
-                          : '${addSpaceAfterComma(widget.event.terms_name!.substring(0, 30))}...',
+                      getTagsfromString(widget.event.terms_name!),
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
