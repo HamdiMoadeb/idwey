@@ -29,11 +29,11 @@ class _EventListItemState extends State<EventListItem> {
     return str.replaceAll(',', ', ');
   }
 
-  String getTagsfromString(String text){
+  String getTagsfromString(String text) {
     List<String> tags = text.split(",");
-    if(tags.length > 2){
+    if (tags.length > 2) {
       return '${tags[0]}, ${tags[1]}...';
-    }else{
+    } else {
       return addSpaceAfterComma(text);
     }
   }
@@ -99,53 +99,56 @@ class _EventListItemState extends State<EventListItem> {
                     ),
                   ),
                 ),
-                widget.event.terms_name!.isNotEmpty ? Positioned(
-                  bottom: 0,
-                  child: Container(
-                    height: 28,
-                    padding: const EdgeInsets.only(left: 8, top: 5, right: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(10),
-                      ),
-                      color: widget.event.isFull == 1
-                          ? redColorWithOpacity
-                          : widget.event.isExpired == 1
-                              ? disabledColorWithOpacity
-                              : primaryOrange,
-                    ),
-                    child: Text(
-                      getTagsfromString(widget.event.terms_name!),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
-                ) : Container(),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    width: 35,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(15),
-                        bottomLeft: Radius.circular(15),
-                      ),
-                      color: Colors.black.withOpacity(0.5),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite_outline,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ),
+                widget.event.terms_name!.isNotEmpty
+                    ? Positioned(
+                        bottom: 0,
+                        child: Container(
+                          height: 28,
+                          padding:
+                              const EdgeInsets.only(left: 8, top: 5, right: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(10),
+                            ),
+                            color: widget.event.isFull == 1
+                                ? redColorWithOpacity
+                                : widget.event.isExpired == 1
+                                    ? disabledColorWithOpacity
+                                    : primaryOrange,
+                          ),
+                          child: Text(
+                            getTagsfromString(widget.event.terms_name!),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                // Positioned(
+                //   top: 0,
+                //   right: 0,
+                //   child: Container(
+                //     width: 35,
+                //     height: 40,
+                //     decoration: BoxDecoration(
+                //       borderRadius: const BorderRadius.only(
+                //         topRight: Radius.circular(15),
+                //         bottomLeft: Radius.circular(15),
+                //       ),
+                //       color: Colors.black.withOpacity(0.5),
+                //     ),
+                //     child: Center(
+                //       child: Icon(
+                //         Icons.favorite_outline,
+                //         color: Colors.white,
+                //         size: 20,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             Container(
