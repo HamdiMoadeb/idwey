@@ -12,12 +12,14 @@ import '../../utils/utils.dart';
 import '../common/full_screen_image.dart';
 
 class ChaletListItem extends StatefulWidget {
-  Room? room;
-  bool fromHomepage;
-  int? currencyValue;
-  String currency;
-  ChaletListItem(
-      this.room, this.fromHomepage, this.currencyValue, this.currency);
+  final Room? room;
+  final bool fromHomepage;
+  final int? currencyValue;
+  final String currency;
+  const ChaletListItem(
+      this.room, this.fromHomepage, this.currencyValue, this.currency,
+      {Key? key})
+      : super(key: key);
 
   @override
   State<ChaletListItem> createState() => _ChaletListItemState();
@@ -38,15 +40,19 @@ class _ChaletListItemState extends State<ChaletListItem> {
                 builder: (BuildContext context) {
                   return SizedBox(
                     height: 450,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width / 2,
                     child: AlertDialog(
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            widget.room?.title ?? "",
-                            style: TextStyle(color: primary),
+                          Expanded(
+                            child: Text(
+                              widget.room?.title ?? "",
+                              style: TextStyle(color: primary),
+                              maxLines: 2,
+                            ),
                           ),
+                          const SizedBox(width: 40),
                           InkWell(
                               onTap: () {
                                 Navigator.pop(context);
@@ -80,8 +86,8 @@ class _ChaletListItemState extends State<ChaletListItem> {
       child: Container(
         width: MediaQuery.of(context).size.width - 30,
         // height: 430,
-        margin: EdgeInsets.only(left: 16, bottom: 16, right: 16),
-        padding: EdgeInsets.only(bottom: 16),
+        margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
+        padding: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           border: Border.all(
@@ -132,7 +138,7 @@ class _ChaletListItemState extends State<ChaletListItem> {
                     ),
                     child: Row(
                       children: [
-                        FaIcon(
+                        const FaIcon(
                           FontAwesomeIcons.cameraRetro,
                           size: 14,
                           color: Colors.white,
@@ -224,7 +230,7 @@ class _ChaletListItemState extends State<ChaletListItem> {
                               ),
                               const SizedBox(width: 10),
                               Text(
-                                '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.room?.price ?? "") : widget.room?.price ?? "")} ${widget.currency} /night',
+                                '${removeDecimalZeroFormat(widget.currency != 'DT' ? currencyConverteur(widget.currencyValue!, widget.room!.price!) : currencyConverteur(widget.currencyValue!, widget.room!.price!))} ${widget.currency}',
                                 style: TextStyle(
                                   color: grey,
                                   fontSize: 15,

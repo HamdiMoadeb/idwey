@@ -76,8 +76,6 @@ class _HostDetailsPageState extends State<HostDetailsPage>
 
   @override
   void initState() {
-    print("widget.typeHost");
-    print(widget.typeHost);
     checkInternetConnectivity(context, callHosts);
     super.initState();
   }
@@ -239,7 +237,8 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                         return ChaletListItem(
                                             hostDetail.rooms?[index],
                                             false,
-                                            1,
+                                            currencies[selectedCurrency]
+                                                ['value'],
                                             currencies[selectedCurrency]
                                                 ['symbol']);
                                       })

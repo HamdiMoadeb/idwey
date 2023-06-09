@@ -42,11 +42,21 @@ class _CommonScaffoldState extends State<CommonScaffold> {
   final List<String> _currencies = currency;
   bool _isExpanded = false;
   GlobalKey expansionTile = GlobalKey();
-
+  SharedPreferences? prefs;
   @override
   void initState() {
-    selectedCurrency = _currencies[0];
+    //selectedCurrency = _currencies[0];
+    getCurrentCurrency();
     super.initState();
+  }
+
+  getCurrentCurrency() async {
+    prefs = await SharedPreferences.getInstance();
+    // await prefs!.setString('selectedCurrency', selectedCurrency);
+    String y = prefs!.getString('selectedCurrency')!;
+    print("yy");
+    selectedCurrency = y;
+    print(y);
   }
 
   @override
@@ -466,14 +476,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                             _currencies.insert(0, selectedCurrency);
                             _isExpanded = false;
                           });
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setString(
-                              'selectedCurrency', selectedCurrency);
-                          String x =
-                              prefs.getString('selectedCurrency').toString();
-                          widget.changeCurrency!;
-                          print(x);
+                          print("selectedCurrency");
+                          print(selectedCurrency);
+                          await prefs!
+                              .setString('selectedCurrency', selectedCurrency);
+                          String y = prefs!.getString('selectedCurrency')!;
+                          print("y");
+                          print(y);
                         },
                         icon: Icon(
                           Icons.arrow_right_alt,
@@ -502,11 +511,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                             _currencies.insert(0, selectedCurrency);
                             _isExpanded = false;
                           });
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          await prefs.setString(
-                              'selectedCurrency', selectedCurrency);
-                          String y = prefs.getString('selectedCurrency')!;
+
+                          print("selectedCurrency");
+                          print(selectedCurrency);
+                          await prefs!
+                              .setString('selectedCurrency', selectedCurrency);
+                          String y = prefs!.getString('selectedCurrency')!;
+                          print("y");
                           print(y);
                           widget.changeCurrency!;
                         },

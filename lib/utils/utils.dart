@@ -397,8 +397,7 @@ checkInternetConnectivity(context, Function isConnectedCallback) async {
 }
 
 String currencyConverteur(int currencyValue, String priceValue) {
-    double newValue = double.parse(priceValue) / currencyValue.toDouble();
-    double roundedValue = double.parse(newValue.round().toString());
-    return roundedValue.toString();
-
+  double newValue = double.parse(priceValue) / currencyValue.toDouble();
+  double roundedValue = double.parse(newValue.round().toString());
+  return roundedValue.toString();
 }
