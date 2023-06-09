@@ -21,9 +21,9 @@ import '../../widgets/common/footer.dart';
 import '../../widgets/common/scaffold.dart';
 
 class HostDetailsPage extends StatefulWidget {
-  int? id;
-  TypeHost? typeHost;
-  HostDetailsPage({Key? key, required this.id, required typeHost})
+  final int? id;
+  final String? typeHost;
+  const HostDetailsPage({Key? key, required this.id, required this.typeHost})
       : super(key: key);
 
   @override
@@ -76,6 +76,8 @@ class _HostDetailsPageState extends State<HostDetailsPage>
 
   @override
   void initState() {
+    print("widget.typeHost");
+    print(widget.typeHost);
     checkInternetConnectivity(context, callHosts);
     super.initState();
   }
@@ -222,12 +224,12 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                   });
                                 },
                               ),
-                              widget.typeHost == TypeHost.parChalet
+                              widget.typeHost == "Par Chalet"
                                   ? SectionTitle(
                                       title:
                                           'Chalets disponibles'.toUpperCase())
                                   : SizedBox.shrink(),
-                              widget.typeHost == TypeHost.parChalet
+                              widget.typeHost == "Par Chalet"
                                   ? ListView.builder(
                                       physics:
                                           const NeverScrollableScrollPhysics(),
@@ -250,9 +252,9 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                   hostDetail.content,
                                 ),
                               ),
-                              SectionTitle(
-                                  title: 'Disponibilité'.toUpperCase()),
-                              CustomCalendar(),
+                              // SectionTitle(
+                              //     title: 'Disponibilité'.toUpperCase()),
+                              // CustomCalendar(),
                               SectionTitle(
                                 title: 'Règlement'.toUpperCase(),
                               ),

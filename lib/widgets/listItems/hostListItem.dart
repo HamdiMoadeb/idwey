@@ -31,11 +31,7 @@ class _HostListItemState extends State<HostListItem> {
           MaterialPageRoute(
             builder: (context) => HostDetailsPage(
               id: widget.host.id,
-              typeHost: widget.host.typeHost == "Par Chalet "
-                  ? TypeHost.parChalet
-                  : widget.host.typeHost == "Par Personne"
-                      ? TypeHost.parPersonne
-                      : TypeHost.maisonEntiere,
+              typeHost: widget.host.typeHost,
             ),
           ),
         )
