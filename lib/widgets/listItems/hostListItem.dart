@@ -119,35 +119,35 @@ class _HostListItemState extends State<HostListItem> {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    width: 35,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(15),
-                        bottomLeft: Radius.circular(15),
-                      ),
-                      color: Colors.black.withOpacity(0.5),
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          liked = !liked;
-                        });
-                      },
-                      child: Center(
-                        child: Icon(
-                          Icons.favorite,
-                          color: liked ? likedRed : Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Positioned(
+                //   top: 0,
+                //   right: 0,
+                //   child: Container(
+                //     width: 35,
+                //     height: 40,
+                //     decoration: BoxDecoration(
+                //       borderRadius: const BorderRadius.only(
+                //         topRight: Radius.circular(15),
+                //         bottomLeft: Radius.circular(15),
+                //       ),
+                //       color: Colors.black.withOpacity(0.5),
+                //     ),
+                //     child: GestureDetector(
+                //       onTap: () {
+                //         setState(() {
+                //           liked = !liked;
+                //         });
+                //       },
+                //       child: Center(
+                //         child: Icon(
+                //           Icons.favorite,
+                //           color: liked ? likedRed : Colors.white,
+                //           size: 20,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             Container(
