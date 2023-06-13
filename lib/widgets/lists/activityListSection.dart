@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idwey/models/activity.dart';
+import 'package:idwey/models/currency.dart';
 import 'package:idwey/services/activityCalls.dart';
 import 'package:idwey/widgets/listItems/activityListItem.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';

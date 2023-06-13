@@ -2,18 +2,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/enums.dart';
+import 'package:idwey/utils/string_utils.dart';
+import '../../models/models.dart';
 
-import '../../models/host.dart';
 import '../../screens/detailsPages/hostDetailsPage.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 
 class HostListItem extends StatefulWidget {
-  Host host;
-  bool fromHomepage;
-  int? currencyValue;
-  String currency;
-  HostListItem(this.host, this.fromHomepage, this.currencyValue, this.currency);
+  final Host host;
+  final bool fromHomepage;
+  final int? currencyValue;
+  final String currency;
+  const HostListItem(
+      this.host, this.fromHomepage, this.currencyValue, this.currency,
+      {Key? key})
+      : super(key: key);
 
   @override
   State<HostListItem> createState() => _HostListItemState();
@@ -60,7 +64,7 @@ class _HostListItemState extends State<HostListItem> {
                       topRight: Radius.circular(15),
                     ),
                     child: CachedNetworkImage(
-                      imageUrl: widget.host.IMAGE_URL!,
+                      imageUrl: widget.host.imageUrl ?? "",
                       fit: BoxFit.cover,
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => Center(
@@ -75,7 +79,7 @@ class _HostListItemState extends State<HostListItem> {
                     ),
                   ),
                 ),
-                widget.host.is_featured == 1
+                widget.host.isFeatured == 1
                     ? Positioned(
                         left: 0,
                         top: 20,
@@ -85,7 +89,7 @@ class _HostListItemState extends State<HostListItem> {
                           decoration: BoxDecoration(
                             color: primaryOrange,
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'En Vedette  ',
                               style: TextStyle(
@@ -110,8 +114,9 @@ class _HostListItemState extends State<HostListItem> {
                       color: primaryOrange,
                     ),
                     child: Text(
-                      widget.host.term_name!,
-                      style: TextStyle(
+                      termNameValues.map.keys.firstWhere((key) =>
+                          termNameValues.map[key] == widget.host.termName),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
                         fontSize: 13,
@@ -174,7 +179,7 @@ class _HostListItemState extends State<HostListItem> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    widget.host.address!,
+                    widget.host.address ?? "",
                     style: TextStyle(
                       color: grey,
                       fontSize: 13,
@@ -188,7 +193,7 @@ class _HostListItemState extends State<HostListItem> {
               margin: EdgeInsets.only(left: 10, top: 10),
               child: Row(
                 children: [
-                  widget.host.max_person! > 0
+                  widget.host.maxPerson! > 0
                       ? Container(
                           margin: EdgeInsets.only(right: 12),
                           child: Column(
@@ -200,7 +205,7 @@ class _HostListItemState extends State<HostListItem> {
                               ),
                               const SizedBox(height: 3),
                               Text(
-                                '${widget.host.max_person!}',
+                                '${widget.host.maxPerson!}',
                                 style: TextStyle(
                                   color: primary,
                                   fontSize: 13,
@@ -222,7 +227,7 @@ class _HostListItemState extends State<HostListItem> {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          widget.host.location_name!,
+                          widget.host.locationName!,
                           style: TextStyle(
                             color: primary,
                             fontSize: 13,
@@ -232,7 +237,7 @@ class _HostListItemState extends State<HostListItem> {
                       ],
                     ),
                   ),
-                  widget.host.per_person!.isNotEmpty
+                  widget.host.perPerson != null
                       ? Container(
                           margin: EdgeInsets.only(right: 10),
                           child: Column(
@@ -244,7 +249,9 @@ class _HostListItemState extends State<HostListItem> {
                               ),
                               const SizedBox(height: 3),
                               Text(
-                                widget.host.typeHost ?? '',
+                                typeHostValues.map.keys.firstWhere((key) =>
+                                    typeHostValues.map[key] ==
+                                    widget.host.typeHost),
                                 style: TextStyle(
                                   color: primary,
                                   fontSize: 13,
@@ -255,7 +262,8 @@ class _HostListItemState extends State<HostListItem> {
                           ),
                         )
                       : Container(),
-                  widget.host.impactsocial! == "Oui"
+                  StringUtils.isNotNullOrEmpty(widget.host.impactsocial) &&
+                          widget.host.impactsocial == "Oui"
                       ? Container(
                           margin: EdgeInsets.only(right: 10),
                           child: Column(
@@ -285,7 +293,7 @@ class _HostListItemState extends State<HostListItem> {
               margin: EdgeInsets.only(left: 10, top: 8),
               child: Row(
                 children: [
-                  widget.host.has_room == 1
+                  widget.host.hasRoom == 1
                       ? Text(
                           'de  ',
                           style: TextStyle(
@@ -310,7 +318,7 @@ class _HostListItemState extends State<HostListItem> {
                     ),
                   ),
                   Text(
-                    widget.host.per_person! == "personne"
+                    widget.host.perPerson! == PerPerson.PERSONNE
                         ? ' /personne'
                         : ' /nuit',
                     style: TextStyle(

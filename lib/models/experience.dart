@@ -57,7 +57,7 @@ class ExperienceDetails {
   String? impactsocial;
   String? cat_name;
   String banner_image_url;
-  List<Images> gallery_images_url;
+  List<Gallery> gallery_images_url;
   double map_lat;
   double map_lng;
   List<String>? convenience;
@@ -86,9 +86,9 @@ class ExperienceDetails {
         ? []
         : data['gallery_images_url'] as List;
 
-    List<Images> images = [];
+    List<Gallery> images = [];
     if (listImages.length != 0) {
-      images = listImages.map((i) => Images.fromJson(i)).toList();
+      images = listImages.map((i) => Gallery.fromJson(i)).toList();
       images.removeLast();
     }
     var row = data['row'];

@@ -6,8 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/utils/constants.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
-
-import '../../models/host.dart';
+import '../../models/models.dart';
 import '../../models/sharedModel.dart';
 import '../../services/hostCalls.dart';
 import '../../utils/utils.dart';

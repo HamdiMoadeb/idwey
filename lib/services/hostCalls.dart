@@ -1,35 +1,36 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:idwey/models/host.dart';
+import 'package:idwey/models/host_detail.dart';
 import 'package:idwey/utils/urls.dart';
 
+import '../models/models.dart';
 import '../models/sharedModel.dart';
 
 class HostCalls {
-  static Future<Map> getAllHosts() async {
-    List<Host> listHosts = [];
-    Map result = {
-      'list': [],
-    };
-    var url = Uri.parse('${Urls.URL_API}hotel/listHost');
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-
-      for (Map<String?, dynamic> i in data["rows"]) {
-        listHosts.add(Host.fromJson(i));
-      }
-      result["list"] = listHosts;
-      result["eur"] = data["eur"];
-      result["usd"] = data["usd"];
-    }
-
-    return result;
-  }
+  // static Future<Map> getAllHosts() async {
+  //   List<Host> listHosts = [];
+  //   Map result = {
+  //     'list': [],
+  //   };
+  //   var url = Uri.parse('${Urls.URL_API}hotel/listHost');
+  //   var response = await http.get(url);
+  //   print('Response status: ${response.statusCode}');
+  //   print('Response body: ${response.body}');
+  //
+  //   if (response.statusCode == 200) {
+  //     final data = jsonDecode(response.body);
+  //
+  //     for (Map<String?, dynamic> i in data["rows"]) {
+  //       listHosts.add(Host.fromJson(i));
+  //     }
+  //     result["list"] = listHosts;
+  //     result["eur"] = data["eur"];
+  //     result["usd"] = data["usd"];
+  //   }
+  //   print(result);
+  //   return result;
+  // }
 
   //api for our hosts page
   static Future<Map> getHostsList(
@@ -56,18 +57,19 @@ class HostCalls {
       }
     }
 
-    if (max != '' && min != '' && termsList.isNotEmpty)
+    if (max != '' && min != '' && termsList.isNotEmpty) {
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max&terms=$terms');
-    else if (max != '' && min != '' && termsList.isEmpty)
+    } else if (max != '' && min != '' && termsList.isEmpty) {
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&price_range=$min%3B$max');
-    else if (termsList.isNotEmpty && max == '' && min == '')
+    } else if (termsList.isNotEmpty && max == '' && min == '') {
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip&terms=$terms');
-    else
+    } else {
       url = Uri.parse(
           '${Urls.URL_API}hotel?start=$start&end=$end&address=$address&adults=$adults&limit=20&offset=$skip');
+    }
 
     var response = await http.get(url);
 
@@ -79,7 +81,7 @@ class HostCalls {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      for (Map<String?, dynamic> i in data["rows"]) {
+      for (Map<String, dynamic> i in data["rows"]) {
         listHosts.add(Host.fromJson(i));
       }
       for (Map<String?, dynamic> i in data["attributes"][1]["terms"]) {
@@ -110,8 +112,7 @@ class HostCalls {
 
   //api for our hosts page
   static Future<Map> getHostDetails(int? id) async {
-    HostDetail hostDetail = new HostDetail(0, '', '', '', '', [], 0, '', '', 0,
-        '', '', '', [], '', '', 0, 0, [], '', []);
+    HostDetail hostDetail = HostDetail();
     var url = Uri.parse('${Urls.URL_API}hotel/detail/$id');
     Map result = {
       'list': [],
@@ -124,7 +125,7 @@ class HostCalls {
       final data = jsonDecode(response.body);
 
       hostDetail = HostDetail.fromJson(data);
-      result['hostDetail'] = hostDetail;
+      result['hostDetail'] = hostDetail.host;
       result["eur"] = data["eur"];
       result["usd"] = data["usd"];
     }

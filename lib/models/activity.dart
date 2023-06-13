@@ -55,7 +55,7 @@ class ActivityDetail {
   String cat_name;
   String duration;
   String banner_image_url;
-  List<Images> gallery_images_url;
+  List<Gallery> gallery_images_url;
   List<String> style;
   double map_lat;
   double map_lng;
@@ -85,10 +85,10 @@ class ActivityDetail {
     var listImages = data['gallery_images_url'] == null
         ? []
         : data['gallery_images_url'] as List;
-    List<Images> images = [];
+    List<Gallery> images = [];
     List<String> conveniences = [];
     if (listImages.length != 0) {
-      images = listImages.map((i) => Images.fromJson(i)).toList();
+      images = listImages.map((i) => Gallery.fromJson(i)).toList();
       images.removeLast();
     }
     var row = data['row'];

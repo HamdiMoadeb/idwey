@@ -85,7 +85,7 @@ class _ImageBannerState extends State<ImageBanner> {
 class ImageGallery extends StatefulWidget {
   String currentImage;
   bool isLiked;
-  List<Images> gallery_images_url;
+  List<Gallery>? gallery_images_url;
   String title;
   String text;
   String linkUrl;
@@ -106,14 +106,13 @@ class ImageGallery extends StatefulWidget {
 }
 
 class _ImageGalleryState extends State<ImageGallery> {
-
   String currentImage = '';
   @override
   void initState() {
-    currentImage = widget.currentImage;
+    currentImage = widget.currentImage ?? "";
+
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -144,27 +143,32 @@ class _ImageGalleryState extends State<ImageGallery> {
         SizedBox(
           height: 20,
         ),
-        widget.gallery_images_url.length != 0
+        widget.gallery_images_url?.length != 0
             ? CarouselSlider.builder(
-                itemCount: widget.gallery_images_url.length,
+                itemCount: widget.gallery_images_url?.length,
                 options: CarouselOptions(
                   height: 100,
                   viewportFraction: 0.3,
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
                     setState(() {
-                      currentImage =
-                          widget.gallery_images_url[index].large;
+                      currentImage = widget.gallery_images_url?[index].large;
                     });
                   },
                 ),
                 itemBuilder: (BuildContext context, int index, _) {
                   return GestureDetector(
                     onTap: () {
-                      print( currentImage);
+                      print(currentImage);
+                      for (int i = 0;
+                          i < widget.gallery_images_url!.length;
+                          i++) {
+                        print(i);
+                        print(widget.gallery_images_url?[i].large);
+                        print(widget.gallery_images_url?[i].thumb);
+                      }
                       setState(() {
-                        currentImage =
-                            widget.gallery_images_url[index].large;
+                        currentImage = widget.gallery_images_url?[index].large;
                       });
                     },
                     child: Container(
@@ -172,7 +176,7 @@ class _ImageGalleryState extends State<ImageGallery> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: currentImage ==
-                                  widget.gallery_images_url[index].large
+                                  widget.gallery_images_url?[index].large
                               ? Colors.blue
                               : Colors.transparent,
                           width: 2,
@@ -182,7 +186,7 @@ class _ImageGalleryState extends State<ImageGallery> {
                         width: 100,
                         height: 100,
                         child: CachedNetworkImage(
-                          imageUrl: widget.gallery_images_url[index].thumb,
+                          imageUrl: widget.gallery_images_url?[index].thumb,
                           fit: BoxFit.cover,
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Center(

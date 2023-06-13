@@ -4,10 +4,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 
 class MapPosition extends StatefulWidget {
-  double lat;
-  double lng;
-  String title;
-  MapPosition(
+  final double lat;
+  final double lng;
+  final String title;
+  const MapPosition(
       {Key? key, required this.lat, required this.lng, required this.title})
       : super(key: key);
 

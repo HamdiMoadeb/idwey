@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/event.dart';
 import 'package:idwey/services/eventCalls.dart';
+import 'package:idwey/utils/constants.dart';
 import 'package:idwey/utils/enums.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,11 +41,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
 
   EventDetails eventDetails = EventDetails(0, '', '', '', '', '', 0, '', '', 0,
       '', '', '', '', '', '', '', [], 0, 0, [], '', '', '', 0, 1);
-  Map currencies = {
-    'TND': {'value': 1, 'symbol': 'DT'},
-    'EUR': {'value': 0, 'symbol': '€'},
-    'USD': {'value': 0, 'symbol': '\$'},
-  };
+
   String selectedCurrency = '';
   callEvents() {
     setState(() {
@@ -324,14 +321,14 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                           ],
                                         ),
                                       ),
-                                      Container(
-                                          height: 300,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15.0),
-                                          child: MapPosition(
-                                              title: eventDetails.title!,
-                                              lat: eventDetails.map_lat!,
-                                              lng: eventDetails.map_lng!)),
+                                      // Container(
+                                      //     height: 300,
+                                      //     padding: EdgeInsets.symmetric(
+                                      //         horizontal: 15.0),
+                                      //     child: MapPosition(
+                                      //         title: eventDetails.title!,
+                                      //         lat: eventDetails.map_lat!,
+                                      //         lng: eventDetails.map_lng!)),
                                     ],
                                   )
                                 : SizedBox(),

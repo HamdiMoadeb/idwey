@@ -285,14 +285,14 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
                                   ],
                                 ),
                               ),
-                              Container(
-                                  height: 300,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 15.0),
-                                  child: MapPosition(
-                                      title: experienceDetail.title!,
-                                      lat: experienceDetail.map_lat,
-                                      lng: experienceDetail.map_lng)),
+                              // Container(
+                              //     height: 300,
+                              //     padding:
+                              //         EdgeInsets.symmetric(horizontal: 15.0),
+                              //     child: MapPosition(
+                              //         title: experienceDetail.title!,
+                              //         lat: experienceDetail.map_lat,
+                              //         lng: experienceDetail.map_lng)),
                             ],
                           ),
                         ],

@@ -73,7 +73,7 @@ class EventDetails {
   String? terms_name;
   String? slug;
   String banner_image_url;
-  List<Images> gallery_images_url;
+  List<Gallery> gallery_images_url;
   double? map_lat;
   double? map_lng;
   List<String>? convenience;
@@ -118,9 +118,9 @@ class EventDetails {
         ? []
         : data['gallery_images_url'] as List;
 
-    List<Images> images = [];
+    List<Gallery> images = [];
     if (listImages.length != 0) {
-      images = listImages.map((i) => Images.fromJson(i)).toList();
+      images = listImages.map((i) => Gallery.fromJson(i)).toList();
       images.removeLast();
     }
     var convenienceFromJson = data['attributes']['10'] == null

@@ -53,7 +53,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
   getCurrentCurrency() async {
     prefs = await SharedPreferences.getInstance();
     // await prefs!.setString('selectedCurrency', selectedCurrency);
-    String y = prefs!.getString('selectedCurrency')!;
+    String y = prefs!.getString('selectedCurrency') ?? "TND";
     print("yy");
     selectedCurrency = y;
     print(y);

@@ -35,7 +35,7 @@ class ProductDetails {
   String? sale_price;
   String? term_name;
   String banner_image_url;
-  List<Images> gallery_images_url;
+  List<Gallery> gallery_images_url;
   List<String> type;
   String business_name;
   String created_at;
@@ -58,7 +58,7 @@ class ProductDetails {
 
   factory ProductDetails.fromJson(Map<String?, dynamic> data) {
     var listImages = data['gallery_images_url'] as List;
-    List<Images> images = listImages.map((i) => Images.fromJson(i)).toList();
+    List<Gallery> images = listImages.map((i) => Gallery.fromJson(i)).toList();
     images.removeLast();
     var row = data['row'];
     var typeFromJson = data['attributes']['3']['child'];

@@ -295,14 +295,14 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                     ],
                                   ),
                                 ),
-                                Container(
-                                    height: 300,
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 15.0),
-                                    child: MapPosition(
-                                        title: activityDetails.title,
-                                        lat: activityDetails.map_lat,
-                                        lng: activityDetails.map_lng)),
+                                // Container(
+                                //     height: 300,
+                                //     padding:
+                                //         EdgeInsets.symmetric(horizontal: 15.0),
+                                //     child: MapPosition(
+                                //         title: activityDetails.title,
+                                //         lat: activityDetails.map_lat,
+                                //         lng: activityDetails.map_lng)),
                                 SectionTitle(
                                   title: 'avis'.toUpperCase(),
                                 ),
@@ -321,9 +321,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
               ? BottomReservationBar(
                   per_person: "",
                   price:
-                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ?
-                      currencyConverteur(currencies[selectedCurrency]['value']!, activityDetails.price) :
-                      activityDetails.price)} ${currencies[selectedCurrency]['symbol']}',
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, activityDetails.price) : activityDetails.price)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],

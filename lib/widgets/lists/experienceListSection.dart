@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idwey/models/experience.dart';
+import 'package:idwey/models/models.dart';
 import 'package:idwey/services/experienceCalls.dart';
 import 'package:idwey/widgets/listItems/experienceListItem.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
