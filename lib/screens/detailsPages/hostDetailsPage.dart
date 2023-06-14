@@ -319,18 +319,24 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                       title: hostDetail.title,
                                       lat: hostDetail.map_lat!,
                                       lng: hostDetail.map_lng!)),
-                              SectionTitle(
-                                title: 'Commodités'.toUpperCase(),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                                child: Column(
-                                  children: [
-                                    for (var item in hostDetail.convenience!)
-                                      ConvenienceItem(title: item),
-                                  ],
-                                ),
-                              ),
+                              hostDetail.convenience!.isEmpty
+                                  ? SectionTitle(
+                                      title: 'Commodités'.toUpperCase(),
+                                    )
+                                  : SizedBox.shrink(),
+                              hostDetail.convenience!.isEmpty
+                                  ? Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15.0),
+                                      child: Column(
+                                        children: [
+                                          for (var item
+                                              in hostDetail.convenience!)
+                                            ConvenienceItem(title: item),
+                                        ],
+                                      ),
+                                    )
+                                  : SizedBox.shrink(),
                               SectionTitle(
                                 title: 'type de propriété'.toUpperCase(),
                               ),
