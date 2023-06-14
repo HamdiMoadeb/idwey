@@ -53,8 +53,8 @@ class _CommonScaffoldState extends State<CommonScaffold> {
   getCurrentCurrency() async {
     prefs = await SharedPreferences.getInstance();
     // await prefs!.setString('selectedCurrency', selectedCurrency);
-    String y = prefs!.getString('selectedCurrency')!;
-    selectedCurrency = y;
+    String? y = prefs!.getString('selectedCurrency');
+    selectedCurrency = y ?? "TND";
 
     print(_currencies);
     _currencies.removeWhere((element) => element == selectedCurrency);
@@ -489,7 +489,8 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                           print(selectedCurrency);
                           await prefs!
                               .setString('selectedCurrency', selectedCurrency);
-                          String y = prefs!.getString('selectedCurrency')!;
+                          String? y =
+                              prefs!.getString('selectedCurrency') ?? "TND";
                           print("y");
                           print(y);
                         },
@@ -520,7 +521,6 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                             _currencies.insert(0, selectedCurrency);
                             _isExpanded = false;
                           });
-
                           print("selectedCurrency");
                           print(selectedCurrency);
                           await prefs!

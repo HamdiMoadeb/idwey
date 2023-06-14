@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:idwey/models/room.dart';
 
 import 'imageGallery.dart';
@@ -112,9 +114,17 @@ class HostDetail {
     images.removeLast();
     var row = data['row'];
     var typeFromJson = data['attributes']['5']['child'];
-    List<String> types = new List<String>.from(typeFromJson);
-    var convenienceFromJson = data['attributes']['6']['child'];
-    List<String> conveniences = new List<String>.from(convenienceFromJson);
+    List<String> types = List<String>.from(typeFromJson);
+    print("conveniences666666");
+    print(data['attributes']);
+    var convenienceFromJson =
+        data['attributes']['6'] == null ? [] : data['attributes']['6']['child'];
+    print("conveniencde from json");
+    print(convenienceFromJson);
+    List<String> conveniences =
+        convenienceFromJson == [] || convenienceFromJson == null
+            ? []
+            : List<String>.from(convenienceFromJson);
 
     return HostDetail(
       row['id'] == null ? 0 : row['id'] as int,
@@ -139,7 +149,7 @@ class HostDetail {
       row['check_out_time'] == null ? "" : row['check_out_time'] as String,
       row['map_lat'] == null ? 0 : double.parse(row['map_lat']),
       row['map_lng'] == null ? 0 : double.parse(row['map_lng']),
-      data['attributes']['6']['child'] == null ? [] : conveniences,
+      data['attributes']['6'] == null ? [] : conveniences as List<String>,
       row['type_host'] == null ? "" : row['type_host'] as String,
       data["rooms"] == null
           ? []

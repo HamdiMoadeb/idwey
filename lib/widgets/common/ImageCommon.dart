@@ -62,18 +62,18 @@ class _ImageBannerState extends State<ImageBanner> {
                   title: widget.title,
                   text: widget.text,
                   linkUrl: widget.linkUrl),
-              SizedBox(
-                width: 10,
-              ),
-              AnimatedHeartButton(
-                  appearanceColor: false,
-                  funCallback: () {
-                    setState(() {
-                      widget.isLiked = !widget.isLiked;
-                      widget.callBack();
-                    });
-                  },
-                  isLiked: widget.isLiked),
+              // SizedBox(
+              //   width: 10,
+              // ),
+              // AnimatedHeartButton(
+              //     appearanceColor: false,
+              //     funCallback: () {
+              //       setState(() {
+              //         widget.isLiked = !widget.isLiked;
+              //         widget.callBack();
+              //       });
+              //     },
+              //     isLiked: widget.isLiked),
             ],
           ),
         )
@@ -106,14 +106,12 @@ class ImageGallery extends StatefulWidget {
 }
 
 class _ImageGalleryState extends State<ImageGallery> {
-
   String currentImage = '';
   @override
   void initState() {
     currentImage = widget.currentImage;
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -153,18 +151,16 @@ class _ImageGalleryState extends State<ImageGallery> {
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
                     setState(() {
-                      currentImage =
-                          widget.gallery_images_url[index].large;
+                      currentImage = widget.gallery_images_url[index].large;
                     });
                   },
                 ),
                 itemBuilder: (BuildContext context, int index, _) {
                   return GestureDetector(
                     onTap: () {
-                      print( currentImage);
+                      print(currentImage);
                       setState(() {
-                        currentImage =
-                            widget.gallery_images_url[index].large;
+                        currentImage = widget.gallery_images_url[index].large;
                       });
                     },
                     child: Container(
