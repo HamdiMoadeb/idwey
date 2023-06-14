@@ -54,9 +54,14 @@ class _CommonScaffoldState extends State<CommonScaffold> {
     prefs = await SharedPreferences.getInstance();
     // await prefs!.setString('selectedCurrency', selectedCurrency);
     String y = prefs!.getString('selectedCurrency')!;
-    print("yy");
     selectedCurrency = y;
-    print(y);
+
+    print(_currencies);
+    _currencies.removeWhere((element) => element == selectedCurrency);
+
+    print(_currencies);
+    _currencies.insert(0, selectedCurrency);
+    print(_currencies);
   }
 
   @override
@@ -472,8 +477,12 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                       TextButton.icon(
                         onPressed: () async {
                           setState(() {
+                            print("drawer _currencies");
+                            print(_currencies);
                             selectedCurrency = _currencies.removeAt(1);
                             _currencies.insert(0, selectedCurrency);
+                            print("drawer _currencies after");
+                            print(_currencies);
                             _isExpanded = false;
                           });
                           print("selectedCurrency");
