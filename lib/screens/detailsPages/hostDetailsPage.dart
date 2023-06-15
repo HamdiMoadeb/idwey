@@ -323,7 +323,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                   ? SectionTitle(
                                       title: 'Commodités'.toUpperCase(),
                                     )
-                                  : SizedBox.shrink(),
+                                  : const SizedBox.shrink(),
                               hostDetail.convenience!.isEmpty
                                   ? Container(
                                       padding: EdgeInsets.symmetric(
@@ -336,7 +336,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                         ],
                                       ),
                                     )
-                                  : SizedBox.shrink(),
+                                  : const SizedBox.shrink(),
                               SectionTitle(
                                 title: 'type de propriété'.toUpperCase(),
                               ),

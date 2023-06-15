@@ -57,10 +57,12 @@ class _CommonScaffoldState extends State<CommonScaffold> {
     selectedCurrency = y ?? "TND";
 
     print(_currencies);
-    _currencies.removeWhere((element) => element == selectedCurrency);
+    setState(() {
+      _currencies.removeWhere((element) => element == selectedCurrency);
+      print(_currencies);
+      _currencies.insert(0, selectedCurrency);
+    });
 
-    print(_currencies);
-    _currencies.insert(0, selectedCurrency);
     print(_currencies);
   }
 
