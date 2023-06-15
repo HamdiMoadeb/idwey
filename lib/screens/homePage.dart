@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage>
   List<String> cities = [];
   List<String> activityCities = [];
   List<String> eventCities = [];
+  final List<String> _currencies = currency;
   Map currencies = {
     'TND': {'value': 1, 'symbol': 'DT'},
     'EUR': {'value': 0, 'symbol': '€'},
@@ -61,6 +62,12 @@ class _HomePageState extends State<HomePage>
     prefs = await SharedPreferences.getInstance();
     setState(() {
       selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
+      String? y = prefs!.getString('selectedCurrency');
+      selectedCurrency = y ?? "TND";
+      setState(() {
+        _currencies.removeWhere((element) => element == selectedCurrency);
+        _currencies.insert(0, selectedCurrency);
+      });
     });
   }
 
