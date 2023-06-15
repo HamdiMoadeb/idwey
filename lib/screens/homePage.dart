@@ -62,18 +62,13 @@ class _HomePageState extends State<HomePage>
     prefs = await SharedPreferences.getInstance();
     setState(() {
       selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
-      String? y = prefs!.getString('selectedCurrency');
-      selectedCurrency = y ?? "TND";
-      setState(() {
-        _currencies.removeWhere((element) => element == selectedCurrency);
-        _currencies.insert(0, selectedCurrency);
-      });
     });
   }
 
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
+    _loadSelectedCurrency();
     super.initState();
 
     checkInternetConnectivity(context, getCarouselImages);
