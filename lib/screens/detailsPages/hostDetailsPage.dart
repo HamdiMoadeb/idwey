@@ -56,7 +56,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
     //   currencies['USD']['value'] = result["usd"];
     // });
 
-    context.read<HostBloc>().add(GetHostDetails(widget.id));
+    context.read<HostDetailCubit>().getHostDetails(widget.id);
 
     // await Future.delayed(Duration(seconds: 1));
     // });
@@ -84,7 +84,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
-    return BlocBuilder<HostBloc, HostState>(
+    return BlocBuilder<HostDetailCubit, HostDetailState>(
       builder: (context, state) {
         return CommonScaffold(
           changeCurrency: _loadSelectedCurrency(),
@@ -357,26 +357,26 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                                             ],
                                           ),
                                         ),
-                                        // Container(
-                                        //     height: 300,
-                                        //     padding: EdgeInsets.symmetric(
-                                        //         horizontal: 15.0),
-                                        //     child: MapPosition(
-                                        //         title: state.hostDetail?.host
-                                        //                 ?.title ??
-                                        //             "",
-                                        //         lat: double.tryParse(state
-                                        //                     .hostDetail
-                                        //                     ?.host
-                                        //                     ?.mapLat ??
-                                        //                 "") ??
-                                        //             0.0,
-                                        //         lng: double.tryParse(state
-                                        //                     .hostDetail
-                                        //                     ?.host
-                                        //                     ?.mapLng ??
-                                        //                 "") ??
-                                        //             0.0)),
+                                        Container(
+                                            height: 300,
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 15.0),
+                                            child: MapPosition(
+                                                title: state.hostDetail?.host
+                                                        ?.title ??
+                                                    "",
+                                                lat: double.tryParse(state
+                                                            .hostDetail
+                                                            ?.host
+                                                            ?.mapLat ??
+                                                        "") ??
+                                                    0.0,
+                                                lng: double.tryParse(state
+                                                            .hostDetail
+                                                            ?.host
+                                                            ?.mapLng ??
+                                                        "") ??
+                                                    0.0)),
                                         SectionTitle(
                                           title: 'Commodités'.toUpperCase(),
                                         ),

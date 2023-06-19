@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:idwey/blocs/host_page_bloc/host_page_cubit.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/utils/constants.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 import '../../models/models.dart';
 import '../../models/sharedModel.dart';
@@ -40,7 +43,7 @@ class _HostPageState extends State<HostPage>
   bool loading = false;
   bool showFAB = false;
   int listLengthFromLastCall = 0;
-  int totalNb = 0;
+  // int totalNb = 0;
   double max = 0;
   double min = 0;
   double _lowerValue = 0;
@@ -49,19 +52,17 @@ class _HostPageState extends State<HostPage>
   bool _showAllConv = false;
   bool _showAllProp = false;
   bool _showAllHotel = false;
-  dynamic searchInputs = {'start': '', 'end': '', 'address': '', 'adults': ''};
-  dynamic filterInputs = {'min': '', 'max': '', 'terms': []};
 
   Timer? _timer;
   String selectedCurrency = '';
 
-  void updateSearchFields(dynamic searchInputs) {
+  void updateSearchFields(dynamic inputs) {
     _timer?.cancel();
 
     _timer = Timer(Duration(seconds: 1), () async {
       setState(() {
         listHosts.clear();
-        this.searchInputs = searchInputs;
+        searchInputs = inputs;
       });
       // Call your function here
       await callHosts();
@@ -93,15 +94,19 @@ class _HostPageState extends State<HostPage>
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 14.0);
-    HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
-        .then((result) async {
-      setState(() {
-        listLengthFromLastCall = result["list"].length;
-        listHosts.addAll(result["list"]);
-        totalNb = result["total"];
-        loading = false;
-      });
-    });
+    // HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
+    //     .then((result) async {
+    //   setState(() {
+    //     listLengthFromLastCall = result["list"].length;
+    //     listHosts.addAll(result["list"]);
+    //     totalNb = result["total"];
+    //     loading = false;
+    //   });
+    // });
+
+    context
+        .read<HostPageCubit>()
+        .getAllHosts(searchInputs, listHosts.length, filterInputs);
   }
 
   callHostsFirstTime() async {
@@ -109,32 +114,32 @@ class _HostPageState extends State<HostPage>
       loading = true;
     });
     await _loadSelectedCurrency();
-    HostCalls.getHostsList(
-            searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
-        .then((result) async {
-      setState(() {
-        listLengthFromLastCall = result["list"].length;
-        listHosts.addAll(result["list"]);
-        totalNb = result["total"];
-        max = double.parse(result["priceRange"][1]);
-        min = double.parse(result["priceRange"][0]);
-        currencies['EUR']['value'] = result["eur"];
-        currencies['USD']['value'] = result["usd"];
-        _lowerValue = min;
-        _upperValue = max;
-        if (widget.cities!.isEmpty) {
-          widget.cities = result['cities'];
-        }
-        searchInputs = result["searchInputs"];
-        listConvience = result["listConvenience"];
-        listHotelService = result["listHotelService"];
-        listPropertyType = result["listPropertyType"];
-      });
-      await Future.delayed(Duration(seconds: 1));
-      setState(() {
-        loading = false;
-      });
-    });
+
+    context.read<HostPageCubit>().getAllHosts(
+        searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []});
+
+    // HostCalls.getHostsList(
+    //         searchInputs, listHosts.length, {'min': '', 'max': '', 'terms': []})
+    //     .then((result) async {
+    //   setState(() {
+    //     // listLengthFromLastCall = result["list"].length;
+    //     //listHosts.addAll(result["list"]);
+    //     // totalNb = result["total"];
+    //     // max = double.parse(result["priceRange"][1]);
+    //     //min = double.parse(result["priceRange"][0]);
+    //     // currencies['EUR']['value'] = result["eur"];
+    //     // currencies['USD']['value'] = result["usd"];
+    //     // _lowerValue = min;
+    //     //  _upperValue = max;
+    //     //   if (widget.cities!.isEmpty) {
+    //     //     widget.cities = result['cities'];
+    //     //   }
+    //     searchInputs = result["searchInputs"];
+    //     // listConvience = result["listConvenience"];
+    //     // listHotelService = result["listHotelService"];
+    //     // listPropertyType = result["listPropertyType"];
+    //   });
+    // });
   }
 
   callHosts() async {
@@ -142,21 +147,25 @@ class _HostPageState extends State<HostPage>
       loading = true;
     });
     await _loadSelectedCurrency();
-    HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
-        .then((result) async {
-      setState(() {
-        listLengthFromLastCall = result["list"].length;
-        listHosts.addAll(result["list"]);
-        totalNb = result["total"];
+    context
+        .read<HostPageCubit>()
+        .getAllHosts(searchInputs, listHosts.length, filterInputs);
 
-        currencies['EUR']['value'] = result["eur"];
-        currencies['USD']['value'] = result["usd"];
-      });
-      await Future.delayed(Duration(seconds: 1));
-      setState(() {
-        loading = false;
-      });
-    });
+    // HostCalls.getHostsList(searchInputs, listHosts.length, filterInputs)
+    //     .then((result) async {
+    //   setState(() {
+    //     listLengthFromLastCall = result["list"].length;
+    //     listHosts.addAll(result["list"]);
+    //     totalNb = result["total"];
+    //
+    //     currencies['EUR']['value'] = result["eur"];
+    //     currencies['USD']['value'] = result["usd"];
+    //   });
+    //   await Future.delayed(Duration(seconds: 1));
+    //   setState(() {
+    //     loading = false;
+    //   });
+    // });
   }
 
   Future<void> _loadSelectedCurrency() async {
@@ -169,7 +178,6 @@ class _HostPageState extends State<HostPage>
   @override
   void initState() {
     super.initState();
-
     checkInternetConnectivity(context, callHostsFirstTime);
     if (widget.searchInputs != '') {
       searchInputs = widget.searchInputs;
@@ -245,296 +253,305 @@ class _HostPageState extends State<HostPage>
           _showAllProp ? listPropertyType : listPropertyType.sublist(0, 3);
     }
 
-    return CommonScaffold(
-      changeCurrency: _loadSelectedCurrency(),
-      scaffoldKey: _scaffoldKey,
-      backtotop: scrollToTop,
-      showFab: showFAB,
-      body: SingleChildScrollView(
-        controller: scrollController,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: Stack(
-                children: [
-                  Stack(
+    return BlocBuilder<HostPageCubit, HostPageState>(
+      builder: (context, state) {
+        if (state.status == StateStatus.loading) {
+          return const CircularProgressIndicator();
+        }
+        return CommonScaffold(
+          changeCurrency: _loadSelectedCurrency(),
+          scaffoldKey: _scaffoldKey,
+          backtotop: scrollToTop,
+          showFab: showFAB,
+          body: SingleChildScrollView(
+            controller: scrollController,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: Stack(
                     children: [
+                      Stack(
+                        children: [
+                          Container(
+                            height: 230,
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Image.asset("assets/hostPageCover.jpg",
+                                  fit: BoxFit.cover),
+                            ),
+                          ),
+                          Positioned.fill(
+                            child: Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Logements et maisons \nd\'hôtes',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       Container(
-                        height: 230,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Image.asset("assets/hostPageCover.jpg",
-                              fit: BoxFit.cover),
+                        margin: const EdgeInsets.only(top: 180),
+                        child: HostFilterTab(
+                          cities: state.hostPage?.cities ?? [],
+                          positionKey: posKey,
+                          scrollController: scrollController,
+                          shouldNavigate: false,
+                          defaultInputs: searchInputs,
+                          onChangeField: (dynamic searchInputs) =>
+                              updateSearchFields(searchInputs),
                         ),
                       ),
-                      Positioned.fill(
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Logements et maisons \nd\'hôtes',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w500,
+                    ],
+                  ),
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 15),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(width: 0.3, color: grey)),
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 15),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 5,
+                                  height: 20,
+                                  decoration:
+                                      BoxDecoration(color: primaryOrange),
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  'Filtrer par'.toUpperCase(),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: titleBlack),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              indent: 0,
+                              thickness: 0.5),
+                          PriceRangeSlider(
+                              max: max,
+                              min: min,
+                              lowerValue: _lowerValue,
+                              upperValue: _upperValue,
+                              priceRangeChange: (lowerV, upperV) {
+                                setState(() {
+                                  _lowerValue = lowerV;
+                                  _upperValue = upperV;
+                                });
+                              },
+                              callBack: () {
+                                setState(() {
+                                  filterInputs["min"] =
+                                      _lowerValue.toInt().toString();
+                                  filterInputs["max"] =
+                                      _upperValue.toInt().toString();
+                                  listHosts = [];
+                                  listLengthFromLastCall = 0;
+                                });
+                                _timer?.cancel();
+
+                                _timer = Timer(Duration(seconds: 1), () {
+                                  // Call your function here
+                                  filtredHosts();
+                                });
+                              }),
+                          const Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              indent: 0,
+                              thickness: 0.5),
+                          FilterTab(
+                              title: 'Type de propriété',
+                              filtringListFunction: (item, value) {
+                                setState(() {
+                                  item.checked = value;
+                                  isExist(item.id!, value);
+                                  filterInputs['terms'] = terms;
+                                  listHosts = [];
+                                  listLengthFromLastCall = 0;
+                                });
+                                _timer?.cancel();
+
+                                _timer = Timer(Duration(seconds: 1), () {
+                                  // Call your function here
+                                  filtredHosts();
+                                });
+
+                                print(terms.length);
+                              },
+                              showMoreFunction: () {
+                                setState(() {
+                                  _showAllProp = !_showAllProp;
+                                });
+                              },
+                              displayedList: displayedListPropertyType,
+                              showAllAct: _showAllProp),
+                          const Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              indent: 0,
+                              thickness: 0.5),
+                          FilterTab(
+                              title: 'Commodités',
+                              filtringListFunction: (item, value) {
+                                setState(() {
+                                  item.checked = value;
+                                  isExist(item.id!, value);
+                                  filterInputs['terms'] = terms;
+                                  listHosts = [];
+                                  listLengthFromLastCall = 0;
+                                });
+                                _timer?.cancel();
+
+                                _timer = Timer(Duration(seconds: 1), () {
+                                  // Call your function here
+                                  filtredHosts();
+                                });
+                                print(terms.length);
+                              },
+                              showMoreFunction: () {
+                                setState(() {
+                                  _showAllConv = !_showAllConv;
+                                });
+                              },
+                              displayedList: displayedListConvience,
+                              showAllAct: _showAllConv),
+                          const Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              indent: 0,
+                              thickness: 0.5),
+                          FilterTab(
+                              title: 'Host Service',
+                              filtringListFunction: (item, value) {
+                                setState(() {
+                                  item.checked = value;
+                                  isExist(item.id!, value);
+                                  filterInputs['terms'] = terms;
+                                  listHosts = [];
+                                  listLengthFromLastCall = 0;
+                                });
+                                _timer?.cancel();
+
+                                _timer = Timer(Duration(seconds: 1), () {
+                                  // Call your function here
+                                  filtredHosts();
+                                });
+                                print(terms.length);
+                              },
+                              showMoreFunction: () {
+                                setState(() {
+                                  _showAllHotel = !_showAllHotel;
+                                });
+                              },
+                              displayedList: displayedListHotelService,
+                              showAllAct: _showAllHotel),
+                          Container(
+                            child: TextButton(
+                              onPressed: () {
+                                if (terms.isNotEmpty ||
+                                    (filterInputs['min'] != '' &&
+                                        filterInputs['max'] != '')) {
+                                  setState(() {
+                                    listHosts = [];
+                                    terms = [];
+
+                                    filterInputs = {
+                                      'min': '',
+                                      'max': '',
+                                      'terms': []
+                                    };
+                                  });
+                                  _timer?.cancel();
+                                  _timer = Timer(Duration(seconds: 1), () {
+                                    // Call your function here
+                                    callHostsFirstTime();
+                                  });
+                                }
+                              },
+                              child: Text('Effacer les filtres'),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        key: posKey,
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          "${state.totalNb} hébergements trouvés",
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            color: titleBlue,
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 180),
-                    child: HostFilterTab(
-                      cities: widget.cities,
-                      positionKey: posKey,
-                      scrollController: scrollController,
-                      shouldNavigate: false,
-                      defaultInputs: searchInputs,
-                      onChangeField: (dynamic searchInputs) =>
-                          updateSearchFields(searchInputs),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: 15,
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) =>
+                          Container(
+                              margin: EdgeInsets.only(bottom: 15, right: 15),
+                              child: HostListItem(
+                                  state.listHosts![index],
+                                  false,
+                                  currencies[selectedCurrency]['value'],
+                                  currencies[selectedCurrency]['symbol'])),
+                      itemCount: state.listHosts?.length,
+                    ),
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(width: 0.3, color: grey)),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 15),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 5,
-                              height: 20,
-                              decoration: BoxDecoration(color: primaryOrange),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Filtrer par'.toUpperCase(),
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: titleBlack),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                          color: Colors.grey,
-                          height: 1,
-                          indent: 0,
-                          thickness: 0.5),
-                      PriceRangeSlider(
-                          max: max,
-                          min: min,
-                          lowerValue: _lowerValue,
-                          upperValue: _upperValue,
-                          priceRangeChange: (lowerV, upperV) {
-                            setState(() {
-                              _lowerValue = lowerV;
-                              _upperValue = upperV;
-                            });
-                          },
-                          callBack: () {
-                            setState(() {
-                              filterInputs["min"] =
-                                  _lowerValue.toInt().toString();
-                              filterInputs["max"] =
-                                  _upperValue.toInt().toString();
-                              listHosts = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            _timer?.cancel();
-
-                            _timer = Timer(Duration(seconds: 1), () {
-                              // Call your function here
-                              filtredHosts();
-                            });
-                          }),
-                      const Divider(
-                          color: Colors.grey,
-                          height: 1,
-                          indent: 0,
-                          thickness: 0.5),
-                      FilterTab(
-                          title: 'Type de propriété',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              item.checked = value;
-                              isExist(item.id!, value);
-                              filterInputs['terms'] = terms;
-                              listHosts = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            _timer?.cancel();
-
-                            _timer = Timer(Duration(seconds: 1), () {
-                              // Call your function here
-                              filtredHosts();
-                            });
-
-                            print(terms.length);
-                          },
-                          showMoreFunction: () {
-                            setState(() {
-                              _showAllProp = !_showAllProp;
-                            });
-                          },
-                          displayedList: displayedListPropertyType,
-                          showAllAct: _showAllProp),
-                      const Divider(
-                          color: Colors.grey,
-                          height: 1,
-                          indent: 0,
-                          thickness: 0.5),
-                      FilterTab(
-                          title: 'Commodités',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              item.checked = value;
-                              isExist(item.id!, value);
-                              filterInputs['terms'] = terms;
-                              listHosts = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            _timer?.cancel();
-
-                            _timer = Timer(Duration(seconds: 1), () {
-                              // Call your function here
-                              filtredHosts();
-                            });
-                            print(terms.length);
-                          },
-                          showMoreFunction: () {
-                            setState(() {
-                              _showAllConv = !_showAllConv;
-                            });
-                          },
-                          displayedList: displayedListConvience,
-                          showAllAct: _showAllConv),
-                      const Divider(
-                          color: Colors.grey,
-                          height: 1,
-                          indent: 0,
-                          thickness: 0.5),
-                      FilterTab(
-                          title: 'Host Service',
-                          filtringListFunction: (item, value) {
-                            setState(() {
-                              item.checked = value;
-                              isExist(item.id!, value);
-                              filterInputs['terms'] = terms;
-                              listHosts = [];
-                              listLengthFromLastCall = 0;
-                            });
-                            _timer?.cancel();
-
-                            _timer = Timer(Duration(seconds: 1), () {
-                              // Call your function here
-                              filtredHosts();
-                            });
-                            print(terms.length);
-                          },
-                          showMoreFunction: () {
-                            setState(() {
-                              _showAllHotel = !_showAllHotel;
-                            });
-                          },
-                          displayedList: displayedListHotelService,
-                          showAllAct: _showAllHotel),
-                      Container(
-                        child: TextButton(
-                          onPressed: () {
-                            if (terms.isNotEmpty ||
-                                (filterInputs['min'] != '' &&
-                                    filterInputs['max'] != '')) {
-                              setState(() {
-                                listHosts = [];
-                                terms = [];
-
-                                filterInputs = {
-                                  'min': '',
-                                  'max': '',
-                                  'terms': []
-                                };
-                              });
-                              _timer?.cancel();
-                              _timer = Timer(Duration(seconds: 1), () {
-                                // Call your function here
-                                callHostsFirstTime();
-                              });
-                            }
-                          },
-                          child: Text('Effacer les filtres'),
+                loading
+                    ? Container(
+                        margin: EdgeInsets.only(top: 30),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(primary),
+                          ),
                         ),
                       )
-                    ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    key: posKey,
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      "${totalNb} hébergements trouvés",
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        color: titleBlue,
-                      ),
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) => Container(
-                      margin: EdgeInsets.only(bottom: 15, right: 15),
-                      child: HostListItem(
-                          listHosts[index],
-                          false,
-                          currencies[selectedCurrency]['value'],
-                          currencies[selectedCurrency]['symbol'])),
-                  itemCount: listHosts.length,
-                ),
+                    : Container(),
+                //footer
+                Footer(),
+                CreatedBy(),
+                BackToTop(scrollToTop),
               ],
             ),
-            loading
-                ? Container(
-                    margin: EdgeInsets.only(top: 30),
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(primary),
-                      ),
-                    ),
-                  )
-                : Container(),
-            //footer
-            Footer(),
-            CreatedBy(),
-            BackToTop(scrollToTop),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

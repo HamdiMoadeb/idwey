@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/blocs/blocs.dart';
-import 'package:idwey/models/currency.dart';
 import 'package:idwey/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:idwey/services/activityCalls.dart';
@@ -54,21 +53,28 @@ class _HomePageState extends State<HomePage>
   List<String> cities = [];
   List<String> activityCities = [];
   List<String> eventCities = [];
-
+  final List<String> _currencies = currency;
   String selectedCurrency = '';
 
   Future<void> _loadSelectedCurrency() async {
     prefs = await SharedPreferences.getInstance();
     setState(() {
       selectedCurrency = prefs?.getString('selectedCurrency') ?? 'TND';
+      String? y = prefs!.getString('selectedCurrency');
+      selectedCurrency = y ?? "TND";
+      setState(() {
+        _currencies.removeWhere((element) => element == selectedCurrency);
+        _currencies.insert(0, selectedCurrency);
+      });
     });
+    // context.read<CommonBloc>().add(GetSelectedCurrency());
   }
 
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     super.initState();
-
+    context.read<CommonBloc>().add(const GetSelectedCurrency());
     checkInternetConnectivity(context, getCarouselImages);
     callEvents();
     callHotels();
@@ -156,9 +162,8 @@ class _HomePageState extends State<HomePage>
       children: [
         // HOST SECTION
         HostListSection(
-          selectedCurrency: selectedCurrency,
-          // currencies: currencies,
-        ),
+            //currencies: currencies,
+            ),
         // EVENT SECTION
         EventListSection(
           selectedCurrency: selectedCurrency,
@@ -199,197 +204,202 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
-    return BlocBuilder<HostBloc, HostState>(
+    return BlocBuilder<CommonBloc, CommonState>(
       builder: (context, state) {
         return CommonScaffold(
-          changeCurrency: _loadSelectedCurrency(),
+          //changeCurrency: _loadSelectedCurrency(),
           scaffoldKey: _scaffoldKey,
           backtotop: scrollToTop,
           showFab: showFAB,
-          body: SingleChildScrollView(
-            controller: scrollController,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
+          body: BlocBuilder<HomePageBloc, HomePageState>(
+            builder: (context, state) {
+              return SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        height: 230,
-                        viewportFraction: 1,
-                        autoPlayInterval: const Duration(seconds: 6),
-                        enableInfiniteScroll: true,
-                        autoPlay: true,
-                      ),
-                      items: carouselLinks.map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: CachedNetworkImage(
-                                imageUrl: i,
-                                fit: BoxFit.cover,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Center(
-                                  child: SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: CircularProgressIndicator(
-                                        value: downloadProgress.progress),
+                    Stack(
+                      children: [
+                        CarouselSlider(
+                          options: CarouselOptions(
+                            height: 230,
+                            viewportFraction: 1,
+                            autoPlayInterval: const Duration(seconds: 6),
+                            enableInfiniteScroll: true,
+                            autoPlay: true,
+                          ),
+                          items: carouselLinks.map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: CachedNetworkImage(
+                                    imageUrl: i,
+                                    fit: BoxFit.cover,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: CircularProgressIndicator(
+                                            value: downloadProgress.progress),
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList(),
+                        ),
+                        Container(
+                          height: 40,
+                          margin: const EdgeInsets.only(top: 192),
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 4, right: 4),
+                            decoration: BoxDecoration(
+                              color: primary,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                            ),
+                            child: TabBar(
+                              controller: _tabController,
+                              labelColor: Colors.white,
+                              labelStyle:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              indicator: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                color: primaryOrange,
+                              ),
+                              tabs: [
+                                Tab(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      FaIcon(
+                                        FontAwesomeIcons.solidBuilding,
+                                        size: 13,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        'Hébergement',
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
-                            );
-                          },
-                        );
-                      }).toList(),
+                                Tab(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      FaIcon(
+                                        FontAwesomeIcons.calendarDays,
+                                        size: 13,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        'Événement',
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Tab(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      FaIcon(
+                                        FontAwesomeIcons.umbrellaBeach,
+                                        size: 13,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        'Activité',
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                     Container(
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 192),
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 4, right: 4),
-                        decoration: BoxDecoration(
-                          color: primary,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
-                        ),
-                        child: TabBar(
-                          controller: _tabController,
-                          labelColor: Colors.white,
-                          labelStyle:
-                              const TextStyle(fontWeight: FontWeight.bold),
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          indicator: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                            color: primaryOrange,
-                          ),
-                          tabs: [
-                            Tab(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  FaIcon(
-                                    FontAwesomeIcons.solidBuilding,
-                                    size: 13,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Hébergement',
-                                    style: TextStyle(
-                                      fontSize: 10.5,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Tab(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  FaIcon(
-                                    FontAwesomeIcons.calendarDays,
-                                    size: 13,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Événement',
-                                    style: TextStyle(
-                                      fontSize: 10.5,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Tab(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  FaIcon(
-                                    FontAwesomeIcons.umbrellaBeach,
-                                    size: 13,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Activité',
-                                    style: TextStyle(
-                                      fontSize: 10.5,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                      height: 315,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.symmetric(horizontal: 2),
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          HostFilterTab(
+                              cities: cities,
+                              shouldNavigate: true,
+                              defaultInputs: {
+                                'start': '',
+                                'end': '',
+                                'address': 'Adresse',
+                                'adults': ''
+                              },
+                              onChangeField: (dynamic searchInputs) => {}),
+                          EventFilterTab(
+                              cities: eventCities,
+                              listLocation: listLocation,
+                              shouldNavigate: true,
+                              defaultInputs: {
+                                'start': '',
+                                'end': '',
+                                'address': 'Adresse',
+                                'location_id': 0
+                              },
+                              onChangeField: (dynamic searchInputs) => {}),
+                          ActivityFilterTab(
+                              cities: activityCities,
+                              shouldNavigate: true,
+                              defaultInputs: {
+                                'start': '',
+                                'end': '',
+                                'address': 'Adresse',
+                                'adults': ''
+                              },
+                              onChangeField: (dynamic searchInputs) => {}),
+                        ],
                       ),
-                    )
+                    ),
+                    offline ? Container() : getListsWidgets(),
+                    //FOOTER
+                    Footer(),
+                    CreatedBy(),
+                    BackToTop(scrollToTop),
                   ],
                 ),
-                Container(
-                  height: 315,
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 2),
-                  child: TabBarView(
-                    controller: _tabController,
-                    children: [
-                      HostFilterTab(
-                          cities: cities,
-                          shouldNavigate: true,
-                          defaultInputs: {
-                            'start': '',
-                            'end': '',
-                            'address': 'Adresse',
-                            'adults': ''
-                          },
-                          onChangeField: (dynamic searchInputs) => {}),
-                      EventFilterTab(
-                          cities: eventCities,
-                          listLocation: listLocation,
-                          shouldNavigate: true,
-                          defaultInputs: {
-                            'start': '',
-                            'end': '',
-                            'address': 'Adresse',
-                            'location_id': 0
-                          },
-                          onChangeField: (dynamic searchInputs) => {}),
-                      ActivityFilterTab(
-                          cities: activityCities,
-                          shouldNavigate: true,
-                          defaultInputs: {
-                            'start': '',
-                            'end': '',
-                            'address': 'Adresse',
-                            'adults': ''
-                          },
-                          onChangeField: (dynamic searchInputs) => {}),
-                    ],
-                  ),
-                ),
-                offline ? Container() : getListsWidgets(),
-                //FOOTER
-                Footer(),
-                CreatedBy(),
-                BackToTop(scrollToTop),
-              ],
-            ),
+              );
+            },
           ),
         );
       },

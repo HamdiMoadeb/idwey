@@ -25,6 +25,12 @@ class HostListItem extends StatefulWidget {
 
 class _HostListItemState extends State<HostListItem> {
   bool liked = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +120,7 @@ class _HostListItemState extends State<HostListItem> {
                       color: primaryOrange,
                     ),
                     child: Text(
-                      termNameValues.map.keys.firstWhere((key) =>
-                          termNameValues.map[key] == widget.host.termName),
+                      "termNameValues.map.keys.firstWhere((key) =>termNameValues.map[key] == widget.host.termName)",
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
@@ -156,7 +161,7 @@ class _HostListItemState extends State<HostListItem> {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(left: 10, top: 15),
+              margin: const EdgeInsets.only(left: 10, top: 15),
               child: Text(
                 widget.host.title!,
                 maxLines: 1,
@@ -303,7 +308,7 @@ class _HostListItemState extends State<HostListItem> {
                           ),
                         )
                       : Container(),
-                  FaIcon(
+                  const FaIcon(
                     FontAwesomeIcons.bolt,
                     size: 14,
                     color: Colors.amber,

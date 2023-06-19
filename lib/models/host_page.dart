@@ -37,9 +37,9 @@ class HostPage {
       eur: json["eur"],
       usd: json["usd"],
       total: json["total"],
-      hosts: json["hosts"] == null
+      hosts: json["rows"] == null
           ? []
-          : List<Host>.from(json["hosts"]!.map((x) => Host.fromJson(x))),
+          : List<Host>.from(json["rows"]!.map((x) => Host.fromJson(x))),
       hotelMinMaxPrice: json["hotel_min_max_price"] == null
           ? []
           : List<String>.from(json["hotel_min_max_price"]!.map((x) => x)),
@@ -56,7 +56,7 @@ class HostPage {
         "eur": eur,
         "usd": usd,
         "total": total,
-        "hosts": hosts == null
+        "rows": hosts == null
             ? []
             : List<dynamic>.from(hosts!.map((x) => x.toJson())),
         "hotel_min_max_price": hotelMinMaxPrice == null
