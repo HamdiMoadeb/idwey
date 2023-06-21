@@ -148,6 +148,7 @@
 //   }
 // }
 
+
 import 'package:idwey/models/models.dart';
 
 import '../utils/enums.dart';
@@ -300,4 +301,5 @@ class Host {
         "check_in_time": checkInTime,
         "check_out_time": checkOutTime,
       };
+
 }

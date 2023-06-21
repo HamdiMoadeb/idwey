@@ -62,18 +62,18 @@ class _ImageBannerState extends State<ImageBanner> {
                   title: widget.title,
                   text: widget.text,
                   linkUrl: widget.linkUrl),
-              SizedBox(
-                width: 10,
-              ),
-              AnimatedHeartButton(
-                  appearanceColor: false,
-                  funCallback: () {
-                    setState(() {
-                      widget.isLiked = !widget.isLiked;
-                      widget.callBack();
-                    });
-                  },
-                  isLiked: widget.isLiked),
+              // SizedBox(
+              //   width: 10,
+              // ),
+              // AnimatedHeartButton(
+              //     appearanceColor: false,
+              //     funCallback: () {
+              //       setState(() {
+              //         widget.isLiked = !widget.isLiked;
+              //         widget.callBack();
+              //       });
+              //     },
+              //     isLiked: widget.isLiked),
             ],
           ),
         )
@@ -153,6 +153,7 @@ class _ImageGalleryState extends State<ImageGallery> {
                   onPageChanged: (index, reason) {
                     setState(() {
                       currentImage = widget.gallery_images_url?[index].large;
+
                     });
                   },
                 ),
@@ -160,15 +161,10 @@ class _ImageGalleryState extends State<ImageGallery> {
                   return GestureDetector(
                     onTap: () {
                       print(currentImage);
-                      for (int i = 0;
-                          i < widget.gallery_images_url!.length;
-                          i++) {
-                        print(i);
-                        print(widget.gallery_images_url?[i].large);
-                        print(widget.gallery_images_url?[i].thumb);
-                      }
+
                       setState(() {
                         currentImage = widget.gallery_images_url?[index].large;
+
                       });
                     },
                     child: Container(

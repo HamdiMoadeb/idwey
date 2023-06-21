@@ -437,6 +437,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                           CreatedBy(),
                           BackToTop(scrollToTop),
                           SizedBox(height: 70),
+
                         ],
                       ),
                     ),

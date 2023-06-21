@@ -60,6 +60,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
     print("yy");
     // selectedCurrency = y;
     print(y);
+
   }
 
   @override
@@ -284,6 +285,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+
                         ),
                       ],
                     ),
@@ -374,6 +376,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+
                         ),
                       ],
                     ),

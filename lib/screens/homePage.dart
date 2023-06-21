@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage>
   List<String> activityCities = [];
   List<String> eventCities = [];
   final List<String> _currencies = currency;
+
   String selectedCurrency = '';
 
   Future<void> _loadSelectedCurrency() async {
@@ -73,6 +74,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
+    _loadSelectedCurrency();
     super.initState();
     context.read<CommonBloc>().add(const GetSelectedCurrency());
     checkInternetConnectivity(context, getCarouselImages);
