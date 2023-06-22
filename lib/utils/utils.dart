@@ -39,6 +39,15 @@ String removeDecimalZeroFormat(String num) {
   return s;
 }
 
+
+String? validateField(String? value) {
+  if(value!.isNotEmpty){
+    return null;
+  }else{
+    return 'Champ obligatoire';
+  }
+}
+
 String? validateEmail(String? value) {
   final pattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
   final regExp = RegExp(pattern);
@@ -46,23 +55,15 @@ String? validateEmail(String? value) {
   if (!regExp.hasMatch(value!)) {
     return 'S\'il vous plaît, mettez une adresse email valide';
   }
-  return '';
+  return null;
 }
 
 String? validatePassword(String? value) {
-  if (value!.isEmpty || value.length < 8) {
-    return 'Le mot de passe doit comporter au moins 8 caractères';
+  if (value!.isEmpty || value.length < 6) {
+    return 'Le mot de passe doit comporter au moins 6 caractères';
   }
 
-  final hasLetters = RegExp(r'[a-zA-Z]').hasMatch(value);
-  final hasNumbers = RegExp(r'\d').hasMatch(value);
-  final hasSpecialCharacters = RegExp(r'[!@#\$&*~]').hasMatch(value);
-
-  if (!hasLetters || !hasNumbers || !hasSpecialCharacters) {
-    return 'Le mot de passe doit contenir au moins une lettre, un chiffre et un caractère spécial (!@#\$&*~)';
-  }
-
-  return '';
+  return null;
 }
 
 Icon getIconByTitle(String status) {

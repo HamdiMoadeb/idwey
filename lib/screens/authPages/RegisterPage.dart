@@ -1,10 +1,17 @@
+import 'dart:convert';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:idwey/services/authCalls.dart';
+import 'package:idwey/utils/urls.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
-import '../../widgets/common/buttonWidget.dart';
 import '../../widgets/common/inputWidget.dart';
 import '../../widgets/common/scaffold.dart';
 import 'loginPage.dart';
@@ -26,6 +33,7 @@ class _RegisterPage extends State<RegisterPage> {
   UserType _userType = UserType.client;
 
   bool isAgree = false;
+  bool loading = false;
 
   @override
   void dispose() {
@@ -44,21 +52,21 @@ class _RegisterPage extends State<RegisterPage> {
       children: [
         TextInputField(
           placeholder: 'Prénom',
-          icon: Image.asset("assets/ico.png"),
+          icon: Icon(Icons.person),
           controller: _clientNameController,
           onChanged: (value) {},
         ),
         const SizedBox(
-          height: 8,
+          height: 12,
         ),
         TextInputField(
           placeholder: 'Nom',
-          icon: Image.asset('assets/ico.png'),
+          icon: Icon(Icons.person),
           controller: _clientLastNameController,
           onChanged: (value) {},
         ),
         const SizedBox(
-          height: 8,
+          height: 12,
         ),
         InputField(
           isEmail: true,
@@ -66,7 +74,7 @@ class _RegisterPage extends State<RegisterPage> {
           onChanged: (value) {},
         ),
         const SizedBox(
-          height: 8,
+          height: 12,
         ),
         InputField(
           isEmail: false,
@@ -144,201 +152,184 @@ class _RegisterPage extends State<RegisterPage> {
     }
   }
 
+  callRegister() {
+    if (isAgree) {
+      setState(() {
+        loading = true;
+      });
+      AuthCalls.register(
+        _clientLastNameController.text,
+        _clientNameController.text,
+        _clientEmailController.text,
+        _clientPasswordController.text,
+      ).then((value) async {
+        setState(() {
+          loading = false;
+        });
+        if (value.body.contains('token')) {
+          var body = jsonDecode(value.body);
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString("token", body['token']);
+          Navigator.pop(context, 'value');
+        } else {
+          Fluttertoast.showToast(
+              backgroundColor: Colors.black.withOpacity(0.8),
+              msg:
+                  "Une erreur s'est produite. Veuillez réessayer ultérieurement",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              fontSize: 14.0);
+        }
+      });
+    } else {
+      Fluttertoast.showToast(
+          backgroundColor: Colors.black.withOpacity(0.8),
+          msg:
+              "Sélectionnez la case à cocher pour accepter les conditions générales",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 14.0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: primaryGrey));
-    return CommonScaffold(
-      scaffoldKey: _scaffoldKey,
-      backtotop: () {},
-      showFab: false,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(23),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                  margin: EdgeInsets.only(bottom: 5.0),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    "S\'inscrire",
-                    style: TextStyle(
-                        color: materialPrimary,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500),
-                  )),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(children: [
-                    Radio(
-                      value: UserType.client,
-                      groupValue: _userType,
-                      onChanged: (UserType? value) {
-                        setState(() {
-                          _userType = value!;
-                        });
-                      },
-                    ),
-                    const Text('Client'),
-                  ]),
-                  Row(children: [
-                    Radio(
-                      value: UserType.vendor,
-                      groupValue: _userType,
-                      onChanged: (UserType? value) {
-                        setState(() {
-                          _userType = value!;
-                        });
-                      },
-                    ),
-                    const Text('Commercial'),
-                  ]),
-                ],
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _buildForm(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Checkbox(
-                              value: isAgree,
-                              onChanged: (value) {
-                                setState(() {
-                                  isAgree = !isAgree;
-                                });
-                              }),
-                        ),
-                        const SizedBox(
-                          width: 2,
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            text: 'J\'ai lu et j\'accepte les ',
-                            style: TextStyle(color: materialPrimary),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'conditions générales',
-                                  style: TextStyle(color: primaryOrange)),
-                            ],
+    return ModalProgressHUD(
+      inAsyncCall: loading,
+      child: CommonScaffold(
+        scaffoldKey: _scaffoldKey,
+        backtotop: () {},
+        showFab: false,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(23),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "S\'inscrire",
+                      style: TextStyle(
+                          color: materialPrimary,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500),
+                    )),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _buildForm(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Checkbox(
+                                value: isAgree,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isAgree = !isAgree;
+                                  });
+                                }),
                           ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            // Form is valid, do something
-                            switch (_userType) {
-                              case UserType.client:
-                                String name = _clientNameController.text;
-                                String lastName =
-                                    _clientLastNameController.text;
-                                print('Client name: $name');
-                                print('client last name: $lastName');
-                                break;
-                              case UserType.vendor:
-                                String name = _clientNameController.text;
-                                String lastName =
-                                    _clientLastNameController.text;
-                                print('commercial name: $name');
-                                print('commercial last name: $lastName');
-                                break;
-                              default:
-                                break;
+                          const SizedBox(
+                            width: 2,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: 'J\'ai lu et j\'accepte les ',
+                              style: TextStyle(color: materialPrimary),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'conditions générales',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      final Uri uri = Uri.parse(Urls.TERMS_URL);
+                                      launchUrl(uri);
+                                    },
+                                  style: TextStyle(
+                                    color: primaryOrange,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              callRegister();
                             }
-                          }
-                        },
-                        child: Container(
-                          height: 42,
-                          width: MediaQuery.of(context).size.width,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: primaryOrange,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(40))),
-                          child: Text(
-                            "S\'inscrire".toUpperCase(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
+                          },
+                          child: Container(
+                            height: 42,
+                            width: MediaQuery.of(context).size.width,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: primaryOrange,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40))),
+                            child: Text(
+                              "S\'inscrire".toUpperCase(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    _userType == UserType.client
-                        ? Column(
-                            children: [
-                              SizedBox(height: 15),
-                              Container(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'Ou continuer avec',
-                                    style: TextStyle(
-                                        color: materialPrimary,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                              SizedBox(height: 15),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SocialMediaLoginButton(
-                                    buttonColor: facebookColor,
-                                    buttonText: 'Facebook',
-                                    icon: Icons.facebook,
-                                  ),
-                                  const SizedBox(height: 5),
-                                  SocialMediaLoginButton(
-                                    buttonColor: googleColor,
-                                    buttonText: 'Google',
-                                    icon: FontAwesomeIcons.google,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 12),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Vous avez déjà un compte?',
-                                    style: TextStyle(color: materialPrimary),
-                                  ),
-                                  SizedBox(width: 8),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const LoginPage(),
-                                          ));
-                                    },
-                                    child: Text(
-                                      'Se connecter',
-                                      style: TextStyle(color: primaryOrange),
+                      _userType == UserType.client
+                          ? Column(
+                              children: [
+                                SizedBox(height: 15),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Vous avez déjà un compte?',
+                                      style: TextStyle(color: materialPrimary),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )
-                        : SizedBox(),
-                  ],
+                                    SizedBox(width: 8),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginPage(),
+                                            ));
+                                      },
+                                      child: Text(
+                                        'Se connecter',
+                                        style: TextStyle(color: primaryOrange),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          : SizedBox(),
+                    ],
+                  ),
                 ),
-              ),
-            ]),
+              ]),
+        ),
       ),
     );
   }
