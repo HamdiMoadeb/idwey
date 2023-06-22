@@ -61,6 +61,8 @@ class _CommonScaffoldState extends State<CommonScaffold> {
         welcome =
             'Salut, ${decodedToken['first_name']} ${decodedToken['last_name']}';
       });
+    }else{
+      welcome = '';
     }
   }
 
@@ -192,7 +194,10 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                           color: primary,
                         ),
                         TextButton(
-                          onPressed: ()  {
+                          onPressed: () async {
+                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                            prefs.remove('token');
+                            getConnectedUser();
                           },
                           style: ButtonStyle(
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap),
