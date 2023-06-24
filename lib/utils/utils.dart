@@ -32,6 +32,17 @@ class CustomClips extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
+String? getTotalPrice(String price, String count) {
+  double total = 0;
+
+  int c = int.tryParse(count)!;
+  for (int i = 0; i < c; i++) {
+    total += double.parse(price);
+  }
+
+  return total.toInt().toString();
+}
+
 String removeDecimalZeroFormat(String num) {
   RegExp regex = RegExp(r'([.]*[0-9]+)(?!.*\d)');
 

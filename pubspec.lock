@@ -193,6 +193,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  country_picker:
+    dependency: "direct main"
+    description:
+      name: country_picker
+      sha256: aa975b41c8052298d227ff7ff58d6eddcad0196127445f72af7456224c9ef104
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.20"
   crypto:
     dependency: transitive
     description:
@@ -342,6 +350,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.15"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      sha256: "0a122936b450324cbdfd51be0819cc6fcebb093eb65585e9cd92263f7a1a8a39"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.7.0"
   flutter_share:
     dependency: "direct main"
     description:
@@ -921,10 +937,10 @@ packages:
     dependency: transitive
     description:
       name: sqflite_common
-      sha256: e77abf6ff961d69dfef41daccbb66b51e9983cdd5cb35bf30733598057401555
+      sha256: "8f7603f3f8f126740bc55c4ca2d1027aab4b74a1267a3e31ce51fe40e3b65b8f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.5"
+    version: "2.4.5+1"
   stack_trace:
     dependency: transitive
     description:
@@ -1041,10 +1057,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_platform_interface
-      sha256: "6c9ca697a5ae218ce56cece69d46128169a58aa8653c1b01d26fcd4aad8c4370"
+      sha256: bfdfa402f1f3298637d71ca8ecfe840b4696698213d5346e9d12d4ab647ee2ea
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   url_launcher_web:
     dependency: transitive
     description:
