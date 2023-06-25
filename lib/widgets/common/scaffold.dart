@@ -1,4 +1,3 @@
-import 'package:flag/flag.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +10,7 @@ import 'package:idwey/screens/listPages/hostPage.dart';
 import 'package:idwey/screens/listPages/productPage.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/utils/utils.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../screens/authPages/loginPage.dart';
@@ -43,11 +43,27 @@ class _CommonScaffoldState extends State<CommonScaffold> {
   bool _isExpanded = false;
   GlobalKey expansionTile = GlobalKey();
   SharedPreferences? prefs;
+  String welcome = '';
   @override
   void initState() {
     //selectedCurrency = _currencies[0];
+    getConnectedUser();
     getCurrentCurrency();
     super.initState();
+  }
+
+  getConnectedUser() async {
+    prefs = await SharedPreferences.getInstance();
+    String? token = prefs!.getString('token');
+    if (token != null) {
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+      setState(() {
+        welcome =
+            'Salut, ${decodedToken['first_name']} ${decodedToken['last_name']}';
+      });
+    }else{
+      welcome = '';
+    }
   }
 
   getCurrentCurrency() async {
@@ -100,7 +116,8 @@ class _CommonScaffoldState extends State<CommonScaffold> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
-              margin: EdgeInsets.only(top: 30, bottom: 20),
+              margin: EdgeInsets.only(
+                  top: AppBar().preferredSize.height, bottom: 5),
               color: primary,
               height: 45,
               padding: EdgeInsets.only(right: 10),
@@ -120,53 +137,135 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                 ],
               ),
             ),
-            //commented to deploy
-            // Container(
-            //   margin: EdgeInsets.only(left: 10, top: 10),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       TextButton(
-            //         onPressed: () {
-            //           Navigator.push(
-            //               context,
-            //               MaterialPageRoute(
-            //                 builder: (context) => const LoginPage(),
-            //               ));
-            //         },
-            //         style: ButtonStyle(
-            //             tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-            //         child: Text(
-            //           'Se connecter',
-            //           style: TextStyle(
-            //             fontSize: 15,
-            //             fontWeight: FontWeight.w500,
-            //           ),
-            //         ),
-            //       ),
-            //       TextButton(
-            //         onPressed: () {
-            //           Navigator.push(
-            //               context,
-            //               MaterialPageRoute(
-            //                 builder: (context) => RegisterPage(),
-            //               ));
-            //         },
-            //         style: ButtonStyle(
-            //             tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-            //         child: Text(
-            //           'S\'inscrire',
-            //           style: TextStyle(
-            //             fontSize: 15,
-            //             fontWeight: FontWeight.w500,
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            welcome.isNotEmpty
+                ? Column(
+                  children: [
+                    Row(
+                        children: [
+                          SizedBox(width: 20),
+                          FaIcon(
+                            FontAwesomeIcons.solidUser,
+                            size: 16,
+                            color: primary,
+                          ),
+                          TextButton(
+                            onPressed: ()  {},
+                            style: ButtonStyle(
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
+                            child: Text(
+                              welcome,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
 
-            // Divider(color: Colors.grey, height: 2),
+                        ],
+                      ),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        FaIcon(
+                          FontAwesomeIcons.dashboard,
+                          size: 16,
+                          color: primary,
+                        ),
+                        TextButton(
+                          onPressed: ()  {},
+                          style: ButtonStyle(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
+                          child: Text(
+                            'Mon tableau de bord',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        FaIcon(
+                          FontAwesomeIcons.signOutAlt,
+                          size: 16,
+                          color: primary,
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                            prefs.remove('token');
+                            getConnectedUser();
+                          },
+                          style: ButtonStyle(
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                          child: Text(
+                            'Se déconnecter',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                  ],
+                )
+                : Container(
+                    margin: EdgeInsets.only(left: 10, top: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextButton(
+                          onPressed: () async {
+                            dynamic returnValue = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginPage(),
+                                ));
+                            if (returnValue != null) {
+                              getConnectedUser();
+                            }
+                          },
+                          style: ButtonStyle(
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                          child: Text(
+                            'Se connecter',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            dynamic returnValue = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterPage(),
+                                ));
+                            if (returnValue != null) {
+                              getConnectedUser();
+                            }
+                          },
+                          style: ButtonStyle(
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                          child: Text(
+                            'S\'inscrire',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+            Divider(color: Colors.grey, height: 2),
             // Theme(
             //   data:
             //       Theme.of(context).copyWith(dividerColor: Colors.transparent),

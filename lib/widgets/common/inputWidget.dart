@@ -57,6 +57,7 @@ class TextInputField extends StatelessWidget {
       ),
       keyboardType: TextInputType.text,
       onChanged: onChanged,
+      validator: validateField,
     );
   }
 }
