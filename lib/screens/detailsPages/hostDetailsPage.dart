@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
 import 'package:idwey/utils/constants.dart';
 import 'package:idwey/utils/enums.dart';
 import 'package:idwey/widgets/listItems/ChaletListItem.dart';
@@ -376,6 +377,22 @@ class _HostDetailsPageState extends State<HostDetailsPage>
           ),
           !loading
               ? BottomReservationBar(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => VerifyDisponibility(
+                                hostDetail: hostDetail,
+                                typeHost: widget.typeHost,
+                                sale_price: hostDetail.price,
+                                currency: currencies[selectedCurrency]
+                                    ['symbol'],
+                                currencyValue: currencies[selectedCurrency]
+                                    ['value']!,
+                                price: hostDetail.price,
+                                per_person: hostDetail.per_person,
+                                currencyName: selectedCurrency)));
+                  },
                   per_person: hostDetail.per_person,
                   price:
                       '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, hostDetail.price) : hostDetail.price)} ${currencies[selectedCurrency]['symbol']}',

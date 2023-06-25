@@ -65,7 +65,8 @@ class Room {
             : List<Images>.from(
                 json["gallery"]!.map((x) => Images.fromJson(x))),
         video: json["video"],
-        price: json["price"],
+        price:
+            json["price"] is String ? json["price"] : json["price"].toString(),
         parentId: json["parent_id"],
         number: json["number"],
         beds: json["beds"],

@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
 import 'package:idwey/utils/enums.dart';
 import 'package:idwey/utils/utils.dart';
 import 'package:intl/intl.dart';
@@ -402,9 +404,10 @@ class RateStats extends StatelessWidget {
 }
 
 class RatingProgressRow extends StatelessWidget {
-  double percent;
-  String title;
-  RatingProgressRow({Key? key, required this.percent, required this.title})
+  final double percent;
+  final String title;
+  const RatingProgressRow(
+      {Key? key, required this.percent, required this.title})
       : super(key: key);
 
   @override
@@ -433,16 +436,18 @@ class RatingProgressRow extends StatelessWidget {
 }
 
 class BottomReservationBar extends StatelessWidget {
-  String price;
-  String per_person;
-  String sale_price;
-  StateEvent stateEvent;
-  BottomReservationBar(
+  final String price;
+  final String per_person;
+  final String sale_price;
+  final StateEvent stateEvent;
+  final VoidCallback? onPressed;
+  const BottomReservationBar(
       {Key? key,
       required this.price,
       this.stateEvent = StateEvent.isAvailable,
       this.per_person = "",
-      this.sale_price = ""})
+      this.sale_price = "",
+      this.onPressed})
       : super(key: key);
 
   @override
@@ -487,7 +492,7 @@ class BottomReservationBar extends StatelessWidget {
                           sale_price != ''
                               ? TextSpan(
                                   text:
-                                      ' ${removeDecimalZeroFormat(sale_price)} DT',
+                                      '${removeDecimalZeroFormat(sale_price)} DT',
                                   style: TextStyle(
                                       color: titleBlack,
                                       fontSize: 18,
@@ -544,18 +549,23 @@ class BottomReservationBar extends StatelessWidget {
                 ),
               ),
               //commented for deployment
-              // stateEvent == StateEvent.isFull
-              //     ? ReservationButton(
-              //         text: "évenement \ncomplet",
-              //         color: redColor,
-              //       )
-              //     : stateEvent == StateEvent.isExpired
-              //         ? ReservationButton(
-              //             text: "évenement \nexpiré", color: disabledColor)
-              //         : ReservationButton(
-              //             text: "réserver \nmaintenant",
-              //             color: primaryOrange,
-              //           ),
+              stateEvent == StateEvent.isFull
+                  ? ReservationButton(
+                      text: "évenement \ncomplet",
+                      color: redColor,
+                      callback: onPressed,
+                    )
+                  : stateEvent == StateEvent.isExpired
+                      ? ReservationButton(
+                          text: "évenement \nexpiré",
+                          color: disabledColor,
+                          callback: onPressed,
+                        )
+                      : ReservationButton(
+                          text: "réserver \nmaintenant",
+                          color: primaryOrange,
+                          callback: onPressed,
+                        ),
             ],
           ),
         ));
@@ -654,29 +664,37 @@ class OwnerWidget extends StatelessWidget {
   }
 }
 
-// class ReservationButton extends StatelessWidget {
-//   String text;
-//   Color? color;
-//   ReservationButton({Key? key, this.color, required this.text})
-//       : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: 170,
-//       alignment: Alignment.center,
-//       //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-//       decoration: BoxDecoration(
-//           color: color ?? primaryOrange,
-//           borderRadius: BorderRadius.circular(2)),
-//       child: Text(
-//         text.toUpperCase(),
-//         style: const TextStyle(
-//           color: Colors.white,
-//           fontSize: 14,
-//           fontWeight: FontWeight.w500,
-//         ),
-//         textAlign: TextAlign.center,
-//       ),
-//     );
-//   }
-// }
+class ReservationButton extends StatelessWidget {
+  final String text;
+  final Color? color;
+  final VoidCallback? callback;
+  const ReservationButton(
+      {Key? key, this.color, required this.text, this.callback})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: callback ??
+          () {
+            print("tapped");
+          },
+      child: Container(
+        width: 150.w,
+        alignment: Alignment.center,
+        //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        decoration: BoxDecoration(
+            color: color ?? primaryOrange,
+            borderRadius: BorderRadius.circular(2)),
+        child: Text(
+          text.toUpperCase(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+}
