@@ -87,12 +87,12 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
     'address': '',
     'adults': ''
   };
-  String start = DateFormat('dd-MM-yyyy').format(DateTime.now());
-  String end = DateFormat('dd-MM-yyyy').format(
+  String start = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  String end = DateFormat('yyyy-MM-dd').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
   );
   String dateRange =
-      '${DateFormat('dd-MM-yyyy').format(DateTime.now())} - ${DateFormat('dd-MM-yyyy').format(
+      '${DateFormat('yyyy-MM-dd').format(DateTime.now())} - ${DateFormat('yyyy-MM-dd').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
   )}';
 
@@ -127,9 +127,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
     if (picked != null) {
       setState(() {
         dateRange =
-            '${DateFormat('dd-MM-yyyy').format(picked.start)} - ${DateFormat('dd-MM-yyyy').format(picked.end)}';
-        start = '${DateFormat('dd-MM-yyyy').format(picked.start)}';
-        end = '${DateFormat('dd-MM-yyyy').format(picked.end)}';
+            '${DateFormat('yyyy-MM-dd').format(picked.start)} - ${DateFormat('yyyy-MM-dd').format(picked.end)}';
+        start = '${DateFormat('yyyy-MM-dd').format(picked.start)}';
+        end = '${DateFormat('yyyy-MM-dd').format(picked.end)}';
         nb_nuites = picked.end.difference(picked.start).inDays.toString();
         searchInputs['start'] = start;
         searchInputs['end'] = end;

@@ -107,7 +107,7 @@ class _ReservationFormState extends State<ReservationForm> {
               hinText: "ville",
               label: "Ville",
               controller: widget.villeController,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.name,
             ),
             CountryInputfield(
               showRequired: true,
