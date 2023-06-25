@@ -464,7 +464,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       children: <TextSpan>[
                                         TextSpan(
                                             text:
-                                                '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, totalPrice!) : currencyConverteur(currencies[selectedCurrency]['value']!, totalPrice!))} ${currencies[selectedCurrency]['symbol']}',
+                                                '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, totalPrice) : currencyConverteur(currencies[selectedCurrency]['value']!, totalPrice))} ${currencies[selectedCurrency]['symbol']}',
 
                                             //  '${removeDecimalZeroFormat(currencies[widget.currencyName][widget.currency] != 'DT' ? currencyConverteur(widget.currencyValue!, totalPrice) : getTotalPrice(totalPrice, nb_nuites) ?? "")} ${currencies[selectedCurrency]['symbol']}',
 
@@ -502,7 +502,6 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: primaryOrange,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25.r),
                                     ),
@@ -744,7 +743,6 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: primaryOrange,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25.r),
                                     ),

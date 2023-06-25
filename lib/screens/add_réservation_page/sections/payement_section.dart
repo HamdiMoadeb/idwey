@@ -114,7 +114,7 @@ class _PayementSectionState extends State<PayementSection> {
               onChanged: (bool? value) {
                 widget.onTermsChecked!(value!);
                 setState(() {
-                  isChecked = value!;
+                  isChecked = value;
                   widget.Checked = isChecked;
                 });
               },
