@@ -102,6 +102,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
         firstDate: DateTime.now(),
         saveText: 'Valider',
         confirmText: 'Valider',
+        locale: const Locale("fr", "FR"),
         initialEntryMode: DatePickerEntryMode.calendar,
         lastDate: DateTime(DateTime.now().year + 5),
         builder: (context, child) {

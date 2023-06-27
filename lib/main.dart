@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/screens/homePage.dart';
 import 'package:idwey/screens/splachPage.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:intl/intl.dart';
 
 void main() {
@@ -21,14 +23,12 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (BuildContext context, Widget? child) {
           return MaterialApp(
-            supportedLocales: const [
-              Locale('en'),
-              Locale('el'),
-            ],
+            supportedLocales: const [Locale('en'), Locale('el'), Locale('fr')],
             localizationsDelegates: const [
               CountryLocalizations.delegate,
               DefaultMaterialLocalizations.delegate,
-              DefaultWidgetsLocalizations.delegate
+              DefaultWidgetsLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate
             ],
             debugShowCheckedModeBanner: false,
             title: 'Idwey',
