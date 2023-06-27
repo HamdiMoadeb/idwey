@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idwey/screens/authPages/loginPage.dart';
 import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
 import 'package:idwey/utils/constants.dart';
 import 'package:idwey/utils/enums.dart';
@@ -378,20 +379,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
           !loading
               ? BottomReservationBar(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyDisponibility(
-                                hostDetail: hostDetail,
-                                typeHost: widget.typeHost,
-                                sale_price: hostDetail.price,
-                                currency: currencies[selectedCurrency]
-                                    ['symbol'],
-                                currencyValue: currencies[selectedCurrency]
-                                    ['value']!,
-                                price: hostDetail.price,
-                                per_person: hostDetail.per_person,
-                                currencyName: selectedCurrency)));
+                    checkLoggedIn();
                   },
                   per_person: hostDetail.per_person,
                   price:
@@ -401,5 +389,27 @@ class _HostDetailsPageState extends State<HostDetailsPage>
         ],
       ),
     );
+  }
+
+  Future<void> checkLoggedIn() async {
+    final user = prefs!.getString("token");
+    if (user != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => VerifyDisponibility(
+                  hostDetail: hostDetail,
+                  typeHost: widget.typeHost,
+                  sale_price: hostDetail.price,
+                  currency: currencies[selectedCurrency]['symbol'],
+                  currencyValue: currencies[selectedCurrency]['value']!,
+                  price: hostDetail.price,
+                  per_person: hostDetail.per_person,
+                  currencyName: selectedCurrency)));
+    } else {
+      prefs!.setString('hostID', hostDetail.id.toString());
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
   }
 }

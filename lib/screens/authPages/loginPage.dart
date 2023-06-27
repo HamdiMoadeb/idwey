@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:idwey/screens/authPages/RegisterPage.dart';
+import 'package:idwey/screens/homePage.dart';
+import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +35,8 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         loading = true;
       });
-      AuthCalls.login(_emailController.text, _passwordController.text).then((value) async{
+      AuthCalls.login(_emailController.text, _passwordController.text)
+          .then((value) async {
         setState(() {
           loading = false;
         });
@@ -45,8 +48,7 @@ class _LoginPageState extends State<LoginPage> {
         } else {
           Fluttertoast.showToast(
               backgroundColor: Colors.black.withOpacity(0.8),
-              msg:
-              "Une erreur s'est produite. Veuillez réessayer!",
+              msg: "Une erreur s'est produite. Veuillez réessayer!",
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIosWeb: 1,
@@ -84,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                     margin: EdgeInsets.only(bottom: 25.0),
                     alignment: Alignment.center,
-                    child: Text(
+                    child: const Text(
                       "Se connecter",
                       style: TextStyle(
                           color: materialPrimary,
@@ -139,7 +141,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             "Se connecter".toUpperCase(),
                             style: TextStyle(
-                                color: Colors.white, fontWeight: FontWeight.w600),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),

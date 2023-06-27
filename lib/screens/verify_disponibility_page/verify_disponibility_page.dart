@@ -13,7 +13,7 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VerifyDisponibility extends StatefulWidget {
-  final HostDetail hostDetail;
+  final HostDetail? hostDetail;
   final String? currency;
   final String? typeHost;
   final int? currencyValue;
@@ -26,7 +26,7 @@ class VerifyDisponibility extends StatefulWidget {
       this.sale_price,
       this.per_person,
       this.price,
-      required this.hostDetail,
+      this.hostDetail,
       this.currency,
       this.typeHost,
       this.currencyValue,
@@ -387,8 +387,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
+                          backgroundColor: primaryOrange,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25.r),
+                            borderRadius: BorderRadius.circular(5.r),
                           ),
                         ),
                         onPressed: () {
@@ -413,7 +414,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                 end,
                                 "0",
                                 adultsCount.toString(),
-                                widget.hostDetail.id.toString());
+                                widget.hostDetail?.id.toString() ?? "");
                           }
                         },
                         child: Padding(
@@ -502,8 +503,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
+                                    backgroundColor: primaryOrange,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25.r),
+                                      borderRadius: BorderRadius.circular(5.r),
                                     ),
                                   ),
                                   onPressed: () {
@@ -512,13 +514,18 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             AddReservationPage(
+                                          hostName:
+                                              widget.hostDetail?.title ?? "",
                                           dateDebut: start,
                                           dateFin: end,
                                           adultes: adultsCount.toString(),
                                           total: totalPrice.toString(),
                                           nuits: nb_nuites.toString(),
-                                          id: widget.hostDetail.id.toString(),
-                                          address: widget.hostDetail.address,
+                                          id: widget.hostDetail?.id
+                                                  .toString() ??
+                                              "",
+                                          address:
+                                              widget.hostDetail?.address ?? "",
                                           currencyValue: widget.currencyValue,
                                           currencyName: widget.currencyName,
                                           currency: widget.currency,
@@ -529,25 +536,13 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 8.h, horizontal: 16.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Demande de réservation',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16.sp,
-                                          ),
-                                        ),
-                                        SizedBox(width: 10.w),
-                                        const FaIcon(
-                                          FontAwesomeIcons.tree,
-                                          color: Colors.green,
-                                          size: 16,
-                                        )
-                                      ],
+                                    child: Text(
+                                      'Demande de réservation',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.sp,
+                                      ),
                                     ),
                                   )),
                             ),
@@ -583,6 +578,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                   ListView.separated(
                                     shrinkWrap: true,
                                     itemCount: rooms.length,
+                                    physics: const ScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
@@ -743,8 +739,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
+                                    backgroundColor: primaryOrange,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25.r),
+                                      borderRadius: BorderRadius.circular(5.r),
                                     ),
                                   ),
                                   onPressed: () {
@@ -753,13 +750,18 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             AddReservationPage(
+                                          hostName:
+                                              widget.hostDetail?.title ?? "",
                                           dateDebut: start,
                                           dateFin: end,
                                           adultes: adultsCount.toString(),
                                           total: roomsPriceTotal.toString(),
                                           nuits: nb_nuites.toString(),
-                                          id: widget.hostDetail.id.toString(),
-                                          address: widget.hostDetail.address,
+                                          id: widget.hostDetail?.id
+                                                  .toString() ??
+                                              "",
+                                          address:
+                                              widget.hostDetail?.address ?? "",
                                           rooms: selectedList,
                                           selectedRooms: selectedRooms,
                                           currencyValue: widget.currencyValue,
@@ -772,25 +774,13 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 8.h, horizontal: 16.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Demande de réservation',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16.sp,
-                                          ),
-                                        ),
-                                        SizedBox(width: 10.w),
-                                        const FaIcon(
-                                          FontAwesomeIcons.tree,
-                                          color: Colors.green,
-                                          size: 16,
-                                        )
-                                      ],
+                                    child: Text(
+                                      'Demande de réservation',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.sp,
+                                      ),
                                     ),
                                   )),
                             ),
@@ -833,7 +823,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                 content: Text(
                   result["messages"] == []
                       ? 'Cette maison n\'est pas disponible pour cette période'
-                      : result["messages"][0][0].toString(),
+                      : "Essayez de sélectionner une autre date. Cette date n'est pas disponible",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

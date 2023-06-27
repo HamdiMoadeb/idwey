@@ -29,6 +29,7 @@ import 'sections/reservation_section.dart';
 class AddReservationPage extends StatefulWidget {
   final String id;
   final String? address;
+  final String? hostName;
   final String? region;
   final String? dateDebut;
   final String? dateFin;
@@ -55,7 +56,8 @@ class AddReservationPage extends StatefulWidget {
       required this.currencyValue,
       required this.currencyName,
       required this.currency,
-      this.selectedRooms})
+      this.selectedRooms,
+      required this.hostName})
       : super(key: key);
 
   @override
@@ -121,6 +123,7 @@ class _AddReservationPageState extends State<AddReservationPage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ReservationSection(
+                  hostName: widget.hostName ?? "",
                   dateDebut: widget.dateDebut,
                   dateFin: widget.dateFin,
                   address: widget.address,

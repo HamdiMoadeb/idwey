@@ -8,6 +8,7 @@ import 'package:idwey/utils/utils.dart';
 
 class ReservationSection extends StatefulWidget {
   final String? address;
+  final String? hostName;
   final String? region;
   final String? dateDebut;
   final String? dateFin;
@@ -30,7 +31,8 @@ class ReservationSection extends StatefulWidget {
       this.rooms,
       required this.currencyValue,
       required this.currencySymbol,
-      required this.currency})
+      required this.currency,
+      required this.hostName})
       : super(key: key);
 
   @override
@@ -71,7 +73,7 @@ class _ReservationSectionState extends State<ReservationSection> {
                   height: 16.h,
                 ),
                 Text(
-                  "address",
+                  widget.hostName ?? "",
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: materialPrimary,

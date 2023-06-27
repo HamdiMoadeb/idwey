@@ -222,26 +222,12 @@ class _CountryInputfieldState extends State<CountryInputfield> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(
-                "Pays",
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: materialPrimary,
-                    fontSize: 14.sp),
-              ),
-              Visibility(
-                visible: widget.showRequired ?? false,
-                child: Text(
-                  "Pays",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: materialPrimary,
-                      fontSize: 14.sp),
-                ),
-              ),
-            ],
+          Text(
+            "Pays",
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: materialPrimary,
+                fontSize: 14.sp),
           ),
           SizedBox(
             height: 8.h,
