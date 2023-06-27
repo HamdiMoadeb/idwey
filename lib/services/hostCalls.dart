@@ -205,4 +205,58 @@ class HostCalls {
 
     return result;
   }
+
+  static Future<Map> validReservation({
+    String? code,
+    String? customerId,
+    String? firstName,
+    String? lastName,
+    String? phone,
+    String? email,
+    String? city,
+    String? country,
+    String? customNotes,
+    String? paymentMethod,
+  }) async {
+    var url = Uri.parse('${Urls.URL_API}booking/doCheckout');
+    Map result = {};
+    print(url);
+    print({
+      "code": code,
+      "customer_id": customerId,
+      "first_name": firstName,
+      "last_name": lastName,
+      "phone": phone,
+      "email": email,
+      "city": city,
+      "country": country,
+      "customer_notes": customNotes,
+      "payment_gateway": paymentMethod,
+    });
+
+    var response = await http.post(url,
+        body: jsonEncode({
+          "code": code,
+          "customer_id": customerId,
+          "first_name": firstName,
+          "last_name": lastName,
+          "phone": phone,
+          "email": email,
+          "city": city,
+          "country": country,
+          "customer_notes": customNotes,
+          "payment_gateway": paymentMethod,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        });
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      result = data;
+    }
+
+    return result;
+  }
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ReservationForm extends StatefulWidget {
   final TextEditingController controller;
@@ -39,6 +41,29 @@ class _ReservationFormState extends State<ReservationForm> {
   FocusNode dateFocusNode = FocusNode();
   FocusNode villeFocusNode = FocusNode();
   FocusNode paysFocusNode = FocusNode();
+  SharedPreferences? prefs;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUser();
+    super.initState();
+  }
+
+  getUser() async {
+    prefs = await SharedPreferences.getInstance();
+    String? token = prefs!.getString('token');
+    if (token != null) {
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+      print("decodedToken");
+      print(decodedToken);
+      setState(() {
+        widget.controller.text = decodedToken['first_name'];
+        widget.nameController.text = decodedToken['last_name'];
+        widget.emailController.text = decodedToken['email'];
+      });
+    }
+  }
 
   @override
   void dispose() {
