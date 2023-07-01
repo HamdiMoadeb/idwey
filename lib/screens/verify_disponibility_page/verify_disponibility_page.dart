@@ -388,7 +388,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          backgroundColor: primaryOrange,
+                          primary: primaryOrange,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.r),
                           ),
@@ -504,7 +504,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: primaryOrange,
+                                    primary: primaryOrange,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.r),
                                     ),
@@ -740,7 +740,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: primaryOrange,
+                                    primary: primaryOrange,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.r),
                                     ),
