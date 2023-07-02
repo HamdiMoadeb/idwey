@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/models/room.dart';
 import 'package:idwey/screens/add_r%C3%A9servation_page/sections/payement_section.dart';
@@ -98,6 +99,8 @@ class _AddReservationPageState extends State<AddReservationPage>
     });
   }
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   getUser() async {
     prefs = await SharedPreferences.getInstance();
     String? token = prefs!.getString('token');
@@ -155,6 +158,7 @@ class _AddReservationPageState extends State<AddReservationPage>
                   //   '${removeDecimalZeroFormat(currencies[widget.currencyName][widget.currency] != 'DT' ? currencyConverteur(widget.currencyValue!, widget.total!) : widget.total ?? "")} ${currencies[selectedCurrency]['symbol']}/ ${widget.nuits} nuitées',
                 ),
                 ReservationForm(
+                  formKey: _formKey,
                   paysController: paysController,
                   controller: controller,
                   nameController: nameController,
@@ -194,6 +198,7 @@ class _AddReservationPageState extends State<AddReservationPage>
                               phoneController.text.isEmpty ||
                               emailController.text.isEmpty ||
                               paysController.text.isEmpty ||
+                              _formKey.currentState!.validate() == false ||
                               isChecked == false ||
                               offline == true && villeController.text.isEmpty
                           ? null

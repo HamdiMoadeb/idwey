@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:idwey/utils/urls.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PayementSection extends StatefulWidget {
   bool? Checked;
@@ -137,9 +140,15 @@ class _PayementSectionState extends State<PayementSection> {
                   children: <TextSpan>[
                     TextSpan(
                       text: ' Termes et conditions.\n',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          final Uri uri = Uri.parse(Urls.TERMS_URL);
+                          launchUrl(uri);
+                        },
                       style: TextStyle(
+                        decoration: TextDecoration.underline,
                         fontSize: 13.sp,
-                        color: Colors.red,
+                        color: primaryOrange,
                       ),
                     ),
                   ],
