@@ -185,7 +185,7 @@ class _AddReservationPageState extends State<AddReservationPage>
                   style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 8.h),
                       elevation: 0,
-                      primary: primaryOrange,
+                      primary: loading ? grey : primaryOrange,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.r))),
                   onPressed: controller.text.isEmpty ||

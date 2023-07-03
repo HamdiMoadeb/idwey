@@ -80,7 +80,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
   }
 
   int adultsCount = 0;
-
+  DateTimeRange? picked;
   Map<String, String> searchInputs = {
     'start': '',
     'end': '',
@@ -97,7 +97,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
   )}';
 
   dateTimeRangePicker() async {
-    DateTimeRange? picked = await showDateRangePicker(
+    picked = await showDateRangePicker(
         context: context,
         firstDate: DateTime.now(),
         saveText: 'Valider',
@@ -128,10 +128,10 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
     if (picked != null) {
       setState(() {
         dateRange =
-            '${DateFormat('yyyy-MM-dd').format(picked.start)} - ${DateFormat('yyyy-MM-dd').format(picked.end)}';
-        start = '${DateFormat('yyyy-MM-dd').format(picked.start)}';
-        end = '${DateFormat('yyyy-MM-dd').format(picked.end)}';
-        nb_nuites = picked.end.difference(picked.start).inDays.toString();
+            '${DateFormat('yyyy-MM-dd').format(picked!.start)} - ${DateFormat('yyyy-MM-dd').format(picked!.end)}';
+        start = '${DateFormat('yyyy-MM-dd').format(picked!.start)}';
+        end = '${DateFormat('yyyy-MM-dd').format(picked!.end)}';
+        nb_nuites = picked!.end.difference(picked!.start).inDays.toString();
         searchInputs['start'] = start;
         searchInputs['end'] = end;
       });
