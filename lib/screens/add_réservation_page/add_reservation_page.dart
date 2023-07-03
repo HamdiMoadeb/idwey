@@ -106,10 +106,9 @@ class _AddReservationPageState extends State<AddReservationPage>
     String? token = prefs!.getString('token');
     if (token != null) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-      print("decodedToken");
-      print(decodedToken);
+
       setState(() {
-        customer_id = decodedToken['id'];
+        customer_id = decodedToken['id'].toString();
       });
     }
   }
@@ -117,6 +116,7 @@ class _AddReservationPageState extends State<AddReservationPage>
   @override
   void initState() {
     _loadSelectedCurrency();
+    getUser();
     super.initState();
   }
 
@@ -134,103 +134,97 @@ class _AddReservationPageState extends State<AddReservationPage>
       showFab: showFAB,
       backtotop: scrollToTop,
       scaffoldKey: _scaffoldKey,
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            controller: scrollController,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ReservationSection(
-                  hostName: widget.hostName ?? "",
-                  dateDebut: widget.dateDebut,
-                  dateFin: widget.dateFin,
-                  address: widget.address,
-                  nuits: widget.nuits,
-                  adultes: widget.adultes,
-                  rooms: widget.selectedRooms,
-                  currency: selectedCurrency,
-                  currencySymbol: currencies[selectedCurrency]['symbol'],
-                  currencyValue: currencies[selectedCurrency]['value'],
-                  total:
-                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, widget.total!) : currencyConverteur(currencies[selectedCurrency]['value']!, widget.total!))} ${currencies[selectedCurrency]['symbol']}/${widget.nuits} nuitées',
-
-                  //   '${removeDecimalZeroFormat(currencies[widget.currencyName][widget.currency] != 'DT' ? currencyConverteur(widget.currencyValue!, widget.total!) : widget.total ?? "")} ${currencies[selectedCurrency]['symbol']}/ ${widget.nuits} nuitées',
-                ),
-                ReservationForm(
-                  formKey: _formKey,
-                  paysController: paysController,
-                  controller: controller,
-                  nameController: nameController,
-                  emailController: emailController,
-                  phoneController: phoneController,
-                  messageController: messageController,
-                  dateController: dateController,
-                  villeController: villeController,
-                ),
-                PayementSection(
-                  Checked: isChecked,
-                  offline: offline,
-                  onTermsChecked: (bool v) {
-                    setState(() {
-                      isChecked = v;
-                    });
-                  },
-                  onOfflineChecked: (String v) {
-                    setState(() {
-                      offline = v == 'Offline';
-                    });
-                  },
-                ),
-                Container(
-                  width: double.infinity,
-                  padding:
-                      EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.h),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(vertical: 8.h),
-                          elevation: 0,
-                          primary: primaryOrange,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.r))),
-                      onPressed: controller.text.isEmpty ||
-                              nameController.text.isEmpty ||
-                              phoneController.text.isEmpty ||
-                              emailController.text.isEmpty ||
-                              paysController.text.isEmpty ||
-                              _formKey.currentState!.validate() == false ||
-                              isChecked == false ||
-                              offline == true && villeController.text.isEmpty
-                          ? null
-                          : () {
-                              addHostToCart(
-                                  widget.dateDebut ?? "",
-                                  widget.dateFin ?? "",
-                                  "0",
-                                  widget.adultes ?? "0",
-                                  widget.id,
-                                  "",
-                                  "host",
-                                  [],
-                                  widget.rooms ?? []);
-                            },
-                      child: Text(
-                        'Soumettre',
-                        style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      )),
-                ),
-                Footer(),
-                CreatedBy(),
-                BackToTop(scrollToTop),
-                SizedBox(height: 70),
-              ],
+      body: SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ReservationSection(
+              hostName: widget.hostName ?? "",
+              dateDebut: widget.dateDebut,
+              dateFin: widget.dateFin,
+              address: widget.address,
+              nuits: widget.nuits,
+              adultes: widget.adultes,
+              rooms: widget.selectedRooms,
+              currency: selectedCurrency,
+              currencySymbol: currencies[selectedCurrency]['symbol'],
+              currencyValue: currencies[selectedCurrency]['value'],
+              total:
+                  '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, widget.total!) : currencyConverteur(currencies[selectedCurrency]['value']!, widget.total!))} ${currencies[selectedCurrency]['symbol']}/${widget.nuits} nuitées',
             ),
-          ),
-          loading ? Center(child: CircularProgressIndicator()) : Container(),
-        ],
+            ReservationForm(
+              formKey: _formKey,
+              paysController: paysController,
+              controller: controller,
+              nameController: nameController,
+              emailController: emailController,
+              phoneController: phoneController,
+              messageController: messageController,
+              dateController: dateController,
+              villeController: villeController,
+            ),
+            PayementSection(
+              Checked: isChecked,
+              offline: offline,
+              onTermsChecked: (bool v) {
+                setState(() {
+                  isChecked = v;
+                });
+              },
+              onOfflineChecked: (String v) {
+                setState(() {
+                  offline = v == 'Offline';
+                });
+              },
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.h),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: 8.h),
+                      elevation: 0,
+                      primary: primaryOrange,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.r))),
+                  onPressed: controller.text.isEmpty ||
+                          nameController.text.isEmpty ||
+                          phoneController.text.isEmpty ||
+                          emailController.text.isEmpty ||
+                          paysController.text.isEmpty ||
+                          _formKey.currentState!.validate() == false ||
+                          isChecked == false ||
+                          offline == false
+                      ? null
+                      : () {
+                          addHostToCart(
+                              widget.dateDebut ?? "",
+                              widget.dateFin ?? "",
+                              "0",
+                              widget.adultes ?? "0",
+                              widget.id,
+                              "",
+                              "host",
+                              [],
+                              widget.rooms ?? []);
+                        },
+                  child: loading
+                      ? Center(child: CircularProgressIndicator())
+                      : Text(
+                          'Soumettre',
+                          style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        )),
+            ),
+            Footer(),
+            CreatedBy(),
+            BackToTop(scrollToTop),
+            SizedBox(height: 70),
+          ],
+        ),
       ),
     );
   }

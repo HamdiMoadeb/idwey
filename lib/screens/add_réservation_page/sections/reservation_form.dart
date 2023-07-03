@@ -167,22 +167,22 @@ class _ReservationFormState extends State<ReservationForm> {
                 keyboardType: TextInputType.number,
               ),
               CustomInput(
-                showRequired: true,
+                showRequired: false,
                 focusNode: villeFocusNode,
                 hinText: "Ville",
                 label: "Ville",
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Ville requis';
-                  }
-                  return null; // Return null for no validation error
-                },
                 controller: widget.villeController,
                 keyboardType: TextInputType.name,
               ),
               CountryInputfield(
                 showRequired: true,
                 controller: widget.paysController,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Pays requis';
+                  }
+                  return null; // Return null for no validation error
+                },
               ),
               CustomInput(
                 focusNode: messageFocusNode,
@@ -286,9 +286,16 @@ class _CustomInputState extends State<CustomInput> {
 class CountryInputfield extends StatefulWidget {
   final bool? showRequired;
   final TextEditingController controller;
-  const CountryInputfield(
-      {Key? key, this.showRequired = false, required this.controller})
-      : super(key: key);
+  final Function(String)? validator;
+  final String? errorText;
+
+  const CountryInputfield({
+    Key? key,
+    this.showRequired = false,
+    required this.controller,
+    this.errorText,
+    this.validator,
+  }) : super(key: key);
 
   @override
   State<CountryInputfield> createState() => _CountryInputfieldState();
@@ -331,7 +338,14 @@ class _CountryInputfieldState extends State<CountryInputfield> {
             child: TextFormField(
               controller: widget.controller,
               enabled: false,
+              validator: (value) {
+                return widget.validator?.call(value!);
+              },
               decoration: InputDecoration(
+                errorText:
+                    widget.showRequired! && widget.controller.text.isEmpty
+                        ? "champ requis"
+                        : widget.errorText,
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 8.h, vertical: 8.h),
                 hintText: "Pays",
