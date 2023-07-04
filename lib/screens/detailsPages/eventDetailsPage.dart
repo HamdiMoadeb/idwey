@@ -4,6 +4,8 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
 import 'package:idwey/models/event.dart';
+import 'package:idwey/screens/authPages/loginPage.dart';
+import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
 import 'package:idwey/services/eventCalls.dart';
 import 'package:idwey/utils/enums.dart';
 import 'package:intl/intl.dart';
@@ -74,6 +76,7 @@ class _EventDetailsPageState extends State<EventDetailsPage>
 
   @override
   void initState() {
+    print("********************");
     checkInternetConnectivity(context, callEvents);
     super.initState();
   }
@@ -172,9 +175,10 @@ class _EventDetailsPageState extends State<EventDetailsPage>
                                     width: 5.0,
                                   ),
                                   Text(
+                                    //"",
                                     DateFormat('dd-MM-yyyy').format(
                                         DateTime.parse(
-                                            eventDetails.start_date!)),
+                                            eventDetails.start_date ?? "")),
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500,
@@ -357,6 +361,9 @@ class _EventDetailsPageState extends State<EventDetailsPage>
         ),
         !loading
             ? BottomReservationBar(
+                onPressed: () {
+                  checkLoggedIn();
+                },
                 stateEvent: eventDetails.isFull == 1
                     ? StateEvent.isFull
                     : eventDetails.isExpired == 1
@@ -368,5 +375,33 @@ class _EventDetailsPageState extends State<EventDetailsPage>
             : Container()
       ]),
     );
+  }
+
+  Future<void> checkLoggedIn() async {
+    final user = prefs!.getString("token");
+    if (user != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => VerifyDisponibility(
+                    // hostDetail: hostDetail,
+                    startDate: eventDetails.start_date,
+                    typeReservation: TypeReservation.event,
+                    //typeHost: widget.typeHost,
+                    sale_price: eventDetails.price,
+                    currency: currencies[selectedCurrency]['symbol'],
+                    currencyValue: currencies[selectedCurrency]['value']!,
+                    price: eventDetails.price,
+                    // per_person: eventDetails.,
+                    currencyName: selectedCurrency,
+                    id: eventDetails.id.toString(),
+                    title: eventDetails.title ?? "",
+                    address: eventDetails.address!,
+                  )));
+    } else {
+      prefs!.setString('hostID', eventDetails.id.toString());
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
   }
 }

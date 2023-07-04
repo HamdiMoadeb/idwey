@@ -398,14 +398,19 @@ class _HostDetailsPageState extends State<HostDetailsPage>
           context,
           MaterialPageRoute(
               builder: (context) => VerifyDisponibility(
-                  hostDetail: hostDetail,
-                  typeHost: widget.typeHost,
-                  sale_price: hostDetail.price,
-                  currency: currencies[selectedCurrency]['symbol'],
-                  currencyValue: currencies[selectedCurrency]['value']!,
-                  price: hostDetail.price,
-                  per_person: hostDetail.per_person,
-                  currencyName: selectedCurrency)));
+                    // hostDetail: hostDetail,
+                    typeReservation: TypeReservation.host,
+                    typeHost: widget.typeHost,
+                    sale_price: hostDetail.price,
+                    currency: currencies[selectedCurrency]['symbol'],
+                    currencyValue: currencies[selectedCurrency]['value']!,
+                    price: hostDetail.price,
+                    per_person: hostDetail.per_person,
+                    currencyName: selectedCurrency,
+                    id: hostDetail.id.toString(),
+                    title: hostDetail.title,
+                    address: hostDetail.address,
+                  )));
     } else {
       prefs!.setString('hostID', hostDetail.id.toString());
       Navigator.push(

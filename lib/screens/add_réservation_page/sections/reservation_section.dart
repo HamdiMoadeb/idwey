@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/models/room.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/utils/constants.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:idwey/utils/utils.dart';
 
 class ReservationSection extends StatefulWidget {
@@ -19,6 +20,7 @@ class ReservationSection extends StatefulWidget {
   final int currencyValue;
   final String currencySymbol;
   final String currency;
+  final TypeReservation? typeReservation;
   const ReservationSection(
       {Key? key,
       this.address,
@@ -32,7 +34,8 @@ class ReservationSection extends StatefulWidget {
       required this.currencyValue,
       required this.currencySymbol,
       required this.currency,
-      required this.hostName})
+      required this.hostName,
+      required this.typeReservation})
       : super(key: key);
 
   @override
@@ -43,6 +46,8 @@ class _ReservationSectionState extends State<ReservationSection> {
   @override
   void initState() {
     // TODO: implement initState
+    print("widget.address");
+    print(widget.address);
     super.initState();
   }
 
@@ -79,16 +84,19 @@ class _ReservationSectionState extends State<ReservationSection> {
                       color: materialPrimary,
                       fontSize: 16.sp),
                 ),
-                Row(
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.locationDot,
-                      size: 14.sp,
-                      color: grey,
-                    ),
-                    SizedBox(width: 10.w),
-                    Text(widget.address ?? ""),
-                  ],
+                Visibility(
+                  visible: widget.address != null && widget.address!.isNotEmpty,
+                  child: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.locationDot,
+                        size: 14.sp,
+                        color: grey,
+                      ),
+                      SizedBox(width: 10.w),
+                      Text(widget.address ?? ""),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 16.h,
@@ -135,21 +143,24 @@ class _ReservationSectionState extends State<ReservationSection> {
                 SizedBox(
                   height: 4.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Nuits',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: materialPrimary,
-                          fontSize: 14.sp),
-                    ),
-                    Text(
-                      widget.nuits ?? "",
-                      style: TextStyle(color: grey),
-                    )
-                  ],
+                Visibility(
+                  visible: widget.nuits != null,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Nuits',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: materialPrimary,
+                            fontSize: 14.sp),
+                      ),
+                      Text(
+                        widget.nuits ?? "",
+                        style: TextStyle(color: grey),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 4.h,
@@ -158,7 +169,9 @@ class _ReservationSectionState extends State<ReservationSection> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Adultes',
+                      widget.typeReservation == TypeReservation.host
+                          ? 'Adultes'
+                          : "Nombre",
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           color: materialPrimary,
@@ -215,7 +228,9 @@ class _ReservationSectionState extends State<ReservationSection> {
                           fontSize: 16.sp),
                     ),
                     Text(
-                      widget.total ?? "",
+                      widget.typeReservation == TypeReservation.host
+                          ? "${widget.total}/${widget.nuits} nuitées"
+                          : widget.total ?? "",
                       style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,

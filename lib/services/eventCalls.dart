@@ -138,4 +138,46 @@ class EventCalls {
 
     return result;
   }
+
+  static Future<Map> AddEventToCart(
+    String dateStart,
+    String number,
+    String id,
+    String promo_code,
+    String service_type,
+    List<String> extra_price,
+  ) async {
+    var url = Uri.parse('${Urls.URL_API}booking/addToCart');
+    Map result = {};
+    print(url);
+    print({
+      "start_date": dateStart,
+      "number": number,
+      "promo_code": "",
+      "service_id": id,
+      "service_type": service_type,
+      "extra_price": [],
+    });
+
+    var response = await http.post(url,
+        body: jsonEncode({
+          "start_date": dateStart,
+          "number": number,
+          "promo_code": "",
+          "service_id": id,
+          "service_type": service_type,
+          "extra_price": [],
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        });
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      result = data;
+    }
+
+    return result;
+  }
 }

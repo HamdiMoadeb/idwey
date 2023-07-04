@@ -9,3 +9,9 @@ enum TypeHost {
   parChalet,
   maisonEntiere,
 }
+
+enum TypeReservation {
+  host,
+  activity,
+  event,
+}

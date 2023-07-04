@@ -3,28 +3,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/models/room.dart';
 import 'package:idwey/screens/add_r%C3%A9servation_page/sections/payement_section.dart';
 import 'package:idwey/screens/add_r%C3%A9servation_page/sections/reservation_form.dart';
 import 'package:idwey/screens/homePage.dart';
-import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
+import 'package:idwey/services/eventCalls.dart';
 import 'package:idwey/utils/constants.dart';
 import 'package:idwey/utils/enums.dart';
-import 'package:idwey/widgets/listItems/ChaletListItem.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../models/host.dart';
 import '../../services/hostCalls.dart';
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
-import '../../widgets/common/CalanderCommon.dart';
-import '../../widgets/common/ImageCommon.dart';
-import '../../widgets/common/MapCommon.dart';
-import '../../widgets/common/detailsWidgets.dart';
 import '../../widgets/common/footer.dart';
 import '../../widgets/common/scaffold.dart';
 import 'sections/reservation_section.dart';
@@ -40,6 +30,7 @@ class AddReservationPage extends StatefulWidget {
   final String? adultes;
   final String? total;
   final List? rooms;
+  final TypeReservation? typeReservation;
   final List<Room>? selectedRooms;
   final int? currencyValue;
   final String? currencyName;
@@ -60,7 +51,8 @@ class AddReservationPage extends StatefulWidget {
       required this.currencyName,
       required this.currency,
       this.selectedRooms,
-      required this.hostName})
+      required this.hostName,
+      required this.typeReservation})
       : super(key: key);
 
   @override
@@ -140,10 +132,11 @@ class _AddReservationPageState extends State<AddReservationPage>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ReservationSection(
+              typeReservation: widget.typeReservation,
               hostName: widget.hostName ?? "",
               dateDebut: widget.dateDebut,
               dateFin: widget.dateFin,
-              address: widget.address,
+              address: widget.address!,
               nuits: widget.nuits,
               adultes: widget.adultes,
               rooms: widget.selectedRooms,
@@ -151,7 +144,7 @@ class _AddReservationPageState extends State<AddReservationPage>
               currencySymbol: currencies[selectedCurrency]['symbol'],
               currencyValue: currencies[selectedCurrency]['value'],
               total:
-                  '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, widget.total!) : currencyConverteur(currencies[selectedCurrency]['value']!, widget.total!))} ${currencies[selectedCurrency]['symbol']}/${widget.nuits} nuitées',
+                  '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(2, widget.total!) : currencyConverteur(currencies[selectedCurrency]['value']!, widget.total!))} ${currencies[selectedCurrency]['symbol']}',
             ),
             ReservationForm(
               formKey: _formKey,
@@ -205,7 +198,6 @@ class _AddReservationPageState extends State<AddReservationPage>
                               widget.adultes ?? "0",
                               widget.id,
                               "",
-                              "host",
                               [],
                               widget.rooms ?? []);
                         },
@@ -236,7 +228,6 @@ class _AddReservationPageState extends State<AddReservationPage>
     String adultes,
     String id,
     String promo_code,
-    String service_type,
     List<String> extra_price,
     List rooms,
   ) async {
@@ -244,30 +235,55 @@ class _AddReservationPageState extends State<AddReservationPage>
       loading = true;
     });
     await _loadSelectedCurrency();
-
-    HostCalls.AddHostToCart(dateStart, dateEnd, adultes, children, id, "",
-            service_type, extra_price, rooms)
-        .then((result) async {
-      setState(() {
-        print("result");
-        print(result);
+    if (widget.typeReservation == TypeReservation.host) {
+      HostCalls.AddHostToCart(dateStart, dateEnd, adultes, children, id, "",
+              'host', extra_price, rooms)
+          .then((result) async {
+        setState(() {
+          print("result");
+          print(result);
+        });
+        await Future.delayed(const Duration(milliseconds: 10));
+        setState(() {
+          loading = false;
+        });
+        validReservation(
+            result['booking']['code'],
+            customer_id,
+            nameController.text,
+            controller.text,
+            phoneController.text,
+            emailController.text,
+            villeController.text,
+            paysController.text,
+            messageController.text,
+            "offline_payment");
       });
-      await Future.delayed(const Duration(milliseconds: 10));
-      setState(() {
-        loading = false;
+    } else if (widget.typeReservation == TypeReservation.event) {
+      EventCalls.AddEventToCart(
+              dateStart, adultes, id, "", "event", extra_price)
+          .then((result) async {
+        setState(() {
+          print("result");
+          print(result);
+        });
+        await Future.delayed(const Duration(milliseconds: 10));
+        setState(() {
+          loading = false;
+        });
+        validReservation(
+            result['booking']['code'],
+            customer_id,
+            nameController.text,
+            controller.text,
+            phoneController.text,
+            emailController.text,
+            villeController.text,
+            paysController.text,
+            messageController.text,
+            "offline_payment");
       });
-      validReservation(
-          result['booking']['code'],
-          customer_id,
-          nameController.text,
-          controller.text,
-          phoneController.text,
-          emailController.text,
-          villeController.text,
-          paysController.text,
-          messageController.text,
-          "offline_payment");
-    });
+    }
   }
 
   void validReservation(
