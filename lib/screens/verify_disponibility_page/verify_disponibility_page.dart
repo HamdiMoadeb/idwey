@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/models/host.dart';
 import 'package:idwey/models/room.dart';
 import 'package:idwey/screens/add_r%C3%A9servation_page/add_reservation_page.dart';
 import 'package:idwey/services/hostCalls.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:idwey/utils/utils.dart';
-import 'package:idwey/widgets/common/detailsWidgets.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VerifyDisponibility extends StatefulWidget {
-  final HostDetail hostDetail;
+  // final HostDetail? hostDetail;
+  final TypeReservation typeReservation;
   final String? currency;
+  final String id;
+  final String title;
+  final String address;
   final String? typeHost;
   final int? currencyValue;
   final String? currencyName;
+  final String? startDate;
   final String? sale_price;
   final String? per_person;
   final String? price;
@@ -26,11 +30,16 @@ class VerifyDisponibility extends StatefulWidget {
       this.sale_price,
       this.per_person,
       this.price,
-      required this.hostDetail,
+      //  this.hostDetail,
       this.currency,
       this.typeHost,
       this.currencyValue,
-      this.currencyName})
+      this.currencyName,
+      required this.id,
+      required this.title,
+      required this.address,
+      required this.typeReservation,
+      this.startDate})
       : super(key: key);
 
   @override
@@ -80,7 +89,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
   }
 
   int adultsCount = 0;
-
+  DateTimeRange? picked;
   Map<String, String> searchInputs = {
     'start': '',
     'end': '',
@@ -97,11 +106,12 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
   )}';
 
   dateTimeRangePicker() async {
-    DateTimeRange? picked = await showDateRangePicker(
+    picked = await showDateRangePicker(
         context: context,
         firstDate: DateTime.now(),
         saveText: 'Valider',
         confirmText: 'Valider',
+        locale: const Locale("fr", "FR"),
         initialEntryMode: DatePickerEntryMode.calendar,
         lastDate: DateTime(DateTime.now().year + 5),
         builder: (context, child) {
@@ -127,10 +137,10 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
     if (picked != null) {
       setState(() {
         dateRange =
-            '${DateFormat('yyyy-MM-dd').format(picked.start)} - ${DateFormat('yyyy-MM-dd').format(picked.end)}';
-        start = '${DateFormat('yyyy-MM-dd').format(picked.start)}';
-        end = '${DateFormat('yyyy-MM-dd').format(picked.end)}';
-        nb_nuites = picked.end.difference(picked.start).inDays.toString();
+            '${DateFormat('yyyy-MM-dd').format(picked!.start)} - ${DateFormat('yyyy-MM-dd').format(picked!.end)}';
+        start = '${DateFormat('yyyy-MM-dd').format(picked!.start)}';
+        end = '${DateFormat('yyyy-MM-dd').format(picked!.end)}';
+        nb_nuites = picked!.end.difference(picked!.start).inDays.toString();
         searchInputs['start'] = start;
         searchInputs['end'] = end;
       });
@@ -179,7 +189,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                     fontWeight: FontWeight.w500,
                                     decoration: TextDecoration.none,
                                   )),
-                              widget.per_person != ''
+                              widget.per_person != '' &&
+                                      widget.typeReservation ==
+                                          TypeReservation.host
                                   ? TextSpan(
                                       text: ' /${widget.per_person}',
                                       style: TextStyle(
@@ -193,75 +205,81 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                         Divider(
                           thickness: 1,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Arrivée :',
-                              style: TextStyle(
-                                color: materialPrimary,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18.sp,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                dateTimeRangePicker();
-                              },
-                              child: Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.w, vertical: 8.h),
-                                margin: EdgeInsets.symmetric(vertical: 10.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[100],
-                                  border: Border.all(color: Colors.grey[200]!),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Text(
-                                  start,
-                                  style: TextStyle(
-                                    color: grey,
-                                    fontSize: 16.sp,
+                        widget.typeReservation == TypeReservation.host
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Arrivée :',
+                                    style: TextStyle(
+                                      color: materialPrimary,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.sp,
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Départ',
-                              style: TextStyle(
-                                color: materialPrimary,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18.sp,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                dateTimeRangePicker();
-                              },
-                              child: Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.w, vertical: 8.h),
-                                margin: EdgeInsets.symmetric(vertical: 10.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[100],
-                                  border: Border.all(color: Colors.grey[200]!),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Text(
-                                  end,
-                                  style: TextStyle(
-                                    color: grey,
-                                    fontSize: 16.sp,
+                                  GestureDetector(
+                                    onTap: () {
+                                      dateTimeRangePicker();
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16.w, vertical: 8.h),
+                                      margin:
+                                          EdgeInsets.symmetric(vertical: 10.h),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[100],
+                                        border: Border.all(
+                                            color: Colors.grey[200]!),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Text(
+                                        start,
+                                        style: TextStyle(
+                                          color: grey,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Divider(thickness: 1),
-                        const SizedBox(height: 3),
+                                  Text(
+                                    'Départ',
+                                    style: TextStyle(
+                                      color: materialPrimary,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.sp,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      dateTimeRangePicker();
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16.w, vertical: 8.h),
+                                      margin:
+                                          EdgeInsets.symmetric(vertical: 10.h),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[100],
+                                        border: Border.all(
+                                            color: Colors.grey[200]!),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Text(
+                                        end,
+                                        style: TextStyle(
+                                          color: grey,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const Divider(thickness: 1),
+                                  const SizedBox(height: 3),
+                                ],
+                              )
+                            : const SizedBox.shrink(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -313,122 +331,153 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                       ],
                     ),
                   ),
-                  // SizedBox(
-                  //   height: 16.h,
-                  // ),
-                  // Visibility(
-                  //   visible: widget.typeHost == "Par Chalet",
-                  //   child: Container(
-                  //     padding:
-                  //         EdgeInsets.only(top: 8.h, bottom: 8.h, right: 16.h),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.white,
-                  //       borderRadius: BorderRadius.circular(5.r),
-                  //       border: Border.all(color: Colors.grey[300]!, width: 1),
-                  //     ),
-                  //     child: Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         Padding(
-                  //           padding: EdgeInsets.only(left: 8.h),
-                  //           child: Text(
-                  //             "Prix Extra",
-                  //             style: TextStyle(
-                  //                 fontSize: 18.sp,
-                  //                 color: materialPrimary,
-                  //                 fontWeight: FontWeight.w500),
-                  //           ),
-                  //         ),
-                  //         Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Row(
-                  //               mainAxisAlignment: MainAxisAlignment.start,
-                  //               children: [
-                  //                 Checkbox(
-                  //                   checkColor: Colors.white,
-                  //                   value: isChecked,
-                  //                   onChanged: (bool? value) {
-                  //                     setState(() {
-                  //                       isChecked = value!;
-                  //                     });
-                  //                   },
-                  //                 ),
-                  //                 SizedBox(
-                  //                   width: 170.w,
-                  //                   child: Text('Studio pour 2 personnes',
-                  //                       maxLines: 1,
-                  //                       style: TextStyle(
-                  //                         color: Colors.black,
-                  //                         fontSize: 14.sp,
-                  //                         overflow: TextOverflow.ellipsis,
-                  //                         fontWeight: FontWeight.w500,
-                  //                       )),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //             Text(
-                  //               '100 DT',
-                  //               style: TextStyle(
-                  //                 color: materialPrimary,
-                  //                 fontSize: 16.sp,
-                  //                 fontWeight: FontWeight.w500,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(height: 20.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25.r),
+                  Visibility(
+                    visible: widget.typeReservation == TypeReservation.event,
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20.h),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.h, horizontal: 16.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5.r),
+                        border: Border.all(color: Colors.grey[300]!, width: 1),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Prix Total',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18.sp,
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          if (adultsCount == 0) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'nombre de personnes doit être supérieur à 0',
+                          SizedBox(
+                            width: 60.w,
+                          ),
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: '',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text:
+                                        '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(2, getTotalPrice(widget.price!, adultsCount.toString())!) : currencyConverteur(currencies[selectedCurrency]['value']!, getTotalPrice(widget.price!, adultsCount.toString())!))} ${currencies[selectedCurrency]['symbol']}',
+                                    style: TextStyle(
+                                      color: primaryOrange,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.none,
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  widget.typeReservation == TypeReservation.host
+                      ? SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: primaryOrange,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.r),
+                                ),
+                              ),
+                              onPressed: () {
+                                if (adultsCount == 0) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'nombre de personnes doit être supérieur à 0',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                  return;
+                                } else {
+                                  verifyDisponibility(
+                                      start,
+                                      end,
+                                      "0",
+                                      adultsCount.toString(),
+                                      widget.id.toString() ?? "");
+                                }
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 16.w),
+                                child: Text(
+                                  'Vérifier la disponibilité',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16.sp,
                                   ),
                                 ),
-                                backgroundColor: Colors.red,
+                              )),
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: primaryOrange,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.r),
+                                ),
                               ),
-                            );
-                            return;
-                          } else {
-                            verifyDisponibility(
-                                start,
-                                end,
-                                "0",
-                                adultsCount.toString(),
-                                widget.hostDetail.id.toString());
-                          }
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.h, horizontal: 16.w),
-                          child: Text(
-                            'Vérifier la disponibilité',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16.sp,
-                            ),
-                          ),
-                        )),
-                  ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddReservationPage(
+                                      typeReservation: TypeReservation.event,
+                                      hostName: widget.title,
+                                      dateDebut: DateFormat('yyyy-MM-dd')
+                                          .format(DateTime.parse(
+                                              widget.startDate ?? "")),
+                                      dateFin: DateFormat('yyyy-MM-dd').format(
+                                          DateTime.parse(
+                                              widget.startDate ?? "")),
+                                      adultes: adultsCount.toString(),
+                                      total: getTotalPrice(widget.price!,
+                                          adultsCount.toString()),
+                                      // nuits: nb_nuites.toString(),
+                                      id: widget.id.toString(),
+                                      address: widget.address,
+                                      rooms: selectedList,
+                                      selectedRooms: selectedRooms,
+                                      currencyValue: widget.currencyValue,
+                                      currencyName: widget.currencyName,
+                                      currency: widget.currency,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 16.w),
+                                child: Text(
+                                  'Réserver maintenant',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                              )),
+                        ),
                   disponible
                       ? Column(
                           children: [
@@ -502,8 +551,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
+                                    primary: primaryOrange,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25.r),
+                                      borderRadius: BorderRadius.circular(5.r),
                                     ),
                                   ),
                                   onPressed: () {
@@ -512,13 +562,15 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             AddReservationPage(
+                                          typeReservation: TypeReservation.host,
+                                          hostName: widget.title ?? "",
                                           dateDebut: start,
                                           dateFin: end,
                                           adultes: adultsCount.toString(),
                                           total: totalPrice.toString(),
                                           nuits: nb_nuites.toString(),
-                                          id: widget.hostDetail.id.toString(),
-                                          address: widget.hostDetail.address,
+                                          id: widget.id.toString(),
+                                          address: widget.address,
                                           currencyValue: widget.currencyValue,
                                           currencyName: widget.currencyName,
                                           currency: widget.currency,
@@ -529,25 +581,13 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 8.h, horizontal: 16.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Demande de réservation',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16.sp,
-                                          ),
-                                        ),
-                                        SizedBox(width: 10.w),
-                                        const FaIcon(
-                                          FontAwesomeIcons.tree,
-                                          color: Colors.green,
-                                          size: 16,
-                                        )
-                                      ],
+                                    child: Text(
+                                      'Demande de réservation',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.sp,
+                                      ),
                                     ),
                                   )),
                             ),
@@ -583,6 +623,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                   ListView.separated(
                                     shrinkWrap: true,
                                     itemCount: rooms.length,
+                                    physics: const ScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       return Column(
                                         children: [
@@ -743,8 +784,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
+                                    primary: primaryOrange,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25.r),
+                                      borderRadius: BorderRadius.circular(5.r),
                                     ),
                                   ),
                                   onPressed: () {
@@ -753,13 +795,15 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             AddReservationPage(
+                                          typeReservation: TypeReservation.host,
+                                          hostName: widget.title,
                                           dateDebut: start,
                                           dateFin: end,
                                           adultes: adultsCount.toString(),
                                           total: roomsPriceTotal.toString(),
                                           nuits: nb_nuites.toString(),
-                                          id: widget.hostDetail.id.toString(),
-                                          address: widget.hostDetail.address,
+                                          id: widget.id.toString(),
+                                          address: widget.address,
                                           rooms: selectedList,
                                           selectedRooms: selectedRooms,
                                           currencyValue: widget.currencyValue,
@@ -772,25 +816,13 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 8.h, horizontal: 16.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Demande de réservation',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 16.sp,
-                                          ),
-                                        ),
-                                        SizedBox(width: 10.w),
-                                        const FaIcon(
-                                          FontAwesomeIcons.tree,
-                                          color: Colors.green,
-                                          size: 16,
-                                        )
-                                      ],
+                                    child: Text(
+                                      'Demande de réservation',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.sp,
+                                      ),
                                     ),
                                   )),
                             ),
@@ -832,8 +864,8 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
               SnackBar(
                 content: Text(
                   result["messages"] == []
-                      ? 'Cette maison n\'est pas disponible pour cette période'
-                      : result["messages"][0][0].toString(),
+                      ? 'une erreur est produite , veuillez réessayer ultérieurement'
+                      : "Essayez de sélectionner une autre date. Cette date n'est pas disponible",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

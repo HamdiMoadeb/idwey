@@ -35,7 +35,7 @@ class CustomClips extends CustomClipper<Path> {
 String? getTotalPrice(String price, String count) {
   double total = 0;
 
-  int c = int.tryParse(count)!;
+  int c = int.tryParse(count) ?? 1;
   for (int i = 0; i < c; i++) {
     total += double.parse(price);
   }
@@ -50,11 +50,10 @@ String removeDecimalZeroFormat(String num) {
   return s;
 }
 
-
 String? validateField(String? value) {
-  if(value!.isNotEmpty){
+  if (value!.isNotEmpty) {
     return null;
-  }else{
+  } else {
     return 'Champ obligatoire';
   }
 }
@@ -409,7 +408,8 @@ checkInternetConnectivity(context, Function isConnectedCallback) async {
 }
 
 String currencyConverteur(int currencyValue, String priceValue) {
-  double newValue = double.parse(priceValue) / currencyValue.toDouble();
-  double roundedValue = double.parse(newValue.round().toString());
+  double newValue = double.tryParse(priceValue) ?? 0 / currencyValue.toDouble();
+  double roundedValue = double.tryParse(newValue.round().toString()) ?? 0;
+
   return roundedValue.toString();
 }

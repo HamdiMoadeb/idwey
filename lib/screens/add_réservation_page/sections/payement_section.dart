@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/utils/colors.dart';
+import 'package:idwey/utils/urls.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PayementSection extends StatefulWidget {
   bool? Checked;
@@ -43,7 +46,10 @@ class _PayementSectionState extends State<PayementSection> {
             borderRadius: BorderRadius.circular(5.r),
             border: Border.all(color: Colors.grey[300]!, width: 1),
           ),
-          padding: EdgeInsets.only(right: 16.h, left: 16.h, bottom: 16.h),
+          padding: EdgeInsets.only(
+            right: 16.h,
+            left: 16.h,
+          ),
           child: Column(
             children: [
               ListTile(
@@ -69,37 +75,40 @@ class _PayementSectionState extends State<PayementSection> {
               ),
               Visibility(
                 visible: radioItem == "Offline",
-                child: RichText(
-                  text: TextSpan(
-                    text:
-                        'Pour confirmer votre réservation, veuillez effectuer votre paiement dans un délai de',
-                    style: TextStyle(
-                      fontSize: 16.h,
-                      fontWeight: FontWeight.w500,
-                      color: grey,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16.h),
+                  child: RichText(
+                    text: TextSpan(
+                      text:
+                          'Pour confirmer votre réservation, veuillez effectuer votre paiement dans un délai de',
+                      style: TextStyle(
+                        fontSize: 16.h,
+                        fontWeight: FontWeight.w500,
+                        color: grey,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: ' 48 heures.\n',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.h,
+                            color: Colors.red,
+                          ),
+                        ),
+                        TextSpan(
+                          text:
+                              '''\nAuprès de notre bureau :Avenue Habib Bourguiba,\n\nImmeuble Le Parnasse 7eme étage.\n\nPour plus d'information contacter : 52394676 \n\nPremier arrivé premier servi''',
+                          style: TextStyle(
+                            fontSize: 16.h,
+                            fontWeight: FontWeight.w500,
+                            color: grey,
+                          ),
+                        ),
+                      ],
                     ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: ' 48 heures.\n',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.h,
-                          color: Colors.red,
-                        ),
-                      ),
-                      TextSpan(
-                        text:
-                            '''\nAuprès de notre bureau :Avenue Habib Bourguiba,\n\nImmeuble Le Parnasse 7eme étage.\n\nPour plus d'information contacter : 52394676 \n\nPremier arrivé premier servi''',
-                        style: TextStyle(
-                          fontSize: 16.h,
-                          fontWeight: FontWeight.w500,
-                          color: grey,
-                        ),
-                      ),
-                    ],
+                    textAlign: TextAlign.left,
+                    textHeightBehavior: TextHeightBehavior(),
                   ),
-                  textAlign: TextAlign.left,
-                  textHeightBehavior: TextHeightBehavior(),
                 ),
               )
             ],
@@ -131,9 +140,15 @@ class _PayementSectionState extends State<PayementSection> {
                   children: <TextSpan>[
                     TextSpan(
                       text: ' Termes et conditions.\n',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          final Uri uri = Uri.parse(Urls.TERMS_URL);
+                          launchUrl(uri);
+                        },
                       style: TextStyle(
+                        decoration: TextDecoration.underline,
                         fontSize: 13.sp,
-                        color: Colors.red,
+                        color: primaryOrange,
                       ),
                     ),
                   ],

@@ -553,18 +553,17 @@ class BottomReservationBar extends StatelessWidget {
                   ? ReservationButton(
                       text: "évenement \ncomplet",
                       color: redColor,
-                      callback: onPressed,
-                    )
+                      callback: onPressed ?? () {})
                   : stateEvent == StateEvent.isExpired
                       ? ReservationButton(
                           text: "évenement \nexpiré",
                           color: disabledColor,
-                          callback: onPressed,
+                          callback: onPressed ?? () {},
                         )
                       : ReservationButton(
                           text: "réserver \nmaintenant",
                           color: primaryOrange,
-                          callback: onPressed,
+                          callback: onPressed ?? () {},
                         ),
             ],
           ),
@@ -667,17 +666,14 @@ class OwnerWidget extends StatelessWidget {
 class ReservationButton extends StatelessWidget {
   final String text;
   final Color? color;
-  final VoidCallback? callback;
+  final VoidCallback callback;
   const ReservationButton(
-      {Key? key, this.color, required this.text, this.callback})
+      {Key? key, this.color, required this.text, required this.callback})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: callback ??
-          () {
-            print("tapped");
-          },
+      onTap: callback,
       child: Container(
         width: 150.w,
         alignment: Alignment.center,
