@@ -361,9 +361,12 @@ class _EventDetailsPageState extends State<EventDetailsPage>
         ),
         !loading
             ? BottomReservationBar(
-                onPressed: () {
-                  checkLoggedIn();
-                },
+                onPressed:
+                    eventDetails.isFull == 1 || eventDetails.isExpired == 1
+                        ? null
+                        : () {
+                            checkLoggedIn();
+                          },
                 stateEvent: eventDetails.isFull == 1
                     ? StateEvent.isFull
                     : eventDetails.isExpired == 1
