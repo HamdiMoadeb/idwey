@@ -10,8 +10,4 @@ enum TypeHost {
   maisonEntiere,
 }
 
-enum TypeReservation {
-  host,
-  activity,
-  event,
-}
+enum TypeReservation { host, activity, event, experience, product }

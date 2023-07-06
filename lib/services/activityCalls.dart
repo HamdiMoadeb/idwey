@@ -147,4 +147,70 @@ class ActivityCalls {
 
     return result;
   }
+
+  static Future getActivityDisponibility(
+      String? dateStart, String? adultes, String? children, String? id) async {
+    var url = Uri.parse(
+        '${Urls.URL_API}activity/checkAvailability?start_date=$dateStart&adults=$adultes&children=$children&tour_id=$id');
+    Map result = {};
+    List resultList = [];
+    print(url);
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      print(data);
+      if (data is Map) {
+        result = data;
+        return result;
+      } else {
+        resultList = data;
+        return resultList;
+      }
+    }
+  }
+
+  static Future<Map> AddActivityToCart(
+    String dateStart,
+    String number,
+    String id,
+    String promo_code,
+    String service_type,
+    List<String> extra_price,
+  ) async {
+    var url = Uri.parse('${Urls.URL_API}booking/addToCart');
+    Map result = {};
+    print(url);
+    print({
+      "start_date": dateStart,
+      "number": number,
+      "promo_code": "",
+      "service_id": id,
+      "service_type": service_type,
+      "extra_price": [],
+    });
+
+    var response = await http.post(url,
+        body: jsonEncode({
+          "start_date": dateStart,
+          "adults": number,
+          "children": 0,
+          "promo_code": "",
+          "service_id": id,
+          "service_type": 'activity',
+          "extra_price": [],
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        });
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      result = data;
+    }
+
+    return result;
+  }
 }

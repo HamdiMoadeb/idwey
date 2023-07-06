@@ -21,6 +21,7 @@ class ReservationSection extends StatefulWidget {
   final String currencySymbol;
   final String currency;
   final TypeReservation? typeReservation;
+  final String? activityDuration;
   const ReservationSection(
       {Key? key,
       this.address,
@@ -35,7 +36,8 @@ class ReservationSection extends StatefulWidget {
       required this.currencySymbol,
       required this.currency,
       required this.hostName,
-      required this.typeReservation})
+      required this.typeReservation,
+      this.activityDuration})
       : super(key: key);
 
   @override
@@ -48,6 +50,9 @@ class _ReservationSectionState extends State<ReservationSection> {
     // TODO: implement initState
     print("widget.address");
     print(widget.address);
+    print(widget.activityDuration);
+    print("widget.dateFin");
+    print(widget.dateFin);
     super.initState();
   }
 
@@ -103,43 +108,65 @@ class _ReservationSectionState extends State<ReservationSection> {
                 ),
                 Divider(),
                 SizedBox(
-                  height: 16.h,
+                  height: widget.dateDebut != "" ? 16.h : 0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Date debut',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: materialPrimary,
-                          fontSize: 14.sp),
-                    ),
-                    Text(
-                      widget.dateDebut ?? "",
-                      style: TextStyle(color: grey),
-                    )
-                  ],
-                ),
+                widget.dateDebut != ""
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Date debut',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: materialPrimary,
+                                fontSize: 14.sp),
+                          ),
+                          Text(
+                            widget.dateDebut ?? "",
+                            style: TextStyle(color: grey),
+                          )
+                        ],
+                      )
+                    : const SizedBox.shrink(),
                 SizedBox(
                   height: 4.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Date Fin',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: materialPrimary,
-                          fontSize: 14.sp),
-                    ),
-                    Text(
-                      widget.dateFin ?? "",
-                      style: TextStyle(color: grey),
-                    )
-                  ],
-                ),
+                Visibility(
+                    visible: widget.activityDuration != null,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Durée',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: materialPrimary,
+                              fontSize: 14.sp),
+                        ),
+                        Text(
+                          "${widget.activityDuration} H",
+                          style: TextStyle(color: grey),
+                        )
+                      ],
+                    )),
+                widget.dateFin != ""
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Date Fin',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: materialPrimary,
+                                fontSize: 14.sp),
+                          ),
+                          Text(
+                            widget.dateFin ?? "",
+                            style: TextStyle(color: grey),
+                          )
+                        ],
+                      )
+                    : const SizedBox.shrink(),
                 SizedBox(
                   height: 4.h,
                 ),

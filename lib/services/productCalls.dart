@@ -73,4 +73,43 @@ class ProductCalls {
 
     return result;
   }
+
+  static Future<Map> AddProductToCart(
+    String number,
+    String id,
+    String promo_code,
+    String service_type,
+    List<String> extra_price,
+  ) async {
+    var url = Uri.parse('${Urls.URL_API}booking/addToCart');
+    Map result = {};
+    print(url);
+    print({
+      "number": number,
+      "promo_code": "",
+      "service_id": id,
+      "service_type": "product",
+      "extra_price": [],
+    });
+
+    var response = await http.post(url,
+        body: jsonEncode({
+          "number": number,
+          "promo_code": "",
+          "service_id": id,
+          "service_type": "product",
+          "extra_price": [],
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        });
+    print('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      result = data;
+    }
+
+    return result;
+  }
 }
