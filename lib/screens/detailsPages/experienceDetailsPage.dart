@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:idwey/screens/authPages/loginPage.dart';
+import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/experience.dart';
@@ -306,6 +309,9 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
           ),
           !loading
               ? BottomReservationBar(
+                  onPressed: () {
+                    checkLoggedIn();
+                  },
                   price:
                       '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, experienceDetail.price!) : experienceDetail.price!)} ${currencies[selectedCurrency]['symbol']}',
                 )
@@ -313,5 +319,32 @@ class _ExperienceDetailsPageState extends State<ExperienceDetailsPage>
         ],
       ),
     );
+  }
+
+  Future<void> checkLoggedIn() async {
+    final user = prefs!.getString("token");
+    if (user != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => VerifyDisponibility(
+                    activityDuration: experienceDetail.duration,
+                    typeReservation: TypeReservation.experience,
+                    //typeHost: widget.typeHost,
+                    sale_price: experienceDetail.price,
+                    currency: currencies[selectedCurrency]['symbol'],
+                    currencyValue: currencies[selectedCurrency]['value']!,
+                    price: experienceDetail.price,
+                    // per_person: eventDetails.,
+                    currencyName: selectedCurrency,
+                    id: experienceDetail.id.toString(),
+                    title: experienceDetail.title ?? "",
+                    address: experienceDetail.address!,
+                  )));
+    } else {
+      prefs!.setString('activityID', experienceDetail.id.toString());
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
   }
 }

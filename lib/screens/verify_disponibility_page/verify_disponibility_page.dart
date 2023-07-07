@@ -3,17 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/models/host.dart';
 import 'package:idwey/models/room.dart';
 import 'package:idwey/screens/add_r%C3%A9servation_page/add_reservation_page.dart';
+import 'package:idwey/services/activityCalls.dart';
+import 'package:idwey/services/experienceCalls.dart';
 import 'package:idwey/services/hostCalls.dart';
+import 'package:idwey/services/productCalls.dart';
 import 'package:idwey/utils/colors.dart';
 import 'package:idwey/utils/enums.dart';
 import 'package:idwey/utils/utils.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:string_translate/string_translate.dart';
 
 class VerifyDisponibility extends StatefulWidget {
   // final HostDetail? hostDetail;
   final TypeReservation typeReservation;
+  final String? activityDuration;
   final String? currency;
   final String id;
   final String title;
@@ -39,7 +44,8 @@ class VerifyDisponibility extends StatefulWidget {
       required this.title,
       required this.address,
       required this.typeReservation,
-      this.startDate})
+      this.startDate,
+      this.activityDuration})
       : super(key: key);
 
   @override
@@ -79,6 +85,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
   @override
   void initState() {
     _loadSelectedCurrency();
+
     //checkInternetConnectivity(context,);
     super.initState();
   }
@@ -205,6 +212,49 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                         Divider(
                           thickness: 1,
                         ),
+                        Visibility(
+                            visible: widget.typeReservation ==
+                                    TypeReservation.activity ||
+                                widget.typeReservation ==
+                                    TypeReservation.experience,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Date départ :',
+                                  style: TextStyle(
+                                    color: materialPrimary,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18.sp,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    dateTimeRangePicker();
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.w, vertical: 8.h),
+                                    margin:
+                                        EdgeInsets.symmetric(vertical: 10.h),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[100],
+                                      border:
+                                          Border.all(color: Colors.grey[200]!),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Text(
+                                      start,
+                                      style: TextStyle(
+                                        color: grey,
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
                         widget.typeReservation == TypeReservation.host
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -284,7 +334,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Personnes',
+                              widget.typeReservation == TypeReservation.product
+                                  ? 'Nombres'
+                                  : 'Personnes',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -333,7 +385,8 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                   ),
                   SizedBox(height: 20.h),
                   Visibility(
-                    visible: widget.typeReservation == TypeReservation.event,
+                    visible: widget.typeReservation == TypeReservation.event ||
+                        widget.typeReservation == TypeReservation.product,
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20.h),
                       padding: EdgeInsets.symmetric(
@@ -378,7 +431,9 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                       ),
                     ),
                   ),
-                  widget.typeReservation == TypeReservation.host
+                  widget.typeReservation == TypeReservation.host ||
+                          widget.typeReservation == TypeReservation.activity ||
+                          widget.typeReservation == TypeReservation.experience
                       ? SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -442,14 +497,20 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => AddReservationPage(
-                                      typeReservation: TypeReservation.event,
+                                      typeReservation: widget.typeReservation,
                                       hostName: widget.title,
-                                      dateDebut: DateFormat('yyyy-MM-dd')
-                                          .format(DateTime.parse(
-                                              widget.startDate ?? "")),
-                                      dateFin: DateFormat('yyyy-MM-dd').format(
-                                          DateTime.parse(
-                                              widget.startDate ?? "")),
+                                      dateDebut: widget.typeReservation ==
+                                              TypeReservation.event
+                                          ? DateFormat('yyyy-MM-dd').format(
+                                              DateTime.parse(
+                                                  widget.startDate ?? ""))
+                                          : "",
+                                      dateFin: widget.typeReservation ==
+                                              TypeReservation.event
+                                          ? DateFormat('yyyy-MM-dd').format(
+                                              DateTime.parse(
+                                                  widget.startDate ?? ""))
+                                          : "",
                                       adultes: adultsCount.toString(),
                                       total: getTotalPrice(widget.price!,
                                           adultsCount.toString()),
@@ -514,31 +575,33 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                         TextSpan(
                                             text:
                                                 '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, totalPrice) : currencyConverteur(currencies[selectedCurrency]['value']!, totalPrice))} ${currencies[selectedCurrency]['symbol']}',
-
-                                            //  '${removeDecimalZeroFormat(currencies[widget.currencyName][widget.currency] != 'DT' ? currencyConverteur(widget.currencyValue!, totalPrice) : getTotalPrice(totalPrice, nb_nuites) ?? "")} ${currencies[selectedCurrency]['symbol']}',
-
-                                            // text: '${totalPrice}',
                                             style: TextStyle(
                                               color: primaryOrange,
                                               fontSize: 18.sp,
                                               fontWeight: FontWeight.w500,
                                               decoration: TextDecoration.none,
                                             )),
-                                        adultsCount != 1
-                                            ? TextSpan(
-                                                text: ' /${nb_nuites} nuitées',
-                                                style: TextStyle(
-                                                    color: grey,
-                                                    fontSize: 16.sp,
-                                                    fontWeight:
-                                                        FontWeight.w500))
+                                        widget.typeReservation ==
+                                                TypeReservation.host
+                                            ? adultsCount != 1
+                                                ? TextSpan(
+                                                    text:
+                                                        ' /${nb_nuites} nuitées',
+                                                    style: TextStyle(
+                                                        color: grey,
+                                                        fontSize: 16.sp,
+                                                        fontWeight:
+                                                            FontWeight.w500))
+                                                : TextSpan(
+                                                    text: ' /${nb_nuites} nuit',
+                                                    style: TextStyle(
+                                                        color: grey,
+                                                        fontSize: 16.sp,
+                                                        fontWeight:
+                                                            FontWeight.w500))
                                             : TextSpan(
-                                                text: ' /${nb_nuites} nuit',
-                                                style: TextStyle(
-                                                    color: grey,
-                                                    fontSize: 16.sp,
-                                                    fontWeight:
-                                                        FontWeight.w500)),
+                                                text: '',
+                                              ),
                                       ],
                                     ),
                                   ),
@@ -562,13 +625,16 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             AddReservationPage(
-                                          typeReservation: TypeReservation.host,
+                                          typeReservation:
+                                              widget.typeReservation,
                                           hostName: widget.title ?? "",
                                           dateDebut: start,
-                                          dateFin: end,
+                                          activityDuration:
+                                              widget.activityDuration,
+                                          // dateFin: end,
                                           adultes: adultsCount.toString(),
                                           total: totalPrice.toString(),
-                                          nuits: nb_nuites.toString(),
+                                          // nuits: nb_nuites.toString(),
                                           id: widget.id.toString(),
                                           address: widget.address,
                                           currencyValue: widget.currencyValue,
@@ -846,15 +912,11 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
       loading = true;
     });
     await _loadSelectedCurrency();
-
-    HostCalls.getHostDisponibility(dateStart, dateEnd, adultes, children, id)
-        .then((result) async {
-      setState(() {
-        if (widget.typeHost == "Par Chalet") {
-          for (int i = 0; i < result.length; i++) {
-            rooms.add(Room.fromJson(result[i]));
-          }
-        } else {
+    if (widget.typeReservation == TypeReservation.experience) {
+      ExperienceCalls.getExperienceDisponibility(
+              dateStart, adultes, children, id)
+          .then((result) async {
+        setState(() {
           if (result["disponible"] == true) {
             disponible = true;
             totalPrice = result["price"].toString();
@@ -865,7 +927,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                 content: Text(
                   result["messages"] == []
                       ? 'une erreur est produite , veuillez réessayer ultérieurement'
-                      : "Essayez de sélectionner une autre date. Cette date n'est pas disponible",
+                      : 'Le nombre minimum des invités est 7',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -876,12 +938,81 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
               ),
             );
           }
-        }
+        });
+
+        setState(() {
+          loading = false;
+        });
       });
-      await Future.delayed(const Duration(milliseconds: 30));
-      setState(() {
-        loading = false;
+    }
+    if (widget.typeReservation == TypeReservation.activity) {
+      ActivityCalls.getActivityDisponibility(dateStart, adultes, children, id)
+          .then((result) async {
+        setState(() {
+          if (result["disponible"] == true) {
+            disponible = true;
+            totalPrice = result["price"].toString();
+          } else {
+            disponible = false;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  result["messages"] == []
+                      ? 'une erreur est produite , veuillez réessayer ultérieurement'
+                      : 'Le nombre minimum des invités est 7',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.sp,
+                  ),
+                ),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        });
+
+        setState(() {
+          loading = false;
+        });
       });
-    });
+    } else if (widget.typeReservation == TypeReservation.host) {
+      HostCalls.getHostDisponibility(dateStart, dateEnd, adultes, children, id)
+          .then((result) async {
+        setState(() {
+          if (widget.typeHost == "Par Chalet") {
+            for (int i = 0; i < result.length; i++) {
+              rooms.add(Room.fromJson(result[i]));
+            }
+          } else {
+            if (result["disponible"] == true) {
+              disponible = true;
+              totalPrice = result["price"].toString();
+            } else {
+              disponible = false;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    result["messages"] == []
+                        ? 'une erreur est produite , veuillez réessayer ultérieurement'
+                        : "Essayez de sélectionner une autre date. Cette date n'est pas disponible",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.sp,
+                    ),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          }
+        });
+        await Future.delayed(const Duration(milliseconds: 30));
+        setState(() {
+          loading = false;
+        });
+      });
+    }
   }
 }

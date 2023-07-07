@@ -7,7 +7,10 @@ import 'package:idwey/models/room.dart';
 import 'package:idwey/screens/add_r%C3%A9servation_page/sections/payement_section.dart';
 import 'package:idwey/screens/add_r%C3%A9servation_page/sections/reservation_form.dart';
 import 'package:idwey/screens/homePage.dart';
+import 'package:idwey/services/activityCalls.dart';
 import 'package:idwey/services/eventCalls.dart';
+import 'package:idwey/services/experienceCalls.dart';
+import 'package:idwey/services/productCalls.dart';
 import 'package:idwey/utils/constants.dart';
 import 'package:idwey/utils/enums.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -35,6 +38,7 @@ class AddReservationPage extends StatefulWidget {
   final int? currencyValue;
   final String? currencyName;
   final String? currency;
+  final String? activityDuration;
 
   const AddReservationPage(
       {Key? key,
@@ -52,7 +56,8 @@ class AddReservationPage extends StatefulWidget {
       required this.currency,
       this.selectedRooms,
       required this.hostName,
-      required this.typeReservation})
+      required this.typeReservation,
+      this.activityDuration})
       : super(key: key);
 
   @override
@@ -135,12 +140,13 @@ class _AddReservationPageState extends State<AddReservationPage>
               typeReservation: widget.typeReservation,
               hostName: widget.hostName ?? "",
               dateDebut: widget.dateDebut,
-              dateFin: widget.dateFin,
+              dateFin: widget.dateFin ?? '',
               address: widget.address!,
               nuits: widget.nuits,
               adultes: widget.adultes,
               rooms: widget.selectedRooms,
               currency: selectedCurrency,
+              activityDuration: widget.activityDuration,
               currencySymbol: currencies[selectedCurrency]['symbol'],
               currencyValue: currencies[selectedCurrency]['value'],
               total:
@@ -262,6 +268,77 @@ class _AddReservationPageState extends State<AddReservationPage>
     } else if (widget.typeReservation == TypeReservation.event) {
       EventCalls.AddEventToCart(
               dateStart, adultes, id, "", "event", extra_price)
+          .then((result) async {
+        setState(() {
+          print("result");
+          print(result);
+        });
+        await Future.delayed(const Duration(milliseconds: 10));
+        setState(() {
+          loading = false;
+        });
+        validReservation(
+            result['booking']['code'],
+            customer_id,
+            nameController.text,
+            controller.text,
+            phoneController.text,
+            emailController.text,
+            villeController.text,
+            paysController.text,
+            messageController.text,
+            "offline_payment");
+      });
+    } else if (widget.typeReservation == TypeReservation.activity) {
+      ActivityCalls.AddActivityToCart(
+              dateStart, adultes, id, "", 'activity', extra_price)
+          .then((result) async {
+        setState(() {
+          print("result");
+          print(result);
+        });
+        await Future.delayed(const Duration(milliseconds: 10));
+        setState(() {
+          loading = false;
+        });
+        validReservation(
+            result['booking']['code'],
+            customer_id,
+            nameController.text,
+            controller.text,
+            phoneController.text,
+            emailController.text,
+            villeController.text,
+            paysController.text,
+            messageController.text,
+            "offline_payment");
+      });
+    } else if (widget.typeReservation == TypeReservation.experience) {
+      ExperienceCalls.AddExperienceToCart(
+              dateStart, adultes, id, "", 'experience', extra_price)
+          .then((result) async {
+        setState(() {
+          print("result");
+          print(result);
+        });
+        await Future.delayed(const Duration(milliseconds: 10));
+        setState(() {
+          loading = false;
+        });
+        validReservation(
+            result['booking']['code'],
+            customer_id,
+            nameController.text,
+            controller.text,
+            phoneController.text,
+            emailController.text,
+            villeController.text,
+            paysController.text,
+            messageController.text,
+            "offline_payment");
+      });
+    } else if (widget.typeReservation == TypeReservation.product) {
+      ProductCalls.AddProductToCart(adultes, id, "", 'product', extra_price)
           .then((result) async {
         setState(() {
           print("result");

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:idwey/screens/authPages/loginPage.dart';
+import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
+import 'package:idwey/utils/enums.dart';
 
 import '../../models/product.dart';
 import '../../services/productCalls.dart';
@@ -172,6 +175,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
           ),
           !loading
               ? BottomReservationBar(
+                  onPressed: () {
+                    checkLoggedIn();
+                  },
                   per_person: "",
                   sale_price: productDetails.sale_price!,
                   price:
@@ -181,5 +187,32 @@ class _ProductDetailsPageState extends State<ProductDetailsPage>
         ],
       ),
     );
+  }
+
+  Future<void> checkLoggedIn() async {
+    final user = prefs!.getString("token");
+    if (user != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => VerifyDisponibility(
+                    // activityDuration: productDetails.duration,
+                    typeReservation: TypeReservation.product,
+                    //typeHost: widget.typeHost,
+                    sale_price: productDetails.price,
+                    currency: currencies[selectedCurrency]['symbol'],
+                    currencyValue: currencies[selectedCurrency]['value']!,
+                    price: productDetails.price,
+                    // per_person: eventDetails.,
+                    currencyName: selectedCurrency,
+                    id: productDetails.id.toString(),
+                    title: productDetails.title ?? "", address: '',
+                    // address: productDetails.address!,
+                  )));
+    } else {
+      prefs!.setString('activityID', productDetails.id.toString());
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
   }
 }

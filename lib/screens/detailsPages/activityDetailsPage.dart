@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icofont_flutter/icofont_flutter.dart';
+import 'package:idwey/screens/authPages/loginPage.dart';
+import 'package:idwey/screens/verify_disponibility_page/verify_disponibility_page.dart';
+import 'package:idwey/utils/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/activity.dart';
@@ -319,15 +322,43 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
           ),
           !loading
               ? BottomReservationBar(
+                  onPressed: () {
+                    checkLoggedIn();
+                  },
                   per_person: "",
                   price:
-                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ?
-                      currencyConverteur(currencies[selectedCurrency]['value']!, activityDetails.price) :
-                      activityDetails.price)} ${currencies[selectedCurrency]['symbol']}',
+                      '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, activityDetails.price) : activityDetails.price)} ${currencies[selectedCurrency]['symbol']}',
                 )
               : Container()
         ],
       ),
     );
+  }
+
+  Future<void> checkLoggedIn() async {
+    final user = prefs!.getString("token");
+    if (user != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => VerifyDisponibility(
+                    activityDuration: activityDetails.duration,
+                    typeReservation: TypeReservation.activity,
+                    //typeHost: widget.typeHost,
+                    sale_price: activityDetails.price,
+                    currency: currencies[selectedCurrency]['symbol'],
+                    currencyValue: currencies[selectedCurrency]['value']!,
+                    price: activityDetails.price,
+                    // per_person: eventDetails.,
+                    currencyName: selectedCurrency,
+                    id: activityDetails.id.toString(),
+                    title: activityDetails.title ?? "",
+                    address: activityDetails.address!,
+                  )));
+    } else {
+      prefs!.setString('activityID', activityDetails.id.toString());
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
   }
 }
