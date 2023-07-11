@@ -631,10 +631,10 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                           dateDebut: start,
                                           activityDuration:
                                               widget.activityDuration,
-                                          // dateFin: end,
+                                          dateFin: end,
                                           adultes: adultsCount.toString(),
                                           total: totalPrice.toString(),
-                                          // nuits: nb_nuites.toString(),
+                                          nuits: nb_nuites.toString(),
                                           id: widget.id.toString(),
                                           address: widget.address,
                                           currencyValue: widget.currencyValue,
