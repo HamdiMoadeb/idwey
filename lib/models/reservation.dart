@@ -18,6 +18,7 @@ class Reservation {
   final String? gateway;
   final int? objectId;
   final String? objectModel;
+  final String? title;
   final DateTime? startDate;
   final DateTime? endDate;
   final String? total;
@@ -56,6 +57,7 @@ class Reservation {
 
   Reservation({
     this.id,
+    this.title,
     this.code,
     this.vendorId,
     this.customerId,
@@ -109,6 +111,7 @@ class Reservation {
         gateway: json["gateway"],
         objectId: json["object_id"],
         objectModel: json["object_model"],
+        title: json["title"],
         startDate: json["start_date"] == null
             ? null
             : DateTime.parse(json["start_date"]),
@@ -162,6 +165,7 @@ class Reservation {
         "gateway": gateway,
         "object_id": objectId,
         "object_model": objectModel,
+        "title": title,
         "start_date": startDate?.toIso8601String(),
         "end_date": endDate?.toIso8601String(),
         "total": total,

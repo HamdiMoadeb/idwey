@@ -75,159 +75,185 @@ class _HistoryPageState extends State<HistoryPage> {
             )
           : Padding(
               padding: const EdgeInsets.all(16),
-              child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return Card(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.grey[400]!, width: 1),
-                        borderRadius: BorderRadius.circular(10.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text(
+                      'Liste des commandes',
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w500,
                       ),
-                      elevation: 0,
-                      margin: EdgeInsets.zero,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.w, vertical: 16.w),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                    ),
+                  ),
+                  ListView.separated(
+                    itemBuilder: (context, index) {
+                      return Card(
+                          shape: RoundedRectangleBorder(
+                            side:
+                                BorderSide(color: Colors.grey[400]!, width: 1),
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          elevation: 0,
+                          margin: EdgeInsets.zero,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16.w, vertical: 16.w),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        hostDetail.title ?? "",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline6,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            listReservation[index].title ?? "",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6,
+                                          ),
+                                          Text(
+                                            listReservation[index].status ?? "",
+                                            style:
+                                                TextStyle(color: primaryOrange),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        listReservation[index].status ?? "",
-                                        style: TextStyle(color: primaryOrange),
+                                      SizedBox(
+                                        height: 16.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Type d'hébergement",
+                                              style: TextStyle(
+                                                color: primary,
+                                              )),
+                                          Text(
+                                            listReservation[index]
+                                                    .objectModel ??
+                                                "",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .caption,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Date de réservation : ",
+                                              style: TextStyle(
+                                                color: primary,
+                                              )),
+                                          Text(
+                                            DateFormat('yyyy-MM-dd').format(
+                                                listReservation[index]
+                                                    .createdAt!),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .caption,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Date debut",
+                                            style: TextStyle(
+                                              color: primary,
+                                            ),
+                                          ),
+                                          Text(
+                                            DateFormat('yyyy-MM-dd').format(
+                                                listReservation[index]
+                                                    .startDate!),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .caption,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Date  fin",
+                                            style: TextStyle(
+                                              color: primary,
+                                            ),
+                                          ),
+                                          Text(
+                                            DateFormat('yyyy-MM-dd').format(
+                                                listReservation[index]
+                                                    .endDate!),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .caption,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Divider(),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Total",
+                                              style: TextStyle(
+                                                  color: primaryOrange,
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                            '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, listReservation[index].total!) : listReservation[index].total!)} ${currencies[selectedCurrency]['symbol']}',
+                                            style: TextStyle(
+                                                fontSize: 18.sp,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 16.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Type d'hébergement",
-                                          style: TextStyle(
-                                            color: primary,
-                                          )),
-                                      Text(
-                                        listReservation[index].objectModel ??
-                                            "",
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Date de réservation : ",
-                                          style: TextStyle(
-                                            color: primary,
-                                          )),
-                                      Text(
-                                        DateFormat('yyyy-MM-dd').format(
-                                            listReservation[index].createdAt!),
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Date debut",
-                                        style: TextStyle(
-                                          color: primary,
-                                        ),
-                                      ),
-                                      Text(
-                                        DateFormat('yyyy-MM-dd').format(
-                                            listReservation[index].startDate!),
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Date  fin",
-                                        style: TextStyle(
-                                          color: primary,
-                                        ),
-                                      ),
-                                      Text(
-                                        DateFormat('yyyy-MM-dd').format(
-                                            listReservation[index].endDate!),
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  Divider(),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Total",
-                                          style: TextStyle(
-                                              color: primaryOrange,
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.bold)),
-                                      Text(
-                                        '${removeDecimalZeroFormat(currencies[selectedCurrency]['symbol'] != 'DT' ? currencyConverteur(currencies[selectedCurrency]['value']!, listReservation[index].total!) : listReservation[index].total!)} ${currencies[selectedCurrency]['symbol']}',
-                                        style: TextStyle(
-                                            fontSize: 18.sp,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ]));
-                },
-                itemCount: listReservation.length,
-                shrinkWrap: true,
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 16.h,
-                  );
-                },
+                                )
+                              ]));
+                    },
+                    itemCount: listReservation.length,
+                    shrinkWrap: true,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        height: 16.h,
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
     );
@@ -244,9 +270,9 @@ class _HistoryPageState extends State<HistoryPage> {
       if (value != null) {
         for (Map i in value) {
           listReservation.add(Reservation.fromJson(jsonDecode(jsonEncode(i))));
-          if (i["object_model"] == "hotel") {
-            callHosts(i["object_id"]);
-          }
+          // if (i["object_model"] == "hotel") {
+          //   callHosts(i["object_id"]);
+          // }
         }
       }
     });
@@ -257,20 +283,20 @@ class _HistoryPageState extends State<HistoryPage> {
     });
   }
 
-  HostDetail hostDetail = HostDetail(0, '', '', '', '', [], 0, '', '', 0, '',
-      '', '', [], '', '', 0, 0, [], '', []);
-  callHosts(int id) async {
-    setState(() {
-      loading = true;
-    });
-    await _loadSelectedCurrency();
-
-    HostCalls.getHostDetails(id).then((result) async {
-      setState(() {
-        hostDetail = result['hostDetail'];
-        currencies['EUR']['value'] = result["eur"];
-        currencies['USD']['value'] = result["usd"];
-      });
-    });
-  }
+  // HostDetail hostDetail = HostDetail(0, '', '', '', '', [], 0, '', '', 0, '',
+  //     '', '', [], '', '', 0, 0, [], '', []);
+  // callHosts(int id) async {
+  //   setState(() {
+  //     loading = true;
+  //   });
+  //   await _loadSelectedCurrency();
+  //
+  //   HostCalls.getHostDetails(id).then((result) async {
+  //     setState(() {
+  //       hostDetail = result['hostDetail'];
+  //       currencies['EUR']['value'] = result["eur"];
+  //       currencies['USD']['value'] = result["usd"];
+  //     });
+  //   });
+  // }
 }
