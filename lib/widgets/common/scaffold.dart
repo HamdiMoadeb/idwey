@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idwey/screens/authPages/RegisterPage.dart';
+import 'package:idwey/screens/history_page/history_page.dart';
 import 'package:idwey/screens/homePage.dart';
 import 'package:idwey/screens/listPages/activityPage.dart';
 import 'package:idwey/screens/listPages/eventPage.dart';
@@ -61,7 +62,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
         welcome =
             'Salut, ${decodedToken['first_name']} ${decodedToken['last_name']}';
       });
-    }else{
+    } else {
       welcome = '';
     }
   }
@@ -139,8 +140,8 @@ class _CommonScaffoldState extends State<CommonScaffold> {
             ),
             welcome.isNotEmpty
                 ? Column(
-                  children: [
-                    Row(
+                    children: [
+                      Row(
                         children: [
                           SizedBox(width: 20),
                           FaIcon(
@@ -149,9 +150,10 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                             color: primary,
                           ),
                           TextButton(
-                            onPressed: ()  {},
+                            onPressed: () {},
                             style: ButtonStyle(
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
                             child: Text(
                               welcome,
                               style: TextStyle(
@@ -160,60 +162,67 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                               ),
                             ),
                           ),
-
                         ],
                       ),
-                    Row(
-                      children: [
-                        SizedBox(width: 20),
-                        FaIcon(
-                          FontAwesomeIcons.dashboard,
-                          size: 16,
-                          color: primary,
-                        ),
-                        TextButton(
-                          onPressed: ()  {},
-                          style: ButtonStyle(
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,),
-                          child: Text(
-                            'Mon tableau de bord',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                      Row(
+                        children: [
+                          SizedBox(width: 20),
+                          FaIcon(
+                            FontAwesomeIcons.dashboard,
+                            size: 16,
+                            color: primary,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HistoryPage(),
+                                  ));
+                            },
+                            style: ButtonStyle(
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            child: Text(
+                              'Mon tableau de bord',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(width: 20),
-                        FaIcon(
-                          FontAwesomeIcons.signOutAlt,
-                          size: 16,
-                          color: primary,
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            SharedPreferences prefs = await SharedPreferences.getInstance();
-                            prefs.remove('token');
-                            getConnectedUser();
-                          },
-                          style: ButtonStyle(
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                          child: Text(
-                            'Se déconnecter',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(width: 20),
+                          FaIcon(
+                            FontAwesomeIcons.signOutAlt,
+                            size: 16,
+                            color: primary,
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.remove('token');
+                              getConnectedUser();
+                            },
+                            style: ButtonStyle(
+                                tapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap),
+                            child: Text(
+                              'Se déconnecter',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-
-                  ],
-                )
+                        ],
+                      ),
+                    ],
+                  )
                 : Container(
                     margin: EdgeInsets.only(left: 10, top: 10),
                     child: Column(
@@ -477,53 +486,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                 ),
               ],
             ),
-            // Theme(
-            //   data:
-            //       Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            //   child: ExpansionTile(
-            //     expandedCrossAxisAlignment: CrossAxisAlignment.start,
-            //     expandedAlignment: Alignment.topLeft,
-            //     collapsedTextColor: primary,
-            //     textColor: primary,
-            //     childrenPadding: EdgeInsets.zero,
-            //     title: Text(
-            //       'Nos Services',
-            //       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            //     ),
-            //     children: [
-            //       const Divider(
-            //           color: Colors.grey,
-            //           height: 1,
-            //           indent: 20,
-            //           endIndent: 20,
-            //           thickness: 0.5),
-            //     ],
-            //   ),
-            // ),
-            // const Divider(
-            //     color: Colors.grey,
-            //     height: 1,
-            //     indent: 20,
-            //     endIndent: 20,
-            //     thickness: 0.5),
-            //commented to deploy
-            // Row(
-            //   children: [
-            //     SizedBox(width: 10),
-            //     TextButton(
-            //       onPressed: () {},
-            //       style: ButtonStyle(
-            //           tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-            //       child: Text(
-            //         'Qui sommes nous ?',
-            //         style: TextStyle(
-            //           fontSize: 14,
-            //           fontWeight: FontWeight.w500,
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
+
             const Divider(
                 color: Colors.grey,
                 height: 1,
@@ -557,6 +520,7 @@ class _CommonScaffoldState extends State<CommonScaffold> {
               height: 15,
             ),
             Divider(color: Colors.grey, height: 1),
+
             Theme(
               data:
                   Theme.of(context).copyWith(dividerColor: Colors.transparent),
