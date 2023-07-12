@@ -131,24 +131,6 @@ class _ReservationSectionState extends State<ReservationSection> {
                 SizedBox(
                   height: 4.h,
                 ),
-                Visibility(
-                    visible: widget.activityDuration != null,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Durée',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: materialPrimary,
-                              fontSize: 14.sp),
-                        ),
-                        Text(
-                          "${widget.activityDuration} H",
-                          style: TextStyle(color: grey),
-                        )
-                      ],
-                    )),
                 widget.dateFin != ""
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +153,28 @@ class _ReservationSectionState extends State<ReservationSection> {
                   height: 4.h,
                 ),
                 Visibility(
-                  visible: widget.nuits != null,
+                    visible: widget.activityDuration != null,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Durée',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: materialPrimary,
+                              fontSize: 14.sp),
+                        ),
+                        Text(
+                          "${widget.activityDuration} H",
+                          style: TextStyle(color: grey),
+                        )
+                      ],
+                    )),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Visibility(
+                  visible: widget.nuits != null && widget.nuits!.isNotEmpty,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
