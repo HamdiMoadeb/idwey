@@ -173,7 +173,13 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                             color: primary,
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HistoryPage(),
+                                  ));
+                            },
                             style: ButtonStyle(
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
@@ -472,36 +478,6 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                   child: Text(
                     'Produits',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            const Divider(
-                color: Colors.grey,
-                height: 1,
-                indent: 20,
-                endIndent: 20,
-                thickness: 0.5),
-            Row(
-              children: [
-                SizedBox(width: 10),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HistoryPage(),
-                        ));
-                  },
-                  style: ButtonStyle(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                  child: Text(
-                    'Tableau de bord',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
