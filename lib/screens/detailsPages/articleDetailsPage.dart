@@ -159,6 +159,12 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage>
                                 vertical: 10.0, horizontal: 20),
                             child: HtmlWidget(
                               articleDetail.content!,
+                              webView: true,
+                              webViewDebuggingEnabled: true,
+                              webViewJs: true,
+                              webViewMediaPlaybackAlwaysAllow: true,
+                              buildAsync: true,
+                              enableCaching: true,
                             ),
                           ),
                         ],
