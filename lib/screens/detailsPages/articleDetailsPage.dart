@@ -158,7 +158,7 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage>
                             padding: EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 20),
                             child: HtmlWidget(
-                              articleDetail.content!,
+                              articleDetail.content ?? "",
                             ),
                           ),
                         ],
