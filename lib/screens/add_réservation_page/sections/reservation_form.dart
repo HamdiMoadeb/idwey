@@ -63,6 +63,7 @@ class _ReservationFormState extends State<ReservationForm> {
         widget.controller.text = decodedToken['first_name'];
         widget.nameController.text = decodedToken['last_name'];
         widget.emailController.text = decodedToken['email'];
+        decodedToken['phone'] != null ? widget.phoneController.text = decodedToken['phone'] : null;
       });
     }
   }
