@@ -55,7 +55,7 @@ class VerifyDisponibility extends StatefulWidget {
 class _VerifyDisponibilityState extends State<VerifyDisponibility> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
-  List<Room> rooms = [];
+  final List<Room> rooms = [];
 
   SharedPreferences? prefs;
   bool disponible = false;
@@ -981,6 +981,8 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
           .then((result) async {
         setState(() {
           if (widget.typeHost == "Par Chalet") {
+            rooms.clear();
+
             for (int i = 0; i < result.length; i++) {
               rooms.add(Room.fromJson(result[i]));
             }

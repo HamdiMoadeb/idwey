@@ -63,6 +63,7 @@ class _ReservationFormState extends State<ReservationForm> {
         widget.controller.text = decodedToken['first_name'];
         widget.nameController.text = decodedToken['last_name'];
         widget.emailController.text = decodedToken['email'];
+        decodedToken['phone'] != null ? widget.phoneController.text = decodedToken['phone'] : null;
       });
     }
   }
@@ -234,13 +235,29 @@ class _CustomInputState extends State<CustomInput> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.label,
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: materialPrimary,
-                fontSize: 14.sp),
-          ),
+          widget.showRequired == true
+              ? Row(
+                  children: [
+                    Text(
+                      widget.label,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: materialPrimary,
+                          fontSize: 14.sp),
+                    ),
+                    Text(
+                      "*",
+                      style: TextStyle(color: primaryOrange, fontSize: 14.sp),
+                    ),
+                  ],
+                )
+              : Text(
+                  widget.label,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: materialPrimary,
+                      fontSize: 14.sp),
+                ),
           SizedBox(
             height: 8.h,
           ),
@@ -302,7 +319,14 @@ class CountryInputfield extends StatefulWidget {
 }
 
 class _CountryInputfieldState extends State<CountryInputfield> {
-  String countryName = "";
+  String countryName = "Tunisia";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    widget.controller.text = countryName;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -311,12 +335,22 @@ class _CountryInputfieldState extends State<CountryInputfield> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Pays",
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: materialPrimary,
-                fontSize: 14.sp),
+          Row(
+            children: [
+              Text(
+                "Pays",
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: materialPrimary,
+                    fontSize: 14.sp),
+              ),
+              widget.showRequired == true
+                  ? Text(
+                      "*",
+                      style: TextStyle(color: primaryOrange, fontSize: 14.sp),
+                    )
+                  : Container(),
+            ],
           ),
           SizedBox(
             height: 8.h,
