@@ -855,30 +855,36 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       borderRadius: BorderRadius.circular(5.r),
                                     ),
                                   ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            AddReservationPage(
-                                          typeReservation: TypeReservation.host,
-                                          hostName: widget.title,
-                                          dateDebut: start,
-                                          dateFin: end,
-                                          adultes: adultsCount.toString(),
-                                          total: roomsPriceTotal.toString(),
-                                          nuits: nb_nuites.toString(),
-                                          id: widget.id.toString(),
-                                          address: widget.address,
-                                          rooms: selectedList,
-                                          selectedRooms: selectedRooms,
-                                          currencyValue: widget.currencyValue,
-                                          currencyName: widget.currencyName,
-                                          currency: widget.currency,
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                  onPressed: selectedRooms.isEmpty
+                                      ? null
+                                      : () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AddReservationPage(
+                                                typeReservation:
+                                                    TypeReservation.host,
+                                                hostName: widget.title,
+                                                dateDebut: start,
+                                                dateFin: end,
+                                                adultes: adultsCount.toString(),
+                                                total:
+                                                    roomsPriceTotal.toString(),
+                                                nuits: nb_nuites.toString(),
+                                                id: widget.id.toString(),
+                                                address: widget.address,
+                                                rooms: selectedList,
+                                                selectedRooms: selectedRooms,
+                                                currencyValue:
+                                                    widget.currencyValue,
+                                                currencyName:
+                                                    widget.currencyName,
+                                                currency: widget.currency,
+                                              ),
+                                            ),
+                                          );
+                                        },
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 8.h, horizontal: 16.w),
