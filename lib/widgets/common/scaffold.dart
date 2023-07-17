@@ -204,9 +204,16 @@ class _CommonScaffoldState extends State<CommonScaffold> {
                           TextButton(
                             onPressed: () async {
                               SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
+                              await SharedPreferences.getInstance();
                               prefs.remove('token');
-                              getConnectedUser();
+                              dynamic returnValue = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomePage(),
+                                  ));
+                              if (returnValue != null) {
+                                getConnectedUser();
+                              }
                             },
                             style: ButtonStyle(
                                 tapTargetSize:

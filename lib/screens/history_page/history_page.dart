@@ -18,6 +18,7 @@ import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:string_translate/string_translate.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({
@@ -263,7 +264,13 @@ class _HistoryPageState extends State<HistoryPage> {
     setState(() {
       loading = true;
     });
-    AuthCalls.getAllReservations().then((value) {
+
+    prefs = await SharedPreferences.getInstance();
+    String? token = prefs!.getString('token');
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(token!);
+    String customer_id = decodedToken['id'].toString();
+
+    AuthCalls.getAllReservations(customer_id).then((value) {
       setState(() {
         loading = false;
       });

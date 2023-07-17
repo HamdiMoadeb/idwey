@@ -45,10 +45,10 @@ class AuthCalls {
     return response;
   }
 
-  static Future<List> getAllReservations() async {
+  static Future<List> getAllReservations(String customer_id) async {
     List<Reservation> listReservations = [];
     List result = [];
-    var url = Uri.parse('${Urls.URL_API}user/booking-history/2519');
+    var url = Uri.parse('${Urls.URL_API}user/booking-history/$customer_id');
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
