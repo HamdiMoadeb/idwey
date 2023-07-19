@@ -29,6 +29,7 @@ class VerifyDisponibility extends StatefulWidget {
   final String? startDate;
   final String? sale_price;
   final String? per_person;
+  final int? min_nuits;
   final String? price;
   const VerifyDisponibility(
       {Key? key,
@@ -45,7 +46,8 @@ class VerifyDisponibility extends StatefulWidget {
       required this.address,
       required this.typeReservation,
       this.startDate,
-      this.activityDuration})
+      this.activityDuration,
+      this.min_nuits})
       : super(key: key);
 
   @override
@@ -60,7 +62,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
   SharedPreferences? prefs;
   bool disponible = false;
   String totalPrice = '';
-  String nb_nuites = "";
+  String nb_nuites = "1";
   Map currencies = {
     'TND': {'value': 1, 'symbol': 'DT'},
     'EUR': {'value': 2, 'symbol': '€'},
@@ -450,6 +452,22 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                     SnackBar(
                                       content: Text(
                                         'nombre de personnes doit être supérieur à 0',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16.sp,
+                                        ),
+                                      ),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                  return;
+                                } else if (int.tryParse(nb_nuites.toString())! <
+                                    widget.min_nuits!) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'nombre de nuitées doit être supérieur à ${widget.min_nuits}',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,
