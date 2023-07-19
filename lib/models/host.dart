@@ -83,6 +83,7 @@ class HostDetail {
   List<String>? convenience;
   String? typeHost;
   List<Room>? rooms;
+  int? minNuits;
 
   HostDetail(
     this.id,
@@ -106,6 +107,7 @@ class HostDetail {
     this.convenience,
     this.typeHost,
     this.rooms,
+    this.minNuits,
   );
 
   factory HostDetail.fromJson(Map<String?, dynamic> data) {
@@ -154,6 +156,7 @@ class HostDetail {
       data["rooms"] == null
           ? []
           : List<Room>.from(data["rooms"]!.map((x) => Room.fromJson(x))),
+      row['min_nuits'] == null ? 0 : int.parse(row['min_nuits'].toString()),
     );
   }
 }

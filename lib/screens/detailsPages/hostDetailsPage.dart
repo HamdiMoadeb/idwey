@@ -42,7 +42,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
   bool showFAB = false;
   bool isLiked = false;
   HostDetail hostDetail = HostDetail(0, '', '', '', '', [], 0, '', '', 0, '',
-      '', '', [], '', '', 0, 0, [], '', []);
+      '', '', [], '', '', 0, 0, [], '', [], 0);
 
   String selectedCurrency = '';
 
@@ -410,6 +410,7 @@ class _HostDetailsPageState extends State<HostDetailsPage>
                     id: hostDetail.id.toString(),
                     title: hostDetail.title,
                     address: hostDetail.address,
+                    min_nuits: hostDetail.minNuits,
                   )));
     } else {
       prefs!.setString('hostID', hostDetail.id.toString());
