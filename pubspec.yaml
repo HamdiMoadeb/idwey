@@ -39,6 +39,11 @@ dependencies:
   json_annotation: ^4.8.1
   auto_route: ^7.7.1
   firebase_core: ^2.15.0
+  cached_network_image: ^3.2.3
+  heroicons: ^0.8.0
+  dio: ^5.3.1
+  dartz: ^0.10.1
+  intl: ^0.18.1
 
 dev_dependencies:
 
@@ -73,24 +78,15 @@ flutter:
   fonts:
     - family: Poppins
       fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-        - asset: assets/fonts/Poppins-Black.ttf
-        - asset: assets/fonts/Poppins-BlackItalic.ttf
-        - asset: assets/fonts/Poppins-Bold.ttf
-        - asset: assets/fonts/Poppins-ExtraBold.ttf
-        - asset: assets/fonts/Poppins-ExtraBoldItalic.ttf
-        - asset: assets/fonts/Poppins-ExtraLight.ttf
-        - asset: assets/fonts/Poppins-ExtraLightItalic.ttf
-        - asset: assets/fonts/Poppins-Italic.ttf
-        - asset: assets/fonts/Poppins-Light.ttf
-        - asset: assets/fonts/Poppins-LightItalic.ttf
-        - asset: assets/fonts/Poppins-Medium.ttf
-        - asset: assets/fonts/Poppins-MediumItalic.ttf
-        - asset: assets/fonts/Poppins-SemiBold.ttf
-        - asset: assets/fonts/Poppins-SemiBoldItalic.ttf
-        - asset: assets/fonts/Poppins-Thin.ttf
-        - asset: assets/fonts/Poppins-ThinItalic.ttf
-        - asset: assets/fonts/Poppins-Italic.ttf
+        - asset: assets/fonts/inter/static/inter-Black.ttf
+        - asset: assets/fonts/inter/static/inter-Bold.ttf
+        - asset: assets/fonts/inter/static/inter-ExtraBold.ttf
+        - asset: assets/fonts/inter/static/inter-ExtraLight.ttf
+        - asset: assets/fonts/inter/static/inter-Light.ttf
+        - asset: assets/fonts/inter/static/inter-Medium.ttf
+        - asset: assets/fonts/inter/static/inter-SemiBold.ttf
+        - asset: assets/fonts/inter/static/inter-Thin.ttf
+
           style: italic
   #   - family: Trajan Pro
   #     fonts:

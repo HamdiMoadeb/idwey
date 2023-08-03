@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
     controller.forward();
     Future.delayed(
       const Duration(seconds: 3),
-      () => AutoRouter.of(context).replace(const HomeRoute()),
+      () => AutoRouter.of(context).replace(const DashboardRoute()),
     );
   }
 
