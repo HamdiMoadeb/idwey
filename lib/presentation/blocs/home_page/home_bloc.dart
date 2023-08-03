@@ -20,7 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   _getUserRole(GetUserRole event, Emitter<HomeState> emit) {
-    print("GetUserRole");
+
   }
 
   setAtTheEndOfThePage() {
