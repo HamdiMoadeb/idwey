@@ -10,4 +10,8 @@ class Assets {
   static const String events = "assets/Events.svg";
   static const String activities = "assets/Workshops and activities.svg";
   static const String experiences = "assets/Circuit and experiences.svg";
+  static const String heartIcon = "assets/heart-icon-disabled.svg";
+  static const String heartIconFilled = "assets/heart-icon.svg";
+  static const String search = "assets/Search.svg";
+  static const String filter = "assets/Filter.svg";
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
@@ -101,6 +102,81 @@ class _FilterListState extends State<FilterList> {
             // Add more filters here
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SearchBox extends StatelessWidget {
+  const SearchBox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            height: 60,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey[300]!),
+              // Light grey background color
+              borderRadius:
+                  BorderRadius.circular(50), // 50 radius for rounded corners
+            ),
+            padding: const EdgeInsets.only(
+                left: 16, right: 16, bottom: 8), // Adjust padding as needed
+            child: SizedBox(
+              height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SvgPicture.asset(
+                    Assets.search,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const SizedBox(
+                    width: 230,
+                    height: 60,
+                    child: Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          hintMaxLines: 1,
+                          helperText: "Lieu • Date • Invité ",
+                          hintText: 'Recherchez votre Idwey',
+                          hintStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black), // Placeholder text
+                          border: InputBorder.none, // Remove default underline
+
+                          // Search icon
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            height: 60,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey[300]!),
+              // Light grey background color
+              borderRadius:
+                  BorderRadius.circular(50), // 50 radius for rounded corners
+            ),
+
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+            ), // Adjust padding as needed
+            child: SvgPicture.asset(Assets.filter),
+          ),
+        ],
       ),
     );
   }

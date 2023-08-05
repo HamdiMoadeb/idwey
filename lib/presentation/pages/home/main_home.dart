@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:idwey/components/app_bar/app_bar.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
@@ -24,6 +25,13 @@ class _MainHomeScreenState extends State<MainHomeScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    _tabController.addListener(() {
+      setState(() {
+        selectedIndex = (_tabController.index).round();
+
+        //_tabController.animation.value returns double
+      });
+    });
   }
 
   @override
@@ -38,15 +46,17 @@ class _MainHomeScreenState extends State<MainHomeScreen>
       builder: (context, state) {
         return Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(200),
+              preferredSize: const Size.fromHeight(180),
               child: AppBar(
                 elevation: 1.0,
                 backgroundColor: Colors.white,
-                leading: const AutoLeadingButton(),
+                automaticallyImplyLeading: false,
+                //title: SearchBox(),
+                flexibleSpace: const SearchBox(),
                 bottom: TabBar(
                   isScrollable: true,
-                  padding: EdgeInsets.only(bottom: 10),
-                  indicatorPadding: EdgeInsets.zero,
+                  padding: const EdgeInsets.only(bottom: 10, left: 4),
+                  indicatorPadding: const EdgeInsets.symmetric(horizontal: 16),
                   // Reduce padding between tabs
                   controller: _tabController,
                   labelColor: Colors.grey,
@@ -94,6 +104,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                       onTap: (bool) {
                         setState(() {
                           selectedIndex = 3;
+                          _tabController.index = 3;
                         });
                       },
                       isSelected: selectedIndex == 3,

@@ -8,7 +8,7 @@ import 'package:idwey/components/chips/chip.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/theme/app_colors.dart';
 
-class CustomCard extends StatelessWidget {
+class CustomCard extends StatefulWidget {
   final String? title;
   final String? adress;
   final String? url;
@@ -22,10 +22,11 @@ class CustomCard extends StatelessWidget {
   final CardType? cardType;
   final String? date;
   final bool? isExpired;
+  bool? isFavorite;
+  final Function(bool)? onFavoriteTap;
 
-  const CustomCard.host(
-      {Key? key,
-      this.currencyValue,
+  CustomCard.host(
+      {this.currencyValue,
       this.currency,
       this.url,
       this.fromHomepage,
@@ -35,10 +36,12 @@ class CustomCard extends StatelessWidget {
       this.nbPerson,
       this.term,
       this.type,
-      this.date})
+      this.date,
+      this.onFavoriteTap,
+      this.isFavorite = false})
       : cardType = CardType.host,
         isExpired = null;
-  const CustomCard.event(
+  CustomCard.event(
       {Key? key,
       this.currencyValue,
       this.currency,
@@ -51,10 +54,17 @@ class CustomCard extends StatelessWidget {
       this.term,
       this.type,
       this.date,
-      this.isExpired})
+      this.isExpired,
+      this.onFavoriteTap,
+      this.isFavorite = false})
       : cardType = CardType.event,
         super(key: key);
 
+  @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -76,7 +86,7 @@ class CustomCard extends StatelessWidget {
                     bottomRight: Radius.circular(20),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl: url ??
+                    imageUrl: widget.url ??
                         "https://plus.unsplash.com/premium_photo-1680871320511-8be2085ff281?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=659&q=80",
                     fit: BoxFit.cover,
                     progressIndicatorBuilder:
@@ -96,7 +106,9 @@ class CustomCard extends StatelessWidget {
                 left: 10,
                 top: 20,
                 child: CustomChip(
-                  label: cardType == CardType.host ? 'En Vedette' : type ?? "",
+                  label: widget.cardType == CardType.host
+                      ? 'En Vedette'
+                      : widget.type ?? "",
                   onSelected: (bool) {},
                 ),
               ),
@@ -112,31 +124,44 @@ class CustomCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        title ?? "host.title!",
+                        widget.title ?? "host.title!",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
-                    const HeroIcon(HeroIcons.heart),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          widget.isFavorite = !widget.isFavorite!;
+                        });
+
+                        //widget.onFavoriteTap?.call(widget.isFavorite!);
+                      },
+                      child: SvgPicture.asset(
+                        widget.isFavorite == true
+                            ? Assets.heartIconFilled
+                            : Assets.heartIcon,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
-                adress == "" || adress == null
-                    ? SizedBox()
+                widget.adress == "" || widget.adress == null
+                    ? const SizedBox()
                     : Text(
-                        adress ?? "",
+                        widget.adress ?? "",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
-                date == "" || date == null
+                widget.date == "" || widget.date == null
                     ? SizedBox()
                     : Text(
-                        date ?? "",
+                        widget.date ?? "",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                 SizedBox(
@@ -145,27 +170,34 @@ class CustomCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "${double.parse(price!).toInt().toString()} DT",
+                      "${double.parse(widget.price!).toInt().toString()} DT",
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     Row(
                       children: [
-                        cardType == CardType.host
+                        widget.cardType == CardType.host
                             ? Text(
-                                type == "Par Personne" ? "/ personne" : "/nuit",
+                                widget.type == "Par Personne"
+                                    ? "/ personne"
+                                    : "/nuit",
                                 style: Theme.of(context).textTheme.bodySmall,
                               )
                             : Text(
                                 "/ personne",
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
-                          nbPerson ?? "",
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
+                        widget.nbPerson != null || widget.nbPerson != ""
+                            ? Text(
+                                widget.nbPerson ?? "",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(fontWeight: FontWeight.w500),
+                              )
+                            : const SizedBox.shrink(),
                       ],
                     ),
                   ],
@@ -175,7 +207,7 @@ class CustomCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: isExpired != null && isExpired == true
+            child: widget.isExpired != null && widget.isExpired == true
                 ? CustomButton.secondaryColor(
                     onPressed: () {},
                     child: Row(

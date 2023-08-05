@@ -7,8 +7,20 @@ import 'package:idwey/constants/assets.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 @RoutePage()
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,28 +36,51 @@ class DashboardScreen extends StatelessWidget {
         return BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           selectedFontSize: 12,
-          elevation: 0,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.black,
+          selectedLabelStyle:
+              const TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
+          elevation: 10,
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           items: [
             BottomNavigationBarItem(
-                label: 'Inspiration',
-                icon: SvgPicture.asset(
-                  Assets.inspiration,
-                  height: 20,
-                  width: 20,
-                  color: tabsRouter.activeIndex == 0
-                      ? primaryOrange
-                      : Theme.of(context).colorScheme.onSurface,
-                )),
+              label: 'Inspiration',
+              icon: tabsRouter.activeIndex == 0
+                  ? Center(
+                      child: ShaderMask(
+                      blendMode: BlendMode.srcATop,
+                      shaderCallback: (Rect bounds) {
+                        return kLinearGradient.createShader(bounds);
+                      },
+                      child: SvgPicture.asset(
+                        Assets.inspiration,
+                      ),
+                    ))
+                  : SvgPicture.asset(
+                      Assets.inspiration,
+                      height: 20,
+                      width: 20,
+                    ),
+            ),
             BottomNavigationBarItem(
                 label: 'Assurance',
-                icon: SvgPicture.asset(
-                  Assets.assurance,
-                  color: tabsRouter.activeIndex == 1
-                      ? primaryOrange
-                      : Theme.of(context).colorScheme.onSurface,
-                )),
+                icon: tabsRouter.activeIndex == 1
+                    ? Center(
+                        child: ShaderMask(
+                        blendMode: BlendMode.srcATop,
+                        shaderCallback: (Rect bounds) {
+                          return kLinearGradient.createShader(bounds);
+                        },
+                        child: SvgPicture.asset(
+                          Assets.assurance,
+                        ),
+                      ))
+                    : SvgPicture.asset(
+                        Assets.assurance,
+                        height: 20,
+                        width: 20,
+                      )),
             BottomNavigationBarItem(
                 label: '',
                 icon: Container(
@@ -53,8 +88,15 @@ class DashboardScreen extends StatelessWidget {
                   width: 65,
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                      gradient:
-                          kLinearGradient, // Use the same gradient colors as the background
+                      gradient: tabsRouter.activeIndex == 2
+                          ? kLinearGradient
+                          : LinearGradient(
+                              colors: [
+                                Colors.grey[300]!,
+                                Colors.grey[300]!,
+                                Colors.grey[300]!,
+                              ],
+                            ), // Use the same gradient colors as the background
 
                       borderRadius: BorderRadius.circular(50)),
                   child: Container(
@@ -73,24 +115,40 @@ class DashboardScreen extends StatelessWidget {
                 )),
             BottomNavigationBarItem(
                 label: 'Produits',
-                icon: SvgPicture.asset(
-                  Assets.products,
-                  height: 20,
-                  width: 20,
-                  color: tabsRouter.activeIndex == 3
-                      ? primaryOrange
-                      : Theme.of(context).colorScheme.onSurface,
-                )),
+                icon: tabsRouter.activeIndex == 3
+                    ? Center(
+                        child: ShaderMask(
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (Rect bounds) {
+                          return kLinearGradient.createShader(bounds);
+                        },
+                        child: SvgPicture.asset(
+                          Assets.products,
+                        ),
+                      ))
+                    : SvgPicture.asset(
+                        Assets.products,
+                        height: 20,
+                        width: 20,
+                      )),
             BottomNavigationBarItem(
-                label: 'se connecter',
-                icon: SvgPicture.asset(
-                  Assets.profile,
-                  height: 20,
-                  width: 20,
-                  color: tabsRouter.activeIndex == 4
-                      ? primaryOrange
-                      : Theme.of(context).colorScheme.onSurface,
-                )),
+                label: 'Se connecter',
+                icon: tabsRouter.activeIndex == 4
+                    ? Center(
+                        child: ShaderMask(
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (Rect bounds) {
+                          return kLinearGradient.createShader(bounds);
+                        },
+                        child: SvgPicture.asset(
+                          Assets.profile,
+                        ),
+                      ))
+                    : SvgPicture.asset(
+                        Assets.profile,
+                        height: 20,
+                        width: 20,
+                      )),
           ],
         );
       },

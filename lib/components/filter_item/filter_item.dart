@@ -22,72 +22,75 @@ class FilterItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => onTap(!isSelected),
-      child: Container(
-        // margin: const EdgeInsets.all(4),
-        width: 107,
-        height: 85,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          gradient: isSelected
-              ? kLinearGradient
-              : LinearGradient(colors: [
-                  Colors.grey[300]!,
-                  Colors.grey[300]!,
-                  Colors.grey[300]!,
-                ]),
-        ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Container(
-          margin: EdgeInsets.all(isSelected ? 2 : 1),
-          width: 107,
+          // margin: const EdgeInsets.all(4),
+          width: 120,
           height: 85,
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
           decoration: BoxDecoration(
-            color: Colors.white,
-            // Set background color to white for a square container
-            borderRadius: BorderRadius.circular(6),
+            borderRadius: BorderRadius.circular(8),
+            gradient: isSelected
+                ? kLinearGradient
+                : LinearGradient(colors: [
+                    Colors.grey[300]!,
+                    Colors.grey[300]!,
+                    Colors.grey[300]!,
+                  ]),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              isSelected
-                  ? Center(
-                      child: ShaderMask(
-                        blendMode: BlendMode.srcATop,
+          child: Container(
+            margin: EdgeInsets.all(isSelected ? 2 : 1),
+            width: 120,
+            height: 85,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              // Set background color to white for a square container
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                isSelected
+                    ? Center(
+                        child: ShaderMask(
+                          blendMode: BlendMode.srcATop,
+                          shaderCallback: (Rect bounds) {
+                            return kLinearGradient.createShader(bounds);
+                          },
+                          child: SvgPicture.asset(
+                            icon,
+                          ),
+                        ),
+                      )
+                    : SvgPicture.asset(
+                        icon,
+                        color: Colors.grey[300],
+                      ),
+                const SizedBox(width: 8),
+                isSelected
+                    ? ShaderMask(
                         shaderCallback: (Rect bounds) {
                           return kLinearGradient.createShader(bounds);
                         },
-                        child: SvgPicture.asset(
-                          icon,
-                        ),
-                      ),
-                    )
-                  : SvgPicture.asset(
-                      icon,
-                      color: Colors.grey[300],
-                    ),
-              const SizedBox(width: 8),
-              isSelected
-                  ? ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return kLinearGradient.createShader(bounds);
-                      },
-                      child: Text(label,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey[300],
-                                  fontSize: 14)),
-                    )
-                  : Text(label,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey[300],
-                          fontSize: 14)),
-            ],
+                        child: Text(label,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey[300],
+                                    fontSize: 14)),
+                      )
+                    : Text(label,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey[300],
+                            fontSize: 14)),
+              ],
+            ),
           ),
         ),
       ),
