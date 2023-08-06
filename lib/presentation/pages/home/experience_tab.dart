@@ -36,8 +36,8 @@ class _ExperienceScreenState extends State<ExperienceScreen>
 
   void _onScroll() {
     if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
+    final maxScroll = _scrollController.position.maxScrollExtent.h;
+    final currentScroll = _scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
       context.read<HomeBloc>().add(const GetListExperiences(true));
     }
@@ -74,7 +74,7 @@ class _ExperienceScreenState extends State<ExperienceScreen>
                         )
                       : const SizedBox.shrink(),
               body: ListView.separated(
-                padding: EdgeInsets.only(top: 30.h, left: 12.w, right: 12.w),
+                padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
                 shrinkWrap: true,
                 controller: _scrollController,
                 itemBuilder: (context, index) => CustomCard.activity(

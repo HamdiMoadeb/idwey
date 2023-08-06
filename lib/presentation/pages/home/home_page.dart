@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen>
                     )
                   : const SizedBox.shrink(),
               body: ListView.separated(
-                padding: EdgeInsets.only(top: 30.h, left: 12.w, right: 12.w),
+                padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
                 shrinkWrap: true,
                 controller: _scrollController,
                 itemBuilder: (context, index) => CustomCard.host(

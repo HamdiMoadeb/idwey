@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/app_bar/app_bar.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
@@ -49,7 +50,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
       builder: (context, state) {
         return Scaffold(
             appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(180),
+              preferredSize: Size.fromHeight(170.h),
               child: AppBar(
                 elevation: 1.0,
                 backgroundColor: Colors.white,
@@ -58,8 +59,8 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                 flexibleSpace: const SearchBox(),
                 bottom: TabBar(
                   isScrollable: true,
-                  padding: const EdgeInsets.only(bottom: 10, left: 4),
-                  indicatorPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.only(bottom: 16.h, left: 4.w),
+                  indicatorPadding: EdgeInsets.symmetric(horizontal: 16.w),
                   // Reduce padding between tabs
                   controller: _tabController,
                   labelColor: Colors.grey,
