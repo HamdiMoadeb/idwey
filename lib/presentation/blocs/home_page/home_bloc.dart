@@ -81,8 +81,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         }
       });
-      print("state.listHosts!.length");
-      print(state.listHosts!.length);
     } catch (e) {
       emit(state.copyWith(
         status: StateStatus.error,
@@ -141,8 +139,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         }
       });
-      print("state.listHosts!.length");
-      print(state.listHosts!.length);
     } catch (e) {
       emit(state.copyWith(
         statusEvent: StateStatus.error,
@@ -201,8 +197,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         }
       });
-      print("state.listHosts!.length");
-      print(state.listExperiences!.length);
     } catch (e) {
       emit(state.copyWith(
         statusExperiences: StateStatus.error,
@@ -260,8 +254,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         }
       });
-      print("state.listHosts!.length");
-      print(state.listActivities!.length);
     } catch (e) {
       emit(state.copyWith(
         statusActivities: StateStatus.error,
