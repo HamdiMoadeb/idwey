@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/buttons/button.dart';
@@ -27,7 +28,8 @@ class CustomCard extends StatefulWidget {
   final Function(bool)? onFavoriteTap;
 
   CustomCard.host(
-      {this.currencyValue,
+      {Key? key,
+      this.currencyValue,
       this.currency,
       this.url,
       this.fromHomepage,
@@ -42,7 +44,8 @@ class CustomCard extends StatefulWidget {
       this.isFavorite = false})
       : cardType = CardType.host,
         duration = null,
-        isExpired = null;
+        isExpired = null,
+        super(key: key);
   CustomCard.event(
       {Key? key,
       this.currencyValue,
@@ -118,14 +121,14 @@ class _CustomCardState extends State<CustomCard> {
           Stack(
             children: [
               SizedBox(
-                height: 340,
+                height: 300.h,
                 width: double.infinity,
                 child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.r),
+                    topRight: Radius.circular(20.r),
+                    bottomLeft: Radius.circular(20.r),
+                    bottomRight: Radius.circular(20.r),
                   ),
                   child: CachedNetworkImage(
                     imageUrl: widget.url ??
@@ -134,8 +137,8 @@ class _CustomCardState extends State<CustomCard> {
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
                       child: SizedBox(
-                        width: 50,
-                        height: 50,
+                        width: 50.w,
+                        height: 50.h,
                         child: CircularProgressIndicator(
                             value: downloadProgress.progress),
                       ),
@@ -146,8 +149,8 @@ class _CustomCardState extends State<CustomCard> {
               ),
               widget.cardType != null
                   ? Positioned(
-                      left: 10,
-                      top: 20,
+                      left: 10.w,
+                      top: 20.h,
                       child: CustomChip(
                         label: widget.cardType == CardType.host
                             ? 'En Vedette'
@@ -190,13 +193,13 @@ class _CustomCardState extends State<CustomCard> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 4,
+                SizedBox(
+                  height: 4.h,
                 ),
                 widget.adress == "" || widget.adress == null
                     ? const SizedBox()
                     : Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
+                        padding: EdgeInsets.only(bottom: 4.h),
                         child: Text(
                           widget.adress ?? "",
                           style: Theme.of(context).textTheme.bodySmall,
@@ -205,7 +208,7 @@ class _CustomCardState extends State<CustomCard> {
                 widget.date == "" || widget.date == null
                     ? SizedBox()
                     : Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
+                        padding: EdgeInsets.only(bottom: 4.h),
                         child: Text(
                           widget.date ?? "",
                           style: Theme.of(context).textTheme.bodySmall,
@@ -214,7 +217,7 @@ class _CustomCardState extends State<CustomCard> {
                 widget.duration == "" || widget.duration == null
                     ? SizedBox()
                     : Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
+                        padding: EdgeInsets.only(bottom: 4.h),
                         child: Text(
                           "Durée ${widget.duration} H",
                           style: Theme.of(context).textTheme.bodySmall,
@@ -259,7 +262,7 @@ class _CustomCardState extends State<CustomCard> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: widget.isExpired != null && widget.isExpired == true
                 ? CustomButton.secondaryGrey(
                     onPressed: () {},
@@ -267,7 +270,8 @@ class _CustomCardState extends State<CustomCard> {
                       width: double.infinity,
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 8.w, vertical: 8.h),
                           child: Text('Evènement Expiré ',
                               style: Theme.of(context)
                                   .textTheme
@@ -285,7 +289,8 @@ class _CustomCardState extends State<CustomCard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 8.w, vertical: 8.h),
                           child: Text('Réserver Maintenant = ',
                               style: Theme.of(context)
                                   .textTheme
@@ -296,7 +301,7 @@ class _CustomCardState extends State<CustomCard> {
                         ),
                         SvgPicture.asset(
                           Assets.tree,
-                          height: 20,
+                          height: 20.h,
                         ),
                       ],
                     ),

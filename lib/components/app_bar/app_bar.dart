@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
@@ -113,7 +114,7 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
+      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 30.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -123,25 +124,27 @@ class SearchBox extends StatelessWidget {
               border: Border.all(color: Colors.grey[300]!),
               // Light grey background color
               borderRadius:
-                  BorderRadius.circular(50), // 50 radius for rounded corners
+                  BorderRadius.circular(50.r), // 50 radius for rounded corners
             ),
-            padding: const EdgeInsets.only(
-                left: 16, right: 16, bottom: 8), // Adjust padding as needed
+            padding: EdgeInsets.only(
+                left: 16.w,
+                right: 16.w,
+                bottom: 8.h), // Adjust padding as needed
             child: SizedBox(
-              height: 60,
+              height: 60.h,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SvgPicture.asset(
                     Assets.search,
                   ),
-                  const SizedBox(
-                    width: 10,
+                  SizedBox(
+                    width: 10.w,
                   ),
-                  const SizedBox(
-                    width: 230,
-                    height: 60,
-                    child: Expanded(
+                  SizedBox(
+                    width: 200.w,
+                    height: 60.h,
+                    child: const Expanded(
                       child: TextField(
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.zero,
@@ -163,16 +166,17 @@ class SearchBox extends StatelessWidget {
             ),
           ),
           Container(
-            height: 60,
+            height: 50.h,
+            width: 50.h,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[300]!),
               // Light grey background color
               borderRadius:
-                  BorderRadius.circular(50), // 50 radius for rounded corners
+                  BorderRadius.circular(50.r), // 50 radius for rounded corners
             ),
 
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.w,
             ), // Adjust padding as needed
             child: SvgPicture.asset(Assets.filter),
           ),

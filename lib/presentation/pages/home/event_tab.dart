@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
 
@@ -61,7 +62,8 @@ class _EventScreenState extends State<EventScreen>
               bottomNavigationBar: state.statusEvent == StateStatus.loadingMore
                   ? BottomAppBar(
                       child: Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 16.h),
                         child: LinearProgressIndicator(
                           color: Colors.grey,
                           backgroundColor: Colors.grey[300]!,
@@ -70,7 +72,7 @@ class _EventScreenState extends State<EventScreen>
                     )
                   : const SizedBox.shrink(),
               body: ListView.separated(
-                padding: const EdgeInsets.only(top: 30, left: 12, right: 12),
+                padding: EdgeInsets.only(top: 30.h, left: 12.w, right: 12.w),
                 shrinkWrap: true,
                 controller: _scrollController,
                 itemBuilder: (context, index) => CustomCard.event(
@@ -86,7 +88,7 @@ class _EventScreenState extends State<EventScreen>
                       state.listEvents?[index].startDate ?? DateTime.now()),
                 ),
                 separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: 20);
+                  return SizedBox(height: 20.h);
                 },
                 itemCount: state.listEvents!.length,
               ));

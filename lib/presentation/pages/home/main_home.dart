@@ -118,7 +118,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
             ),
             body: TabBarView(
               controller: _tabController,
-              children: [
+              children: const [
                 HomeScreen(),
                 EventScreen(),
                 ActivityScreen(),

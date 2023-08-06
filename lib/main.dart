@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/di/di_locator.dart';
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
@@ -28,14 +29,20 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => GetIt.I<HomeBloc>(),
           ),
         ],
-        child: MaterialApp.router(
-          theme: ThemeData(
-              textTheme: textTheme,
-              primarySwatch: materialPrimary,
-              splashColor: Colors.white,
-              fontFamily: 'Inter'),
-          routerConfig: appRouter.config(),
-          debugShowCheckedModeBanner: false,
-        ));
+        child: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
+              return MaterialApp.router(
+                theme: ThemeData(
+                    textTheme: textTheme,
+                    primarySwatch: materialPrimary,
+                    splashColor: Colors.white,
+                    fontFamily: 'Inter'),
+                routerConfig: appRouter.config(),
+                debugShowCheckedModeBanner: false,
+              );
+            }));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idwey/theme/app_colors.dart';
 
@@ -23,13 +24,15 @@ class FilterItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(!isSelected),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
+        padding: EdgeInsets.symmetric(
+          horizontal: 4.w,
+        ),
         child: Container(
           // margin: const EdgeInsets.all(4),
-          width: 120,
-          height: 85,
+          width: 120.w,
+          height: 75.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
             gradient: isSelected
                 ? kLinearGradient
                 : LinearGradient(colors: [
@@ -40,13 +43,13 @@ class FilterItem extends StatelessWidget {
           ),
           child: Container(
             margin: EdgeInsets.all(isSelected ? 2 : 1),
-            width: 120,
-            height: 85,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            width: 120.w,
+            height: 85.h,
+            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.h),
             decoration: BoxDecoration(
               color: Colors.white,
               // Set background color to white for a square container
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(6.r),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,7 +70,7 @@ class FilterItem extends StatelessWidget {
                         icon,
                         color: Colors.grey[300],
                       ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 isSelected
                     ? ShaderMask(
                         shaderCallback: (Rect bounds) {
