@@ -6,20 +6,34 @@ class HomeState with _$HomeState {
     String? title,
     StateStatus? status,
     StateStatus? statusEvent,
+    StateStatus? statusActivities,
+    StateStatus? statusExperiences,
     List<Host>? listHosts,
     List<Event>? listEvents,
+    List<Activity>? listActivities,
+    List<Experience>? listExperiences,
     bool? isFetching,
     bool? atTheEndOfThePage,
-    int? page,
+    int? pageHosts,
+    int? pageActivities,
+    int? pageExperiences,
+    int? pageEvents,
   }) = _HomeState;
 
   factory HomeState.initial() => const HomeState(
       title: "Home",
       status: StateStatus.init,
       statusEvent: StateStatus.init,
+      statusActivities: StateStatus.init,
+      statusExperiences: StateStatus.init,
       listHosts: [],
       listEvents: [],
+      listActivities: [],
+      listExperiences: [],
       isFetching: false,
       atTheEndOfThePage: false,
-      page: 0);
+      pageActivities: 0,
+      pageEvents: 0,
+      pageExperiences: 0,
+      pageHosts: 0);
 }

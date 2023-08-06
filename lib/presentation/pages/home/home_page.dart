@@ -62,12 +62,25 @@ class _HomeScreenState extends State<HomeScreen>
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state.status == StateStatus.error) {
+        } else if (state.status == StateStatus.error &&
+            state.atTheEndOfThePage == false) {
           return const Center(child: Text("Pas des hébergements"));
-        } else if (state.status == StateStatus.success &&
-            state.listHosts!.isNotEmpty) {
+        } else if (state.status == StateStatus.success ||
+            state.status == StateStatus.loadingMore &&
+                state.listHosts!.isNotEmpty) {
           return Scaffold(
               backgroundColor: secondaryGrey,
+              bottomNavigationBar: state.status == StateStatus.loadingMore
+                  ? BottomAppBar(
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: LinearProgressIndicator(
+                          color: Colors.grey,
+                          backgroundColor: Colors.grey[300]!,
+                        ),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
               body: ListView.separated(
                 padding: const EdgeInsets.only(top: 30, left: 12, right: 12),
                 shrinkWrap: true,

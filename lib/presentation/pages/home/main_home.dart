@@ -6,7 +6,10 @@ import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/presentation/pages/home/event_tab.dart';
+import 'package:idwey/presentation/pages/home/experience_tab.dart';
 import 'package:idwey/presentation/pages/home/home_page.dart';
+
+import 'activity_tab.dart';
 
 @RoutePage()
 class MainHomeScreen extends StatefulWidget {
@@ -118,8 +121,8 @@ class _MainHomeScreenState extends State<MainHomeScreen>
               children: [
                 HomeScreen(),
                 EventScreen(),
-                Container(),
-                Container(),
+                ActivityScreen(),
+                ExperienceScreen(),
               ],
             ));
       },

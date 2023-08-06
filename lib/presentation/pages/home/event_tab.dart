@@ -51,30 +51,45 @@ class _EventScreenState extends State<EventScreen>
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state.statusEvent == StateStatus.error) {
+        } else if (state.statusEvent == StateStatus.error &&
+            state.atTheEndOfThePage == false) {
           return const Center(child: Text("Pas des hébergements"));
-        } else if (state.statusEvent == StateStatus.success &&
-            state.listEvents!.isNotEmpty) {
+        } else if (state.statusEvent == StateStatus.success ||
+            state.statusEvent == StateStatus.loadingMore &&
+                state.listEvents!.isNotEmpty) {
           return Scaffold(
+              bottomNavigationBar: state.statusEvent == StateStatus.loadingMore
+                  ? BottomAppBar(
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: LinearProgressIndicator(
+                          color: Colors.grey,
+                          backgroundColor: Colors.grey[300]!,
+                        ),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
               body: ListView.separated(
-            padding: EdgeInsets.only(top: 30),
-            shrinkWrap: true,
-            controller: _scrollController,
-            itemBuilder: (context, index) => CustomCard.event(
-              type: state.listEvents?[index].slug,
-              title: state.listEvents?[index].title,
-              adress: state.listEvents?[index].address,
-              price: state.listEvents?[index].prix,
-              term: state.listEvents?[index].termName,
-              url: state.listEvents?[index].imageUrl,
-              date: DateFormat('dd-MM-yyyy')
-                  .format(state.listEvents?[index].startDate ?? DateTime.now()),
-            ),
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(height: 20);
-            },
-            itemCount: state.listEvents!.length,
-          ));
+                padding: const EdgeInsets.only(top: 30, left: 12, right: 12),
+                shrinkWrap: true,
+                controller: _scrollController,
+                itemBuilder: (context, index) => CustomCard.event(
+                  type: state.listEvents?[index].slug,
+                  title: state.listEvents?[index].title,
+                  adress: state.listEvents?[index].address,
+                  price: state.listEvents?[index].prix,
+                  term: state.listEvents?[index].termName,
+                  url: state.listEvents?[index].imageUrl,
+                  isExpired:
+                      state.listEvents?[index].isExpired == 1 ? true : false,
+                  date: DateFormat('dd-MM-yyyy').format(
+                      state.listEvents?[index].startDate ?? DateTime.now()),
+                ),
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(height: 20);
+                },
+                itemCount: state.listEvents!.length,
+              ));
         } else {
           return const SizedBox.shrink();
         }

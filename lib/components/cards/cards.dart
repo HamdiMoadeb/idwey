@@ -18,6 +18,7 @@ class CustomCard extends StatefulWidget {
   final bool? fromHomepage;
   final int? currencyValue;
   final String? currency;
+  final String? duration;
   final String? term;
   final CardType? cardType;
   final String? date;
@@ -40,6 +41,7 @@ class CustomCard extends StatefulWidget {
       this.onFavoriteTap,
       this.isFavorite = false})
       : cardType = CardType.host,
+        duration = null,
         isExpired = null;
   CustomCard.event(
       {Key? key,
@@ -58,6 +60,46 @@ class CustomCard extends StatefulWidget {
       this.onFavoriteTap,
       this.isFavorite = false})
       : cardType = CardType.event,
+        duration = null,
+        super(key: key);
+
+  CustomCard.activity(
+      {Key? key,
+      this.currencyValue,
+      this.currency,
+      this.url,
+      this.fromHomepage,
+      this.title,
+      this.adress,
+      this.price,
+      this.nbPerson,
+      this.term,
+      this.type,
+      this.date,
+      this.isExpired,
+      this.onFavoriteTap,
+      this.isFavorite = false,
+      this.duration})
+      : cardType = CardType.activity,
+        super(key: key);
+  CustomCard.experience(
+      {Key? key,
+      this.currencyValue,
+      this.currency,
+      this.url,
+      this.fromHomepage,
+      this.title,
+      this.adress,
+      this.price,
+      this.nbPerson,
+      this.term,
+      this.type,
+      this.date,
+      this.isExpired,
+      this.onFavoriteTap,
+      this.isFavorite = false,
+      this.duration})
+      : cardType = CardType.experience,
         super(key: key);
 
   @override
@@ -102,16 +144,18 @@ class _CustomCardState extends State<CustomCard> {
                   ),
                 ),
               ),
-              Positioned(
-                left: 10,
-                top: 20,
-                child: CustomChip(
-                  label: widget.cardType == CardType.host
-                      ? 'En Vedette'
-                      : widget.type ?? "",
-                  onSelected: (bool) {},
-                ),
-              ),
+              widget.cardType != null
+                  ? Positioned(
+                      left: 10,
+                      top: 20,
+                      child: CustomChip(
+                        label: widget.cardType == CardType.host
+                            ? 'En Vedette'
+                            : widget.type ?? "",
+                        onSelected: (bool) {},
+                      ),
+                    )
+                  : SizedBox.shrink(),
             ],
           ),
           Padding(
@@ -124,7 +168,7 @@ class _CustomCardState extends State<CustomCard> {
                   children: [
                     Expanded(
                       child: Text(
-                        widget.title ?? "host.title!",
+                        widget.title ?? "",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.titleSmall,
@@ -151,26 +195,35 @@ class _CustomCardState extends State<CustomCard> {
                 ),
                 widget.adress == "" || widget.adress == null
                     ? const SizedBox()
-                    : Text(
-                        widget.adress ?? "",
-                        style: Theme.of(context).textTheme.bodySmall,
+                    : Padding(
+                        padding: const EdgeInsets.only(bottom: 4.0),
+                        child: Text(
+                          widget.adress ?? "",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                       ),
-                const SizedBox(
-                  height: 4,
-                ),
                 widget.date == "" || widget.date == null
                     ? SizedBox()
-                    : Text(
-                        widget.date ?? "",
-                        style: Theme.of(context).textTheme.bodySmall,
+                    : Padding(
+                        padding: const EdgeInsets.only(bottom: 4.0),
+                        child: Text(
+                          widget.date ?? "",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                       ),
-                SizedBox(
-                  height: 4,
-                ),
+                widget.duration == "" || widget.duration == null
+                    ? SizedBox()
+                    : Padding(
+                        padding: const EdgeInsets.only(bottom: 4.0),
+                        child: Text(
+                          "Durée ${widget.duration} H",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ),
                 Row(
                   children: [
                     Text(
-                      "${double.parse(widget.price!).toInt().toString()} DT",
+                      "${double.parse(widget.price ?? "0").toInt().toString()} DT",
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     Row(
@@ -208,26 +261,22 @@ class _CustomCardState extends State<CustomCard> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: widget.isExpired != null && widget.isExpired == true
-                ? CustomButton.secondaryColor(
+                ? CustomButton.secondaryGrey(
                     onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Evènement Expiré',
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Evènement Expiré ',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!
                                   .copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500)),
+                                      fontWeight: FontWeight.w500,
+                                      color: primaryOrange)),
                         ),
-                        SvgPicture.asset(
-                          Assets.tree,
-                          height: 20,
-                        ),
-                      ],
+                      ),
                     ),
                   )
                 : CustomButton.primary(
@@ -236,7 +285,7 @@ class _CustomCardState extends State<CustomCard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(4.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Text('Réserver Maintenant = ',
                               style: Theme.of(context)
                                   .textTheme
