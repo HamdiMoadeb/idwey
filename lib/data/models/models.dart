@@ -1,4 +1,4 @@
-export 'hostDTO.dart';
-export 'EventDTO.dart';
-export 'ExperienceDTO.dart';
-export 'ActivityDTO.dart';
+export 'host_dto.dart';
+export 'event_dto.dart';
+export 'experience_dto.dart';
+export 'activity_dto.dart';

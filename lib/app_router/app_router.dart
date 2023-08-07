@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:idwey/presentation/dashboard_page/dashBoard_page.dart';
-import 'package:idwey/presentation/pages/assurance/Assurance_page.dart';
+import 'package:idwey/presentation/pages/assurance/assurance_page.dart';
 import 'package:idwey/presentation/pages/auth/auth_page.dart';
-import 'package:idwey/presentation/pages/home/event_tab.dart';
 import 'package:idwey/presentation/pages/home/main_home.dart';
 import 'package:idwey/presentation/pages/inspiration/inspiration.dart';
 import 'package:idwey/presentation/pages/products/products_page.dart';

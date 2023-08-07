@@ -8,7 +8,9 @@ import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:intl/intl.dart';
 
 class EventScreen extends StatefulWidget {
-  const EventScreen({Key? key}) : super(key: key);
+  const EventScreen({Key? key, required this.scrollController})
+      : super(key: key);
+  final ScrollController scrollController;
 
   @override
   State<EventScreen> createState() => _EventScreenState();
@@ -16,27 +18,27 @@ class EventScreen extends StatefulWidget {
 
 class _EventScreenState extends State<EventScreen>
     with AutomaticKeepAliveClientMixin {
-  final ScrollController _scrollController = ScrollController();
+  // final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_onScroll);
+    widget.scrollController.addListener(_onScroll);
     context.read<HomeBloc>().add(const GetListEvent(false));
   }
 
   @override
   void dispose() {
-    _scrollController
+    widget.scrollController
       ..removeListener(_onScroll)
       ..dispose();
     super.dispose();
   }
 
   void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent.h;
-    final currentScroll = _scrollController.position.pixels.h;
+    if (!widget.scrollController.hasClients) return;
+    final maxScroll = widget.scrollController.position.maxScrollExtent.h;
+    final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
       context.read<HomeBloc>().add(const GetListEvent(true));
     }
@@ -44,6 +46,7 @@ class _EventScreenState extends State<EventScreen>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.statusEvent == StateStatus.loading &&
@@ -73,13 +76,15 @@ class _EventScreenState extends State<EventScreen>
               body: ListView.separated(
                 padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
                 shrinkWrap: true,
-                controller: _scrollController,
+                controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.event(
                   type: state.listEvents?[index].slug,
                   title: state.listEvents?[index].title,
                   adress: state.listEvents?[index].address,
                   price: state.listEvents?[index].prix,
-                  term: state.listEvents?[index].termName,
+                  term: state.listEvents?[index].termName != null
+                      ? getTermName(state.listEvents?[index].termName ?? "")
+                      : "",
                   url: state.listEvents?[index].imageUrl,
                   isExpired:
                       state.listEvents?[index].isExpired == 1 ? true : false,
@@ -101,4 +106,13 @@ class _EventScreenState extends State<EventScreen>
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
+
+  String getTermName(String terms) {
+    List<String> listTerms = terms.split(",");
+    if (listTerms.length == 1) {
+      return listTerms.first;
+    } else {
+      return "${listTerms.first} , ${listTerms.last}";
+    }
+  }
 }

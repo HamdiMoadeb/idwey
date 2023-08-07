@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:idwey/domain/repositories/activity_repository.dart';
 import 'package:idwey/domain/repositories/exeperience_repository.dart';
 import '../../data/models/models.dart';
-import '../repositories/event_repository.dart';
 import 'usecase.dart';
 
 class GetListExperiencesUseCase

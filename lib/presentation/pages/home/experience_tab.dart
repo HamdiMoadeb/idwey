@@ -8,7 +8,9 @@ import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 class ExperienceScreen extends StatefulWidget {
-  const ExperienceScreen({Key? key}) : super(key: key);
+  const ExperienceScreen({Key? key, required this.scrollController})
+      : super(key: key);
+  final ScrollController scrollController;
 
   @override
   State<ExperienceScreen> createState() => _ExperienceScreenState();
@@ -16,28 +18,28 @@ class ExperienceScreen extends StatefulWidget {
 
 class _ExperienceScreenState extends State<ExperienceScreen>
     with AutomaticKeepAliveClientMixin {
-  final ScrollController _scrollController = ScrollController();
+//  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
 
-    _scrollController.addListener(_onScroll);
+    widget.scrollController.addListener(_onScroll);
     context.read<HomeBloc>().add(const GetListExperiences(false));
   }
 
   @override
   void dispose() {
-    _scrollController
+    widget.scrollController
       ..removeListener(_onScroll)
       ..dispose();
     super.dispose();
   }
 
   void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent.h;
-    final currentScroll = _scrollController.position.pixels.h;
+    if (!widget.scrollController.hasClients) return;
+    final maxScroll = widget.scrollController.position.maxScrollExtent.h;
+    final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
       context.read<HomeBloc>().add(const GetListExperiences(true));
     }
@@ -45,6 +47,7 @@ class _ExperienceScreenState extends State<ExperienceScreen>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.statusExperiences == StateStatus.loading &&
@@ -76,8 +79,8 @@ class _ExperienceScreenState extends State<ExperienceScreen>
               body: ListView.separated(
                 padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
                 shrinkWrap: true,
-                controller: _scrollController,
-                itemBuilder: (context, index) => CustomCard.activity(
+                controller: widget.scrollController,
+                itemBuilder: (context, index) => CustomCard.experience(
                   title: state.listExperiences?[index].title,
                   adress: state.listExperiences?[index].address,
                   price: state.listExperiences?[index].price,

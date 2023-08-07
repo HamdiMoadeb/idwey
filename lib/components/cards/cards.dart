@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/components/cards/card_type.dart';
 import 'package:idwey/components/chips/chip.dart';
@@ -147,22 +146,33 @@ class _CustomCardState extends State<CustomCard> {
                   ),
                 ),
               ),
-              widget.cardType != null
-                  ? Positioned(
-                      left: 10.w,
-                      top: 20.h,
-                      child: CustomChip(
-                        label: widget.cardType == CardType.host
-                            ? 'En Vedette'
-                            : widget.type ?? "",
-                        onSelected: (bool) {},
-                      ),
-                    )
-                  : SizedBox.shrink(),
+              widget.cardType == CardType.event
+                  ? widget.term == null || widget.term == ""
+                      ? const SizedBox.shrink()
+                      : Positioned(
+                          left: 10.w,
+                          top: 20.h,
+                          child: CustomChip(
+                            label: widget.term ?? "",
+                            onSelected: (bool) {},
+                          ),
+                        )
+                  : widget.cardType != null
+                      ? Positioned(
+                          left: 10.w,
+                          top: 20.h,
+                          child: CustomChip(
+                            label: widget.cardType == CardType.host
+                                ? 'En Vedette'
+                                : widget.type ?? "",
+                            onSelected: (bool) {},
+                          ),
+                        )
+                      : const SizedBox.shrink(),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -189,13 +199,17 @@ class _CustomCardState extends State<CustomCard> {
                         widget.isFavorite == true
                             ? Assets.heartIconFilled
                             : Assets.heartIcon,
+                        height: 24.h,
+                        width: 24.w,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 4.h,
-                ),
+                widget.adress == "" || widget.adress == null
+                    ? const SizedBox.shrink()
+                    : SizedBox(
+                        height: 2.h,
+                      ),
                 widget.adress == "" || widget.adress == null
                     ? const SizedBox()
                     : Padding(
@@ -206,7 +220,7 @@ class _CustomCardState extends State<CustomCard> {
                         ),
                       ),
                 widget.date == "" || widget.date == null
-                    ? SizedBox()
+                    ? const SizedBox.shrink()
                     : Padding(
                         padding: EdgeInsets.only(bottom: 4.h),
                         child: Text(
@@ -215,7 +229,7 @@ class _CustomCardState extends State<CustomCard> {
                         ),
                       ),
                 widget.duration == "" || widget.duration == null
-                    ? SizedBox()
+                    ? const SizedBox.shrink()
                     : Padding(
                         padding: EdgeInsets.only(bottom: 4.h),
                         child: Text(
@@ -271,7 +285,7 @@ class _CustomCardState extends State<CustomCard> {
                       child: Center(
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 8.w, vertical: 8.h),
+                              horizontal: 8.w, vertical: 4.h),
                           child: Text('Evènement Expiré ',
                               style: Theme.of(context)
                                   .textTheme
@@ -290,7 +304,7 @@ class _CustomCardState extends State<CustomCard> {
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 8.w, vertical: 8.h),
+                              horizontal: 8.w, vertical: 4.h),
                           child: Text('Réserver Maintenant = ',
                               style: Theme.of(context)
                                   .textTheme

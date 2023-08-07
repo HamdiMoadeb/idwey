@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:idwey/data/models/hostDTO.dart';
+import 'package:idwey/data/models/host_dto.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 
 import 'usecase.dart';

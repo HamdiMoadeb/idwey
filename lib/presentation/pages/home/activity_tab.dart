@@ -8,7 +8,9 @@ import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 class ActivityScreen extends StatefulWidget {
-  const ActivityScreen({Key? key}) : super(key: key);
+  const ActivityScreen({Key? key, required this.scrollController})
+      : super(key: key);
+  final ScrollController scrollController;
 
   @override
   State<ActivityScreen> createState() => _ActivityScreenState();
@@ -16,28 +18,27 @@ class ActivityScreen extends StatefulWidget {
 
 class _ActivityScreenState extends State<ActivityScreen>
     with AutomaticKeepAliveClientMixin {
-  final ScrollController _scrollController = ScrollController();
+  // final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-
-    _scrollController.addListener(_onScroll);
+    widget.scrollController.addListener(_onScroll);
     context.read<HomeBloc>().add(const GetListActivities(false));
   }
 
   @override
   void dispose() {
-    _scrollController
+    widget.scrollController
       ..removeListener(_onScroll)
       ..dispose();
     super.dispose();
   }
 
   void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent.h;
-    final currentScroll = _scrollController.position.pixels.h;
+    if (!widget.scrollController.hasClients) return;
+    final maxScroll = widget.scrollController.position.maxScrollExtent.h;
+    final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
       context.read<HomeBloc>().add(const GetListActivities(true));
     }
@@ -45,6 +46,7 @@ class _ActivityScreenState extends State<ActivityScreen>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.statusActivities == StateStatus.loading &&
@@ -76,7 +78,7 @@ class _ActivityScreenState extends State<ActivityScreen>
               body: ListView.separated(
                 padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
                 shrinkWrap: true,
-                controller: _scrollController,
+                controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.activity(
                   title: state.listActivities?[index].title,
                   adress: state.listActivities?[index].address,

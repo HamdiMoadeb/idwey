@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
 
@@ -53,7 +52,7 @@ class _FilterListState extends State<FilterList> {
             FilterItem(
               label: 'Hébergement',
               icon: Assets.inspiration,
-              onTap: (bool) {
+              onTap: (v) {
                 setState(() {
                   selectedIndex = 0;
                 });
@@ -63,7 +62,7 @@ class _FilterListState extends State<FilterList> {
             FilterItem(
               label: 'Evenement',
               icon: Assets.inspiration,
-              onTap: (bool) {
+              onTap: (v) {
                 setState(() {
                   selectedIndex = 1;
                 });
@@ -73,7 +72,7 @@ class _FilterListState extends State<FilterList> {
             FilterItem(
               label: 'Acitvités',
               icon: Assets.inspiration,
-              onTap: (bool) {
+              onTap: (v) {
                 setState(() {
                   selectedIndex = 2;
                 });
@@ -83,7 +82,7 @@ class _FilterListState extends State<FilterList> {
             FilterItem(
               label: 'Produits',
               icon: Assets.inspiration,
-              onTap: (bool) {
+              onTap: (v) {
                 setState(() {
                   selectedIndex = 3;
                 });
@@ -93,7 +92,7 @@ class _FilterListState extends State<FilterList> {
             FilterItem(
               label: 'Articles',
               icon: Assets.inspiration,
-              onTap: (bool) {
+              onTap: (v) {
                 setState(() {
                   selectedIndex = 4;
                 });
@@ -114,60 +113,52 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 40.h),
+      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 50.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: 60,
+            padding: EdgeInsets.only(left: 16.w, bottom: 12.h),
+            height: 55.h,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[300]!),
               // Light grey background color
               borderRadius:
                   BorderRadius.circular(50.r), // 50 radius for rounded corners
             ),
-            padding: EdgeInsets.only(
-                left: 16.w,
-                right: 16.w,
-                bottom: 8.h), // Adjust padding as needed
-            child: SizedBox(
-              height: 60.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SvgPicture.asset(
-                    Assets.search,
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  SizedBox(
-                    width: 200.w,
-                    height: 60.h,
-                    child: const Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.zero,
-                          hintMaxLines: 1,
-                          helperText: "Lieu • Date • Invité ",
-                          hintText: 'Recherchez votre Idwey',
-                          hintStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black), // Placeholder text
-                          border: InputBorder.none, // Remove default underline
+            // Adjust padding as needed
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SvgPicture.asset(
+                  Assets.search,
+                ),
+                SizedBox(
+                  width: 10.w,
+                ),
+                SizedBox(
+                  width: 210.w,
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.zero,
+                      hintMaxLines: 1,
+                      helperText: "Lieu • Date • Invité ",
+                      hintText: 'Recherchez votre Idwey',
+                      hintStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black), // Placeholder text
+                      border: InputBorder.none, // Remove default underline
 
-                          // Search icon
-                        ),
-                      ),
+                      // Search icon
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Container(
-            height: 50.h,
-            width: 50.h,
+            height: 55.h,
+            width: 55.h,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[300]!),
               // Light grey background color

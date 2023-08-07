@@ -1,12 +1,7 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/event_api_data_source.dart';
-import 'package:idwey/data/data_sources/host_api_data_source.dart';
-import 'package:idwey/data/models/EventDTO.dart';
-import 'package:idwey/data/models/hostDTO.dart';
+import 'package:idwey/data/models/event_dto.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
-import 'package:idwey/domain/repositories/host_repository.dart';
 
 class EventRepositoryImpl implements EventRepository {
   EventApiDataSource dataSource;

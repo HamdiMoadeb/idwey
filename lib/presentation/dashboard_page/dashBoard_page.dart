@@ -25,25 +25,20 @@ class DashboardScreen extends StatelessWidget {
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
-        // the passed child is technically our animated selected-tab page
         child: child,
       ),
       builder: (context, child) {
-        // obtain the scoped TabsRouter controller using context
         final tabsRouter = AutoTabsRouter.of(context);
-        // Here we're building our Scaffold inside of AutoTabsRouter
-        // to access the tabsRouter controller provided in this context
-        //
-        //alterntivly you could use a global key
         return Scaffold(
             body: child,
             bottomNavigationBar: BottomNavigationBar(
+              useLegacyColorScheme: false,
+              // backgroundColor: Colors.transparent,
               type: BottomNavigationBarType.fixed,
-              selectedFontSize: 12,
-              selectedItemColor: Colors.black,
-              unselectedItemColor: Colors.black,
-              unselectedLabelStyle: const TextStyle(color: Colors.black),
-              elevation: 10,
+              selectedFontSize: 10,
+              unselectedFontSize: 10,
+              // elevation: 10,
+              currentIndex: 2,
               onTap: (index) {
                 // here we switch between tabs
                 if (index == 0) {
@@ -62,56 +57,9 @@ class DashboardScreen extends StatelessWidget {
                 BottomNavigationBarItem(
                   label: '',
                   icon: tabsRouter.activeIndex == 1
-                      ? Column(
-                          children: [
-                            const SizedBox(height: 8),
-                            ShaderMask(
-                              blendMode: BlendMode.srcATop,
-                              shaderCallback: (Rect bounds) {
-                                return kLinearGradient.createShader(bounds);
-                              },
-                              child: SvgPicture.asset(
-                                Assets.inspiration,
-                                height: 20,
-                                width: 20,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              "Inspiration",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              ),
-                            )
-                          ],
-                        )
-                      : Column(
-                          children: [
-                            const SizedBox(height: 8),
-                            SvgPicture.asset(
-                              Assets.inspiration,
-                              height: 20,
-                              width: 20,
-                              color: Colors.black,
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              "Inspiration",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              ),
-                            )
-                          ],
-                        ),
-                ),
-                BottomNavigationBarItem(
-                    label: '',
-                    icon: tabsRouter.activeIndex == 2
-                        ? Column(
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Column(
                             children: [
                               const SizedBox(height: 8),
                               ShaderMask(
@@ -120,40 +68,98 @@ class DashboardScreen extends StatelessWidget {
                                   return kLinearGradient.createShader(bounds);
                                 },
                                 child: SvgPicture.asset(
-                                  Assets.assurance,
+                                  Assets.inspiration,
                                   height: 20,
                                   width: 20,
                                 ),
                               ),
                               const SizedBox(height: 8),
                               const Text(
-                                "Assurance",
+                                "Inspiration",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 12,
+                                  fontSize: 10,
                                 ),
                               )
                             ],
-                          )
-                        : Column(
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Column(
                             children: [
                               const SizedBox(height: 8),
                               SvgPicture.asset(
-                                Assets.assurance,
+                                Assets.inspiration,
                                 height: 20,
                                 width: 20,
                                 color: Colors.black,
                               ),
                               const SizedBox(height: 8),
                               const Text(
-                                "Assurance",
+                                "Inspiration",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 12,
+                                  fontSize: 10,
                                 ),
                               )
                             ],
+                          ),
+                        ),
+                ),
+                BottomNavigationBarItem(
+                    label: '',
+                    icon: tabsRouter.activeIndex == 2
+                        ? Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 8),
+                                ShaderMask(
+                                  blendMode: BlendMode.srcATop,
+                                  shaderCallback: (Rect bounds) {
+                                    return kLinearGradient.createShader(bounds);
+                                  },
+                                  child: SvgPicture.asset(
+                                    Assets.assurance,
+                                    height: 20,
+                                    width: 20,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                const Text(
+                                  "Assurance",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 8),
+                                SvgPicture.asset(
+                                  Assets.assurance,
+                                  height: 20,
+                                  width: 20,
+                                  color: Colors.black,
+                                ),
+                                const SizedBox(height: 8),
+                                const Text(
+                                  "Assurance",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                  ),
+                                )
+                              ],
+                            ),
                           )),
                 BottomNavigationBarItem(
                     label: '',
@@ -190,114 +196,126 @@ class DashboardScreen extends StatelessWidget {
                 BottomNavigationBarItem(
                     label: '',
                     icon: tabsRouter.activeIndex == 3
-                        ? Column(
-                            children: [
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              ShaderMask(
-                                blendMode: BlendMode.srcIn,
-                                shaderCallback: (Rect bounds) {
-                                  return kLinearGradient.createShader(bounds);
-                                },
-                                child: SvgPicture.asset(
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                ShaderMask(
+                                  blendMode: BlendMode.srcIn,
+                                  shaderCallback: (Rect bounds) {
+                                    return kLinearGradient.createShader(bounds);
+                                  },
+                                  child: SvgPicture.asset(
+                                    Assets.products,
+                                    height: 20,
+                                    width: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                const Text(
+                                  "Produits",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                SvgPicture.asset(
                                   Assets.products,
                                   height: 20,
                                   width: 20,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text(
-                                "Produits",
-                                style: TextStyle(
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
                                 ),
-                              )
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              SvgPicture.asset(
-                                Assets.products,
-                                height: 20,
-                                width: 20,
-                                color: Colors.black,
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text(
-                                "Produits",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
+                                const SizedBox(
+                                  height: 8,
                                 ),
-                              )
-                            ],
+                                const Text(
+                                  "Produits",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                  ),
+                                )
+                              ],
+                            ),
                           )),
                 BottomNavigationBarItem(
                     label: '',
                     icon: tabsRouter.activeIndex == 4
-                        ? Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              ShaderMask(
-                                blendMode: BlendMode.srcIn,
-                                shaderCallback: (Rect bounds) {
-                                  return kLinearGradient.createShader(bounds);
-                                },
-                                child: SvgPicture.asset(
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                ShaderMask(
+                                  blendMode: BlendMode.srcIn,
+                                  shaderCallback: (Rect bounds) {
+                                    return kLinearGradient.createShader(bounds);
+                                  },
+                                  child: SvgPicture.asset(
+                                    Assets.profile,
+                                    height: 20,
+                                    width: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                const Text(
+                                  "Se connecter",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                SvgPicture.asset(
                                   Assets.profile,
                                   height: 20,
                                   width: 20,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text(
-                                "Se connecter",
-                                style: TextStyle(
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
                                 ),
-                              )
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              SvgPicture.asset(
-                                Assets.profile,
-                                height: 20,
-                                width: 20,
-                                color: Colors.black,
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              const Text(
-                                "Se connecter",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
+                                const SizedBox(
+                                  height: 8,
                                 ),
-                              )
-                            ],
+                                const Text(
+                                  "Se connecter",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                  ),
+                                )
+                              ],
+                            ),
                           )),
               ],
             ));

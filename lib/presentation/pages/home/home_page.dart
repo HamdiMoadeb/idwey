@@ -7,53 +7,47 @@ import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  const HomeScreen({Key? key, required this.scrollController})
+      : super(key: key);
+  final ScrollController scrollController;
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen>
     with AutomaticKeepAliveClientMixin {
-  final ScrollController _scrollController = ScrollController();
+  //final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
+    widget.scrollController.addListener(_onScroll);
 
-    _scrollController.addListener(_onScroll);
     context.read<HomeBloc>().add(const GetListHost(false));
 
-    _scrollToTop();
+    //  _scrollToTop();
   }
 
   @override
   void dispose() {
-    _scrollController
+    widget.scrollController!
       ..removeListener(_onScroll)
       ..dispose();
     super.dispose();
   }
 
   void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent.h;
-    final currentScroll = _scrollController.position.pixels.h;
+    if (!widget.scrollController!.hasClients) return;
+    final maxScroll = widget.scrollController!.position.maxScrollExtent.h;
+    final currentScroll = widget.scrollController!.position.pixels.h;
     if (currentScroll == maxScroll) {
       context.read<HomeBloc>().add(const GetListHost(true));
     }
   }
 
-  void _scrollToTop() {
-    _scrollController.animateTo(
-      0,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.status == StateStatus.loading && state.listHosts!.isEmpty) {
@@ -83,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen>
               body: ListView.separated(
                 padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
                 shrinkWrap: true,
-                controller: _scrollController,
+                controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.host(
                   title: state.listHosts?[index].title,
                   adress: state.listHosts?[index].address,
@@ -107,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void updateKeepAlive() {
-    _scrollToTop();
+    // _scrollToTop();
   }
 
   @override

@@ -19,13 +19,11 @@ class FilterItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = isSelected ? primaryOrange : Colors.grey[300];
-
     return GestureDetector(
       onTap: () => onTap(!isSelected),
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 4.w,
+          horizontal: 2.w,
         ),
         child: Container(
           // margin: const EdgeInsets.all(4),

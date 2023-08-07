@@ -3,12 +3,9 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/constants/enums.dart';
-import 'package:idwey/data/models/hostDTO.dart';
 import 'package:idwey/data/models/models.dart';
-import 'package:idwey/domain/usecases/get_list_activities_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_events_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_experiences_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_hosts.dart';
+
+import '../../../domain/usecases/usecases.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

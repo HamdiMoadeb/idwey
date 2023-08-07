@@ -23,11 +23,16 @@ class MainHomeScreen extends StatefulWidget {
 class _MainHomeScreenState extends State<MainHomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late ScrollController hostScrollController = ScrollController();
+  late ScrollController eventScrollController = ScrollController();
+  late ScrollController activityScrollController = ScrollController();
+  late ScrollController experienceScrollController = ScrollController();
   int selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
+
     _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
       setState(() {
@@ -41,6 +46,11 @@ class _MainHomeScreenState extends State<MainHomeScreen>
   @override
   void dispose() {
     _tabController.dispose();
+    hostScrollController.dispose();
+    eventScrollController.dispose();
+    activityScrollController.dispose();
+    experienceScrollController.dispose();
+
     super.dispose();
   }
 
@@ -50,7 +60,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
       builder: (context, state) {
         return Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(170.h),
+              preferredSize: Size.fromHeight(190.h),
               child: AppBar(
                 elevation: 1.0,
                 backgroundColor: Colors.white,
@@ -59,7 +69,8 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                 flexibleSpace: const SearchBox(),
                 bottom: TabBar(
                   isScrollable: true,
-                  padding: EdgeInsets.only(bottom: 16.h, left: 4.w),
+                  padding:
+                      EdgeInsets.only(bottom: 16.h, left: 4.w, right: 12.w),
                   indicatorPadding: EdgeInsets.symmetric(horizontal: 16.w),
                   // Reduce padding between tabs
                   controller: _tabController,
@@ -72,8 +83,15 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                     FilterItem(
                       label: 'Hébergement',
                       icon: Assets.hosts,
-                      onTap: (bool) {
+                      onTap: (v) {
                         setState(() {
+                          if (hostScrollController.hasClients) {
+                            if (hostScrollController.position.pixels > 0) {
+                              hostScrollController.animateTo(0,
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeInOut);
+                            }
+                          }
                           selectedIndex = 0;
                           _tabController.index = 0;
                         });
@@ -83,8 +101,15 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                     FilterItem(
                       label: 'Evenement',
                       icon: Assets.events,
-                      onTap: (bool) {
+                      onTap: (v) {
                         setState(() {
+                          if (eventScrollController.hasClients) {
+                            if (eventScrollController.position.pixels > 0) {
+                              eventScrollController.animateTo(0,
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeInOut);
+                            }
+                          }
                           selectedIndex = 1;
                           _tabController.index = 1;
                         });
@@ -94,8 +119,15 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                     FilterItem(
                       label: 'Acitvités',
                       icon: Assets.activities,
-                      onTap: (bool) {
+                      onTap: (v) {
                         setState(() {
+                          if (activityScrollController.hasClients) {
+                            if (activityScrollController.position.pixels > 0) {
+                              activityScrollController.animateTo(0,
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeInOut);
+                            }
+                          }
                           selectedIndex = 2;
                           _tabController.index = 2;
                         });
@@ -105,8 +137,16 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                     FilterItem(
                       label: 'Experiences',
                       icon: Assets.experiences,
-                      onTap: (bool) {
+                      onTap: (vv) {
                         setState(() {
+                          if (experienceScrollController.hasClients) {
+                            if (experienceScrollController.position.pixels >
+                                0) {
+                              experienceScrollController.animateTo(0,
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeInOut);
+                            }
+                          }
                           selectedIndex = 3;
                           _tabController.index = 3;
                         });
@@ -119,11 +159,19 @@ class _MainHomeScreenState extends State<MainHomeScreen>
             ),
             body: TabBarView(
               controller: _tabController,
-              children: const [
-                HomeScreen(),
-                EventScreen(),
-                ActivityScreen(),
-                ExperienceScreen(),
+              children: [
+                HomeScreen(
+                  scrollController: hostScrollController,
+                ),
+                EventScreen(
+                  scrollController: eventScrollController,
+                ),
+                ActivityScreen(
+                  scrollController: activityScrollController,
+                ),
+                ExperienceScreen(
+                  scrollController: experienceScrollController,
+                ),
               ],
             ));
       },

@@ -16,16 +16,13 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
     try {
       final response = await dio
           .get("https://idwey.tn/api/activity?offset=$offset&limit=10");
-      if (response != null) {
-        print("result");
-        print(response.data['rows']);
-        response.data['rows'].forEach((data) {
-          listOfActivities.add(Activity.fromJson(data));
-        });
-      }
+
+      response.data['rows'].forEach((data) {
+        listOfActivities.add(Activity.fromJson(data));
+      });
+
       return listOfActivities;
     } catch (e) {
-      print(e);
       throw Exception();
     }
   }
