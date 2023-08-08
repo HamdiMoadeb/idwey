@@ -18,8 +18,6 @@ class ExperienceScreen extends StatefulWidget {
 
 class _ExperienceScreenState extends State<ExperienceScreen>
     with AutomaticKeepAliveClientMixin {
-//  final ScrollController _scrollController = ScrollController();
-
   @override
   void initState() {
     super.initState();
@@ -56,7 +54,7 @@ class _ExperienceScreenState extends State<ExperienceScreen>
             child: CircularProgressIndicator(),
           );
         } else if (state.statusExperiences == StateStatus.error &&
-            state.atTheEndOfThePage == false) {
+            state.atTheEndOfThePageExperiences == false) {
           return const Center(child: Text("Pas des experiences"));
         } else if (state.statusExperiences == StateStatus.success ||
             state.statusExperiences == StateStatus.loadingMore &&
@@ -77,7 +75,8 @@ class _ExperienceScreenState extends State<ExperienceScreen>
                         )
                       : const SizedBox.shrink(),
               body: ListView.separated(
-                padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
+                padding: EdgeInsets.only(
+                    top: 16.h, left: 12.w, right: 12.w, bottom: 16.h),
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.experience(
@@ -86,6 +85,11 @@ class _ExperienceScreenState extends State<ExperienceScreen>
                   price: state.listExperiences?[index].price,
                   type: state.listExperiences?[index].catName,
                   duration: state.listExperiences?[index].duration,
+                  isFeatured:
+                      state.listExperiences?[index].isFeatured != null &&
+                              state.listExperiences?[index].isFeatured == 1
+                          ? true
+                          : false,
                   //  term: state.listActivities?[index].termName,
                   url: state.listExperiences?[index].imageUrl,
                   nbPerson:

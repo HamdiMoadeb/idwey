@@ -30,16 +30,16 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void dispose() {
-    widget.scrollController!
+    widget.scrollController
       ..removeListener(_onScroll)
       ..dispose();
     super.dispose();
   }
 
   void _onScroll() {
-    if (!widget.scrollController!.hasClients) return;
-    final maxScroll = widget.scrollController!.position.maxScrollExtent.h;
-    final currentScroll = widget.scrollController!.position.pixels.h;
+    if (!widget.scrollController.hasClients) return;
+    final maxScroll = widget.scrollController.position.maxScrollExtent.h;
+    final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
       context.read<HomeBloc>().add(const GetListHost(true));
     }
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen>
             child: CircularProgressIndicator(),
           );
         } else if (state.status == StateStatus.error &&
-            state.atTheEndOfThePage == false) {
+            state.atTheEndOfThePageHosts == false) {
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.success ||
             state.status == StateStatus.loadingMore &&
@@ -75,7 +75,8 @@ class _HomeScreenState extends State<HomeScreen>
                     )
                   : const SizedBox.shrink(),
               body: ListView.separated(
-                padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
+                padding: EdgeInsets.only(
+                    top: 16.h, left: 12.w, right: 12.w, bottom: 16.h),
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.host(
@@ -85,6 +86,10 @@ class _HomeScreenState extends State<HomeScreen>
                   type: state.listHosts?[index].typeHost,
                   term: state.listHosts?[index].termName,
                   url: state.listHosts?[index].imageUrl,
+                  isFeatured: state.listHosts?[index].isFeatured != null &&
+                          state.listHosts?[index].isFeatured == 1
+                      ? true
+                      : false,
                   nbPerson: " ${state.listHosts?[index].maxPerson} personnes",
                 ),
                 separatorBuilder: (BuildContext context, int index) {

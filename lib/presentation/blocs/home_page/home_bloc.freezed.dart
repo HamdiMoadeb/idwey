@@ -865,7 +865,10 @@ mixin _$HomeState {
   List<Activity>? get listActivities => throw _privateConstructorUsedError;
   List<Experience>? get listExperiences => throw _privateConstructorUsedError;
   bool? get isFetching => throw _privateConstructorUsedError;
-  bool? get atTheEndOfThePage => throw _privateConstructorUsedError;
+  bool? get atTheEndOfThePageHosts => throw _privateConstructorUsedError;
+  bool? get atTheEndOfThePageEvents => throw _privateConstructorUsedError;
+  bool? get atTheEndOfThePageActivities => throw _privateConstructorUsedError;
+  bool? get atTheEndOfThePageExperiences => throw _privateConstructorUsedError;
   int? get pageHosts => throw _privateConstructorUsedError;
   int? get pageActivities => throw _privateConstructorUsedError;
   int? get pageExperiences => throw _privateConstructorUsedError;
@@ -892,7 +895,10 @@ abstract class $HomeStateCopyWith<$Res> {
       List<Activity>? listActivities,
       List<Experience>? listExperiences,
       bool? isFetching,
-      bool? atTheEndOfThePage,
+      bool? atTheEndOfThePageHosts,
+      bool? atTheEndOfThePageEvents,
+      bool? atTheEndOfThePageActivities,
+      bool? atTheEndOfThePageExperiences,
       int? pageHosts,
       int? pageActivities,
       int? pageExperiences,
@@ -922,7 +928,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? listActivities = freezed,
     Object? listExperiences = freezed,
     Object? isFetching = freezed,
-    Object? atTheEndOfThePage = freezed,
+    Object? atTheEndOfThePageHosts = freezed,
+    Object? atTheEndOfThePageEvents = freezed,
+    Object? atTheEndOfThePageActivities = freezed,
+    Object? atTheEndOfThePageExperiences = freezed,
     Object? pageHosts = freezed,
     Object? pageActivities = freezed,
     Object? pageExperiences = freezed,
@@ -969,9 +978,21 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.isFetching
           : isFetching // ignore: cast_nullable_to_non_nullable
               as bool?,
-      atTheEndOfThePage: freezed == atTheEndOfThePage
-          ? _value.atTheEndOfThePage
-          : atTheEndOfThePage // ignore: cast_nullable_to_non_nullable
+      atTheEndOfThePageHosts: freezed == atTheEndOfThePageHosts
+          ? _value.atTheEndOfThePageHosts
+          : atTheEndOfThePageHosts // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfThePageEvents: freezed == atTheEndOfThePageEvents
+          ? _value.atTheEndOfThePageEvents
+          : atTheEndOfThePageEvents // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfThePageActivities: freezed == atTheEndOfThePageActivities
+          ? _value.atTheEndOfThePageActivities
+          : atTheEndOfThePageActivities // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfThePageExperiences: freezed == atTheEndOfThePageExperiences
+          ? _value.atTheEndOfThePageExperiences
+          : atTheEndOfThePageExperiences // ignore: cast_nullable_to_non_nullable
               as bool?,
       pageHosts: freezed == pageHosts
           ? _value.pageHosts
@@ -1011,7 +1032,10 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       List<Activity>? listActivities,
       List<Experience>? listExperiences,
       bool? isFetching,
-      bool? atTheEndOfThePage,
+      bool? atTheEndOfThePageHosts,
+      bool? atTheEndOfThePageEvents,
+      bool? atTheEndOfThePageActivities,
+      bool? atTheEndOfThePageExperiences,
       int? pageHosts,
       int? pageActivities,
       int? pageExperiences,
@@ -1039,7 +1063,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? listActivities = freezed,
     Object? listExperiences = freezed,
     Object? isFetching = freezed,
-    Object? atTheEndOfThePage = freezed,
+    Object? atTheEndOfThePageHosts = freezed,
+    Object? atTheEndOfThePageEvents = freezed,
+    Object? atTheEndOfThePageActivities = freezed,
+    Object? atTheEndOfThePageExperiences = freezed,
     Object? pageHosts = freezed,
     Object? pageActivities = freezed,
     Object? pageExperiences = freezed,
@@ -1086,9 +1113,21 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.isFetching
           : isFetching // ignore: cast_nullable_to_non_nullable
               as bool?,
-      atTheEndOfThePage: freezed == atTheEndOfThePage
-          ? _value.atTheEndOfThePage
-          : atTheEndOfThePage // ignore: cast_nullable_to_non_nullable
+      atTheEndOfThePageHosts: freezed == atTheEndOfThePageHosts
+          ? _value.atTheEndOfThePageHosts
+          : atTheEndOfThePageHosts // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfThePageEvents: freezed == atTheEndOfThePageEvents
+          ? _value.atTheEndOfThePageEvents
+          : atTheEndOfThePageEvents // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfThePageActivities: freezed == atTheEndOfThePageActivities
+          ? _value.atTheEndOfThePageActivities
+          : atTheEndOfThePageActivities // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfThePageExperiences: freezed == atTheEndOfThePageExperiences
+          ? _value.atTheEndOfThePageExperiences
+          : atTheEndOfThePageExperiences // ignore: cast_nullable_to_non_nullable
               as bool?,
       pageHosts: freezed == pageHosts
           ? _value.pageHosts
@@ -1124,7 +1163,10 @@ class _$_HomeState implements _HomeState {
       final List<Activity>? listActivities,
       final List<Experience>? listExperiences,
       this.isFetching,
-      this.atTheEndOfThePage,
+      this.atTheEndOfThePageHosts,
+      this.atTheEndOfThePageEvents,
+      this.atTheEndOfThePageActivities,
+      this.atTheEndOfThePageExperiences,
       this.pageHosts,
       this.pageActivities,
       this.pageExperiences,
@@ -1187,7 +1229,13 @@ class _$_HomeState implements _HomeState {
   @override
   final bool? isFetching;
   @override
-  final bool? atTheEndOfThePage;
+  final bool? atTheEndOfThePageHosts;
+  @override
+  final bool? atTheEndOfThePageEvents;
+  @override
+  final bool? atTheEndOfThePageActivities;
+  @override
+  final bool? atTheEndOfThePageExperiences;
   @override
   final int? pageHosts;
   @override
@@ -1199,7 +1247,7 @@ class _$_HomeState implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(title: $title, status: $status, statusEvent: $statusEvent, statusActivities: $statusActivities, statusExperiences: $statusExperiences, listHosts: $listHosts, listEvents: $listEvents, listActivities: $listActivities, listExperiences: $listExperiences, isFetching: $isFetching, atTheEndOfThePage: $atTheEndOfThePage, pageHosts: $pageHosts, pageActivities: $pageActivities, pageExperiences: $pageExperiences, pageEvents: $pageEvents)';
+    return 'HomeState(title: $title, status: $status, statusEvent: $statusEvent, statusActivities: $statusActivities, statusExperiences: $statusExperiences, listHosts: $listHosts, listEvents: $listEvents, listActivities: $listActivities, listExperiences: $listExperiences, isFetching: $isFetching, atTheEndOfThePageHosts: $atTheEndOfThePageHosts, atTheEndOfThePageEvents: $atTheEndOfThePageEvents, atTheEndOfThePageActivities: $atTheEndOfThePageActivities, atTheEndOfThePageExperiences: $atTheEndOfThePageExperiences, pageHosts: $pageHosts, pageActivities: $pageActivities, pageExperiences: $pageExperiences, pageEvents: $pageEvents)';
   }
 
   @override
@@ -1225,8 +1273,19 @@ class _$_HomeState implements _HomeState {
                 .equals(other._listExperiences, _listExperiences) &&
             (identical(other.isFetching, isFetching) ||
                 other.isFetching == isFetching) &&
-            (identical(other.atTheEndOfThePage, atTheEndOfThePage) ||
-                other.atTheEndOfThePage == atTheEndOfThePage) &&
+            (identical(other.atTheEndOfThePageHosts, atTheEndOfThePageHosts) ||
+                other.atTheEndOfThePageHosts == atTheEndOfThePageHosts) &&
+            (identical(
+                    other.atTheEndOfThePageEvents, atTheEndOfThePageEvents) ||
+                other.atTheEndOfThePageEvents == atTheEndOfThePageEvents) &&
+            (identical(other.atTheEndOfThePageActivities,
+                    atTheEndOfThePageActivities) ||
+                other.atTheEndOfThePageActivities ==
+                    atTheEndOfThePageActivities) &&
+            (identical(other.atTheEndOfThePageExperiences,
+                    atTheEndOfThePageExperiences) ||
+                other.atTheEndOfThePageExperiences ==
+                    atTheEndOfThePageExperiences) &&
             (identical(other.pageHosts, pageHosts) ||
                 other.pageHosts == pageHosts) &&
             (identical(other.pageActivities, pageActivities) ||
@@ -1250,7 +1309,10 @@ class _$_HomeState implements _HomeState {
       const DeepCollectionEquality().hash(_listActivities),
       const DeepCollectionEquality().hash(_listExperiences),
       isFetching,
-      atTheEndOfThePage,
+      atTheEndOfThePageHosts,
+      atTheEndOfThePageEvents,
+      atTheEndOfThePageActivities,
+      atTheEndOfThePageExperiences,
       pageHosts,
       pageActivities,
       pageExperiences,
@@ -1275,7 +1337,10 @@ abstract class _HomeState implements HomeState {
       final List<Activity>? listActivities,
       final List<Experience>? listExperiences,
       final bool? isFetching,
-      final bool? atTheEndOfThePage,
+      final bool? atTheEndOfThePageHosts,
+      final bool? atTheEndOfThePageEvents,
+      final bool? atTheEndOfThePageActivities,
+      final bool? atTheEndOfThePageExperiences,
       final int? pageHosts,
       final int? pageActivities,
       final int? pageExperiences,
@@ -1302,7 +1367,13 @@ abstract class _HomeState implements HomeState {
   @override
   bool? get isFetching;
   @override
-  bool? get atTheEndOfThePage;
+  bool? get atTheEndOfThePageHosts;
+  @override
+  bool? get atTheEndOfThePageEvents;
+  @override
+  bool? get atTheEndOfThePageActivities;
+  @override
+  bool? get atTheEndOfThePageExperiences;
   @override
   int? get pageHosts;
   @override

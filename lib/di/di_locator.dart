@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/data/data_sources/data_sources.dart';
-import 'package:idwey/data/data_sources/event_api_data_source.dart';
 import 'package:idwey/data/repositories_impl/activity_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/event_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/experience_repository_impl.dart';

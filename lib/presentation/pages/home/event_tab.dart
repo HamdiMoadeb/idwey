@@ -55,7 +55,7 @@ class _EventScreenState extends State<EventScreen>
             child: CircularProgressIndicator(),
           );
         } else if (state.statusEvent == StateStatus.error &&
-            state.atTheEndOfThePage == false) {
+            state.atTheEndOfThePageEvents == false) {
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.statusEvent == StateStatus.success ||
             state.statusEvent == StateStatus.loadingMore &&
@@ -74,7 +74,8 @@ class _EventScreenState extends State<EventScreen>
                     )
                   : const SizedBox.shrink(),
               body: ListView.separated(
-                padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
+                padding: EdgeInsets.only(
+                    top: 16.h, left: 12.w, right: 12.w, bottom: 16.h),
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.event(

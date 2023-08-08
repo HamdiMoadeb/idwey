@@ -55,7 +55,7 @@ class _ActivityScreenState extends State<ActivityScreen>
             child: CircularProgressIndicator(),
           );
         } else if (state.statusActivities == StateStatus.error &&
-            state.atTheEndOfThePage == false) {
+            state.atTheEndOfThePageActivities == false) {
           return const Center(child: Text("Pas des activites"));
         } else if (state.statusActivities == StateStatus.success ||
             state.statusActivities == StateStatus.loadingMore &&
@@ -76,16 +76,20 @@ class _ActivityScreenState extends State<ActivityScreen>
                       : const SizedBox.shrink(),
               backgroundColor: secondaryGrey,
               body: ListView.separated(
-                padding: EdgeInsets.only(top: 16.h, left: 12.w, right: 12.w),
+                padding: EdgeInsets.only(
+                    top: 16.h, left: 12.w, right: 12.w, bottom: 16.h),
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.activity(
-                  title: state.listActivities?[index].title,
+                  title: state.listActivities?[index].catName,
                   adress: state.listActivities?[index].address,
                   price: state.listActivities?[index].price,
-                  type: state.listActivities?[index].catName,
+                  type: state.listActivities?[index].title,
                   duration: state.listActivities?[index].duration,
-                  //  term: state.listActivities?[index].termName,
+                  isFeatured: state.listActivities?[index].isFeatured != null &&
+                          state.listActivities?[index].isFeatured == 1
+                      ? true
+                      : false,
                   url: state.listActivities?[index].imageUrl,
                   nbPerson:
                       " ${state.listActivities?[index].maxPeople} personnes",

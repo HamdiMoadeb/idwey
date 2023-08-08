@@ -22,15 +22,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getUserRole(GetUserRole event, Emitter<HomeState> emit) {}
 
-  setAtTheEndOfThePage() {
-    emit(state.copyWith(
-      atTheEndOfThePage: true,
-    ));
-  }
-
   _getListHosts(GetListHost event, Emitter<HomeState> emit) async {
     try {
-      if (state.atTheEndOfThePage == true) {
+      if (state.atTheEndOfThePageHosts == true) {
         return;
       }
       emit(state.copyWith(
@@ -51,7 +45,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       result.fold((Exception failure) {
         emit(state.copyWith(
           status: StateStatus.error,
-          atTheEndOfThePage: false,
+          atTheEndOfThePageHosts: false,
           isFetching: false,
         ));
       }, (List<Host>? success) async {
@@ -66,13 +60,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             status: StateStatus.success,
             listHosts: state.listHosts! + success,
             isFetching: false,
-            atTheEndOfThePage: atTheEndOfThePage,
+            atTheEndOfThePageHosts: atTheEndOfThePage,
             pageHosts: nextPage,
           ));
         } else {
           emit(state.copyWith(
             status: StateStatus.error,
-            atTheEndOfThePage:
+            atTheEndOfThePageHosts:
                 true, // Mark atTheEndOfThePage as true when there is no more data
             isFetching: false,
           ));
@@ -88,7 +82,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListEvents(GetListEvent event, Emitter<HomeState> emit) async {
     try {
-      if (state.atTheEndOfThePage == true) {
+      if (state.atTheEndOfThePageEvents == true) {
         return;
       }
       emit(state.copyWith(
@@ -109,7 +103,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       result.fold((Exception failure) {
         emit(state.copyWith(
           statusEvent: StateStatus.error,
-          atTheEndOfThePage: false,
+          atTheEndOfThePageEvents: false,
           isFetching: false,
         ));
       }, (List<Event>? success) async {
@@ -124,13 +118,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             statusEvent: StateStatus.success,
             listEvents: state.listEvents! + success,
             isFetching: false,
-            atTheEndOfThePage: atTheEndOfThePage,
+            atTheEndOfThePageEvents: atTheEndOfThePage,
             pageEvents: nextPage,
           ));
         } else {
           emit(state.copyWith(
             statusEvent: StateStatus.error,
-            atTheEndOfThePage:
+            atTheEndOfThePageEvents:
                 true, // Mark atTheEndOfThePage as true when there is no more data
             isFetching: false,
           ));
@@ -146,7 +140,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListExperiences(GetListExperiences event, Emitter<HomeState> emit) async {
     try {
-      if (state.atTheEndOfThePage == true) {
+      if (state.atTheEndOfThePageExperiences == true) {
         return;
       }
       emit(state.copyWith(
@@ -167,7 +161,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       result.fold((Exception failure) {
         emit(state.copyWith(
           statusExperiences: StateStatus.error,
-          atTheEndOfThePage: false,
+          atTheEndOfThePageExperiences: false,
           isFetching: false,
         ));
       }, (List<Experience>? success) async {
@@ -182,13 +176,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             statusExperiences: StateStatus.success,
             listExperiences: state.listExperiences! + success,
             isFetching: false,
-            atTheEndOfThePage: atTheEndOfThePage,
+            atTheEndOfThePageExperiences: atTheEndOfThePage,
             pageExperiences: nextPage,
           ));
         } else {
           emit(state.copyWith(
             statusExperiences: StateStatus.error,
-            atTheEndOfThePage:
+            atTheEndOfThePageExperiences:
                 true, // Mark atTheEndOfThePage as true when there is no more data
             isFetching: false,
           ));
@@ -204,7 +198,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListActivities(GetListActivities event, Emitter<HomeState> emit) async {
     try {
-      if (state.atTheEndOfThePage == true) return;
+      if (state.atTheEndOfThePageActivities == true) return;
 
       emit(state.copyWith(
         statusActivities:
@@ -224,7 +218,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       result.fold((Exception failure) {
         emit(state.copyWith(
           statusActivities: StateStatus.error,
-          atTheEndOfThePage: false,
+          atTheEndOfThePageActivities: false,
           isFetching: false,
         ));
       }, (List<Activity>? success) async {
@@ -239,13 +233,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             statusActivities: StateStatus.success,
             listActivities: state.listActivities! + success,
             isFetching: false,
-            atTheEndOfThePage: atTheEndOfThePage,
+            atTheEndOfThePageActivities: atTheEndOfThePage,
             pageActivities: nextPage,
           ));
         } else {
           emit(state.copyWith(
             statusActivities: StateStatus.error,
-            atTheEndOfThePage:
+            atTheEndOfThePageActivities:
                 true, // Mark atTheEndOfThePage as true when there is no more data
             isFetching: false,
           ));

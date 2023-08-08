@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:idwey/presentation/dashboard_page/dashBoard_page.dart';
+import 'package:idwey/presentation/dashboard_page/dashboard_page.dart';
 import 'package:idwey/presentation/pages/assurance/assurance_page.dart';
 import 'package:idwey/presentation/pages/auth/auth_page.dart';
 import 'package:idwey/presentation/pages/home/main_home.dart';

@@ -23,6 +23,7 @@ class CustomCard extends StatefulWidget {
   final CardType? cardType;
   final String? date;
   final bool? isExpired;
+  final bool? isFeatured;
   bool? isFavorite;
   final Function(bool)? onFavoriteTap;
 
@@ -40,7 +41,8 @@ class CustomCard extends StatefulWidget {
       this.type,
       this.date,
       this.onFavoriteTap,
-      this.isFavorite = false})
+      this.isFavorite = false,
+      this.isFeatured})
       : cardType = CardType.host,
         duration = null,
         isExpired = null,
@@ -60,7 +62,8 @@ class CustomCard extends StatefulWidget {
       this.date,
       this.isExpired,
       this.onFavoriteTap,
-      this.isFavorite = false})
+      this.isFavorite = false,
+      this.isFeatured})
       : cardType = CardType.event,
         duration = null,
         super(key: key);
@@ -81,7 +84,8 @@ class CustomCard extends StatefulWidget {
       this.isExpired,
       this.onFavoriteTap,
       this.isFavorite = false,
-      this.duration})
+      this.duration,
+      this.isFeatured})
       : cardType = CardType.activity,
         super(key: key);
   CustomCard.experience(
@@ -100,7 +104,8 @@ class CustomCard extends StatefulWidget {
       this.isExpired,
       this.onFavoriteTap,
       this.isFavorite = false,
-      this.duration})
+      this.duration,
+      this.isFeatured})
       : cardType = CardType.experience,
         super(key: key);
 
@@ -142,7 +147,8 @@ class _CustomCardState extends State<CustomCard> {
                             value: downloadProgress.progress),
                       ),
                     ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ),
@@ -154,18 +160,18 @@ class _CustomCardState extends State<CustomCard> {
                           top: 20.h,
                           child: CustomChip(
                             label: widget.term ?? "",
-                            onSelected: (bool) {},
+                            onSelected: (v) {},
                           ),
                         )
-                  : widget.cardType != null
+                  : widget.cardType != null && widget.isFeatured == true
                       ? Positioned(
                           left: 10.w,
                           top: 20.h,
                           child: CustomChip(
-                            label: widget.cardType == CardType.host
+                            label: widget.cardType != CardType.event
                                 ? 'En Vedette'
                                 : widget.type ?? "",
-                            onSelected: (bool) {},
+                            onSelected: (v) {},
                           ),
                         )
                       : const SizedBox.shrink(),

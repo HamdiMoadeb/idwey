@@ -29,7 +29,7 @@ abstract class _$AppRouter extends RootStackRouter {
     ProductsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: ProductsScreen(),
+        child: const ProductsScreen(),
       );
     },
     AssuranceRoute.name: (routeData) {
@@ -41,7 +41,7 @@ abstract class _$AppRouter extends RootStackRouter {
     AuthRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: AuthScreen(),
+        child: const AuthScreen(),
       );
     },
     InspirationRoute.name: (routeData) {
