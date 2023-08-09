@@ -15,20 +15,27 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+  late AnimationController controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 2000),
+  );
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2000),
-    );
+
     controller.forward();
     Future.delayed(
       const Duration(seconds: 3),
-      () => AutoRouter.of(context).replace(const HomeRoute()),
+      () => AutoRouter.of(context).replace(const DashboardRoute()),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
   }
 
   @override

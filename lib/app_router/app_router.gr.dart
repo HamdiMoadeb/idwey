@@ -14,10 +14,40 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
+    DashboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomeScreen(),
+        child: const DashboardScreen(),
+      );
+    },
+    MainHomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MainHomeScreen(),
+      );
+    },
+    ProductsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProductsScreen(),
+      );
+    },
+    AssuranceRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AssuranceScreen(),
+      );
+    },
+    AuthRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AuthScreen(),
+      );
+    },
+    InspirationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const InspirationScreen(),
       );
     },
     SplashRoute.name: (routeData) {
@@ -30,15 +60,85 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [HomeScreen]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
+/// [DashboardScreen]
+class DashboardRoute extends PageRouteInfo<void> {
+  const DashboardRoute({List<PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          DashboardRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'DashboardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MainHomeScreen]
+class MainHomeRoute extends PageRouteInfo<void> {
+  const MainHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          MainHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainHomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProductsScreen]
+class ProductsRoute extends PageRouteInfo<void> {
+  const ProductsRoute({List<PageRouteInfo>? children})
+      : super(
+          ProductsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AssuranceScreen]
+class AssuranceRoute extends PageRouteInfo<void> {
+  const AssuranceRoute({List<PageRouteInfo>? children})
+      : super(
+          AssuranceRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AssuranceRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AuthScreen]
+class AuthRoute extends PageRouteInfo<void> {
+  const AuthRoute({List<PageRouteInfo>? children})
+      : super(
+          AuthRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [InspirationScreen]
+class InspirationRoute extends PageRouteInfo<void> {
+  const InspirationRoute({List<PageRouteInfo>? children})
+      : super(
+          InspirationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'InspirationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
