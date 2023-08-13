@@ -11,6 +11,6 @@ class ImageBannerState with _$ImageBannerState {
   factory ImageBannerState.initial() => const ImageBannerState(
         status: StateStatus.init,
         listImages: [],
-        currentImage: 1,
+        currentImage: 0,
       );
 }

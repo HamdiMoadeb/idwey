@@ -102,7 +102,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                 controller: scrollController,
                 slivers: [
                   SliverAppBar(
-                    collapsedHeight: 70.h,
+                    collapsedHeight: 60.h,
                     pinned: true,
                     automaticallyImplyLeading: false,
                     floating: true,
@@ -113,8 +113,9 @@ class _DetailsScreenState extends State<DetailsScreen>
                         width: 40.h,
                         margin: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: materialPrimary.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(50)),
+                          shape: BoxShape.circle,
+                          color: materialPrimary.withOpacity(0.8),
+                        ),
                         child: IconButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -130,8 +131,9 @@ class _DetailsScreenState extends State<DetailsScreen>
                         width: 40.h,
                         margin: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: materialPrimary.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(50)),
+                          color: materialPrimary.withOpacity(0.8),
+                          shape: BoxShape.circle,
+                        ),
                         child: IconButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -332,19 +334,28 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 .bodyLarge!
                                 .copyWith(fontWeight: FontWeight.w500),
                           ),
-                          Container(
-                              height: 300.h,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15.0),
-                              child: MapPosition(
-                                title: "title",
-                                lat: double.tryParse(
-                                        state.hostDetails?.row?.mapLat ?? "") ??
-                                    0,
-                                lng: double.tryParse(
-                                        state.hostDetails?.row?.mapLng ?? "") ??
-                                    0,
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          SizedBox(
+                              height: 200.h,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: MapPosition(
+                                  title: "title",
+                                  lat: double.tryParse(
+                                          state.hostDetails?.row?.mapLat ??
+                                              "") ??
+                                      0,
+                                  lng: double.tryParse(
+                                          state.hostDetails?.row?.mapLng ??
+                                              "") ??
+                                      0,
+                                ),
                               )),
+                          SizedBox(
+                            height: 10.h,
+                          ),
                           const Divider(),
                           Row(
                             children: [
