@@ -60,7 +60,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
       builder: (context, state) {
         return Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(190.h),
+              preferredSize: Size.fromHeight(200.h),
               child: AppBar(
                 elevation: 1.0,
                 backgroundColor: Colors.white,

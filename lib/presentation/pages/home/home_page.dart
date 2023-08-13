@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
@@ -17,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with AutomaticKeepAliveClientMixin {
   //final ScrollController _scrollController = ScrollController();
+  final AppRouter appRouter = GetIt.I<AppRouter>();
 
   @override
   void initState() {
@@ -80,6 +83,10 @@ class _HomeScreenState extends State<HomeScreen>
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.host(
+                  onTap: () {
+                    appRouter.push(DetailsRoute(
+                        id: state.listHosts?[index].id, typeHost: ""));
+                  },
                   title: state.listHosts?[index].title,
                   adress: state.listHosts?[index].address,
                   price: state.listHosts?[index].price,

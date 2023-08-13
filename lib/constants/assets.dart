@@ -14,4 +14,10 @@ class Assets {
   static const String heartIconFilled = "assets/heart-icon.svg";
   static const String search = "assets/Search.svg";
   static const String filter = "assets/Filter.svg";
+  static const String kitchen = "assets/Kitchen.svg";
+  static const String shower = "assets/Shower.svg";
+  static const String parking = "assets/Parking.svg";
+  static const String house = "assets/House.svg";
+  static const String userGroup = "assets/Frame 23004.svg";
+  static const String beachArea = "assets/Beach area.svg";
 }

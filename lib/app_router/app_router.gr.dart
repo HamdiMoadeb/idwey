@@ -11,7 +11,6 @@ part of 'app_router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
   // ignore: unused_element
-
   @override
   final Map<String, PageFactory> pagesMap = {
     DashboardRoute.name: (routeData) {
@@ -42,6 +41,17 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const AuthScreen(),
+      );
+    },
+    DetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: DetailsScreen(
+          key: args.key,
+          id: args.id,
+          typeHost: args.typeHost,
+        ),
       );
     },
     InspirationRoute.name: (routeData) {
@@ -127,6 +137,49 @@ class AuthRoute extends PageRouteInfo<void> {
   static const String name = 'AuthRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [DetailsScreen]
+class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
+  DetailsRoute({
+    Key? key,
+    required int? id,
+    required String? typeHost,
+    List<PageRouteInfo>? children,
+  }) : super(
+          DetailsRoute.name,
+          args: DetailsRouteArgs(
+            key: key,
+            id: id,
+            typeHost: typeHost,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailsRoute';
+
+  static const PageInfo<DetailsRouteArgs> page =
+      PageInfo<DetailsRouteArgs>(name);
+}
+
+class DetailsRouteArgs {
+  const DetailsRouteArgs({
+    this.key,
+    required this.id,
+    required this.typeHost,
+  });
+
+  final Key? key;
+
+  final int? id;
+
+  final String? typeHost;
+
+  @override
+  String toString() {
+    return 'DetailsRouteArgs{key: $key, id: $id, typeHost: $typeHost}';
+  }
 }
 
 /// generated route for

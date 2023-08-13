@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
+import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/data/data_sources/data_sources.dart';
 import 'package:idwey/data/repositories_impl/activity_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/event_repository_impl.dart';
@@ -9,10 +10,12 @@ import 'package:idwey/domain/repositories/activity_repository.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
 import 'package:idwey/domain/repositories/exeperience_repository.dart';
 import 'package:idwey/domain/repositories/host_repository.dart';
+import 'package:idwey/domain/usecases/get_host_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_activities_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_events_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_experiences_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_hosts.dart';
+import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dart';
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/utils/dio.dart';
 
@@ -28,6 +31,7 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton<HostRepository>(
       () => HostRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListHostsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetHostUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton<EventApiDataSource>(
       () => EventApiDataSourceImpl(GetIt.I()));
   // Domain
@@ -47,4 +51,6 @@ Future<void> setup() async {
       () => ExperienceRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListExperiencesUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => HomeBloc());
+  GetIt.I.registerLazySingleton(() => DetailsPageBloc());
+  GetIt.I.registerLazySingleton(() => ImageBannerBloc());
 }

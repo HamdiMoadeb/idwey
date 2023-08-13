@@ -118,7 +118,7 @@ class SearchBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 16.w, bottom: 12.h),
+            padding: EdgeInsets.only(left: 16.w, bottom: 8.h),
             height: 55.h,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[300]!),
@@ -137,7 +137,7 @@ class SearchBox extends StatelessWidget {
                   width: 10.w,
                 ),
                 SizedBox(
-                  width: 210.w,
+                  width: 230.w,
                   child: const TextField(
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.zero,

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/di/di_locator.dart';
+import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dart';
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 
 import 'app_router/app_router.dart';
@@ -27,9 +29,15 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (BuildContext context) => GetIt.I<HomeBloc>(),
           ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<DetailsPageBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<ImageBannerBloc>(),
+          ),
         ],
         child: ScreenUtilInit(
-            designSize: const Size(360, 690),
+            designSize: const Size(375, 667),
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (context, child) {
