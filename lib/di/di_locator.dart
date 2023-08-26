@@ -10,13 +10,15 @@ import 'package:idwey/domain/repositories/activity_repository.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
 import 'package:idwey/domain/repositories/exeperience_repository.dart';
 import 'package:idwey/domain/repositories/host_repository.dart';
+import 'package:idwey/domain/usecases/get_activity_details_usecase.dart';
+import 'package:idwey/domain/usecases/get_event_details_usecase.dart';
+import 'package:idwey/domain/usecases/get_experience_details_dto.dart';
 import 'package:idwey/domain/usecases/get_host_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_activities_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_events_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_experiences_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_hosts.dart';
-import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dart';
-import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
+import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/utils/dio.dart';
 
 Future<void> setup() async {
@@ -38,19 +40,25 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton<EventRepository>(
       () => EventRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListEventsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetEventDetailsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton<ActivityApiDataSource>(
       () => ActivityApiDataSourceImpl(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ActivityRepository>(
       () => ActivityRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListActivitiesUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetActivityDetailsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton<ExperienceApiDataSource>(
       () => ExperienceApiDataSourceImpl(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(
       () => ExperienceRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListExperiencesUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetExperienceDetailsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => HomeBloc());
   GetIt.I.registerLazySingleton(() => DetailsPageBloc());
+  GetIt.I.registerLazySingleton(() => DetailsEventPageBloc());
   GetIt.I.registerLazySingleton(() => ImageBannerBloc());
+  GetIt.I.registerLazySingleton(() => DetailsActivityPageBloc());
+  GetIt.I.registerLazySingleton(() => DetailsExperiencePageBloc());
 }

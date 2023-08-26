@@ -1,10 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get_it/get_it.dart';
-import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/components/cards/card_type.dart';
 import 'package:idwey/components/chips/chip.dart';

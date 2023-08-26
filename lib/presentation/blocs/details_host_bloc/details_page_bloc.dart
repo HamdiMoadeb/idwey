@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
-import 'package:idwey/data/models/host_dto.dart';
 import 'package:idwey/domain/usecases/get_host_details_usecase.dart';
 
 part 'details_page_event.dart';

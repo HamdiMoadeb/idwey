@@ -6,16 +6,16 @@ import 'package:idwey/theme/app_colors.dart';
 
 class BottomReservationBar extends StatelessWidget {
   final String price;
-  final String per_person;
-  final String sale_price;
+  final String perPerson;
+  final String salePrice;
   final StateEvent stateEvent;
   final VoidCallback? onPressed;
   const BottomReservationBar(
       {Key? key,
       required this.price,
       this.stateEvent = StateEvent.isAvailable,
-      this.per_person = "",
-      this.sale_price = "",
+      this.perPerson = "",
+      this.salePrice = "",
       this.onPressed})
       : super(key: key);
 
@@ -32,7 +32,7 @@ class BottomReservationBar extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 0,
             blurRadius: 5,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -40,19 +40,21 @@ class BottomReservationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "$price / nuit",
-            style: Theme.of(context).textTheme.headline1?.copyWith(
-                  fontSize: 16.sp,
-                  color: primary,
-                  fontWeight: FontWeight.w500,
-                ),
+          Expanded(
+            child: Text(
+              "$price / $perPerson",
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                    fontSize: 16.sp,
+                    color: primary,
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
           ),
           //commented for deployment
           SizedBox(
             width: 220.w,
             child: CustomButton.primary(
-              child: Text("Verifier la disponibilité"),
+              child: const Text("Verifier la disponibilité"),
               onPressed: onPressed ?? () {},
             ),
           )

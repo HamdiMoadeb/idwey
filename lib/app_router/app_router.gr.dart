@@ -11,6 +11,7 @@ part of 'app_router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
   // ignore: unused_element
+
   @override
   final Map<String, PageFactory> pagesMap = {
     DashboardRoute.name: (routeData) {
@@ -64,6 +65,36 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashScreen(),
+      );
+    },
+    EventDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<EventDetailsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EventDetailsScreen(
+          key: args.key,
+          id: args.id,
+        ),
+      );
+    },
+    ActivityDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<ActivityDetailsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ActivityDetailsScreen(
+          key: args.key,
+          id: args.id,
+        ),
+      );
+    },
+    ExperienceDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<ExperienceDetailsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ExperienceDetailsScreen(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
   };
@@ -208,4 +239,118 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EventDetailsScreen]
+class EventDetailsRoute extends PageRouteInfo<EventDetailsRouteArgs> {
+  EventDetailsRoute({
+    Key? key,
+    required int? id,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EventDetailsRoute.name,
+          args: EventDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EventDetailsRoute';
+
+  static const PageInfo<EventDetailsRouteArgs> page =
+      PageInfo<EventDetailsRouteArgs>(name);
+}
+
+class EventDetailsRouteArgs {
+  const EventDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final int? id;
+
+  @override
+  String toString() {
+    return 'EventDetailsRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [ActivityDetailsScreen]
+class ActivityDetailsRoute extends PageRouteInfo<ActivityDetailsRouteArgs> {
+  ActivityDetailsRoute({
+    Key? key,
+    required int? id,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ActivityDetailsRoute.name,
+          args: ActivityDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ActivityDetailsRoute';
+
+  static const PageInfo<ActivityDetailsRouteArgs> page =
+      PageInfo<ActivityDetailsRouteArgs>(name);
+}
+
+class ActivityDetailsRouteArgs {
+  const ActivityDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final int? id;
+
+  @override
+  String toString() {
+    return 'ActivityDetailsRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [ExperienceDetailsScreen]
+class ExperienceDetailsRoute extends PageRouteInfo<ExperienceDetailsRouteArgs> {
+  ExperienceDetailsRoute({
+    Key? key,
+    required int? id,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ExperienceDetailsRoute.name,
+          args: ExperienceDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ExperienceDetailsRoute';
+
+  static const PageInfo<ExperienceDetailsRouteArgs> page =
+      PageInfo<ExperienceDetailsRouteArgs>(name);
+}
+
+class ExperienceDetailsRouteArgs {
+  const ExperienceDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final int? id;
+
+  @override
+  String toString() {
+    return 'ExperienceDetailsRouteArgs{key: $key, id: $id}';
+  }
 }

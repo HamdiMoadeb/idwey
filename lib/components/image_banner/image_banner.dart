@@ -1,10 +1,7 @@
-import 'package:banner_image/banner_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
-import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
-import 'package:idwey/theme/app_colors.dart';
 
 // class ImageBanner extends StatefulWidget {
 //   const ImageBanner({Key? key, required this.images}) : super(key: key);
@@ -74,8 +71,6 @@ class _ImageBannerState extends State<ImageBanner> {
 
     pageController.addListener(() {
       if (pageController.page!.toInt() > 5) {
-        print("pageController.page!.toInt().modInverse(6)");
-        print(pageController.page!.toInt().modInverse(4));
         BlocProvider.of<ImageBannerBloc>(context).add(
             ImageBannerEvent.setCurrentImage(
                 pageController.page!.toInt().modInverse(4)));
@@ -98,9 +93,11 @@ class _ImageBannerState extends State<ImageBanner> {
             height: 300.h, // Adjust the height as needed
             child: PageView.builder(
               controller: pageController,
-              itemCount: state.listImages!.length,
+              itemCount:
+                  state.listImages!.length > 6 ? 6 : state.listImages!.length,
               itemBuilder: (context, index) {
                 return CachedNetworkImage(
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                   imageUrl: state.listImages![index].large,
                   fit: BoxFit.cover,
                 );
@@ -111,7 +108,7 @@ class _ImageBannerState extends State<ImageBanner> {
             bottom: 5.h,
             left: 150.w,
             child: DotsIndicator(
-              dotsCount: 5,
+              dotsCount: 6,
               position: state.currentImage!.toInt(),
               decorator: const DotsDecorator(
                   color: Colors.white60, // Inactive dot color
@@ -125,5 +122,21 @@ class _ImageBannerState extends State<ImageBanner> {
     }
         // Loading indicator
         );
+  }
+}
+
+class ImageBannerSingle extends StatelessWidget {
+  final String urlImage;
+  const ImageBannerSingle({Key? key, required this.urlImage}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        height: 300.h, // Adjust the height as needed
+        child: CachedNetworkImage(
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+          imageUrl: urlImage,
+          fit: BoxFit.cover,
+        ));
   }
 }

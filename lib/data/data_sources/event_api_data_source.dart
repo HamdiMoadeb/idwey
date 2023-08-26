@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:idwey/data/models/event_details_dto.dart';
 
 import '../models/models.dart';
 
 abstract class EventApiDataSource {
   Future<List<Event>> getListEvents(int limit, int offset);
+  Future<EventDetailsDto> getEvent(int id);
 }
 
 class EventApiDataSourceImpl implements EventApiDataSource {
@@ -24,6 +26,17 @@ class EventApiDataSourceImpl implements EventApiDataSource {
       return listOfHosts;
     } catch (e) {
       throw Exception();
+    }
+  }
+
+  @override
+  Future<EventDetailsDto> getEvent(int id) async {
+    try {
+      final response = await dio.get("https://idwey.tn/api/event/detail/$id");
+
+      return EventDetailsDto.fromJson(response.data);
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }

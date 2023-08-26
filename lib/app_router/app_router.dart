@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:idwey/presentation/dashboard_page/dashboard_page.dart';
 import 'package:idwey/presentation/pages/assurance/assurance_page.dart';
 import 'package:idwey/presentation/pages/auth/auth_page.dart';
+import 'package:idwey/presentation/pages/details_page/activity_details_page.dart';
+import 'package:idwey/presentation/pages/details_page/event_details_page.dart';
+import 'package:idwey/presentation/pages/details_page/experience_details_page.dart';
 import 'package:idwey/presentation/pages/details_page/host_details_page.dart';
 import 'package:idwey/presentation/pages/home/main_home.dart';
 import 'package:idwey/presentation/pages/inspiration/inspiration.dart';
@@ -35,6 +38,9 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: AuthRoute.page),
     AutoRoute(page: ProductsRoute.page),
     AutoRoute(page: InspirationRoute.page),
-    AutoRoute(page: DetailsRoute.page)
+    AutoRoute(page: DetailsRoute.page),
+    AutoRoute(page: EventDetailsRoute.page),
+    AutoRoute(page: ExperienceDetailsRoute.page),
+    AutoRoute(page: ActivityDetailsRoute.page),
   ];
 }

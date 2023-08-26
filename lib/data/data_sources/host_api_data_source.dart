@@ -30,9 +30,12 @@ class HostApiDataSourceImpl implements HostApiDataSource {
 
   @override
   Future<HostDetails> getHost(int id) async {
-    //  try {
-    final response = await dio.get("https://idwey.tn/api/hotel/detail/$id");
+    try {
+      final response = await dio.get("https://idwey.tn/api/hotel/detail/$id");
 
-    return HostDetails.fromJson(response.data);
+      return HostDetails.fromJson(response.data);
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 }

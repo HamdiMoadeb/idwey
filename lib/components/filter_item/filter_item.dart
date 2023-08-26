@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 class FilterItem extends StatelessWidget {
@@ -129,19 +128,22 @@ class FilterItemType extends StatelessWidget {
           borderRadius: BorderRadius.circular(6.r),
           border: Border.all(color: primary, width: 2),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            icon,
-            Expanded(
-              child: Text(label,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              icon,
+              Text(label,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.w500,
                       color: primary,
-                      fontSize: 14)),
-            ),
-          ],
+                      fontSize: 12)),
+            ],
+          ),
         ),
       ),
     );

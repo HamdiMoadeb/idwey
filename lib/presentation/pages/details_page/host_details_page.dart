@@ -1,21 +1,21 @@
 import 'package:auto_route/annotations.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:idwey/components/bottom_bar.dart';
-import 'package:idwey/components/cards/card.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/components/read_more_text.dart';
 import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
-import 'package:idwey/constants/assets.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dart';
+import 'package:idwey/presentation/pages/details_page/components/commodite_section/commodite_section.dart';
+import 'package:idwey/presentation/pages/details_page/components/map_section/map_section.dart';
+import 'package:idwey/presentation/pages/details_page/components/reviews_section/reviews_section.dart';
+import 'package:idwey/presentation/pages/details_page/components/terms_section/terms_section.dart';
+import 'package:idwey/presentation/pages/details_page/components/type_capacite_section/type_capacite_section.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:heroicons/heroicons.dart';
+import 'components/chalets_section/chalets_section.dart';
 
 @RoutePage()
 class DetailsScreen extends StatefulWidget {
@@ -87,11 +87,11 @@ class _DetailsScreenState extends State<DetailsScreen>
                   builder: (context) {
                     return SizedBox(
                         height: MediaQuery.of(context).size.height * 0.9,
-                        child: DraggableBottomSheet());
+                        child: const DraggableBottomSheet());
                   },
                 );
               },
-              per_person: state.hostDetails?.row?.perPerson ?? "",
+              perPerson: "nuit",
               price:
                   "${double.parse(state.hostDetails?.row?.price ?? "0").toInt().toString()} DT",
             ),
@@ -211,9 +211,8 @@ class _DetailsScreenState extends State<DetailsScreen>
                             description: state.hostDetails?.row?.content ?? "",
                             readMoreLabel: "Lire la suite",
                             readLessLabel: "Lire moins",
-                            maxLines: 3,
+                            maxLines: 2,
                             isExpandable: true,
-                            //padding: const EdgeInsets.symmetric(vertical: 10),
                             bodyColor: Colors.grey[500],
                             buttonColor: primary,
                           ),
@@ -228,234 +227,40 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 .bodyLarge!
                                 .copyWith(fontWeight: FontWeight.w500),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Row(
-                              children: [
-                                FilterItemType(
-                                  icon: SvgPicture.asset(
-                                    Assets.house,
-                                    height: 45.h,
-                                    width: 45.w,
-                                  ),
-                                  label: state.hostDetails?.attributes?["5"]
-                                          ?.child?[0] ??
-                                      "",
-                                ),
-                                FilterItemType(
-                                  icon: SvgPicture.asset(
-                                    Assets.userGroup,
-                                    height: 45.h,
-                                    width: 45.w,
-                                  ),
-                                  label:
-                                      "${state.hostDetails?.row?.maxPerson} personnes",
-                                ),
-                                FilterItemType(
-                                  icon: SvgPicture.asset(
-                                    Assets.beachArea,
-                                    height: 45.h,
-                                    width: 45.w,
-                                  ),
-                                  label: state.hostDetails?.attributes?["6"]
-                                          ?.child?[0] ??
-                                      "",
-                                ),
-                              ],
-                            ),
+                          TypeCapaciteSection(
+                            typeReservation: TypeReservation.host,
+                            type: state
+                                    .hostDetails?.attributes?["5"]?.child?[0] ??
+                                "",
+                            capacite: state.hostDetails?.row?.maxPerson ?? "",
+                            emplacement: state
+                                    .hostDetails?.attributes?["6"]?.child?[0] ??
+                                "",
                           ),
                           const Divider(
                             thickness: 1,
                           ),
-                          Text(
-                            'Commodités',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontWeight: FontWeight.w500),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.shower),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Douche',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.parking),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Free Parking',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.kitchen),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Cuisine équipée',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Divider(),
-                          Text(
-                            'Emplacement',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          SizedBox(
-                              height: 200.h,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: MapPosition(
-                                  title: "title",
-                                  lat: double.tryParse(
-                                          state.hostDetails?.row?.mapLat ??
-                                              "") ??
-                                      0,
-                                  lng: double.tryParse(
-                                          state.hostDetails?.row?.mapLng ??
-                                              "") ??
-                                      0,
-                                ),
-                              )),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          const Divider(),
-                          Row(
-                            children: [
-                              const Icon(Icons.star),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Text(
-                                '4.95 • 22 reviews',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .copyWith(fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              SizedBox(
-                                height: 210.h,
-                                child: ListView.separated(
-                                    itemBuilder: (context, index) {
-                                      return const CardReview(
-                                        text:
-                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim. ",
-                                        reviewer: 'Reviewer',
-                                        date: '4 months ago',
-                                      );
-                                    },
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    separatorBuilder: (context, index) {
-                                      return SizedBox(
-                                        width: 8.w,
-                                      );
-                                    },
-                                    itemCount: 5),
-                              ),
+                          state.hostDetails!.rooms!.isNotEmpty
+                              ? ChaletsSection(state: state)
+                              : const SizedBox.shrink(),
 
-                              /// secondary button to review all reviews if there is more than 5
-                              Visibility(
-                                visible: true,
-                                child: OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 12.h),
-                                        side: const BorderSide(
-                                            color: Colors.black, width: 1),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.r))),
-                                    child: Text(
-                                      "Afficher les 22 avis",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500),
-                                    ),
-                                    onPressed: () {}),
-                              )
-                            ],
+                          const CommoditiesSection(
+                            typeReservation: TypeReservation.host,
+                            kitchen: "Cuisine équipé",
+                            parking: "Free parking",
+                            shower: "Douche",
                           ),
+                          const Divider(),
+                          MapSection(
+                            lat: state.hostDetails?.row?.mapLat ?? "",
+                            lng: state.hostDetails?.row?.mapLng ?? "",
+                          ),
+                          const Divider(),
+                          const ReviewsSection(reviews: []),
                           const Divider(
                             thickness: 1,
                           ),
-                          Text(
-                            'Règles de la maison',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                children: const [
-                                  Icon(Icons.verified_user),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text("Entrée : 14:00"),
-                                ],
-                              ),
-                              Row(
-                                children: const [
-                                  Icon(Icons.verified_user),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text("Sortie : 14:00"),
-                                ],
-                              )
-                            ],
-                          )
+                          const TermsSection(),
                         ],
                       ),
                     ),
@@ -466,64 +271,7 @@ class _DetailsScreenState extends State<DetailsScreen>
           ),
         );
       }
-      return Scaffold(body: const SizedBox.shrink());
+      return const Scaffold(body: SizedBox.shrink());
     });
-  }
-}
-
-class MapPosition extends StatefulWidget {
-  double lat;
-  double lng;
-  String title;
-  MapPosition(
-      {Key? key, required this.lat, required this.lng, required this.title})
-      : super(key: key);
-
-  @override
-  State<MapPosition> createState() => _MapPositionState();
-}
-
-class _MapPositionState extends State<MapPosition> {
-  late GoogleMapController mapController;
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  Set<Marker> markers = Set();
-
-  @override
-  void initState() {
-    markers.add(Marker(
-      markerId: const MarkerId("location"),
-      position: LatLng(widget.lat, widget.lng), //position of marker
-      infoWindow: InfoWindow(
-        //popup info
-        title: '${widget.title}',
-      ),
-      icon: BitmapDescriptor.defaultMarker, //Icon for Marker
-    ));
-
-    //you can add more markers here
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      child: GoogleMap(
-          zoomControlsEnabled: false,
-          gestureRecognizers: {
-            Factory<OneSequenceGestureRecognizer>(
-                () => EagerGestureRecognizer())
-          },
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: LatLng(widget.lat, widget.lng),
-            zoom: 11.0,
-          ),
-          markers: markers),
-    );
   }
 }

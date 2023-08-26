@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/di/di_locator.dart';
-import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dart';
-import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
+import 'package:idwey/presentation/blocs/blocs.dart';
 
 import 'app_router/app_router.dart';
 import 'theme/app_colors.dart';
@@ -31,6 +30,17 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (BuildContext context) => GetIt.I<DetailsPageBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<DetailsEventPageBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) =>
+                GetIt.I<DetailsActivityPageBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) =>
+                GetIt.I<DetailsExperiencePageBloc>(),
           ),
           BlocProvider(
             create: (BuildContext context) => GetIt.I<ImageBannerBloc>(),

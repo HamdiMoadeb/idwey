@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
 
@@ -19,6 +21,7 @@ class EventScreen extends StatefulWidget {
 class _EventScreenState extends State<EventScreen>
     with AutomaticKeepAliveClientMixin {
   // final ScrollController _scrollController = ScrollController();
+  final AppRouter appRouter = GetIt.I<AppRouter>();
 
   @override
   void initState() {
@@ -56,7 +59,7 @@ class _EventScreenState extends State<EventScreen>
           );
         } else if (state.statusEvent == StateStatus.error &&
             state.atTheEndOfThePageEvents == false) {
-          return const Center(child: Text("Pas des hébergements"));
+          return const Center(child: Text("Pas des evénements"));
         } else if (state.statusEvent == StateStatus.success ||
             state.statusEvent == StateStatus.loadingMore &&
                 state.listEvents!.isNotEmpty) {
@@ -79,6 +82,11 @@ class _EventScreenState extends State<EventScreen>
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.event(
+                  onTap: () {
+                    appRouter.push(EventDetailsRoute(
+                      id: state.listHosts?[index].id,
+                    ));
+                  },
                   type: state.listEvents?[index].slug,
                   title: state.listEvents?[index].title,
                   adress: state.listEvents?[index].address,

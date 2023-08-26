@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/parser.dart';
+import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
 
 class ExpandableDescription extends StatefulWidget {
   const ExpandableDescription({
@@ -96,9 +97,21 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
   Widget getReadMoreButton() {
     return InkWell(
       onTap: () {
-        setState(() {
-          isReadMore = !isReadMore;
-        });
+        showModalBottomSheet(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          isScrollControlled: true,
+          context: context,
+          builder: (context) {
+            return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: DescriptionBottomSheet(description: widget.description));
+          },
+        );
       },
       child: Text(
           !isReadMore
