@@ -32,7 +32,7 @@ class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
   Future<ExperienceDetailsDto> getExperience(int id) async {
     try {
       final response =
-          await dio.get("https://idwey.tn/api/experience/detail/137");
+          await dio.get("https://idwey.tn/api/experience/detail/$id");
       return ExperienceDetailsDto.fromJson(response.data);
     } catch (e) {
       throw Exception(e);

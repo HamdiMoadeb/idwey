@@ -90,7 +90,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                   },
                 );
               },
-              perPerson: state.eventDetailsDto?.row?.number.toString() ?? "",
+              perPerson: "personne",
               price:
                   "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt().toString()} DT",
             ),

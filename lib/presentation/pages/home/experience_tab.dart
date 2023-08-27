@@ -86,7 +86,7 @@ class _ExperienceScreenState extends State<ExperienceScreen>
                 itemBuilder: (context, index) => CustomCard.experience(
                   onTap: () {
                     appRouter.push(ExperienceDetailsRoute(
-                      id: state.listHosts?[index].id,
+                      id: state.listExperiences?[index].id,
                     ));
                   },
                   title: state.listExperiences?[index].title,

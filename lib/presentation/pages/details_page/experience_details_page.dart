@@ -91,8 +91,7 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                   },
                 );
               },
-              perPerson:
-                  state.experienceDetailsDto?.row?.maxPeople.toString() ?? "",
+              perPerson: "personne",
               price:
                   "${double.parse(state.experienceDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
             ),

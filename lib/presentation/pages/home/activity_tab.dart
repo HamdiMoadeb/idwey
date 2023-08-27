@@ -85,7 +85,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                 itemBuilder: (context, index) => CustomCard.activity(
                   onTap: () {
                     appRouter.push(ActivityDetailsRoute(
-                      id: state.listHosts?[index].id,
+                      id: state.listActivities?[index].id,
                     ));
                   },
                   title: state.listActivities?[index].catName,

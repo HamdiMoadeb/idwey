@@ -90,8 +90,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                   },
                 );
               },
-              perPerson:
-                  state.activityDetailsDto?.row?.maxPeople.toString() ?? "",
+              perPerson: "personne",
               price:
                   "${double.parse(state.activityDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
             ),

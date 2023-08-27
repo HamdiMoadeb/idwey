@@ -25,7 +25,7 @@ class ChaletsSection extends StatelessWidget {
 
         /// build list of rooms
         state.hostDetails!.rooms!.isNotEmpty &&
-                state.hostDetails!.rooms!.length > 1
+                state.hostDetails!.rooms!.length >= 1
             ? ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
