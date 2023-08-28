@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
@@ -8,6 +9,7 @@ import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dar
 
 class ChaletsSection extends StatelessWidget {
   final DetailsPageState state;
+
   const ChaletsSection({Key? key, required this.state}) : super(key: key);
 
   @override
@@ -43,19 +45,25 @@ class ChaletsSection extends StatelessWidget {
                           width: 124.w,
                           height: 106.w,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.r),
-                            child: CachedNetworkImage(
-                                placeholder: (context, url) => SizedBox(
-                                    height: 40.h,
-                                    width: 40.h,
-                                    child: const CircularProgressIndicator()),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                fit: BoxFit.cover,
-                                imageUrl:
-                                    state.hostDetails?.rooms?[index].imageId ??
-                                        ""),
-                          ),
+                              borderRadius: BorderRadius.circular(10.r),
+                              child: CachedNetworkImage(
+                                  placeholder: (context, url) => SizedBox(
+                                      height: 40.h,
+                                      width: 40.h,
+                                      child: const CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                        Icons.error,
+                                        color: Colors.grey,
+                                      ),
+                                  fit: BoxFit.cover,
+                                  imageUrl: state
+                                          .hostDetails?.rooms?[index].imageId ??
+                                      context
+                                          .read<DetailsPageBloc>()
+                                          .getFirstImage(state.hostDetails
+                                                  ?.rooms?[index].gallery ??
+                                              []))),
                         ),
 
                         Expanded(

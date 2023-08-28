@@ -38,4 +38,15 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
       }
     });
   }
+
+  String getFirstImage(List<Gallery>? gallery) {
+    String image = "";
+    for (var i = 0; i < gallery!.length; i++) {
+      if (gallery[i].large != null && gallery[i].large!.isNotEmpty) {
+        image = gallery[i].large!;
+        break;
+      }
+    }
+    return image;
+  }
 }
