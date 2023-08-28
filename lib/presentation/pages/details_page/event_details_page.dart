@@ -100,74 +100,10 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
               CustomScrollView(
                 controller: scrollController,
                 slivers: [
-                  SliverAppBar(
-                    collapsedHeight: 60.h,
-                    pinned: true,
-                    automaticallyImplyLeading: false,
-                    floating: true,
-                    backgroundColor: Colors.transparent,
-                    actions: [
-                      Container(
-                        height: 40.h,
-                        width: 40.h,
-                        margin: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: materialPrimary.withOpacity(0.8),
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.share_outlined,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 40.h,
-                        width: 40.h,
-                        margin: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: materialPrimary.withOpacity(0.8),
-                          shape: BoxShape.circle,
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.favorite_border,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    ],
-                    leading: Container(
-                      margin: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: materialPrimary.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(50)),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    elevation: 0,
-                    flexibleSpace: showAppBar == true
-                        ? Container(
-                            color: Colors.grey[200],
-                          )
-                        : ImageBannerSingle(
-                            urlImage:
-                                state.eventDetailsDto?.bannerImageUrl ?? ""),
-                    expandedHeight: 300.h,
+                  CustomSliverAppBar(
+                    showAppBar: showAppBar,
+                    bannerWidget: ImageBannerSingle(
+                        urlImage: state.eventDetailsDto?.bannerImageUrl ?? ""),
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
