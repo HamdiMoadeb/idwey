@@ -118,7 +118,6 @@ class SearchBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 16.w, bottom: 8.h),
             height: 55.h,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[300]!),
@@ -127,33 +126,38 @@ class SearchBox extends StatelessWidget {
                   BorderRadius.circular(50.r), // 50 radius for rounded corners
             ),
             // Adjust padding as needed
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SvgPicture.asset(
-                  Assets.search,
-                ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                SizedBox(
-                  width: 230.w,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.zero,
-                      hintMaxLines: 1,
-                      helperText: "Lieu • Date • Invité ",
-                      hintText: 'Recherchez votre Idwey',
-                      hintStyle: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black), // Placeholder text
-                      border: InputBorder.none, // Remove default underline
-
-                      // Search icon
+            child: Padding(
+              padding: EdgeInsets.only(top: 12.h, bottom: 8.h, left: 16.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      Assets.search,
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  SizedBox(
+                      width: 200.w,
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Recherchez votre Idwey',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                          Text('Lieu • Date • Invité ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey)),
+                        ],
+                      )),
+                ],
+              ),
             ),
           ),
           Container(
