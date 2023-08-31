@@ -63,7 +63,9 @@ class _ReservationFormState extends State<ReservationForm> {
         widget.controller.text = decodedToken['first_name'];
         widget.nameController.text = decodedToken['last_name'];
         widget.emailController.text = decodedToken['email'];
-        decodedToken['phone'] != null ? widget.phoneController.text = decodedToken['phone'] : null;
+        decodedToken['phone'] != null
+            ? widget.phoneController.text = decodedToken['phone']
+            : null;
       });
     }
   }
@@ -106,7 +108,7 @@ class _ReservationFormState extends State<ReservationForm> {
                 hinText: "Prénom",
                 label: "Prénom",
                 validator: (value) {
-                  if (value!.isEmpty) {
+                  if (value.isEmpty) {
                     return 'Prénom requis';
                   }
                   return null; // Return null for no validation error
@@ -120,7 +122,7 @@ class _ReservationFormState extends State<ReservationForm> {
                 hinText: "Nom",
                 label: "Nom",
                 validator: (value) {
-                  if (value!.isEmpty) {
+                  if (value.isEmpty) {
                     return 'Nom requis';
                   }
                   return null; // Return null for no validation error
@@ -134,7 +136,7 @@ class _ReservationFormState extends State<ReservationForm> {
                 hinText: "Email",
                 label: "Email",
                 validator: (value) {
-                  if (value!.isEmpty) {
+                  if (value.isEmpty) {
                     return 'Email requis';
                   }
                   if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
@@ -156,7 +158,7 @@ class _ReservationFormState extends State<ReservationForm> {
                     ? "Numéro doit etre entre 8 et 13 chiffres"
                     : null,
                 validator: (value) {
-                  if (value!.isEmpty) {
+                  if (value.isEmpty) {
                     return 'Numéro de téléphone requis';
                   }
                   if (value.length < 8 || value.length > 13) {
@@ -278,7 +280,7 @@ class _CustomInputState extends State<CustomInput> {
                   : widget.errorText,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 8.h, vertical: 8.h),
-              hintText: widget.hinText ?? "",
+              hintText: widget.hinText,
               hintStyle: TextStyle(fontSize: 14.sp, color: Colors.grey[400]!),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50.r),

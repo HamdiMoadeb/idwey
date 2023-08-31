@@ -235,7 +235,7 @@ class _ReservationSectionState extends State<ReservationSection> {
                             width: 30.w,
                           ),
                           Text(
-                            '${removeDecimalZeroFormat(widget.currencySymbol != 'DT' ? currencyConverteur(widget.currencyValue!, getTotalPrice(room.price!, widget.nuits!)!) : currencyConverteur(widget.currencyValue!, getTotalPrice(room.price!, widget.nuits!)!))} ${widget.currencySymbol}/ ${widget.nuits!} nuitées',
+                            '${removeDecimalZeroFormat(widget.currencySymbol != 'DT' ? currencyConverteur(widget.currencyValue, getTotalPrice(room.price!, widget.nuits!)!) : currencyConverteur(widget.currencyValue, getTotalPrice(room.price!, widget.nuits!)!))} ${widget.currencySymbol}/ ${widget.nuits!} nuitées',
 
                             // room.price ?? "",
                             style: TextStyle(color: grey),

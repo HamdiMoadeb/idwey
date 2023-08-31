@@ -12,12 +12,10 @@ import 'package:idwey/services/experienceCalls.dart';
 import 'package:idwey/services/hostCalls.dart';
 import 'package:idwey/services/productCalls.dart';
 import 'package:idwey/utils/colors.dart';
-import 'package:idwey/utils/enums.dart';
 import 'package:idwey/utils/utils.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:string_translate/string_translate.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class HistoryPage extends StatefulWidget {

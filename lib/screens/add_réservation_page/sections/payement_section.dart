@@ -67,7 +67,7 @@ class _PayementSectionState extends State<PayementSection> {
                   onChanged: (String? value) {
                     widget.onOfflineChecked!(value!);
                     setState(() {
-                      radioItem = value ?? "";
+                      radioItem = value;
                       widget.offline = true;
                     });
                   },

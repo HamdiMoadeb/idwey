@@ -352,8 +352,8 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                     // per_person: eventDetails.,
                     currencyName: selectedCurrency,
                     id: activityDetails.id.toString(),
-                    title: activityDetails.title ?? "",
-                    address: activityDetails.address!,
+                    title: activityDetails.title,
+                    address: activityDetails.address,
                   )));
     } else {
       prefs!.setString('activityID', activityDetails.id.toString());

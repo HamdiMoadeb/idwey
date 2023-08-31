@@ -13,7 +13,6 @@ import 'package:idwey/utils/utils.dart';
 import 'package:idwey/widgets/common/scaffold.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:string_translate/string_translate.dart';
 
 class VerifyDisponibility extends StatefulWidget {
   // final HostDetail? hostDetail;
@@ -484,7 +483,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                       end,
                                       "0",
                                       adultsCount.toString(),
-                                      widget.id.toString() ?? "");
+                                      widget.id.toString());
                                 }
                               },
                               child: Padding(
@@ -645,7 +644,7 @@ class _VerifyDisponibilityState extends State<VerifyDisponibility> {
                                             AddReservationPage(
                                           typeReservation:
                                               widget.typeReservation,
-                                          hostName: widget.title ?? "",
+                                          hostName: widget.title,
                                           dateDebut: start,
                                           activityDuration:
                                               widget.activityDuration,
