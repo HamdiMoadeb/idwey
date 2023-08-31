@@ -127,32 +127,31 @@ class SearchBox extends StatelessWidget {
             ),
             // Adjust padding as needed
             child: Padding(
-              padding: EdgeInsets.only(top: 12.h, bottom: 8.h, left: 16.w),
+              padding: EdgeInsets.only(top: 14.h, left: 16.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      Assets.search,
-                    ),
+                  SvgPicture.asset(
+                    Assets.search,
                   ),
                   SizedBox(
                     width: 10.w,
                   ),
                   SizedBox(
-                      width: 200.w,
-                      child: const Column(
+                      width: 240.w,
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Recherchez votre Idwey',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 14.sp,
                                   color: Colors.black)),
                           Text('Lieu • Date • Invité ',
                               style: TextStyle(
                                   fontWeight: FontWeight.normal,
+                                  fontSize: 10.h,
                                   color: Colors.grey)),
                         ],
                       )),

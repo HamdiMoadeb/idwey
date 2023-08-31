@@ -14,26 +14,27 @@ class CardReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: 12.h),
-      elevation: 0,
-      color: Colors.transparent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.r),
-        side: BorderSide(
-          color: Colors.grey.withOpacity(0.2),
-          width: 1,
+    return SizedBox(
+      width: 329.w,
+      child: Card(
+        elevation: 0,
+        color: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.r),
+          side: BorderSide(
+            color: Colors.grey.withOpacity(0.2),
+            width: 1,
+          ),
         ),
-      ),
-      child: SizedBox(
-        width: 300.w,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+          padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 14.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(text),
-              const Divider(),
+              const Divider(
+                thickness: 1,
+              ),
               Text(
                 reviewer,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
