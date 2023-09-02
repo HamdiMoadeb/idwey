@@ -187,6 +187,7 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                           ),
                           const Divider(),
                           MapSection(
+                            title: state.experienceDetailsDto?.row?.title ?? "",
                             lat: state.experienceDetailsDto?.row?.mapLat ?? "",
                             lng: state.experienceDetailsDto?.row?.mapLng ?? "",
                           ),

@@ -48,8 +48,8 @@ class CommoditiesSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SvgPicture.asset(Assets.shower),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     Text(
                       shower ?? "",
@@ -84,8 +84,8 @@ class CommoditiesSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SvgPicture.asset(Assets.kitchen),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     Text(
                       'Cuisine équipée',
@@ -126,8 +126,8 @@ class CommoditiesSection extends StatelessWidget {
                     SvgPicture.asset(
                       Assets.breakfast,
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     Text(
                       breakfast ?? "",
@@ -148,8 +148,8 @@ class CommoditiesSection extends StatelessWidget {
                       height: 16.h,
                       width: 16.h,
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     Text(
                       games ?? "",

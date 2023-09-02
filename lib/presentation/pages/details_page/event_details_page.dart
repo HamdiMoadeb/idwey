@@ -186,6 +186,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                           ),
                           const Divider(),
                           MapSection(
+                            title: state.eventDetailsDto?.row?.title ?? "",
                             lat: state.eventDetailsDto?.row?.mapLat ?? "",
                             lng: state.eventDetailsDto?.row?.mapLng ?? "",
                           ),

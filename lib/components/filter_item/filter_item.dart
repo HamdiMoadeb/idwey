@@ -27,8 +27,8 @@ class FilterItem extends StatelessWidget {
         ),
         child: Container(
           // margin: const EdgeInsets.all(4),
-          width: 120.w,
-          height: 80.h,
+          width: 110.w,
+          height: 75.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
             gradient: isSelected
@@ -41,9 +41,7 @@ class FilterItem extends StatelessWidget {
           ),
           child: Container(
             margin: EdgeInsets.all(isSelected ? 2 : 1),
-            width: 120.w,
-            height: 85.h,
-            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.h),
+            padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 12.h),
             decoration: BoxDecoration(
               color: Colors.white,
               // Set background color to white for a square container
@@ -83,7 +81,7 @@ class FilterItem extends StatelessWidget {
                                   .copyWith(
                                       fontWeight: FontWeight.w500,
                                       color: Colors.grey[300],
-                                      fontSize: 14)),
+                                      fontSize: 12.sp)),
                         ),
                       )
                     : Expanded(
@@ -95,7 +93,7 @@ class FilterItem extends StatelessWidget {
                                 .copyWith(
                                     fontWeight: FontWeight.w500,
                                     color: Colors.grey[300],
-                                    fontSize: 14)),
+                                    fontSize: 12.sp)),
                       ),
               ],
             ),

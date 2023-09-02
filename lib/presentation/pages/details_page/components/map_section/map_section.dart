@@ -5,9 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapSection extends StatelessWidget {
+  final String title;
   final String lat;
   final String lng;
-  const MapSection({Key? key, required this.lat, required this.lng})
+  const MapSection(
+      {Key? key, required this.lat, required this.lng, required this.title})
       : super(key: key);
 
   @override
@@ -28,7 +30,7 @@ class MapSection extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: MapPosition(
-                title: "title",
+                title: title,
                 lat: double.tryParse(lat) ?? 0,
                 lng: double.tryParse(lng) ?? 0,
               ),

@@ -20,23 +20,26 @@ class _ReviewsSectionState extends State<ReviewsSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-          children: [
-            const Icon(Icons.star),
-            SizedBox(
-              width: 5.w,
-            ),
-            Text(
-              '4.95 • 22 reviews',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge!
-                  .copyWith(fontWeight: FontWeight.w500),
-            ),
-          ],
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 14.h),
+          child: Row(
+            children: [
+              const Icon(Icons.star),
+              SizedBox(
+                width: 5.w,
+              ),
+              Text(
+                '4.95 • 22 reviews',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
         ),
         SizedBox(
-          height: 210.h,
+          height: 230.h,
           child: ListView.separated(
               itemBuilder: (context, index) {
                 return const CardReview(

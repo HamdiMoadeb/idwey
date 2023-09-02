@@ -90,7 +90,7 @@ class _ImageBannerState extends State<ImageBanner> {
       return Stack(
         children: [
           SizedBox(
-            height: 300.h, // Adjust the height as needed
+            height: 316.h, // Adjust the height as needed
             child: PageView.builder(
               controller: pageController,
               itemCount:
@@ -132,7 +132,7 @@ class ImageBannerSingle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 300.h, // Adjust the height as needed
+        height: 316.h, // Adjust the height as needed
         child: CachedNetworkImage(
           errorWidget: (context, url, error) => const Icon(Icons.error),
           imageUrl: urlImage,

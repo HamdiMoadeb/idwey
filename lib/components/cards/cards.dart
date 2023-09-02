@@ -185,7 +185,7 @@ class _CustomCardState extends State<CustomCard> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 10.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -269,8 +269,8 @@ class _CustomCardState extends State<CustomCard> {
                                   "/ personne",
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
-                          const SizedBox(
-                            width: 10,
+                          SizedBox(
+                            width: 10.w,
                           ),
                           widget.nbPerson != null || widget.nbPerson != ""
                               ? Text(
@@ -287,9 +287,6 @@ class _CustomCardState extends State<CustomCard> {
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 8.h,
             ),
             widget.isExpired != null && widget.isExpired == true
                 ? CustomButton.secondaryGrey(

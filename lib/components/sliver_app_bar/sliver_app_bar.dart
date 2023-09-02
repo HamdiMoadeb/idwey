@@ -75,7 +75,7 @@ class CustomSliverAppBar extends StatelessWidget {
       elevation: 0,
       flexibleSpace: showAppBar == true
           ? Container(
-              color: Colors.grey[200],
+              color: showAppBar == true ? Colors.grey[200] : null,
             )
           : bannerWidget,
       expandedHeight: 300.h,

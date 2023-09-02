@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +62,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
       builder: (context, state) {
         return Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(200.h),
+              preferredSize: Platform.isIOS
+                  ? Size.fromHeight(180.h)
+                  : Size.fromHeight(200.h),
               child: AppBar(
                 elevation: 1.0,
                 backgroundColor: Colors.white,
@@ -70,12 +74,12 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                 bottom: TabBar(
                   isScrollable: true,
                   padding:
-                      EdgeInsets.only(bottom: 16.h, left: 4.w, right: 12.w),
+                      EdgeInsets.only(bottom: 16.h, left: 8.w, right: 12.w),
                   indicatorPadding: EdgeInsets.symmetric(horizontal: 16.w),
                   // Reduce padding between tabs
                   controller: _tabController,
                   labelColor: Colors.grey,
-                  labelPadding: const EdgeInsets.only(left: 8),
+                  labelPadding: EdgeInsets.only(left: 8.w),
                   indicator: const BoxDecoration(),
                   // Remove the indicator
                   unselectedLabelColor: Colors.grey,

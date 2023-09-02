@@ -186,6 +186,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                           ),
                           const Divider(),
                           MapSection(
+                            title: state.activityDetailsDto?.row?.title ?? "",
                             lat: state.activityDetailsDto?.row?.mapLat ?? "",
                             lng: state.activityDetailsDto?.row?.mapLng ?? "",
                           ),

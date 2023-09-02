@@ -29,69 +29,72 @@ class TypeCapaciteSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          typeReservation == TypeReservation.host
-              ? FilterItemType(
-                  icon: SvgPicture.asset(
-                    Assets.house,
-                    height: 30.h,
-                    width: 30.h,
-                  ),
-                  label: type ?? "",
-                )
-              : const SizedBox.shrink(),
-          FilterItemType(
-            icon: SvgPicture.asset(
-              Assets.userGroup,
-              height: 30.h,
-              width: 30.h,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            typeReservation == TypeReservation.host
+                ? FilterItemType(
+                    icon: SvgPicture.asset(
+                      Assets.house,
+                      height: 30.h,
+                      width: 30.h,
+                    ),
+                    label: type ?? "",
+                  )
+                : const SizedBox.shrink(),
+            FilterItemType(
+              icon: SvgPicture.asset(
+                Assets.userGroup,
+                height: 30.h,
+                width: 30.h,
+              ),
+              label: "${capacite ?? ""} personnes",
             ),
-            label: "${capacite ?? ""} personnes",
-          ),
-          duration == null || duration == ""
-              ? const SizedBox.shrink()
-              : FilterItemType(
-                  icon: SvgPicture.asset(
-                    Assets.watchLater,
-                    height: 30.h,
-                    width: 30.h,
+            duration == null || duration == ""
+                ? const SizedBox.shrink()
+                : FilterItemType(
+                    icon: SvgPicture.asset(
+                      Assets.watchLater,
+                      height: 30.h,
+                      width: 30.h,
+                    ),
+                    label: "${duration ?? ""} heures",
                   ),
-                  label: "${duration ?? ""} heures",
-                ),
-          difficulty == null || difficulty == ""
-              ? const SizedBox.shrink()
-              : FilterItemType(
-                  icon: SvgPicture.asset(
-                    Assets.battery,
-                    height: 30.h,
-                    width: 30.h,
+            difficulty == null || difficulty == ""
+                ? const SizedBox.shrink()
+                : FilterItemType(
+                    icon: SvgPicture.asset(
+                      Assets.battery,
+                      height: 30.h,
+                      width: 30.h,
+                    ),
+                    label: difficulty ?? "",
                   ),
-                  label: difficulty ?? "",
-                ),
-          typeReservation == TypeReservation.host
-              ? emplacement == null || emplacement == ""
-                  ? const SizedBox.shrink()
-                  : FilterItemType(
-                      icon: SvgPicture.asset(
-                        Assets.beachArea,
-                        height: 30.h,
-                        width: 30.h,
-                      ),
-                      label: emplacement ?? "",
-                    )
-              : const SizedBox.shrink(),
-          experience == null || experience == ""
-              ? const SizedBox.shrink()
-              : FilterItemType(
-                  icon: SvgPicture.asset(
-                    Assets.experience,
-                    height: 30.h,
-                    width: 30.h,
+            typeReservation == TypeReservation.host
+                ? emplacement == null || emplacement == ""
+                    ? const SizedBox.shrink()
+                    : FilterItemType(
+                        icon: SvgPicture.asset(
+                          Assets.beachArea,
+                          height: 30.h,
+                          width: 30.h,
+                        ),
+                        label: emplacement ?? "",
+                      )
+                : const SizedBox.shrink(),
+            experience == null || experience == ""
+                ? const SizedBox.shrink()
+                : FilterItemType(
+                    icon: SvgPicture.asset(
+                      Assets.experience,
+                      height: 30.h,
+                      width: 30.h,
+                    ),
+                    label: experience ?? "",
                   ),
-                  label: experience ?? "",
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -37,19 +37,20 @@ class CardReview extends StatelessWidget {
               ),
               Text(
                 reviewer,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       fontSize: 14.sp,
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
                     ),
               ),
-              Text(
-                date,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 14.sp,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
+              Expanded(
+                child: Text(
+                  date,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
               )
             ],
           ),

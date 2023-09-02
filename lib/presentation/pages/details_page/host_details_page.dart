@@ -38,7 +38,12 @@ class _DetailsScreenState extends State<DetailsScreen>
     BlocProvider.of<DetailsPageBloc>(context)
         .add(DetailsPageEvent.getHostDetails(widget.id ?? 0));
     scrollController.addListener(() {
-      if (scrollController.position.pixels > 400) {
+      print("scrollController.position.pixels");
+      print(scrollController.position.pixels.toString());
+      print(scrollController.offset);
+
+      if (scrollController.hasClients &&
+          scrollController.offset > (200 - kToolbarHeight)) {
         setState(() {
           showAppBar = true;
         });
@@ -73,6 +78,7 @@ class _DetailsScreenState extends State<DetailsScreen>
           state.hostDetails != null) {
         return Scaffold(
           bottomNavigationBar: BottomAppBar(
+            elevation: 0,
             child: BottomReservationBar(
               onPressed: () {
                 showModalBottomSheet(
@@ -109,7 +115,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.only(
-                          left: 12.w, right: 12.w, top: 10.h, bottom: 40.h),
+                          left: 16.w, right: 16.w, bottom: 40.h),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -188,6 +194,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                           ),
                           const Divider(),
                           MapSection(
+                            title: state.hostDetails?.row?.title ?? "",
                             lat: state.hostDetails?.row?.mapLat ?? "",
                             lng: state.hostDetails?.row?.mapLng ?? "",
                           ),

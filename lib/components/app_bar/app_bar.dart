@@ -113,7 +113,7 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 50.h),
+      padding: EdgeInsets.only(left: 16.0.w, right: 16.w, top: 60.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -139,7 +139,7 @@ class SearchBox extends StatelessWidget {
                     width: 10.w,
                   ),
                   SizedBox(
-                      width: 240.w,
+                      width: 230.w,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -157,6 +157,11 @@ class SearchBox extends StatelessWidget {
                       )),
                 ],
               ),
+            ),
+          ),
+          Expanded(
+            child: SizedBox(
+              width: 10.w,
             ),
           ),
           Container(
