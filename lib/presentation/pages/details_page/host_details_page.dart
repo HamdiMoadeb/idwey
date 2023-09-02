@@ -97,6 +97,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                   },
                 );
               },
+              nbNuit: state.hostDetails?.row?.minNuits ?? 0,
               perPerson: "nuit",
               price:
                   "${double.parse(state.hostDetails?.row?.price ?? "0").toInt().toString()} DT",
