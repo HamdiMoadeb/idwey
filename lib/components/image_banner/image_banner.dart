@@ -71,32 +71,26 @@ class _ImageBannerState extends State<ImageBanner>
   void initState() {
     // TODO: implement initState
     BlocProvider.of<ImageBannerBloc>(context)
-        .add(const ImageBannerEvent.setCurrentImage(0));
+        .add(ImageBannerEvent.setListImages(widget.listImages));
 
     _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       if (_currentPage < 5) {
-        _currentPage++;
+        setState(() {
+          _currentPage++;
+        });
       } else {
-        _currentPage = 0;
+        setState(() {
+          _currentPage = 0;
+        });
       }
-      BlocProvider.of<ImageBannerBloc>(context)
-          .add(ImageBannerEvent.setListImages(widget.listImages));
+
       pageController.animateToPage(
         _currentPage,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
       );
     });
-    pageController.addListener(() {
-      if (pageController.page!.toInt() > 5) {
-        BlocProvider.of<ImageBannerBloc>(context).add(
-            ImageBannerEvent.setCurrentImage(
-                pageController.page!.toInt().modInverse(4)));
-      } else {
-        BlocProvider.of<ImageBannerBloc>(context).add(
-            ImageBannerEvent.setCurrentImage(pageController.page!.toInt()));
-      }
-    });
+
     super.initState();
   }
 
@@ -116,6 +110,7 @@ class _ImageBannerState extends State<ImageBanner>
             height: 316.h, // Adjust the height as needed
             child: PageView.builder(
               controller: pageController,
+              allowImplicitScrolling: true,
               itemCount:
                   state.listImages!.length > 6 ? 6 : state.listImages!.length,
               itemBuilder: (context, index) {
@@ -132,7 +127,7 @@ class _ImageBannerState extends State<ImageBanner>
             left: 150.w,
             child: DotsIndicator(
               dotsCount: 6,
-              position: state.currentImage!.toInt(),
+              position: _currentPage,
               decorator: const DotsDecorator(
                   color: Colors.white60, // Inactive dot color
                   activeColor: Colors.white,
