@@ -32,15 +32,15 @@ class CommoditiesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Commodités',
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontWeight: FontWeight.w500),
-          ),
-          SizedBox(
-            height: 10.h,
+          Padding(
+            padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+            child: Text(
+              'Commodités',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(fontWeight: FontWeight.w500),
+            ),
           ),
           shower == null || shower == ""
               ? const SizedBox.shrink()

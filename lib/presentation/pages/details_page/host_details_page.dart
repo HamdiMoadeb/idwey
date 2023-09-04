@@ -37,22 +37,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   void initState() {
     BlocProvider.of<DetailsPageBloc>(context)
         .add(DetailsPageEvent.getHostDetails(widget.id ?? 0));
-    scrollController.addListener(() {
-      print("scrollController.position.pixels");
-      print(scrollController.position.pixels.toString());
-      print(scrollController.offset);
 
-      if (scrollController.hasClients &&
-          scrollController.offset > (200 - kToolbarHeight)) {
-        setState(() {
-          showAppBar = true;
-        });
-      } else {
-        setState(() {
-          showAppBar = false;
-        });
-      }
-    });
     super.initState();
   }
 
@@ -65,7 +50,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   Widget build(BuildContext context) {
     return BlocBuilder<DetailsPageBloc, DetailsPageState>(
         builder: (context, state) {
-      if (state.status == StateStatus.loading && state.hostDetails == null) {
+      if (state.status == StateStatus.loading) {
         return const Center(
           child: Scaffold(body: Center(child: CircularProgressIndicator())),
         );
@@ -109,7 +94,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                 controller: scrollController,
                 slivers: [
                   CustomSliverAppBar(
-                    showAppBar: showAppBar,
                     bannerWidget: ImageBanner(
                         listImages: state.hostDetails?.galleryImagesUrl ?? []),
                   ),
@@ -163,12 +147,15 @@ class _DetailsScreenState extends State<DetailsScreen>
                           const Divider(
                             thickness: 1,
                           ),
-                          Text(
-                            'Type • Capacite • Emplacment',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.h, bottom: 10.h),
+                            child: Text(
+                              'Type • Capacite • Emplacment',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(fontWeight: FontWeight.w500),
+                            ),
                           ),
                           TypeCapaciteSection(
                             typeReservation: TypeReservation.host,

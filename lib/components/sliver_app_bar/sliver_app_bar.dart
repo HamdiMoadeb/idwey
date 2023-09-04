@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/image_banner/image_banner.dart';
 import 'package:idwey/theme/app_colors.dart';
 
-class CustomSliverAppBar extends StatelessWidget {
-  final bool showAppBar;
+class CustomSliverAppBar extends StatefulWidget {
   final Widget bannerWidget;
 
-  const CustomSliverAppBar(
-      {Key? key, required this.showAppBar, required this.bannerWidget})
+  const CustomSliverAppBar({Key? key, required this.bannerWidget})
       : super(key: key);
+
+  @override
+  State<CustomSliverAppBar> createState() => _CustomSliverAppBarState();
+}
+
+class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
+  bool show = false;
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +79,24 @@ class CustomSliverAppBar extends StatelessWidget {
         ),
       ),
       elevation: 0,
-      flexibleSpace: showAppBar == true
-          ? Container(
-              color: showAppBar == true ? Colors.grey[200] : null,
-            )
-          : bannerWidget,
+      flexibleSpace: LayoutBuilder(builder: (context, constraints) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          if (constraints.biggest.height < 90) {
+            setState(() {
+              show = true;
+            });
+          } else {
+            setState(() {
+              show = false;
+            });
+          }
+        });
+        return !show
+            ? widget.bannerWidget
+            : Container(
+                color: Colors.grey[200],
+              );
+      }),
       expandedHeight: 300.h,
     );
   }

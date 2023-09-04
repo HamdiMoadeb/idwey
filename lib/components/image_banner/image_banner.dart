@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
@@ -60,15 +62,31 @@ class ImageBanner extends StatefulWidget {
   State<ImageBanner> createState() => _ImageBannerState();
 }
 
-class _ImageBannerState extends State<ImageBanner> {
+class _ImageBannerState extends State<ImageBanner>
+    with TickerProviderStateMixin {
   PageController pageController = PageController();
-
+  Timer? _timer;
+  int _currentPage = 0;
   @override
   void initState() {
     // TODO: implement initState
     BlocProvider.of<ImageBannerBloc>(context)
-        .add(ImageBannerEvent.setListImages(widget.listImages));
+        .add(const ImageBannerEvent.setCurrentImage(0));
 
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      if (_currentPage < 5) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+      BlocProvider.of<ImageBannerBloc>(context)
+          .add(ImageBannerEvent.setListImages(widget.listImages));
+      pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    });
     pageController.addListener(() {
       if (pageController.page!.toInt() > 5) {
         BlocProvider.of<ImageBannerBloc>(context).add(
@@ -79,8 +97,13 @@ class _ImageBannerState extends State<ImageBanner> {
             ImageBannerEvent.setCurrentImage(pageController.page!.toInt()));
       }
     });
-
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
   }
 
   @override

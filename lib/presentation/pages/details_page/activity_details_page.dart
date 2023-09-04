@@ -33,17 +33,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
   void initState() {
     BlocProvider.of<DetailsActivityPageBloc>(context)
         .add(DetailsActivityPageEvent.getActivityDetails(widget.id ?? 0));
-    scrollController.addListener(() {
-      if (scrollController.position.pixels > 400) {
-        setState(() {
-          showAppBar = true;
-        });
-      } else {
-        setState(() {
-          showAppBar = false;
-        });
-      }
-    });
+
     super.initState();
   }
 
@@ -56,8 +46,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
   Widget build(BuildContext context) {
     return BlocBuilder<DetailsActivityPageBloc, DetailsActivityPageState>(
         builder: (context, state) {
-      if (state.status == StateStatus.loading &&
-          state.activityDetailsDto == null) {
+      if (state.status == StateStatus.loading) {
         return const Center(
           child: Scaffold(body: Center(child: CircularProgressIndicator())),
         );
@@ -101,7 +90,6 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                 controller: scrollController,
                 slivers: [
                   CustomSliverAppBar(
-                    showAppBar: showAppBar,
                     bannerWidget: ImageBannerSingle(
                         urlImage:
                             state.activityDetailsDto?.bannerImageUrl ?? ""),

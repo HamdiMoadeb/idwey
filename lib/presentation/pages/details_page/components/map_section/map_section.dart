@@ -17,12 +17,15 @@ class MapSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Emplacement',
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(fontWeight: FontWeight.w500),
+        Padding(
+          padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+          child: Text(
+            'Emplacement',
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(fontWeight: FontWeight.w500),
+          ),
         ),
         Container(
             height: 200.h,

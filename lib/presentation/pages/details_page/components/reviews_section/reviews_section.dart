@@ -21,7 +21,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 14.h),
+          padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
           child: Row(
             children: [
               const Icon(Icons.star),

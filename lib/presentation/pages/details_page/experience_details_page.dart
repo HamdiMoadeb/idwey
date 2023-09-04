@@ -34,17 +34,7 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
   void initState() {
     BlocProvider.of<DetailsExperiencePageBloc>(context)
         .add(DetailsExperiencePageEvent.getExperienceDetails(widget.id ?? 0));
-    scrollController.addListener(() {
-      if (scrollController.position.pixels > 400) {
-        setState(() {
-          showAppBar = true;
-        });
-      } else {
-        setState(() {
-          showAppBar = false;
-        });
-      }
-    });
+
     super.initState();
   }
 
@@ -57,8 +47,7 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
   Widget build(BuildContext context) {
     return BlocBuilder<DetailsExperiencePageBloc, DetailsExperiencePageState>(
         builder: (context, state) {
-      if (state.status == StateStatus.loading &&
-          state.experienceDetailsDto == null) {
+      if (state.status == StateStatus.loading) {
         return const Center(
           child: Scaffold(body: Center(child: CircularProgressIndicator())),
         );
@@ -102,7 +91,6 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                 controller: scrollController,
                 slivers: [
                   CustomSliverAppBar(
-                    showAppBar: showAppBar,
                     bannerWidget: ImageBannerSingle(
                         urlImage:
                             state.experienceDetailsDto?.bannerImageUrl ?? ""),

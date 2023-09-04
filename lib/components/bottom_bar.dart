@@ -27,7 +27,7 @@ class BottomReservationBar extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        nbNuit! > 1
+        nbNuit != null && nbNuit! > 1
             ? Container(
                 color: Colors.red,
                 child: Padding(

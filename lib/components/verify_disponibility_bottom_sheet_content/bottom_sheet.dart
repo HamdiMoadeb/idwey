@@ -90,18 +90,24 @@ class ChaletRoomsBottomSheet extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Chalets Disponible",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
+            Padding(
+              padding: EdgeInsets.only(bottom: 8.h),
+              child: Text(
+                "Chalets Disponibles",
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
+              ),
+            ),
+            const Divider(
+              thickness: 1,
             ),
             ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 padding: EdgeInsets.only(
-                  top: 20.h,
+                  top: 16.h,
                 ),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
@@ -216,7 +222,7 @@ class DescriptionBottomSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Desription",
+              "Description",
               style: Theme.of(context)
                   .textTheme
                   .headlineMedium!

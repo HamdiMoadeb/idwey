@@ -28,7 +28,7 @@ class TypeCapaciteSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

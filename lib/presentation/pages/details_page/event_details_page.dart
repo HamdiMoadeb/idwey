@@ -33,17 +33,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
   void initState() {
     BlocProvider.of<DetailsEventPageBloc>(context)
         .add(DetailsEventPageEvent.getEventDetails(widget.id ?? 0));
-    scrollController.addListener(() {
-      if (scrollController.position.pixels > 400) {
-        setState(() {
-          showAppBar = true;
-        });
-      } else {
-        setState(() {
-          showAppBar = false;
-        });
-      }
-    });
+
     super.initState();
   }
 
@@ -56,8 +46,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
   Widget build(BuildContext context) {
     return BlocBuilder<DetailsEventPageBloc, DetailsEventPageState>(
         builder: (context, state) {
-      if (state.status == StateStatus.loading &&
-          state.eventDetailsDto == null) {
+      if (state.status == StateStatus.loading) {
         return const Center(
           child: Scaffold(body: Center(child: CircularProgressIndicator())),
         );
@@ -101,7 +90,6 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                 controller: scrollController,
                 slivers: [
                   CustomSliverAppBar(
-                    showAppBar: showAppBar,
                     bannerWidget: ImageBannerSingle(
                         urlImage: state.eventDetailsDto?.bannerImageUrl ?? ""),
                   ),
