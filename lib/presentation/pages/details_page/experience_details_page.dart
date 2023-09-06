@@ -146,12 +146,15 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                           const Divider(
                             thickness: 1,
                           ),
-                          Text(
-                            'Type • Capacite • Emplacment',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.h, bottom: 10.h),
+                            child: Text(
+                              'Type • Capacite • Emplacment',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(fontWeight: FontWeight.w500),
+                            ),
                           ),
                           TypeCapaciteSection(
                             typeReservation: TypeReservation.event,

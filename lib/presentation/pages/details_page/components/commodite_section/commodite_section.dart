@@ -33,7 +33,9 @@ class CommoditiesSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+            padding: EdgeInsets.only(
+              top: 10.h,
+            ),
             child: Text(
               'Commodités',
               style: Theme.of(context)
@@ -47,9 +49,12 @@ class CommoditiesSection extends StatelessWidget {
               : Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SvgPicture.asset(Assets.shower),
                     SizedBox(
-                      width: 10.w,
+                        height: 20.h,
+                        width: 20.h,
+                        child: SvgPicture.asset(Assets.shower)),
+                    SizedBox(
+                      width: 15.w,
                     ),
                     Text(
                       shower ?? "",
@@ -60,14 +65,20 @@ class CommoditiesSection extends StatelessWidget {
                     ),
                   ],
                 ),
+          SizedBox(
+            height: 5.h,
+          ),
           parking == null || parking == ""
               ? const SizedBox.shrink()
               : Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SvgPicture.asset(Assets.parking),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                        height: 20.h,
+                        width: 20.h,
+                        child: SvgPicture.asset(Assets.parking)),
+                    SizedBox(
+                      width: 15.w,
                     ),
                     Text(
                       parking ?? "",
@@ -78,14 +89,20 @@ class CommoditiesSection extends StatelessWidget {
                     ),
                   ],
                 ),
+          SizedBox(
+            height: 5.h,
+          ),
           kitchen == null || kitchen == ""
               ? const SizedBox.shrink()
               : Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SvgPicture.asset(Assets.kitchen),
                     SizedBox(
-                      width: 10.w,
+                        height: 20.h,
+                        width: 20.h,
+                        child: SvgPicture.asset(Assets.kitchen)),
+                    SizedBox(
+                      width: 15.w,
                     ),
                     Text(
                       'Cuisine équipée',
@@ -96,18 +113,25 @@ class CommoditiesSection extends StatelessWidget {
                     ),
                   ],
                 ),
+          SizedBox(
+            height: 5.h,
+          ),
           food == null || food == ""
               ? const SizedBox.shrink()
               : Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SvgPicture.asset(
-                      Assets.food,
-                      height: 16.h,
-                      width: 16.h,
+                    SizedBox(
+                      height: 20.h,
+                      width: 20.h,
+                      child: SvgPicture.asset(
+                        Assets.food,
+                        height: 16.h,
+                        width: 16.h,
+                      ),
                     ),
-                    const SizedBox(
-                      width: 15,
+                    SizedBox(
+                      width: 15.w,
                     ),
                     Text(
                       food ?? "",
@@ -118,38 +142,25 @@ class CommoditiesSection extends StatelessWidget {
                     ),
                   ],
                 ),
-          breakfast == null || breakfast == ""
-              ? const SizedBox.shrink()
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
-                      Assets.breakfast,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Text(
-                      breakfast ?? "",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Colors.black),
-                    ),
-                  ],
-                ),
+          SizedBox(
+            height: 5.h,
+          ),
           games == null || games == ""
               ? const SizedBox.shrink()
               : Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SvgPicture.asset(
-                      Assets.videoGames,
-                      height: 16.h,
-                      width: 16.h,
+                    SizedBox(
+                      height: 20.h,
+                      width: 20.h,
+                      child: SvgPicture.asset(
+                        Assets.videoGames,
+                        height: 16.h,
+                        width: 16.h,
+                      ),
                     ),
                     SizedBox(
-                      width: 10.w,
+                      width: 15.w,
                     ),
                     Text(
                       games ?? "",
@@ -160,6 +171,31 @@ class CommoditiesSection extends StatelessWidget {
                     ),
                   ],
                 ),
+          // SizedBox(
+          //   height: 5.h,
+          // ),
+          // breakfast == null || breakfast == ""
+          //     ? const SizedBox.shrink()
+          //     : Row(
+          //         mainAxisAlignment: MainAxisAlignment.start,
+          //         children: [
+          //           SvgPicture.asset(
+          //             Assets.breakfast,
+          //             height: 20.h,
+          //             width: 20.h,
+          //           ),
+          //           SizedBox(
+          //             width: 5.w,
+          //           ),
+          //           Text(
+          //             breakfast ?? "",
+          //             style: Theme.of(context)
+          //                 .textTheme
+          //                 .bodySmall!
+          //                 .copyWith(color: Colors.black),
+          //           ),
+          //         ],
+          //       ),
         ],
       ),
     );

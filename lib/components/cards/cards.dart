@@ -212,8 +212,8 @@ class _CustomCardState extends State<CustomCard> {
                           widget.isFavorite == true
                               ? Assets.heartIconFilled
                               : Assets.heartIcon,
-                          height: 24.h,
-                          width: 24.w,
+                          height: 30.h,
+                          width: 30.w,
                         ),
                       ),
                     ],

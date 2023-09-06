@@ -24,7 +24,7 @@ class CustomChip extends StatelessWidget {
         //  width: width ?? 100.w,
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         decoration: BoxDecoration(
-          gradient: kLinearGradient,
+          color: primaryOrange,
           borderRadius:
               BorderRadius.circular(5), // Adjust the border radius here
         ),

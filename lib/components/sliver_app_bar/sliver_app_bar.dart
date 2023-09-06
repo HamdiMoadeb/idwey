@@ -16,6 +16,7 @@ class CustomSliverAppBar extends StatefulWidget {
 
 class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
   bool show = false;
+  bool onPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +55,10 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           ),
           child: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              onPressed = !onPressed;
             },
-            icon: const Icon(
-              Icons.favorite_border,
+            icon: Icon(
+              onPressed == true ? Icons.favorite : Icons.favorite_border,
               color: Colors.white,
             ),
           ),
@@ -81,7 +82,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
       elevation: 0,
       flexibleSpace: LayoutBuilder(builder: (context, constraints) {
         SchedulerBinding.instance.addPostFrameCallback((_) {
-          if (constraints.biggest.height < 90) {
+          if (constraints.biggest.height < 100.h) {
             setState(() {
               show = true;
             });
