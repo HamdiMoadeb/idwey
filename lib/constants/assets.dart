@@ -14,4 +14,20 @@ class Assets {
   static const String heartIconFilled = "assets/heart-icon.svg";
   static const String search = "assets/Search.svg";
   static const String filter = "assets/Filter.svg";
+  static const String kitchen = "assets/Kitchen.svg";
+  static const String shower = "assets/Shower.svg";
+  static const String parking = "assets/Parking.svg";
+  static const String house = "assets/House.svg";
+  static const String userGroup = "assets/Frame 23004.svg";
+  static const String beachArea = "assets/Beach area.svg";
+  static const String bed = "assets/Bed.svg";
+  static const String moneySack = "assets/Money sack.svg";
+  static const String battery = "assets/battery_charging_full.svg";
+  static const String experience = "assets/Exprience.svg";
+  static const String watchLater = "assets/watch_later.svg";
+  static const String food = "assets/food.svg";
+  static const String breakfast = "assets/Bed & breakfast.svg";
+  static const String videoGames = "assets/videogame_asset.svg";
+  static const String windmill = "assets/Windmill.svg";
+  static const String background = "assets/tunisie1.jpeg";
 }

@@ -113,12 +113,11 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 50.h),
+      padding: EdgeInsets.only(left: 16.0.w, right: 16.w, top: 60.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 16.w, bottom: 12.h),
             height: 55.h,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[300]!),
@@ -127,33 +126,42 @@ class SearchBox extends StatelessWidget {
                   BorderRadius.circular(50.r), // 50 radius for rounded corners
             ),
             // Adjust padding as needed
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SvgPicture.asset(
-                  Assets.search,
-                ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                SizedBox(
-                  width: 210.w,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.zero,
-                      hintMaxLines: 1,
-                      helperText: "Lieu • Date • Invité ",
-                      hintText: 'Recherchez votre Idwey',
-                      hintStyle: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black), // Placeholder text
-                      border: InputBorder.none, // Remove default underline
-
-                      // Search icon
-                    ),
+            child: Padding(
+              padding: EdgeInsets.only(top: 14.h, left: 16.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    Assets.search,
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  SizedBox(
+                      width: 230.w,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Recherchez votre Idwey',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.sp,
+                                  color: Colors.black)),
+                          Text('Lieu • Date • Invité ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 10.h,
+                                  color: Colors.grey)),
+                        ],
+                      )),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: SizedBox(
+              width: 10.w,
             ),
           ),
           Container(

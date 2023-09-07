@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
 
@@ -18,6 +20,8 @@ class ExperienceScreen extends StatefulWidget {
 
 class _ExperienceScreenState extends State<ExperienceScreen>
     with AutomaticKeepAliveClientMixin {
+  final AppRouter appRouter = GetIt.I<AppRouter>();
+
   @override
   void initState() {
     super.initState();
@@ -76,10 +80,15 @@ class _ExperienceScreenState extends State<ExperienceScreen>
                       : const SizedBox.shrink(),
               body: ListView.separated(
                 padding: EdgeInsets.only(
-                    top: 16.h, left: 12.w, right: 12.w, bottom: 16.h),
+                    top: 16.h, left: 16.w, right: 16.w, bottom: 16.h),
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.experience(
+                  onTap: () {
+                    appRouter.push(ExperienceDetailsRoute(
+                      id: state.listExperiences?[index].id,
+                    ));
+                  },
                   title: state.listExperiences?[index].title,
                   adress: state.listExperiences?[index].address,
                   price: state.listExperiences?[index].price,

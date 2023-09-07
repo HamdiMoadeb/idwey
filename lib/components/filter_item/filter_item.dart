@@ -27,7 +27,7 @@ class FilterItem extends StatelessWidget {
         ),
         child: Container(
           // margin: const EdgeInsets.all(4),
-          width: 120.w,
+          width: 110.w,
           height: 75.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
@@ -41,9 +41,7 @@ class FilterItem extends StatelessWidget {
           ),
           child: Container(
             margin: EdgeInsets.all(isSelected ? 2 : 1),
-            width: 120.w,
-            height: 85.h,
-            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.h),
+            padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 12.h),
             decoration: BoxDecoration(
               color: Colors.white,
               // Set background color to white for a square container
@@ -70,10 +68,23 @@ class FilterItem extends StatelessWidget {
                       ),
                 SizedBox(width: 8.w),
                 isSelected
-                    ? ShaderMask(
-                        shaderCallback: (Rect bounds) {
-                          return kLinearGradient.createShader(bounds);
-                        },
+                    ? Expanded(
+                        child: ShaderMask(
+                          shaderCallback: (Rect bounds) {
+                            return kLinearGradient.createShader(bounds);
+                          },
+                          child: Text(label,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.grey[300],
+                                      fontSize: 12.sp)),
+                        ),
+                      )
+                    : Expanded(
                         child: Text(label,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context)
@@ -82,16 +93,56 @@ class FilterItem extends StatelessWidget {
                                 .copyWith(
                                     fontWeight: FontWeight.w500,
                                     color: Colors.grey[300],
-                                    fontSize: 14)),
-                      )
-                    : Text(label,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey[300],
-                            fontSize: 14)),
+                                    fontSize: 12.sp)),
+                      ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FilterItemType extends StatelessWidget {
+  final Widget icon;
+  final String label;
+
+  const FilterItemType({
+    Key? key,
+    required this.icon,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 4.h, bottom: 4.h, right: 16.w),
+      child: Container(
+        width: 100.w,
+        height: 75.h,
+        decoration: BoxDecoration(
+          // Set background color to white for a square container
+          borderRadius: BorderRadius.circular(6.r),
+          border: Border.all(color: primary, width: 2),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.h),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              icon,
+              Expanded(
+                child: Text(label,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: primary,
+                        fontSize: 12)),
+              ),
+            ],
           ),
         ),
       ),

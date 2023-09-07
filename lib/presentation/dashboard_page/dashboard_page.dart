@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/assets.dart';
@@ -58,10 +59,10 @@ class DashboardScreen extends StatelessWidget {
                   label: '',
                   icon: tabsRouter.activeIndex == 1
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
+                          padding: EdgeInsets.only(left: 16.w),
                           child: Column(
                             children: [
-                              const SizedBox(height: 8),
+                              SizedBox(height: 4.h),
                               ShaderMask(
                                 blendMode: BlendMode.srcATop,
                                 shaderCallback: (Rect bounds) {
@@ -69,11 +70,11 @@ class DashboardScreen extends StatelessWidget {
                                 },
                                 child: SvgPicture.asset(
                                   Assets.inspiration,
-                                  height: 20,
-                                  width: 20,
+                                  height: 20.h,
+                                  width: 20.h,
                                 ),
                               ),
-                              const SizedBox(height: 8),
+                              SizedBox(height: 4.h),
                               const Text(
                                 "Inspiration",
                                 style: TextStyle(
@@ -86,17 +87,17 @@ class DashboardScreen extends StatelessWidget {
                           ),
                         )
                       : Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
+                          padding: EdgeInsets.only(left: 16.w),
                           child: Column(
                             children: [
-                              const SizedBox(height: 8),
+                              SizedBox(height: 4.h),
                               SvgPicture.asset(
                                 Assets.inspiration,
-                                height: 20,
-                                width: 20,
+                                height: 20.h,
+                                width: 20.h,
                                 color: Colors.black,
                               ),
-                              const SizedBox(height: 8),
+                              SizedBox(height: 4.h),
                               const Text(
                                 "Inspiration",
                                 style: TextStyle(
@@ -112,10 +113,10 @@ class DashboardScreen extends StatelessWidget {
                     label: '',
                     icon: tabsRouter.activeIndex == 2
                         ? Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: Column(
                               children: [
-                                const SizedBox(height: 8),
+                                SizedBox(height: 4.h),
                                 ShaderMask(
                                   blendMode: BlendMode.srcATop,
                                   shaderCallback: (Rect bounds) {
@@ -123,11 +124,11 @@ class DashboardScreen extends StatelessWidget {
                                   },
                                   child: SvgPicture.asset(
                                     Assets.assurance,
-                                    height: 20,
-                                    width: 20,
+                                    height: 20.h,
+                                    width: 20.h,
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 4.h),
                                 const Text(
                                   "Assurance",
                                   style: TextStyle(
@@ -140,17 +141,17 @@ class DashboardScreen extends StatelessWidget {
                             ),
                           )
                         : Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: Column(
                               children: [
-                                const SizedBox(height: 8),
+                                SizedBox(height: 4.h),
                                 SvgPicture.asset(
                                   Assets.assurance,
-                                  height: 20,
-                                  width: 20,
+                                  height: 20.h,
+                                  width: 20.h,
                                   color: Colors.black,
                                 ),
-                                const SizedBox(height: 8),
+                                SizedBox(height: 4.h),
                                 const Text(
                                   "Assurance",
                                   style: TextStyle(
@@ -164,8 +165,8 @@ class DashboardScreen extends StatelessWidget {
                 BottomNavigationBarItem(
                     label: '',
                     icon: Container(
-                      height: 65,
-                      width: 65,
+                      height: 50.w,
+                      width: 50.w,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                           gradient: tabsRouter.activeIndex == 0
@@ -181,13 +182,12 @@ class DashboardScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50)),
                       child: Container(
                         margin: const EdgeInsets.all(2),
-                        height: 40,
-                        width: 40,
                         clipBehavior: Clip.hardEdge,
-                        padding: const EdgeInsets.all(10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 12.w, vertical: 6.h),
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(50)),
+                            borderRadius: BorderRadius.circular(50.r)),
                         child: SvgPicture.asset(
                           Assets.logoColor,
                         ),
@@ -197,12 +197,10 @@ class DashboardScreen extends StatelessWidget {
                     label: '',
                     icon: tabsRouter.activeIndex == 3
                         ? Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: EdgeInsets.only(right: 8.w),
                             child: Column(
                               children: [
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 ShaderMask(
                                   blendMode: BlendMode.srcIn,
                                   shaderCallback: (Rect bounds) {
@@ -210,13 +208,11 @@ class DashboardScreen extends StatelessWidget {
                                   },
                                   child: SvgPicture.asset(
                                     Assets.products,
-                                    height: 20,
-                                    width: 20,
+                                    height: 20.h,
+                                    width: 20.h,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 const Text(
                                   "Produits",
                                   style: TextStyle(
@@ -229,21 +225,17 @@ class DashboardScreen extends StatelessWidget {
                             ),
                           )
                         : Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: EdgeInsets.only(right: 8.w),
                             child: Column(
                               children: [
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 SvgPicture.asset(
                                   Assets.products,
-                                  height: 20,
-                                  width: 20,
+                                  height: 20.h,
+                                  width: 20.h,
                                   color: Colors.black,
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 const Text(
                                   "Produits",
                                   style: TextStyle(
@@ -258,14 +250,12 @@ class DashboardScreen extends StatelessWidget {
                     label: '',
                     icon: tabsRouter.activeIndex == 4
                         ? Padding(
-                            padding: const EdgeInsets.only(right: 16.0),
+                            padding: EdgeInsets.only(right: 16.w),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 ShaderMask(
                                   blendMode: BlendMode.srcIn,
                                   shaderCallback: (Rect bounds) {
@@ -273,13 +263,11 @@ class DashboardScreen extends StatelessWidget {
                                   },
                                   child: SvgPicture.asset(
                                     Assets.profile,
-                                    height: 20,
-                                    width: 20,
+                                    height: 20.h,
+                                    width: 20.h,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 const Text(
                                   "Se connecter",
                                   style: TextStyle(
@@ -292,21 +280,17 @@ class DashboardScreen extends StatelessWidget {
                             ),
                           )
                         : Padding(
-                            padding: const EdgeInsets.only(right: 16.0),
+                            padding: EdgeInsets.only(right: 16.w),
                             child: Column(
                               children: [
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 SvgPicture.asset(
                                   Assets.profile,
-                                  height: 20,
-                                  width: 20,
+                                  height: 20.h,
+                                  width: 20.h,
                                   color: Colors.black,
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                SizedBox(height: 4.h),
                                 const Text(
                                   "Se connecter",
                                   style: TextStyle(

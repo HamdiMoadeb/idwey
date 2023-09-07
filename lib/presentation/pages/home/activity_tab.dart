@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
 
@@ -19,7 +21,7 @@ class ActivityScreen extends StatefulWidget {
 class _ActivityScreenState extends State<ActivityScreen>
     with AutomaticKeepAliveClientMixin {
   // final ScrollController _scrollController = ScrollController();
-
+  final AppRouter appRouter = GetIt.I<AppRouter>();
   @override
   void initState() {
     super.initState();
@@ -77,10 +79,15 @@ class _ActivityScreenState extends State<ActivityScreen>
               backgroundColor: secondaryGrey,
               body: ListView.separated(
                 padding: EdgeInsets.only(
-                    top: 16.h, left: 12.w, right: 12.w, bottom: 16.h),
+                    top: 16.h, left: 16.w, right: 16.w, bottom: 16.h),
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) => CustomCard.activity(
+                  onTap: () {
+                    appRouter.push(ActivityDetailsRoute(
+                      id: state.listActivities?[index].id,
+                    ));
+                  },
                   title: state.listActivities?[index].catName,
                   adress: state.listActivities?[index].address,
                   price: state.listActivities?[index].price,

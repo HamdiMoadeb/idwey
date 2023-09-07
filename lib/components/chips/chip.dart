@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 class CustomChip extends StatelessWidget {
@@ -21,7 +22,7 @@ class CustomChip extends StatelessWidget {
       onTap: () => onSelected(!isSelected),
       child: Container(
         //  width: width ?? 100.w,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         decoration: BoxDecoration(
           color: primaryOrange,
           borderRadius:

@@ -49,7 +49,7 @@ class CustomButton extends StatelessWidget {
           onPressed: onPressed,
           child: child,
           style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               elevation: 0),
@@ -59,7 +59,7 @@ class CustomButton extends StatelessWidget {
         return OutlinedButton(
           onPressed: onPressed,
           style: OutlinedButton.styleFrom(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             side: const BorderSide(color: materialPrimary),
@@ -75,7 +75,7 @@ class CustomButton extends StatelessWidget {
       case ButtonType.secondaryGrey:
         return OutlinedButton(
           style: OutlinedButton.styleFrom(
-              padding: EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               backgroundColor: const Color(0XFFFAFAFA)),

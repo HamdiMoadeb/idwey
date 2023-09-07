@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/event_api_data_source.dart';
+import 'package:idwey/data/models/event_details_dto.dart';
 import 'package:idwey/data/models/event_dto.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
 
@@ -12,6 +13,18 @@ class EventRepositoryImpl implements EventRepository {
     try {
       final result = await dataSource.getListEvents(limit, offset);
 
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, EventDetailsDto>> getEvent(int id) async {
+    try {
+      final result = await dataSource.getEvent(id);
+      print("result");
+      print(result);
       return Right(result);
     } on Exception catch (e) {
       return Left(e);
