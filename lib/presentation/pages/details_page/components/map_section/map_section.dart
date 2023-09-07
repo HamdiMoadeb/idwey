@@ -56,7 +56,7 @@ class MapPosition extends StatefulWidget {
 }
 
 class _MapPositionState extends State<MapPosition> {
-  late GoogleMapController mapController;
+  GoogleMapController? mapController;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -78,6 +78,13 @@ class _MapPositionState extends State<MapPosition> {
 
     //you can add more markers here
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    mapController?.dispose();
+    super.dispose();
   }
 
   @override

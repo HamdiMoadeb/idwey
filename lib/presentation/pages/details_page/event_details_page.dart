@@ -79,6 +79,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                   },
                 );
               },
+              stateEvent: state.eventDetailsDto?.row?.isExpired == 1
+                  ? StateEvent.isExpired
+                  : StateEvent.isAvailable,
               perPerson: "personne",
               price:
                   "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt().toString()} DT",

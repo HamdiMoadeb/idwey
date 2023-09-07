@@ -29,4 +29,5 @@ class Assets {
   static const String breakfast = "assets/Bed & breakfast.svg";
   static const String videoGames = "assets/videogame_asset.svg";
   static const String windmill = "assets/Windmill.svg";
+  static const String background = "assets/tunisie1.jpeg";
 }

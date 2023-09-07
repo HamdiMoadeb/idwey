@@ -84,7 +84,7 @@ class _EventScreenState extends State<EventScreen>
                 itemBuilder: (context, index) => CustomCard.event(
                   onTap: () {
                     appRouter.push(EventDetailsRoute(
-                      id: state.listHosts?[index].id,
+                      id: state.listEvents?[index].id,
                     ));
                   },
                   type: state.listEvents?[index].slug,

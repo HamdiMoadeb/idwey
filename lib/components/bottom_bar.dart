@@ -76,10 +76,15 @@ class BottomReservationBar extends StatelessWidget {
               //commented for deployment
               SizedBox(
                 width: 220.w,
-                child: CustomButton.primary(
-                  child: const Text("Verifier la disponibilité"),
-                  onPressed: onPressed ?? () {},
-                ),
+                child: stateEvent == StateEvent.isExpired
+                    ? CustomButton.secondaryGrey(
+                        child: const Text('Evènement expiré '),
+                        onPressed: () {},
+                      )
+                    : CustomButton.primary(
+                        child: const Text("Verifier la disponibilité"),
+                        onPressed: onPressed ?? () {},
+                      ),
               )
             ],
           ),

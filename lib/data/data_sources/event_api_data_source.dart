@@ -31,9 +31,12 @@ class EventApiDataSourceImpl implements EventApiDataSource {
 
   @override
   Future<EventDetailsDto> getEvent(int id) async {
+    print("id");
+    print(id);
     try {
       final response = await dio.get("https://idwey.tn/api/event/detail/$id");
-
+      print("result222222");
+      print(response);
       return EventDetailsDto.fromJson(response.data);
     } catch (e) {
       throw Exception(e);
