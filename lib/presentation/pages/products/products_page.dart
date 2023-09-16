@@ -103,9 +103,9 @@ class _ProductsScreenState extends State<ProductsScreen>
                   controller: scrollController,
                   itemBuilder: (context, index) => CustomCard.product(
                     onTap: () {
-                      // appRouter.push(DetailsProductRoute(
-                      //   id: state.listArticles?[index].id,
-                      // ));
+                      appRouter.push(DetailsProductRoute(
+                        id: state.listArticles?[index].id,
+                      ));
                     },
                     title: state.listArticles?[index].title,
                     price: state.listArticles?[index].price,

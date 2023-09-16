@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 final Color primaryGrey = HexColor.fromHex('#F4F5F9');
-final secondaryGrey = HexColor.fromHex('#f6f7f9');
+final secondaryGrey = HexColor.fromHex('#E5E7EA');
 final Color primaryOrange = HexColor.fromHex('#F55420');
 final Color primary = HexColor.fromHex('#07C8B9');
 final Color grey = HexColor.fromHex('#5e6d77');
