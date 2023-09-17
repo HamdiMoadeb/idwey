@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/di/di_locator.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
+import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 
 import 'app_router/app_router.dart';
 import 'theme/app_colors.dart';
@@ -44,6 +45,18 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (BuildContext context) => GetIt.I<ImageBannerBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<InspirationBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<ArticleDetailsBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<ProductsBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<ProductDetailsBloc>(),
           ),
         ],
         child: ScreenUtilInit(

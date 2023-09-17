@@ -114,6 +114,28 @@ class CustomCard extends StatefulWidget {
       : cardType = CardType.experience,
         super(key: key);
 
+  CustomCard.product(
+      {Key? key,
+      this.currencyValue,
+      this.currency,
+      this.url,
+      this.fromHomepage,
+      this.title,
+      this.adress,
+      this.price,
+      this.nbPerson,
+      this.term,
+      this.type,
+      this.date,
+      this.isExpired,
+      this.onFavoriteTap,
+      this.isFavorite = false,
+      this.duration,
+      this.isFeatured,
+      this.onTap})
+      : cardType = CardType.product,
+        super(key: key);
+
   @override
   State<CustomCard> createState() => _CustomCardState();
 }
@@ -265,10 +287,17 @@ class _CustomCardState extends State<CustomCard> {
                                       : "/nuit",
                                   style: Theme.of(context).textTheme.bodySmall,
                                 )
-                              : Text(
-                                  "/ personne",
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
+                              : widget.cardType == CardType.product
+                                  ? Text(
+                                      "",
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    )
+                                  : Text(
+                                      "/ personne",
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
                           SizedBox(
                             width: 10.w,
                           ),
@@ -316,13 +345,21 @@ class _CustomCardState extends State<CustomCard> {
                         Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 8.w, vertical: 4.h),
-                          child: Text('Réserver Maintenant = ',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500)),
+                          child: widget.cardType == CardType.product
+                              ? Text('Votre commande = ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500))
+                              : Text('Réserver Maintenant = ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500)),
                         ),
                         SvgPicture.asset(
                           Assets.tree,
