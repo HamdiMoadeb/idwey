@@ -110,6 +110,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 .textTheme
                                 .headlineMedium!
                                 .copyWith(
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black),
                           ),

@@ -41,6 +41,13 @@ class CustomButton extends StatelessWidget {
   })  : buttonType = ButtonType.secondaryGrey,
         super(key: key);
 
+  const CustomButton.secondaryBlack({
+    Key? key,
+    this.onPressed,
+    required this.child,
+  })  : buttonType = ButtonType.secondaryBlack,
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     switch (buttonType) {
@@ -78,6 +85,18 @@ class CustomButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
+              backgroundColor: const Color(0XFFFAFAFA)),
+          onPressed: onPressed,
+          child: child,
+        );
+      case ButtonType.secondaryBlack:
+        return OutlinedButton(
+          style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              side: const BorderSide(color: Colors.black),
               backgroundColor: const Color(0XFFFAFAFA)),
           onPressed: onPressed,
           child: child,

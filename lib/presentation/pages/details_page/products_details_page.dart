@@ -77,9 +77,18 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                   ),
                   onPressed: () {
                     showModalBottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return const DraggableBottomSheet();
+                        return SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.9,
+                            child: const DraggableBottomSheet());
                       },
                     );
                   },
@@ -106,7 +115,7 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                             title: state.productDetailsDto?.row?.title ?? "",
                             subtitle: "Jeux de societe",
                           ),
-                          Divider(),
+                          const Divider(),
                           Text(
                             "${double.parse(state.productDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
                             style: Theme.of(context)

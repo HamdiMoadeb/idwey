@@ -28,6 +28,8 @@ import 'package:idwey/domain/usecases/get_list_products_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
+import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/utils/dio.dart';
 
 Future<void> setup() async {
@@ -90,4 +92,6 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => ArticleDetailsBloc());
   GetIt.I.registerLazySingleton(() => ProductDetailsBloc());
   GetIt.I.registerLazySingleton(() => ProductsBloc());
+  GetIt.I.registerLazySingleton(() => SignInBloc());
+  GetIt.I.registerLazySingleton(() => SignUpBloc());
 }

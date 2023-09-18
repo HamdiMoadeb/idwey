@@ -109,30 +109,34 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                 .textTheme
                                 .headlineMedium!
                                 .copyWith(
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black),
                           ),
                           SizedBox(
                             height: 4.h,
                           ),
-                          Row(
-                            children: [
-                              HeroIcon(
-                                HeroIcons.mapPin,
-                                color: primary,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                state.eventDetailsDto?.row?.address ?? "",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(color: primary),
-                              ),
-                            ],
-                          ),
+                          state.eventDetailsDto?.row?.address == null ||
+                                  state.eventDetailsDto?.row?.address == ""
+                              ? const SizedBox.shrink()
+                              : Row(
+                                  children: [
+                                    HeroIcon(
+                                      HeroIcons.mapPin,
+                                      color: primary,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      state.eventDetailsDto?.row?.address ?? "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(color: primary),
+                                    ),
+                                  ],
+                                ),
                           ExpandableDescription(
                             description:
                                 state.eventDetailsDto?.row?.content ?? "",

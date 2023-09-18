@@ -95,6 +95,7 @@ class _CardArticleState extends State<CardArticle> {
                   ExpandableDescription(
                     description: widget.content ?? "",
                     readMoreLabel: "Lire plus",
+                    callback: widget.onTap ?? () {},
                   )
                 ],
               ),

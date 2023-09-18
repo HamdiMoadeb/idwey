@@ -78,6 +78,7 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen>
                                   .textTheme
                                   .headlineMedium!
                                   .copyWith(
+                                      fontSize: 30.sp,
                                       fontWeight: FontWeight.w500,
                                       color: primary),
                             ),

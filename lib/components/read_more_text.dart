@@ -14,6 +14,7 @@ class ExpandableDescription extends StatefulWidget {
     this.padding,
     this.bodyColor,
     this.buttonColor = Colors.grey,
+    this.callback,
   }) : super(key: key);
 
   final String description;
@@ -24,6 +25,7 @@ class ExpandableDescription extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
   final Color buttonColor;
   final Color? bodyColor;
+  final VoidCallback? callback;
 
   @override
   State<ExpandableDescription> createState() => _ExpandableDescriptionState();
@@ -96,23 +98,25 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
 
   Widget getReadMoreButton() {
     return InkWell(
-      onTap: () {
-        showModalBottomSheet(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-          ),
-          isScrollControlled: true,
-          context: context,
-          builder: (context) {
-            return SizedBox(
-                height: MediaQuery.of(context).size.height * 0.7,
-                child: DescriptionBottomSheet(description: widget.description));
+      onTap: widget.callback ??
+          () {
+            showModalBottomSheet(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              isScrollControlled: true,
+              context: context,
+              builder: (context) {
+                return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    child: DescriptionBottomSheet(
+                        description: widget.description));
+              },
+            );
           },
-        );
-      },
       child: Text(
           !isReadMore
               ? widget.readMoreLabel ?? "Read More"
