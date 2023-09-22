@@ -50,5 +50,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: SignUpRoute.page),
     AutoRoute(page: SignInRoute.page),
     AutoRoute(page: TermsAndConditionsRoute.page),
+    AutoRoute(page: SearchRoute.page),
   ];
 }

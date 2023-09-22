@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_tab2.dart';
@@ -31,15 +33,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
   FocusNode confirmPasswordFocus = FocusNode();
   double _progress = 1 / 3;
   int currentPage = 0;
-  final PageController _ProgressController = PageController(initialPage: 0);
+
+  final PageController _progressController = PageController(initialPage: 0);
 
   @override
   void initState() {
     // TODO: implement initState
-    emailController.addListener(() {});
-    passwordController.addListener(() {});
-    nameController.addListener(() {});
-    confirmPasswordController.addListener(() {});
+    emailController.addListener(() {
+      context
+          .read<SignUpBloc>()
+          .add(SignUpEvent.setEmail(emailController.text));
+    });
+    passwordController.addListener(() {
+      context
+          .read<SignUpBloc>()
+          .add(SignUpEvent.setPassword(passwordController.text));
+    });
+    nameController.addListener(() {
+      context
+          .read<SignUpBloc>()
+          .add(SignUpEvent.setFirstName(nameController.text));
+    });
+    confirmPasswordController.addListener(() {
+      context
+          .read<SignUpBloc>()
+          .add(SignUpEvent.setConfirmPassword(confirmPasswordController.text));
+    });
 
     ///
     emailFocus.dispose();
@@ -68,6 +87,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
+              leading: Padding(
+                padding: EdgeInsets.only(top: 16.h),
+                child: IconButton(
+                    onPressed: () {
+                      GetIt.I<AppRouter>().pop();
+                    },
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.black,
+                    )),
+              ),
               title: Padding(
                 padding: EdgeInsets.only(top: 16.h),
                 child: Text(
@@ -96,7 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   Expanded(
                     child: PageView(
-                      controller: _ProgressController,
+                      controller: _progressController,
                       //physics: NeverScrollableScrollPhysics(),
                       onPageChanged: (int page) {
                         setState(() {
@@ -157,15 +187,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         CustomButton.primary(
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.h),
-                            child: Text('Suivant'),
+                            child: const Text('Suivant'),
                           ),
-                          onPressed: state.isValid == true
-                              ? () {
-                                  setState(() {
-                                    // Update the progress based on the current page
-                                  });
-                                }
-                              : null,
+                          onPressed: () {
+                            if (currentPage == 3) {
+                              context.read<SignUpBloc>().signUp();
+                            }
+                            setState(() {
+                              _progressController.animateToPage(currentPage + 1,
+                                  duration: const Duration(milliseconds: 3),
+                                  curve: Curves.easeInOut);
+                            });
+                          },
                         )
                       ],
                     ),

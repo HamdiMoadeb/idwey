@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/theme/app_colors.dart';
 
-class SignUpTab3 extends StatelessWidget {
+class SignUpTab3 extends StatefulWidget {
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
   final FocusNode passwordFocusNode;
@@ -15,6 +15,14 @@ class SignUpTab3 extends StatelessWidget {
       required this.passwordFocusNode,
       required this.confirmPasswordFocusNode})
       : super(key: key);
+
+  @override
+  State<SignUpTab3> createState() => _SignUpTab3State();
+}
+
+class _SignUpTab3State extends State<SignUpTab3> {
+  bool visiblePassword = true;
+  bool visiblePasswordConfirm = true;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +59,7 @@ class SignUpTab3 extends StatelessWidget {
           ),
         ),
         TextField(
+          obscureText: visiblePassword,
           decoration: InputDecoration(
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
@@ -62,17 +71,32 @@ class SignUpTab3 extends StatelessWidget {
                 color: Colors.grey[400],
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w500),
-            suffixIcon: Icon(
-              Icons.visibility_off,
+            suffixIcon: IconButton(
               color: Colors.grey[400],
+              onPressed: () {
+                setState(() {
+                  visiblePassword = !visiblePassword;
+                });
+              },
+              icon: visiblePassword == true
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility),
             ),
           ),
         ),
         TextField(
+          obscureText: visiblePasswordConfirm,
           decoration: InputDecoration(
-            suffixIcon: Icon(
-              Icons.visibility_off,
+            suffixIcon: IconButton(
               color: Colors.grey[400],
+              onPressed: () {
+                setState(() {
+                  visiblePasswordConfirm = !visiblePasswordConfirm;
+                });
+              },
+              icon: visiblePasswordConfirm == true
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility),
             ),
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,

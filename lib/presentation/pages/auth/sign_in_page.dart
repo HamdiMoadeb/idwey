@@ -60,6 +60,17 @@ class _SignInScreenState extends State<SignInScreen> {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
+            leading: Padding(
+              padding: EdgeInsets.only(top: 16.h),
+              child: IconButton(
+                  onPressed: () {
+                    appRouter.pop();
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  )),
+            ),
             title: Padding(
               padding: EdgeInsets.only(top: 16.h),
               child: Text(
@@ -93,19 +104,23 @@ class _SignInScreenState extends State<SignInScreen> {
                       keyboardType: TextInputType.emailAddress,
                       enabled: true,
                       hintText: "Email",
-                      errorText:
-                          state.isValid == false ? "Email is required" : null,
+                      errorText: state.isValid == false &&
+                              emailController.text.isNotEmpty
+                          ? "Email is required"
+                          : null,
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
                     height: 16.h,
                   ),
                   CustomInput(
+                      obscureText: true,
                       controller: passwordController,
                       focusNode: passwordFocusNode,
                       keyboardType: TextInputType.visiblePassword,
                       enabled: true,
                       hintText: "Password",
-                      errorText: state.isValid == false
+                      errorText: state.isValid == false &&
+                              passwordController.text.isNotEmpty
                           ? "Password is required"
                           : null,
                       foregroundColor: Colors.grey[300]!),
@@ -119,9 +134,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       onPressed: emailController.text.isNotEmpty &&
                               passwordController.text.isNotEmpty
-                          ? () {
-                              context.router.pushNamed("/home");
-                            }
+                          ? () {}
                           : null),
                   Padding(
                     padding: EdgeInsets.only(top: 16.h, left: 4.w, right: 4.w),
