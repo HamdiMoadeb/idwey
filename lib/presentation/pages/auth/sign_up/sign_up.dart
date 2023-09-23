@@ -190,14 +190,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: const Text('Suivant'),
                           ),
                           onPressed: () {
-                            if (currentPage == 3) {
+                            print(currentPage);
+                            if (currentPage == 2) {
+                              print('****');
+                              GetIt.I<AppRouter>()
+                                  .push(const SignUpFinalRoute());
                               context.read<SignUpBloc>().signUp();
+                            } else {
+                              setState(() {
+                                _progressController.animateToPage(
+                                    currentPage + 1,
+                                    duration: const Duration(milliseconds: 3),
+                                    curve: Curves.easeInOut);
+                              });
                             }
-                            setState(() {
-                              _progressController.animateToPage(currentPage + 1,
-                                  duration: const Duration(milliseconds: 3),
-                                  curve: Curves.easeInOut);
-                            });
                           },
                         )
                       ],

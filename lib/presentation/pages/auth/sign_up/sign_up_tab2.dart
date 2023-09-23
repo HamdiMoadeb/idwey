@@ -44,6 +44,7 @@ class SignUpTab2 extends StatelessWidget {
           ),
         ),
         TextField(
+          controller: emailController,
           decoration: InputDecoration(
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,

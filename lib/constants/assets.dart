@@ -33,4 +33,5 @@ class Assets {
   static const String google = "assets/google2.png";
   static const String facebook = "assets/Facebook logo 2019.svg";
   static const String frame = "assets/Frame.svg";
+  static const String frame2 = "assets/final_sign_up.svg";
 }

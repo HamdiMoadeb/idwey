@@ -59,6 +59,7 @@ class _SignUpTab3State extends State<SignUpTab3> {
           ),
         ),
         TextField(
+          controller: widget.passwordController,
           obscureText: visiblePassword,
           decoration: InputDecoration(
             focusedBorder: InputBorder.none,
@@ -85,6 +86,7 @@ class _SignUpTab3State extends State<SignUpTab3> {
           ),
         ),
         TextField(
+          controller: widget.confirmPasswordController,
           obscureText: visiblePasswordConfirm,
           decoration: InputDecoration(
             suffixIcon: IconButton(
