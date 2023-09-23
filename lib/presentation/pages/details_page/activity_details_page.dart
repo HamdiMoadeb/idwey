@@ -107,6 +107,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                                 .textTheme
                                 .headlineMedium!
                                 .copyWith(
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black),
                           ),

@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
+import 'package:idwey/components/inputs/custom_input.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
@@ -47,7 +51,7 @@ class DraggableBottomSheet extends StatelessWidget {
                   width: double.infinity,
                   child: CustomButton.primary(
                     onPressed: () {
-                      // Handle login button press
+                      GetIt.I<AppRouter>().push(const SignInRoute());
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(4.0),
@@ -59,7 +63,7 @@ class DraggableBottomSheet extends StatelessWidget {
                   width: double.infinity,
                   child: CustomButton.secondaryColor(
                     onPressed: () {
-                      // Handle sign-up button press
+                      GetIt.I<AppRouter>().push(const SignUpRoute());
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(4.0),
@@ -245,6 +249,97 @@ class DescriptionBottomSheet extends StatelessWidget {
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ForgetPasswordBottomSheet extends StatefulWidget {
+  const ForgetPasswordBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<ForgetPasswordBottomSheet> createState() =>
+      _ForgetPasswordBottomSheetState();
+}
+
+class _ForgetPasswordBottomSheetState extends State<ForgetPasswordBottomSheet> {
+  TextEditingController emailController = TextEditingController();
+  FocusNode emailFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    /// add listener on controller
+
+    emailController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    emailController.dispose();
+    emailFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.r),
+      child: Scaffold(
+        bottomNavigationBar: BottomAppBar(
+            elevation: 0,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: 16.h, right: 16.h, top: 16.h, bottom: 16.h),
+              child: SizedBox(
+                width: double.infinity,
+                child: CustomButton.primary(
+                  onPressed: emailController.text.isEmpty
+                      ? null
+                      : () {
+                          GetIt.I<AppRouter>().push(const DashboardRoute());
+                        },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Réinitialiser mon mot de passe'),
+                  ),
+                ),
+              ),
+            )),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: 16.h, right: 16.h, top: 60.h, bottom: 30.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SvgPicture.asset(Assets.frame),
+                Text(
+                  "Reset your password",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      color: Colors.black,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w700),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                CustomInput(
+                    controller: emailController,
+                    focusNode: emailFocusNode,
+                    keyboardType: TextInputType.emailAddress,
+                    enabled: true,
+                    hintText: "Email",
+                    foregroundColor: Colors.grey[300]!),
+              ],
+            ),
+          ),
         ),
       ),
     );

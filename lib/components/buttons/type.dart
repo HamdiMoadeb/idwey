@@ -3,4 +3,5 @@ enum ButtonType {
   secondaryColor,
   secondaryGrey,
   textOnly,
+  secondaryBlack,
 }

@@ -55,7 +55,7 @@ class _InspirationScreenState extends State<InspirationScreen>
         excludeHeaderSemantics: true,
         forceMaterialTransparency: true,
         title: Padding(
-          padding: EdgeInsets.only(top: 24.h),
+          padding: EdgeInsets.only(top: 16.h),
           child: Text(
             "inspirations",
             style: Theme.of(context)
@@ -70,7 +70,7 @@ class _InspirationScreenState extends State<InspirationScreen>
               height: 1,
               thickness: 1,
             ),
-            preferredSize: Size.fromHeight(30.0)),
+            preferredSize: Size.fromHeight(16.0)),
       ),
       body: BlocBuilder<InspirationBloc, InspirationState>(
         builder: (context, state) {

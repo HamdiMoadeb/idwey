@@ -45,6 +45,9 @@ class CustomHeader extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            width: 16.w,
+          ),
           CustomCounter(
             initialValue: 0,
             onChanged: (i) {
@@ -84,7 +87,7 @@ class _CustomCounterState extends State<CustomCounter> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: secondaryGrey,
+        color: Colors.grey[200]!,
         borderRadius: BorderRadius.circular(50.0),
       ),
       child: Row(

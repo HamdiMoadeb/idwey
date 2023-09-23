@@ -6,6 +6,9 @@ import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_blo
 import 'package:idwey/di/di_locator.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
+import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
+import 'package:idwey/theme/input_theme.dart';
 
 import 'app_router/app_router.dart';
 import 'theme/app_colors.dart';
@@ -58,6 +61,12 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (BuildContext context) => GetIt.I<ProductDetailsBloc>(),
           ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<SignInBloc>(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => GetIt.I<SignUpBloc>(),
+          ),
         ],
         child: ScreenUtilInit(
             designSize: const Size(375, 812),
@@ -67,6 +76,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp.router(
                 theme: ThemeData(
                     textTheme: textTheme,
+                    inputDecorationTheme: inputDecorationTheme,
                     primarySwatch: materialPrimary,
                     splashColor: Colors.white,
                     fontFamily: 'Inter'),

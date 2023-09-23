@@ -52,7 +52,7 @@ class _ProductsScreenState extends State<ProductsScreen>
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Padding(
-          padding: EdgeInsets.only(top: 24.h),
+          padding: EdgeInsets.only(top: 16.h),
           child: Text(
             "Jeux et produits",
             style: Theme.of(context)
@@ -67,7 +67,7 @@ class _ProductsScreenState extends State<ProductsScreen>
               thickness: 1,
               height: 1,
             ),
-            preferredSize: Size.fromHeight(30.0)),
+            preferredSize: Size.fromHeight(16.0)),
       ),
       body: BlocBuilder<ProductsBloc, ProductsState>(
         builder: (context, state) {

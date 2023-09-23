@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/app_bar/app_bar.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
@@ -88,6 +90,10 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                       label: 'Hébergement',
                       icon: Assets.hosts,
                       onTap: (v) {
+                        /// navigate to screen home
+
+                        GetIt.I<AppRouter>().push(SearchRoute());
+
                         setState(() {
                           if (hostScrollController.hasClients) {
                             if (hostScrollController.position.pixels > 0) {

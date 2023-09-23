@@ -16,43 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProductsEvent {
+  bool get isFetching => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(bool isFetching) getListProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
     TResult? Function(bool isFetching)? getListProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(bool isFetching)? getListProducts,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(GetListProducts value) getListProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
     TResult? Function(GetListProducts value)? getListProducts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(GetListProducts value)? getListProducts,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProductsEventCopyWith<ProductsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +60,8 @@ abstract class $ProductsEventCopyWith<$Res> {
   factory $ProductsEventCopyWith(
           ProductsEvent value, $Res Function(ProductsEvent) then) =
       _$ProductsEventCopyWithImpl<$Res, ProductsEvent>;
+  @useResult
+  $Res call({bool isFetching});
 }
 
 /// @nodoc
@@ -72,114 +73,28 @@ class _$ProductsEventCopyWithImpl<$Res, $Val extends ProductsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_value.copyWith(
+      isFetching: null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$ProductsEventCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Started implements _Started {
-  const _$_Started();
-
-  @override
-  String toString() {
-    return 'ProductsEvent.started()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(bool isFetching) getListProducts,
-  }) {
-    return started();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function(bool isFetching)? getListProducts,
-  }) {
-    return started?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(bool isFetching)? getListProducts,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(GetListProducts value) getListProducts,
-  }) {
-    return started(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(GetListProducts value)? getListProducts,
-  }) {
-    return started?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(GetListProducts value)? getListProducts,
-    required TResult orElse(),
-  }) {
-    if (started != null) {
-      return started(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Started implements ProductsEvent {
-  const factory _Started() = _$_Started;
-}
-
-/// @nodoc
-abstract class _$$GetListProductsCopyWith<$Res> {
+abstract class _$$GetListProductsCopyWith<$Res>
+    implements $ProductsEventCopyWith<$Res> {
   factory _$$GetListProductsCopyWith(
           _$GetListProducts value, $Res Function(_$GetListProducts) then) =
       __$$GetListProductsCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({bool isFetching});
 }
@@ -240,7 +155,6 @@ class _$GetListProducts implements GetListProducts {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
     required TResult Function(bool isFetching) getListProducts,
   }) {
     return getListProducts(isFetching);
@@ -249,7 +163,6 @@ class _$GetListProducts implements GetListProducts {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
     TResult? Function(bool isFetching)? getListProducts,
   }) {
     return getListProducts?.call(isFetching);
@@ -258,7 +171,6 @@ class _$GetListProducts implements GetListProducts {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
     TResult Function(bool isFetching)? getListProducts,
     required TResult orElse(),
   }) {
@@ -271,7 +183,6 @@ class _$GetListProducts implements GetListProducts {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
     required TResult Function(GetListProducts value) getListProducts,
   }) {
     return getListProducts(this);
@@ -280,7 +191,6 @@ class _$GetListProducts implements GetListProducts {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
     TResult? Function(GetListProducts value)? getListProducts,
   }) {
     return getListProducts?.call(this);
@@ -289,7 +199,6 @@ class _$GetListProducts implements GetListProducts {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
     TResult Function(GetListProducts value)? getListProducts,
     required TResult orElse(),
   }) {
@@ -303,7 +212,9 @@ class _$GetListProducts implements GetListProducts {
 abstract class GetListProducts implements ProductsEvent {
   const factory GetListProducts(final bool isFetching) = _$GetListProducts;
 
+  @override
   bool get isFetching;
+  @override
   @JsonKey(ignore: true)
   _$$GetListProductsCopyWith<_$GetListProducts> get copyWith =>
       throw _privateConstructorUsedError;
