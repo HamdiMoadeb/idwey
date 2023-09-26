@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
 
@@ -117,45 +119,50 @@ class SearchBox extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            height: 55.h,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey[300]!),
-              // Light grey background color
-              borderRadius:
-                  BorderRadius.circular(50.r), // 50 radius for rounded corners
-            ),
-            // Adjust padding as needed
-            child: Padding(
-              padding: EdgeInsets.only(top: 14.h, left: 16.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SvgPicture.asset(
-                    Assets.search,
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  SizedBox(
-                      width: 230.w,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Recherchez votre Idwey',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
-                                  color: Colors.black)),
-                          Text('Lieu • Date • Invité ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 10.h,
-                                  color: Colors.grey)),
-                        ],
-                      )),
-                ],
+          InkWell(
+            onTap: () {
+              GetIt.I<AppRouter>().push(const SearchRoute());
+            },
+            child: Container(
+              height: 55.h,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey[300]!),
+                // Light grey background color
+                borderRadius: BorderRadius.circular(
+                    50.r), // 50 radius for rounded corners
+              ),
+              // Adjust padding as needed
+              child: Padding(
+                padding: EdgeInsets.only(top: 14.h, left: 16.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset(
+                      Assets.search,
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    SizedBox(
+                        width: 230.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Recherchez votre Idwey',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.sp,
+                                    color: Colors.black)),
+                            Text('Lieu • Date • Invité ',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 10.h,
+                                    color: Colors.grey)),
+                          ],
+                        )),
+                  ],
+                ),
               ),
             ),
           ),

@@ -51,7 +51,9 @@ dependencies:
   parsed_readmore: ^0.0.6
   flutter_html: ^3.0.0-beta.2
   dots_indicator: ^3.0.0
-
+  flutter_typeahead: ^4.0.4
+  table_calendar: ^3.0.9
+  syncfusion_flutter_datepicker: ^23.1.36
 dev_dependencies:
 
   flutter_test:
