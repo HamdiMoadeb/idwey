@@ -8,6 +8,7 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
 import 'package:idwey/constants/assets.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
 
 @RoutePage()
@@ -45,16 +46,42 @@ class _SignInScreenState extends State<SignInScreen> {
     // TODO: implement dispose
     emailController.dispose();
     passwordController.dispose();
-    emailFocusNode.dispose();
-    passwordFocusNode.dispose();
     super.dispose();
   }
 
   final AppRouter appRouter = GetIt.I<AppRouter>();
 
+  showLoadingDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(
+    return BlocConsumer<SignInBloc, SignInState>(
+      listener: (context, state) {
+        if (state.status == StateStatus.loading) {
+          showLoadingDialog();
+        } else if (state.status == StateStatus.success) {
+          print("success");
+
+          context.read<SignInBloc>().initStatus();
+        } else if (state.status == StateStatus.error) {
+          print("error");
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorText ?? "Une erreur s'est produite"),
+              backgroundColor: Colors.red,
+            ),
+          );
+          context.read<SignInBloc>().initStatus();
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -101,26 +128,32 @@ class _SignInScreenState extends State<SignInScreen> {
                   CustomInput(
                       controller: emailController,
                       focusNode: emailFocusNode,
+                      onSubmit: (value) {
+                        FocusScope.of(context).requestFocus(passwordFocusNode);
+                      },
                       keyboardType: TextInputType.emailAddress,
                       enabled: true,
                       hintText: "Email",
-                      errorText: state.isValid == false &&
-                              emailController.text.isNotEmpty
-                          ? "Email is required"
-                          : null,
+                      errorText:
+                          state.isValid == false || emailController.text.isEmpty
+                              ? "Email is required"
+                              : null,
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
                     height: 16.h,
                   ),
                   CustomInput(
                       obscureText: true,
+                      onSubmit: (value) {
+                        FocusScope.of(context).unfocus();
+                      },
                       controller: passwordController,
                       focusNode: passwordFocusNode,
                       keyboardType: TextInputType.visiblePassword,
                       enabled: true,
                       hintText: "Password",
-                      errorText: state.isValid == false &&
-                              passwordController.text.isNotEmpty
+                      errorText: state.isValid == false ||
+                              passwordController.text.isEmpty
                           ? "Password is required"
                           : null,
                       foregroundColor: Colors.grey[300]!),
@@ -134,7 +167,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       onPressed: emailController.text.isNotEmpty &&
                               passwordController.text.isNotEmpty
-                          ? () {}
+                          ? () {
+                              context
+                                  .read<SignInBloc>()
+                                  .add(const SignInEvent.signIn());
+                            }
                           : null),
                   Padding(
                     padding: EdgeInsets.only(top: 16.h, left: 4.w, right: 4.w),

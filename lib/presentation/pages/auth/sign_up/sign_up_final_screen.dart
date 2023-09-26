@@ -104,7 +104,7 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
                     shaderCallback: (Rect bounds) {
                       return kLinearGradient.createShader(bounds);
                     },
-                    child: Text("${state.firstName} Idwey",
+                    child: Text("${state.firstName}",
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium!

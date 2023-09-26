@@ -20,18 +20,21 @@ mixin _$SignInEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String password) setEmail,
     required TResult Function(String email) setPassword,
+    required TResult Function() signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String password)? setEmail,
     TResult? Function(String email)? setPassword,
+    TResult? Function()? signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String password)? setEmail,
     TResult Function(String email)? setPassword,
+    TResult Function()? signIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$SignInEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_SetEmail value) setEmail,
     required TResult Function(_SetPassword value) setPassword,
+    required TResult Function(_SignIn value) signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetEmail value)? setEmail,
     TResult? Function(_SetPassword value)? setPassword,
+    TResult? Function(_SignIn value)? signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetEmail value)? setEmail,
     TResult Function(_SetPassword value)? setPassword,
+    TResult Function(_SignIn value)? signIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +147,7 @@ class _$_SetEmail implements _SetEmail {
   TResult when<TResult extends Object?>({
     required TResult Function(String password) setEmail,
     required TResult Function(String email) setPassword,
+    required TResult Function() signIn,
   }) {
     return setEmail(password);
   }
@@ -150,6 +157,7 @@ class _$_SetEmail implements _SetEmail {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String password)? setEmail,
     TResult? Function(String email)? setPassword,
+    TResult? Function()? signIn,
   }) {
     return setEmail?.call(password);
   }
@@ -159,6 +167,7 @@ class _$_SetEmail implements _SetEmail {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String password)? setEmail,
     TResult Function(String email)? setPassword,
+    TResult Function()? signIn,
     required TResult orElse(),
   }) {
     if (setEmail != null) {
@@ -172,6 +181,7 @@ class _$_SetEmail implements _SetEmail {
   TResult map<TResult extends Object?>({
     required TResult Function(_SetEmail value) setEmail,
     required TResult Function(_SetPassword value) setPassword,
+    required TResult Function(_SignIn value) signIn,
   }) {
     return setEmail(this);
   }
@@ -181,6 +191,7 @@ class _$_SetEmail implements _SetEmail {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetEmail value)? setEmail,
     TResult? Function(_SetPassword value)? setPassword,
+    TResult? Function(_SignIn value)? signIn,
   }) {
     return setEmail?.call(this);
   }
@@ -190,6 +201,7 @@ class _$_SetEmail implements _SetEmail {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetEmail value)? setEmail,
     TResult Function(_SetPassword value)? setPassword,
+    TResult Function(_SignIn value)? signIn,
     required TResult orElse(),
   }) {
     if (setEmail != null) {
@@ -274,6 +286,7 @@ class _$_SetPassword implements _SetPassword {
   TResult when<TResult extends Object?>({
     required TResult Function(String password) setEmail,
     required TResult Function(String email) setPassword,
+    required TResult Function() signIn,
   }) {
     return setPassword(email);
   }
@@ -283,6 +296,7 @@ class _$_SetPassword implements _SetPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String password)? setEmail,
     TResult? Function(String email)? setPassword,
+    TResult? Function()? signIn,
   }) {
     return setPassword?.call(email);
   }
@@ -292,6 +306,7 @@ class _$_SetPassword implements _SetPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String password)? setEmail,
     TResult Function(String email)? setPassword,
+    TResult Function()? signIn,
     required TResult orElse(),
   }) {
     if (setPassword != null) {
@@ -305,6 +320,7 @@ class _$_SetPassword implements _SetPassword {
   TResult map<TResult extends Object?>({
     required TResult Function(_SetEmail value) setEmail,
     required TResult Function(_SetPassword value) setPassword,
+    required TResult Function(_SignIn value) signIn,
   }) {
     return setPassword(this);
   }
@@ -314,6 +330,7 @@ class _$_SetPassword implements _SetPassword {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetEmail value)? setEmail,
     TResult? Function(_SetPassword value)? setPassword,
+    TResult? Function(_SignIn value)? signIn,
   }) {
     return setPassword?.call(this);
   }
@@ -323,6 +340,7 @@ class _$_SetPassword implements _SetPassword {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetEmail value)? setEmail,
     TResult Function(_SetPassword value)? setPassword,
+    TResult Function(_SignIn value)? signIn,
     required TResult orElse(),
   }) {
     if (setPassword != null) {
@@ -342,11 +360,118 @@ abstract class _SetPassword implements SignInEvent {
 }
 
 /// @nodoc
+abstract class _$$_SignInCopyWith<$Res> {
+  factory _$$_SignInCopyWith(_$_SignIn value, $Res Function(_$_SignIn) then) =
+      __$$_SignInCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SignInCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res, _$_SignIn>
+    implements _$$_SignInCopyWith<$Res> {
+  __$$_SignInCopyWithImpl(_$_SignIn _value, $Res Function(_$_SignIn) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SignIn implements _SignIn {
+  const _$_SignIn();
+
+  @override
+  String toString() {
+    return 'SignInEvent.signIn()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SignIn);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String password) setEmail,
+    required TResult Function(String email) setPassword,
+    required TResult Function() signIn,
+  }) {
+    return signIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String password)? setEmail,
+    TResult? Function(String email)? setPassword,
+    TResult? Function()? signIn,
+  }) {
+    return signIn?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String password)? setEmail,
+    TResult Function(String email)? setPassword,
+    TResult Function()? signIn,
+    required TResult orElse(),
+  }) {
+    if (signIn != null) {
+      return signIn();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetEmail value) setEmail,
+    required TResult Function(_SetPassword value) setPassword,
+    required TResult Function(_SignIn value) signIn,
+  }) {
+    return signIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetEmail value)? setEmail,
+    TResult? Function(_SetPassword value)? setPassword,
+    TResult? Function(_SignIn value)? signIn,
+  }) {
+    return signIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetEmail value)? setEmail,
+    TResult Function(_SetPassword value)? setPassword,
+    TResult Function(_SignIn value)? signIn,
+    required TResult orElse(),
+  }) {
+    if (signIn != null) {
+      return signIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SignIn implements SignInEvent {
+  const factory _SignIn() = _$_SignIn;
+}
+
+/// @nodoc
 mixin _$SignInState {
   StateStatus? get status => throw _privateConstructorUsedError;
   bool? get isValid => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get errorText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -360,7 +485,11 @@ abstract class $SignInStateCopyWith<$Res> {
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
   $Res call(
-      {StateStatus? status, bool? isValid, String? password, String? email});
+      {StateStatus? status,
+      bool? isValid,
+      String? password,
+      String? email,
+      String? errorText});
 }
 
 /// @nodoc
@@ -380,6 +509,7 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
     Object? isValid = freezed,
     Object? password = freezed,
     Object? email = freezed,
+    Object? errorText = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -398,6 +528,10 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -411,7 +545,11 @@ abstract class _$$_SignInStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {StateStatus? status, bool? isValid, String? password, String? email});
+      {StateStatus? status,
+      bool? isValid,
+      String? password,
+      String? email,
+      String? errorText});
 }
 
 /// @nodoc
@@ -429,6 +567,7 @@ class __$$_SignInStateCopyWithImpl<$Res>
     Object? isValid = freezed,
     Object? password = freezed,
     Object? email = freezed,
+    Object? errorText = freezed,
   }) {
     return _then(_$_SignInState(
       status: freezed == status
@@ -447,6 +586,10 @@ class __$$_SignInStateCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -454,7 +597,8 @@ class __$$_SignInStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignInState implements _SignInState {
-  const _$_SignInState({this.status, this.isValid, this.password, this.email});
+  const _$_SignInState(
+      {this.status, this.isValid, this.password, this.email, this.errorText});
 
   @override
   final StateStatus? status;
@@ -464,10 +608,12 @@ class _$_SignInState implements _SignInState {
   final String? password;
   @override
   final String? email;
+  @override
+  final String? errorText;
 
   @override
   String toString() {
-    return 'SignInState(status: $status, isValid: $isValid, password: $password, email: $email)';
+    return 'SignInState(status: $status, isValid: $isValid, password: $password, email: $email, errorText: $errorText)';
   }
 
   @override
@@ -479,12 +625,14 @@ class _$_SignInState implements _SignInState {
             (identical(other.isValid, isValid) || other.isValid == isValid) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.errorText, errorText) ||
+                other.errorText == errorText));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, status, isValid, password, email);
+      Object.hash(runtimeType, status, isValid, password, email, errorText);
 
   @JsonKey(ignore: true)
   @override
@@ -498,7 +646,8 @@ abstract class _SignInState implements SignInState {
       {final StateStatus? status,
       final bool? isValid,
       final String? password,
-      final String? email}) = _$_SignInState;
+      final String? email,
+      final String? errorText}) = _$_SignInState;
 
   @override
   StateStatus? get status;
@@ -508,6 +657,8 @@ abstract class _SignInState implements SignInState {
   String? get password;
   @override
   String? get email;
+  @override
+  String? get errorText;
   @override
   @JsonKey(ignore: true)
   _$$_SignInStateCopyWith<_$_SignInState> get copyWith =>

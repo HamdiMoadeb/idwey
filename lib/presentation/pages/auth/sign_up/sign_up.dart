@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_tab2.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_tab3.dart';
@@ -78,9 +79,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
+  showLoadingDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpBloc, SignUpState>(
+    return BlocConsumer<SignUpBloc, SignUpState>(
+      listener: (context, state) {
+        if (state.status == StateStatus.loading) {
+          showLoadingDialog();
+        } else if (state.status == StateStatus.success) {
+          print("success");
+          Navigator.of(context).pop();
+        } else if (state.status == StateStatus.error) {
+          print("error");
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorText ?? "Une erreur s'est produite"),
+              backgroundColor: Colors.red,
+            ),
+          );
+          context.read<SignUpBloc>().initStatus();
+        }
+      },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
@@ -190,12 +218,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: const Text('Suivant'),
                           ),
                           onPressed: () {
-                            print(currentPage);
                             if (currentPage == 2) {
                               print('****');
-                              GetIt.I<AppRouter>()
-                                  .push(const SignUpFinalRoute());
-                              context.read<SignUpBloc>().signUp();
+                              context
+                                  .read<SignUpBloc>()
+                                  .add(const SignUpEvent.signUp());
                             } else {
                               setState(() {
                                 _progressController.animateToPage(
