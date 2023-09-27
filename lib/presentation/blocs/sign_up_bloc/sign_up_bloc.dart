@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sign_up_event.dart';
@@ -112,11 +113,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       emit(state.copyWith(status: StateStatus.error));
     }, (r) async {
       if (r['error'] == true) {
-        print('33333333');
         emit(state.copyWith(
             status: StateStatus.error, errorText: r['messages']['email'][0]));
       } else {
         emit(state.copyWith(status: StateStatus.success));
+        GetIt.I<AppBloc>().add(const AppEvent.setLoggedIn());
         GetIt.I<AppRouter>().push(const SignUpFinalRoute());
       }
     });

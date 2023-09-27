@@ -31,7 +31,11 @@ class CardReview extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(text),
+              Text(
+                text,
+                maxLines: 6,
+                overflow: TextOverflow.ellipsis,
+              ),
               const Divider(
                 thickness: 1,
               ),
@@ -43,14 +47,12 @@ class CardReview extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
               ),
-              Expanded(
-                child: Text(
-                  date,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
+              Text(
+                date,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                    ),
               )
             ],
           ),

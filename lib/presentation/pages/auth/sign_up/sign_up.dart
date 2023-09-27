@@ -99,13 +99,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Navigator.of(context).pop();
         } else if (state.status == StateStatus.error) {
           print("error");
-          Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errorText ?? "Une erreur s'est produite"),
               backgroundColor: Colors.red,
             ),
           );
+          Navigator.of(context).pop();
           context.read<SignUpBloc>().initStatus();
         }
       },

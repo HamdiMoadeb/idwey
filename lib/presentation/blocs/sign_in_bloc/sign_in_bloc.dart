@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/domain/usecases/login_usecase.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sign_in_event.dart';
@@ -48,16 +49,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       response.fold((l) {
         emit(state.copyWith(status: StateStatus.error));
       }, (r) {
-        print("r*********");
-        print(r);
         if (r['error'] == true) {
-          print('33333333');
           emit(state.copyWith(
               status: StateStatus.error,
               errorText: r['messages']['message_error'][0]));
         } else {
           emit(state.copyWith(status: StateStatus.success));
-          GetIt.I<AppRouter>().push(DashboardRoute());
+          GetIt.I<AppRouter>().popUntilRoot();
+          GetIt.I<AppBloc>().add(const AppEvent.setLoggedIn());
         }
       });
     } catch (e) {

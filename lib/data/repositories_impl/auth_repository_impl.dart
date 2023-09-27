@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/auth_api_data_source.dart';
 import 'package:idwey/domain/repositories/auth_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthApiDataSource dataSource;
@@ -10,6 +13,9 @@ class AuthRepositoryImpl implements AuthRepository {
       Map<String, dynamic> params) async {
     try {
       final result = await dataSource.login(params);
+      var body = jsonDecode(jsonEncode(result));
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString("token", body['token']);
       print("result");
       print(result);
       return Right(result);
@@ -23,6 +29,12 @@ class AuthRepositoryImpl implements AuthRepository {
       Map<String, dynamic> params) async {
     try {
       final result = await dataSource.signUp(params);
+      Map<String, dynamic> body = jsonDecode(jsonEncode(result));
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      if (body != null && body.keys.contains('token')) {
+        await prefs.setString("token", body['token']);
+      }
       print("result");
       print(result);
       return Right(result);

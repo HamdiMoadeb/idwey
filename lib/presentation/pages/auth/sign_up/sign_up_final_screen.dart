@@ -44,23 +44,29 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
                         },
                       ),
                       Expanded(
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'J\'accepte les ',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(color: grey),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'conditions générales d\'utilisation',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w700)),
-                            ],
+                        child: InkWell(
+                          onTap: () {
+                            context.router
+                                .push(const TermsAndConditionsRoute());
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'J\'accepte les ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .copyWith(color: grey),
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'conditions générales d\'utilisation',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w700)),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -73,7 +79,7 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
                     ),
                     onPressed: isChecked == true
                         ? () {
-                            context.router.push(const DashboardRoute());
+                            context.router.popUntilRoot();
                           }
                         : null,
                   ),

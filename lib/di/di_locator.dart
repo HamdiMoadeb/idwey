@@ -30,6 +30,7 @@ import 'package:idwey/domain/usecases/get_list_products_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
 import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -105,4 +106,5 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => ProductsBloc());
   GetIt.I.registerLazySingleton(() => SignInBloc());
   GetIt.I.registerLazySingleton(() => SignUpBloc());
+  GetIt.I.registerLazySingleton(() => AppBloc());
 }
