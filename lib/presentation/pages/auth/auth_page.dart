@@ -57,9 +57,9 @@ class _AuthScreenState extends State<AuthScreen> {
               )
             : TextButton(
                 onPressed: () {
-                  GetIt.I<AppRouter>().push(SignInRoute());
+                  GetIt.I<AppRouter>().push(const SignInRoute());
                 },
-                child: Text('se connecter'));
+                child: const Text('Se connecter'));
       },
     );
   }

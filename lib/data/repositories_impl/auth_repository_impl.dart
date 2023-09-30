@@ -15,7 +15,9 @@ class AuthRepositoryImpl implements AuthRepository {
       final result = await dataSource.login(params);
       var body = jsonDecode(jsonEncode(result));
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString("token", body['token']);
+      if (body != null && body.keys.contains('token')) {
+        await prefs.setString("token", body['token']);
+      }
       print("result");
       print(result);
       return Right(result);

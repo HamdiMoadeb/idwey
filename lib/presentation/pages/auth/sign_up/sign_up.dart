@@ -79,36 +79,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
-  showLoadingDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpBloc, SignUpState>(
-      listener: (context, state) {
-        if (state.status == StateStatus.loading) {
-          showLoadingDialog();
-        } else if (state.status == StateStatus.success) {
-          print("success");
-          Navigator.of(context).pop();
-        } else if (state.status == StateStatus.error) {
-          print("error");
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errorText ?? "Une erreur s'est produite"),
-              backgroundColor: Colors.red,
-            ),
-          );
-          Navigator.of(context).pop();
-          context.read<SignUpBloc>().initStatus();
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
@@ -219,10 +193,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           onPressed: () {
                             if (currentPage == 2) {
-                              print('****');
-                              context
-                                  .read<SignUpBloc>()
-                                  .add(const SignUpEvent.signUp());
+                              if (state.firstName == null ||
+                                  state.firstName!.isEmpty ||
+                                  state.isValid == false) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                        "Veuillez remplir tous les champs"),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              } else {
+                                print('****');
+                                GetIt.I<AppRouter>()
+                                    .push(const SignUpFinalRoute());
+                              }
                             } else {
                               setState(() {
                                 _progressController.animateToPage(

@@ -10,6 +10,7 @@ import 'package:idwey/components/verify_disponibility_bottom_sheet_content/botto
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:idwey/utils/form_utils.dart';
 
 @RoutePage()
 class SignInScreen extends StatefulWidget {
@@ -134,10 +135,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       keyboardType: TextInputType.emailAddress,
                       enabled: true,
                       hintText: "Email",
-                      errorText:
-                          state.isValid == false || emailController.text.isEmpty
-                              ? "Email is required"
-                              : null,
+                      errorText: emailController.text.isEmpty
+                          ? "Email is required"
+                          : FormsUtils().isEmailValid(emailController.text)
+                              ? null
+                              : "Email invalide",
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
                     height: 16.h,
@@ -152,10 +154,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       keyboardType: TextInputType.visiblePassword,
                       enabled: true,
                       hintText: "Password",
-                      errorText: state.isValid == false ||
-                              passwordController.text.isEmpty
+                      errorText: passwordController.text.isEmpty
                           ? "Password is required"
-                          : null,
+                          : FormsUtils()
+                                  .isPasswordValid(passwordController.text)
+                              ? null
+                              : "Password too short (min 6)",
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
                     height: 36.h,
@@ -166,7 +170,8 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: const Text("Se connecter"),
                       ),
                       onPressed: emailController.text.isNotEmpty &&
-                              passwordController.text.isNotEmpty
+                              passwordController.text.isNotEmpty &&
+                              state.isValid == true
                           ? () {
                               context
                                   .read<SignInBloc>()

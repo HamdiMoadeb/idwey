@@ -8,6 +8,7 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
+import 'package:idwey/utils/form_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sign_in_event.dart';
@@ -23,15 +24,17 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   /// on change password
   void onChangePassword(_SetPassword event, Emitter<SignInState> emit) {
-    event.email.length >= 6 && event.email.length <= 20
-        ? emit(state.copyWith(password: event.email, isValid: true))
-        : emit(state.copyWith(password: event.email, isValid: false));
+    bool isValid =
+        event.email.isNotEmpty && FormsUtils().isPasswordValid(event.email);
+    emit(state.copyWith(password: event.email, isValid: isValid));
   }
 
   /// on change email
 
   void onChangeEmail(_SetEmail event, Emitter<SignInState> emit) {
-    emit(state.copyWith(email: event.password));
+    bool isValid =
+        event.password.isNotEmpty && FormsUtils().isEmailValid(event.password);
+    emit(state.copyWith(email: event.password, isValid: isValid));
   }
 
   /// on sign in
@@ -49,10 +52,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       response.fold((l) {
         emit(state.copyWith(status: StateStatus.error));
       }, (r) {
+        print("r*********");
+        print(r);
         if (r['error'] == true) {
           emit(state.copyWith(
               status: StateStatus.error,
               errorText: r['messages']['message_error'][0]));
+          print("state.errorText");
+          print(state.errorText);
         } else {
           emit(state.copyWith(status: StateStatus.success));
           GetIt.I<AppRouter>().popUntilRoot();

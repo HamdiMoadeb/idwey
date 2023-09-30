@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/constants/assets.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
@@ -19,9 +20,36 @@ class SignUpFinalScreen extends StatefulWidget {
 
 class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
   bool isChecked = false;
+  showLoadingDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpBloc, SignUpState>(
+    return BlocConsumer<SignUpBloc, SignUpState>(
+      listener: (context, state) {
+        if (state.status == StateStatus.loading) {
+          showLoadingDialog();
+        } else if (state.status == StateStatus.success) {
+          print("success");
+          context.read<SignUpBloc>().initStatus();
+        } else if (state.status == StateStatus.error) {
+          print("error");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorText ?? "Une erreur s'est produite"),
+              backgroundColor: Colors.red,
+            ),
+          );
+          Navigator.of(context).pop();
+          context.read<SignUpBloc>().initStatus();
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           bottomNavigationBar: BottomAppBar(
@@ -79,7 +107,9 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
                     ),
                     onPressed: isChecked == true
                         ? () {
-                            context.router.popUntilRoot();
+                            context
+                                .read<SignUpBloc>()
+                                .add(const SignUpEvent.signUp());
                           }
                         : null,
                   ),
