@@ -8,12 +8,14 @@ import 'package:idwey/data/repositories_impl/event_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/experience_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/host_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/product_repository_impl.dart';
+import 'package:idwey/data/repositories_impl/repositories_impl.dart';
 import 'package:idwey/domain/repositories/activity_repository.dart';
 import 'package:idwey/domain/repositories/article_repository.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
 import 'package:idwey/domain/repositories/exeperience_repository.dart';
 import 'package:idwey/domain/repositories/host_repository.dart';
 import 'package:idwey/domain/repositories/product_repository.dart';
+import 'package:idwey/domain/repositories/repositories.dart';
 import 'package:idwey/domain/usecases/get_activity_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_article_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_event_details_usecase.dart';
@@ -26,6 +28,9 @@ import 'package:idwey/domain/usecases/get_list_experiences_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_hosts.dart';
 import 'package:idwey/domain/usecases/get_list_products_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
+import 'package:idwey/domain/usecases/login_usecase.dart';
+import 'package:idwey/domain/usecases/register_usecase.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -77,6 +82,13 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => GetListProductsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetProductDetailsUseCase(GetIt.I()));
 
+  /// auth
+  GetIt.I.registerLazySingleton<AuthApiDataSource>(
+      () => AuthApiDataSourceImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => LoginUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => RegisterUseCase(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(
       () => ExperienceRepositoryImpl(GetIt.I()));
@@ -94,4 +106,5 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => ProductsBloc());
   GetIt.I.registerLazySingleton(() => SignInBloc());
   GetIt.I.registerLazySingleton(() => SignUpBloc());
+  GetIt.I.registerLazySingleton(() => AppBloc());
 }

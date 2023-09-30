@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/assets.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 
 @RoutePage()
 class SplashScreen extends StatefulWidget {
@@ -29,6 +31,8 @@ class _SplashScreenState extends State<SplashScreen>
       const Duration(seconds: 3),
       () => AutoRouter.of(context).replace(const DashboardRoute()),
     );
+
+    context.read<AppBloc>().add(const AppEvent.setLoggedIn());
   }
 
   @override

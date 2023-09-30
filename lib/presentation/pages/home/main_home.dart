@@ -90,10 +90,6 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                       label: 'Hébergement',
                       icon: Assets.hosts,
                       onTap: (v) {
-                        /// navigate to screen home
-
-                        GetIt.I<AppRouter>().push(SearchRoute());
-
                         setState(() {
                           if (hostScrollController.hasClients) {
                             if (hostScrollController.position.pixels > 0) {

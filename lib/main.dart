@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/di/di_locator.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (BuildContext context) => GetIt.I<SignUpBloc>(),
           ),
+          BlocProvider(create: (BuildContext context) => GetIt.I<AppBloc>()),
         ],
         child: ScreenUtilInit(
             designSize: const Size(375, 812),

@@ -7,8 +7,13 @@ class SignInState with _$SignInState {
     bool? isValid,
     String? password,
     String? email,
+    String? errorText,
   }) = _SignInState;
 
   factory SignInState.initial() => const SignInState(
-      status: StateStatus.init, isValid: null, password: "", email: "");
+      status: StateStatus.init,
+      isValid: null,
+      password: "",
+      email: "",
+      errorText: "");
 }

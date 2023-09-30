@@ -338,7 +338,9 @@ class _CustomCardState extends State<CustomCard> {
                     ),
                   )
                 : CustomButton.primary(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.onTap?.call();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

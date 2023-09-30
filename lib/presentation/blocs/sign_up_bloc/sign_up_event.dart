@@ -7,4 +7,7 @@ class SignUpEvent with _$SignUpEvent {
   const factory SignUpEvent.setConfirmPassword(String email) =
       _SetConfirmPassword;
   const factory SignUpEvent.setFirstName(String email) = _SetFirstName;
+
+  /// sign up
+  const factory SignUpEvent.signUp() = _SignUp;
 }
