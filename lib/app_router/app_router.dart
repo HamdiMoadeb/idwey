@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/dashboard_page/dashboard_page.dart';
 import 'package:idwey/presentation/pages/assurance/assurance_page.dart';
 import 'package:idwey/presentation/pages/auth/auth_page.dart';
@@ -53,5 +54,7 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: TermsAndConditionsRoute.page),
     AutoRoute(page: SearchRoute.page),
     AutoRoute(page: SignUpFinalRoute.page),
+    AutoRoute(page: VerifyDisponibilityRoute.page),
+    AutoRoute(page: ConfirmReservationRoute.page),
   ];
 }

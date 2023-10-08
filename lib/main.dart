@@ -7,6 +7,7 @@ import 'package:idwey/di/di_locator.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
+import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/theme/input_theme.dart';
@@ -69,6 +70,8 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => GetIt.I<SignUpBloc>(),
           ),
           BlocProvider(create: (BuildContext context) => GetIt.I<AppBloc>()),
+          BlocProvider(
+              create: (BuildContext context) => GetIt.I<ReservationBloc>()),
         ],
         child: ScreenUtilInit(
             designSize: const Size(375, 812),

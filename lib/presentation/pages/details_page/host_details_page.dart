@@ -1,7 +1,10 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/components/read_more_text.dart';
@@ -70,9 +73,26 @@ class _DetailsScreenState extends State<DetailsScreen>
                 child: BottomReservationBar(
                   onPressed: () {
                     print("appState.isLoggedIn");
-                    print(appState.isLoggedIn);
+                    print(appState.isLoggedIn == true);
                     appState.isLoggedIn == true
-                        ? () {}
+                        ? GetIt.I<AppRouter>().push(
+                            VerifyDisponibilityRoute(
+                              url: state.hostDetails?.bannerImageUrl ?? "",
+                              typeReservation: TypeReservation.host,
+                              typeHost: widget.typeHost,
+                              salePrice: state.hostDetails?.row?.price ?? "",
+                              currency: "",
+                              currencyValue: 0,
+                              price: state.hostDetails?.row?.price ?? "",
+                              perPerson:
+                                  state.hostDetails?.row?.perPerson ?? "",
+                              currencyName: "",
+                              id: state.hostDetails?.row?.id.toString() ?? "",
+                              title: state.hostDetails?.row?.title ?? "",
+                              address: state.hostDetails?.row?.address ?? "",
+                              minNuits: state.hostDetails?.row?.minNuits ?? 0,
+                            ),
+                          )
                         : showModalBottomSheet(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(

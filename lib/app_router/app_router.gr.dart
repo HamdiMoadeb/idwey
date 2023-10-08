@@ -11,7 +11,6 @@ part of 'app_router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
   // ignore: unused_element
-  _$AppRouter({navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -45,6 +44,31 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const AuthScreen(),
+      );
+    },
+    ConfirmReservationRoute.name: (routeData) {
+      final args = routeData.argsAs<ConfirmReservationRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ConfirmReservationScreen(
+          key: args.key,
+          id: args.id,
+          address: args.address,
+          hostName: args.hostName,
+          region: args.region,
+          dateDebut: args.dateDebut,
+          dateFin: args.dateFin,
+          nuits: args.nuits,
+          adultes: args.adultes,
+          total: args.total,
+          rooms: args.rooms,
+          typeReservation: args.typeReservation,
+          currencyValue: args.currencyValue,
+          currencyName: args.currencyName,
+          currency: args.currency,
+          activityDuration: args.activityDuration,
+          url: args.url,
+        ),
       );
     },
     DashboardRoute.name: (routeData) {
@@ -146,6 +170,30 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const TermsAndConditionsScreen(),
+      );
+    },
+    VerifyDisponibilityRoute.name: (routeData) {
+      final args = routeData.argsAs<VerifyDisponibilityRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: VerifyDisponibilityScreen(
+          key: args.key,
+          typeReservation: args.typeReservation,
+          activityDuration: args.activityDuration,
+          currency: args.currency,
+          id: args.id,
+          title: args.title,
+          address: args.address,
+          typeHost: args.typeHost,
+          currencyValue: args.currencyValue,
+          currencyName: args.currencyName,
+          startDate: args.startDate,
+          salePrice: args.salePrice,
+          perPerson: args.perPerson,
+          minNuits: args.minNuits,
+          price: args.price,
+          url: args.url,
+        ),
       );
     },
   };
@@ -253,6 +301,120 @@ class AuthRoute extends PageRouteInfo<void> {
   static const String name = 'AuthRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ConfirmReservationScreen]
+class ConfirmReservationRoute
+    extends PageRouteInfo<ConfirmReservationRouteArgs> {
+  ConfirmReservationRoute({
+    Key? key,
+    required String id,
+    String? address,
+    String? hostName,
+    String? region,
+    String? dateDebut,
+    String? dateFin,
+    String? nuits,
+    String? adultes,
+    String? total,
+    List<dynamic>? rooms,
+    TypeReservation? typeReservation,
+    int? currencyValue,
+    String? currencyName,
+    String? currency,
+    String? activityDuration,
+    required String url,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ConfirmReservationRoute.name,
+          args: ConfirmReservationRouteArgs(
+            key: key,
+            id: id,
+            address: address,
+            hostName: hostName,
+            region: region,
+            dateDebut: dateDebut,
+            dateFin: dateFin,
+            nuits: nuits,
+            adultes: adultes,
+            total: total,
+            rooms: rooms,
+            typeReservation: typeReservation,
+            currencyValue: currencyValue,
+            currencyName: currencyName,
+            currency: currency,
+            activityDuration: activityDuration,
+            url: url,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ConfirmReservationRoute';
+
+  static const PageInfo<ConfirmReservationRouteArgs> page =
+      PageInfo<ConfirmReservationRouteArgs>(name);
+}
+
+class ConfirmReservationRouteArgs {
+  const ConfirmReservationRouteArgs({
+    this.key,
+    required this.id,
+    this.address,
+    this.hostName,
+    this.region,
+    this.dateDebut,
+    this.dateFin,
+    this.nuits,
+    this.adultes,
+    this.total,
+    this.rooms,
+    this.typeReservation,
+    this.currencyValue,
+    this.currencyName,
+    this.currency,
+    this.activityDuration,
+    required this.url,
+  });
+
+  final Key? key;
+
+  final String id;
+
+  final String? address;
+
+  final String? hostName;
+
+  final String? region;
+
+  final String? dateDebut;
+
+  final String? dateFin;
+
+  final String? nuits;
+
+  final String? adultes;
+
+  final String? total;
+
+  final List<dynamic>? rooms;
+
+  final TypeReservation? typeReservation;
+
+  final int? currencyValue;
+
+  final String? currencyName;
+
+  final String? currency;
+
+  final String? activityDuration;
+
+  final String url;
+
+  @override
+  String toString() {
+    return 'ConfirmReservationRouteArgs{key: $key, id: $id, address: $address, hostName: $hostName, region: $region, dateDebut: $dateDebut, dateFin: $dateFin, nuits: $nuits, adultes: $adultes, total: $total, rooms: $rooms, typeReservation: $typeReservation, currencyValue: $currencyValue, currencyName: $currencyName, currency: $currency, activityDuration: $activityDuration, url: $url}';
+  }
 }
 
 /// generated route for
@@ -550,4 +712,113 @@ class TermsAndConditionsRoute extends PageRouteInfo<void> {
   static const String name = 'TermsAndConditionsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [VerifyDisponibilityScreen]
+class VerifyDisponibilityRoute
+    extends PageRouteInfo<VerifyDisponibilityRouteArgs> {
+  VerifyDisponibilityRoute({
+    Key? key,
+    required TypeReservation typeReservation,
+    String? activityDuration,
+    String? currency,
+    required String id,
+    required String title,
+    required String address,
+    String? typeHost,
+    int? currencyValue,
+    String? currencyName,
+    String? startDate,
+    String? salePrice,
+    String? perPerson,
+    int? minNuits,
+    String? price,
+    required String url,
+    List<PageRouteInfo>? children,
+  }) : super(
+          VerifyDisponibilityRoute.name,
+          args: VerifyDisponibilityRouteArgs(
+            key: key,
+            typeReservation: typeReservation,
+            activityDuration: activityDuration,
+            currency: currency,
+            id: id,
+            title: title,
+            address: address,
+            typeHost: typeHost,
+            currencyValue: currencyValue,
+            currencyName: currencyName,
+            startDate: startDate,
+            salePrice: salePrice,
+            perPerson: perPerson,
+            minNuits: minNuits,
+            price: price,
+            url: url,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'VerifyDisponibilityRoute';
+
+  static const PageInfo<VerifyDisponibilityRouteArgs> page =
+      PageInfo<VerifyDisponibilityRouteArgs>(name);
+}
+
+class VerifyDisponibilityRouteArgs {
+  const VerifyDisponibilityRouteArgs({
+    this.key,
+    required this.typeReservation,
+    this.activityDuration,
+    this.currency,
+    required this.id,
+    required this.title,
+    required this.address,
+    this.typeHost,
+    this.currencyValue,
+    this.currencyName,
+    this.startDate,
+    this.salePrice,
+    this.perPerson,
+    this.minNuits,
+    this.price,
+    required this.url,
+  });
+
+  final Key? key;
+
+  final TypeReservation typeReservation;
+
+  final String? activityDuration;
+
+  final String? currency;
+
+  final String id;
+
+  final String title;
+
+  final String address;
+
+  final String? typeHost;
+
+  final int? currencyValue;
+
+  final String? currencyName;
+
+  final String? startDate;
+
+  final String? salePrice;
+
+  final String? perPerson;
+
+  final int? minNuits;
+
+  final String? price;
+
+  final String url;
+
+  @override
+  String toString() {
+    return 'VerifyDisponibilityRouteArgs{key: $key, typeReservation: $typeReservation, activityDuration: $activityDuration, currency: $currency, id: $id, title: $title, address: $address, typeHost: $typeHost, currencyValue: $currencyValue, currencyName: $currencyName, startDate: $startDate, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, url: $url}';
+  }
 }
