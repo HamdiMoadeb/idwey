@@ -50,7 +50,8 @@ abstract class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<ConfirmReservationRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: ConfirmReservationScreen(
+        child: WrappedRoute(
+            child: ConfirmReservationScreen(
           key: args.key,
           id: args.id,
           address: args.address,
@@ -68,7 +69,9 @@ abstract class _$AppRouter extends RootStackRouter {
           currency: args.currency,
           activityDuration: args.activityDuration,
           url: args.url,
-        ),
+          code: args.code,
+          customerId: args.customerId,
+        )),
       );
     },
     DashboardRoute.name: (routeData) {
@@ -176,24 +179,23 @@ abstract class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<VerifyDisponibilityRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: VerifyDisponibilityScreen(
+        child: WrappedRoute(
+            child: VerifyDisponibilityScreen(
           key: args.key,
           typeReservation: args.typeReservation,
           activityDuration: args.activityDuration,
-          currency: args.currency,
           id: args.id,
           title: args.title,
           address: args.address,
           typeHost: args.typeHost,
-          currencyValue: args.currencyValue,
-          currencyName: args.currencyName,
-          startDate: args.startDate,
           salePrice: args.salePrice,
           perPerson: args.perPerson,
           minNuits: args.minNuits,
           price: args.price,
           url: args.url,
-        ),
+          extraPrice: args.extraPrice,
+          rooms: args.rooms,
+        )),
       );
     },
   };
@@ -309,7 +311,7 @@ class ConfirmReservationRoute
     extends PageRouteInfo<ConfirmReservationRouteArgs> {
   ConfirmReservationRoute({
     Key? key,
-    required String id,
+    String? id,
     String? address,
     String? hostName,
     String? region,
@@ -318,13 +320,15 @@ class ConfirmReservationRoute
     String? nuits,
     String? adultes,
     String? total,
-    List<dynamic>? rooms,
+    List<Room>? rooms,
     TypeReservation? typeReservation,
     int? currencyValue,
     String? currencyName,
     String? currency,
     String? activityDuration,
-    required String url,
+    String? url,
+    required String code,
+    required String customerId,
     List<PageRouteInfo>? children,
   }) : super(
           ConfirmReservationRoute.name,
@@ -346,6 +350,8 @@ class ConfirmReservationRoute
             currency: currency,
             activityDuration: activityDuration,
             url: url,
+            code: code,
+            customerId: customerId,
           ),
           initialChildren: children,
         );
@@ -359,7 +365,7 @@ class ConfirmReservationRoute
 class ConfirmReservationRouteArgs {
   const ConfirmReservationRouteArgs({
     this.key,
-    required this.id,
+    this.id,
     this.address,
     this.hostName,
     this.region,
@@ -374,12 +380,14 @@ class ConfirmReservationRouteArgs {
     this.currencyName,
     this.currency,
     this.activityDuration,
-    required this.url,
+    this.url,
+    required this.code,
+    required this.customerId,
   });
 
   final Key? key;
 
-  final String id;
+  final String? id;
 
   final String? address;
 
@@ -397,7 +405,7 @@ class ConfirmReservationRouteArgs {
 
   final String? total;
 
-  final List<dynamic>? rooms;
+  final List<Room>? rooms;
 
   final TypeReservation? typeReservation;
 
@@ -409,11 +417,15 @@ class ConfirmReservationRouteArgs {
 
   final String? activityDuration;
 
-  final String url;
+  final String? url;
+
+  final String code;
+
+  final String customerId;
 
   @override
   String toString() {
-    return 'ConfirmReservationRouteArgs{key: $key, id: $id, address: $address, hostName: $hostName, region: $region, dateDebut: $dateDebut, dateFin: $dateFin, nuits: $nuits, adultes: $adultes, total: $total, rooms: $rooms, typeReservation: $typeReservation, currencyValue: $currencyValue, currencyName: $currencyName, currency: $currency, activityDuration: $activityDuration, url: $url}';
+    return 'ConfirmReservationRouteArgs{key: $key, id: $id, address: $address, hostName: $hostName, region: $region, dateDebut: $dateDebut, dateFin: $dateFin, nuits: $nuits, adultes: $adultes, total: $total, rooms: $rooms, typeReservation: $typeReservation, currencyValue: $currencyValue, currencyName: $currencyName, currency: $currency, activityDuration: $activityDuration, url: $url, code: $code, customerId: $customerId}';
   }
 }
 
@@ -722,19 +734,17 @@ class VerifyDisponibilityRoute
     Key? key,
     required TypeReservation typeReservation,
     String? activityDuration,
-    String? currency,
     required String id,
     required String title,
     required String address,
     String? typeHost,
-    int? currencyValue,
-    String? currencyName,
-    String? startDate,
     String? salePrice,
     String? perPerson,
     int? minNuits,
     String? price,
     required String url,
+    List<ExtraPrice>? extraPrice,
+    List<Room>? rooms,
     List<PageRouteInfo>? children,
   }) : super(
           VerifyDisponibilityRoute.name,
@@ -742,19 +752,17 @@ class VerifyDisponibilityRoute
             key: key,
             typeReservation: typeReservation,
             activityDuration: activityDuration,
-            currency: currency,
             id: id,
             title: title,
             address: address,
             typeHost: typeHost,
-            currencyValue: currencyValue,
-            currencyName: currencyName,
-            startDate: startDate,
             salePrice: salePrice,
             perPerson: perPerson,
             minNuits: minNuits,
             price: price,
             url: url,
+            extraPrice: extraPrice,
+            rooms: rooms,
           ),
           initialChildren: children,
         );
@@ -770,19 +778,17 @@ class VerifyDisponibilityRouteArgs {
     this.key,
     required this.typeReservation,
     this.activityDuration,
-    this.currency,
     required this.id,
     required this.title,
     required this.address,
     this.typeHost,
-    this.currencyValue,
-    this.currencyName,
-    this.startDate,
     this.salePrice,
     this.perPerson,
     this.minNuits,
     this.price,
     required this.url,
+    this.extraPrice,
+    this.rooms,
   });
 
   final Key? key;
@@ -791,8 +797,6 @@ class VerifyDisponibilityRouteArgs {
 
   final String? activityDuration;
 
-  final String? currency;
-
   final String id;
 
   final String title;
@@ -800,12 +804,6 @@ class VerifyDisponibilityRouteArgs {
   final String address;
 
   final String? typeHost;
-
-  final int? currencyValue;
-
-  final String? currencyName;
-
-  final String? startDate;
 
   final String? salePrice;
 
@@ -817,8 +815,12 @@ class VerifyDisponibilityRouteArgs {
 
   final String url;
 
+  final List<ExtraPrice>? extraPrice;
+
+  final List<Room>? rooms;
+
   @override
   String toString() {
-    return 'VerifyDisponibilityRouteArgs{key: $key, typeReservation: $typeReservation, activityDuration: $activityDuration, currency: $currency, id: $id, title: $title, address: $address, typeHost: $typeHost, currencyValue: $currencyValue, currencyName: $currencyName, startDate: $startDate, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, url: $url}';
+    return 'VerifyDisponibilityRouteArgs{key: $key, typeReservation: $typeReservation, activityDuration: $activityDuration, id: $id, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, url: $url, extraPrice: $extraPrice, rooms: $rooms}';
   }
 }

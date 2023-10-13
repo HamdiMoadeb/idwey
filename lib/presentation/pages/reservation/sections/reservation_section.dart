@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/components/inputs/custom_input.dart';
+import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
+import 'package:idwey/utils/form_utils.dart';
 
 class ReservationForm extends StatefulWidget {
   final TextEditingController controller;
@@ -68,7 +70,7 @@ class _ReservationFormState extends State<ReservationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ReservationBloc, ReservationState>(
+    return BlocBuilder<ConfirmReservationBloc, ConfirmReservationState>(
       builder: (context, state) {
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 16.h),
@@ -89,7 +91,7 @@ class _ReservationFormState extends State<ReservationForm> {
                         TextStyle(fontWeight: FontWeight.w500, fontSize: 18.sp),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 Form(
                   key: widget.formKey,
                   child: Column(
@@ -107,6 +109,10 @@ class _ReservationFormState extends State<ReservationForm> {
                               hintText: "Prénom",
                               foregroundColor: Colors.grey,
                               controller: widget.controller,
+                              errorText: state.validInformations == false &&
+                                      widget.controller.text.isEmpty
+                                  ? "Veuillez remplir ce champ"
+                                  : null,
                               keyboardType: TextInputType.name,
                             ),
                           ),
@@ -116,6 +122,10 @@ class _ReservationFormState extends State<ReservationForm> {
                               focusNode: nameFocusNode,
                               hintText: "Nom",
                               enabled: true,
+                              errorText: state.validInformations == false &&
+                                      widget.nameController.text.isEmpty
+                                  ? "Veuillez remplir ce champ"
+                                  : null,
                               foregroundColor: Colors.grey,
                               controller: widget.nameController,
                               keyboardType: TextInputType.name,
@@ -130,6 +140,12 @@ class _ReservationFormState extends State<ReservationForm> {
                         focusNode: emailFocusNode,
                         hintText: "Email",
                         controller: widget.emailController,
+                        errorText: widget.emailController.text.isEmpty
+                            ? "Email est requis"
+                            : FormsUtils()
+                                    .isEmailValid(widget.emailController.text)
+                                ? null
+                                : "Email est invalide",
                         keyboardType: TextInputType.emailAddress,
                         enabled: true,
                         foregroundColor: Colors.grey,
@@ -147,6 +163,12 @@ class _ReservationFormState extends State<ReservationForm> {
                               focusNode: phoneFocusNode,
                               hintText: "Numéro de téléphone",
                               controller: widget.phoneController,
+                              // errorText: widget.phoneController.text.isEmpty
+                              //     ? "Numéro de téléphone est requis"
+                              //     : FormsUtils().isPhoneNumberValid(
+                              //             widget.phoneController.text)
+                              //         ? null
+                              //         : "Numéro de téléphone est invalide",
                               keyboardType: TextInputType.number,
                               enabled: true,
                               foregroundColor: Colors.grey,
@@ -158,6 +180,9 @@ class _ReservationFormState extends State<ReservationForm> {
                               focusNode: villeFocusNode,
                               hintText: "Ville",
                               controller: widget.villeController,
+                              // errorText: state.validInformations == false
+                              //     ? "Veuillez remplir ce champ"
+                              //     : null,
                               keyboardType: TextInputType.name,
                               enabled: true,
                               foregroundColor: Colors.grey,
@@ -180,12 +205,6 @@ class _ReservationFormState extends State<ReservationForm> {
                       SizedBox(
                         height: 16.h,
                       ),
-                      CustomButton.primary(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Valider vos informations"),
-                          ),
-                          onPressed: () {}),
                     ],
                   ),
                 )

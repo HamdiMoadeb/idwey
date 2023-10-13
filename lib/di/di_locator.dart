@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/data/data_sources/data_sources.dart';
+import 'package:idwey/data/data_sources/reservation_data_source.dart';
 import 'package:idwey/data/repositories_impl/activity_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/article_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/event_repository_impl.dart';
@@ -17,6 +18,8 @@ import 'package:idwey/domain/repositories/host_repository.dart';
 import 'package:idwey/domain/repositories/product_repository.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 import 'package:idwey/domain/usecases/check_host_availability.dart';
+import 'package:idwey/domain/usecases/confirm_reservation_usecase.dart';
+import 'package:idwey/domain/usecases/do_checkout_usecase.dart';
 import 'package:idwey/domain/usecases/get_activity_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_article_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_event_details_usecase.dart';
@@ -33,6 +36,7 @@ import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
+import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -53,6 +57,7 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => GetListHostsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetHostUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => CheckHostAvailabilityUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => ConfirmReservationUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton<EventApiDataSource>(
       () => EventApiDataSourceImpl(GetIt.I()));
   // Domain
@@ -92,6 +97,13 @@ Future<void> setup() async {
       () => AuthRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => LoginUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => RegisterUseCase(GetIt.I()));
+
+  GetIt.I.registerLazySingleton<ReservationApiDataSource>(
+      () => ReservationApiDataSourceImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton<ReservationRepository>(
+      () => ReservationRepositoryImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => DoCheckoutUseCase(GetIt.I()));
+
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(
       () => ExperienceRepositoryImpl(GetIt.I()));
@@ -111,4 +123,5 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => SignUpBloc());
   GetIt.I.registerLazySingleton(() => AppBloc());
   GetIt.I.registerLazySingleton(() => ReservationBloc());
+  GetIt.I.registerLazySingleton(() => ConfirmReservationBloc());
 }

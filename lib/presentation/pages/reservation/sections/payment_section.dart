@@ -6,18 +6,14 @@ import 'package:idwey/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PayementSection extends StatefulWidget {
-  bool? Checked;
   bool? offline;
   bool? online;
-  final Function(bool)? onTermsChecked;
   final Function(String)? onOfflineChecked;
   final Function(String)? onOnlineChecked;
   PayementSection({
     Key? key,
-    this.Checked,
     this.offline,
     this.online,
-    required this.onTermsChecked,
     required this.onOfflineChecked,
     this.onOnlineChecked,
   }) : super(key: key);
@@ -79,94 +75,98 @@ class _PayementSectionState extends State<PayementSection> {
                   },
                 ),
               ),
-              ListTile(
-                leading: const HeroIcon(
-                  HeroIcons.creditCard,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  'Online',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16.h,
+              // ListTile(
+              //   leading: const HeroIcon(
+              //     HeroIcons.creditCard,
+              //     color: Colors.black,
+              //   ),
+              //   title: Text(
+              //     'Online',
+              //     style: TextStyle(
+              //       fontWeight: FontWeight.w500,
+              //       fontSize: 16.h,
+              //     ),
+              //   ),
+              //   trailing: Radio<String>(
+              //     value: "Online",
+              //     groupValue: radioItem,
+              //     onChanged: (String? value) {
+              //       widget.onOnlineChecked!(value!);
+              //       setState(() {
+              //         radioItem = value ?? "";
+              //         widget.online = true;
+              //       });
+              //     },
+              //   ),
+              // ),
+              Visibility(
+                visible: widget.offline == true,
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(bottom: 16.h, left: 16.h, right: 16.h),
+                  child: Column(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: "- Des frais bancaires de ",
+                          style: TextStyle(
+                            fontSize: 16.h,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: '1,6 %',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.h,
+                                color: Colors.black,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  "seront prélevés sur les paiements en ligne pour carte nationales.",
+                              style: TextStyle(
+                                fontSize: 16.h,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        textAlign: TextAlign.left,
+                        textHeightBehavior: TextHeightBehavior(),
+                      ),
+                      SizedBox(height: 16.h),
+                      RichText(
+                        text: TextSpan(
+                          text: "- Des frais bancaires de ",
+                          style: TextStyle(
+                            fontSize: 16.h,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: '3,1 %',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.h,
+                                color: Colors.black,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  "seront prélevés sur les paiements en ligne pour carte internationales.",
+                              style: TextStyle(
+                                fontSize: 16.h,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        textAlign: TextAlign.left,
+                        textHeightBehavior: TextHeightBehavior(),
+                      ),
+                    ],
                   ),
-                ),
-                trailing: Radio<String>(
-                  value: "Online",
-                  groupValue: radioItem,
-                  onChanged: (String? value) {
-                    widget.onOnlineChecked!(value!);
-                    setState(() {
-                      radioItem = value ?? "";
-                      widget.online = true;
-                    });
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 16.h, left: 16.h, right: 16.h),
-                child: Column(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        text: "- Des frais bancaires de ",
-                        style: TextStyle(
-                          fontSize: 16.h,
-                          color: Colors.black,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '1,6 %',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16.h,
-                              color: Colors.black,
-                            ),
-                          ),
-                          TextSpan(
-                            text:
-                                "seront prélevés sur les paiements en ligne pour carte nationales.",
-                            style: TextStyle(
-                              fontSize: 16.h,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.left,
-                      textHeightBehavior: TextHeightBehavior(),
-                    ),
-                    SizedBox(height: 16.h),
-                    RichText(
-                      text: TextSpan(
-                        text: "- Des frais bancaires de ",
-                        style: TextStyle(
-                          fontSize: 16.h,
-                          color: Colors.black,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '3,1 %',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16.h,
-                              color: Colors.black,
-                            ),
-                          ),
-                          TextSpan(
-                            text:
-                                "seront prélevés sur les paiements en ligne pour carte internationales.",
-                            style: TextStyle(
-                              fontSize: 16.h,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.left,
-                      textHeightBehavior: TextHeightBehavior(),
-                    ),
-                  ],
                 ),
               )
             ],

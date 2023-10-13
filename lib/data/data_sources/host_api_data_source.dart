@@ -5,8 +5,10 @@ import 'package:idwey/data/models/host_dto.dart';
 abstract class HostApiDataSource {
   Future<List<Host>> getListHosts(int limit, int offset);
   Future<HostDetails> getHost(int id);
-  Future<Map<String, dynamic>> checkHostAvailability(
+  Future<dynamic> checkHostAvailability(
       int id, String checkIn, String checkOut, int adults, int children);
+  Future<Map<String, dynamic>> confirmHostReservation(
+      Map<String, dynamic> body);
 }
 
 class HostApiDataSourceImpl implements HostApiDataSource {
@@ -33,6 +35,7 @@ class HostApiDataSourceImpl implements HostApiDataSource {
   @override
   Future<HostDetails> getHost(int id) async {
     try {
+      print("https://idwey.tn/api/hotel/detail/$id");
       final response = await dio.get("https://idwey.tn/api/hotel/detail/$id");
 
       return HostDetails.fromJson(response.data);
@@ -42,7 +45,7 @@ class HostApiDataSourceImpl implements HostApiDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>> checkHostAvailability(
+  Future<dynamic> checkHostAvailability(
       int id, String checkIn, String checkOut, int adults, int children) async {
     try {
       print(
@@ -56,5 +59,21 @@ class HostApiDataSourceImpl implements HostApiDataSource {
     } catch (e) {
       throw Exception(e);
     }
+  }
+
+  @override
+  Future<Map<String, dynamic>> confirmHostReservation(
+      Map<String, dynamic> body) async {
+    // try {
+    final response = await dio.post(
+      "https://idwey.tn/api/booking/addToCart",
+      data: body,
+    );
+    print("response");
+    print(response.data);
+    return response.data;
+    // } catch (e) {
+    //   throw Exception(e);
+    // }
   }
 }

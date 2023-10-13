@@ -31,7 +31,7 @@ class HostRepositoryImpl implements HostRepository {
   }
 
   @override
-  Future<Either<Exception, Map<String, dynamic>>> checkHostAvailability(
+  Future<Either<Exception, dynamic>> checkHostAvailability(
       int id, String checkIn, String checkOut, int adults, int children) async {
     try {
       final result = await dataSource.checkHostAvailability(
@@ -40,5 +40,18 @@ class HostRepositoryImpl implements HostRepository {
     } on Exception catch (e) {
       return Left(e);
     }
+  }
+
+  @override
+  Future<Either<Exception, Map<String, dynamic>>> confirmHostReservation(
+      Map<String, dynamic> body) async {
+    // try {
+    final result = await dataSource.confirmHostReservation(body);
+    print("result");
+    print(result);
+    return Right(result);
+    // } on Exception catch (e) {
+    //   return Left(e);
+    // }
   }
 }

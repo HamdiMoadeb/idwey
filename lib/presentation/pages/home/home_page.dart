@@ -82,23 +82,28 @@ class _HomeScreenState extends State<HomeScreen>
                     top: 16.h, left: 16.w, right: 16.w, bottom: 16.h),
                 shrinkWrap: true,
                 controller: widget.scrollController,
-                itemBuilder: (context, index) => CustomCard.host(
-                  onTap: () {
-                    appRouter.push(DetailsRoute(
-                        id: state.listHosts?[index].id, typeHost: ""));
-                  },
-                  title: state.listHosts?[index].title,
-                  adress: state.listHosts?[index].address,
-                  price: state.listHosts?[index].price,
-                  type: state.listHosts?[index].typeHost,
-                  term: state.listHosts?[index].termName,
-                  url: state.listHosts?[index].imageUrl,
-                  isFeatured: state.listHosts?[index].isFeatured != null &&
-                          state.listHosts?[index].isFeatured == 1
-                      ? true
-                      : false,
-                  nbPerson: " ${state.listHosts?[index].maxPerson} personnes",
-                ),
+                itemBuilder: (context, index) {
+                  print(state.listHosts?[index].title);
+                  print(state.listHosts?[index].typeHost);
+                  return CustomCard.host(
+                    onTap: () {
+                      appRouter.push(DetailsRoute(
+                          id: state.listHosts?[index].id,
+                          typeHost: state.listHosts?[index].typeHost));
+                    },
+                    title: state.listHosts?[index].title,
+                    adress: state.listHosts?[index].address,
+                    price: state.listHosts?[index].price,
+                    type: state.listHosts?[index].typeHost,
+                    term: state.listHosts?[index].termName,
+                    url: state.listHosts?[index].imageUrl,
+                    isFeatured: state.listHosts?[index].isFeatured != null &&
+                            state.listHosts?[index].isFeatured == 1
+                        ? true
+                        : false,
+                    nbPerson: " ${state.listHosts?[index].maxPerson} personnes",
+                  );
+                },
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(height: 16.h);
                 },

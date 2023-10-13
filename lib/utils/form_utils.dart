@@ -14,4 +14,12 @@ class FormsUtils {
     }
     return true;
   }
+
+  /// phone number validator
+
+  bool isPhoneNumberValid(String phone) {
+    // Define a regular expression for email validation
+    final phoneRegExp = RegExp(r'^[0-9]{8}$');
+    return phoneRegExp.hasMatch(phone);
+  }
 }

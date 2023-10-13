@@ -18,87 +18,120 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ReservationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
     required TResult Function(int id, String checkIn, String checkOut,
             String adults, String children)
         checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult? Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_setParams value) setParams,
     required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_setParams value)? setParams,
     TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
+    TResult Function(_setParams value)? setParams,
     TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,93 +156,288 @@ class _$ReservationEventCopyWithImpl<$Res, $Val extends ReservationEvent>
 }
 
 /// @nodoc
-abstract class _$$_GetUserCopyWith<$Res> {
-  factory _$$_GetUserCopyWith(
-          _$_GetUser value, $Res Function(_$_GetUser) then) =
-      __$$_GetUserCopyWithImpl<$Res>;
+abstract class _$$_setParamsCopyWith<$Res> {
+  factory _$$_setParamsCopyWith(
+          _$_setParams value, $Res Function(_$_setParams) then) =
+      __$$_setParamsCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String? activityDuration,
+      String? id,
+      String? url,
+      String? title,
+      String? address,
+      String? typeHost,
+      String? salePrice,
+      String? perPerson,
+      int? minNuits,
+      List<ExtraPrice>? extraPrice,
+      String? price});
 }
 
 /// @nodoc
-class __$$_GetUserCopyWithImpl<$Res>
-    extends _$ReservationEventCopyWithImpl<$Res, _$_GetUser>
-    implements _$$_GetUserCopyWith<$Res> {
-  __$$_GetUserCopyWithImpl(_$_GetUser _value, $Res Function(_$_GetUser) _then)
+class __$$_setParamsCopyWithImpl<$Res>
+    extends _$ReservationEventCopyWithImpl<$Res, _$_setParams>
+    implements _$$_setParamsCopyWith<$Res> {
+  __$$_setParamsCopyWithImpl(
+      _$_setParams _value, $Res Function(_$_setParams) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? activityDuration = freezed,
+    Object? id = freezed,
+    Object? url = freezed,
+    Object? title = freezed,
+    Object? address = freezed,
+    Object? typeHost = freezed,
+    Object? salePrice = freezed,
+    Object? perPerson = freezed,
+    Object? minNuits = freezed,
+    Object? extraPrice = freezed,
+    Object? price = freezed,
+  }) {
+    return _then(_$_setParams(
+      freezed == activityDuration
+          ? _value.activityDuration
+          : activityDuration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == typeHost
+          ? _value.typeHost
+          : typeHost // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == salePrice
+          ? _value.salePrice
+          : salePrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == perPerson
+          ? _value.perPerson
+          : perPerson // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == minNuits
+          ? _value.minNuits
+          : minNuits // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == extraPrice
+          ? _value._extraPrice
+          : extraPrice // ignore: cast_nullable_to_non_nullable
+              as List<ExtraPrice>?,
+      freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_GetUser implements _GetUser {
-  const _$_GetUser();
+class _$_setParams implements _setParams {
+  const _$_setParams(
+      this.activityDuration,
+      this.id,
+      this.url,
+      this.title,
+      this.address,
+      this.typeHost,
+      this.salePrice,
+      this.perPerson,
+      this.minNuits,
+      final List<ExtraPrice>? extraPrice,
+      this.price)
+      : _extraPrice = extraPrice;
+
+  @override
+  final String? activityDuration;
+  @override
+  final String? id;
+  @override
+  final String? url;
+  @override
+  final String? title;
+  @override
+  final String? address;
+  @override
+  final String? typeHost;
+  @override
+  final String? salePrice;
+  @override
+  final String? perPerson;
+  @override
+  final int? minNuits;
+  final List<ExtraPrice>? _extraPrice;
+  @override
+  List<ExtraPrice>? get extraPrice {
+    final value = _extraPrice;
+    if (value == null) return null;
+    if (_extraPrice is EqualUnmodifiableListView) return _extraPrice;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? price;
 
   @override
   String toString() {
-    return 'ReservationEvent.getUser()';
+    return 'ReservationEvent.setParams(activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, extraPrice: $extraPrice, price: $price)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetUser);
+        (other.runtimeType == runtimeType &&
+            other is _$_setParams &&
+            (identical(other.activityDuration, activityDuration) ||
+                other.activityDuration == activityDuration) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.typeHost, typeHost) ||
+                other.typeHost == typeHost) &&
+            (identical(other.salePrice, salePrice) ||
+                other.salePrice == salePrice) &&
+            (identical(other.perPerson, perPerson) ||
+                other.perPerson == perPerson) &&
+            (identical(other.minNuits, minNuits) ||
+                other.minNuits == minNuits) &&
+            const DeepCollectionEquality()
+                .equals(other._extraPrice, _extraPrice) &&
+            (identical(other.price, price) || other.price == price));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      activityDuration,
+      id,
+      url,
+      title,
+      address,
+      typeHost,
+      salePrice,
+      perPerson,
+      minNuits,
+      const DeepCollectionEquality().hash(_extraPrice),
+      price);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_setParamsCopyWith<_$_setParams> get copyWith =>
+      __$$_setParamsCopyWithImpl<_$_setParams>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
     required TResult Function(int id, String checkIn, String checkOut,
             String adults, String children)
         checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
   }) {
-    return getUser();
+    return setParams(activityDuration, id, url, title, address, typeHost,
+        salePrice, perPerson, minNuits, extraPrice, price);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult? Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
   }) {
-    return getUser?.call();
+    return setParams?.call(activityDuration, id, url, title, address, typeHost,
+        salePrice, perPerson, minNuits, extraPrice, price);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) {
-    if (getUser != null) {
-      return getUser();
+    if (setParams != null) {
+      return setParams(activityDuration, id, url, title, address, typeHost,
+          salePrice, perPerson, minNuits, extraPrice, price);
     }
     return orElse();
   }
@@ -217,58 +445,81 @@ class _$_GetUser implements _GetUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_setParams value) setParams,
     required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
   }) {
-    return getUser(this);
+    return setParams(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_setParams value)? setParams,
     TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
   }) {
-    return getUser?.call(this);
+    return setParams?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
+    TResult Function(_setParams value)? setParams,
     TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
     required TResult orElse(),
   }) {
-    if (getUser != null) {
-      return getUser(this);
+    if (setParams != null) {
+      return setParams(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetUser implements ReservationEvent {
-  const factory _GetUser() = _$_GetUser;
+abstract class _setParams implements ReservationEvent {
+  const factory _setParams(
+      final String? activityDuration,
+      final String? id,
+      final String? url,
+      final String? title,
+      final String? address,
+      final String? typeHost,
+      final String? salePrice,
+      final String? perPerson,
+      final int? minNuits,
+      final List<ExtraPrice>? extraPrice,
+      final String? price) = _$_setParams;
+
+  String? get activityDuration;
+  String? get id;
+  String? get url;
+  String? get title;
+  String? get address;
+  String? get typeHost;
+  String? get salePrice;
+  String? get perPerson;
+  int? get minNuits;
+  List<ExtraPrice>? get extraPrice;
+  String? get price;
+  @JsonKey(ignore: true)
+  _$$_setParamsCopyWith<_$_setParams> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -377,17 +628,29 @@ class _$_CheckAvailability implements _CheckAvailability {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
     required TResult Function(int id, String checkIn, String checkOut,
             String adults, String children)
         checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
   }) {
     return checkAvailability(id, checkIn, checkOut, adults, children);
   }
@@ -395,17 +658,29 @@ class _$_CheckAvailability implements _CheckAvailability {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult? Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
   }) {
     return checkAvailability?.call(id, checkIn, checkOut, adults, children);
   }
@@ -413,17 +688,29 @@ class _$_CheckAvailability implements _CheckAvailability {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) {
     if (checkAvailability != null) {
@@ -435,15 +722,14 @@ class _$_CheckAvailability implements _CheckAvailability {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_setParams value) setParams,
     required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
   }) {
     return checkAvailability(this);
   }
@@ -451,15 +737,14 @@ class _$_CheckAvailability implements _CheckAvailability {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_setParams value)? setParams,
     TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
   }) {
     return checkAvailability?.call(this);
   }
@@ -467,15 +752,14 @@ class _$_CheckAvailability implements _CheckAvailability {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
+    TResult Function(_setParams value)? setParams,
     TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
     required TResult orElse(),
   }) {
     if (checkAvailability != null) {
@@ -501,759 +785,6 @@ abstract class _CheckAvailability implements ReservationEvent {
   @JsonKey(ignore: true)
   _$$_CheckAvailabilityCopyWith<_$_CheckAvailability> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ConfirmReservationCopyWith<$Res> {
-  factory _$$_ConfirmReservationCopyWith(_$_ConfirmReservation value,
-          $Res Function(_$_ConfirmReservation) then) =
-      __$$_ConfirmReservationCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_ConfirmReservationCopyWithImpl<$Res>
-    extends _$ReservationEventCopyWithImpl<$Res, _$_ConfirmReservation>
-    implements _$$_ConfirmReservationCopyWith<$Res> {
-  __$$_ConfirmReservationCopyWithImpl(
-      _$_ConfirmReservation _value, $Res Function(_$_ConfirmReservation) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_ConfirmReservation implements _ConfirmReservation {
-  const _$_ConfirmReservation();
-
-  @override
-  String toString() {
-    return 'ReservationEvent.confirmReservation()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ConfirmReservation);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
-        checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
-    required TResult Function(String startDate, String endDate, String nbNights)
-        onSelectDates,
-  }) {
-    return confirmReservation();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
-    TResult? Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-  }) {
-    return confirmReservation?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
-    TResult Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (confirmReservation != null) {
-      return confirmReservation();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
-    required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
-    required TResult Function(_OnSelectDates value) onSelectDates,
-  }) {
-    return confirmReservation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
-    TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult? Function(_OnSelectDates value)? onSelectDates,
-  }) {
-    return confirmReservation?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
-    TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult Function(_OnSelectDates value)? onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (confirmReservation != null) {
-      return confirmReservation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ConfirmReservation implements ReservationEvent {
-  const factory _ConfirmReservation() = _$_ConfirmReservation;
-}
-
-/// @nodoc
-abstract class _$$_ValidInformationsCopyWith<$Res> {
-  factory _$$_ValidInformationsCopyWith(_$_ValidInformations value,
-          $Res Function(_$_ValidInformations) then) =
-      __$$_ValidInformationsCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_ValidInformationsCopyWithImpl<$Res>
-    extends _$ReservationEventCopyWithImpl<$Res, _$_ValidInformations>
-    implements _$$_ValidInformationsCopyWith<$Res> {
-  __$$_ValidInformationsCopyWithImpl(
-      _$_ValidInformations _value, $Res Function(_$_ValidInformations) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_ValidInformations implements _ValidInformations {
-  const _$_ValidInformations();
-
-  @override
-  String toString() {
-    return 'ReservationEvent.validInformations()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ValidInformations);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
-        checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
-    required TResult Function(String startDate, String endDate, String nbNights)
-        onSelectDates,
-  }) {
-    return validInformations();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
-    TResult? Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-  }) {
-    return validInformations?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
-    TResult Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (validInformations != null) {
-      return validInformations();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
-    required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
-    required TResult Function(_OnSelectDates value) onSelectDates,
-  }) {
-    return validInformations(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
-    TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult? Function(_OnSelectDates value)? onSelectDates,
-  }) {
-    return validInformations?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
-    TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult Function(_OnSelectDates value)? onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (validInformations != null) {
-      return validInformations(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ValidInformations implements ReservationEvent {
-  const factory _ValidInformations() = _$_ValidInformations;
-}
-
-/// @nodoc
-abstract class _$$_OnTermsAndConditionsCheckedCopyWith<$Res> {
-  factory _$$_OnTermsAndConditionsCheckedCopyWith(
-          _$_OnTermsAndConditionsChecked value,
-          $Res Function(_$_OnTermsAndConditionsChecked) then) =
-      __$$_OnTermsAndConditionsCheckedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_OnTermsAndConditionsCheckedCopyWithImpl<$Res>
-    extends _$ReservationEventCopyWithImpl<$Res, _$_OnTermsAndConditionsChecked>
-    implements _$$_OnTermsAndConditionsCheckedCopyWith<$Res> {
-  __$$_OnTermsAndConditionsCheckedCopyWithImpl(
-      _$_OnTermsAndConditionsChecked _value,
-      $Res Function(_$_OnTermsAndConditionsChecked) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_OnTermsAndConditionsChecked implements _OnTermsAndConditionsChecked {
-  const _$_OnTermsAndConditionsChecked();
-
-  @override
-  String toString() {
-    return 'ReservationEvent.onTermsAndConditionsChecked()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_OnTermsAndConditionsChecked);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
-        checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
-    required TResult Function(String startDate, String endDate, String nbNights)
-        onSelectDates,
-  }) {
-    return onTermsAndConditionsChecked();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
-    TResult? Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-  }) {
-    return onTermsAndConditionsChecked?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
-    TResult Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (onTermsAndConditionsChecked != null) {
-      return onTermsAndConditionsChecked();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
-    required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
-    required TResult Function(_OnSelectDates value) onSelectDates,
-  }) {
-    return onTermsAndConditionsChecked(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
-    TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult? Function(_OnSelectDates value)? onSelectDates,
-  }) {
-    return onTermsAndConditionsChecked?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
-    TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult Function(_OnSelectDates value)? onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (onTermsAndConditionsChecked != null) {
-      return onTermsAndConditionsChecked(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OnTermsAndConditionsChecked implements ReservationEvent {
-  const factory _OnTermsAndConditionsChecked() = _$_OnTermsAndConditionsChecked;
-}
-
-/// @nodoc
-abstract class _$$_OnOfflineCheckedCopyWith<$Res> {
-  factory _$$_OnOfflineCheckedCopyWith(
-          _$_OnOfflineChecked value, $Res Function(_$_OnOfflineChecked) then) =
-      __$$_OnOfflineCheckedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_OnOfflineCheckedCopyWithImpl<$Res>
-    extends _$ReservationEventCopyWithImpl<$Res, _$_OnOfflineChecked>
-    implements _$$_OnOfflineCheckedCopyWith<$Res> {
-  __$$_OnOfflineCheckedCopyWithImpl(
-      _$_OnOfflineChecked _value, $Res Function(_$_OnOfflineChecked) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_OnOfflineChecked implements _OnOfflineChecked {
-  const _$_OnOfflineChecked();
-
-  @override
-  String toString() {
-    return 'ReservationEvent.onOfflinechecked()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnOfflineChecked);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
-        checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
-    required TResult Function(String startDate, String endDate, String nbNights)
-        onSelectDates,
-  }) {
-    return onOfflinechecked();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
-    TResult? Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-  }) {
-    return onOfflinechecked?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
-    TResult Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (onOfflinechecked != null) {
-      return onOfflinechecked();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
-    required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
-    required TResult Function(_OnSelectDates value) onSelectDates,
-  }) {
-    return onOfflinechecked(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
-    TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult? Function(_OnSelectDates value)? onSelectDates,
-  }) {
-    return onOfflinechecked?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
-    TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult Function(_OnSelectDates value)? onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (onOfflinechecked != null) {
-      return onOfflinechecked(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OnOfflineChecked implements ReservationEvent {
-  const factory _OnOfflineChecked() = _$_OnOfflineChecked;
-}
-
-/// @nodoc
-abstract class _$$_OnOnlineCheckedCopyWith<$Res> {
-  factory _$$_OnOnlineCheckedCopyWith(
-          _$_OnOnlineChecked value, $Res Function(_$_OnOnlineChecked) then) =
-      __$$_OnOnlineCheckedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_OnOnlineCheckedCopyWithImpl<$Res>
-    extends _$ReservationEventCopyWithImpl<$Res, _$_OnOnlineChecked>
-    implements _$$_OnOnlineCheckedCopyWith<$Res> {
-  __$$_OnOnlineCheckedCopyWithImpl(
-      _$_OnOnlineChecked _value, $Res Function(_$_OnOnlineChecked) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_OnOnlineChecked implements _OnOnlineChecked {
-  const _$_OnOnlineChecked();
-
-  @override
-  String toString() {
-    return 'ReservationEvent.onOnlinechecked()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnOnlineChecked);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
-        checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
-    required TResult Function(String startDate, String endDate, String nbNights)
-        onSelectDates,
-  }) {
-    return onOnlinechecked();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
-    TResult? Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-  }) {
-    return onOnlinechecked?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
-        checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
-    TResult Function(String startDate, String endDate, String nbNights)?
-        onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (onOnlinechecked != null) {
-      return onOnlinechecked();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
-    required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
-    required TResult Function(_OnSelectDates value) onSelectDates,
-  }) {
-    return onOnlinechecked(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
-    TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult? Function(_OnSelectDates value)? onSelectDates,
-  }) {
-    return onOnlinechecked?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
-    TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
-    TResult Function(_OnSelectDates value)? onSelectDates,
-    required TResult orElse(),
-  }) {
-    if (onOnlinechecked != null) {
-      return onOnlinechecked(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OnOnlineChecked implements ReservationEvent {
-  const factory _OnOnlineChecked() = _$_OnOnlineChecked;
 }
 
 /// @nodoc
@@ -1338,17 +869,29 @@ class _$_OnSelectDates implements _OnSelectDates {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getUser,
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
     required TResult Function(int id, String checkIn, String checkOut,
             String adults, String children)
         checkAvailability,
-    required TResult Function() confirmReservation,
-    required TResult Function() validInformations,
-    required TResult Function() onTermsAndConditionsChecked,
-    required TResult Function() onOfflinechecked,
-    required TResult Function() onOnlinechecked,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
   }) {
     return onSelectDates(startDate, endDate, nbNights);
   }
@@ -1356,17 +899,29 @@ class _$_OnSelectDates implements _OnSelectDates {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getUser,
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult? Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult? Function()? confirmReservation,
-    TResult? Function()? validInformations,
-    TResult? Function()? onTermsAndConditionsChecked,
-    TResult? Function()? onOfflinechecked,
-    TResult? Function()? onOnlinechecked,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
   }) {
     return onSelectDates?.call(startDate, endDate, nbNights);
   }
@@ -1374,17 +929,29 @@ class _$_OnSelectDates implements _OnSelectDates {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getUser,
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
     TResult Function(int id, String checkIn, String checkOut, String adults,
             String children)?
         checkAvailability,
-    TResult Function()? confirmReservation,
-    TResult Function()? validInformations,
-    TResult Function()? onTermsAndConditionsChecked,
-    TResult Function()? onOfflinechecked,
-    TResult Function()? onOnlinechecked,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) {
     if (onSelectDates != null) {
@@ -1396,15 +963,14 @@ class _$_OnSelectDates implements _OnSelectDates {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_setParams value) setParams,
     required TResult Function(_CheckAvailability value) checkAvailability,
-    required TResult Function(_ConfirmReservation value) confirmReservation,
-    required TResult Function(_ValidInformations value) validInformations,
-    required TResult Function(_OnTermsAndConditionsChecked value)
-        onTermsAndConditionsChecked,
-    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
-    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
   }) {
     return onSelectDates(this);
   }
@@ -1412,15 +978,14 @@ class _$_OnSelectDates implements _OnSelectDates {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_setParams value)? setParams,
     TResult? Function(_CheckAvailability value)? checkAvailability,
-    TResult? Function(_ConfirmReservation value)? confirmReservation,
-    TResult? Function(_ValidInformations value)? validInformations,
-    TResult? Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
   }) {
     return onSelectDates?.call(this);
   }
@@ -1428,15 +993,14 @@ class _$_OnSelectDates implements _OnSelectDates {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetUser value)? getUser,
+    TResult Function(_setParams value)? setParams,
     TResult Function(_CheckAvailability value)? checkAvailability,
-    TResult Function(_ConfirmReservation value)? confirmReservation,
-    TResult Function(_ValidInformations value)? validInformations,
-    TResult Function(_OnTermsAndConditionsChecked value)?
-        onTermsAndConditionsChecked,
-    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
-    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
     required TResult orElse(),
   }) {
     if (onSelectDates != null) {
@@ -1460,8 +1024,1027 @@ abstract class _OnSelectDates implements ReservationEvent {
 }
 
 /// @nodoc
+abstract class _$$_OnSelectGuestsCopyWith<$Res> {
+  factory _$$_OnSelectGuestsCopyWith(
+          _$_OnSelectGuests value, $Res Function(_$_OnSelectGuests) then) =
+      __$$_OnSelectGuestsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int guests, String price});
+}
+
+/// @nodoc
+class __$$_OnSelectGuestsCopyWithImpl<$Res>
+    extends _$ReservationEventCopyWithImpl<$Res, _$_OnSelectGuests>
+    implements _$$_OnSelectGuestsCopyWith<$Res> {
+  __$$_OnSelectGuestsCopyWithImpl(
+      _$_OnSelectGuests _value, $Res Function(_$_OnSelectGuests) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? guests = null,
+    Object? price = null,
+  }) {
+    return _then(_$_OnSelectGuests(
+      null == guests
+          ? _value.guests
+          : guests // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnSelectGuests implements _OnSelectGuests {
+  const _$_OnSelectGuests(this.guests, this.price);
+
+  @override
+  final int guests;
+  @override
+  final String price;
+
+  @override
+  String toString() {
+    return 'ReservationEvent.onSelectGuests(guests: $guests, price: $price)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnSelectGuests &&
+            (identical(other.guests, guests) || other.guests == guests) &&
+            (identical(other.price, price) || other.price == price));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, guests, price);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnSelectGuestsCopyWith<_$_OnSelectGuests> get copyWith =>
+      __$$_OnSelectGuestsCopyWithImpl<_$_OnSelectGuests>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
+    required TResult Function(int id, String checkIn, String checkOut,
+            String adults, String children)
+        checkAvailability,
+    required TResult Function(String startDate, String endDate, String nbNights)
+        onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
+  }) {
+    return onSelectGuests(guests, price);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult? Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult? Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
+  }) {
+    return onSelectGuests?.call(guests, price);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
+    required TResult orElse(),
+  }) {
+    if (onSelectGuests != null) {
+      return onSelectGuests(guests, price);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_CheckAvailability value) checkAvailability,
+    required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
+  }) {
+    return onSelectGuests(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_CheckAvailability value)? checkAvailability,
+    TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
+  }) {
+    return onSelectGuests?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_CheckAvailability value)? checkAvailability,
+    TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
+    required TResult orElse(),
+  }) {
+    if (onSelectGuests != null) {
+      return onSelectGuests(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnSelectGuests implements ReservationEvent {
+  const factory _OnSelectGuests(final int guests, final String price) =
+      _$_OnSelectGuests;
+
+  int get guests;
+  String get price;
+  @JsonKey(ignore: true)
+  _$$_OnSelectGuestsCopyWith<_$_OnSelectGuests> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ConfirmReservationCopyWith<$Res> {
+  factory _$$_ConfirmReservationCopyWith(_$_ConfirmReservation value,
+          $Res Function(_$_ConfirmReservation) then) =
+      __$$_ConfirmReservationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ConfirmReservationCopyWithImpl<$Res>
+    extends _$ReservationEventCopyWithImpl<$Res, _$_ConfirmReservation>
+    implements _$$_ConfirmReservationCopyWith<$Res> {
+  __$$_ConfirmReservationCopyWithImpl(
+      _$_ConfirmReservation _value, $Res Function(_$_ConfirmReservation) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ConfirmReservation implements _ConfirmReservation {
+  const _$_ConfirmReservation();
+
+  @override
+  String toString() {
+    return 'ReservationEvent.addToCart()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ConfirmReservation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
+    required TResult Function(int id, String checkIn, String checkOut,
+            String adults, String children)
+        checkAvailability,
+    required TResult Function(String startDate, String endDate, String nbNights)
+        onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
+  }) {
+    return addToCart();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult? Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult? Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
+  }) {
+    return addToCart?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_CheckAvailability value) checkAvailability,
+    required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
+  }) {
+    return addToCart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_CheckAvailability value)? checkAvailability,
+    TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
+  }) {
+    return addToCart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_CheckAvailability value)? checkAvailability,
+    TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmReservation implements ReservationEvent {
+  const factory _ConfirmReservation() = _$_ConfirmReservation;
+}
+
+/// @nodoc
+abstract class _$$_OnSelectChaletCopyWith<$Res> {
+  factory _$$_OnSelectChaletCopyWith(
+          _$_OnSelectChalet value, $Res Function(_$_OnSelectChalet) then) =
+      __$$_OnSelectChaletCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Room chalet});
+}
+
+/// @nodoc
+class __$$_OnSelectChaletCopyWithImpl<$Res>
+    extends _$ReservationEventCopyWithImpl<$Res, _$_OnSelectChalet>
+    implements _$$_OnSelectChaletCopyWith<$Res> {
+  __$$_OnSelectChaletCopyWithImpl(
+      _$_OnSelectChalet _value, $Res Function(_$_OnSelectChalet) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chalet = null,
+  }) {
+    return _then(_$_OnSelectChalet(
+      null == chalet
+          ? _value.chalet
+          : chalet // ignore: cast_nullable_to_non_nullable
+              as Room,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnSelectChalet implements _OnSelectChalet {
+  const _$_OnSelectChalet(this.chalet);
+
+  @override
+  final Room chalet;
+
+  @override
+  String toString() {
+    return 'ReservationEvent.onSelectChalet(chalet: $chalet)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnSelectChalet &&
+            (identical(other.chalet, chalet) || other.chalet == chalet));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, chalet);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnSelectChaletCopyWith<_$_OnSelectChalet> get copyWith =>
+      __$$_OnSelectChaletCopyWithImpl<_$_OnSelectChalet>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
+    required TResult Function(int id, String checkIn, String checkOut,
+            String adults, String children)
+        checkAvailability,
+    required TResult Function(String startDate, String endDate, String nbNights)
+        onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
+  }) {
+    return onSelectChalet(chalet);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult? Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult? Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
+  }) {
+    return onSelectChalet?.call(chalet);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
+    required TResult orElse(),
+  }) {
+    if (onSelectChalet != null) {
+      return onSelectChalet(chalet);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_CheckAvailability value) checkAvailability,
+    required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
+  }) {
+    return onSelectChalet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_CheckAvailability value)? checkAvailability,
+    TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
+  }) {
+    return onSelectChalet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_CheckAvailability value)? checkAvailability,
+    TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
+    required TResult orElse(),
+  }) {
+    if (onSelectChalet != null) {
+      return onSelectChalet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnSelectChalet implements ReservationEvent {
+  const factory _OnSelectChalet(final Room chalet) = _$_OnSelectChalet;
+
+  Room get chalet;
+  @JsonKey(ignore: true)
+  _$$_OnSelectChaletCopyWith<_$_OnSelectChalet> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OnUnSelectChaletCopyWith<$Res> {
+  factory _$$_OnUnSelectChaletCopyWith(
+          _$_OnUnSelectChalet value, $Res Function(_$_OnUnSelectChalet) then) =
+      __$$_OnUnSelectChaletCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Room chalet});
+}
+
+/// @nodoc
+class __$$_OnUnSelectChaletCopyWithImpl<$Res>
+    extends _$ReservationEventCopyWithImpl<$Res, _$_OnUnSelectChalet>
+    implements _$$_OnUnSelectChaletCopyWith<$Res> {
+  __$$_OnUnSelectChaletCopyWithImpl(
+      _$_OnUnSelectChalet _value, $Res Function(_$_OnUnSelectChalet) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chalet = null,
+  }) {
+    return _then(_$_OnUnSelectChalet(
+      null == chalet
+          ? _value.chalet
+          : chalet // ignore: cast_nullable_to_non_nullable
+              as Room,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnUnSelectChalet implements _OnUnSelectChalet {
+  const _$_OnUnSelectChalet(this.chalet);
+
+  @override
+  final Room chalet;
+
+  @override
+  String toString() {
+    return 'ReservationEvent.onUnSelectChalet(chalet: $chalet)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnUnSelectChalet &&
+            (identical(other.chalet, chalet) || other.chalet == chalet));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, chalet);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnUnSelectChaletCopyWith<_$_OnUnSelectChalet> get copyWith =>
+      __$$_OnUnSelectChaletCopyWithImpl<_$_OnUnSelectChalet>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
+    required TResult Function(int id, String checkIn, String checkOut,
+            String adults, String children)
+        checkAvailability,
+    required TResult Function(String startDate, String endDate, String nbNights)
+        onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
+  }) {
+    return onUnSelectChalet(chalet);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult? Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult? Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
+  }) {
+    return onUnSelectChalet?.call(chalet);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
+    required TResult orElse(),
+  }) {
+    if (onUnSelectChalet != null) {
+      return onUnSelectChalet(chalet);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_CheckAvailability value) checkAvailability,
+    required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
+  }) {
+    return onUnSelectChalet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_CheckAvailability value)? checkAvailability,
+    TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
+  }) {
+    return onUnSelectChalet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_CheckAvailability value)? checkAvailability,
+    TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
+    required TResult orElse(),
+  }) {
+    if (onUnSelectChalet != null) {
+      return onUnSelectChalet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnUnSelectChalet implements ReservationEvent {
+  const factory _OnUnSelectChalet(final Room chalet) = _$_OnUnSelectChalet;
+
+  Room get chalet;
+  @JsonKey(ignore: true)
+  _$$_OnUnSelectChaletCopyWith<_$_OnUnSelectChalet> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InitStatusCopyWith<$Res> {
+  factory _$$_InitStatusCopyWith(
+          _$_InitStatus value, $Res Function(_$_InitStatus) then) =
+      __$$_InitStatusCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InitStatusCopyWithImpl<$Res>
+    extends _$ReservationEventCopyWithImpl<$Res, _$_InitStatus>
+    implements _$$_InitStatusCopyWith<$Res> {
+  __$$_InitStatusCopyWithImpl(
+      _$_InitStatus _value, $Res Function(_$_InitStatus) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_InitStatus implements _InitStatus {
+  const _$_InitStatus();
+
+  @override
+  String toString() {
+    return 'ReservationEvent.initStatus()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_InitStatus);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
+    required TResult Function(int id, String checkIn, String checkOut,
+            String adults, String children)
+        checkAvailability,
+    required TResult Function(String startDate, String endDate, String nbNights)
+        onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function() addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
+  }) {
+    return initStatus();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult? Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult? Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function()? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
+  }) {
+    return initStatus?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult Function(int id, String checkIn, String checkOut, String adults,
+            String children)?
+        checkAvailability,
+    TResult Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function()? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
+    required TResult orElse(),
+  }) {
+    if (initStatus != null) {
+      return initStatus();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_CheckAvailability value) checkAvailability,
+    required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
+  }) {
+    return initStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_CheckAvailability value)? checkAvailability,
+    TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
+  }) {
+    return initStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_CheckAvailability value)? checkAvailability,
+    TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
+    required TResult orElse(),
+  }) {
+    if (initStatus != null) {
+      return initStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitStatus implements ReservationEvent {
+  const factory _InitStatus() = _$_InitStatus;
+}
+
+/// @nodoc
 mixin _$ReservationState {
   StateStatus? get status => throw _privateConstructorUsedError;
+  StateStatus? get addToCartStatus => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get lastname => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -1471,6 +2054,22 @@ mixin _$ReservationState {
   bool? get available => throw _privateConstructorUsedError;
   String? get totalPrice => throw _privateConstructorUsedError;
   String? get nbNights => throw _privateConstructorUsedError;
+  int? get guests => throw _privateConstructorUsedError;
+  String? get activityDuration => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  String? get typeHost => throw _privateConstructorUsedError;
+  String? get salePrice => throw _privateConstructorUsedError;
+  String? get perPerson => throw _privateConstructorUsedError;
+  int? get minNuits => throw _privateConstructorUsedError;
+  String? get price => throw _privateConstructorUsedError;
+  String? get errorText => throw _privateConstructorUsedError;
+  List<int>? get selectedRooms => throw _privateConstructorUsedError;
+  List<Room>? get selectedRoomsObject => throw _privateConstructorUsedError;
+  List<Room>? get availableChalet => throw _privateConstructorUsedError;
+  List<ExtraPrice>? get extraPrice => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ReservationStateCopyWith<ReservationState> get copyWith =>
@@ -1485,6 +2084,7 @@ abstract class $ReservationStateCopyWith<$Res> {
   @useResult
   $Res call(
       {StateStatus? status,
+      StateStatus? addToCartStatus,
       String? name,
       String? lastname,
       String? email,
@@ -1493,7 +2093,23 @@ abstract class $ReservationStateCopyWith<$Res> {
       String? checkOut,
       bool? available,
       String? totalPrice,
-      String? nbNights});
+      String? nbNights,
+      int? guests,
+      String? activityDuration,
+      String? id,
+      String? url,
+      String? title,
+      String? address,
+      String? typeHost,
+      String? salePrice,
+      String? perPerson,
+      int? minNuits,
+      String? price,
+      String? errorText,
+      List<int>? selectedRooms,
+      List<Room>? selectedRoomsObject,
+      List<Room>? availableChalet,
+      List<ExtraPrice>? extraPrice});
 }
 
 /// @nodoc
@@ -1510,6 +2126,7 @@ class _$ReservationStateCopyWithImpl<$Res, $Val extends ReservationState>
   @override
   $Res call({
     Object? status = freezed,
+    Object? addToCartStatus = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
     Object? email = freezed,
@@ -1519,11 +2136,31 @@ class _$ReservationStateCopyWithImpl<$Res, $Val extends ReservationState>
     Object? available = freezed,
     Object? totalPrice = freezed,
     Object? nbNights = freezed,
+    Object? guests = freezed,
+    Object? activityDuration = freezed,
+    Object? id = freezed,
+    Object? url = freezed,
+    Object? title = freezed,
+    Object? address = freezed,
+    Object? typeHost = freezed,
+    Object? salePrice = freezed,
+    Object? perPerson = freezed,
+    Object? minNuits = freezed,
+    Object? price = freezed,
+    Object? errorText = freezed,
+    Object? selectedRooms = freezed,
+    Object? selectedRoomsObject = freezed,
+    Object? availableChalet = freezed,
+    Object? extraPrice = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      addToCartStatus: freezed == addToCartStatus
+          ? _value.addToCartStatus
+          : addToCartStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       name: freezed == name
           ? _value.name
@@ -1561,6 +2198,70 @@ class _$ReservationStateCopyWithImpl<$Res, $Val extends ReservationState>
           ? _value.nbNights
           : nbNights // ignore: cast_nullable_to_non_nullable
               as String?,
+      guests: freezed == guests
+          ? _value.guests
+          : guests // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDuration: freezed == activityDuration
+          ? _value.activityDuration
+          : activityDuration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeHost: freezed == typeHost
+          ? _value.typeHost
+          : typeHost // ignore: cast_nullable_to_non_nullable
+              as String?,
+      salePrice: freezed == salePrice
+          ? _value.salePrice
+          : salePrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      perPerson: freezed == perPerson
+          ? _value.perPerson
+          : perPerson // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minNuits: freezed == minNuits
+          ? _value.minNuits
+          : minNuits // ignore: cast_nullable_to_non_nullable
+              as int?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedRooms: freezed == selectedRooms
+          ? _value.selectedRooms
+          : selectedRooms // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      selectedRoomsObject: freezed == selectedRoomsObject
+          ? _value.selectedRoomsObject
+          : selectedRoomsObject // ignore: cast_nullable_to_non_nullable
+              as List<Room>?,
+      availableChalet: freezed == availableChalet
+          ? _value.availableChalet
+          : availableChalet // ignore: cast_nullable_to_non_nullable
+              as List<Room>?,
+      extraPrice: freezed == extraPrice
+          ? _value.extraPrice
+          : extraPrice // ignore: cast_nullable_to_non_nullable
+              as List<ExtraPrice>?,
     ) as $Val);
   }
 }
@@ -1575,6 +2276,7 @@ abstract class _$$_ReservationStateCopyWith<$Res>
   @useResult
   $Res call(
       {StateStatus? status,
+      StateStatus? addToCartStatus,
       String? name,
       String? lastname,
       String? email,
@@ -1583,7 +2285,23 @@ abstract class _$$_ReservationStateCopyWith<$Res>
       String? checkOut,
       bool? available,
       String? totalPrice,
-      String? nbNights});
+      String? nbNights,
+      int? guests,
+      String? activityDuration,
+      String? id,
+      String? url,
+      String? title,
+      String? address,
+      String? typeHost,
+      String? salePrice,
+      String? perPerson,
+      int? minNuits,
+      String? price,
+      String? errorText,
+      List<int>? selectedRooms,
+      List<Room>? selectedRoomsObject,
+      List<Room>? availableChalet,
+      List<ExtraPrice>? extraPrice});
 }
 
 /// @nodoc
@@ -1598,6 +2316,7 @@ class __$$_ReservationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? addToCartStatus = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
     Object? email = freezed,
@@ -1607,11 +2326,31 @@ class __$$_ReservationStateCopyWithImpl<$Res>
     Object? available = freezed,
     Object? totalPrice = freezed,
     Object? nbNights = freezed,
+    Object? guests = freezed,
+    Object? activityDuration = freezed,
+    Object? id = freezed,
+    Object? url = freezed,
+    Object? title = freezed,
+    Object? address = freezed,
+    Object? typeHost = freezed,
+    Object? salePrice = freezed,
+    Object? perPerson = freezed,
+    Object? minNuits = freezed,
+    Object? price = freezed,
+    Object? errorText = freezed,
+    Object? selectedRooms = freezed,
+    Object? selectedRoomsObject = freezed,
+    Object? availableChalet = freezed,
+    Object? extraPrice = freezed,
   }) {
     return _then(_$_ReservationState(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      addToCartStatus: freezed == addToCartStatus
+          ? _value.addToCartStatus
+          : addToCartStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       name: freezed == name
           ? _value.name
@@ -1649,6 +2388,70 @@ class __$$_ReservationStateCopyWithImpl<$Res>
           ? _value.nbNights
           : nbNights // ignore: cast_nullable_to_non_nullable
               as String?,
+      guests: freezed == guests
+          ? _value.guests
+          : guests // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDuration: freezed == activityDuration
+          ? _value.activityDuration
+          : activityDuration // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeHost: freezed == typeHost
+          ? _value.typeHost
+          : typeHost // ignore: cast_nullable_to_non_nullable
+              as String?,
+      salePrice: freezed == salePrice
+          ? _value.salePrice
+          : salePrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      perPerson: freezed == perPerson
+          ? _value.perPerson
+          : perPerson // ignore: cast_nullable_to_non_nullable
+              as String?,
+      minNuits: freezed == minNuits
+          ? _value.minNuits
+          : minNuits // ignore: cast_nullable_to_non_nullable
+              as int?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedRooms: freezed == selectedRooms
+          ? _value._selectedRooms
+          : selectedRooms // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      selectedRoomsObject: freezed == selectedRoomsObject
+          ? _value._selectedRoomsObject
+          : selectedRoomsObject // ignore: cast_nullable_to_non_nullable
+              as List<Room>?,
+      availableChalet: freezed == availableChalet
+          ? _value._availableChalet
+          : availableChalet // ignore: cast_nullable_to_non_nullable
+              as List<Room>?,
+      extraPrice: freezed == extraPrice
+          ? _value._extraPrice
+          : extraPrice // ignore: cast_nullable_to_non_nullable
+              as List<ExtraPrice>?,
     ));
   }
 }
@@ -1658,6 +2461,7 @@ class __$$_ReservationStateCopyWithImpl<$Res>
 class _$_ReservationState implements _ReservationState {
   const _$_ReservationState(
       {this.status,
+      this.addToCartStatus,
       this.name,
       this.lastname,
       this.email,
@@ -1666,10 +2470,32 @@ class _$_ReservationState implements _ReservationState {
       this.checkOut,
       this.available,
       this.totalPrice,
-      this.nbNights});
+      this.nbNights,
+      this.guests,
+      this.activityDuration,
+      this.id,
+      this.url,
+      this.title,
+      this.address,
+      this.typeHost,
+      this.salePrice,
+      this.perPerson,
+      this.minNuits,
+      this.price,
+      this.errorText,
+      final List<int>? selectedRooms,
+      final List<Room>? selectedRoomsObject,
+      final List<Room>? availableChalet,
+      final List<ExtraPrice>? extraPrice})
+      : _selectedRooms = selectedRooms,
+        _selectedRoomsObject = selectedRoomsObject,
+        _availableChalet = availableChalet,
+        _extraPrice = extraPrice;
 
   @override
   final StateStatus? status;
+  @override
+  final StateStatus? addToCartStatus;
   @override
   final String? name;
   @override
@@ -1688,10 +2514,74 @@ class _$_ReservationState implements _ReservationState {
   final String? totalPrice;
   @override
   final String? nbNights;
+  @override
+  final int? guests;
+  @override
+  final String? activityDuration;
+  @override
+  final String? id;
+  @override
+  final String? url;
+  @override
+  final String? title;
+  @override
+  final String? address;
+  @override
+  final String? typeHost;
+  @override
+  final String? salePrice;
+  @override
+  final String? perPerson;
+  @override
+  final int? minNuits;
+  @override
+  final String? price;
+  @override
+  final String? errorText;
+  final List<int>? _selectedRooms;
+  @override
+  List<int>? get selectedRooms {
+    final value = _selectedRooms;
+    if (value == null) return null;
+    if (_selectedRooms is EqualUnmodifiableListView) return _selectedRooms;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Room>? _selectedRoomsObject;
+  @override
+  List<Room>? get selectedRoomsObject {
+    final value = _selectedRoomsObject;
+    if (value == null) return null;
+    if (_selectedRoomsObject is EqualUnmodifiableListView)
+      return _selectedRoomsObject;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Room>? _availableChalet;
+  @override
+  List<Room>? get availableChalet {
+    final value = _availableChalet;
+    if (value == null) return null;
+    if (_availableChalet is EqualUnmodifiableListView) return _availableChalet;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ExtraPrice>? _extraPrice;
+  @override
+  List<ExtraPrice>? get extraPrice {
+    final value = _extraPrice;
+    if (value == null) return null;
+    if (_extraPrice is EqualUnmodifiableListView) return _extraPrice;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ReservationState(status: $status, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, nbNights: $nbNights)';
+    return 'ReservationState(status: $status, addToCartStatus: $addToCartStatus, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, nbNights: $nbNights, guests: $guests, activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, errorText: $errorText, selectedRooms: $selectedRooms, selectedRoomsObject: $selectedRoomsObject, availableChalet: $availableChalet, extraPrice: $extraPrice)';
   }
 
   @override
@@ -1700,6 +2590,8 @@ class _$_ReservationState implements _ReservationState {
         (other.runtimeType == runtimeType &&
             other is _$_ReservationState &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.addToCartStatus, addToCartStatus) ||
+                other.addToCartStatus == addToCartStatus) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.lastname, lastname) ||
                 other.lastname == lastname) &&
@@ -1713,12 +2605,66 @@ class _$_ReservationState implements _ReservationState {
             (identical(other.totalPrice, totalPrice) ||
                 other.totalPrice == totalPrice) &&
             (identical(other.nbNights, nbNights) ||
-                other.nbNights == nbNights));
+                other.nbNights == nbNights) &&
+            (identical(other.guests, guests) || other.guests == guests) &&
+            (identical(other.activityDuration, activityDuration) ||
+                other.activityDuration == activityDuration) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.typeHost, typeHost) ||
+                other.typeHost == typeHost) &&
+            (identical(other.salePrice, salePrice) ||
+                other.salePrice == salePrice) &&
+            (identical(other.perPerson, perPerson) ||
+                other.perPerson == perPerson) &&
+            (identical(other.minNuits, minNuits) ||
+                other.minNuits == minNuits) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.errorText, errorText) ||
+                other.errorText == errorText) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedRooms, _selectedRooms) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedRoomsObject, _selectedRoomsObject) &&
+            const DeepCollectionEquality()
+                .equals(other._availableChalet, _availableChalet) &&
+            const DeepCollectionEquality()
+                .equals(other._extraPrice, _extraPrice));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, name, lastname, email,
-      phone, checkIn, checkOut, available, totalPrice, nbNights);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        status,
+        addToCartStatus,
+        name,
+        lastname,
+        email,
+        phone,
+        checkIn,
+        checkOut,
+        available,
+        totalPrice,
+        nbNights,
+        guests,
+        activityDuration,
+        id,
+        url,
+        title,
+        address,
+        typeHost,
+        salePrice,
+        perPerson,
+        minNuits,
+        price,
+        errorText,
+        const DeepCollectionEquality().hash(_selectedRooms),
+        const DeepCollectionEquality().hash(_selectedRoomsObject),
+        const DeepCollectionEquality().hash(_availableChalet),
+        const DeepCollectionEquality().hash(_extraPrice)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -1730,6 +2676,7 @@ class _$_ReservationState implements _ReservationState {
 abstract class _ReservationState implements ReservationState {
   const factory _ReservationState(
       {final StateStatus? status,
+      final StateStatus? addToCartStatus,
       final String? name,
       final String? lastname,
       final String? email,
@@ -1738,10 +2685,28 @@ abstract class _ReservationState implements ReservationState {
       final String? checkOut,
       final bool? available,
       final String? totalPrice,
-      final String? nbNights}) = _$_ReservationState;
+      final String? nbNights,
+      final int? guests,
+      final String? activityDuration,
+      final String? id,
+      final String? url,
+      final String? title,
+      final String? address,
+      final String? typeHost,
+      final String? salePrice,
+      final String? perPerson,
+      final int? minNuits,
+      final String? price,
+      final String? errorText,
+      final List<int>? selectedRooms,
+      final List<Room>? selectedRoomsObject,
+      final List<Room>? availableChalet,
+      final List<ExtraPrice>? extraPrice}) = _$_ReservationState;
 
   @override
   StateStatus? get status;
+  @override
+  StateStatus? get addToCartStatus;
   @override
   String? get name;
   @override
@@ -1760,6 +2725,38 @@ abstract class _ReservationState implements ReservationState {
   String? get totalPrice;
   @override
   String? get nbNights;
+  @override
+  int? get guests;
+  @override
+  String? get activityDuration;
+  @override
+  String? get id;
+  @override
+  String? get url;
+  @override
+  String? get title;
+  @override
+  String? get address;
+  @override
+  String? get typeHost;
+  @override
+  String? get salePrice;
+  @override
+  String? get perPerson;
+  @override
+  int? get minNuits;
+  @override
+  String? get price;
+  @override
+  String? get errorText;
+  @override
+  List<int>? get selectedRooms;
+  @override
+  List<Room>? get selectedRoomsObject;
+  @override
+  List<Room>? get availableChalet;
+  @override
+  List<ExtraPrice>? get extraPrice;
   @override
   @JsonKey(ignore: true)
   _$$_ReservationStateCopyWith<_$_ReservationState> get copyWith =>

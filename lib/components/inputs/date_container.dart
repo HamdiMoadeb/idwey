@@ -61,8 +61,9 @@ class CustomDateContainer extends StatelessWidget {
                   text,
                   style: TextStyle(
                     color: Colors.black,
+                    overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                   ),
                 ),
               ],

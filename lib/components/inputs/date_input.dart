@@ -157,8 +157,8 @@ class _CustomDateInputState extends State<CustomDateInput> {
             print('nbuits $nbNuits');
             context.read<ReservationBloc>().add(
                   ReservationEvent.onSelectDates(
-                    DateFormat('dd-MM-yyyy').format(dateTime),
-                    DateFormat('dd-MM-yyyy').format(dateTime2),
+                    DateFormat('yyyy-MM-dd').format(dateTime),
+                    DateFormat('yyyy-MM-dd').format(dateTime2),
                     nbNuits,
                   ),
                 );

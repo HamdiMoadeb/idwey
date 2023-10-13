@@ -123,6 +123,9 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomHeader(
+                                onchange: (i) {
+                                  print(i);
+                                },
                                 title:
                                     state.productDetailsDto?.row?.title ?? "",
                                 subtitle: "Jeux de societe",
