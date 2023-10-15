@@ -84,6 +84,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                     appState.isLoggedIn == true
                         ? GetIt.I<AppRouter>().push(
                             VerifyDisponibilityRoute(
+                              subtitle: "13 ans ou plus",
                               url: state.hostDetails?.bannerImageUrl ?? "",
                               typeReservation: TypeReservation.host,
                               typeHost: widget.typeHost,

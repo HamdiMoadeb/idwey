@@ -28,16 +28,18 @@ mixin _$ReservationEvent {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
@@ -55,16 +57,18 @@ mixin _$ReservationEvent {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
@@ -82,16 +86,18 @@ mixin _$ReservationEvent {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
@@ -171,6 +177,8 @@ abstract class _$$_setParamsCopyWith<$Res> {
       String? salePrice,
       String? perPerson,
       int? minNuits,
+      String? checkIn,
+      String? checkOut,
       List<ExtraPrice>? extraPrice,
       String? price});
 }
@@ -195,6 +203,8 @@ class __$$_setParamsCopyWithImpl<$Res>
     Object? salePrice = freezed,
     Object? perPerson = freezed,
     Object? minNuits = freezed,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
     Object? extraPrice = freezed,
     Object? price = freezed,
   }) {
@@ -235,6 +245,14 @@ class __$$_setParamsCopyWithImpl<$Res>
           ? _value.minNuits
           : minNuits // ignore: cast_nullable_to_non_nullable
               as int?,
+      freezed == checkIn
+          ? _value.checkIn
+          : checkIn // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == checkOut
+          ? _value.checkOut
+          : checkOut // ignore: cast_nullable_to_non_nullable
+              as String?,
       freezed == extraPrice
           ? _value._extraPrice
           : extraPrice // ignore: cast_nullable_to_non_nullable
@@ -260,6 +278,8 @@ class _$_setParams implements _setParams {
       this.salePrice,
       this.perPerson,
       this.minNuits,
+      this.checkIn,
+      this.checkOut,
       final List<ExtraPrice>? extraPrice,
       this.price)
       : _extraPrice = extraPrice;
@@ -282,6 +302,10 @@ class _$_setParams implements _setParams {
   final String? perPerson;
   @override
   final int? minNuits;
+  @override
+  final String? checkIn;
+  @override
+  final String? checkOut;
   final List<ExtraPrice>? _extraPrice;
   @override
   List<ExtraPrice>? get extraPrice {
@@ -297,7 +321,7 @@ class _$_setParams implements _setParams {
 
   @override
   String toString() {
-    return 'ReservationEvent.setParams(activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, extraPrice: $extraPrice, price: $price)';
+    return 'ReservationEvent.setParams(activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, checkIn: $checkIn, checkOut: $checkOut, extraPrice: $extraPrice, price: $price)';
   }
 
   @override
@@ -319,6 +343,9 @@ class _$_setParams implements _setParams {
                 other.perPerson == perPerson) &&
             (identical(other.minNuits, minNuits) ||
                 other.minNuits == minNuits) &&
+            (identical(other.checkIn, checkIn) || other.checkIn == checkIn) &&
+            (identical(other.checkOut, checkOut) ||
+                other.checkOut == checkOut) &&
             const DeepCollectionEquality()
                 .equals(other._extraPrice, _extraPrice) &&
             (identical(other.price, price) || other.price == price));
@@ -336,6 +363,8 @@ class _$_setParams implements _setParams {
       salePrice,
       perPerson,
       minNuits,
+      checkIn,
+      checkOut,
       const DeepCollectionEquality().hash(_extraPrice),
       price);
 
@@ -358,22 +387,24 @@ class _$_setParams implements _setParams {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
   }) {
     return setParams(activityDuration, id, url, title, address, typeHost,
-        salePrice, perPerson, minNuits, extraPrice, price);
+        salePrice, perPerson, minNuits, checkIn, checkOut, extraPrice, price);
   }
 
   @override
@@ -389,22 +420,24 @@ class _$_setParams implements _setParams {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
   }) {
     return setParams?.call(activityDuration, id, url, title, address, typeHost,
-        salePrice, perPerson, minNuits, extraPrice, price);
+        salePrice, perPerson, minNuits, checkIn, checkOut, extraPrice, price);
   }
 
   @override
@@ -420,16 +453,18 @@ class _$_setParams implements _setParams {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
@@ -437,7 +472,7 @@ class _$_setParams implements _setParams {
   }) {
     if (setParams != null) {
       return setParams(activityDuration, id, url, title, address, typeHost,
-          salePrice, perPerson, minNuits, extraPrice, price);
+          salePrice, perPerson, minNuits, checkIn, checkOut, extraPrice, price);
     }
     return orElse();
   }
@@ -503,6 +538,8 @@ abstract class _setParams implements ReservationEvent {
       final String? salePrice,
       final String? perPerson,
       final int? minNuits,
+      final String? checkIn,
+      final String? checkOut,
       final List<ExtraPrice>? extraPrice,
       final String? price) = _$_setParams;
 
@@ -515,6 +552,8 @@ abstract class _setParams implements ReservationEvent {
   String? get salePrice;
   String? get perPerson;
   int? get minNuits;
+  String? get checkIn;
+  String? get checkOut;
   List<ExtraPrice>? get extraPrice;
   String? get price;
   @JsonKey(ignore: true)
@@ -529,7 +568,8 @@ abstract class _$$_CheckAvailabilityCopyWith<$Res> {
       __$$_CheckAvailabilityCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {int id,
+      {String type,
+      int id,
       String checkIn,
       String checkOut,
       String adults,
@@ -547,6 +587,7 @@ class __$$_CheckAvailabilityCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? id = null,
     Object? checkIn = null,
     Object? checkOut = null,
@@ -554,6 +595,10 @@ class __$$_CheckAvailabilityCopyWithImpl<$Res>
     Object? children = null,
   }) {
     return _then(_$_CheckAvailability(
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -581,9 +626,11 @@ class __$$_CheckAvailabilityCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CheckAvailability implements _CheckAvailability {
-  const _$_CheckAvailability(
-      this.id, this.checkIn, this.checkOut, this.adults, this.children);
+  const _$_CheckAvailability(this.type, this.id, this.checkIn, this.checkOut,
+      this.adults, this.children);
 
+  @override
+  final String type;
   @override
   final int id;
   @override
@@ -597,7 +644,7 @@ class _$_CheckAvailability implements _CheckAvailability {
 
   @override
   String toString() {
-    return 'ReservationEvent.checkAvailability(id: $id, checkIn: $checkIn, checkOut: $checkOut, adults: $adults, children: $children)';
+    return 'ReservationEvent.checkAvailability(type: $type, id: $id, checkIn: $checkIn, checkOut: $checkOut, adults: $adults, children: $children)';
   }
 
   @override
@@ -605,6 +652,7 @@ class _$_CheckAvailability implements _CheckAvailability {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CheckAvailability &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.checkIn, checkIn) || other.checkIn == checkIn) &&
             (identical(other.checkOut, checkOut) ||
@@ -616,7 +664,7 @@ class _$_CheckAvailability implements _CheckAvailability {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, checkIn, checkOut, adults, children);
+      Object.hash(runtimeType, type, id, checkIn, checkOut, adults, children);
 
   @JsonKey(ignore: true)
   @override
@@ -638,21 +686,23 @@ class _$_CheckAvailability implements _CheckAvailability {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
   }) {
-    return checkAvailability(id, checkIn, checkOut, adults, children);
+    return checkAvailability(type, id, checkIn, checkOut, adults, children);
   }
 
   @override
@@ -668,21 +718,24 @@ class _$_CheckAvailability implements _CheckAvailability {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
   }) {
-    return checkAvailability?.call(id, checkIn, checkOut, adults, children);
+    return checkAvailability?.call(
+        type, id, checkIn, checkOut, adults, children);
   }
 
   @override
@@ -698,23 +751,25 @@ class _$_CheckAvailability implements _CheckAvailability {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
     required TResult orElse(),
   }) {
     if (checkAvailability != null) {
-      return checkAvailability(id, checkIn, checkOut, adults, children);
+      return checkAvailability(type, id, checkIn, checkOut, adults, children);
     }
     return orElse();
   }
@@ -771,12 +826,14 @@ class _$_CheckAvailability implements _CheckAvailability {
 
 abstract class _CheckAvailability implements ReservationEvent {
   const factory _CheckAvailability(
+      final String type,
       final int id,
       final String checkIn,
       final String checkOut,
       final String adults,
       final String children) = _$_CheckAvailability;
 
+  String get type;
   int get id;
   String get checkIn;
   String get checkOut;
@@ -879,16 +936,18 @@ class _$_OnSelectDates implements _OnSelectDates {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
@@ -909,16 +968,18 @@ class _$_OnSelectDates implements _OnSelectDates {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
@@ -939,16 +1000,18 @@ class _$_OnSelectDates implements _OnSelectDates {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
@@ -1105,16 +1168,18 @@ class _$_OnSelectGuests implements _OnSelectGuests {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
@@ -1135,16 +1200,18 @@ class _$_OnSelectGuests implements _OnSelectGuests {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
@@ -1165,16 +1232,18 @@ class _$_OnSelectGuests implements _OnSelectGuests {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
@@ -1252,6 +1321,8 @@ abstract class _$$_ConfirmReservationCopyWith<$Res> {
   factory _$$_ConfirmReservationCopyWith(_$_ConfirmReservation value,
           $Res Function(_$_ConfirmReservation) then) =
       __$$_ConfirmReservationCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TypeReservation typeReservation});
 }
 
 /// @nodoc
@@ -1261,26 +1332,52 @@ class __$$_ConfirmReservationCopyWithImpl<$Res>
   __$$_ConfirmReservationCopyWithImpl(
       _$_ConfirmReservation _value, $Res Function(_$_ConfirmReservation) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? typeReservation = null,
+  }) {
+    return _then(_$_ConfirmReservation(
+      null == typeReservation
+          ? _value.typeReservation
+          : typeReservation // ignore: cast_nullable_to_non_nullable
+              as TypeReservation,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ConfirmReservation implements _ConfirmReservation {
-  const _$_ConfirmReservation();
+  const _$_ConfirmReservation(this.typeReservation);
+
+  @override
+  final TypeReservation typeReservation;
 
   @override
   String toString() {
-    return 'ReservationEvent.addToCart()';
+    return 'ReservationEvent.addToCart(typeReservation: $typeReservation)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ConfirmReservation);
+        (other.runtimeType == runtimeType &&
+            other is _$_ConfirmReservation &&
+            (identical(other.typeReservation, typeReservation) ||
+                other.typeReservation == typeReservation));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, typeReservation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ConfirmReservationCopyWith<_$_ConfirmReservation> get copyWith =>
+      __$$_ConfirmReservationCopyWithImpl<_$_ConfirmReservation>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1295,21 +1392,23 @@ class _$_ConfirmReservation implements _ConfirmReservation {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
   }) {
-    return addToCart();
+    return addToCart(typeReservation);
   }
 
   @override
@@ -1325,21 +1424,23 @@ class _$_ConfirmReservation implements _ConfirmReservation {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
   }) {
-    return addToCart?.call();
+    return addToCart?.call(typeReservation);
   }
 
   @override
@@ -1355,23 +1456,25 @@ class _$_ConfirmReservation implements _ConfirmReservation {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
-      return addToCart();
+      return addToCart(typeReservation);
     }
     return orElse();
   }
@@ -1427,7 +1530,13 @@ class _$_ConfirmReservation implements _ConfirmReservation {
 }
 
 abstract class _ConfirmReservation implements ReservationEvent {
-  const factory _ConfirmReservation() = _$_ConfirmReservation;
+  const factory _ConfirmReservation(final TypeReservation typeReservation) =
+      _$_ConfirmReservation;
+
+  TypeReservation get typeReservation;
+  @JsonKey(ignore: true)
+  _$$_ConfirmReservationCopyWith<_$_ConfirmReservation> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1504,16 +1613,18 @@ class _$_OnSelectChalet implements _OnSelectChalet {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
@@ -1534,16 +1645,18 @@ class _$_OnSelectChalet implements _OnSelectChalet {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
@@ -1564,16 +1677,18 @@ class _$_OnSelectChalet implements _OnSelectChalet {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
@@ -1718,16 +1833,18 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
@@ -1748,16 +1865,18 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
@@ -1778,16 +1897,18 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
@@ -1906,16 +2027,18 @@ class _$_InitStatus implements _InitStatus {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)
         setParams,
-    required TResult Function(int id, String checkIn, String checkOut,
-            String adults, String children)
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
         checkAvailability,
     required TResult Function(String startDate, String endDate, String nbNights)
         onSelectDates,
     required TResult Function(int guests, String price) onSelectGuests,
-    required TResult Function() addToCart,
+    required TResult Function(TypeReservation typeReservation) addToCart,
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
@@ -1936,16 +2059,18 @@ class _$_InitStatus implements _InitStatus {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult? Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult? Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult? Function(int guests, String price)? onSelectGuests,
-    TResult? Function()? addToCart,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
@@ -1966,16 +2091,18 @@ class _$_InitStatus implements _InitStatus {
             String? salePrice,
             String? perPerson,
             int? minNuits,
+            String? checkIn,
+            String? checkOut,
             List<ExtraPrice>? extraPrice,
             String? price)?
         setParams,
-    TResult Function(int id, String checkIn, String checkOut, String adults,
-            String children)?
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
         checkAvailability,
     TResult Function(String startDate, String endDate, String nbNights)?
         onSelectDates,
     TResult Function(int guests, String price)? onSelectGuests,
-    TResult Function()? addToCart,
+    TResult Function(TypeReservation typeReservation)? addToCart,
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,

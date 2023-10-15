@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/data/models/host_dto.dart';
 
 abstract class HostApiDataSource {
   Future<List<Host>> getListHosts(int limit, int offset);
   Future<HostDetails> getHost(int id);
-  Future<dynamic> checkHostAvailability(
-      int id, String checkIn, String checkOut, int adults, int children);
+  Future<dynamic> checkHostAvailability(String type, int id, String checkIn,
+      String checkOut, int adults, int children);
   Future<Map<String, dynamic>> confirmHostReservation(
       Map<String, dynamic> body);
 }
@@ -45,15 +46,22 @@ class HostApiDataSourceImpl implements HostApiDataSource {
   }
 
   @override
-  Future<dynamic> checkHostAvailability(
-      int id, String checkIn, String checkOut, int adults, int children) async {
+  Future<dynamic> checkHostAvailability(String type, int id, String checkIn,
+      String checkOut, int adults, int children) async {
     try {
-      print(
-        "https://idwey.tn/api/hotel/checkAvailability?start_date=$checkIn&end_date=$checkOut&adults=$adults&children=$children&hotel_id=$id",
-      );
-      final response = await dio.get(
-        "https://idwey.tn/api/hotel/checkAvailability?start_date=$checkIn&end_date=$checkOut&adults=$adults&children=$children&hotel_id=$id",
-      );
+      String url = "";
+      if (type == TypeReservation.host.toString()) {
+        url =
+            "https://idwey.tn/api/hotel/checkAvailability?start_date=$checkIn&end_date=$checkOut&adults=$adults&children=$children&hotel_id=$id";
+      } else if (type == TypeReservation.activity.toString()) {
+        url =
+            "https://idwey.tn/api/activity/checkAvailability?start_date=$checkIn&end_date=$checkOut&adults=$adults&children=$children&tour_id=$id";
+      } else if (type == TypeReservation.experience.toString()) {
+        url =
+            "https://idwey.tn/api/experience/checkAvailability?start_date=$checkIn&children=0&experience_id=$id&adults=$adults";
+      }
+      print("url:$url");
+      final response = await dio.get(url);
 
       return response.data;
     } catch (e) {

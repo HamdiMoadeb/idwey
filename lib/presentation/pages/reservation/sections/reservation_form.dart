@@ -180,7 +180,8 @@ class _ReservationSectionState extends State<ReservationSection> {
                                   )
                                 : const SizedBox.shrink(),
                             Visibility(
-                                visible: widget.activityDuration != null,
+                                visible: widget.activityDuration != null ||
+                                    widget.activityDuration != "",
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -189,7 +190,6 @@ class _ReservationSectionState extends State<ReservationSection> {
                                       'Durée',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          color: materialPrimary,
                                           fontSize: 12.sp),
                                     ),
                                     Text(
@@ -203,7 +203,10 @@ class _ReservationSectionState extends State<ReservationSection> {
                                 )),
                             Visibility(
                               visible: widget.nuits != null &&
-                                  widget.nuits!.isNotEmpty,
+                                  widget.nuits!.isNotEmpty &&
+                                  widget.nuits != "0" &&
+                                  widget.typeReservation ==
+                                      TypeReservation.host,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

@@ -195,6 +195,9 @@ abstract class _$AppRouter extends RootStackRouter {
           url: args.url,
           extraPrice: args.extraPrice,
           rooms: args.rooms,
+          startDate: args.startDate,
+          endDate: args.endDate,
+          subtitle: args.subtitle,
         )),
       );
     },
@@ -745,6 +748,9 @@ class VerifyDisponibilityRoute
     required String url,
     List<ExtraPrice>? extraPrice,
     List<Room>? rooms,
+    DateTime? startDate,
+    DateTime? endDate,
+    String? subtitle,
     List<PageRouteInfo>? children,
   }) : super(
           VerifyDisponibilityRoute.name,
@@ -763,6 +769,9 @@ class VerifyDisponibilityRoute
             url: url,
             extraPrice: extraPrice,
             rooms: rooms,
+            startDate: startDate,
+            endDate: endDate,
+            subtitle: subtitle,
           ),
           initialChildren: children,
         );
@@ -789,6 +798,9 @@ class VerifyDisponibilityRouteArgs {
     required this.url,
     this.extraPrice,
     this.rooms,
+    this.startDate,
+    this.endDate,
+    this.subtitle,
   });
 
   final Key? key;
@@ -819,8 +831,14 @@ class VerifyDisponibilityRouteArgs {
 
   final List<Room>? rooms;
 
+  final DateTime? startDate;
+
+  final DateTime? endDate;
+
+  final String? subtitle;
+
   @override
   String toString() {
-    return 'VerifyDisponibilityRouteArgs{key: $key, typeReservation: $typeReservation, activityDuration: $activityDuration, id: $id, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, url: $url, extraPrice: $extraPrice, rooms: $rooms}';
+    return 'VerifyDisponibilityRouteArgs{key: $key, typeReservation: $typeReservation, activityDuration: $activityDuration, id: $id, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, url: $url, extraPrice: $extraPrice, rooms: $rooms, startDate: $startDate, endDate: $endDate, subtitle: $subtitle}';
   }
 }

@@ -12,6 +12,7 @@ class CheckHostAvailabilityUseCase
     print("params");
     print(params);
     return await repository.checkHostAvailability(
+        params['type'],
         params['id'],
         params['checkIn'],
         params['checkOut'],

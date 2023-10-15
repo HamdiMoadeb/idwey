@@ -308,7 +308,9 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                       dateDebut: widget.dateDebut ?? "",
                       dateFin: widget.dateFin ?? '',
                       address: widget.address ?? "",
-                      nuits: widget.nuits,
+                      nuits: widget.typeReservation == TypeReservation.event
+                          ? null
+                          : widget.nuits,
                       adultes: widget.adultes,
                       rooms: widget.rooms,
                       activityDuration: widget.activityDuration,

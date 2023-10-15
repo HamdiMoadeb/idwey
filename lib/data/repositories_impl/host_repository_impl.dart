@@ -31,11 +31,11 @@ class HostRepositoryImpl implements HostRepository {
   }
 
   @override
-  Future<Either<Exception, dynamic>> checkHostAvailability(
-      int id, String checkIn, String checkOut, int adults, int children) async {
+  Future<Either<Exception, dynamic>> checkHostAvailability(String type, int id,
+      String checkIn, String checkOut, int adults, int children) async {
     try {
       final result = await dataSource.checkHostAvailability(
-          id, checkIn, checkOut, adults, children);
+          type, id, checkIn, checkOut, adults, children);
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

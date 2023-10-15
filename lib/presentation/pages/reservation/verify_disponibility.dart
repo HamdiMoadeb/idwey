@@ -11,6 +11,7 @@ import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart'
 import 'package:idwey/presentation/pages/details_page/components/product_page_header/product_page_header.dart';
 import 'package:idwey/presentation/pages/reservation/sections/chalets_section.dart';
 import 'package:idwey/theme/app_colors.dart';
+import 'package:intl/intl.dart';
 
 import 'sections/extra_price_section.dart';
 
@@ -29,7 +30,10 @@ class VerifyDisponibilityScreen extends StatefulWidget
   final String? perPerson;
   final int? minNuits;
   final String? price;
+  final String? subtitle;
   final List<Room>? rooms;
+  final DateTime? startDate;
+  final DateTime? endDate;
 
   const VerifyDisponibilityScreen(
       {Key? key,
@@ -45,7 +49,10 @@ class VerifyDisponibilityScreen extends StatefulWidget
       this.price,
       required this.url,
       this.extraPrice,
-      this.rooms})
+      this.rooms,
+      this.startDate,
+      this.endDate,
+      this.subtitle})
       : super(key: key);
 
   @override
@@ -85,6 +92,8 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
         widget.salePrice,
         widget.perPerson,
         widget.minNuits,
+        DateFormat('yyyy-MM-dd').format(widget.startDate ?? DateTime.now()),
+        DateFormat('yyyy-MM-dd').format(widget.endDate ?? DateTime.now()),
         widget.extraPrice,
         widget.price));
     super.initState();
@@ -116,21 +125,20 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
           if (state.available == true) {
             context
                 .read<ReservationBloc>()
-                .add(const ReservationEvent.addToCart());
-
+                .add(ReservationEvent.addToCart(widget.typeReservation));
             Navigator.of(context).pop();
             context
                 .read<ReservationBloc>()
                 .add(const ReservationEvent.initStatus());
-          }
-          if (state.available == false) {
+          } else if (state.available == false) {
+            Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.errorText ?? ""),
                 backgroundColor: Colors.red,
               ),
             );
-            Navigator.pop(context);
+
             context
                 .read<ReservationBloc>()
                 .add(const ReservationEvent.initStatus());
@@ -148,12 +156,14 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                   ? null
                   : () {
                       state.typeHost == "Par Chalet" &&
-                              state.availableChalet?.isNotEmpty == true
-                          ? context
-                              .read<ReservationBloc>()
-                              .add(const ReservationEvent.addToCart())
+                                  state.availableChalet?.isNotEmpty == true ||
+                              widget.typeReservation == TypeReservation.event
+                          ? context.read<ReservationBloc>().add(
+                              ReservationEvent.addToCart(
+                                  widget.typeReservation))
                           : context.read<ReservationBloc>().add(
                               ReservationEvent.checkAvailability(
+                                  widget.typeReservation.toString(),
                                   int.parse(widget.id),
                                   "",
                                   "",
@@ -203,27 +213,81 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 28.h, bottom: 10.h),
-                    child: Row(
+                  Visibility(
+                    visible: widget.typeReservation == TypeReservation.event,
+                    child: Column(
                       children: [
-                        const Icon(Icons.calendar_month),
-                        SizedBox(width: 10.w),
-                        const Text(
-                          'Disponibilité',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  widget.title,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                          color: primaryOrange),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(Icons.calendar_month),
+                                  Text(
+                                      DateFormat("dd-MM-yyyy").format(
+                                          widget.startDate ?? DateTime.now()),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w500,
+                                          )),
+                                ],
+                              ),
+                            ],
                           ),
+                        ),
+                        const Divider(
+                          thickness: 1,
                         ),
                       ],
                     ),
                   ),
-                  const Divider(
-                    thickness: 1,
+                  Visibility(
+                    visible: widget.typeReservation == TypeReservation.host ||
+                        widget.typeReservation == TypeReservation.activity ||
+                        widget.typeReservation == TypeReservation.experience,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 28.h, bottom: 10.h),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.calendar_month),
+                              SizedBox(width: 10.w),
+                              const Text(
+                                'Disponibilité',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          thickness: 1,
+                        ),
+                        const CustomDateInput(),
+                      ],
+                    ),
                   ),
-                  const CustomDateInput(),
                   Padding(
                     padding: EdgeInsets.only(top: 16.h, bottom: 10.h),
                     child: Row(
@@ -249,12 +313,24 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                   ),
                   CustomHeader(
                     title: 'Adulte',
-                    subtitle: '13 ans ou plus',
+                    subtitle: widget.subtitle ?? "",
                     onchange: (i) {
                       context.read<ReservationBloc>().add(
                           ReservationEvent.onSelectGuests(
                               i, widget.salePrice.toString()));
                     },
+                  ),
+                  Visibility(
+                    visible: widget.typeReservation == TypeReservation.activity,
+                    child: CustomHeader(
+                      title: 'Enfant',
+                      subtitle: '13 ans ou plus',
+                      onchange: (i) {
+                        context.read<ReservationBloc>().add(
+                            ReservationEvent.onSelectGuests(
+                                i, widget.salePrice.toString()));
+                      },
+                    ),
                   ),
                   widget.extraPrice?.isNotEmpty == true
                       ? ExtraPriceSectionDisponibility(
