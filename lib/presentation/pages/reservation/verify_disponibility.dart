@@ -111,9 +111,13 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
         } else if (state.status == StateStatus.success) {
           print("success");
           if (state.availableChalet?.isNotEmpty == true) {
-            Navigator.pop(context);
+            //Navigator.pop(context);
           }
           if (state.available == true) {
+            context
+                .read<ReservationBloc>()
+                .add(const ReservationEvent.addToCart());
+
             Navigator.of(context).pop();
             context
                 .read<ReservationBloc>()

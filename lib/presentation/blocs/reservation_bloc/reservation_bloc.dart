@@ -69,7 +69,6 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
           print("state.available");
           print(state.available);
           if (state.available == true) {
-            GetIt.I<ReservationBloc>().add(const ReservationEvent.addToCart());
             emit(state.copyWith(
               errorText: "",
             ));
