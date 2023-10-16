@@ -1,10 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/data/models/host_dto.dart';
 
 abstract class HostApiDataSource {
   Future<List<Host>> getListHosts(int limit, int offset);
   Future<HostDetails> getHost(int id);
+  Future<dynamic> checkHostAvailability(String type, int id, String checkIn,
+      String checkOut, int adults, int children);
+  Future<Map<String, dynamic>> confirmHostReservation(
+      Map<String, dynamic> body);
 }
 
 class HostApiDataSourceImpl implements HostApiDataSource {
@@ -31,11 +36,52 @@ class HostApiDataSourceImpl implements HostApiDataSource {
   @override
   Future<HostDetails> getHost(int id) async {
     try {
+      print("https://idwey.tn/api/hotel/detail/$id");
       final response = await dio.get("https://idwey.tn/api/hotel/detail/$id");
 
       return HostDetails.fromJson(response.data);
     } catch (e) {
       throw Exception(e);
     }
+  }
+
+  @override
+  Future<dynamic> checkHostAvailability(String type, int id, String checkIn,
+      String checkOut, int adults, int children) async {
+    try {
+      String url = "";
+      if (type == TypeReservation.host.toString()) {
+        url =
+            "https://idwey.tn/api/hotel/checkAvailability?start_date=$checkIn&end_date=$checkOut&adults=$adults&children=$children&hotel_id=$id";
+      } else if (type == TypeReservation.activity.toString()) {
+        url =
+            "https://idwey.tn/api/activity/checkAvailability?start_date=$checkIn&end_date=$checkOut&adults=$adults&children=$children&tour_id=$id";
+      } else if (type == TypeReservation.experience.toString()) {
+        url =
+            "https://idwey.tn/api/experience/checkAvailability?start_date=$checkIn&children=0&experience_id=$id&adults=$adults";
+      }
+      print("url:$url");
+      final response = await dio.get(url);
+
+      return response.data;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> confirmHostReservation(
+      Map<String, dynamic> body) async {
+    // try {
+    final response = await dio.post(
+      "https://idwey.tn/api/booking/addToCart",
+      data: body,
+    );
+    print("response");
+    print(response.data);
+    return response.data;
+    // } catch (e) {
+    //   throw Exception(e);
+    // }
   }
 }

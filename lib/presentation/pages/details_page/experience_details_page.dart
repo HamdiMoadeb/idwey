@@ -2,6 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/components/read_more_text.dart';
@@ -68,7 +70,34 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                 child: BottomReservationBar(
                   onPressed: () {
                     appState.isLoggedIn == true
-                        ? () {}
+                        ? GetIt.I<AppRouter>().push(
+                            VerifyDisponibilityRoute(
+                              subtitle:
+                                  "${double.parse(state.experienceDetailsDto?.row?.price ?? '0').toInt()} DT par personne",
+                              url: state.experienceDetailsDto?.bannerImageUrl ??
+                                  "",
+                              typeReservation: TypeReservation.experience,
+                              //typeHost: widget.eventDetailsDto,
+                              salePrice:
+                                  state.experienceDetailsDto?.row?.price ?? "",
+                              price:
+                                  state.experienceDetailsDto?.row?.price ?? "",
+
+                              id: state.experienceDetailsDto?.row?.id
+                                      .toString() ??
+                                  "",
+                              title:
+                                  state.experienceDetailsDto?.row?.title ?? "",
+                              address:
+                                  state.experienceDetailsDto?.row?.address ??
+                                      "",
+                              activityDuration:
+                                  state.experienceDetailsDto?.row?.duration ??
+                                      "",
+                              // extraPrice: state.extraPrice ?? [],
+                              // .. rooms: state.hostDetails?.rooms ?? [],
+                            ),
+                          )
                         : showModalBottomSheet(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(

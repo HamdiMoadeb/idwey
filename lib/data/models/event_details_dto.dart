@@ -271,7 +271,6 @@ class Row {
   final int? promoCode;
   final String? translateDifficulty;
   final String? impactsocial;
-  final ExtraPrice? extraPrice;
   final String? translationImpactsocial;
   final dynamic duration;
   final String? prix;
@@ -305,7 +304,6 @@ class Row {
     this.promoCode,
     this.translateDifficulty,
     this.impactsocial,
-    this.extraPrice,
     this.translationImpactsocial,
     this.duration,
     this.prix,
@@ -383,7 +381,6 @@ class Row {
         "promo_code": promoCode,
         "translate_difficulty": translateDifficulty,
         "impactsocial": impactsocial,
-        "extra_price": extraPrice?.toJson(),
         "translation_impactsocial": translationImpactsocial,
         "duration": duration,
         "prix": prix,
@@ -557,50 +554,6 @@ class Author {
         "club": club,
         "interest":
             interest == null ? [] : List<dynamic>.from(interest!.map((x) => x)),
-      };
-}
-
-class ExtraPrice {
-  final The4? the4;
-
-  ExtraPrice({
-    this.the4,
-  });
-
-  factory ExtraPrice.fromJson(Map<String, dynamic> json) => ExtraPrice(
-        the4: json["4"] == null ? null : The4.fromJson(json["4"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "4": the4?.toJson(),
-      };
-}
-
-class The4 {
-  final String? name;
-  final String? nameEn;
-  final String? price;
-  final String? type;
-
-  The4({
-    this.name,
-    this.nameEn,
-    this.price,
-    this.type,
-  });
-
-  factory The4.fromJson(Map<String, dynamic> json) => The4(
-        name: json["name"],
-        nameEn: json["name_en"],
-        price: json["price"],
-        type: json["type"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "name_en": nameEn,
-        "price": price,
-        "type": type,
       };
 }
 

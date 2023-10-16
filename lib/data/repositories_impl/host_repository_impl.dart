@@ -29,4 +29,29 @@ class HostRepositoryImpl implements HostRepository {
       return Left(e);
     }
   }
+
+  @override
+  Future<Either<Exception, dynamic>> checkHostAvailability(String type, int id,
+      String checkIn, String checkOut, int adults, int children) async {
+    try {
+      final result = await dataSource.checkHostAvailability(
+          type, id, checkIn, checkOut, adults, children);
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, Map<String, dynamic>>> confirmHostReservation(
+      Map<String, dynamic> body) async {
+    // try {
+    final result = await dataSource.confirmHostReservation(body);
+    print("result");
+    print(result);
+    return Right(result);
+    // } on Exception catch (e) {
+    //   return Left(e);
+    // }
+  }
 }

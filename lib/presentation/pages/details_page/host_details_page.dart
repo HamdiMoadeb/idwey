@@ -1,15 +1,20 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/components.dart';
+import 'package:idwey/components/extra_price_component/extra_price_component.dart';
 import 'package:idwey/components/read_more_text.dart';
 import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/details_host_bloc/details_page_bloc.dart';
 import 'package:idwey/presentation/pages/details_page/components/commodite_section/commodite_section.dart';
+import 'package:idwey/presentation/pages/details_page/components/extra_price_section/extra_price_section.dart';
 import 'package:idwey/presentation/pages/details_page/components/map_section/map_section.dart';
 import 'package:idwey/presentation/pages/details_page/components/reviews_section/reviews_section.dart';
 import 'package:idwey/presentation/pages/details_page/components/terms_section/terms_section.dart';
@@ -33,9 +38,12 @@ class _DetailsScreenState extends State<DetailsScreen>
     with SingleTickerProviderStateMixin {
   final scrollController = ScrollController();
   bool showAppBar = false;
+  bool isChecked = false;
 
   @override
   void initState() {
+    print("widget.typeHost");
+    print(widget.typeHost);
     BlocProvider.of<DetailsPageBloc>(context)
         .add(DetailsPageEvent.getHostDetails(widget.id ?? 0));
 
@@ -70,9 +78,28 @@ class _DetailsScreenState extends State<DetailsScreen>
                 child: BottomReservationBar(
                   onPressed: () {
                     print("appState.isLoggedIn");
-                    print(appState.isLoggedIn);
+                    print(appState.isLoggedIn == true);
+                    print("widget.typeHost");
+                    print(widget.typeHost);
                     appState.isLoggedIn == true
-                        ? () {}
+                        ? GetIt.I<AppRouter>().push(
+                            VerifyDisponibilityRoute(
+                              subtitle: "13 ans ou plus",
+                              url: state.hostDetails?.bannerImageUrl ?? "",
+                              typeReservation: TypeReservation.host,
+                              typeHost: widget.typeHost,
+                              salePrice: state.hostDetails?.row?.price ?? "",
+                              price: state.hostDetails?.row?.price ?? "",
+                              perPerson:
+                                  state.hostDetails?.row?.perPerson ?? "",
+                              id: state.hostDetails?.row?.id.toString() ?? "",
+                              title: state.hostDetails?.row?.title ?? "",
+                              address: state.hostDetails?.row?.address ?? "",
+                              minNuits: state.hostDetails?.row?.minNuits ?? 0,
+                              extraPrice: state.extraPrice ?? [],
+                              rooms: state.hostDetails?.rooms ?? [],
+                            ),
+                          )
                         : showModalBottomSheet(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -183,6 +210,17 @@ class _DetailsScreenState extends State<DetailsScreen>
                               const Divider(
                                 thickness: 1,
                               ),
+                              state.hostDetails?.row?.extraPrice != null &&
+                                      state.hostDetails!.row?.extraPrice
+                                              ?.isNotEmpty ==
+                                          true
+                                  ? ExtraPriceSection(
+                                      extraPrices:
+                                          state.hostDetails!.row?.extraPrice ??
+                                              [],
+                                    )
+                                  : const SizedBox.shrink(),
+
                               state.hostDetails!.rooms!.isNotEmpty
                                   ? ChaletsSection(state: state)
                                   : const SizedBox.shrink(),
