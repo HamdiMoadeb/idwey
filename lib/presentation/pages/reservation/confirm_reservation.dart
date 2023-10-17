@@ -30,6 +30,7 @@ class ConfirmReservationScreen extends StatefulWidget
   final String? nuits;
   final String? adultes;
   final String? total;
+  final String? price;
   final String code;
   final String customerId;
   final List<Room>? rooms;
@@ -57,7 +58,8 @@ class ConfirmReservationScreen extends StatefulWidget
       this.activityDuration,
       this.url,
       required this.code,
-      required this.customerId})
+      required this.customerId,
+      this.price})
       : super(key: key);
 
   @override
@@ -302,6 +304,7 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ReservationSection(
+                      price: widget.price ?? "",
                       url: widget.url,
                       typeReservation: widget.typeReservation,
                       hostName: widget.hostName ?? "",
