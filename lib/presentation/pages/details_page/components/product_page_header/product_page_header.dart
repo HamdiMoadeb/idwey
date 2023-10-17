@@ -54,7 +54,7 @@ class CustomHeader extends StatelessWidget {
             width: 16.w,
           ),
           CustomCounter(
-            initialValue: 0,
+            initialValue: 1,
             onChanged: onchange ??
                 (i) {
                   print(i);
@@ -101,7 +101,7 @@ class _CustomCounterState extends State<CustomCounter> {
           IconButton(
             icon: const Icon(Icons.remove),
             onPressed: () {
-              if (_counter > 0) {
+              if (_counter > 1) {
                 setState(() {
                   _counter--;
                   widget.onChanged(_counter);

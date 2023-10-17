@@ -71,6 +71,7 @@ abstract class _$AppRouter extends RootStackRouter {
           url: args.url,
           code: args.code,
           customerId: args.customerId,
+          price: args.price,
         )),
       );
     },
@@ -332,6 +333,7 @@ class ConfirmReservationRoute
     String? url,
     required String code,
     required String customerId,
+    String? price,
     List<PageRouteInfo>? children,
   }) : super(
           ConfirmReservationRoute.name,
@@ -355,6 +357,7 @@ class ConfirmReservationRoute
             url: url,
             code: code,
             customerId: customerId,
+            price: price,
           ),
           initialChildren: children,
         );
@@ -386,6 +389,7 @@ class ConfirmReservationRouteArgs {
     this.url,
     required this.code,
     required this.customerId,
+    this.price,
   });
 
   final Key? key;
@@ -426,9 +430,11 @@ class ConfirmReservationRouteArgs {
 
   final String customerId;
 
+  final String? price;
+
   @override
   String toString() {
-    return 'ConfirmReservationRouteArgs{key: $key, id: $id, address: $address, hostName: $hostName, region: $region, dateDebut: $dateDebut, dateFin: $dateFin, nuits: $nuits, adultes: $adultes, total: $total, rooms: $rooms, typeReservation: $typeReservation, currencyValue: $currencyValue, currencyName: $currencyName, currency: $currency, activityDuration: $activityDuration, url: $url, code: $code, customerId: $customerId}';
+    return 'ConfirmReservationRouteArgs{key: $key, id: $id, address: $address, hostName: $hostName, region: $region, dateDebut: $dateDebut, dateFin: $dateFin, nuits: $nuits, adultes: $adultes, total: $total, rooms: $rooms, typeReservation: $typeReservation, currencyValue: $currencyValue, currencyName: $currencyName, currency: $currency, activityDuration: $activityDuration, url: $url, code: $code, customerId: $customerId, price: $price}';
   }
 }
 

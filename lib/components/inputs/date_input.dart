@@ -136,8 +136,16 @@ class _CustomDateInputState extends State<CustomDateInput> {
         ],
       ),
       child: SfDateRangePicker(
+        selectableDayPredicate: (v) {
+          if (v.isBefore(DateTime.now())) {
+            return false;
+          }
+          return true;
+        },
         showActionButtons: true,
         showNavigationArrow: true,
+        initialDisplayDate: DateTime.now(),
+        initialSelectedDate: DateTime.now(),
         confirmText: 'Valider',
         cancelText: 'Reinitialiser',
         headerHeight: 100,
@@ -172,7 +180,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
         view: DateRangePickerView.month,
         selectionMode: DateRangePickerSelectionMode.range,
         initialSelectedRange: PickerDateRange(
-            DateTime.now().subtract(const Duration(days: 4)),
+            DateTime.now().subtract(const Duration(days: 2)),
             DateTime.now().add(const Duration(days: 3))),
       ),
     );

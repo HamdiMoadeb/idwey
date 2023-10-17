@@ -14,6 +14,7 @@ import 'package:idwey/constants/assets.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
+import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/presentation/pages/details_page/components/product_page_header/product_page_header.dart';
 import 'package:idwey/theme/app_colors.dart';
 
@@ -44,12 +45,25 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
         duration: const Duration(seconds: 2), curve: Curves.linear);
   }
 
+  showLoadingDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
       builder: (context, appState) {
-        return BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
-            builder: (context, state) {
+        return BlocConsumer<ProductDetailsBloc, ProductDetailsState>(
+            listener: (context, state) {
+          if (state.addToCartStatus == StateStatus.loading) {
+            showLoadingDialog();
+          }
+        }, builder: (context, state) {
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -83,7 +97,9 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                       ),
                       onPressed: () {
                         appState.isLoggedIn == true
-                            ? print("*******")
+                            ? context.read<ProductDetailsBloc>().add(
+                                const ProductDetailsEvent.addToCart(
+                                    TypeReservation.product))
                             : showModalBottomSheet(
                                 shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
@@ -125,6 +141,9 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                               CustomHeader(
                                 onchange: (i) {
                                   print(i);
+                                  context
+                                      .read<ProductDetailsBloc>()
+                                      .add(ProductDetailsEvent.addProduct(i));
                                 },
                                 title:
                                     state.productDetailsDto?.row?.title ?? "",
@@ -186,7 +205,9 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
               ),
             );
           }
-          return const Scaffold(body: SizedBox.shrink());
+          return const Center(
+            child: Scaffold(body: SizedBox()),
+          );
         });
       },
     );

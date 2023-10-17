@@ -15,6 +15,7 @@ class ReservationSection extends StatefulWidget {
   final String? nuits;
   final String? adultes;
   final String total;
+  final String price;
   final List<Room>? rooms;
   final TypeReservation? typeReservation;
   final String? activityDuration;
@@ -31,7 +32,8 @@ class ReservationSection extends StatefulWidget {
       required this.hostName,
       required this.typeReservation,
       this.activityDuration,
-      this.url})
+      this.url,
+      required this.price})
       : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class _ReservationSectionState extends State<ReservationSection> {
   @override
   void initState() {
     // TODO: implement initState
-
+    print('activity duration ${widget.activityDuration}');
     super.initState();
   }
 
@@ -180,7 +182,7 @@ class _ReservationSectionState extends State<ReservationSection> {
                                   )
                                 : const SizedBox.shrink(),
                             Visibility(
-                                visible: widget.activityDuration != null ||
+                                visible: widget.activityDuration != null &&
                                     widget.activityDuration != "",
                                 child: Row(
                                   mainAxisAlignment:
@@ -227,25 +229,58 @@ class _ReservationSectionState extends State<ReservationSection> {
                                 ],
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  widget.typeReservation == TypeReservation.host
-                                      ? 'Adultes'
-                                      : "Nombre",
-                                  style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400),
+                            Visibility(
+                              visible: widget.typeReservation ==
+                                  TypeReservation.product,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "${double.parse(widget.price).toInt()} DT * ${widget.adultes} pièce",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12.sp),
+                                    ),
+                                    Text(
+                                      widget.total ?? "",
+                                      style: TextStyle(
+                                          color: primary,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  widget.adultes ?? "",
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500),
-                                )
-                              ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: !(widget.typeReservation ==
+                                  TypeReservation.product),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    widget.typeReservation ==
+                                            TypeReservation.host
+                                        ? 'Adultes'
+                                        : "Nombre",
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  Text(
+                                    widget.adultes ?? "",
+                                    style: TextStyle(
+                                        color: primary,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              ),
                             ),
                             if (widget.rooms != null)
                               for (var room in widget.rooms!)
@@ -468,23 +503,26 @@ class _ReservationSectionState extends State<ReservationSection> {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    typeReservation == TypeReservation.host
-                        ? 'Adultes'
-                        : "Nombre",
-                    style: TextStyle(fontSize: 12.sp),
-                  ),
-                  Text(
-                    adultes ?? "",
-                    style: TextStyle(
-                        color: primary,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500),
-                  )
-                ],
+              Visibility(
+                visible: !(widget.typeReservation == TypeReservation.product),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      typeReservation == TypeReservation.host
+                          ? 'Adultes'
+                          : "Nombre",
+                      style: TextStyle(fontSize: 12.sp),
+                    ),
+                    Text(
+                      adultes ?? "",
+                      style: TextStyle(
+                          color: primary,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
+                ),
               ),
               const Divider(),
               SizedBox(

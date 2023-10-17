@@ -78,10 +78,18 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
     );
   }
 
+  ScaffoldMessengerState? _scaffoldMessenger;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Access the ScaffoldMessenger here.
+    _scaffoldMessenger = ScaffoldMessenger.of(context);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
-
     context.read<ReservationBloc>().add(ReservationEvent.setParams(
         widget.activityDuration,
         widget.id,
@@ -108,7 +116,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
         } else if (state.status == StateStatus.error) {
           print("error");
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
+          _scaffoldMessenger?.showSnackBar(
             const SnackBar(
               content: Text("Une erreur s'est produite"),
               backgroundColor: Colors.red,
@@ -132,13 +140,13 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                 .add(const ReservationEvent.initStatus());
           } else if (state.available == false) {
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(
+            _scaffoldMessenger?.showSnackBar(
               SnackBar(
                 content: Text(state.errorText ?? ""),
                 backgroundColor: Colors.red,
               ),
             );
-
+            //Navigator.pop(context);
             context
                 .read<ReservationBloc>()
                 .add(const ReservationEvent.initStatus());
