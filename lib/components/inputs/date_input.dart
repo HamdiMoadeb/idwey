@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:idwey/components/components.dart';
+import 'package:heroicons/heroicons.dart';
+import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-import 'package:table_calendar/table_calendar.dart';
+
+import 'date_container.dart';
 
 class CustomDateInput extends StatefulWidget {
   const CustomDateInput({Key? key}) : super(key: key);
@@ -15,43 +18,106 @@ class CustomDateInput extends StatefulWidget {
 }
 
 class _CustomDateInputState extends State<CustomDateInput> {
-  bool calendarIsVisible = false;
+  bool calendarIsVisible = true;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
-          onTap: () => setState(() {
-            calendarIsVisible = !calendarIsVisible;
-          }),
-          child: CustomInput(
-            enabled: false,
-            foregroundColor: Colors.grey[300]!,
-            hintText: dateRange,
-            prefix: const Icon(
-              Icons.calendar_month,
-              color: Colors.black,
+        Visibility(
+          visible: dateRange != '' && !calendarIsVisible,
+          child: InkWell(
+            onTap: () {
+              setState(() {
+                calendarIsVisible = !calendarIsVisible;
+              });
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 8.w),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(
+                  color: Colors.black,
+                ),
+              ),
+              child: Row(
+                children: [
+                  const HeroIcon(
+                    HeroIcons.calendarDays,
+                    color: Colors.black,
+                  ),
+                  const SizedBox(width: 10),
+                  RichText(
+                    text: TextSpan(
+                      text: "Les dates sont :",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16.sp,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: dateRange,
+                          style: TextStyle(
+                            color: primary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
         Visibility(
-            visible: calendarIsVisible,
+            visible: dateRange == '' || calendarIsVisible == true,
             child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: dateTimeRangePicker())),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomDateContainer(
+                borderColor: dateRange == '' ? Colors.grey[300]! : Colors.black,
+                icon: const HeroIcon(
+                  HeroIcons.arrowRightOnRectangle,
+                  color: Colors.black,
+                ),
+                hintText: "Arrivée",
+                text: DateFormat('dd/MM/yyyy').format(dateTime),
+              ),
+              const SizedBox(width: 10),
+              CustomDateContainer(
+                borderColor: dateRange == '' ? Colors.grey[300]! : Colors.black,
+                icon: const HeroIcon(
+                  HeroIcons.arrowLeftOnRectangle,
+                  color: Colors.black,
+                ),
+                hintText: "Départ",
+                text: DateFormat('dd/MM/yyyy').format(dateTime2),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
 
+//  DateTimeRange? picked;
+  String nbNuits = "1";
+  DateTime dateTime = DateTime.now();
+  DateTime dateTime2 = DateTime.now();
   String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
   String end = DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
   );
 
-  String dateRange =
-      '${DateFormat('dd/MM/yyyy').format(DateTime.now())} - ${DateFormat('dd/MM/yyyy').format(
-    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
-  )}';
+  String dateRange = '';
 
   dateTimeRangePicker() {
     return Container(
@@ -70,10 +136,18 @@ class _CustomDateInputState extends State<CustomDateInput> {
         ],
       ),
       child: SfDateRangePicker(
+        selectableDayPredicate: (v) {
+          if (v.isBefore(DateTime.now())) {
+            return false;
+          }
+          return true;
+        },
         showActionButtons: true,
         showNavigationArrow: true,
-        confirmText: 'Confirmer',
-        cancelText: 'Cancel',
+        initialDisplayDate: DateTime.now(),
+        initialSelectedDate: DateTime.now(),
+        confirmText: 'Valider',
+        cancelText: 'Reinitialiser',
         headerHeight: 100,
         onSubmit: (v) {
           setState(() {
@@ -82,22 +156,37 @@ class _CustomDateInputState extends State<CustomDateInput> {
         },
         onSelectionChanged: (v) {
           setState(() {
-            start = DateFormat('dd').format(v.value.startDate!);
-            end = DateFormat('dd').format(v.value.endDate!);
-            dateRange = '$start - $end';
+            dateTime = v.value.startDate!;
+            dateTime2 = v.value.endDate!;
+            nbNuits = v.value!.endDate!
+                .difference(v.value!.startDate!)
+                .inDays
+                .toString();
+            print('nbuits $nbNuits');
+            context.read<ReservationBloc>().add(
+                  ReservationEvent.onSelectDates(
+                    DateFormat('yyyy-MM-dd').format(dateTime),
+                    DateFormat('yyyy-MM-dd').format(dateTime2),
+                    nbNuits,
+                  ),
+                );
+            start = DateFormat('dd').format(dateTime);
+            end = DateFormat('dd').format(dateTime2);
+            dateRange =
+                '$start ${getMonthAbbreviation(dateTime.month)}- $end ${getMonthAbbreviation(dateTime2.month)}';
           });
         },
         backgroundColor: Colors.white,
         view: DateRangePickerView.month,
         selectionMode: DateRangePickerSelectionMode.range,
         initialSelectedRange: PickerDateRange(
-            DateTime.now().subtract(const Duration(days: 4)),
+            DateTime.now().subtract(const Duration(days: 2)),
             DateTime.now().add(const Duration(days: 3))),
       ),
     );
   }
 
-  String _getMonthAbbreviation(int month) {
+  String getMonthAbbreviation(int month) {
     final List<String> monthsAbbreviations = [
       'Jan',
       'Feb',

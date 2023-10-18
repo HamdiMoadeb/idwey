@@ -4,6 +4,10 @@
 
 import 'dart:convert';
 
+import 'package:idwey/data/models/room_dto.dart';
+
+import 'extra_price_dto.dart';
+
 HostDetails hostDetailsFromJson(String str) =>
     HostDetails.fromJson(json.decode(str));
 
@@ -194,107 +198,6 @@ class ReviewList {
       };
 }
 
-class Room {
-  final int? id;
-  final String? title;
-  final dynamic content;
-  final String? imageId;
-  final List<Gallery>? gallery;
-  final dynamic video;
-  final String? price;
-  final int? parentId;
-  final dynamic number;
-  final int? beds;
-  final dynamic size;
-  final int? adults;
-  final int? children;
-  final String? status;
-  final int? createUser;
-  final dynamic updateUser;
-  final dynamic deletedAt;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final dynamic perpChildPrice;
-
-  Room({
-    this.id,
-    this.title,
-    this.content,
-    this.imageId,
-    this.gallery,
-    this.video,
-    this.price,
-    this.parentId,
-    this.number,
-    this.beds,
-    this.size,
-    this.adults,
-    this.children,
-    this.status,
-    this.createUser,
-    this.updateUser,
-    this.deletedAt,
-    this.createdAt,
-    this.updatedAt,
-    this.perpChildPrice,
-  });
-
-  factory Room.fromJson(Map<String, dynamic> json) => Room(
-        id: json["id"],
-        title: json["title"],
-        content: json["content"],
-        imageId: json["image_id"] is String == true ? json["image_id"] : "",
-        gallery: json["gallery"] == null || json["gallery"] is String == true
-            ? []
-            : List<Gallery>.from(
-                json["gallery"]!.map((x) => Gallery.fromJson(x))),
-        video: json["video"],
-        price: json["price"],
-        parentId: json["parent_id"],
-        number: json["number"],
-        beds: json["beds"],
-        size: json["size"],
-        adults: json["adults"],
-        children: json["children"],
-        status: json["status"],
-        createUser: json["create_user"],
-        updateUser: json["update_user"],
-        deletedAt: json["deleted_at"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-        perpChildPrice: json["perp_child_price"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "content": content,
-        "image_id": imageId,
-        "gallery": gallery == null
-            ? []
-            : List<dynamic>.from(gallery!.map((x) => x.toJson())),
-        "video": video,
-        "price": price,
-        "parent_id": parentId,
-        "number": number,
-        "beds": beds,
-        "size": size,
-        "adults": adults,
-        "children": children,
-        "status": status,
-        "create_user": createUser,
-        "update_user": updateUser,
-        "deleted_at": deletedAt,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "perp_child_price": perpChildPrice,
-      };
-}
-
 class Row {
   final int? id;
   final String? title;
@@ -315,7 +218,6 @@ class Row {
   final int? minPerson;
   final int? promoCode;
   final String? maxPerson;
-  final dynamic extraPrice;
   final dynamic salePrice;
   final String? address;
   final dynamic impactsocial;
@@ -325,6 +227,7 @@ class Row {
   final dynamic location;
   final List<dynamic>? translations;
   final List<Term>? terms;
+  final List<ExtraPrice>? extraPrice;
 
   Row({
     this.id,
@@ -378,7 +281,10 @@ class Row {
         minPerson: json["min_person"],
         promoCode: json["promo_code"],
         maxPerson: json["max_person"],
-        extraPrice: json["extra_price"],
+        extraPrice: json["extra_price"] == null
+            ? []
+            : List<ExtraPrice>.from(
+                json["extra_price"]!.map((x) => ExtraPrice.fromJson(x))),
         salePrice: json["sale_price"],
         address: json["address"],
         impactsocial: json["impactsocial"],
@@ -414,7 +320,9 @@ class Row {
         "min_person": minPerson,
         "promo_code": promoCode,
         "max_person": maxPerson,
-        "extra_price": extraPrice,
+        "extra_price": extraPrice == null
+            ? []
+            : List<dynamic>.from(extraPrice!.map((x) => x.toJson())),
         "sale_price": salePrice,
         "address": address,
         "impactsocial": impactsocial,

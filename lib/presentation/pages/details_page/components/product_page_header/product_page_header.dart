@@ -7,7 +7,12 @@ import 'package:idwey/theme/app_colors.dart';
 class CustomHeader extends StatelessWidget {
   final String title;
   final String subtitle;
-  const CustomHeader({Key? key, required this.title, required this.subtitle})
+  final Function(int i) onchange;
+  const CustomHeader(
+      {Key? key,
+      required this.title,
+      required this.subtitle,
+      required this.onchange})
       : super(key: key);
 
   @override
@@ -49,10 +54,11 @@ class CustomHeader extends StatelessWidget {
             width: 16.w,
           ),
           CustomCounter(
-            initialValue: 0,
-            onChanged: (i) {
-              print(i);
-            },
+            initialValue: 1,
+            onChanged: onchange ??
+                (i) {
+                  print(i);
+                },
           ),
         ],
       ),
@@ -95,7 +101,7 @@ class _CustomCounterState extends State<CustomCounter> {
           IconButton(
             icon: const Icon(Icons.remove),
             onPressed: () {
-              if (_counter > 0) {
+              if (_counter > 1) {
                 setState(() {
                   _counter--;
                   widget.onChanged(_counter);

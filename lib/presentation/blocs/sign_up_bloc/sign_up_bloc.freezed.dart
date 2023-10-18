@@ -22,6 +22,7 @@ mixin _$SignUpEvent {
     required TResult Function(String email) setPassword,
     required TResult Function(String email) setConfirmPassword,
     required TResult Function(String email) setFirstName,
+    required TResult Function() signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$SignUpEvent {
     TResult? Function(String email)? setPassword,
     TResult? Function(String email)? setConfirmPassword,
     TResult? Function(String email)? setFirstName,
+    TResult? Function()? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$SignUpEvent {
     TResult Function(String email)? setPassword,
     TResult Function(String email)? setConfirmPassword,
     TResult Function(String email)? setFirstName,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$SignUpEvent {
     required TResult Function(_SetPassword value) setPassword,
     required TResult Function(_SetConfirmPassword value) setConfirmPassword,
     required TResult Function(_SetFirstName value) setFirstName,
+    required TResult Function(_SignUp value) signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$SignUpEvent {
     TResult? Function(_SetPassword value)? setPassword,
     TResult? Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult? Function(_SetFirstName value)? setFirstName,
+    TResult? Function(_SignUp value)? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$SignUpEvent {
     TResult Function(_SetPassword value)? setPassword,
     TResult Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult Function(_SetFirstName value)? setFirstName,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,6 +161,7 @@ class _$_SetEmail implements _SetEmail {
     required TResult Function(String email) setPassword,
     required TResult Function(String email) setConfirmPassword,
     required TResult Function(String email) setFirstName,
+    required TResult Function() signUp,
   }) {
     return setEmail(password);
   }
@@ -166,6 +173,7 @@ class _$_SetEmail implements _SetEmail {
     TResult? Function(String email)? setPassword,
     TResult? Function(String email)? setConfirmPassword,
     TResult? Function(String email)? setFirstName,
+    TResult? Function()? signUp,
   }) {
     return setEmail?.call(password);
   }
@@ -177,6 +185,7 @@ class _$_SetEmail implements _SetEmail {
     TResult Function(String email)? setPassword,
     TResult Function(String email)? setConfirmPassword,
     TResult Function(String email)? setFirstName,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) {
     if (setEmail != null) {
@@ -192,6 +201,7 @@ class _$_SetEmail implements _SetEmail {
     required TResult Function(_SetPassword value) setPassword,
     required TResult Function(_SetConfirmPassword value) setConfirmPassword,
     required TResult Function(_SetFirstName value) setFirstName,
+    required TResult Function(_SignUp value) signUp,
   }) {
     return setEmail(this);
   }
@@ -203,6 +213,7 @@ class _$_SetEmail implements _SetEmail {
     TResult? Function(_SetPassword value)? setPassword,
     TResult? Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult? Function(_SetFirstName value)? setFirstName,
+    TResult? Function(_SignUp value)? signUp,
   }) {
     return setEmail?.call(this);
   }
@@ -214,6 +225,7 @@ class _$_SetEmail implements _SetEmail {
     TResult Function(_SetPassword value)? setPassword,
     TResult Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult Function(_SetFirstName value)? setFirstName,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) {
     if (setEmail != null) {
@@ -300,6 +312,7 @@ class _$_SetPassword implements _SetPassword {
     required TResult Function(String email) setPassword,
     required TResult Function(String email) setConfirmPassword,
     required TResult Function(String email) setFirstName,
+    required TResult Function() signUp,
   }) {
     return setPassword(email);
   }
@@ -311,6 +324,7 @@ class _$_SetPassword implements _SetPassword {
     TResult? Function(String email)? setPassword,
     TResult? Function(String email)? setConfirmPassword,
     TResult? Function(String email)? setFirstName,
+    TResult? Function()? signUp,
   }) {
     return setPassword?.call(email);
   }
@@ -322,6 +336,7 @@ class _$_SetPassword implements _SetPassword {
     TResult Function(String email)? setPassword,
     TResult Function(String email)? setConfirmPassword,
     TResult Function(String email)? setFirstName,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) {
     if (setPassword != null) {
@@ -337,6 +352,7 @@ class _$_SetPassword implements _SetPassword {
     required TResult Function(_SetPassword value) setPassword,
     required TResult Function(_SetConfirmPassword value) setConfirmPassword,
     required TResult Function(_SetFirstName value) setFirstName,
+    required TResult Function(_SignUp value) signUp,
   }) {
     return setPassword(this);
   }
@@ -348,6 +364,7 @@ class _$_SetPassword implements _SetPassword {
     TResult? Function(_SetPassword value)? setPassword,
     TResult? Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult? Function(_SetFirstName value)? setFirstName,
+    TResult? Function(_SignUp value)? signUp,
   }) {
     return setPassword?.call(this);
   }
@@ -359,6 +376,7 @@ class _$_SetPassword implements _SetPassword {
     TResult Function(_SetPassword value)? setPassword,
     TResult Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult Function(_SetFirstName value)? setFirstName,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) {
     if (setPassword != null) {
@@ -446,6 +464,7 @@ class _$_SetConfirmPassword implements _SetConfirmPassword {
     required TResult Function(String email) setPassword,
     required TResult Function(String email) setConfirmPassword,
     required TResult Function(String email) setFirstName,
+    required TResult Function() signUp,
   }) {
     return setConfirmPassword(email);
   }
@@ -457,6 +476,7 @@ class _$_SetConfirmPassword implements _SetConfirmPassword {
     TResult? Function(String email)? setPassword,
     TResult? Function(String email)? setConfirmPassword,
     TResult? Function(String email)? setFirstName,
+    TResult? Function()? signUp,
   }) {
     return setConfirmPassword?.call(email);
   }
@@ -468,6 +488,7 @@ class _$_SetConfirmPassword implements _SetConfirmPassword {
     TResult Function(String email)? setPassword,
     TResult Function(String email)? setConfirmPassword,
     TResult Function(String email)? setFirstName,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) {
     if (setConfirmPassword != null) {
@@ -483,6 +504,7 @@ class _$_SetConfirmPassword implements _SetConfirmPassword {
     required TResult Function(_SetPassword value) setPassword,
     required TResult Function(_SetConfirmPassword value) setConfirmPassword,
     required TResult Function(_SetFirstName value) setFirstName,
+    required TResult Function(_SignUp value) signUp,
   }) {
     return setConfirmPassword(this);
   }
@@ -494,6 +516,7 @@ class _$_SetConfirmPassword implements _SetConfirmPassword {
     TResult? Function(_SetPassword value)? setPassword,
     TResult? Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult? Function(_SetFirstName value)? setFirstName,
+    TResult? Function(_SignUp value)? signUp,
   }) {
     return setConfirmPassword?.call(this);
   }
@@ -505,6 +528,7 @@ class _$_SetConfirmPassword implements _SetConfirmPassword {
     TResult Function(_SetPassword value)? setPassword,
     TResult Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult Function(_SetFirstName value)? setFirstName,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) {
     if (setConfirmPassword != null) {
@@ -591,6 +615,7 @@ class _$_SetFirstName implements _SetFirstName {
     required TResult Function(String email) setPassword,
     required TResult Function(String email) setConfirmPassword,
     required TResult Function(String email) setFirstName,
+    required TResult Function() signUp,
   }) {
     return setFirstName(email);
   }
@@ -602,6 +627,7 @@ class _$_SetFirstName implements _SetFirstName {
     TResult? Function(String email)? setPassword,
     TResult? Function(String email)? setConfirmPassword,
     TResult? Function(String email)? setFirstName,
+    TResult? Function()? signUp,
   }) {
     return setFirstName?.call(email);
   }
@@ -613,6 +639,7 @@ class _$_SetFirstName implements _SetFirstName {
     TResult Function(String email)? setPassword,
     TResult Function(String email)? setConfirmPassword,
     TResult Function(String email)? setFirstName,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) {
     if (setFirstName != null) {
@@ -628,6 +655,7 @@ class _$_SetFirstName implements _SetFirstName {
     required TResult Function(_SetPassword value) setPassword,
     required TResult Function(_SetConfirmPassword value) setConfirmPassword,
     required TResult Function(_SetFirstName value) setFirstName,
+    required TResult Function(_SignUp value) signUp,
   }) {
     return setFirstName(this);
   }
@@ -639,6 +667,7 @@ class _$_SetFirstName implements _SetFirstName {
     TResult? Function(_SetPassword value)? setPassword,
     TResult? Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult? Function(_SetFirstName value)? setFirstName,
+    TResult? Function(_SignUp value)? signUp,
   }) {
     return setFirstName?.call(this);
   }
@@ -650,6 +679,7 @@ class _$_SetFirstName implements _SetFirstName {
     TResult Function(_SetPassword value)? setPassword,
     TResult Function(_SetConfirmPassword value)? setConfirmPassword,
     TResult Function(_SetFirstName value)? setFirstName,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) {
     if (setFirstName != null) {
@@ -669,6 +699,124 @@ abstract class _SetFirstName implements SignUpEvent {
 }
 
 /// @nodoc
+abstract class _$$_SignUpCopyWith<$Res> {
+  factory _$$_SignUpCopyWith(_$_SignUp value, $Res Function(_$_SignUp) then) =
+      __$$_SignUpCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SignUpCopyWithImpl<$Res>
+    extends _$SignUpEventCopyWithImpl<$Res, _$_SignUp>
+    implements _$$_SignUpCopyWith<$Res> {
+  __$$_SignUpCopyWithImpl(_$_SignUp _value, $Res Function(_$_SignUp) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SignUp implements _SignUp {
+  const _$_SignUp();
+
+  @override
+  String toString() {
+    return 'SignUpEvent.signUp()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SignUp);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String password) setEmail,
+    required TResult Function(String email) setPassword,
+    required TResult Function(String email) setConfirmPassword,
+    required TResult Function(String email) setFirstName,
+    required TResult Function() signUp,
+  }) {
+    return signUp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String password)? setEmail,
+    TResult? Function(String email)? setPassword,
+    TResult? Function(String email)? setConfirmPassword,
+    TResult? Function(String email)? setFirstName,
+    TResult? Function()? signUp,
+  }) {
+    return signUp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String password)? setEmail,
+    TResult Function(String email)? setPassword,
+    TResult Function(String email)? setConfirmPassword,
+    TResult Function(String email)? setFirstName,
+    TResult Function()? signUp,
+    required TResult orElse(),
+  }) {
+    if (signUp != null) {
+      return signUp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetEmail value) setEmail,
+    required TResult Function(_SetPassword value) setPassword,
+    required TResult Function(_SetConfirmPassword value) setConfirmPassword,
+    required TResult Function(_SetFirstName value) setFirstName,
+    required TResult Function(_SignUp value) signUp,
+  }) {
+    return signUp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetEmail value)? setEmail,
+    TResult? Function(_SetPassword value)? setPassword,
+    TResult? Function(_SetConfirmPassword value)? setConfirmPassword,
+    TResult? Function(_SetFirstName value)? setFirstName,
+    TResult? Function(_SignUp value)? signUp,
+  }) {
+    return signUp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetEmail value)? setEmail,
+    TResult Function(_SetPassword value)? setPassword,
+    TResult Function(_SetConfirmPassword value)? setConfirmPassword,
+    TResult Function(_SetFirstName value)? setFirstName,
+    TResult Function(_SignUp value)? signUp,
+    required TResult orElse(),
+  }) {
+    if (signUp != null) {
+      return signUp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SignUp implements SignUpEvent {
+  const factory _SignUp() = _$_SignUp;
+}
+
+/// @nodoc
 mixin _$SignUpState {
   StateStatus? get status => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -676,6 +824,7 @@ mixin _$SignUpState {
   String? get confirmPassword => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   bool? get isValid => throw _privateConstructorUsedError;
+  String? get errorText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -694,7 +843,8 @@ abstract class $SignUpStateCopyWith<$Res> {
       String? password,
       String? confirmPassword,
       String? firstName,
-      bool? isValid});
+      bool? isValid,
+      String? errorText});
 }
 
 /// @nodoc
@@ -716,6 +866,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? confirmPassword = freezed,
     Object? firstName = freezed,
     Object? isValid = freezed,
+    Object? errorText = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -742,6 +893,10 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
               as bool?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -760,7 +915,8 @@ abstract class _$$_SignUpStateCopyWith<$Res>
       String? password,
       String? confirmPassword,
       String? firstName,
-      bool? isValid});
+      bool? isValid,
+      String? errorText});
 }
 
 /// @nodoc
@@ -780,6 +936,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
     Object? confirmPassword = freezed,
     Object? firstName = freezed,
     Object? isValid = freezed,
+    Object? errorText = freezed,
   }) {
     return _then(_$_SignUpState(
       status: freezed == status
@@ -806,6 +963,10 @@ class __$$_SignUpStateCopyWithImpl<$Res>
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
               as bool?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -819,7 +980,8 @@ class _$_SignUpState implements _SignUpState {
       this.password,
       this.confirmPassword,
       this.firstName,
-      this.isValid});
+      this.isValid,
+      this.errorText});
 
   @override
   final StateStatus? status;
@@ -833,10 +995,12 @@ class _$_SignUpState implements _SignUpState {
   final String? firstName;
   @override
   final bool? isValid;
+  @override
+  final String? errorText;
 
   @override
   String toString() {
-    return 'SignUpState(status: $status, email: $email, password: $password, confirmPassword: $confirmPassword, firstName: $firstName, isValid: $isValid)';
+    return 'SignUpState(status: $status, email: $email, password: $password, confirmPassword: $confirmPassword, firstName: $firstName, isValid: $isValid, errorText: $errorText)';
   }
 
   @override
@@ -852,12 +1016,14 @@ class _$_SignUpState implements _SignUpState {
                 other.confirmPassword == confirmPassword) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+            (identical(other.isValid, isValid) || other.isValid == isValid) &&
+            (identical(other.errorText, errorText) ||
+                other.errorText == errorText));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, status, email, password,
-      confirmPassword, firstName, isValid);
+      confirmPassword, firstName, isValid, errorText);
 
   @JsonKey(ignore: true)
   @override
@@ -873,7 +1039,8 @@ abstract class _SignUpState implements SignUpState {
       final String? password,
       final String? confirmPassword,
       final String? firstName,
-      final bool? isValid}) = _$_SignUpState;
+      final bool? isValid,
+      final String? errorText}) = _$_SignUpState;
 
   @override
   StateStatus? get status;
@@ -887,6 +1054,8 @@ abstract class _SignUpState implements SignUpState {
   String? get firstName;
   @override
   bool? get isValid;
+  @override
+  String? get errorText;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_tab2.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_tab3.dart';
@@ -80,7 +81,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpBloc, SignUpState>(
+    return BlocConsumer<SignUpBloc, SignUpState>(
+      listener: (context, state) {},
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
@@ -190,12 +192,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: const Text('Suivant'),
                           ),
                           onPressed: () {
-                            print(currentPage);
                             if (currentPage == 2) {
-                              print('****');
-                              GetIt.I<AppRouter>()
-                                  .push(const SignUpFinalRoute());
-                              context.read<SignUpBloc>().signUp();
+                              if (state.firstName == null ||
+                                  state.firstName!.isEmpty ||
+                                  state.isValid == false) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                        "Veuillez remplir tous les champs"),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              } else {
+                                print('****');
+                                GetIt.I<AppRouter>()
+                                    .push(const SignUpFinalRoute());
+                              }
                             } else {
                               setState(() {
                                 _progressController.animateToPage(

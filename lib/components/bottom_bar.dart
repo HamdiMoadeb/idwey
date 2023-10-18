@@ -10,6 +10,7 @@ class BottomReservationBar extends StatelessWidget {
   final String salePrice;
   final StateEvent stateEvent;
   final VoidCallback? onPressed;
+  final String? title;
   final int? nbNuit;
   const BottomReservationBar(
       {Key? key,
@@ -18,7 +19,8 @@ class BottomReservationBar extends StatelessWidget {
       this.perPerson = "",
       this.salePrice = "",
       this.onPressed,
-      this.nbNuit})
+      this.nbNuit,
+      this.title})
       : super(key: key);
 
   @override
@@ -82,7 +84,7 @@ class BottomReservationBar extends StatelessWidget {
                         onPressed: () {},
                       )
                     : CustomButton.primary(
-                        child: const Text("Verifier la disponibilité"),
+                        child: Text(title ?? "Verifier la disponibilité"),
                         onPressed: onPressed ?? () {},
                       ),
               )

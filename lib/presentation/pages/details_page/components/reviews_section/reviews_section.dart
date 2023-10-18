@@ -44,7 +44,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
               itemBuilder: (context, index) {
                 return const CardReview(
                   text:
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim. ",
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. ",
                   reviewer: 'Reviewer',
                   date: '4 months ago',
                 );
