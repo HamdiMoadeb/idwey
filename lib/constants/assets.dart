@@ -36,4 +36,5 @@ class Assets {
   static const String frame2 = "assets/final_sign_up.svg";
   static const String tinyHome = "assets/Tiny home.svg";
   static const String fidelity = "assets/gift.svg";
+  static const String reviews = "assets/reviews.svg";
 }

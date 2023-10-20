@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:heroicons/heroicons.dart';
+
+import '../../../../constants/assets.dart';
 
 class SettingsSection extends StatelessWidget {
   const SettingsSection({Key? key}) : super(key: key);
@@ -25,7 +29,7 @@ class SettingsSection extends StatelessWidget {
               HeroIcons.adjustmentsHorizontal,
               color: Colors.black,
             ),
-            title: Text("Mes reservations",
+            title: Text("Mes réservations",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
@@ -37,46 +41,13 @@ class SettingsSection extends StatelessWidget {
           const Divider(
             thickness: 1,
           ),
-          const ListTile(
-            leading: HeroIcon(
-              HeroIcons.gift,
-              color: Colors.black,
+          ListTile(
+            leading: SvgPicture.asset(
+              Assets.reviews,
+              height: 22.h,
+              width: 22.h,
             ),
-            title: Text("Mes points",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                )),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.black,
-            ),
-          ),
-          const Divider(
-            thickness: 1,
-          ),
-          const ListTile(
-            leading: HeroIcon(
-              HeroIcons.adjustmentsHorizontal,
-              color: Colors.black,
-            ),
-            title: Text("Gerer mes avis",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                )),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.black,
-            ),
-          ),
-          const Divider(
-            thickness: 1,
-          ),
-          const ListTile(
-            leading: HeroIcon(
-              HeroIcons.cog6Tooth,
-              color: Colors.black,
-            ),
-            title: Text("Configuration",
+            title: Text("Gérer mes avis",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
