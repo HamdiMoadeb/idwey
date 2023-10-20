@@ -242,7 +242,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             color: Colors.black,
                             fontSize: 12.sp)),
                   ),
-                  Padding(
+                  /*Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -315,7 +315,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                         fontWeight: FontWeight.w500))
                           ],
                         ),
-                      )),
+                      )),*/
                 ],
               ),
             ),
