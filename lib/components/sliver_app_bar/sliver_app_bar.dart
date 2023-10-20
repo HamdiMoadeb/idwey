@@ -45,7 +45,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
         //     ),
         //   ),
         // ),
-        Container(
+        /*Container(
           height: 40.h,
           width: 40.h,
           margin: const EdgeInsets.all(8),
@@ -62,7 +62,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
               color: Colors.white,
             ),
           ),
-        )
+        )*/
       ],
       leading: Container(
         margin: const EdgeInsets.all(8),
