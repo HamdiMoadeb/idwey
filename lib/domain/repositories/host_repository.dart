@@ -8,4 +8,6 @@ abstract class HostRepository {
       String checkIn, String checkOut, int adults, int children);
   Future<Either<Exception, Map<String, dynamic>>> confirmHostReservation(
       Map<String, dynamic> body);
+  Future<Either<Exception, List<Host>>> searchListHosts(int limit, int offset,
+      String start, String end, int adults, String address);
 }

@@ -29,4 +29,17 @@ class ProductRepositoryImpl implements ProductRepository {
       return Left(e);
     }
   }
+
+  @override
+  Future<Either<Exception, List<ProductDto>>> searchListProducts(int limit,
+      int offset, String start, String end, int adults, String address) async {
+    try {
+      final result = await dataSource.searchListProducts(
+          limit, offset, start, end, adults, address);
+
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
 }

@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/data/data_sources/data_sources.dart';
+import 'package:idwey/data/data_sources/location_api_data_source.dart';
 import 'package:idwey/data/data_sources/reservation_data_source.dart';
 import 'package:idwey/data/repositories_impl/activity_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/article_repository_impl.dart';
@@ -15,6 +16,7 @@ import 'package:idwey/domain/repositories/article_repository.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
 import 'package:idwey/domain/repositories/exeperience_repository.dart';
 import 'package:idwey/domain/repositories/host_repository.dart';
+import 'package:idwey/domain/repositories/location_repository.dart';
 import 'package:idwey/domain/repositories/product_repository.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 import 'package:idwey/domain/usecases/check_host_availability.dart';
@@ -31,9 +33,14 @@ import 'package:idwey/domain/usecases/get_list_events_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_experiences_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_hosts.dart';
 import 'package:idwey/domain/usecases/get_list_products_usecase.dart';
+import 'package:idwey/domain/usecases/get_locations_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
 import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
+import 'package:idwey/domain/usecases/search_activity_usecase.dart';
+import 'package:idwey/domain/usecases/search_events_usecase.dart';
+import 'package:idwey/domain/usecases/search_experience_usecase.dart';
+import 'package:idwey/domain/usecases/search_hosts_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
@@ -42,6 +49,8 @@ import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart'
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/utils/dio.dart';
+
+import '../data/repositories_impl/location_repository_impl.dart';
 
 Future<void> setup() async {
   // Initialize AppRouter
@@ -58,6 +67,7 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => GetHostUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => CheckHostAvailabilityUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => ConfirmReservationUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => SearchListHostsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton<EventApiDataSource>(
       () => EventApiDataSourceImpl(GetIt.I()));
   // Domain
@@ -81,6 +91,9 @@ Future<void> setup() async {
       () => ArticleRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListArticlesUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetArticleDetailsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => SearchListEventsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => SearchListActivityUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => SearchListExperienceUseCase(GetIt.I()));
 
   GetIt.I.registerLazySingleton<ProductApiDataSource>(
       () => ProductApiDataSourceImpl(GetIt.I()));
@@ -89,6 +102,14 @@ Future<void> setup() async {
       () => ProductRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListProductsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetProductDetailsUseCase(GetIt.I()));
+
+  /// locations
+
+  GetIt.I.registerLazySingleton<LocationApiDataSource>(
+      () => LocationApiDataSourceImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton<LocationRepository>(
+      () => LocationRepositoryImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetLocationsUseCase(GetIt.I()));
 
   /// auth
   GetIt.I.registerLazySingleton<AuthApiDataSource>(

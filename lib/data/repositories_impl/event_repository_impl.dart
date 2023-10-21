@@ -30,4 +30,17 @@ class EventRepositoryImpl implements EventRepository {
       return Left(e);
     }
   }
+
+  @override
+  Future<Either<Exception, List<Event>>> searchListEvents(int limit, int offset,
+      String start, String end, int adults, String address) async {
+    try {
+      final result = await dataSource.searchListEvents(
+          limit, offset, start, end, adults, address);
+
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
 }

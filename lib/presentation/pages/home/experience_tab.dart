@@ -25,7 +25,6 @@ class _ExperienceScreenState extends State<ExperienceScreen>
   @override
   void initState() {
     super.initState();
-
     widget.scrollController.addListener(_onScroll);
     context.read<HomeBloc>().add(const GetListExperiences(false));
   }
@@ -43,7 +42,11 @@ class _ExperienceScreenState extends State<ExperienceScreen>
     final maxScroll = widget.scrollController.position.maxScrollExtent.h;
     final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
-      context.read<HomeBloc>().add(const GetListExperiences(true));
+      if (context.read<HomeBloc>().state.isSearch == true) {
+        context.read<HomeBloc>().add(const GetSearchListExperiences(true));
+      } else {
+        context.read<HomeBloc>().add(const GetListExperiences(true));
+      }
     }
   }
 
@@ -59,6 +62,12 @@ class _ExperienceScreenState extends State<ExperienceScreen>
           );
         } else if (state.statusExperiences == StateStatus.error &&
             state.atTheEndOfThePageExperiences == false) {
+          return const Center(child: Text("Pas des experiences"));
+        } else if (state.statusExperiences == StateStatus.error &&
+            state.atTheEndOfThePageExperiences == false) {
+          return const Center(child: Text("Pas des experiences"));
+        } else if (state.statusExperiences == StateStatus.success &&
+            state.listExperiences?.isEmpty == true) {
           return const Center(child: Text("Pas des experiences"));
         } else if (state.statusExperiences == StateStatus.success ||
             state.statusExperiences == StateStatus.loadingMore &&

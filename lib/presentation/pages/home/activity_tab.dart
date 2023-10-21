@@ -42,7 +42,11 @@ class _ActivityScreenState extends State<ActivityScreen>
     final maxScroll = widget.scrollController.position.maxScrollExtent.h;
     final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
-      context.read<HomeBloc>().add(const GetListActivities(true));
+      if (context.read<HomeBloc>().state.isSearch == true) {
+        context.read<HomeBloc>().add(const GetSearchListActivities(true));
+      } else {
+        context.read<HomeBloc>().add(const GetListActivities(true));
+      }
     }
   }
 
@@ -58,6 +62,12 @@ class _ActivityScreenState extends State<ActivityScreen>
           );
         } else if (state.statusActivities == StateStatus.error &&
             state.atTheEndOfThePageActivities == false) {
+          return const Center(child: Text("Pas des activites"));
+        } else if (state.statusActivities == StateStatus.error &&
+            state.atTheEndOfThePageActivities == true) {
+          return const Center(child: Text("Pas des activites"));
+        } else if (state.statusActivities == StateStatus.success &&
+            state.listActivities!.isEmpty) {
           return const Center(child: Text("Pas des activites"));
         } else if (state.statusActivities == StateStatus.success ||
             state.statusActivities == StateStatus.loadingMore &&

@@ -29,4 +29,17 @@ class ExperienceRepositoryImpl implements ExperienceRepository {
       return Left(e);
     }
   }
+
+  @override
+  Future<Either<Exception, List<Experience>>> searchListExperiences(int limit,
+      int offset, String start, String end, int adults, String address) async {
+    try {
+      final result = await dataSource.searchListExperiences(
+          limit, offset, start, end, adults, address);
+
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
 }

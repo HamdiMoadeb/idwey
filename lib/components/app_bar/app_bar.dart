@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
+import 'package:idwey/presentation/blocs/blocs.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -121,7 +123,11 @@ class SearchBox extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              GetIt.I<AppRouter>().push(const SearchRoute());
+              print("context.read<HomeBloc>().state.selectedTab");
+              print(context.read<HomeBloc>().state.selectedTab);
+              GetIt.I<AppRouter>().push(SearchRoute(
+                  selectedTab:
+                      context.read<HomeBloc>().state.selectedTab ?? 0));
             },
             child: Container(
               height: 55.h,

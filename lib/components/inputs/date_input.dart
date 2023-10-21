@@ -11,7 +11,11 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'date_container.dart';
 
 class CustomDateInput extends StatefulWidget {
-  const CustomDateInput({Key? key}) : super(key: key);
+  final bool? showDatesContainers;
+  final Function(DateRangePickerSelectionChangedArgs) onDateRangeChanged;
+  const CustomDateInput(
+      {Key? key, this.showDatesContainers, required this.onDateRangeChanged})
+      : super(key: key);
 
   @override
   State<CustomDateInput> createState() => _CustomDateInputState();
@@ -77,31 +81,36 @@ class _CustomDateInputState extends State<CustomDateInput> {
             child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: dateTimeRangePicker())),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomDateContainer(
-                borderColor: dateRange == '' ? Colors.grey[300]! : Colors.black,
-                icon: const HeroIcon(
-                  HeroIcons.arrowRightOnRectangle,
-                  color: Colors.black,
+        Visibility(
+          visible: widget.showDatesContainers == true && dateRange != '',
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomDateContainer(
+                  borderColor:
+                      dateRange == '' ? Colors.grey[300]! : Colors.black,
+                  icon: const HeroIcon(
+                    HeroIcons.arrowRightOnRectangle,
+                    color: Colors.black,
+                  ),
+                  hintText: "Arrivée",
+                  text: DateFormat('dd/MM/yyyy').format(dateTime),
                 ),
-                hintText: "Arrivée",
-                text: DateFormat('dd/MM/yyyy').format(dateTime),
-              ),
-              const SizedBox(width: 10),
-              CustomDateContainer(
-                borderColor: dateRange == '' ? Colors.grey[300]! : Colors.black,
-                icon: const HeroIcon(
-                  HeroIcons.arrowLeftOnRectangle,
-                  color: Colors.black,
+                const SizedBox(width: 10),
+                CustomDateContainer(
+                  borderColor:
+                      dateRange == '' ? Colors.grey[300]! : Colors.black,
+                  icon: const HeroIcon(
+                    HeroIcons.arrowLeftOnRectangle,
+                    color: Colors.black,
+                  ),
+                  hintText: "Départ",
+                  text: DateFormat('dd/MM/yyyy').format(dateTime2),
                 ),
-                hintText: "Départ",
-                text: DateFormat('dd/MM/yyyy').format(dateTime2),
-              ),
-            ],
+              ],
+            ),
           ),
         )
       ],
@@ -163,13 +172,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
                 .inDays
                 .toString();
             print('nbuits $nbNuits');
-            context.read<ReservationBloc>().add(
-                  ReservationEvent.onSelectDates(
-                    DateFormat('yyyy-MM-dd').format(dateTime),
-                    DateFormat('yyyy-MM-dd').format(dateTime2),
-                    nbNuits,
-                  ),
-                );
+            widget.onDateRangeChanged(v);
             start = DateFormat('dd').format(dateTime);
             end = DateFormat('dd').format(dateTime2);
             dateRange =

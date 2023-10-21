@@ -36,7 +36,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
   @override
   void initState() {
     super.initState();
-
+    context.read<HomeBloc>().add(const HomeEvent.getListLocations());
     _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
       setState(() {
@@ -100,6 +100,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           }
                           selectedIndex = 0;
                           _tabController.index = 0;
+                          context
+                              .read<HomeBloc>()
+                              .add(const HomeEvent.setSelectedTab(0));
                         });
                       },
                       isSelected: selectedIndex == 0,
@@ -118,6 +121,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           }
                           selectedIndex = 1;
                           _tabController.index = 1;
+                          context
+                              .read<HomeBloc>()
+                              .add(const HomeEvent.setSelectedTab(1));
                         });
                       },
                       isSelected: selectedIndex == 1,
@@ -136,6 +142,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           }
                           selectedIndex = 2;
                           _tabController.index = 2;
+                          context
+                              .read<HomeBloc>()
+                              .add(const HomeEvent.setSelectedTab(2));
                         });
                       },
                       isSelected: selectedIndex == 2,
@@ -155,6 +164,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           }
                           selectedIndex = 3;
                           _tabController.index = 3;
+                          context
+                              .read<HomeBloc>()
+                              .add(const HomeEvent.setSelectedTab(3));
                         });
                       },
                       isSelected: selectedIndex == 3,
