@@ -43,7 +43,11 @@ class _EventScreenState extends State<EventScreen>
     final maxScroll = widget.scrollController.position.maxScrollExtent.h;
     final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
-      context.read<HomeBloc>().add(const GetListEvent(true));
+      if (context.read<HomeBloc>().state.isSearch == true) {
+        context.read<HomeBloc>().add(const GetSearchListEvent(true));
+      } else {
+        context.read<HomeBloc>().add(const GetListEvent(true));
+      }
     }
   }
 
@@ -59,6 +63,12 @@ class _EventScreenState extends State<EventScreen>
           );
         } else if (state.statusEvent == StateStatus.error &&
             state.atTheEndOfThePageEvents == false) {
+          return const Center(child: Text("Pas des evénements"));
+        } else if (state.statusEvent == StateStatus.error &&
+            state.atTheEndOfThePageEvents == false) {
+          return const Center(child: Text("Pas des evénements"));
+        } else if (state.statusEvent == StateStatus.success &&
+            state.listEvents?.isEmpty == true) {
           return const Center(child: Text("Pas des evénements"));
         } else if (state.statusEvent == StateStatus.success ||
             state.statusEvent == StateStatus.loadingMore &&

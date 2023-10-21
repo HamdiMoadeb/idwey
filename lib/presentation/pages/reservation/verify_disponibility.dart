@@ -292,7 +292,22 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                         const Divider(
                           thickness: 1,
                         ),
-                        const CustomDateInput(),
+                        CustomDateInput(
+                          onDateRangeChanged: (v) {
+                            context.read<ReservationBloc>().add(
+                                  ReservationEvent.onSelectDates(
+                                    DateFormat('yyyy-MM-dd')
+                                        .format(v.value!.startDate!),
+                                    DateFormat('yyyy-MM-dd')
+                                        .format(v.value!.endDate!),
+                                    v.value!.endDate!
+                                        .difference(v.value!.startDate!)
+                                        .inDays
+                                        .toString(),
+                                  ),
+                                );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -320,6 +335,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                     thickness: 1,
                   ),
                   CustomHeader(
+                    index: 1,
                     title: 'Adulte',
                     subtitle: widget.subtitle ?? "",
                     onchange: (i) {
@@ -331,6 +347,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                   Visibility(
                     visible: widget.typeReservation == TypeReservation.activity,
                     child: CustomHeader(
+                      index: 1,
                       title: 'Enfant',
                       subtitle: '13 ans ou plus',
                       onchange: (i) {

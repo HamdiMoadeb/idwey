@@ -54,4 +54,18 @@ class HostRepositoryImpl implements HostRepository {
     //   return Left(e);
     // }
   }
+
+  @override
+  Future<Either<Exception, List<Host>>> searchListHosts(int limit, int offset,
+      String start, String end, int adults, String address) async {
+    // try {
+    final result = await dataSource.searchListHosts(
+        limit, offset, start, end, adults, address);
+    print("result");
+    print(result);
+    return Right(result);
+    // } on Exception catch (e) {
+    //   return Left(e);
+    // }
+  }
 }

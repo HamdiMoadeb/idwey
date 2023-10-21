@@ -8,6 +8,8 @@ import '../models/models.dart';
 abstract class ProductApiDataSource {
   Future<List<ProductDto>> getListProducts(int limit, int offset);
   Future<ProductDetailsDto> getProduct(int id);
+  Future<List<ProductDto>> searchListProducts(int limit, int offset,
+      String start, String end, int adults, String address);
 }
 
 class ProductApiDataSourceImpl implements ProductApiDataSource {
@@ -41,5 +43,23 @@ class ProductApiDataSourceImpl implements ProductApiDataSource {
     } catch (e) {
       throw Exception(e);
     }
+  }
+
+  @override
+  Future<List<ProductDto>> searchListProducts(int limit, int offset,
+      String start, String end, int adults, String address) async {
+    List<ProductDto> listOfHosts = [];
+    print(
+        "https://idwey.tn/api/product?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+    final response = await dio.get(
+        "https://idwey.tn/api/product?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+
+    print("response.data");
+    print(response.data);
+    response.data['rows'].forEach((data) {
+      listOfHosts.add(ProductDto.fromJson(data));
+    });
+
+    return listOfHosts;
   }
 }

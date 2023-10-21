@@ -139,6 +139,7 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomHeader(
+                                index: 1,
                                 onchange: (i) {
                                   print(i);
                                   context

@@ -141,9 +141,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SearchRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SearchScreen(),
+        child: SearchScreen(
+          key: args.key,
+          selectedTab: args.selectedTab,
+        ),
       );
     },
     SignInRoute.name: (routeData) {
@@ -653,16 +657,39 @@ class ProductsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SearchScreen]
-class SearchRoute extends PageRouteInfo<void> {
-  const SearchRoute({List<PageRouteInfo>? children})
-      : super(
+class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
+  SearchRoute({
+    Key? key,
+    required int selectedTab,
+    List<PageRouteInfo>? children,
+  }) : super(
           SearchRoute.name,
+          args: SearchRouteArgs(
+            key: key,
+            selectedTab: selectedTab,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SearchRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SearchRouteArgs> page = PageInfo<SearchRouteArgs>(name);
+}
+
+class SearchRouteArgs {
+  const SearchRouteArgs({
+    this.key,
+    required this.selectedTab,
+  });
+
+  final Key? key;
+
+  final int selectedTab;
+
+  @override
+  String toString() {
+    return 'SearchRouteArgs{key: $key, selectedTab: $selectedTab}';
+  }
 }
 
 /// generated route for

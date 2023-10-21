@@ -44,7 +44,11 @@ class _HomeScreenState extends State<HomeScreen>
     final maxScroll = widget.scrollController.position.maxScrollExtent.h;
     final currentScroll = widget.scrollController.position.pixels.h;
     if (currentScroll == maxScroll) {
-      context.read<HomeBloc>().add(const GetListHost(true));
+      if (context.read<HomeBloc>().state.isSearch == true) {
+        context.read<HomeBloc>().add(const GetSearchListHost(true));
+      } else {
+        context.read<HomeBloc>().add(const GetListHost(true));
+      }
     }
   }
 
@@ -59,6 +63,12 @@ class _HomeScreenState extends State<HomeScreen>
           );
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfThePageHosts == false) {
+          return const Center(child: Text("Pas des hébergements"));
+        } else if (state.status == StateStatus.error &&
+            state.atTheEndOfTheSearchPageHosts == false) {
+          return const Center(child: Text("Pas des hébergements"));
+        } else if (state.status == StateStatus.success &&
+            state.listHosts?.isEmpty == true) {
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.success ||
             state.status == StateStatus.loadingMore &&

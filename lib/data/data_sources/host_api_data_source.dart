@@ -5,6 +5,14 @@ import 'package:idwey/data/models/host_dto.dart';
 
 abstract class HostApiDataSource {
   Future<List<Host>> getListHosts(int limit, int offset);
+  Future<List<Host>> searchListHosts(
+    int limit,
+    int offset,
+    String start,
+    String end,
+    int adults,
+    String address,
+  );
   Future<HostDetails> getHost(int id);
   Future<dynamic> checkHostAvailability(String type, int id, String checkIn,
       String checkOut, int adults, int children);
@@ -83,5 +91,23 @@ class HostApiDataSourceImpl implements HostApiDataSource {
     // } catch (e) {
     //   throw Exception(e);
     // }
+  }
+
+  @override
+  Future<List<Host>> searchListHosts(int limit, int offset, String start,
+      String end, int adults, String address) async {
+    List<Host> listOfHosts = [];
+    print(
+        "https://idwey.tn/api/hotel?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+    final response = await dio.get(
+        "https://idwey.tn/api/hotel?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+
+    print("response.data");
+    print(response.data);
+    response.data['rows'].forEach((data) {
+      listOfHosts.add(Host.fromJson(data));
+    });
+
+    return listOfHosts;
   }
 }

@@ -5,6 +5,8 @@ import '../models/models.dart';
 abstract class ExperienceApiDataSource {
   Future<List<Experience>> getListExperiences(int limit, int offset);
   Future<ExperienceDetailsDto> getExperience(int id);
+  Future<List<Experience>> searchListExperiences(int limit, int offset,
+      String start, String end, int adults, String address);
 }
 
 class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
@@ -37,5 +39,23 @@ class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
     } catch (e) {
       throw Exception(e);
     }
+  }
+
+  @override
+  Future<List<Experience>> searchListExperiences(int limit, int offset,
+      String start, String end, int adults, String address) async {
+    List<Experience> listOfExperiences = [];
+    print(
+        "https://idwey.tn/api/experience?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+    final response = await dio.get(
+        "https://idwey.tn/api/experience?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+
+    print("response.data");
+    print(response.data);
+    response.data['rows'].forEach((data) {
+      listOfExperiences.add(Experience.fromJson(data));
+    });
+
+    return listOfExperiences;
   }
 }

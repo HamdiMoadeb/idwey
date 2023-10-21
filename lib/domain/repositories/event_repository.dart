@@ -5,4 +5,6 @@ import 'package:idwey/data/models/models.dart';
 abstract class EventRepository {
   Future<Either<Exception, List<Event>>> getListEvents(int limit, int offset);
   Future<Either<Exception, EventDetailsDto>> getEvent(int id);
+  Future<Either<Exception, List<Event>>> searchListEvents(int limit, int offset,
+      String start, String end, int adults, String address);
 }

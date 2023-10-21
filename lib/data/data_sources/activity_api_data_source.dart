@@ -5,6 +5,8 @@ import '../models/models.dart';
 abstract class ActivityApiDataSource {
   Future<List<Activity>> getListActivities(int limit, int offset);
   Future<ActivityDetailsDto> getActivity(int id);
+  Future<List<Activity>> searchListActivities(int limit, int offset,
+      String start, String end, int adults, String address);
 }
 
 class ActivityApiDataSourceImpl implements ActivityApiDataSource {
@@ -39,5 +41,23 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
     } catch (e) {
       throw Exception(e);
     }
+  }
+
+  @override
+  Future<List<Activity>> searchListActivities(int limit, int offset,
+      String start, String end, int adults, String address) async {
+    List<Activity> listOfActivities = [];
+    print(
+        "https://idwey.tn/api/activity?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+    final response = await dio.get(
+        "https://idwey.tn/api/activity?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+
+    print("response.data");
+    print(response.data);
+    response.data['rows'].forEach((data) {
+      listOfActivities.add(Activity.fromJson(data));
+    });
+
+    return listOfActivities;
   }
 }

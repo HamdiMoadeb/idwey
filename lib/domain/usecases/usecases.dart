@@ -12,3 +12,7 @@ export 'login_usecase.dart';
 export 'check_host_availability.dart';
 export 'confirm_reservation_usecase.dart';
 export 'do_checkout_usecase.dart';
+export 'search_hosts_usecase.dart';
+export 'search_events_usecase.dart';
+export 'search_activity_usecase.dart';
+export 'search_experience_usecase.dart';

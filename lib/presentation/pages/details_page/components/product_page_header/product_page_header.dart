@@ -3,17 +3,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 /// custom header for product page
-///
-class CustomHeader extends StatelessWidget {
+
+class CustomHeader extends StatefulWidget {
   final String title;
   final String subtitle;
   final Function(int i) onchange;
+  final int index;
   const CustomHeader(
       {Key? key,
       required this.title,
       required this.subtitle,
-      required this.onchange})
+      required this.onchange,
+      required this.index})
       : super(key: key);
+
+  @override
+  State<CustomHeader> createState() => _CustomHeaderState();
+}
+
+class _CustomHeaderState extends State<CustomHeader> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +42,7 @@ class CustomHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    widget.title,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 20.sp,
@@ -40,7 +53,7 @@ class CustomHeader extends StatelessWidget {
                     height: 4.h,
                   ),
                   Text(
-                    subtitle,
+                    widget.subtitle,
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           color: Colors.grey,
                           fontSize: 16.sp,
@@ -54,8 +67,8 @@ class CustomHeader extends StatelessWidget {
             width: 16.w,
           ),
           CustomCounter(
-            initialValue: 1,
-            onChanged: onchange ??
+            initialValue: widget.index,
+            onChanged: widget.onchange ??
                 (i) {
                   print(i);
                 },
