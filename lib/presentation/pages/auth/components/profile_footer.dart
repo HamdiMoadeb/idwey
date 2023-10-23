@@ -58,7 +58,8 @@ class ProfileFooter extends StatelessWidget {
                             .read<AppBloc>()
                             .add(const AppEvent.setLoggedIn());
 
-                        GetIt.I<AppRouter>().pop();
+                        //GetIt.I<AppRouter>().pop();
+                        GetIt.I<AppRouter>().navigate(const MainHomeRoute());
                       });
                     }),
                 Text(
