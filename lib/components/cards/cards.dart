@@ -222,22 +222,6 @@ class _CustomCardState extends State<CustomCard> {
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            widget.isFavorite = !widget.isFavorite!;
-                          });
-
-                          //widget.onFavoriteTap?.call(widget.isFavorite!);
-                        },
-                        child: SvgPicture.asset(
-                          widget.isFavorite == true
-                              ? Assets.heartIconFilled
-                              : Assets.heartIcon,
-                          height: 30.h,
-                          width: 30.w,
-                        ),
-                      ),
                     ],
                   ),
                   widget.adress == "" || widget.adress == null

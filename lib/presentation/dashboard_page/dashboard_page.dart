@@ -129,14 +129,14 @@ class DashboardScreen extends StatelessWidget {
                                             .createShader(bounds);
                                       },
                                       child: SvgPicture.asset(
-                                        Assets.assurance,
+                                        Assets.fidelity,
                                         height: 20.h,
                                         width: 20.h,
                                       ),
                                     ),
                                     SizedBox(height: 4.h),
                                     const Text(
-                                      "Assurance",
+                                      "Mes points",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500,
@@ -152,14 +152,14 @@ class DashboardScreen extends StatelessWidget {
                                   children: [
                                     SizedBox(height: 4.h),
                                     SvgPicture.asset(
-                                      Assets.assurance,
+                                      Assets.fidelity,
                                       height: 20.h,
                                       width: 20.h,
                                       color: Colors.black,
                                     ),
                                     SizedBox(height: 4.h),
                                     const Text(
-                                      "Assurance",
+                                      "Mes points",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10,

@@ -135,11 +135,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       keyboardType: TextInputType.emailAddress,
                       enabled: true,
                       hintText: "Email",
-                      errorText: emailController.text.isEmpty
-                          ? "Email is required"
-                          : FormsUtils().isEmailValid(emailController.text)
-                              ? null
-                              : "Email invalide",
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
                     height: 16.h,
@@ -153,13 +148,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       focusNode: passwordFocusNode,
                       keyboardType: TextInputType.visiblePassword,
                       enabled: true,
-                      hintText: "Password",
-                      errorText: passwordController.text.isEmpty
-                          ? "Password is required"
-                          : FormsUtils()
-                                  .isPasswordValid(passwordController.text)
-                              ? null
-                              : "Password too short (min 6)",
+                      hintText: "Mot de passe",
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
                     height: 36.h,
@@ -242,7 +231,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             color: Colors.black,
                             fontSize: 12.sp)),
                   ),
-                  Padding(
+                  /*Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -315,7 +304,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                         fontWeight: FontWeight.w500))
                           ],
                         ),
-                      )),
+                      )),*/
                 ],
               ),
             ),

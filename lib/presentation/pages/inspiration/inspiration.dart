@@ -57,7 +57,7 @@ class _InspirationScreenState extends State<InspirationScreen>
         title: Padding(
           padding: EdgeInsets.only(top: 16.h),
           child: Text(
-            "inspirations",
+            "Inspirations",
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
