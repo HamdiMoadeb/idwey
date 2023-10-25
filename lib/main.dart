@@ -6,6 +6,7 @@ import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_blo
 import 'package:idwey/di/di_locator.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
+import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
@@ -76,6 +77,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (BuildContext context) =>
                   GetIt.I<ConfirmReservationBloc>()),
+          BlocProvider(
+              create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
         ],
         child: ScreenUtilInit(
             designSize: const Size(375, 812),

@@ -11,7 +11,6 @@ part of 'app_router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
   // ignore: unused_element
-  _$AppRouter({navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -45,6 +44,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const AuthScreen(),
+      );
+    },
+    BookingBoardRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(child: const BookingBoardScreen()),
       );
     },
     ConfirmReservationRoute.name: (routeData) {
@@ -310,6 +315,20 @@ class AuthRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AuthRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [BookingBoardScreen]
+class BookingBoardRoute extends PageRouteInfo<void> {
+  const BookingBoardRoute({List<PageRouteInfo>? children})
+      : super(
+          BookingBoardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BookingBoardRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
