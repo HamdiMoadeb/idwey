@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:idwey/app_router/app_router.dart';
 
 import '../../../../constants/assets.dart';
 
@@ -24,16 +26,19 @@ class SettingsSection extends StatelessWidget {
                   ),
             ),
           ),
-          const ListTile(
-            leading: HeroIcon(
+          ListTile(
+            onTap: () {
+              GetIt.I<AppRouter>().push(const BookingBoardRoute());
+            },
+            leading: const HeroIcon(
               HeroIcons.adjustmentsHorizontal,
               color: Colors.black,
             ),
-            title: Text("Mes réservations",
+            title: const Text("Mes réservations",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            trailing: Icon(
+            trailing: const Icon(
               Icons.arrow_forward_ios,
               color: Colors.black,
             ),
@@ -47,11 +52,11 @@ class SettingsSection extends StatelessWidget {
               height: 22.h,
               width: 22.h,
             ),
-            title: Text("Gérer mes avis",
+            title: const Text("Gérer mes avis",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            trailing: Icon(
+            trailing: const Icon(
               Icons.arrow_forward_ios,
               color: Colors.black,
             ),

@@ -6,6 +6,7 @@ import 'package:idwey/presentation/dashboard_page/dashboard_page.dart';
 import 'package:idwey/presentation/pages/assurance/assurance_page.dart';
 import 'package:idwey/presentation/pages/auth/auth_page.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_final_screen.dart';
+import 'package:idwey/presentation/pages/booking_board_screen/booking_board_screen.dart';
 import 'package:idwey/presentation/pages/details_page/activity_details_page.dart';
 import 'package:idwey/presentation/pages/details_page/article_details_page.dart';
 import 'package:idwey/presentation/pages/details_page/event_details_page.dart';
@@ -58,5 +59,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: SignUpFinalRoute.page),
     AutoRoute(page: VerifyDisponibilityRoute.page),
     AutoRoute(page: ConfirmReservationRoute.page),
+    AutoRoute(page: BookingBoardRoute.page),
   ];
 }

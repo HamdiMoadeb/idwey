@@ -16,9 +16,9 @@ class CustomAppBar extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      flexibleSpace: Column(
+      flexibleSpace: const Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: const [
+        children: [
           // const Padding(
           //   padding: EdgeInsets.all(8.0),
           //   child: TextField(

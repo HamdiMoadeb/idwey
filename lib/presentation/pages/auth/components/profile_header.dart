@@ -4,16 +4,18 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({Key? key}) : super(key: key);
+  final String? subtitle;
+  final VoidCallback? callback;
+  const ProfileHeader({Key? key, this.subtitle, this.callback})
+      : super(key: key);
 
   Future<String> getNameFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs!.getString('token');
     if (token != null) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-      return decodedToken['first_name'] +" "+ decodedToken['last_name'];
-    }
-    else {
+      return decodedToken['first_name'] + " " + decodedToken['last_name'];
+    } else {
       return "Nom & Prénom";
     }
   }
@@ -24,8 +26,7 @@ class ProfileHeader extends StatelessWidget {
     if (token != null) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       return decodedToken['image_url'];
-    }
-    else {
+    } else {
       return "";
     }
   }
@@ -39,15 +40,13 @@ class ProfileHeader extends StatelessWidget {
           return FutureBuilder<String>(
             future: getImageFromPrefs(),
             builder: (context, imageSnapshot) {
-              final userName = nameSnapshot.data!;
-              final imageUrl = imageSnapshot.data!;
+              final userName = nameSnapshot.data ?? "";
+              final imageUrl = imageSnapshot.data ?? "";
 
               return Row(
                 children: [
                   CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage(imageUrl)
-                  ),
+                      radius: 30, backgroundImage: NetworkImage(imageUrl)),
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,9 +55,10 @@ class ProfileHeader extends StatelessWidget {
                         userName,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text('Montre le profil',
+                      Text(subtitle ?? 'Montre le profil',
                           style: TextStyle(
-                              color: primary, decoration: TextDecoration.underline)),
+                              color: primary,
+                              decoration: TextDecoration.underline)),
                     ],
                   )
                 ],

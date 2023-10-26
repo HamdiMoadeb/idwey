@@ -24,6 +24,7 @@ import 'package:idwey/domain/usecases/confirm_reservation_usecase.dart';
 import 'package:idwey/domain/usecases/do_checkout_usecase.dart';
 import 'package:idwey/domain/usecases/get_activity_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_article_details_usecase.dart';
+import 'package:idwey/domain/usecases/get_booking_list_usecase.dart';
 import 'package:idwey/domain/usecases/get_event_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_experience_details_dto.dart';
 import 'package:idwey/domain/usecases/get_host_details_usecase.dart';
@@ -43,6 +44,7 @@ import 'package:idwey/domain/usecases/search_experience_usecase.dart';
 import 'package:idwey/domain/usecases/search_hosts_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
+import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
@@ -124,7 +126,7 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton<ReservationRepository>(
       () => ReservationRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => DoCheckoutUseCase(GetIt.I()));
-
+  GetIt.I.registerLazySingleton(() => GetBookingListUseCase(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(
       () => ExperienceRepositoryImpl(GetIt.I()));
@@ -145,4 +147,5 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => AppBloc());
   GetIt.I.registerLazySingleton(() => ReservationBloc());
   GetIt.I.registerLazySingleton(() => ConfirmReservationBloc());
+  GetIt.I.registerLazySingleton(() => BookingPageBloc());
 }
