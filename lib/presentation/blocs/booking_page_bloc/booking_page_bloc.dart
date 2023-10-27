@@ -13,9 +13,6 @@ part 'booking_page_bloc.freezed.dart';
 class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
   BookingPageBloc() : super(BookingPageState.initial()) {
     on<_GetBookingList>(getBookingList);
-    on<_GetListWaitingBookingList>(_getWaitingBookingList);
-    on<_GetListCanceledBookingList>(_getCanceledBookingList);
-    on<_GetLisAcceptedBookingList>(_getAcceptedBookingList);
   }
 
   void getBookingList(
@@ -36,6 +33,29 @@ class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
             status: StateStatus.success,
             bookingList: success,
           ));
+          final List<BookingDto> canceledBookingList = [];
+          final List<BookingDto> acceptedBookingList = [];
+          final List<BookingDto> waitingBookingList = [];
+          state.bookingList?.forEach((element) {
+            if (element.status == 'cancelled') {
+              canceledBookingList.add(element);
+            }
+          });
+          state.bookingList?.forEach((element) {
+            if (element.status == 'accepted') {
+              acceptedBookingList.add(element);
+            }
+          });
+          state.bookingList?.forEach((element) {
+            if (element.status == 'waiting') {
+              waitingBookingList.add(element);
+            }
+          });
+          emit(state.copyWith(
+            canceledBookingList: canceledBookingList,
+            confirmedBookingList: acceptedBookingList,
+            waitingBookingList: waitingBookingList,
+          ));
         } else {
           emit(state.copyWith(
             status: StateStatus.error,
@@ -45,44 +65,5 @@ class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
     } catch (e) {
       print(e);
     }
-  }
-
-  /// get canceled booking list from booking liste
-  /// filter from state.booking list where status is canceled
-
-  void _getCanceledBookingList(
-      _GetListCanceledBookingList event, Emitter<BookingPageState> emit) {
-    final List<BookingDto> canceledBookingList = state.bookingList!
-        .where((element) => element.status == 'canceled')
-        .toList();
-    emit(state.copyWith(
-      canceledBookingList: canceledBookingList,
-    ));
-  }
-
-  /// get waiting booking list from booking liste
-  /// filter from state.booking list where status is waiting
-
-  void _getWaitingBookingList(
-      _GetListWaitingBookingList event, Emitter<BookingPageState> emit) {
-    final List<BookingDto> waitingBookingList = state.bookingList!
-        .where((element) => element.status == 'waiting')
-        .toList();
-    emit(state.copyWith(
-      waitingBookingList: waitingBookingList,
-    ));
-  }
-
-  /// get accepted booking list from booking liste
-  /// filter from state.booking list where status is accepted
-
-  void _getAcceptedBookingList(
-      _GetLisAcceptedBookingList event, Emitter<BookingPageState> emit) {
-    final List<BookingDto> acceptedBookingList = state.bookingList!
-        .where((element) => element.status == 'accepted')
-        .toList();
-    emit(state.copyWith(
-      confirmedBookingList: acceptedBookingList,
-    ));
   }
 }
