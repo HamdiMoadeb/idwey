@@ -2,7 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
+import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
@@ -173,35 +176,7 @@ class _BoardPageState extends State<BoardPage> {
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
                               return _buildRoomItem(
-                                state.bookingList?[index].pervUrl ?? "",
-                                state.bookingList?[index].title ?? "",
-                                state.bookingList?[index].address ?? "",
-                                DateFormat("dd/MM/yyyy").format(
-                                    state.bookingList?[index].startDate ??
-                                        DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(
-                                    state.bookingList?[index].startDate ??
-                                        DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(
-                                    state.bookingList?[index].endDate ??
-                                        DateTime.now()),
-                                state.bookingList?[index].endDate
-                                        ?.difference(state.bookingList?[index]
-                                                .startDate ??
-                                            DateTime.now())
-                                        .inDays
-                                        .toString() ??
-                                    "",
-                                state.bookingList?[index].totalGuests
-                                        .toString() ??
-                                    "",
-                                double.parse(state.bookingList?[index].total ??
-                                            "0")
-                                        .toInt()
-                                        .toString() ??
-                                    "",
-                                state.bookingList?[index].objectModel ?? "",
-                                "",
+                                bookingDto: state.bookingList?[index],
                               );
                             },
                             separatorBuilder: (context, index) {
@@ -220,38 +195,7 @@ class _BoardPageState extends State<BoardPage> {
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
                               return _buildRoomItem(
-                                state.waitingBookingList?[index].pervUrl ?? "",
-                                state.waitingBookingList?[index].title ?? "",
-                                state.waitingBookingList?[index].address ?? "",
-                                DateFormat("dd/MM/yyyy").format(state
-                                        .waitingBookingList?[index].startDate ??
-                                    DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(state
-                                        .waitingBookingList?[index].startDate ??
-                                    DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(
-                                    state.waitingBookingList?[index].endDate ??
-                                        DateTime.now()),
-                                state.waitingBookingList?[index].endDate
-                                        ?.difference(state
-                                                .waitingBookingList?[index]
-                                                .startDate ??
-                                            DateTime.now())
-                                        .inDays
-                                        .toString() ??
-                                    "",
-                                state.waitingBookingList?[index].totalGuests
-                                        .toString() ??
-                                    "",
-                                double.parse(state.waitingBookingList?[index]
-                                                .total ??
-                                            "0")
-                                        .toInt()
-                                        .toString() ??
-                                    "",
-                                state.waitingBookingList?[index].objectModel ??
-                                    "",
-                                "",
+                                bookingDto: state.waitingBookingList?[index],
                               );
                             },
                             separatorBuilder: (context, index) {
@@ -270,40 +214,7 @@ class _BoardPageState extends State<BoardPage> {
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
                               return _buildRoomItem(
-                                state.canceledBookingList?[index].pervUrl ?? "",
-                                state.canceledBookingList?[index].title ?? "",
-                                state.canceledBookingList?[index].address ?? "",
-                                DateFormat("dd/MM/yyyy").format(state
-                                        .canceledBookingList?[index]
-                                        .startDate ??
-                                    DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(state
-                                        .canceledBookingList?[index]
-                                        .startDate ??
-                                    DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(
-                                    state.canceledBookingList?[index].endDate ??
-                                        DateTime.now()),
-                                state.canceledBookingList?[index].endDate
-                                        ?.difference(state
-                                                .canceledBookingList?[index]
-                                                .startDate ??
-                                            DateTime.now())
-                                        .inDays
-                                        .toString() ??
-                                    "",
-                                state.canceledBookingList?[index].totalGuests
-                                        .toString() ??
-                                    "",
-                                double.parse(state.canceledBookingList?[index]
-                                                .total ??
-                                            "0")
-                                        .toInt()
-                                        .toString() ??
-                                    "",
-                                state.canceledBookingList?[index].objectModel ??
-                                    "",
-                                "",
+                                bookingDto: state.canceledBookingList?[index],
                               );
                             },
                             separatorBuilder: (context, index) {
@@ -322,43 +233,7 @@ class _BoardPageState extends State<BoardPage> {
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
                               return _buildRoomItem(
-                                state.confirmedBookingList?[index].pervUrl ??
-                                    "",
-                                state.confirmedBookingList?[index].title ?? "",
-                                state.confirmedBookingList?[index].address ??
-                                    "",
-                                DateFormat("dd/MM/yyyy").format(state
-                                        .confirmedBookingList?[index]
-                                        .startDate ??
-                                    DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(state
-                                        .confirmedBookingList?[index]
-                                        .startDate ??
-                                    DateTime.now()),
-                                DateFormat("dd/MM/yyyy").format(state
-                                        .confirmedBookingList?[index].endDate ??
-                                    DateTime.now()),
-                                state.confirmedBookingList?[index].endDate
-                                        ?.difference(state
-                                                .confirmedBookingList?[index]
-                                                .startDate ??
-                                            DateTime.now())
-                                        .inDays
-                                        .toString() ??
-                                    "",
-                                state.confirmedBookingList?[index].totalGuests
-                                        .toString() ??
-                                    "",
-                                double.parse(state.confirmedBookingList?[index]
-                                                .total ??
-                                            "0")
-                                        .toInt()
-                                        .toString() ??
-                                    "",
-                                state.confirmedBookingList?[index]
-                                        .objectModel ??
-                                    "",
-                                "",
+                                bookingDto: state.confirmedBookingList?[index],
                               );
                             },
                             separatorBuilder: (context, index) {
@@ -381,128 +256,128 @@ class _BoardPageState extends State<BoardPage> {
     );
   }
 
-  Widget _buildRoomItem(
-      String? url,
-      String? hostName,
-      String? address,
-      String? dateDebut,
-      String? reservationDate,
-      String? dateFin,
-      String? nuits,
-      String? adultes,
-      String? total,
-      String? typeReservation,
-      String? activityDuration) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(color: Colors.grey, width: 0.5),
-        borderRadius: BorderRadius.circular(10.r),
-      ),
-      elevation: 0,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-              text: TextSpan(
-                text: 'Type : ',
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: getReservationType(typeReservation ?? ""),
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16)),
-                ],
+  Widget _buildRoomItem({BookingDto? bookingDto}) {
+    return InkWell(
+      onTap: () {
+        GetIt.I<AppRouter>()
+            .push(DetailsReservationRoute(bookingDto: bookingDto));
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(color: Colors.grey, width: 0.5),
+          borderRadius: BorderRadius.circular(10.r),
+        ),
+        elevation: 0,
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: 'Type : ',
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: getReservationType(bookingDto?.objectModel ?? ""),
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16)),
+                  ],
+                ),
               ),
-            ),
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 150.h,
-                  height: 150.h,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.r),
-                      child: CachedNetworkImage(
-                          placeholder: (context, url) => SizedBox(
-                              height: 40.h,
-                              width: 40.h,
-                              child: const CircularProgressIndicator()),
-                          errorWidget: (context, url, error) => const Icon(
-                                Icons.error,
-                                color: Colors.grey,
-                              ),
-                          fit: BoxFit.cover,
-                          imageUrl: url ?? "")),
-                ),
-                SizedBox(
-                  width: 8.w,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "$hostName • $address",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16.sp),
-                      ),
-                      SizedBox(
-                        height: dateDebut != "" ? 8.h : 0,
-                      ),
-                      dateDebut != ""
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Date de début',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.sp),
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 150.h,
+                    height: 150.h,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.r),
+                        child: CachedNetworkImage(
+                            placeholder: (context, url) => SizedBox(
+                                height: 40.h,
+                                width: 40.h,
+                                child: const CircularProgressIndicator()),
+                            errorWidget: (context, url, error) => const Icon(
+                                  Icons.error,
+                                  color: Colors.grey,
                                 ),
-                                Text(
-                                  dateDebut ?? "",
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500),
-                                )
-                              ],
-                            )
-                          : const SizedBox.shrink(),
-                      dateFin != ""
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Date de fin',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.sp),
-                                ),
-                                Text(
-                                  dateFin ?? "",
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500),
-                                )
-                              ],
-                            )
-                          : const SizedBox.shrink(),
-                      Visibility(
-                        visible: nuits != null && nuits.isNotEmpty,
-                        child: Row(
+                            fit: BoxFit.cover,
+                            imageUrl: bookingDto?.pervUrl ?? "")),
+                  ),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${bookingDto?.title ?? ""} • ${bookingDto?.address ?? ""}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 16.sp),
+                        ),
+                        SizedBox(
+                          height: bookingDto?.startDate != "" ? 8.h : 0,
+                        ),
+                        bookingDto?.startDate != ""
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Date de début',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.sp),
+                                  ),
+                                  Text(
+                                    DateFormat("dd/MM/yyyy").format(
+                                            bookingDto?.startDate ??
+                                                DateTime.now()) ??
+                                        "",
+                                    style: TextStyle(
+                                        color: primary,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              )
+                            : const SizedBox.shrink(),
+                        bookingDto?.endDate != ""
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Date de fin',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.sp),
+                                  ),
+                                  Text(
+                                    DateFormat("dd/MM/yyyy").format(
+                                            bookingDto?.endDate ??
+                                                DateTime.now()) ??
+                                        "",
+                                    style: TextStyle(
+                                        color: primary,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              )
+                            : const SizedBox.shrink(),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
@@ -511,7 +386,12 @@ class _BoardPageState extends State<BoardPage> {
                                   fontWeight: FontWeight.w400, fontSize: 12.sp),
                             ),
                             Text(
-                              nuits ?? "",
+                              bookingDto?.endDate
+                                      ?.difference(bookingDto.startDate ??
+                                          DateTime.now())
+                                      .inDays
+                                      .toString() ??
+                                  "",
                               style: TextStyle(
                                   color: primary,
                                   fontSize: 12.sp,
@@ -519,70 +399,75 @@ class _BoardPageState extends State<BoardPage> {
                             )
                           ],
                         ),
-                      ),
-                      adultes == "" || adultes == "null" || adultes == null
-                          ? const SizedBox.shrink()
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Nombre",
-                                  style: TextStyle(fontSize: 12.sp),
-                                ),
-                                Text(
-                                  adultes ?? "",
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500),
-                                )
-                              ],
+                        bookingDto?.totalGuests == "" ||
+                                bookingDto?.totalGuests == "null" ||
+                                bookingDto?.totalGuests == null
+                            ? const SizedBox.shrink()
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Nombre",
+                                    style: TextStyle(fontSize: 12.sp),
+                                  ),
+                                  Text(
+                                    bookingDto?.totalGuests.toString() ?? "",
+                                    style: TextStyle(
+                                        color: primary,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              ),
+                        const Divider(),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Total",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: grey,
+                                  fontSize: 16.sp),
                             ),
-                      const Divider(),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Total",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: grey,
-                                fontSize: 16.sp),
-                          ),
-                          Text(
-                            "$total DT",
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                color: primary),
-                          ),
-                        ],
-                      )
-                    ],
+                            Text(
+                              "${double.parse(bookingDto?.total ?? "0.00").toInt()} DT",
+                              style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: primary),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Date la commande",
-                  style:
-                      TextStyle(fontWeight: FontWeight.w400, fontSize: 16.sp),
-                ),
-                Text(
-                  reservationDate ?? "",
-                  style:
-                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
-                ),
-              ],
-            )
-          ],
+                ],
+              ),
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Date la commande",
+                    style:
+                        TextStyle(fontWeight: FontWeight.w400, fontSize: 16.sp),
+                  ),
+                  Text(
+                    DateFormat("dd/MM/yyyy")
+                            .format(bookingDto?.createdAt ?? DateTime.now()) ??
+                        "",
+                    style:
+                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
