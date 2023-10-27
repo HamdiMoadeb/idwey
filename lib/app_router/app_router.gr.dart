@@ -97,6 +97,16 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    DetailsReservationRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailsReservationRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: DetailsReservationScreen(
+          key: args.key,
+          bookingDto: args.bookingDto,
+        ),
+      );
+    },
     DetailsRoute.name: (routeData) {
       final args = routeData.argsAs<DetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -511,6 +521,45 @@ class DetailsProductRouteArgs {
   @override
   String toString() {
     return 'DetailsProductRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [DetailsReservationScreen]
+class DetailsReservationRoute
+    extends PageRouteInfo<DetailsReservationRouteArgs> {
+  DetailsReservationRoute({
+    Key? key,
+    required BookingDto? bookingDto,
+    List<PageRouteInfo>? children,
+  }) : super(
+          DetailsReservationRoute.name,
+          args: DetailsReservationRouteArgs(
+            key: key,
+            bookingDto: bookingDto,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailsReservationRoute';
+
+  static const PageInfo<DetailsReservationRouteArgs> page =
+      PageInfo<DetailsReservationRouteArgs>(name);
+}
+
+class DetailsReservationRouteArgs {
+  const DetailsReservationRouteArgs({
+    this.key,
+    required this.bookingDto,
+  });
+
+  final Key? key;
+
+  final BookingDto? bookingDto;
+
+  @override
+  String toString() {
+    return 'DetailsReservationRouteArgs{key: $key, bookingDto: $bookingDto}';
   }
 }
 
