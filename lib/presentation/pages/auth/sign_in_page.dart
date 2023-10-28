@@ -25,6 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordController = TextEditingController();
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
+  bool visiblePassword = true;
 
   @override
   void initState() {
@@ -140,7 +141,18 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 16.h,
                   ),
                   CustomInput(
-                      obscureText: true,
+                      suffix: IconButton(
+                        color: Colors.grey[400],
+                        onPressed: () {
+                          setState(() {
+                            visiblePassword = !visiblePassword;
+                          });
+                        },
+                        icon: visiblePassword == true
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
+                      ),
+                      obscureText: visiblePassword,
                       onSubmit: (value) {
                         FocusScope.of(context).unfocus();
                       },
