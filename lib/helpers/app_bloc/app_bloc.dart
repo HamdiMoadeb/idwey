@@ -42,6 +42,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             email: decodedToken['email'],
             lastname: decodedToken['last_name'],
             id: decodedToken['id'].toString(),
+            imageUrl: decodedToken['image_url'] ?? "",
             phone: decodedToken['phone']));
       }
     } catch (e) {

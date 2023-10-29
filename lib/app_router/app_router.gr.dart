@@ -52,6 +52,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(child: const BookingBoardScreen()),
       );
     },
+    ConfigurationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ConfigurationScreen(),
+      );
+    },
     ConfirmReservationRoute.name: (routeData) {
       final args = routeData.argsAs<ConfirmReservationRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -339,6 +345,20 @@ class BookingBoardRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'BookingBoardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ConfigurationScreen]
+class ConfigurationRoute extends PageRouteInfo<void> {
+  const ConfigurationRoute({List<PageRouteInfo>? children})
+      : super(
+          ConfigurationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ConfigurationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

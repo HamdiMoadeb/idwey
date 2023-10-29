@@ -12,7 +12,6 @@ import 'package:idwey/presentation/pages/auth/components/profile_header.dart';
 import 'package:idwey/presentation/pages/auth/components/settings_section.dart';
 import 'package:idwey/presentation/pages/auth/components/support_section.dart';
 import 'package:idwey/theme/app_colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 @RoutePage()
 class AuthScreen extends StatefulWidget {
@@ -23,6 +22,14 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    context.read<AppBloc>().add(const AppEvent.getUser());
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(

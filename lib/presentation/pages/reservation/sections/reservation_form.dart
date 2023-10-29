@@ -239,12 +239,14 @@ class _ReservationSectionState extends State<ReservationSection> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "${double.parse(widget.price).toInt()} DT * ${widget.adultes} pièce",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12.sp),
-                                    ),
+                                    widget.price.isEmpty == true
+                                        ? const SizedBox.shrink()
+                                        : Text(
+                                            "${double.parse(widget.price ?? "0.00").toInt()} DT * ${widget.adultes} pièce",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.sp),
+                                          ),
                                     Text(
                                       widget.total ?? "",
                                       style: TextStyle(
