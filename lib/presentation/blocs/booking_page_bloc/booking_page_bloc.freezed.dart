@@ -16,70 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BookingPageEvent {
+  int get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) getBookingList,
-    required TResult Function(int id) getBookingDetail,
-    required TResult Function() getListWaitingBookingList,
-    required TResult Function() getListCanceledBookingList,
-    required TResult Function() getListAcceptedBookingList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? getBookingList,
-    TResult? Function(int id)? getBookingDetail,
-    TResult? Function()? getListWaitingBookingList,
-    TResult? Function()? getListCanceledBookingList,
-    TResult? Function()? getListAcceptedBookingList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? getBookingList,
-    TResult Function(int id)? getBookingDetail,
-    TResult Function()? getListWaitingBookingList,
-    TResult Function()? getListCanceledBookingList,
-    TResult Function()? getListAcceptedBookingList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetBookingList value) getBookingList,
-    required TResult Function(_GetBookingDetail value) getBookingDetail,
-    required TResult Function(_GetListWaitingBookingList value)
-        getListWaitingBookingList,
-    required TResult Function(_GetListCanceledBookingList value)
-        getListCanceledBookingList,
-    required TResult Function(_GetLisAcceptedBookingList value)
-        getListAcceptedBookingList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetBookingList value)? getBookingList,
-    TResult? Function(_GetBookingDetail value)? getBookingDetail,
-    TResult? Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult? Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult? Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetBookingList value)? getBookingList,
-    TResult Function(_GetBookingDetail value)? getBookingDetail,
-    TResult Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BookingPageEventCopyWith<BookingPageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -88,6 +60,8 @@ abstract class $BookingPageEventCopyWith<$Res> {
   factory $BookingPageEventCopyWith(
           BookingPageEvent value, $Res Function(BookingPageEvent) then) =
       _$BookingPageEventCopyWithImpl<$Res, BookingPageEvent>;
+  @useResult
+  $Res call({int id});
 }
 
 /// @nodoc
@@ -99,13 +73,28 @@ class _$BookingPageEventCopyWithImpl<$Res, $Val extends BookingPageEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_GetBookingListCopyWith<$Res> {
+abstract class _$$_GetBookingListCopyWith<$Res>
+    implements $BookingPageEventCopyWith<$Res> {
   factory _$$_GetBookingListCopyWith(
           _$_GetBookingList value, $Res Function(_$_GetBookingList) then) =
       __$$_GetBookingListCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({int id});
 }
@@ -166,10 +155,6 @@ class _$_GetBookingList implements _GetBookingList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) getBookingList,
-    required TResult Function(int id) getBookingDetail,
-    required TResult Function() getListWaitingBookingList,
-    required TResult Function() getListCanceledBookingList,
-    required TResult Function() getListAcceptedBookingList,
   }) {
     return getBookingList(id);
   }
@@ -178,10 +163,6 @@ class _$_GetBookingList implements _GetBookingList {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? getBookingList,
-    TResult? Function(int id)? getBookingDetail,
-    TResult? Function()? getListWaitingBookingList,
-    TResult? Function()? getListCanceledBookingList,
-    TResult? Function()? getListAcceptedBookingList,
   }) {
     return getBookingList?.call(id);
   }
@@ -190,10 +171,6 @@ class _$_GetBookingList implements _GetBookingList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? getBookingList,
-    TResult Function(int id)? getBookingDetail,
-    TResult Function()? getListWaitingBookingList,
-    TResult Function()? getListCanceledBookingList,
-    TResult Function()? getListAcceptedBookingList,
     required TResult orElse(),
   }) {
     if (getBookingList != null) {
@@ -206,13 +183,6 @@ class _$_GetBookingList implements _GetBookingList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetBookingList value) getBookingList,
-    required TResult Function(_GetBookingDetail value) getBookingDetail,
-    required TResult Function(_GetListWaitingBookingList value)
-        getListWaitingBookingList,
-    required TResult Function(_GetListCanceledBookingList value)
-        getListCanceledBookingList,
-    required TResult Function(_GetLisAcceptedBookingList value)
-        getListAcceptedBookingList,
   }) {
     return getBookingList(this);
   }
@@ -221,13 +191,6 @@ class _$_GetBookingList implements _GetBookingList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetBookingList value)? getBookingList,
-    TResult? Function(_GetBookingDetail value)? getBookingDetail,
-    TResult? Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult? Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult? Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
   }) {
     return getBookingList?.call(this);
   }
@@ -236,13 +199,6 @@ class _$_GetBookingList implements _GetBookingList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetBookingList value)? getBookingList,
-    TResult Function(_GetBookingDetail value)? getBookingDetail,
-    TResult Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
     required TResult orElse(),
   }) {
     if (getBookingList != null) {
@@ -255,566 +211,12 @@ class _$_GetBookingList implements _GetBookingList {
 abstract class _GetBookingList implements BookingPageEvent {
   const factory _GetBookingList(final int id) = _$_GetBookingList;
 
+  @override
   int get id;
+  @override
   @JsonKey(ignore: true)
   _$$_GetBookingListCopyWith<_$_GetBookingList> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_GetBookingDetailCopyWith<$Res> {
-  factory _$$_GetBookingDetailCopyWith(
-          _$_GetBookingDetail value, $Res Function(_$_GetBookingDetail) then) =
-      __$$_GetBookingDetailCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int id});
-}
-
-/// @nodoc
-class __$$_GetBookingDetailCopyWithImpl<$Res>
-    extends _$BookingPageEventCopyWithImpl<$Res, _$_GetBookingDetail>
-    implements _$$_GetBookingDetailCopyWith<$Res> {
-  __$$_GetBookingDetailCopyWithImpl(
-      _$_GetBookingDetail _value, $Res Function(_$_GetBookingDetail) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-  }) {
-    return _then(_$_GetBookingDetail(
-      null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_GetBookingDetail implements _GetBookingDetail {
-  const _$_GetBookingDetail(this.id);
-
-  @override
-  final int id;
-
-  @override
-  String toString() {
-    return 'BookingPageEvent.getBookingDetail(id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GetBookingDetail &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_GetBookingDetailCopyWith<_$_GetBookingDetail> get copyWith =>
-      __$$_GetBookingDetailCopyWithImpl<_$_GetBookingDetail>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int id) getBookingList,
-    required TResult Function(int id) getBookingDetail,
-    required TResult Function() getListWaitingBookingList,
-    required TResult Function() getListCanceledBookingList,
-    required TResult Function() getListAcceptedBookingList,
-  }) {
-    return getBookingDetail(id);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? getBookingList,
-    TResult? Function(int id)? getBookingDetail,
-    TResult? Function()? getListWaitingBookingList,
-    TResult? Function()? getListCanceledBookingList,
-    TResult? Function()? getListAcceptedBookingList,
-  }) {
-    return getBookingDetail?.call(id);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? getBookingList,
-    TResult Function(int id)? getBookingDetail,
-    TResult Function()? getListWaitingBookingList,
-    TResult Function()? getListCanceledBookingList,
-    TResult Function()? getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getBookingDetail != null) {
-      return getBookingDetail(id);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetBookingList value) getBookingList,
-    required TResult Function(_GetBookingDetail value) getBookingDetail,
-    required TResult Function(_GetListWaitingBookingList value)
-        getListWaitingBookingList,
-    required TResult Function(_GetListCanceledBookingList value)
-        getListCanceledBookingList,
-    required TResult Function(_GetLisAcceptedBookingList value)
-        getListAcceptedBookingList,
-  }) {
-    return getBookingDetail(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetBookingList value)? getBookingList,
-    TResult? Function(_GetBookingDetail value)? getBookingDetail,
-    TResult? Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult? Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult? Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-  }) {
-    return getBookingDetail?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetBookingList value)? getBookingList,
-    TResult Function(_GetBookingDetail value)? getBookingDetail,
-    TResult Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getBookingDetail != null) {
-      return getBookingDetail(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetBookingDetail implements BookingPageEvent {
-  const factory _GetBookingDetail(final int id) = _$_GetBookingDetail;
-
-  int get id;
-  @JsonKey(ignore: true)
-  _$$_GetBookingDetailCopyWith<_$_GetBookingDetail> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_GetListWaitingBookingListCopyWith<$Res> {
-  factory _$$_GetListWaitingBookingListCopyWith(
-          _$_GetListWaitingBookingList value,
-          $Res Function(_$_GetListWaitingBookingList) then) =
-      __$$_GetListWaitingBookingListCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_GetListWaitingBookingListCopyWithImpl<$Res>
-    extends _$BookingPageEventCopyWithImpl<$Res, _$_GetListWaitingBookingList>
-    implements _$$_GetListWaitingBookingListCopyWith<$Res> {
-  __$$_GetListWaitingBookingListCopyWithImpl(
-      _$_GetListWaitingBookingList _value,
-      $Res Function(_$_GetListWaitingBookingList) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_GetListWaitingBookingList implements _GetListWaitingBookingList {
-  const _$_GetListWaitingBookingList();
-
-  @override
-  String toString() {
-    return 'BookingPageEvent.getListWaitingBookingList()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GetListWaitingBookingList);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int id) getBookingList,
-    required TResult Function(int id) getBookingDetail,
-    required TResult Function() getListWaitingBookingList,
-    required TResult Function() getListCanceledBookingList,
-    required TResult Function() getListAcceptedBookingList,
-  }) {
-    return getListWaitingBookingList();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? getBookingList,
-    TResult? Function(int id)? getBookingDetail,
-    TResult? Function()? getListWaitingBookingList,
-    TResult? Function()? getListCanceledBookingList,
-    TResult? Function()? getListAcceptedBookingList,
-  }) {
-    return getListWaitingBookingList?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? getBookingList,
-    TResult Function(int id)? getBookingDetail,
-    TResult Function()? getListWaitingBookingList,
-    TResult Function()? getListCanceledBookingList,
-    TResult Function()? getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getListWaitingBookingList != null) {
-      return getListWaitingBookingList();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetBookingList value) getBookingList,
-    required TResult Function(_GetBookingDetail value) getBookingDetail,
-    required TResult Function(_GetListWaitingBookingList value)
-        getListWaitingBookingList,
-    required TResult Function(_GetListCanceledBookingList value)
-        getListCanceledBookingList,
-    required TResult Function(_GetLisAcceptedBookingList value)
-        getListAcceptedBookingList,
-  }) {
-    return getListWaitingBookingList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetBookingList value)? getBookingList,
-    TResult? Function(_GetBookingDetail value)? getBookingDetail,
-    TResult? Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult? Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult? Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-  }) {
-    return getListWaitingBookingList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetBookingList value)? getBookingList,
-    TResult Function(_GetBookingDetail value)? getBookingDetail,
-    TResult Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getListWaitingBookingList != null) {
-      return getListWaitingBookingList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetListWaitingBookingList implements BookingPageEvent {
-  const factory _GetListWaitingBookingList() = _$_GetListWaitingBookingList;
-}
-
-/// @nodoc
-abstract class _$$_GetListCanceledBookingListCopyWith<$Res> {
-  factory _$$_GetListCanceledBookingListCopyWith(
-          _$_GetListCanceledBookingList value,
-          $Res Function(_$_GetListCanceledBookingList) then) =
-      __$$_GetListCanceledBookingListCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_GetListCanceledBookingListCopyWithImpl<$Res>
-    extends _$BookingPageEventCopyWithImpl<$Res, _$_GetListCanceledBookingList>
-    implements _$$_GetListCanceledBookingListCopyWith<$Res> {
-  __$$_GetListCanceledBookingListCopyWithImpl(
-      _$_GetListCanceledBookingList _value,
-      $Res Function(_$_GetListCanceledBookingList) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_GetListCanceledBookingList implements _GetListCanceledBookingList {
-  const _$_GetListCanceledBookingList();
-
-  @override
-  String toString() {
-    return 'BookingPageEvent.getListCanceledBookingList()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GetListCanceledBookingList);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int id) getBookingList,
-    required TResult Function(int id) getBookingDetail,
-    required TResult Function() getListWaitingBookingList,
-    required TResult Function() getListCanceledBookingList,
-    required TResult Function() getListAcceptedBookingList,
-  }) {
-    return getListCanceledBookingList();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? getBookingList,
-    TResult? Function(int id)? getBookingDetail,
-    TResult? Function()? getListWaitingBookingList,
-    TResult? Function()? getListCanceledBookingList,
-    TResult? Function()? getListAcceptedBookingList,
-  }) {
-    return getListCanceledBookingList?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? getBookingList,
-    TResult Function(int id)? getBookingDetail,
-    TResult Function()? getListWaitingBookingList,
-    TResult Function()? getListCanceledBookingList,
-    TResult Function()? getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getListCanceledBookingList != null) {
-      return getListCanceledBookingList();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetBookingList value) getBookingList,
-    required TResult Function(_GetBookingDetail value) getBookingDetail,
-    required TResult Function(_GetListWaitingBookingList value)
-        getListWaitingBookingList,
-    required TResult Function(_GetListCanceledBookingList value)
-        getListCanceledBookingList,
-    required TResult Function(_GetLisAcceptedBookingList value)
-        getListAcceptedBookingList,
-  }) {
-    return getListCanceledBookingList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetBookingList value)? getBookingList,
-    TResult? Function(_GetBookingDetail value)? getBookingDetail,
-    TResult? Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult? Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult? Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-  }) {
-    return getListCanceledBookingList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetBookingList value)? getBookingList,
-    TResult Function(_GetBookingDetail value)? getBookingDetail,
-    TResult Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getListCanceledBookingList != null) {
-      return getListCanceledBookingList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetListCanceledBookingList implements BookingPageEvent {
-  const factory _GetListCanceledBookingList() = _$_GetListCanceledBookingList;
-}
-
-/// @nodoc
-abstract class _$$_GetLisAcceptedBookingListCopyWith<$Res> {
-  factory _$$_GetLisAcceptedBookingListCopyWith(
-          _$_GetLisAcceptedBookingList value,
-          $Res Function(_$_GetLisAcceptedBookingList) then) =
-      __$$_GetLisAcceptedBookingListCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_GetLisAcceptedBookingListCopyWithImpl<$Res>
-    extends _$BookingPageEventCopyWithImpl<$Res, _$_GetLisAcceptedBookingList>
-    implements _$$_GetLisAcceptedBookingListCopyWith<$Res> {
-  __$$_GetLisAcceptedBookingListCopyWithImpl(
-      _$_GetLisAcceptedBookingList _value,
-      $Res Function(_$_GetLisAcceptedBookingList) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_GetLisAcceptedBookingList implements _GetLisAcceptedBookingList {
-  const _$_GetLisAcceptedBookingList();
-
-  @override
-  String toString() {
-    return 'BookingPageEvent.getListAcceptedBookingList()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GetLisAcceptedBookingList);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int id) getBookingList,
-    required TResult Function(int id) getBookingDetail,
-    required TResult Function() getListWaitingBookingList,
-    required TResult Function() getListCanceledBookingList,
-    required TResult Function() getListAcceptedBookingList,
-  }) {
-    return getListAcceptedBookingList();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? getBookingList,
-    TResult? Function(int id)? getBookingDetail,
-    TResult? Function()? getListWaitingBookingList,
-    TResult? Function()? getListCanceledBookingList,
-    TResult? Function()? getListAcceptedBookingList,
-  }) {
-    return getListAcceptedBookingList?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? getBookingList,
-    TResult Function(int id)? getBookingDetail,
-    TResult Function()? getListWaitingBookingList,
-    TResult Function()? getListCanceledBookingList,
-    TResult Function()? getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getListAcceptedBookingList != null) {
-      return getListAcceptedBookingList();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetBookingList value) getBookingList,
-    required TResult Function(_GetBookingDetail value) getBookingDetail,
-    required TResult Function(_GetListWaitingBookingList value)
-        getListWaitingBookingList,
-    required TResult Function(_GetListCanceledBookingList value)
-        getListCanceledBookingList,
-    required TResult Function(_GetLisAcceptedBookingList value)
-        getListAcceptedBookingList,
-  }) {
-    return getListAcceptedBookingList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetBookingList value)? getBookingList,
-    TResult? Function(_GetBookingDetail value)? getBookingDetail,
-    TResult? Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult? Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult? Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-  }) {
-    return getListAcceptedBookingList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetBookingList value)? getBookingList,
-    TResult Function(_GetBookingDetail value)? getBookingDetail,
-    TResult Function(_GetListWaitingBookingList value)?
-        getListWaitingBookingList,
-    TResult Function(_GetListCanceledBookingList value)?
-        getListCanceledBookingList,
-    TResult Function(_GetLisAcceptedBookingList value)?
-        getListAcceptedBookingList,
-    required TResult orElse(),
-  }) {
-    if (getListAcceptedBookingList != null) {
-      return getListAcceptedBookingList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetLisAcceptedBookingList implements BookingPageEvent {
-  const factory _GetLisAcceptedBookingList() = _$_GetLisAcceptedBookingList;
 }
 
 /// @nodoc

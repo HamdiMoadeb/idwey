@@ -411,6 +411,7 @@ mixin _$AppState {
   String? get email => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith =>
@@ -429,7 +430,8 @@ abstract class $AppStateCopyWith<$Res> {
       String? lastname,
       String? email,
       String? phone,
-      String? id});
+      String? id,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -452,6 +454,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? email = freezed,
     Object? phone = freezed,
     Object? id = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -482,6 +485,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -500,7 +507,8 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       String? lastname,
       String? email,
       String? phone,
-      String? id});
+      String? id,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -521,6 +529,7 @@ class __$$_AppStateCopyWithImpl<$Res>
     Object? email = freezed,
     Object? phone = freezed,
     Object? id = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_$_AppState(
       status: freezed == status
@@ -551,6 +560,10 @@ class __$$_AppStateCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -565,7 +578,8 @@ class _$_AppState implements _AppState {
       this.lastname,
       this.email,
       this.phone,
-      this.id});
+      this.id,
+      this.imageUrl});
 
   @override
   final StateStatus? status;
@@ -581,10 +595,12 @@ class _$_AppState implements _AppState {
   final String? phone;
   @override
   final String? id;
+  @override
+  final String? imageUrl;
 
   @override
   String toString() {
-    return 'AppState(status: $status, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id)';
+    return 'AppState(status: $status, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id, imageUrl: $imageUrl)';
   }
 
   @override
@@ -600,12 +616,14 @@ class _$_AppState implements _AppState {
                 other.lastname == lastname) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, isLoggedIn, name, lastname, email, phone, id);
+  int get hashCode => Object.hash(runtimeType, status, isLoggedIn, name,
+      lastname, email, phone, id, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -622,7 +640,8 @@ abstract class _AppState implements AppState {
       final String? lastname,
       final String? email,
       final String? phone,
-      final String? id}) = _$_AppState;
+      final String? id,
+      final String? imageUrl}) = _$_AppState;
 
   @override
   StateStatus? get status;
@@ -638,6 +657,8 @@ abstract class _AppState implements AppState {
   String? get phone;
   @override
   String? get id;
+  @override
+  String? get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_AppStateCopyWith<_$_AppState> get copyWith =>

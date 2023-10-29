@@ -64,6 +64,26 @@ class SettingsSection extends StatelessWidget {
           const Divider(
             thickness: 1,
           ),
+          ListTile(
+            onTap: () {
+              GetIt.I<AppRouter>().push(const ConfigurationRoute());
+            },
+            leading: const HeroIcon(
+              HeroIcons.cog6Tooth,
+              color: Colors.black,
+            ),
+            title: const Text("Configuration",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                )),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.black,
+            ),
+          ),
+          const Divider(
+            thickness: 1,
+          ),
         ],
       ),
     );
