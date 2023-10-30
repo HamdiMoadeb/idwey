@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
-import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_tab2.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_tab3.dart';
@@ -34,8 +33,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   FocusNode confirmPasswordFocus = FocusNode();
   double _progress = 1 / 3;
   int currentPage = 0;
+  bool isRightScrollEnabled = false; // Default: Disable right scrolling
 
   final PageController _progressController = PageController(initialPage: 0);
+  void toggleRightScroll() {
+    setState(() {
+      isRightScrollEnabled = !isRightScrollEnabled;
+      print("isRightScrollEnabled");
+      print(isRightScrollEnabled);
+    });
+  }
 
   @override
   void initState() {
@@ -129,7 +136,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Expanded(
                     child: PageView(
                       controller: _progressController,
-                      //physics: NeverScrollableScrollPhysics(),
+                      physics: isRightScrollEnabled
+                          ? const ScrollPhysics()
+                          : const NeverScrollableScrollPhysics(),
                       onPageChanged: (int page) {
                         setState(() {
                           currentPage = page;
@@ -210,10 +219,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               }
                             } else {
                               setState(() {
-                                _progressController.animateToPage(
-                                    currentPage + 1,
-                                    duration: const Duration(milliseconds: 3),
-                                    curve: Curves.easeInOut);
+                                if (currentPage == 0 &&
+                                    nameController.text.isEmpty == true) {
+                                  setState(() {
+                                    isRightScrollEnabled = false;
+                                  });
+                                  print('****name controller is empty');
+                                  return;
+                                } else if (currentPage == 1 &&
+                                    emailController.text.isEmpty == true) {
+                                  setState(() {
+                                    isRightScrollEnabled = false;
+                                  });
+                                  print('****email controller is empty');
+                                  return;
+                                } else if (currentPage == 2 &&
+                                    passwordController.text.isEmpty == true) {
+                                  setState(() {
+                                    isRightScrollEnabled = false;
+                                  });
+                                  print('****password controller is empty');
+                                  return;
+                                } else if (currentPage == 1 &&
+                                    emailController.text.isNotEmpty) {
+                                  setState(() {
+                                    isRightScrollEnabled = true;
+                                  });
+                                  _progressController.animateToPage(
+                                      currentPage + 1,
+                                      duration: const Duration(milliseconds: 3),
+                                      curve: Curves.easeInOut);
+                                } else {
+                                  setState(() {
+                                    isRightScrollEnabled = true;
+                                  });
+                                  _progressController.animateToPage(
+                                      currentPage + 1,
+                                      duration: const Duration(milliseconds: 3),
+                                      curve: Curves.easeInOut);
+                                  setState(() {
+                                    isRightScrollEnabled = false;
+                                  });
+                                }
                               });
                             }
                           },
