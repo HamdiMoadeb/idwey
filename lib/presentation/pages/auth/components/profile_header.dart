@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../app_router/app_router.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String? subtitle;
@@ -55,10 +58,18 @@ class ProfileHeader extends StatelessWidget {
                         userName,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text(subtitle ?? 'Montre le profil',
-                          style: TextStyle(
-                              color: primary,
-                              decoration: TextDecoration.underline)),
+                      InkWell(
+                          child: Text(
+                              subtitle ?? 'Montre le profil',
+                              style: TextStyle(
+                                  color: primary,
+                                  decoration: TextDecoration.underline)
+                          ),
+                          onTap: () {
+                            GetIt.I<AppRouter>().push(const ConfigurationRoute());
+                          },
+
+                      ),
                     ],
                   )
                 ],
