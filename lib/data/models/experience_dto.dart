@@ -17,6 +17,7 @@ class Experience {
   final int? isFeatured;
   final String? price;
   final dynamic salePrice;
+  final dynamic promotion;
   final String? duration;
   final String? address;
   final String? impactsocial;
@@ -37,6 +38,7 @@ class Experience {
     this.salePrice,
     this.duration,
     this.address,
+    this.promotion,
     this.impactsocial,
     this.imageUrl,
     this.catName,
@@ -59,6 +61,7 @@ class Experience {
         impactsocial: json["impactsocial"],
         imageUrl: json["IMAGE_URL"],
         catName: json["cat_name"],
+        promotion: json["promotion"],
         translationCatName: json["translation_cat_name"],
         promoCode: json["promo_code"],
         translationImpactsocial: json["translation_impactsocial"],
@@ -80,6 +83,7 @@ class Experience {
         "impactsocial": impactsocial,
         "IMAGE_URL": imageUrl,
         "cat_name": catName,
+        "promotion": promotion,
         "translation_cat_name": translationCatName,
         "promo_code": promoCode,
         "translation_impactsocial": translationImpactsocial,

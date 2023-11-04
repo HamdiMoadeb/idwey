@@ -19,6 +19,7 @@ class ProductDto {
   final String? termName;
   final String? translationTermName;
   final List<dynamic>? translations;
+  final dynamic promotion;
   final dynamic location;
   final dynamic hasWishList;
 
@@ -32,6 +33,7 @@ class ProductDto {
     this.termName,
     this.translationTermName,
     this.translations,
+    this.promotion,
     this.location,
     this.hasWishList,
   });
@@ -45,6 +47,7 @@ class ProductDto {
         imageUrl: json["IMAGE_URL"],
         termName: json["term_name"],
         translationTermName: json["translation_term_name"],
+        promotion: json["promotion"],
         translations: json["translations"] == null
             ? []
             : List<dynamic>.from(json["translations"]!.map((x) => x)),

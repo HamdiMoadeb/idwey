@@ -275,6 +275,7 @@ class Row {
   final dynamic duration;
   final String? prix;
   final dynamic salePrix;
+  final dynamic promotion;
   final String? address;
   final int? createUser;
   final int? imageId;
@@ -296,6 +297,7 @@ class Row {
     this.gallery,
     this.startDate,
     this.isExpired,
+    this.promotion,
     this.endDate,
     this.isfull,
     this.number,
@@ -328,6 +330,7 @@ class Row {
         locationName: json["location_name"],
         translationLocationName: json["translation_location_name"],
         gallery: json["gallery"],
+        promotion: json["promotion"],
         startDate: json["start_date"] == null
             ? null
             : DateTime.parse(json["start_date"]),

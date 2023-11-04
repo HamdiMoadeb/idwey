@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/components.dart';
-import 'package:idwey/components/extra_price_component/extra_price_component.dart';
 import 'package:idwey/components/read_more_text.dart';
 import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
 import 'package:idwey/constants/enums.dart';
@@ -77,10 +77,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                 elevation: 0,
                 child: BottomReservationBar(
                   onPressed: () {
-                    print("appState.isLoggedIn");
-                    print(appState.isLoggedIn == true);
-                    print("widget.typeHost");
-                    print(widget.typeHost);
                     appState.isLoggedIn == true
                         ? GetIt.I<AppRouter>().push(
                             VerifyDisponibilityRoute(
@@ -119,6 +115,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                   },
                   nbNuit: state.hostDetails?.row?.minNuits ?? 0,
                   perPerson: "nuit",
+                  salePrice: state.hostDetails?.row?.salePrice ?? "",
                   price:
                       "${double.parse(state.hostDetails?.row?.price ?? "0").toInt().toString()} DT",
                 ),
@@ -140,15 +137,38 @@ class _DetailsScreenState extends State<DetailsScreen>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                state.hostDetails?.row?.title ?? "",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                        fontSize: 30.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    state.hostDetails?.row?.title ?? "",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                            fontSize: 30.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black),
+                                  ),
+                                  Visibility(
+                                    visible: state.hostDetails?.row?.promotion
+                                            ?.isNotEmpty ??
+                                        false,
+                                    child: CircleAvatar(
+                                      child: Text(
+                                        "${state.hostDetails?.row?.promotion}/ DT",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium!
+                                            .copyWith(
+                                                fontSize: 30.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 4.h,

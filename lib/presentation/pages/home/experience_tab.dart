@@ -98,6 +98,7 @@ class _ExperienceScreenState extends State<ExperienceScreen>
                       id: state.listExperiences?[index].id,
                     ));
                   },
+                  discount: state.listExperiences?[index].promotion.toString(),
                   title: state.listExperiences?[index].title,
                   adress: state.listExperiences?[index].address,
                   price: state.listExperiences?[index].price,

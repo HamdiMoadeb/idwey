@@ -146,6 +146,7 @@ class Row {
   final int? isFeatured;
   final String? price;
   final dynamic salePrice;
+  final dynamic promotion;
   final String? duration;
   final String? address;
   final String? mapLat;
@@ -172,6 +173,7 @@ class Row {
     this.maxPeople,
     this.isFeatured,
     this.price,
+    this.promotion,
     this.salePrice,
     this.duration,
     this.address,
@@ -206,6 +208,7 @@ class Row {
         mapLat: json["map_lat"],
         mapLng: json["map_lng"],
         mapZoom: json["map_zoom"],
+        promotion: json["promotion"],
         impactsocial: json["impactsocial"],
         bannerImageId: json["banner_image_id"],
         gallery: json["gallery"],

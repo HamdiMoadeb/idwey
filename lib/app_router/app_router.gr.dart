@@ -144,6 +144,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    FidelityProgramRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FidelityProgramScreen(),
+      );
+    },
     InspirationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -700,6 +706,20 @@ class ExperienceDetailsRouteArgs {
   String toString() {
     return 'ExperienceDetailsRouteArgs{key: $key, id: $id}';
   }
+}
+
+/// generated route for
+/// [FidelityProgramScreen]
+class FidelityProgramRoute extends PageRouteInfo<void> {
+  const FidelityProgramRoute({List<PageRouteInfo>? children})
+      : super(
+          FidelityProgramRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FidelityProgramRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

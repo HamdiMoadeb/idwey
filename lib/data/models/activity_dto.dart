@@ -12,6 +12,7 @@ class Activity {
   final int? id;
   final String? slug;
   final String? imageUrl;
+  final String? promotion;
   final String? catName;
   final String? translationCatName;
   final String? title;
@@ -29,6 +30,7 @@ class Activity {
     this.id,
     this.slug,
     this.imageUrl,
+    this.promotion,
     this.catName,
     this.translationCatName,
     this.title,
@@ -54,6 +56,7 @@ class Activity {
         isFeatured: json["is_featured"],
         price: json["price"],
         salePrice: json["sale_price"],
+        promotion: json["promotion"],
         duration: json["duration"],
         address: json["address"],
         impactsocial: json["impactsocial"],
@@ -74,6 +77,7 @@ class Activity {
         "is_featured": isFeatured,
         "price": price,
         "sale_price": salePrice,
+        "promotion": promotion,
         "duration": duration,
         "address": address,
         "impactsocial": impactsocial,

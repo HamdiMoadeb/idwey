@@ -116,6 +116,8 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                           );
                   },
                   perPerson: "personne",
+                  salePrice:
+                      "${double.parse(state.experienceDetailsDto?.row?.salePrice ?? "0").toInt().toString()} DT",
                   price:
                       "${double.parse(state.experienceDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
                 ),
@@ -138,15 +140,39 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                state.experienceDetailsDto?.row?.title ?? "",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                        fontSize: 30.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black),
+                              Row(
+                                children: [
+                                  Text(
+                                    state.experienceDetailsDto?.row?.title ??
+                                        "",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                            fontSize: 30.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black),
+                                  ),
+                                  Visibility(
+                                    visible: state.experienceDetailsDto?.row
+                                            ?.promotion
+                                            ?.toString()
+                                            ?.isNotEmpty ??
+                                        false,
+                                    child: CircleAvatar(
+                                      child: Text(
+                                        "${state.experienceDetailsDto?.row?.promotion}/ DT",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium!
+                                            .copyWith(
+                                                fontSize: 30.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 4.h,

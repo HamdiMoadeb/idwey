@@ -144,6 +144,7 @@ class Row {
   final int? promoCode;
   final dynamic extraPrice;
   final dynamic salePrice;
+  final dynamic promotion;
   final int? bannerImageId;
   final String? gallery;
   final int? createUser;
@@ -162,6 +163,7 @@ class Row {
     this.salePrice,
     this.bannerImageId,
     this.gallery,
+    this.promotion,
     this.createUser,
     this.author,
     this.translations,
@@ -179,6 +181,7 @@ class Row {
         salePrice: json["sale_price"],
         bannerImageId: json["banner_image_id"],
         gallery: json["gallery"],
+        promotion: json["promotion"],
         createUser: json["create_user"],
         author: json["author"] == null ? null : Author.fromJson(json["author"]),
         translations: json["translations"] == null

@@ -24,7 +24,7 @@ class DashboardScreen extends StatelessWidget {
           routes: const [
             MainHomeRoute(), // MainHomeRoute as a child
             InspirationRoute(), //1
-            AssuranceRoute(), //2
+            FidelityProgramRoute(), //2
             ProductsRoute(), //3
             AuthRoute(), //4
           ],
@@ -136,7 +136,7 @@ class DashboardScreen extends StatelessWidget {
                                     ),
                                     SizedBox(height: 4.h),
                                     const Text(
-                                      "Mes points",
+                                      "Fidélité",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500,
@@ -159,7 +159,7 @@ class DashboardScreen extends StatelessWidget {
                                     ),
                                     SizedBox(height: 4.h),
                                     const Text(
-                                      "Mes points",
+                                      "Fidélité",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10,

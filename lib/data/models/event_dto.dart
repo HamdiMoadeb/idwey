@@ -17,6 +17,7 @@ class Event {
   final DateTime? endDate;
   final dynamic isfull;
   final int? number;
+  final String? promotion;
   final String? difficulty;
   final String? duration;
   final String? prix;
@@ -33,6 +34,7 @@ class Event {
   Event({
     this.id,
     this.slug,
+    this.promotion,
     this.title,
     this.startDate,
     this.isExpired,
@@ -69,6 +71,7 @@ class Event {
         duration: json["duration"],
         prix: json["prix"],
         salePrix: json["sale_prix"],
+        promotion: json["promotion"],
         address: json["address"],
         impactsocial: json["impactsocial"],
         imageUrl: json["IMAGE_URL"],
@@ -91,6 +94,7 @@ class Event {
         "end_date":
             "${endDate!.year.toString().padLeft(4, '0')}-${endDate!.month.toString().padLeft(2, '0')}-${endDate!.day.toString().padLeft(2, '0')}",
         "isfull": isfull,
+        "promotion": promotion,
         "number": number,
         "difficulty": difficulty,
         "duration": duration,

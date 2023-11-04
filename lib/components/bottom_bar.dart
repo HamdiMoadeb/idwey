@@ -66,13 +66,36 @@ class BottomReservationBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                child: Text(
-                  "$price / $perPerson",
-                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                        fontSize: 16.sp,
-                        color: primary,
-                        fontWeight: FontWeight.w500,
-                      ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Visibility(
+                      visible: salePrice.isNotEmpty &&
+                              salePrice != "0" &&
+                              salePrice != "0.00"
+                          ? true
+                          : false,
+                      child: Text(price,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: primaryOrange,
+                            decoration: TextDecoration.lineThrough,
+                          )),
+                    ),
+                    Text(
+                      salePrice.isNotEmpty &&
+                              salePrice != "0" &&
+                              salePrice != "0.00"
+                          ? "$salePrice / $perPerson"
+                          : "$price / $perPerson",
+                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                            fontSize: 16.sp,
+                            color: primary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ],
                 ),
               ),
               //commented for deployment

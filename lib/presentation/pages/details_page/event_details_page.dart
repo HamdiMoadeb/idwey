@@ -116,6 +116,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                       ? StateEvent.isExpired
                       : StateEvent.isAvailable,
                   perPerson: "personne",
+                  salePrice:
+                      "${double.parse(state.eventDetailsDto?.row?.salePrix ?? "0").toInt().toString()} DT",
                   price:
                       "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt().toString()} DT",
                 ),
@@ -137,15 +139,39 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                state.eventDetailsDto?.row?.title ?? "",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                        fontSize: 30.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    state.eventDetailsDto?.row?.title ?? "",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                            fontSize: 30.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black),
+                                  ),
+                                  Visibility(
+                                    visible: state.eventDetailsDto?.row
+                                            ?.promotion?.isNotEmpty ??
+                                        false,
+                                    child: CircleAvatar(
+                                      child: Text(
+                                        "${state.eventDetailsDto?.row?.promotion}/ DT",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium!
+                                            .copyWith(
+                                                fontSize: 30.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 4.h,

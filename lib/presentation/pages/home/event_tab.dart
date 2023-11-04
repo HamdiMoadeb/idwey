@@ -97,6 +97,7 @@ class _EventScreenState extends State<EventScreen>
                       id: state.listEvents?[index].id,
                     ));
                   },
+                  discount: state.listEvents?[index].promotion.toString(),
                   type: state.listEvents?[index].slug,
                   title: state.listEvents?[index].title,
                   adress: state.listEvents?[index].address,
