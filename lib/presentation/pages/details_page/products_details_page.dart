@@ -62,6 +62,8 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
             listener: (context, state) {
           if (state.addToCartStatus == StateStatus.loading) {
             showLoadingDialog();
+          } else if (state.addToCartStatus == StateStatus.success) {
+            Navigator.pop(context);
           }
         }, builder: (context, state) {
           if (state.status == StateStatus.loading) {
