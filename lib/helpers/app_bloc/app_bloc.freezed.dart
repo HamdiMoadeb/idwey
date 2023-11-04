@@ -21,6 +21,8 @@ mixin _$AppEvent {
     required TResult Function() setLoggedIn,
     required TResult Function() setLoggedOut,
     required TResult Function() getUser,
+    required TResult Function(Map<String, dynamic> body) updateUser,
+    required TResult Function(Map<String, dynamic> body) uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$AppEvent {
     TResult? Function()? setLoggedIn,
     TResult? Function()? setLoggedOut,
     TResult? Function()? getUser,
+    TResult? Function(Map<String, dynamic> body)? updateUser,
+    TResult? Function(Map<String, dynamic> body)? uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$AppEvent {
     TResult Function()? setLoggedIn,
     TResult Function()? setLoggedOut,
     TResult Function()? getUser,
+    TResult Function(Map<String, dynamic> body)? updateUser,
+    TResult Function(Map<String, dynamic> body)? uploadImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +49,8 @@ mixin _$AppEvent {
     required TResult Function(_SetLoggedIn value) setLoggedIn,
     required TResult Function(_SetLoggedOut value) setLoggedOut,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_UploadImage value) uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +58,8 @@ mixin _$AppEvent {
     TResult? Function(_SetLoggedIn value)? setLoggedIn,
     TResult? Function(_SetLoggedOut value)? setLoggedOut,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_UploadImage value)? uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +67,8 @@ mixin _$AppEvent {
     TResult Function(_SetLoggedIn value)? setLoggedIn,
     TResult Function(_SetLoggedOut value)? setLoggedOut,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +132,8 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     required TResult Function() setLoggedIn,
     required TResult Function() setLoggedOut,
     required TResult Function() getUser,
+    required TResult Function(Map<String, dynamic> body) updateUser,
+    required TResult Function(Map<String, dynamic> body) uploadImage,
   }) {
     return setLoggedIn();
   }
@@ -130,6 +144,8 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult? Function()? setLoggedIn,
     TResult? Function()? setLoggedOut,
     TResult? Function()? getUser,
+    TResult? Function(Map<String, dynamic> body)? updateUser,
+    TResult? Function(Map<String, dynamic> body)? uploadImage,
   }) {
     return setLoggedIn?.call();
   }
@@ -140,6 +156,8 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult Function()? setLoggedIn,
     TResult Function()? setLoggedOut,
     TResult Function()? getUser,
+    TResult Function(Map<String, dynamic> body)? updateUser,
+    TResult Function(Map<String, dynamic> body)? uploadImage,
     required TResult orElse(),
   }) {
     if (setLoggedIn != null) {
@@ -154,6 +172,8 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     required TResult Function(_SetLoggedIn value) setLoggedIn,
     required TResult Function(_SetLoggedOut value) setLoggedOut,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_UploadImage value) uploadImage,
   }) {
     return setLoggedIn(this);
   }
@@ -164,6 +184,8 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult? Function(_SetLoggedIn value)? setLoggedIn,
     TResult? Function(_SetLoggedOut value)? setLoggedOut,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_UploadImage value)? uploadImage,
   }) {
     return setLoggedIn?.call(this);
   }
@@ -174,6 +196,8 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult Function(_SetLoggedIn value)? setLoggedIn,
     TResult Function(_SetLoggedOut value)? setLoggedOut,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (setLoggedIn != null) {
@@ -228,6 +252,8 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     required TResult Function() setLoggedIn,
     required TResult Function() setLoggedOut,
     required TResult Function() getUser,
+    required TResult Function(Map<String, dynamic> body) updateUser,
+    required TResult Function(Map<String, dynamic> body) uploadImage,
   }) {
     return setLoggedOut();
   }
@@ -238,6 +264,8 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult? Function()? setLoggedIn,
     TResult? Function()? setLoggedOut,
     TResult? Function()? getUser,
+    TResult? Function(Map<String, dynamic> body)? updateUser,
+    TResult? Function(Map<String, dynamic> body)? uploadImage,
   }) {
     return setLoggedOut?.call();
   }
@@ -248,6 +276,8 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult Function()? setLoggedIn,
     TResult Function()? setLoggedOut,
     TResult Function()? getUser,
+    TResult Function(Map<String, dynamic> body)? updateUser,
+    TResult Function(Map<String, dynamic> body)? uploadImage,
     required TResult orElse(),
   }) {
     if (setLoggedOut != null) {
@@ -262,6 +292,8 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     required TResult Function(_SetLoggedIn value) setLoggedIn,
     required TResult Function(_SetLoggedOut value) setLoggedOut,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_UploadImage value) uploadImage,
   }) {
     return setLoggedOut(this);
   }
@@ -272,6 +304,8 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult? Function(_SetLoggedIn value)? setLoggedIn,
     TResult? Function(_SetLoggedOut value)? setLoggedOut,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_UploadImage value)? uploadImage,
   }) {
     return setLoggedOut?.call(this);
   }
@@ -282,6 +316,8 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult Function(_SetLoggedIn value)? setLoggedIn,
     TResult Function(_SetLoggedOut value)? setLoggedOut,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (setLoggedOut != null) {
@@ -335,6 +371,8 @@ class _$_GetUser implements _GetUser {
     required TResult Function() setLoggedIn,
     required TResult Function() setLoggedOut,
     required TResult Function() getUser,
+    required TResult Function(Map<String, dynamic> body) updateUser,
+    required TResult Function(Map<String, dynamic> body) uploadImage,
   }) {
     return getUser();
   }
@@ -345,6 +383,8 @@ class _$_GetUser implements _GetUser {
     TResult? Function()? setLoggedIn,
     TResult? Function()? setLoggedOut,
     TResult? Function()? getUser,
+    TResult? Function(Map<String, dynamic> body)? updateUser,
+    TResult? Function(Map<String, dynamic> body)? uploadImage,
   }) {
     return getUser?.call();
   }
@@ -355,6 +395,8 @@ class _$_GetUser implements _GetUser {
     TResult Function()? setLoggedIn,
     TResult Function()? setLoggedOut,
     TResult Function()? getUser,
+    TResult Function(Map<String, dynamic> body)? updateUser,
+    TResult Function(Map<String, dynamic> body)? uploadImage,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -369,6 +411,8 @@ class _$_GetUser implements _GetUser {
     required TResult Function(_SetLoggedIn value) setLoggedIn,
     required TResult Function(_SetLoggedOut value) setLoggedOut,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_UploadImage value) uploadImage,
   }) {
     return getUser(this);
   }
@@ -379,6 +423,8 @@ class _$_GetUser implements _GetUser {
     TResult? Function(_SetLoggedIn value)? setLoggedIn,
     TResult? Function(_SetLoggedOut value)? setLoggedOut,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_UploadImage value)? uploadImage,
   }) {
     return getUser?.call(this);
   }
@@ -389,6 +435,8 @@ class _$_GetUser implements _GetUser {
     TResult Function(_SetLoggedIn value)? setLoggedIn,
     TResult Function(_SetLoggedOut value)? setLoggedOut,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -400,6 +448,320 @@ class _$_GetUser implements _GetUser {
 
 abstract class _GetUser implements AppEvent {
   const factory _GetUser() = _$_GetUser;
+}
+
+/// @nodoc
+abstract class _$$_UpdateUserCopyWith<$Res> {
+  factory _$$_UpdateUserCopyWith(
+          _$_UpdateUser value, $Res Function(_$_UpdateUser) then) =
+      __$$_UpdateUserCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> body});
+}
+
+/// @nodoc
+class __$$_UpdateUserCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$_UpdateUser>
+    implements _$$_UpdateUserCopyWith<$Res> {
+  __$$_UpdateUserCopyWithImpl(
+      _$_UpdateUser _value, $Res Function(_$_UpdateUser) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? body = null,
+  }) {
+    return _then(_$_UpdateUser(
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateUser implements _UpdateUser {
+  const _$_UpdateUser(final Map<String, dynamic> body) : _body = body;
+
+  final Map<String, dynamic> _body;
+  @override
+  Map<String, dynamic> get body {
+    if (_body is EqualUnmodifiableMapView) return _body;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_body);
+  }
+
+  @override
+  String toString() {
+    return 'AppEvent.updateUser(body: $body)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateUser &&
+            const DeepCollectionEquality().equals(other._body, _body));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateUserCopyWith<_$_UpdateUser> get copyWith =>
+      __$$_UpdateUserCopyWithImpl<_$_UpdateUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() setLoggedIn,
+    required TResult Function() setLoggedOut,
+    required TResult Function() getUser,
+    required TResult Function(Map<String, dynamic> body) updateUser,
+    required TResult Function(Map<String, dynamic> body) uploadImage,
+  }) {
+    return updateUser(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? setLoggedIn,
+    TResult? Function()? setLoggedOut,
+    TResult? Function()? getUser,
+    TResult? Function(Map<String, dynamic> body)? updateUser,
+    TResult? Function(Map<String, dynamic> body)? uploadImage,
+  }) {
+    return updateUser?.call(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? setLoggedIn,
+    TResult Function()? setLoggedOut,
+    TResult Function()? getUser,
+    TResult Function(Map<String, dynamic> body)? updateUser,
+    TResult Function(Map<String, dynamic> body)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (updateUser != null) {
+      return updateUser(body);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetLoggedIn value) setLoggedIn,
+    required TResult Function(_SetLoggedOut value) setLoggedOut,
+    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_UploadImage value) uploadImage,
+  }) {
+    return updateUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetLoggedIn value)? setLoggedIn,
+    TResult? Function(_SetLoggedOut value)? setLoggedOut,
+    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_UploadImage value)? uploadImage,
+  }) {
+    return updateUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetLoggedIn value)? setLoggedIn,
+    TResult Function(_SetLoggedOut value)? setLoggedOut,
+    TResult Function(_GetUser value)? getUser,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_UploadImage value)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (updateUser != null) {
+      return updateUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUser implements AppEvent {
+  const factory _UpdateUser(final Map<String, dynamic> body) = _$_UpdateUser;
+
+  Map<String, dynamic> get body;
+  @JsonKey(ignore: true)
+  _$$_UpdateUserCopyWith<_$_UpdateUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UploadImageCopyWith<$Res> {
+  factory _$$_UploadImageCopyWith(
+          _$_UploadImage value, $Res Function(_$_UploadImage) then) =
+      __$$_UploadImageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> body});
+}
+
+/// @nodoc
+class __$$_UploadImageCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$_UploadImage>
+    implements _$$_UploadImageCopyWith<$Res> {
+  __$$_UploadImageCopyWithImpl(
+      _$_UploadImage _value, $Res Function(_$_UploadImage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? body = null,
+  }) {
+    return _then(_$_UploadImage(
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UploadImage implements _UploadImage {
+  const _$_UploadImage(final Map<String, dynamic> body) : _body = body;
+
+  final Map<String, dynamic> _body;
+  @override
+  Map<String, dynamic> get body {
+    if (_body is EqualUnmodifiableMapView) return _body;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_body);
+  }
+
+  @override
+  String toString() {
+    return 'AppEvent.uploadImage(body: $body)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UploadImage &&
+            const DeepCollectionEquality().equals(other._body, _body));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UploadImageCopyWith<_$_UploadImage> get copyWith =>
+      __$$_UploadImageCopyWithImpl<_$_UploadImage>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() setLoggedIn,
+    required TResult Function() setLoggedOut,
+    required TResult Function() getUser,
+    required TResult Function(Map<String, dynamic> body) updateUser,
+    required TResult Function(Map<String, dynamic> body) uploadImage,
+  }) {
+    return uploadImage(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? setLoggedIn,
+    TResult? Function()? setLoggedOut,
+    TResult? Function()? getUser,
+    TResult? Function(Map<String, dynamic> body)? updateUser,
+    TResult? Function(Map<String, dynamic> body)? uploadImage,
+  }) {
+    return uploadImage?.call(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? setLoggedIn,
+    TResult Function()? setLoggedOut,
+    TResult Function()? getUser,
+    TResult Function(Map<String, dynamic> body)? updateUser,
+    TResult Function(Map<String, dynamic> body)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (uploadImage != null) {
+      return uploadImage(body);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetLoggedIn value) setLoggedIn,
+    required TResult Function(_SetLoggedOut value) setLoggedOut,
+    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_UploadImage value) uploadImage,
+  }) {
+    return uploadImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetLoggedIn value)? setLoggedIn,
+    TResult? Function(_SetLoggedOut value)? setLoggedOut,
+    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_UploadImage value)? uploadImage,
+  }) {
+    return uploadImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetLoggedIn value)? setLoggedIn,
+    TResult Function(_SetLoggedOut value)? setLoggedOut,
+    TResult Function(_GetUser value)? getUser,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_UploadImage value)? uploadImage,
+    required TResult orElse(),
+  }) {
+    if (uploadImage != null) {
+      return uploadImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadImage implements AppEvent {
+  const factory _UploadImage(final Map<String, dynamic> body) = _$_UploadImage;
+
+  Map<String, dynamic> get body;
+  @JsonKey(ignore: true)
+  _$$_UploadImageCopyWith<_$_UploadImage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/buttons/button.dart';
+import 'package:idwey/constants/enums.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/pages/configuration/components/informations_sections/security_form.dart';
 import 'package:idwey/theme/app_colors.dart';
@@ -43,7 +44,32 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppBloc, AppState>(
+    return BlocConsumer<AppBloc, AppState>(
+      listener: (context, state) {
+        if (state.status == StateStatus.loading) {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              });
+        } else if (state.status == StateStatus.success) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("modifications enregistrées avec succès"),
+            ),
+          );
+        } else if (state.status == StateStatus.error) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("une erreur s'est produite"),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -83,7 +109,17 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                             emailController.text.isEmpty == true ||
                             controller.text.isEmpty == true
                         ? null
-                        : () {},
+                        : () {
+                            context.read<AppBloc>().add(AppEvent.updateUser({
+                                  "id": state.id,
+                                  "first_name": nameController.text,
+                                  "email": emailController.text,
+                                  "phone": phoneController.text,
+                                  "last_name": controller.text,
+                                  "job": professionController.text,
+                                  "bio": aboutcontroller.text,
+                                }));
+                          },
                     child: Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
