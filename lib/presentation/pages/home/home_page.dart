@@ -101,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen>
                           id: state.listHosts?[index].id,
                           typeHost: state.listHosts?[index].typeHost));
                     },
+                    discount: state.listHosts?[index].promotion.toString(),
                     title: state.listHosts?[index].title,
                     adress: state.listHosts?[index].address,
                     price: state.listHosts?[index].price,

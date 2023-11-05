@@ -62,6 +62,8 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
             listener: (context, state) {
           if (state.addToCartStatus == StateStatus.loading) {
             showLoadingDialog();
+          } else if (state.addToCartStatus == StateStatus.success) {
+            Navigator.pop(context);
           }
         }, builder: (context, state) {
           if (state.status == StateStatus.loading) {
@@ -151,15 +153,39 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                                 subtitle: "Jeux de societe",
                               ),
                               const Divider(),
-                              Text(
-                                "${double.parse(state.productDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 20.sp,
-                                        color: primaryOrange),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${double.parse(state.productDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 20.sp,
+                                            color: primaryOrange),
+                                  ),
+                                  Visibility(
+                                    visible: state.productDetailsDto?.row
+                                            ?.promotion?.isNotEmpty ??
+                                        false,
+                                    child: CircleAvatar(
+                                      child: Text(
+                                        "${state.productDetailsDto?.row?.promotion}/ DT",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium!
+                                            .copyWith(
+                                                fontSize: 30.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 16.h,

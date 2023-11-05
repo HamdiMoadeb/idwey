@@ -111,6 +111,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                           );
                   },
                   perPerson: "personne",
+                  salePrice:
+                      "${double.parse(state.activityDetailsDto?.row?.salePrice ?? "0").toInt().toString()} DT",
                   price:
                       "${double.parse(state.activityDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
                 ),
@@ -132,15 +134,39 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                state.activityDetailsDto?.row?.title ?? "",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                        fontSize: 30.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    state.activityDetailsDto?.row?.title ?? "",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .copyWith(
+                                            fontSize: 30.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black),
+                                  ),
+                                  Visibility(
+                                    visible: state.activityDetailsDto?.row
+                                            ?.promotion?.isNotEmpty ??
+                                        false,
+                                    child: CircleAvatar(
+                                      child: Text(
+                                        "${state.activityDetailsDto?.row?.promotion}/ DT",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium!
+                                            .copyWith(
+                                                fontSize: 30.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 4.h,

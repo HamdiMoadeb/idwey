@@ -1,11 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:image_picker/image_picker.dart';
 
-class HeaderWidget extends StatelessWidget {
+class HeaderWidget extends StatefulWidget {
   final String title;
   final String subtitle;
   final String imageUrl;
+
   const HeaderWidget(
       {Key? key,
       required this.title,
@@ -13,6 +20,11 @@ class HeaderWidget extends StatelessWidget {
       required this.imageUrl})
       : super(key: key);
 
+  @override
+  State<HeaderWidget> createState() => _HeaderWidgetState();
+}
+
+class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -26,19 +38,23 @@ class HeaderWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 30.h),
           child: Column(
             children: [
-              EditableCircleAvatar(imageUrl: imageUrl),
+              EditableCircleAvatar(
+                  imageUrl: widget.imageUrl,
+                  onEditPressed: () {
+                    requestPermissions();
+                  }),
               SizedBox(
                 height: 16.h,
               ),
               Text(
-                title,
+                widget.title,
                 style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                subtitle,
+                widget.subtitle,
                 style: TextStyle(
                   fontSize: 14.sp,
                   color: Colors.grey,
@@ -49,6 +65,55 @@ class HeaderWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> requestPermissions() async {
+    PermissionStatus status = await Permission.camera.request();
+
+    if (status.isGranted) {
+      print("granted");
+      showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: ChooseImageSourceBottomSheet(
+                onCameraPressed: () {
+                  _pickImage(ImageSource.camera);
+                },
+                onGalleryPressed: () {
+                  _pickImage(ImageSource.gallery);
+                },
+              ));
+        },
+      );
+    } else if (status.isDenied) {
+      print("denied");
+    }
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.getImage(source: source);
+
+    if (pickedFile != null) {
+      print(pickedFile.path);
+
+      Map<String, dynamic> map = {
+        'file': await MultipartFile.fromFile(pickedFile.path)
+      };
+
+      context.read<AppBloc>().add(
+            AppEvent.uploadImage(map),
+          );
+    }
   }
 }
 

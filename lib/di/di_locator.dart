@@ -42,6 +42,8 @@ import 'package:idwey/domain/usecases/search_activity_usecase.dart';
 import 'package:idwey/domain/usecases/search_events_usecase.dart';
 import 'package:idwey/domain/usecases/search_experience_usecase.dart';
 import 'package:idwey/domain/usecases/search_hosts_usecase.dart';
+import 'package:idwey/domain/usecases/update_user_usecase.dart';
+import 'package:idwey/domain/usecases/upload_image_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dart';
@@ -127,6 +129,8 @@ Future<void> setup() async {
       () => ReservationRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => DoCheckoutUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetBookingListUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => UpdateUserUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => UploadImageUseCase(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(
       () => ExperienceRepositoryImpl(GetIt.I()));

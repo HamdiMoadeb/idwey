@@ -345,3 +345,68 @@ class _ForgetPasswordBottomSheetState extends State<ForgetPasswordBottomSheet> {
     );
   }
 }
+
+/// choose source to pick an image gallery or camera
+
+class ChooseImageSourceBottomSheet extends StatelessWidget {
+  final Function() onCameraPressed;
+  final Function() onGalleryPressed;
+  const ChooseImageSourceBottomSheet(
+      {Key? key, required this.onCameraPressed, required this.onGalleryPressed})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.r),
+      child: Scaffold(
+        body: Padding(
+          padding:
+              EdgeInsets.only(left: 16.h, right: 16.h, top: 30.h, bottom: 16.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Choisissez une source",
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: Colors.black,
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w700),
+              ),
+              SizedBox(
+                height: 30.h,
+              ),
+              CustomButton.textOnly(
+                  onPressed: () {
+                    onGalleryPressed();
+                    GetIt.I<AppRouter>().pop();
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Gallerie',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.sp)),
+                  )),
+              CustomButton.textOnly(
+                onPressed: () {
+                  onCameraPressed();
+                  GetIt.I<AppRouter>().pop();
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('Camera',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

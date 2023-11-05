@@ -7,9 +7,11 @@ import 'package:idwey/components/cards/card_type.dart';
 import 'package:idwey/components/chips/chip.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/theme/app_colors.dart';
+import 'dart:math' as math;
 
 class CustomCard extends StatefulWidget {
   final String? title;
+  final String? discount;
   final String? adress;
   final String? url;
   final String? price;
@@ -44,7 +46,8 @@ class CustomCard extends StatefulWidget {
       this.onFavoriteTap,
       this.isFavorite = false,
       this.isFeatured,
-      this.onTap})
+      this.onTap,
+      this.discount})
       : cardType = CardType.host,
         duration = null,
         isExpired = null,
@@ -66,7 +69,8 @@ class CustomCard extends StatefulWidget {
       this.onFavoriteTap,
       this.isFavorite = false,
       this.isFeatured,
-      this.onTap})
+      this.onTap,
+      this.discount})
       : cardType = CardType.event,
         duration = null,
         super(key: key);
@@ -89,7 +93,8 @@ class CustomCard extends StatefulWidget {
       this.isFavorite = false,
       this.duration,
       this.isFeatured,
-      this.onTap})
+      this.onTap,
+      this.discount})
       : cardType = CardType.activity,
         super(key: key);
   CustomCard.experience(
@@ -110,7 +115,8 @@ class CustomCard extends StatefulWidget {
       this.isFavorite = false,
       this.duration,
       this.isFeatured,
-      this.onTap})
+      this.onTap,
+      this.discount})
       : cardType = CardType.experience,
         super(key: key);
 
@@ -132,7 +138,8 @@ class CustomCard extends StatefulWidget {
       this.isFavorite = false,
       this.duration,
       this.isFeatured,
-      this.onTap})
+      this.onTap,
+      this.discount})
       : cardType = CardType.product,
         super(key: key);
 
@@ -153,33 +160,71 @@ class _CustomCardState extends State<CustomCard> {
           children: [
             Stack(
               children: [
-                SizedBox(
-                  height: 300.h,
-                  width: double.infinity,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.r),
-                      topRight: Radius.circular(20.r),
-                      bottomLeft: Radius.circular(20.r),
-                      bottomRight: Radius.circular(20.r),
-                    ),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.url ??
-                          "https://plus.unsplash.com/premium_photo-1680871320511-8be2085ff281?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=659&q=80",
-                      fit: BoxFit.cover,
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                        child: SizedBox(
-                          width: 50.w,
-                          height: 50.h,
-                          child: CircularProgressIndicator(
-                              value: downloadProgress.progress),
+                Stack(
+                  alignment: Alignment.bottomLeft,
+                  children: [
+                    Visibility(
+                      visible: widget.discount != null &&
+                          widget.discount!.isNotEmpty &&
+                          widget.discount != "null",
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.r),
+                          topRight: Radius.circular(20.r),
+                          bottomLeft: Radius.circular(20.r),
+                          bottomRight: Radius.circular(20.r),
+                        ),
+                        child: Container(
+                          height: 310.h,
+                          color: primaryOrange,
                         ),
                       ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
                     ),
-                  ),
+                    Container(
+                      foregroundDecoration: widget.discount != null &&
+                              widget.discount!.isNotEmpty &&
+                              widget.discount != "null"
+                          ? BadgeDecoration(
+                              badgeColor: primaryOrange,
+                              badgeSize: 70.r,
+                              textSpan: TextSpan(
+                                text: "${widget.discount}%",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              ))
+                          : null,
+                      child: SizedBox(
+                        height: 300.h,
+                        width: double.infinity,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.r),
+                            topRight: Radius.circular(20.r),
+                            bottomLeft: Radius.circular(20.r),
+                            bottomRight: Radius.circular(20.r),
+                          ),
+                          child: CachedNetworkImage(
+                            imageUrl: widget.url ??
+                                "https://plus.unsplash.com/premium_photo-1680871320511-8be2085ff281?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=659&q=80",
+                            fit: BoxFit.cover,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Center(
+                              child: SizedBox(
+                                width: 50.w,
+                                height: 50.h,
+                                child: CircularProgressIndicator(
+                                    value: downloadProgress.progress),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 widget.cardType == CardType.event
                     ? widget.term == null || widget.term == ""
@@ -359,4 +404,65 @@ class _CustomCardState extends State<CustomCard> {
       ),
     );
   }
+}
+
+class BadgeDecoration extends Decoration {
+  final Color badgeColor;
+  final double badgeSize;
+  final TextSpan textSpan;
+  const BadgeDecoration(
+      {required this.badgeColor,
+      required this.badgeSize,
+      required this.textSpan});
+
+  @override
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
+    return _BadgePainter(badgeColor, badgeSize, textSpan);
+  }
+}
+
+class _BadgePainter extends BoxPainter {
+  static const double BASELINE_SHIFT = 1;
+  static double CORNER_RADIUS = 12.r;
+  final Color badgeColor;
+  final double badgeSize;
+  final TextSpan textSpan;
+
+  _BadgePainter(this.badgeColor, this.badgeSize, this.textSpan);
+
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
+    canvas.save();
+    canvas.translate(
+        offset.dx + configuration.size!.width - badgeSize, offset.dy);
+    canvas.drawPath(buildBadgePath(), getBadgePaint());
+    // draw text
+    final hyp = math.sqrt(badgeSize * badgeSize + badgeSize * badgeSize);
+    final textPainter = TextPainter(
+        text: textSpan,
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.center);
+    textPainter.layout(minWidth: hyp, maxWidth: hyp);
+    final halfHeight = textPainter.size.height / 2;
+    final v = math.sqrt(halfHeight * halfHeight + halfHeight * halfHeight) +
+        BASELINE_SHIFT;
+    canvas.translate(v, -v);
+    canvas.rotate(0.785398); // 45 degrees
+    textPainter.paint(canvas, Offset.zero);
+    canvas.restore();
+  }
+
+  Paint getBadgePaint() => Paint()
+    ..isAntiAlias = true
+    ..color = badgeColor;
+
+  Path buildBadgePath() => Path.combine(
+      PathOperation.difference,
+      Path()
+        ..addRRect(RRect.fromLTRBAndCorners(0, 0, badgeSize, badgeSize,
+            topRight: Radius.circular(CORNER_RADIUS))),
+      Path()
+        ..lineTo(0, badgeSize)
+        ..lineTo(badgeSize, badgeSize)
+        ..close());
 }

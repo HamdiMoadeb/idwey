@@ -44,4 +44,31 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(e);
     }
   }
+
+  @override
+  Future<Either<Exception, String>> updateUser(
+      Map<String, dynamic> params) async {
+    try {
+      final result = await dataSource.updateUser(params);
+
+      print("result");
+      print(result);
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, void>> uploadImage(
+      Map<String, dynamic> params) async {
+    try {
+      final result = await dataSource.uploadImage(params);
+
+      print("result");
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
 }
