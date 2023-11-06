@@ -51,6 +51,12 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsEventPageBloc, DetailsEventPageState>(
             builder: (context, state) {
+          print("widget.typeHost");
+          print(state.eventDetailsDto?.attributes);
+          print(state.eventDetailsDto?.attributes!['9']?.child.toString());
+          print(state.eventDetailsDto?.attributes!['9']?.parent.toString());
+          print(state.eventDetailsDto?.attributes!['10']?.parent.toString());
+          print(state.eventDetailsDto?.attributes!['10']?.child.toString());
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -117,9 +123,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                       : StateEvent.isAvailable,
                   perPerson: "personne",
                   salePrice:
-                      "${double.parse(state.eventDetailsDto?.row?.salePrix ?? "0").toInt().toString()} DT",
+                      "${double.parse(state.eventDetailsDto?.row?.salePrix ?? "0").toInt().toString()}",
                   price:
-                      "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt().toString()} DT",
+                      "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt().toString()}",
                 ),
               ),
               body: Stack(
@@ -144,15 +150,18 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    state.eventDetailsDto?.row?.title ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black),
+                                  Expanded(
+                                    child: Text(
+                                      state.eventDetailsDto?.row?.title ?? "",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .copyWith(
+                                              fontSize: 30.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                    ),
                                   ),
                                   Visibility(
                                     visible: state.eventDetailsDto?.row
@@ -239,11 +248,17 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                               const Divider(
                                 thickness: 1,
                               ),
-                              const CommoditiesSection(
+                              CommoditiesSection(
                                 typeReservation: TypeReservation.event,
-                                games: "Jeux",
-                                food: "Nourriture",
-                                breakfast: "Petit déjeuner",
+                                listCommodities:
+                                    state.eventDetailsDto?.attributes != null &&
+                                            state.eventDetailsDto?.attributes!
+                                                    .containsKey('10') ==
+                                                true
+                                        ? state.eventDetailsDto
+                                                ?.attributes!['10']!.child ??
+                                            []
+                                        : [],
                               ),
                               const Divider(),
                               MapSection(

@@ -51,6 +51,10 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsActivityPageBloc, DetailsActivityPageState>(
             builder: (context, state) {
+          print("state: ");
+          print(state.activityDetailsDto?.attributes);
+          print(state.activityDetailsDto?.attributes!['1']?.child);
+          print(state.activityDetailsDto?.attributes!['2']?.child);
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -112,9 +116,9 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                   },
                   perPerson: "personne",
                   salePrice:
-                      "${double.parse(state.activityDetailsDto?.row?.salePrice ?? "0").toInt().toString()} DT",
+                      "${double.parse(state.activityDetailsDto?.row?.salePrice ?? "0").toInt().toString()}",
                   price:
-                      "${double.parse(state.activityDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
+                      "${double.parse(state.activityDetailsDto?.row?.price ?? "0").toInt().toString()}",
                 ),
               ),
               body: Stack(
@@ -139,15 +143,18 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    state.activityDetailsDto?.row?.title ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black),
+                                  Expanded(
+                                    child: Text(
+                                      state.activityDetailsDto?.row?.title ??
+                                          "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .copyWith(
+                                              fontSize: 30.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                    ),
                                   ),
                                   Visibility(
                                     visible: state.activityDetailsDto?.row
@@ -233,11 +240,11 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                               const Divider(
                                 thickness: 1,
                               ),
-                              const CommoditiesSection(
+                              CommoditiesSection(
                                 typeReservation: TypeReservation.event,
-                                shower: "Douche",
-                                parking: "Free parking",
-                                kitchen: "Cuisine equipéé",
+                                listCommodities: state.activityDetailsDto
+                                        ?.attributes!['2']?.child ??
+                                    [],
                               ),
                               const Divider(),
                               MapSection(

@@ -157,6 +157,36 @@ class _BoardPageState extends State<BoardPage> {
                               ),
                             )),
                       ),
+                      InkWell(
+                        onTap: () {
+                          controller.animateToPage(4,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.ease);
+                          setState(() {
+                            selectedIndex = 4;
+                          });
+                        },
+                        child: Container(
+                            margin: const EdgeInsets.only(left: 16),
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: selectedIndex == 4
+                                      ? Colors.black
+                                      : Colors.grey[400]!,
+                                ),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                              'Payé',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500,
+                                color: selectedIndex == 4
+                                    ? Colors.black
+                                    : Colors.grey[400]!,
+                              ),
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -242,6 +272,25 @@ class _BoardPageState extends State<BoardPage> {
                               );
                             },
                             itemCount: state.confirmedBookingList?.length ?? 0)
+                        : const Center(
+                            child: Text("Aucune réservation"),
+                          ),
+                    state.paidBookingList?.isNotEmpty == true
+                        ? ListView.separated(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              return _buildRoomItem(
+                                bookingDto: state.paidBookingList?[index],
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return SizedBox(
+                                height: 16.h,
+                              );
+                            },
+                            itemCount: state.paidBookingList?.length ?? 0)
                         : const Center(
                             child: Text("Aucune réservation"),
                           ),

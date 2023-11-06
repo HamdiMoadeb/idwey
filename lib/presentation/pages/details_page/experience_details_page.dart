@@ -52,6 +52,9 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsExperiencePageBloc,
             DetailsExperiencePageState>(builder: (context, state) {
+          print("widget.typeHost");
+          print(state.experienceDetailsDto?.attributes?.the11?.child);
+
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -117,9 +120,9 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                   },
                   perPerson: "personne",
                   salePrice:
-                      "${double.parse(state.experienceDetailsDto?.row?.salePrice ?? "0").toInt().toString()} DT",
+                      "${double.parse(state.experienceDetailsDto?.row?.salePrice ?? "0").toInt().toString()}",
                   price:
-                      "${double.parse(state.experienceDetailsDto?.row?.price ?? "0").toInt().toString()} DT",
+                      "${double.parse(state.experienceDetailsDto?.row?.price ?? "0").toInt().toString()}",
                 ),
               ),
               body: Stack(
@@ -142,16 +145,18 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    state.experienceDetailsDto?.row?.title ??
-                                        "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black),
+                                  Expanded(
+                                    child: Text(
+                                      state.experienceDetailsDto?.row?.title ??
+                                          "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .copyWith(
+                                              fontSize: 30.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                    ),
                                   ),
                                   Visibility(
                                     visible: state.experienceDetailsDto?.row
@@ -239,11 +244,11 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                               const Divider(
                                 thickness: 1,
                               ),
-                              const CommoditiesSection(
+                              CommoditiesSection(
                                 typeReservation: TypeReservation.event,
-                                shower: "Douche",
-                                parking: "Free parking",
-                                kitchen: "Cuisine equipéé",
+                                listCommodities: state.experienceDetailsDto
+                                        ?.attributes?.the11?.child ??
+                                    [],
                               ),
                               const Divider(),
                               MapSection(
