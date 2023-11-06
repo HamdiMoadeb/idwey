@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/components.dart';
@@ -61,6 +60,12 @@ class _DetailsScreenState extends State<DetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsPageBloc, DetailsPageState>(
             builder: (context, state) {
+          print("widget.typeHost");
+          print(state.hostDetails?.attributes);
+          print(state.hostDetails?.attributes!['5']?.child.toString());
+          print(state.hostDetails?.attributes!['5']?.parent.toString());
+          print(state.hostDetails?.attributes!['6']?.parent.toString());
+          print(state.hostDetails?.attributes!['6']?.child.toString());
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -117,7 +122,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                   perPerson: "nuit",
                   salePrice: state.hostDetails?.row?.salePrice ?? "",
                   price:
-                      "${double.parse(state.hostDetails?.row?.price ?? "0").toInt().toString()} DT",
+                      "${double.parse(state.hostDetails?.row?.price ?? "0").toInt().toString()}",
                 ),
               ),
               body: Stack(
@@ -141,15 +146,18 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    state.hostDetails?.row?.title ?? "",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black),
+                                  Expanded(
+                                    child: Text(
+                                      state.hostDetails?.row?.title ?? "",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .copyWith(
+                                              fontSize: 30.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                    ),
                                   ),
                                   Visibility(
                                     visible: state.hostDetails?.row?.promotion
@@ -245,11 +253,11 @@ class _DetailsScreenState extends State<DetailsScreen>
                                   ? ChaletsSection(state: state)
                                   : const SizedBox.shrink(),
 
-                              const CommoditiesSection(
+                              CommoditiesSection(
                                 typeReservation: TypeReservation.host,
-                                kitchen: "Cuisine équipé",
-                                parking: "Free parking",
-                                shower: "Douche",
+                                listCommodities: state
+                                        .hostDetails?.attributes!['6']?.child ??
+                                    [],
                               ),
                               const Divider(),
                               MapSection(

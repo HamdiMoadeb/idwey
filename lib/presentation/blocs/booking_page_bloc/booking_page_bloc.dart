@@ -36,6 +36,7 @@ class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
           final List<BookingDto> canceledBookingList = [];
           final List<BookingDto> acceptedBookingList = [];
           final List<BookingDto> waitingBookingList = [];
+          final List<BookingDto> paidBookingList = [];
           state.bookingList?.forEach((element) {
             if (element.status == 'cancelled') {
               canceledBookingList.add(element);
@@ -51,10 +52,16 @@ class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
               waitingBookingList.add(element);
             }
           });
+          state.bookingList?.forEach((element) {
+            if (element.status == 'paid') {
+              paidBookingList.add(element);
+            }
+          });
           emit(state.copyWith(
             canceledBookingList: canceledBookingList,
             confirmedBookingList: acceptedBookingList,
             waitingBookingList: waitingBookingList,
+            paidBookingList: paidBookingList,
           ));
         } else {
           emit(state.copyWith(

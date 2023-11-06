@@ -25,6 +25,7 @@ class BottomReservationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("salePrice $salePrice");
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -73,10 +74,11 @@ class BottomReservationBar extends StatelessWidget {
                     Visibility(
                       visible: salePrice.isNotEmpty &&
                               salePrice != "0" &&
+                              salePrice != 0 &&
                               salePrice != "0.00"
                           ? true
                           : false,
-                      child: Text(price,
+                      child: Text("$price DT",
                           style: TextStyle(
                             fontSize: 16.sp,
                             color: primaryOrange,
@@ -86,9 +88,10 @@ class BottomReservationBar extends StatelessWidget {
                     Text(
                       salePrice.isNotEmpty &&
                               salePrice != "0" &&
+                              salePrice != 0 &&
                               salePrice != "0.00"
-                          ? "$salePrice / $perPerson"
-                          : "$price / $perPerson",
+                          ? "$salePrice DT / $perPerson"
+                          : "$price DT / $perPerson",
                       style: Theme.of(context).textTheme.displayLarge?.copyWith(
                             fontSize: 16.sp,
                             color: primary,

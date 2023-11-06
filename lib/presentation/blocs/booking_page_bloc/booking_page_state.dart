@@ -8,6 +8,7 @@ class BookingPageState with _$BookingPageState {
     List<BookingDto>? waitingBookingList,
     List<BookingDto>? canceledBookingList,
     List<BookingDto>? confirmedBookingList,
+    List<BookingDto>? paidBookingList,
   }) = _BookingPageState;
 
   factory BookingPageState.initial() => const BookingPageState(
@@ -16,5 +17,6 @@ class BookingPageState with _$BookingPageState {
         waitingBookingList: [],
         canceledBookingList: [],
         confirmedBookingList: [],
+        paidBookingList: [],
       );
 }

@@ -229,6 +229,7 @@ mixin _$BookingPageState {
       throw _privateConstructorUsedError;
   List<BookingDto>? get confirmedBookingList =>
       throw _privateConstructorUsedError;
+  List<BookingDto>? get paidBookingList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookingPageStateCopyWith<BookingPageState> get copyWith =>
@@ -246,7 +247,8 @@ abstract class $BookingPageStateCopyWith<$Res> {
       List<BookingDto>? bookingList,
       List<BookingDto>? waitingBookingList,
       List<BookingDto>? canceledBookingList,
-      List<BookingDto>? confirmedBookingList});
+      List<BookingDto>? confirmedBookingList,
+      List<BookingDto>? paidBookingList});
 }
 
 /// @nodoc
@@ -267,6 +269,7 @@ class _$BookingPageStateCopyWithImpl<$Res, $Val extends BookingPageState>
     Object? waitingBookingList = freezed,
     Object? canceledBookingList = freezed,
     Object? confirmedBookingList = freezed,
+    Object? paidBookingList = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -289,6 +292,10 @@ class _$BookingPageStateCopyWithImpl<$Res, $Val extends BookingPageState>
           ? _value.confirmedBookingList
           : confirmedBookingList // ignore: cast_nullable_to_non_nullable
               as List<BookingDto>?,
+      paidBookingList: freezed == paidBookingList
+          ? _value.paidBookingList
+          : paidBookingList // ignore: cast_nullable_to_non_nullable
+              as List<BookingDto>?,
     ) as $Val);
   }
 }
@@ -306,7 +313,8 @@ abstract class _$$_BookingPageStateCopyWith<$Res>
       List<BookingDto>? bookingList,
       List<BookingDto>? waitingBookingList,
       List<BookingDto>? canceledBookingList,
-      List<BookingDto>? confirmedBookingList});
+      List<BookingDto>? confirmedBookingList,
+      List<BookingDto>? paidBookingList});
 }
 
 /// @nodoc
@@ -325,6 +333,7 @@ class __$$_BookingPageStateCopyWithImpl<$Res>
     Object? waitingBookingList = freezed,
     Object? canceledBookingList = freezed,
     Object? confirmedBookingList = freezed,
+    Object? paidBookingList = freezed,
   }) {
     return _then(_$_BookingPageState(
       status: freezed == status
@@ -347,6 +356,10 @@ class __$$_BookingPageStateCopyWithImpl<$Res>
           ? _value._confirmedBookingList
           : confirmedBookingList // ignore: cast_nullable_to_non_nullable
               as List<BookingDto>?,
+      paidBookingList: freezed == paidBookingList
+          ? _value._paidBookingList
+          : paidBookingList // ignore: cast_nullable_to_non_nullable
+              as List<BookingDto>?,
     ));
   }
 }
@@ -359,11 +372,13 @@ class _$_BookingPageState implements _BookingPageState {
       final List<BookingDto>? bookingList,
       final List<BookingDto>? waitingBookingList,
       final List<BookingDto>? canceledBookingList,
-      final List<BookingDto>? confirmedBookingList})
+      final List<BookingDto>? confirmedBookingList,
+      final List<BookingDto>? paidBookingList})
       : _bookingList = bookingList,
         _waitingBookingList = waitingBookingList,
         _canceledBookingList = canceledBookingList,
-        _confirmedBookingList = confirmedBookingList;
+        _confirmedBookingList = confirmedBookingList,
+        _paidBookingList = paidBookingList;
 
   @override
   final StateStatus? status;
@@ -410,9 +425,19 @@ class _$_BookingPageState implements _BookingPageState {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<BookingDto>? _paidBookingList;
+  @override
+  List<BookingDto>? get paidBookingList {
+    final value = _paidBookingList;
+    if (value == null) return null;
+    if (_paidBookingList is EqualUnmodifiableListView) return _paidBookingList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'BookingPageState(status: $status, bookingList: $bookingList, waitingBookingList: $waitingBookingList, canceledBookingList: $canceledBookingList, confirmedBookingList: $confirmedBookingList)';
+    return 'BookingPageState(status: $status, bookingList: $bookingList, waitingBookingList: $waitingBookingList, canceledBookingList: $canceledBookingList, confirmedBookingList: $confirmedBookingList, paidBookingList: $paidBookingList)';
   }
 
   @override
@@ -428,7 +453,9 @@ class _$_BookingPageState implements _BookingPageState {
             const DeepCollectionEquality()
                 .equals(other._canceledBookingList, _canceledBookingList) &&
             const DeepCollectionEquality()
-                .equals(other._confirmedBookingList, _confirmedBookingList));
+                .equals(other._confirmedBookingList, _confirmedBookingList) &&
+            const DeepCollectionEquality()
+                .equals(other._paidBookingList, _paidBookingList));
   }
 
   @override
@@ -438,7 +465,8 @@ class _$_BookingPageState implements _BookingPageState {
       const DeepCollectionEquality().hash(_bookingList),
       const DeepCollectionEquality().hash(_waitingBookingList),
       const DeepCollectionEquality().hash(_canceledBookingList),
-      const DeepCollectionEquality().hash(_confirmedBookingList));
+      const DeepCollectionEquality().hash(_confirmedBookingList),
+      const DeepCollectionEquality().hash(_paidBookingList));
 
   @JsonKey(ignore: true)
   @override
@@ -453,7 +481,8 @@ abstract class _BookingPageState implements BookingPageState {
       final List<BookingDto>? bookingList,
       final List<BookingDto>? waitingBookingList,
       final List<BookingDto>? canceledBookingList,
-      final List<BookingDto>? confirmedBookingList}) = _$_BookingPageState;
+      final List<BookingDto>? confirmedBookingList,
+      final List<BookingDto>? paidBookingList}) = _$_BookingPageState;
 
   @override
   StateStatus? get status;
@@ -465,6 +494,8 @@ abstract class _BookingPageState implements BookingPageState {
   List<BookingDto>? get canceledBookingList;
   @override
   List<BookingDto>? get confirmedBookingList;
+  @override
+  List<BookingDto>? get paidBookingList;
   @override
   @JsonKey(ignore: true)
   _$$_BookingPageStateCopyWith<_$_BookingPageState> get copyWith =>
