@@ -17,10 +17,13 @@ import 'package:idwey/presentation/pages/details_page/host_details_page.dart';
 import 'package:idwey/presentation/pages/details_page/products_details_page.dart';
 import 'package:idwey/presentation/pages/details_page/reservation_details_page.dart';
 import 'package:idwey/presentation/pages/fidelit_program/fidelity_program_Screen.dart';
+import 'package:idwey/presentation/pages/help/helpScreen.dart';
 import 'package:idwey/presentation/pages/home/main_home.dart';
+import 'package:idwey/presentation/pages/how_it_works/how_it_works.dart';
 import 'package:idwey/presentation/pages/inspiration/inspiration.dart';
 import 'package:idwey/presentation/pages/products/products_page.dart';
 import 'package:idwey/presentation/pages/terms_and_conditions/terms_and_conditions_screen.dart';
+import 'package:idwey/presentation/pages/terms_of_use/termsScreen.dart';
 
 import '../data/models/extra_price_dto.dart';
 import '../presentation/pages/pages.dart';
@@ -67,5 +70,8 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: DetailsReservationRoute.page),
     AutoRoute(page: ConfigurationRoute.page),
     AutoRoute(page: FidelityProgramRoute.page),
+    AutoRoute(page: HowItWorksRoute.page),
+    AutoRoute(page: HelpRoute.page),
+    AutoRoute(page: TermsRoute.page),
   ];
 }
