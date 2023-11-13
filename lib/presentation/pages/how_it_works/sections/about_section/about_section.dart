@@ -65,14 +65,6 @@ class AboutSection extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            list[index],
-                            maxLines: 6,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const Divider(
-                            thickness: 1,
-                          ),
                           Row(
                             children: [
                               const HeroIcon(
@@ -95,6 +87,14 @@ class AboutSection extends StatelessWidget {
                                 ),
                               ),
                             ],
+                          ),
+                          const Divider(
+                            thickness: 1,
+                          ),
+                          Text(
+                            list[index],
+                            maxLines: 6,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
