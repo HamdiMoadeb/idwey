@@ -150,6 +150,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const FidelityProgramScreen(),
       );
     },
+    HelpRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HelpScreen(),
+      );
+    },
+    HowItWorksRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HowItWorksScreen(),
+      );
+    },
     InspirationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -206,6 +218,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const TermsAndConditionsScreen(),
+      );
+    },
+    TermsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TermsScreen(),
       );
     },
     VerifyDisponibilityRoute.name: (routeData) {
@@ -723,6 +741,34 @@ class FidelityProgramRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HelpScreen]
+class HelpRoute extends PageRouteInfo<void> {
+  const HelpRoute({List<PageRouteInfo>? children})
+      : super(
+          HelpRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HelpRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HowItWorksScreen]
+class HowItWorksRoute extends PageRouteInfo<void> {
+  const HowItWorksRoute({List<PageRouteInfo>? children})
+      : super(
+          HowItWorksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HowItWorksRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [InspirationScreen]
 class InspirationRoute extends PageRouteInfo<void> {
   const InspirationRoute({List<PageRouteInfo>? children})
@@ -867,6 +913,20 @@ class TermsAndConditionsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'TermsAndConditionsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TermsScreen]
+class TermsRoute extends PageRouteInfo<void> {
+  const TermsRoute({List<PageRouteInfo>? children})
+      : super(
+          TermsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TermsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

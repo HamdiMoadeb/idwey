@@ -25,16 +25,19 @@ class ProfileFooter extends StatelessWidget {
                   ),
             ),
           ),
-          const ListTile(
-            leading: HeroIcon(
+          ListTile(
+            onTap: () {
+              GetIt.I<AppRouter>().push(const TermsRoute());
+            },
+            leading: const HeroIcon(
               HeroIcons.bookOpen,
               color: Colors.black,
             ),
-            title: Text("Conditions d'utilisation",
+            title: const Text("Conditions d'utilisation",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),
-            trailing: Icon(
+            trailing: const Icon(
               Icons.arrow_forward_ios,
               color: Colors.black,
             ),
