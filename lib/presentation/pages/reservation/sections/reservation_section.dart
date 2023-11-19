@@ -105,7 +105,6 @@ class _ReservationFormState extends State<ReservationForm> {
                             width: 0.4.sw,
                             child: CustomInput(
                               focusNode: focusNode,
-                              enabled: true,
                               hintText: "Prénom",
                               foregroundColor: Colors.grey,
                               controller: widget.controller,
@@ -121,7 +120,6 @@ class _ReservationFormState extends State<ReservationForm> {
                             child: CustomInput(
                               focusNode: nameFocusNode,
                               hintText: "Nom",
-                              enabled: true,
                               errorText: state.validInformations == false &&
                                       widget.nameController.text.isEmpty
                                   ? "Veuillez remplir ce champ"
@@ -147,7 +145,6 @@ class _ReservationFormState extends State<ReservationForm> {
                                 ? null
                                 : "Email est invalide",
                         keyboardType: TextInputType.emailAddress,
-                        enabled: true,
                         foregroundColor: Colors.grey,
                       ),
                       SizedBox(
@@ -170,7 +167,6 @@ class _ReservationFormState extends State<ReservationForm> {
                               //         ? null
                               //         : "Numéro de téléphone est invalide",
                               keyboardType: TextInputType.number,
-                              enabled: true,
                               foregroundColor: Colors.grey,
                             ),
                           ),
@@ -184,7 +180,6 @@ class _ReservationFormState extends State<ReservationForm> {
                               //     ? "Veuillez remplir ce champ"
                               //     : null,
                               keyboardType: TextInputType.name,
-                              enabled: true,
                               foregroundColor: Colors.grey,
                             ),
                           ),
@@ -199,7 +194,6 @@ class _ReservationFormState extends State<ReservationForm> {
                         hintText: 'Condition spéciale',
                         controller: widget.messageController,
                         keyboardType: TextInputType.text,
-                        enabled: true,
                         foregroundColor: Colors.grey,
                       ),
                       SizedBox(

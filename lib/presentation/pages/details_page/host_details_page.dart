@@ -72,8 +72,10 @@ class _DetailsScreenState extends State<DetailsScreen>
             );
           } else if (state.status == StateStatus.error &&
               state.hostDetails == null) {
-            return const Center(
-              child: Text("Error"),
+            return const Scaffold(
+              body: Center(
+                child: Text("Error"),
+              ),
             );
           } else if (state.status == StateStatus.success &&
               state.hostDetails != null) {

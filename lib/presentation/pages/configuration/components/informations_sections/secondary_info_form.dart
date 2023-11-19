@@ -47,7 +47,6 @@ class _SecondaryInfoFormState extends State<SecondaryInfoForm> {
         children: [
           CustomInput(
             focusNode: focusNode,
-            enabled: true,
             hintText: "Profession",
             foregroundColor: Colors.grey,
             controller: widget.professionController,
@@ -59,7 +58,6 @@ class _SecondaryInfoFormState extends State<SecondaryInfoForm> {
           CustomInput(
             focusNode: nameFocusNode,
             hintText: "Intérêts",
-            enabled: true,
             foregroundColor: Colors.grey,
             controller: widget.interestsController,
             keyboardType: TextInputType.name,
@@ -72,7 +70,6 @@ class _SecondaryInfoFormState extends State<SecondaryInfoForm> {
             hintText: "Parlez de vous-même",
             controller: widget.aboutController,
             keyboardType: TextInputType.emailAddress,
-            enabled: true,
             foregroundColor: Colors.grey,
           ),
         ],

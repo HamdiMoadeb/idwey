@@ -17,7 +17,6 @@ class CustomInput extends StatefulWidget {
       this.onSubmit,
       this.inputAction,
       this.inputType,
-      required this.enabled,
       this.onTap,
       this.readOnly,
       this.inputFormatters,
@@ -44,7 +43,6 @@ class CustomInput extends StatefulWidget {
   final String? prefixIconName;
   final String? suffixIconName;
   final bool? obscureText, readOnly;
-  final bool enabled;
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final String? hintText;
@@ -140,12 +138,14 @@ class _CustomInputState extends State<CustomInput> {
         onChanged: widget.onChange,
         onFieldSubmitted: widget.onSubmit,
         textInputAction: widget.inputAction ?? TextInputAction.done,
-        style: (widget.textColor != null || widget.enabled == false)
-            ? Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: widget.enabled ? widget.textColor : disabledColor)
+        style: (widget.textColor != null)
+            ? Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: widget.textColor)
             : Theme.of(context).textTheme.bodyLarge,
         keyboardType: widget.keyboardType,
-        enabled: widget.enabled,
+        enabled: true,
         onTap: widget.onTap,
         readOnly: widget.readOnly ?? false,
         inputFormatters: widget.inputFormatters,
@@ -154,14 +154,12 @@ class _CustomInputState extends State<CustomInput> {
             prefixIcon: (widget.prefix != null && widget.prefixIconName == null)
                 ? widget.prefix
                 : (widget.prefixIconName != null
-                    ? _buildPrefix(
-                        widget.enabled ? regularStateColor : disabledColor)
+                    ? _buildPrefix(regularStateColor)
                     : null),
             suffixIcon: (widget.suffix != null && widget.suffixIconName == null)
                 ? widget.suffix
                 : (widget.suffixIconName != null
-                    ? _buildSuffix(
-                        widget.enabled ? regularStateColor : disabledColor)
+                    ? _buildSuffix(regularStateColor)
                     : null),
             label: _buildLabel(),
             counterText: '',
@@ -196,12 +194,10 @@ class _CustomInputState extends State<CustomInput> {
             hintText: widget.hintText ?? '',
             errorText: widget.errorText ?? widget.inputState?.message,
             labelStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: widget.enabled
-                    ? (widget.errorText != null &&
-                            (_focus.hasFocus || _controller?.text != null)
-                        ? errorColor
-                        : regularStateColor)
-                    : disabledColor),
+                color: (widget.errorText != null &&
+                        (_focus.hasFocus || _controller?.text != null)
+                    ? errorColor
+                    : regularStateColor)),
             errorStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: widget.errorText != null ? errorColor : null)));
   }

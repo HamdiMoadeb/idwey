@@ -24,6 +24,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    AddReviewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddReviewScreen(),
+      );
+    },
     ArticleDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<ArticleDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -180,6 +186,24 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProductsScreen(),
       );
     },
+    RequiredReviewsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RequiredReviewsScreen(),
+      );
+    },
+    ReviewsBoardRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ReviewsBoardScreen(),
+      );
+    },
+    ReviewsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ReviewsScreen(),
+      );
+    },
     SearchRoute.name: (routeData) {
       final args = routeData.argsAs<SearchRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -291,6 +315,20 @@ class ActivityDetailsRouteArgs {
   String toString() {
     return 'ActivityDetailsRouteArgs{key: $key, id: $id}';
   }
+}
+
+/// generated route for
+/// [AddReviewScreen]
+class AddReviewRoute extends PageRouteInfo<void> {
+  const AddReviewRoute({List<PageRouteInfo>? children})
+      : super(
+          AddReviewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -806,6 +844,48 @@ class ProductsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProductsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RequiredReviewsScreen]
+class RequiredReviewsRoute extends PageRouteInfo<void> {
+  const RequiredReviewsRoute({List<PageRouteInfo>? children})
+      : super(
+          RequiredReviewsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RequiredReviewsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ReviewsBoardScreen]
+class ReviewsBoardRoute extends PageRouteInfo<void> {
+  const ReviewsBoardRoute({List<PageRouteInfo>? children})
+      : super(
+          ReviewsBoardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ReviewsBoardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ReviewsScreen]
+class ReviewsRoute extends PageRouteInfo<void> {
+  const ReviewsRoute({List<PageRouteInfo>? children})
+      : super(
+          ReviewsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ReviewsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

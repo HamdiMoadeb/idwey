@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
+import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/components/cards/card_review.dart';
 import 'package:idwey/components/reviews_bars/reviews_progress_bar.dart';
 
@@ -63,21 +66,22 @@ class _ReviewsSectionState extends State<ReviewsSection> {
         // ),
         //
         // /// secondary button to review all reviews if there is more than 3
-        // Visibility(
-        //   visible: widget.reviews.length > 3,
-        //   child: OutlinedButton(
-        //       style: OutlinedButton.styleFrom(
-        //           padding: EdgeInsets.symmetric(vertical: 12.h),
-        //           side: const BorderSide(color: Colors.black, width: 1),
-        //           shape: RoundedRectangleBorder(
-        //               borderRadius: BorderRadius.circular(8.r))),
-        //       child: Text(
-        //         "Afficher les 22 avis",
-        //         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        //             color: Colors.black, fontWeight: FontWeight.w500),
-        //       ),
-        //       onPressed: () {}),
-        // )
+        Visibility(
+          visible: true,
+          child: CustomButton.secondaryBlack(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+                child: Text(
+                  "Afficher les 22 avis",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Colors.black, fontWeight: FontWeight.w500),
+                ),
+              ),
+              onPressed: () {
+                GetIt.I<AppRouter>().push(const ReviewsRoute());
+              }),
+        )
       ],
     );
   }

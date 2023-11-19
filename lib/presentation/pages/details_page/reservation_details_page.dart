@@ -1,7 +1,9 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
@@ -84,7 +86,7 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
           SizedBox(
             height: 16.h,
           ),
-          buildStatusBar(widget.bookingDto!.status!),
+          buildStatusBar(widget.bookingDto?.status ?? ""),
           Expanded(
             child: DefaultTabController(
               initialIndex: 0,
@@ -335,6 +337,9 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
               ),
             ),
           ),
+          widget.bookingDto?.status == "confirmed"
+              ? buildReviewBar()
+              : const SizedBox.shrink(),
         ],
       ),
     );
@@ -411,5 +416,43 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
             ),
           ),
         ));
+  }
+
+  buildReviewBar() {
+    return InkWell(
+      onTap: () {
+        GetIt.I<AppRouter>().push(const AddReviewRoute());
+      },
+      child: Container(
+          width: double.infinity,
+          height: 40.h,
+          decoration: BoxDecoration(
+            color: primaryOrange,
+          ),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                HeroIcon(
+                  HeroIcons.chatBubbleLeftEllipsis,
+                  color: Colors.white,
+                  size: 24.sp,
+                ),
+                SizedBox(
+                  width: 8.w,
+                ),
+                Text(
+                  "Ajouter votre avis",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          )),
+    );
   }
 }

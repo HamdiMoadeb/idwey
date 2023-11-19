@@ -4,6 +4,7 @@ import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/presentation/dashboard_page/dashboard_page.dart';
+import 'package:idwey/presentation/pages/add_review_screen/add_review_screen.dart';
 import 'package:idwey/presentation/pages/assurance/assurance_page.dart';
 import 'package:idwey/presentation/pages/auth/auth_page.dart';
 import 'package:idwey/presentation/pages/auth/sign_up/sign_up_final_screen.dart';
@@ -22,6 +23,9 @@ import 'package:idwey/presentation/pages/home/main_home.dart';
 import 'package:idwey/presentation/pages/how_it_works/how_it_works.dart';
 import 'package:idwey/presentation/pages/inspiration/inspiration.dart';
 import 'package:idwey/presentation/pages/products/products_page.dart';
+import 'package:idwey/presentation/pages/required_reviews_screen/required_reviews_screen.dart';
+import 'package:idwey/presentation/pages/review_board_screen/review_board_screen.dart';
+import 'package:idwey/presentation/pages/reviews_screen/reviews_screen.dart';
 import 'package:idwey/presentation/pages/terms_and_conditions/terms_and_conditions_screen.dart';
 import 'package:idwey/presentation/pages/terms_of_use/termsScreen.dart';
 
@@ -73,5 +77,9 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: HowItWorksRoute.page),
     AutoRoute(page: HelpRoute.page),
     AutoRoute(page: TermsRoute.page),
+    AutoRoute(page: AddReviewRoute.page),
+    AutoRoute(page: ReviewsRoute.page),
+    AutoRoute(page: ReviewsBoardRoute.page),
+    AutoRoute(page: RequiredReviewsRoute.page),
   ];
 }

@@ -47,6 +47,9 @@ class SettingsSection extends StatelessWidget {
             thickness: 1,
           ),
           ListTile(
+            onTap: () {
+              GetIt.I<AppRouter>().push(const ReviewsBoardRoute());
+            },
             leading: SvgPicture.asset(
               Assets.reviews,
               height: 22.h,
