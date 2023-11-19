@@ -170,9 +170,9 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                HeroIcon(
-                  HeroIcons.checkCircle,
-                  size: 40,
+                Icon(
+                  Icons.check_circle,
+                  size: 100,
                   color: primaryOrange,
                 ),
                 const SizedBox(

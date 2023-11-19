@@ -58,7 +58,6 @@ class _PrimaryInfoFormState extends State<PrimaryInfoForm> {
                 width: 0.4.sw,
                 child: CustomInput(
                   focusNode: focusNode,
-                  enabled: true,
                   hintText: "Prénom",
                   foregroundColor: Colors.grey,
                   controller: widget.controller,
@@ -73,7 +72,6 @@ class _PrimaryInfoFormState extends State<PrimaryInfoForm> {
                 child: CustomInput(
                   focusNode: nameFocusNode,
                   hintText: "Nom",
-                  enabled: true,
                   errorText: widget.nameController.text.isEmpty
                       ? "Veuillez remplir ce champ"
                       : null,
@@ -95,7 +93,6 @@ class _PrimaryInfoFormState extends State<PrimaryInfoForm> {
                 ? null
                 : "Email est invalide",
             keyboardType: TextInputType.emailAddress,
-            enabled: true,
             foregroundColor: Colors.grey,
           ),
           SizedBox(
@@ -106,7 +103,6 @@ class _PrimaryInfoFormState extends State<PrimaryInfoForm> {
             hintText: "Numéro de téléphone",
             controller: widget.phoneController,
             keyboardType: TextInputType.number,
-            enabled: true,
             foregroundColor: Colors.grey,
           ),
         ],

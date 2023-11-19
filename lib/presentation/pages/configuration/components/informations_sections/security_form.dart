@@ -49,7 +49,6 @@ class _SecurityFormState extends State<SecurityForm> {
         children: [
           CustomInput(
             focusNode: focusNode,
-            enabled: true,
             hintText: "Mot de passe actuel",
             foregroundColor: Colors.grey,
             controller: widget.oldPasswordController,
@@ -61,7 +60,6 @@ class _SecurityFormState extends State<SecurityForm> {
           CustomInput(
             focusNode: nameFocusNode,
             hintText: "Nouveau Mot de Passe",
-            enabled: true,
             foregroundColor: Colors.grey,
             controller: widget.newPasswordController,
             keyboardType: TextInputType.name,
@@ -74,7 +72,6 @@ class _SecurityFormState extends State<SecurityForm> {
             hintText: "Nouveau Mot de Passe encore",
             controller: widget.confirmPasswordController,
             keyboardType: TextInputType.emailAddress,
-            enabled: true,
             foregroundColor: Colors.grey,
           ),
           SizedBox(

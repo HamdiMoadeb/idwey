@@ -334,7 +334,6 @@ class _ForgetPasswordBottomSheetState extends State<ForgetPasswordBottomSheet> {
                     controller: emailController,
                     focusNode: emailFocusNode,
                     keyboardType: TextInputType.emailAddress,
-                    enabled: true,
                     hintText: "Email",
                     foregroundColor: Colors.grey[300]!),
               ],

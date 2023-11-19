@@ -134,7 +134,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         FocusScope.of(context).requestFocus(passwordFocusNode);
                       },
                       keyboardType: TextInputType.emailAddress,
-                      enabled: true,
                       hintText: "Email",
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
@@ -159,7 +158,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       controller: passwordController,
                       focusNode: passwordFocusNode,
                       keyboardType: TextInputType.visiblePassword,
-                      enabled: true,
                       hintText: "Mot de passe",
                       foregroundColor: Colors.grey[300]!),
                   SizedBox(
