@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:idwey/presentation/pages/fidelit_program/sections/advanture_month_section.dart';
+import 'package:idwey/presentation/pages/fidelit_program/sections/super_adventure.dart';
 
 @RoutePage()
 class FidelityProgramScreen extends StatelessWidget {
@@ -42,43 +44,53 @@ class FidelityProgramScreen extends StatelessWidget {
             ),
             preferredSize: Size.fromHeight(16.0)),
       ),
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-            child: Column(
-              children: [
-                Row(children: [
-                  HeroIcon(
-                    HeroIcons.trophy,
-                    size: 24.sp,
-                    color: Colors.black,
-                    style: HeroIconStyle.solid,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const AdventureMonthSection(),
+            const SuperAdventureSection(),
+            ListView.separated(
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                  child: Column(
+                    children: [
+                      Row(children: [
+                        HeroIcon(
+                          HeroIcons.trophy,
+                          size: 24.sp,
+                          color: Colors.black,
+                          style: HeroIconStyle.solid,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          list[index],
+                          style: TextStyle(
+                              fontSize: 16.sp, fontWeight: FontWeight.w500),
+                        ),
+                      ]),
+                      const SizedBox(height: 10),
+                      Text(
+                        listContent[index],
+                        style: TextStyle(fontSize: 14.sp, color: Colors.grey),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 10),
-                  Text(
-                    list[index],
-                    style:
-                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
-                  ),
-                ]),
-                const SizedBox(height: 10),
-                Text(
-                  listContent[index],
-                  style: TextStyle(fontSize: 14.sp, color: Colors.grey),
-                ),
-              ],
+                );
+              },
+              itemCount: list.length,
+              controller: ScrollController(),
+              physics: const BouncingScrollPhysics(),
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(
+                  thickness: 1,
+                );
+              },
             ),
-          );
-        },
-        itemCount: list.length,
-        controller: ScrollController(),
-        physics: const BouncingScrollPhysics(),
-        separatorBuilder: (BuildContext context, int index) {
-          return const Divider(
-            thickness: 1,
-          );
-        },
+          ],
+        ),
       ),
     );
   }

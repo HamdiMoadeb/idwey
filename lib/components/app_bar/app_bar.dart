@@ -7,6 +7,7 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
+import 'package:idwey/presentation/pages/filter_screen/filter_screen.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -177,20 +178,39 @@ class SearchBox extends StatelessWidget {
               width: 10.w,
             ),
           ),
-          Container(
-            height: 55.h,
-            width: 55.h,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey[300]!),
-              // Light grey background color
-              borderRadius:
-                  BorderRadius.circular(50.r), // 50 radius for rounded corners
-            ),
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                isScrollControlled: true,
+                context: context,
+                builder: (context) {
+                  return SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.9,
+                      child: const FilterScreen());
+                },
+              );
+            },
+            child: Container(
+              height: 55.h,
+              width: 55.h,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey[300]!),
+                // Light grey background color
+                borderRadius: BorderRadius.circular(
+                    50.r), // 50 radius for rounded corners
+              ),
 
-            padding: EdgeInsets.symmetric(
-              horizontal: 16.w,
-            ), // Adjust padding as needed
-            child: SvgPicture.asset(Assets.filter),
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.w,
+              ), // Adjust padding as needed
+              child: SvgPicture.asset(Assets.filter),
+            ),
           ),
         ],
       ),

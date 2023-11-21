@@ -37,4 +37,8 @@ class Assets {
   static const String tinyHome = "assets/Tiny home.svg";
   static const String fidelity = "assets/gift.svg";
   static const String reviews = "assets/reviews.svg";
+  static const String breakfastFilter = "assets/Dairy Product.svg";
+  static const String dinnerFilter = "assets/breakfastFilter.svg";
+  static const String range = "assets/range.svg";
+  static const String score = "assets/score.svg";
 }

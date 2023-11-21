@@ -107,11 +107,15 @@ class FilterItem extends StatelessWidget {
 class FilterItemType extends StatelessWidget {
   final Widget icon;
   final String label;
+  final Color? color;
+  final double? thickness;
 
   const FilterItemType({
     Key? key,
     required this.icon,
     required this.label,
+    this.color,
+    this.thickness,
   }) : super(key: key);
 
   @override
@@ -124,7 +128,7 @@ class FilterItemType extends StatelessWidget {
         decoration: BoxDecoration(
           // Set background color to white for a square container
           borderRadius: BorderRadius.circular(6.r),
-          border: Border.all(color: primary, width: 2),
+          border: Border.all(color: color ?? primary, width: thickness ?? 2),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -132,6 +136,7 @@ class FilterItemType extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               icon,
+              SizedBox(height: 8.w),
               Expanded(
                 child: Text(label,
                     maxLines: 2,
@@ -139,7 +144,7 @@ class FilterItemType extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: primary,
+                        color: color ?? primary,
                         fontSize: 12)),
               ),
             ],

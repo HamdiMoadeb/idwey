@@ -156,6 +156,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const FidelityProgramScreen(),
       );
     },
+    FilterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FilterScreen(),
+      );
+    },
     HelpRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -774,6 +780,20 @@ class FidelityProgramRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'FidelityProgramRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FilterScreen]
+class FilterRoute extends PageRouteInfo<void> {
+  const FilterRoute({List<PageRouteInfo>? children})
+      : super(
+          FilterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FilterRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

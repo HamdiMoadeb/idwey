@@ -18,6 +18,7 @@ import 'package:idwey/presentation/pages/details_page/host_details_page.dart';
 import 'package:idwey/presentation/pages/details_page/products_details_page.dart';
 import 'package:idwey/presentation/pages/details_page/reservation_details_page.dart';
 import 'package:idwey/presentation/pages/fidelit_program/fidelity_program_Screen.dart';
+import 'package:idwey/presentation/pages/filter_screen/filter_screen.dart';
 import 'package:idwey/presentation/pages/help/helpScreen.dart';
 import 'package:idwey/presentation/pages/home/main_home.dart';
 import 'package:idwey/presentation/pages/how_it_works/how_it_works.dart';
@@ -81,5 +82,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: ReviewsRoute.page),
     AutoRoute(page: ReviewsBoardRoute.page),
     AutoRoute(page: RequiredReviewsRoute.page),
+    AutoRoute(page: FilterRoute.page),
   ];
 }
