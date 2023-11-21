@@ -600,6 +600,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_xlider:
+    dependency: "direct dev"
+    description:
+      name: flutter_xlider
+      sha256: b83da229b8a2153adeefc5d9e08e0060689c8dc2187b30e3502cf67c1a6495be
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.5.0"
   freezed:
     dependency: "direct main"
     description:
@@ -1353,10 +1361,10 @@ packages:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "505a07deaeb326ae9af5ee4e50937b7563cbb639982e760c26f3511b4fa535d5"
+      sha256: "8a1220f978491f56431c66dacf1bb97bf2abcd1458b542fe0dfbf1a630c67260"
       url: "https://pub.dev"
     source: hosted
-    version: "23.1.39"
+    version: "23.2.4"
   syncfusion_flutter_datepicker:
     dependency: "direct main"
     description:
@@ -1365,6 +1373,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "23.1.39"
+  syncfusion_flutter_sliders:
+    dependency: "direct dev"
+    description:
+      name: syncfusion_flutter_sliders
+      sha256: "0ac8903c20d260f5251fb75c8be41e47950a27ac14de9775d72661f01331d679"
+      url: "https://pub.dev"
+    source: hosted
+    version: "23.2.4"
   synchronized:
     dependency: transitive
     description:
