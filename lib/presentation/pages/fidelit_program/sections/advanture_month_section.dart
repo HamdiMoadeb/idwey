@@ -4,7 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:idwey/constants/assets.dart';
 
 class AdventureMonthSection extends StatelessWidget {
-  const AdventureMonthSection({Key? key}) : super(key: key);
+  final String rank;
+  final String points;
+  const AdventureMonthSection(
+      {Key? key, required this.rank, required this.points})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class AdventureMonthSection extends StatelessWidget {
                     children: [
                       SvgPicture.asset(Assets.score),
                       Text(
-                        "1400",
+                        points,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.w700, color: Colors.black),
                       ),
@@ -56,7 +60,7 @@ class AdventureMonthSection extends StatelessWidget {
                     children: [
                       SvgPicture.asset(Assets.range),
                       Text(
-                        "40",
+                        rank,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.w700, color: Colors.black),
                       ),
