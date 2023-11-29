@@ -5,15 +5,30 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SuperAdventureSection extends StatefulWidget {
-  const SuperAdventureSection({Key? key}) : super(key: key);
+  final String points;
+  final String points2;
+  const SuperAdventureSection(
+      {Key? key, required this.points, required this.points2})
+      : super(key: key);
 
   @override
   State<SuperAdventureSection> createState() => _SuperAdventureSectionState();
 }
 
 class _SuperAdventureSectionState extends State<SuperAdventureSection> {
-  RangeValues _currentRangeValues = const RangeValues(45, 1300);
-  SfRangeValues _values = SfRangeValues(40.0, 80.0);
+  SfRangeValues _values = const SfRangeValues(400.0, 800.0);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print(widget.points);
+    print(widget.points2);
+    _values = SfRangeValues(
+        double.parse(widget.points), double.parse(widget.points2));
+    print(_values);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(

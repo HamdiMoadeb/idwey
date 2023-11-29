@@ -153,7 +153,7 @@ abstract class _$AppRouter extends RootStackRouter {
     FidelityProgramRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const FidelityProgramScreen(),
+        child: WrappedRoute(child: const FidelityProgramScreen()),
       );
     },
     FilterRoute.name: (routeData) {

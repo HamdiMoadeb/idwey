@@ -9,6 +9,7 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/app_bar/app_bar.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/presentation/pages/home/event_tab.dart';
 import 'package:idwey/presentation/pages/home/experience_tab.dart';
@@ -36,6 +37,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
   @override
   void initState() {
     super.initState();
+    context.read<AppBloc>().add(const AppEvent.getUser());
     context.read<HomeBloc>().add(const HomeEvent.getListLocations());
     _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {

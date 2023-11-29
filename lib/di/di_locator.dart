@@ -2,12 +2,14 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/data/data_sources/data_sources.dart';
+import 'package:idwey/data/data_sources/fidelity_program_api_data_source.dart';
 import 'package:idwey/data/data_sources/location_api_data_source.dart';
 import 'package:idwey/data/data_sources/reservation_data_source.dart';
 import 'package:idwey/data/repositories_impl/activity_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/article_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/event_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/experience_repository_impl.dart';
+import 'package:idwey/data/repositories_impl/fidelity_program_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/host_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/product_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/repositories_impl.dart';
@@ -15,6 +17,7 @@ import 'package:idwey/domain/repositories/activity_repository.dart';
 import 'package:idwey/domain/repositories/article_repository.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
 import 'package:idwey/domain/repositories/exeperience_repository.dart';
+import 'package:idwey/domain/repositories/fidleity_program_repository.dart';
 import 'package:idwey/domain/repositories/host_repository.dart';
 import 'package:idwey/domain/repositories/location_repository.dart';
 import 'package:idwey/domain/repositories/product_repository.dart';
@@ -35,7 +38,9 @@ import 'package:idwey/domain/usecases/get_list_experiences_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_hosts.dart';
 import 'package:idwey/domain/usecases/get_list_products_usecase.dart';
 import 'package:idwey/domain/usecases/get_locations_usecase.dart';
+import 'package:idwey/domain/usecases/get_monthly_points_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
+import 'package:idwey/domain/usecases/get_total_points_usecase.dart';
 import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
 import 'package:idwey/domain/usecases/search_activity_usecase.dart';
@@ -64,6 +69,11 @@ Future<void> setup() async {
   // Data
   GetIt.I.registerLazySingleton<HostApiDataSource>(
       () => HostApiDataSourceImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton<FidelityProgramApiDataSource>(
+      () => FidelityProgramApiDataSourceImpl(GetIt.I()));
+
+  GetIt.I.registerLazySingleton<FidelityProgramRepository>(
+      () => FidelityProgramRepositoryImpl(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<HostRepository>(
       () => HostRepositoryImpl(GetIt.I()));
@@ -106,6 +116,8 @@ Future<void> setup() async {
       () => ProductRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetListProductsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetProductDetailsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetMonthlyPointsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetTotalPointsUseCase(GetIt.I()));
 
   /// locations
 
