@@ -13,8 +13,7 @@ class GetListProductsUseCase
   @override
   Future<Either<Exception, List<ProductDto>>> call(
       Map<String, dynamic> body) async {
-    print("body");
-    print(body);
+
     return await repository.getListProducts(body['limit'], body['offset']);
   }
 }

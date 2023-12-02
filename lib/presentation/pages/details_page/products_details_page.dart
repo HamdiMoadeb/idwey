@@ -143,7 +143,7 @@ class _DetailsProductScreenState extends State<DetailsProductScreen>
                               CustomHeader(
                                 index: 1,
                                 onchange: (i) {
-                                  print(i);
+
                                   context
                                       .read<ProductDetailsBloc>()
                                       .add(ProductDetailsEvent.addProduct(i));

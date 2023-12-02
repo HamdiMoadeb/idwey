@@ -47,8 +47,7 @@ class HostRepositoryImpl implements HostRepository {
       Map<String, dynamic> body) async {
     // try {
     final result = await dataSource.confirmHostReservation(body);
-    print("result");
-    print(result);
+
     return Right(result);
     // } on Exception catch (e) {
     //   return Left(e);

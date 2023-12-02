@@ -35,7 +35,7 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
   Future<ActivityDetailsDto> getActivity(int id) async {
     try {
       final response =
-          await dio.get("https://idwey.tn/api/activity/detail/$id");
+          await dio.get("https://idwey.tn/api/activity/detail/$id/0");
 
       return ActivityDetailsDto.fromJson(response.data);
     } catch (e) {

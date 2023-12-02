@@ -124,8 +124,7 @@ class SearchBox extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              print("context.read<HomeBloc>().state.selectedTab");
-              print(context.read<HomeBloc>().state.selectedTab);
+
               GetIt.I<AppRouter>().push(SearchRoute(
                   selectedTab:
                       context.read<HomeBloc>().state.selectedTab ?? 0));

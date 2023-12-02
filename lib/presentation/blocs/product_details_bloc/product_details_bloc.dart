@@ -65,12 +65,11 @@ class ProductDetailsBloc
     final result = await GetIt.I<ConfirmReservationUseCase>().call(map);
 
     result.fold((l) async {
-      print("confirm reservation llllllllll");
+
       emit(state.copyWith(
           addToCartStatus: StateStatus.error, status: StateStatus.success));
     }, (r) async {
-      print("confirm reservation");
-      print(r);
+
       emit(state.copyWith(
           addToCartStatus: StateStatus.success, status: StateStatus.success));
       GetIt.I<AppRouter>().push(ConfirmReservationRoute(

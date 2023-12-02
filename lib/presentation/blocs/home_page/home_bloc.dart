@@ -487,10 +487,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListSearchActivities(
       GetSearchListActivities event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfThePageActivities");
-    print(state.atTheEndOfTheSearchPageActivities);
-    print(state.isSearch);
-    print(event.isFetching);
+
     try {
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
@@ -504,9 +501,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (state.atTheEndOfTheSearchPageActivities == true) {
         return;
       }
-
-      print("state.listActivities");
-      print(state.listActivities);
 
       emit(state.copyWith(
         statusActivities:

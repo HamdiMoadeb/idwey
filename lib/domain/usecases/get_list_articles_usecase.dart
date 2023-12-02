@@ -12,8 +12,7 @@ class GetListArticlesUseCase
   @override
   Future<Either<Exception, List<ArticleDto>>> call(
       Map<String, dynamic> body) async {
-    print("body");
-    print(body);
+
     return await repository.getListArticles(body['limit'], body['offset']);
   }
 }

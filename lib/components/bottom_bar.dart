@@ -25,7 +25,7 @@ class BottomReservationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("salePrice $salePrice");
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
