@@ -42,10 +42,16 @@ class AdventureMonthSection extends StatelessWidget {
                   Column(
                     children: [
                       SvgPicture.asset(Assets.score),
+                      SizedBox(
+                        height: 4.h,
+                      ),
                       Text(
                         points,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.w700, color: Colors.black),
+                      ),
+                      SizedBox(
+                        height: 4.h,
                       ),
                       Text(
                         "Total de points",
@@ -59,10 +65,16 @@ class AdventureMonthSection extends StatelessWidget {
                   Column(
                     children: [
                       SvgPicture.asset(Assets.range),
+                      SizedBox(
+                        height: 4.h,
+                      ),
                       Text(
                         rank,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.w700, color: Colors.black),
+                      ),
+                      SizedBox(
+                        height: 4.h,
                       ),
                       Text(
                         "Votre Rang",

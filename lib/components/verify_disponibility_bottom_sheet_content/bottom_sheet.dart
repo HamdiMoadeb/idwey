@@ -130,9 +130,10 @@ class ChaletRoomsBottomSheet extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.r),
                             child: CachedNetworkImage(
                                 fit: BoxFit.cover,
-                                imageUrl:
-                                    state.hostDetails?.rooms?[index].imageId ??
-                                        ""),
+                                imageUrl: state
+                                        .hostDetails?.rooms?[index].imageId
+                                        .toString() ??
+                                    ""),
                           ),
                         ),
                         // Column of Information

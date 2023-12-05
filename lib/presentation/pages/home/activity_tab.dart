@@ -99,7 +99,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                     ));
                   },
                   discount: state.listActivities?[index].promotion.toString(),
-                  title: state.listActivities?[index].catName,
+                  title: state.listActivities?[index].title,
                   adress: state.listActivities?[index].address,
                   price: state.listActivities?[index].price,
                   type: state.listActivities?[index].title,

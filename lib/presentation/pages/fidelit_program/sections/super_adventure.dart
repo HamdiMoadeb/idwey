@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:intl/intl.dart';
+import 'package:idwey/theme/app_colors.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 
 class SuperAdventureSection extends StatefulWidget {
   final String points;
@@ -66,7 +67,9 @@ class _SuperAdventureSectionState extends State<SuperAdventureSection> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                      ),
                       child: Text(
                         "Effectuez des réservations pour gagner des points et des récompenses",
                         style: Theme.of(context)
@@ -75,28 +78,80 @@ class _SuperAdventureSectionState extends State<SuperAdventureSection> {
                             .copyWith(color: Colors.grey, fontSize: 14),
                       ),
                     ),
-                    SfRangeSlider(
-                      min: 0.0,
-                      max: 3000.0,
-                      values: _values,
-                      interval: 1000,
-                      showDividers: true,
-                      showTicks: true,
-                      showLabels: true,
-                      enableTooltip: true,
-                      startThumbIcon: const HeroIcon(
-                        HeroIcons.flag,
-                        style: HeroIconStyle.solid,
-                        size: 10,
-                        color: Colors.white,
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SfRangeSliderTheme(
+                      data: SfRangeSliderThemeData(
+                        activeTrackHeight: 12,
+                        inactiveTrackHeight: 12,
+                        thumbRadius: 14,
+                        activeLabelStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                        inactiveLabelStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                        thumbStrokeWidth: 1,
+                        activeTrackColor: primaryOrange,
+                        inactiveTrackColor: Colors.grey.shade300,
+                        tooltipBackgroundColor: primaryOrange,
+                        tooltipTextStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
                       ),
-                      labelPlacement: LabelPlacement.onTicks,
-                      minorTicksPerInterval: 1,
-                      onChanged: (SfRangeValues values) {
-                        setState(() {
-                          _values = values;
-                        });
-                      },
+                      child: SfRangeSlider(
+                        min: 0.0,
+                        max: 3000.0,
+                        values: _values,
+                        // interval: 1500,
+                        //showDividers: true,
+                        showTicks: true,
+                        showLabels: true,
+                        enableTooltip: true,
+                        edgeLabelPlacement: EdgeLabelPlacement.inside,
+                        tooltipTextFormatterCallback:
+                            (dynamic actualValue, String formattedText) {
+                          return double.parse(actualValue.toString())
+                                  .toInt()
+                                  .toString() +
+                              " points";
+                        },
+                        labelFormatterCallback: (dynamic actualValue, label) {
+                          return double.parse(actualValue.toString())
+                                  .toInt()
+                                  .toString() +
+                              "points";
+                        },
+                        endThumbIcon: Container(
+                            decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          border: Border.all(color: primaryOrange, width: 1),
+                        )),
+                        startThumbIcon: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 1),
+                          ),
+                          child: const HeroIcon(
+                            HeroIcons.flag,
+                            style: HeroIconStyle.solid,
+                            size: 10,
+                            color: Colors.white,
+                          ),
+                        ),
+                        labelPlacement: LabelPlacement.onTicks,
+                        minorTicksPerInterval: 1,
+                        onChanged: (SfRangeValues values) {
+                          setState(() {
+                            _values = values;
+                          });
+                        },
+                      ),
                     ),
                   ],
                 ))

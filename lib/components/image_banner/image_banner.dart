@@ -55,7 +55,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
 class ImageBanner extends StatefulWidget {
-  final List<Gallery> listImages;
+  final List<GalleryImagesUrl> listImages;
   const ImageBanner({Key? key, required this.listImages}) : super(key: key);
 
   @override
@@ -116,7 +116,7 @@ class _ImageBannerState extends State<ImageBanner>
               itemBuilder: (context, index) {
                 return CachedNetworkImage(
                   errorWidget: (context, url, error) => const Icon(Icons.error),
-                  imageUrl: state.listImages![index].large,
+                  imageUrl: state.listImages![index].large ?? "",
                   fit: BoxFit.cover,
                 );
               },

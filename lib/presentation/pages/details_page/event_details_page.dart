@@ -123,9 +123,12 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                       : StateEvent.isAvailable,
                   perPerson: "personne",
                   salePrice:
-                      "${double.parse(state.eventDetailsDto?.row?.salePrix ?? "0").toInt().toString()}",
-                  price:
-                      "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt().toString()}",
+                      double.parse(state.eventDetailsDto?.row?.salePrix ?? "0")
+                          .toInt()
+                          .toString(),
+                  price: double.parse(state.eventDetailsDto?.row?.prix ?? "0")
+                      .toInt()
+                      .toString(),
                 ),
               ),
               body: Stack(
@@ -148,7 +151,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
                                     child: Text(
@@ -165,18 +168,23 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                   ),
                                   Visibility(
                                     visible: state.eventDetailsDto?.row
-                                            ?.promotion?.isNotEmpty ??
-                                        false,
-                                    child: CircleAvatar(
-                                      child: Text(
-                                        "${state.eventDetailsDto?.row?.promotion}/ DT",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineMedium!
-                                            .copyWith(
-                                                fontSize: 30.sp,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.black),
+                                                ?.promotion !=
+                                            null ||
+                                        state.eventDetailsDto?.row?.promotion !=
+                                            "",
+                                    child: Padding(
+                                      padding: EdgeInsets.only(right: 16.w),
+                                      child: CircleAvatar(
+                                        child: Text(
+                                          "-${state.eventDetailsDto?.row?.promotion}‰ ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium!
+                                              .copyWith(
+                                                  fontSize: 14.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.white),
+                                        ),
                                       ),
                                     ),
                                   ),

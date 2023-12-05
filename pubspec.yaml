@@ -75,7 +75,7 @@ dev_dependencies:
   permission_handler: ^11.0.1
   flutter_xlider: ^3.5.0
   syncfusion_flutter_sliders: ^23.2.4
-
+  syncfusion_flutter_core: ^23.2.6
 # The following section is specific to Flutter.
 flutter:
   uses-material-design: true

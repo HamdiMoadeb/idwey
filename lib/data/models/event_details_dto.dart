@@ -15,12 +15,15 @@ class EventDetailsDto {
   final int? eur;
   final int? usd;
   final String? bannerImageUrl;
-  final dynamic galleryImagesUrl;
-  final String? authorImageUrl;
+  final List<GalleryImagesUrl>? galleryImagesUrl;
+  final bool? authorImageUrl;
   final Map<String, Attribute>? attributes;
-  final List<CarRelated>? carRelated;
+  final List<Attribute>? attributes1;
   final int? remainingPlaces;
-  final ReviewList? reviewList;
+  final List<dynamic>? reviewList;
+  final List<ReviewScale>? reviewScale;
+  final int? moyRate;
+  final int? canreview;
 
   EventDetailsDto({
     this.row,
@@ -30,9 +33,12 @@ class EventDetailsDto {
     this.galleryImagesUrl,
     this.authorImageUrl,
     this.attributes,
-    this.carRelated,
+    this.attributes1,
     this.remainingPlaces,
     this.reviewList,
+    this.reviewScale,
+    this.moyRate,
+    this.canreview,
   });
 
   factory EventDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -41,20 +47,27 @@ class EventDetailsDto {
         eur: json["eur"],
         usd: json["usd"],
         bannerImageUrl: json["banner_image_url"],
-        galleryImagesUrl: json["gallery_images_url"],
-        authorImageUrl: json["author_image_url"] is String
-            ? json["author_image_url"]
-            : null,
+        galleryImagesUrl: json["gallery_images_url"] == null
+            ? []
+            : List<GalleryImagesUrl>.from(json["gallery_images_url"]!
+                .map((x) => GalleryImagesUrl.fromJson(x))),
+        authorImageUrl: json["author_image_url"],
         attributes: Map.from(json["attributes"]!).map(
             (k, v) => MapEntry<String, Attribute>(k, Attribute.fromJson(v))),
-        carRelated: json["car_related"] == null
+        attributes1: json["attributes1"] == null
             ? []
-            : List<CarRelated>.from(
-                json["car_related"]!.map((x) => CarRelated.fromJson(x))),
+            : List<Attribute>.from(
+                json["attributes1"]!.map((x) => Attribute.fromJson(x))),
         remainingPlaces: json["remaining_places"],
         reviewList: json["review_list"] == null
-            ? null
-            : ReviewList.fromJson(json["review_list"]),
+            ? []
+            : List<dynamic>.from(json["review_list"]!.map((x) => x)),
+        reviewScale: json["review_scale"] == null
+            ? []
+            : List<ReviewScale>.from(
+                json["review_scale"]!.map((x) => ReviewScale.fromJson(x))),
+        moyRate: json["moy_rate"],
+        canreview: json["canreview"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,15 +75,24 @@ class EventDetailsDto {
         "eur": eur,
         "usd": usd,
         "banner_image_url": bannerImageUrl,
-        "gallery_images_url": galleryImagesUrl,
+        "gallery_images_url": galleryImagesUrl == null
+            ? []
+            : List<dynamic>.from(galleryImagesUrl!.map((x) => x.toJson())),
         "author_image_url": authorImageUrl,
         "attributes": Map.from(attributes!)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-        "car_related": carRelated == null
+        "attributes1": attributes1 == null
             ? []
-            : List<dynamic>.from(carRelated!.map((x) => x.toJson())),
+            : List<dynamic>.from(attributes1!.map((x) => x.toJson())),
         "remaining_places": remainingPlaces,
-        "review_list": reviewList?.toJson(),
+        "review_list": reviewList == null
+            ? []
+            : List<dynamic>.from(reviewList!.map((x) => x)),
+        "review_scale": reviewScale == null
+            ? []
+            : List<dynamic>.from(reviewScale!.map((x) => x.toJson())),
+        "moy_rate": moyRate,
+        "canreview": canreview,
       };
 }
 
@@ -112,140 +134,44 @@ class Attribute {
       };
 }
 
-class CarRelated {
-  final int? id;
-  final String? slug;
-  final String? title;
-  final DateTime? startDate;
-  final int? number;
-  final String? difficulty;
-  final dynamic distance;
-  final String? duration;
-  final int? price;
-  final dynamic salePrice;
-  final dynamic address;
-  final String? impactsocial;
-  final int? imageId;
-  final String? imageUrl;
-  final String? termsName;
+class GalleryImagesUrl {
+  final String? large;
+  final String? thumb;
 
-  CarRelated({
-    this.id,
-    this.slug,
-    this.title,
-    this.startDate,
-    this.number,
-    this.difficulty,
-    this.distance,
-    this.duration,
-    this.price,
-    this.salePrice,
-    this.address,
-    this.impactsocial,
-    this.imageId,
-    this.imageUrl,
-    this.termsName,
+  GalleryImagesUrl({
+    this.large,
+    this.thumb,
   });
 
-  factory CarRelated.fromJson(Map<String, dynamic> json) => CarRelated(
-        id: json["id"],
-        slug: json["slug"],
-        title: json["title"],
-        startDate: json["start_date"] == null
-            ? null
-            : DateTime.parse(json["start_date"]),
-        number: json["number"],
-        difficulty: json["difficulty"],
-        distance: json["distance"],
-        duration: json["duration"],
-        price: json["price"],
-        salePrice: json["sale_price"],
-        address: json["address"],
-        impactsocial: json["impactsocial"],
-        imageId: json["image_id"],
-        imageUrl: json["IMAGE_URL"],
-        termsName: json["terms_name"],
+  factory GalleryImagesUrl.fromJson(Map<String, dynamic> json) =>
+      GalleryImagesUrl(
+        large: json["large"],
+        thumb: json["thumb"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "slug": slug,
-        "title": title,
-        "start_date":
-            "${startDate!.year.toString().padLeft(4, '0')}-${startDate!.month.toString().padLeft(2, '0')}-${startDate!.day.toString().padLeft(2, '0')}",
-        "number": number,
-        "difficulty": difficulty,
-        "distance": distance,
-        "duration": duration,
-        "price": price,
-        "sale_price": salePrice,
-        "address": address,
-        "impactsocial": impactsocial,
-        "image_id": imageId,
-        "IMAGE_URL": imageUrl,
-        "terms_name": termsName,
+        "large": large,
+        "thumb": thumb,
       };
 }
 
-class ReviewList {
-  final int? currentPage;
-  final List<dynamic>? data;
-  final String? firstPageUrl;
-  final dynamic from;
-  final int? lastPage;
-  final String? lastPageUrl;
-  final dynamic nextPageUrl;
-  final String? path;
-  final String? perPage;
-  final dynamic prevPageUrl;
-  final dynamic to;
-  final int? total;
+class ReviewScale {
+  final String? title;
+  final int? stars;
 
-  ReviewList({
-    this.currentPage,
-    this.data,
-    this.firstPageUrl,
-    this.from,
-    this.lastPage,
-    this.lastPageUrl,
-    this.nextPageUrl,
-    this.path,
-    this.perPage,
-    this.prevPageUrl,
-    this.to,
-    this.total,
+  ReviewScale({
+    this.title,
+    this.stars,
   });
 
-  factory ReviewList.fromJson(Map<String, dynamic> json) => ReviewList(
-        currentPage: json["current_page"],
-        data: json["data"] == null
-            ? []
-            : List<dynamic>.from(json["data"]!.map((x) => x)),
-        firstPageUrl: json["first_page_url"],
-        from: json["from"],
-        lastPage: json["last_page"],
-        lastPageUrl: json["last_page_url"],
-        nextPageUrl: json["next_page_url"],
-        path: json["path"],
-        perPage: json["per_page"],
-        prevPageUrl: json["prev_page_url"],
-        to: json["to"],
-        total: json["total"],
+  factory ReviewScale.fromJson(Map<String, dynamic> json) => ReviewScale(
+        title: json["title"],
+        stars: json["stars"],
       );
 
   Map<String, dynamic> toJson() => {
-        "current_page": currentPage,
-        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x)),
-        "first_page_url": firstPageUrl,
-        "from": from,
-        "last_page": lastPage,
-        "last_page_url": lastPageUrl,
-        "next_page_url": nextPageUrl,
-        "path": path,
-        "per_page": perPage,
-        "prev_page_url": prevPageUrl,
-        "to": to,
-        "total": total,
+        "title": title,
+        "stars": stars,
       };
 }
 
@@ -254,15 +180,15 @@ class Row {
   final String? slug;
   final String? title;
   final String? content;
-  final String? mapLat;
-  final String? mapLng;
+  final dynamic mapLat;
+  final dynamic mapLng;
   final int? mapZoom;
   final int? bannerImageId;
   final String? locationName;
   final String? translationLocationName;
-  final dynamic gallery;
+  final String? gallery;
   final DateTime? startDate;
-  final int? isExpired;
+  final dynamic isExpired;
   final DateTime? endDate;
   final dynamic isfull;
   final int? number;
@@ -270,13 +196,14 @@ class Row {
   final String? difficulty;
   final int? promoCode;
   final String? translateDifficulty;
-  final String? impactsocial;
-  final String? translationImpactsocial;
-  final dynamic duration;
+  final dynamic impactsocial;
+  final dynamic extraPrice;
+  final dynamic translationImpactsocial;
+  final String? duration;
   final String? prix;
-  final dynamic salePrix;
   final dynamic promotion;
-  final String? address;
+  final dynamic salePrix;
+  final dynamic address;
   final int? createUser;
   final int? imageId;
   final Author? author;
@@ -297,7 +224,6 @@ class Row {
     this.gallery,
     this.startDate,
     this.isExpired,
-    this.promotion,
     this.endDate,
     this.isfull,
     this.number,
@@ -306,9 +232,11 @@ class Row {
     this.promoCode,
     this.translateDifficulty,
     this.impactsocial,
+    this.extraPrice,
     this.translationImpactsocial,
     this.duration,
     this.prix,
+    this.promotion,
     this.salePrix,
     this.address,
     this.createUser,
@@ -330,7 +258,6 @@ class Row {
         locationName: json["location_name"],
         translationLocationName: json["translation_location_name"],
         gallery: json["gallery"],
-        promotion: json["promotion"],
         startDate: json["start_date"] == null
             ? null
             : DateTime.parse(json["start_date"]),
@@ -344,10 +271,12 @@ class Row {
         promoCode: json["promo_code"],
         translateDifficulty: json["translate_difficulty"],
         impactsocial: json["impactsocial"],
+        extraPrice: json["extra_price"],
         translationImpactsocial: json["translation_impactsocial"],
         duration: json["duration"],
         prix: json["prix"],
         salePrix: json["sale_prix"],
+        promotion: json["promotion"],
         address: json["address"],
         createUser: json["create_user"],
         imageId: json["image_id"],
@@ -384,9 +313,11 @@ class Row {
         "promo_code": promoCode,
         "translate_difficulty": translateDifficulty,
         "impactsocial": impactsocial,
+        "extra_price": extraPrice,
         "translation_impactsocial": translationImpactsocial,
         "duration": duration,
         "prix": prix,
+        "promotion": promotion,
         "sale_prix": salePrix,
         "address": address,
         "create_user": createUser,
@@ -408,17 +339,17 @@ class Author {
   final String? lastName;
   final String? email;
   final dynamic emailVerifiedAt;
-  final String? address;
+  final dynamic address;
   final dynamic address2;
   final String? phone;
   final dynamic birthday;
-  final String? city;
+  final dynamic city;
   final dynamic state;
-  final String? country;
-  final int? zipCode;
+  final dynamic country;
+  final dynamic zipCode;
   final dynamic lastLoginAt;
-  final int? avatarId;
-  final String? bio;
+  final dynamic avatarId;
+  final dynamic bio;
   final String? status;
   final dynamic createUser;
   final dynamic updateUser;
@@ -433,10 +364,12 @@ class Author {
   final String? businessName;
   final dynamic verifySubmitStatus;
   final dynamic isVerified;
-  final String? job;
+  final dynamic job;
   final String? roleWp;
   final dynamic club;
-  final List<String>? interest;
+  final dynamic interest;
+  final int? monthPoint;
+  final int? totalPoint;
 
   Author({
     this.id,
@@ -474,6 +407,8 @@ class Author {
     this.roleWp,
     this.club,
     this.interest,
+    this.monthPoint,
+    this.totalPoint,
   });
 
   factory Author.fromJson(Map<String, dynamic> json) => Author(
@@ -515,9 +450,9 @@ class Author {
         job: json["job"],
         roleWp: json["role_wp"],
         club: json["club"],
-        interest: json["interest"] == null
-            ? []
-            : List<String>.from(json["interest"]!.map((x) => x)),
+        interest: json["interest"],
+        monthPoint: json["month_point"],
+        totalPoint: json["total_point"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -555,8 +490,9 @@ class Author {
         "job": job,
         "role_wp": roleWp,
         "club": club,
-        "interest":
-            interest == null ? [] : List<dynamic>.from(interest!.map((x) => x)),
+        "interest": interest,
+        "month_point": monthPoint,
+        "total_point": totalPoint,
       };
 }
 

@@ -43,7 +43,7 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
     });
   }
 
-  String getFirstImage(List<Gallery>? gallery) {
+  String getFirstImage(List<GalleryImagesUrl>? gallery) {
     String image = "";
     for (var i = 0; i < gallery!.length; i++) {
       if (gallery[i].large != null && gallery[i].large!.isNotEmpty) {
