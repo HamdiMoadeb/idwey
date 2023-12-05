@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:idwey/data/models/host_details_dto.dart';
+import 'host_details_dto.dart';
 
 ProductDetailsDto productDetailsDtoFromJson(String str) =>
     ProductDetailsDto.fromJson(json.decode(str));
@@ -13,7 +13,7 @@ class ProductDetailsDto {
   final int? eur;
   final int? usd;
   final String? bannerImageUrl;
-  final List<Gallery>? galleryImagesUrl;
+  final List<GalleryImagesUrl>? galleryImagesUrl;
   final bool? authorImageUrl;
   final Attributes? attributes;
   final int? availableNumber;
@@ -37,9 +37,9 @@ class ProductDetailsDto {
         bannerImageUrl: json["banner_image_url"],
         galleryImagesUrl: json["gallery_images_url"] == null
             ? []
-            : List<Gallery>.from(
-                json["gallery_images_url"]!.map((x) => Gallery.fromJson(x))),
-        authorImageUrl: json["author_image_url"],
+            : List<GalleryImagesUrl>.from(json["gallery_images_url"]!
+                .map((x) => GalleryImagesUrl.fromJson(x))),
+        // authorImageUrl: json["author_image_url"],
         attributes: json["attributes"] == null
             ? null
             : Attributes.fromJson(json["attributes"]),
@@ -111,27 +111,6 @@ class The3 {
         "tranlation": tranlation == null
             ? []
             : List<dynamic>.from(tranlation!.map((x) => x)),
-      };
-}
-
-class GalleryImagesUrl {
-  final String? large;
-  final String? thumb;
-
-  GalleryImagesUrl({
-    this.large,
-    this.thumb,
-  });
-
-  factory GalleryImagesUrl.fromJson(Map<String, dynamic> json) =>
-      GalleryImagesUrl(
-        large: json["large"],
-        thumb: json["thumb"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "large": large,
-        "thumb": thumb,
       };
 }
 

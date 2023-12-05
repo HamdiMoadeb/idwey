@@ -19,21 +19,21 @@ mixin _$ImageBannerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(List<Gallery> listImages) setListImages,
+    required TResult Function(List<GalleryImagesUrl> listImages) setListImages,
     required TResult Function(int index) setCurrentImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(List<Gallery> listImages)? setListImages,
+    TResult? Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult? Function(int index)? setCurrentImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(List<Gallery> listImages)? setListImages,
+    TResult Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult Function(int index)? setCurrentImage,
     required TResult orElse(),
   }) =>
@@ -118,7 +118,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(List<Gallery> listImages) setListImages,
+    required TResult Function(List<GalleryImagesUrl> listImages) setListImages,
     required TResult Function(int index) setCurrentImage,
   }) {
     return started();
@@ -128,7 +128,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(List<Gallery> listImages)? setListImages,
+    TResult? Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult? Function(int index)? setCurrentImage,
   }) {
     return started?.call();
@@ -138,7 +138,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(List<Gallery> listImages)? setListImages,
+    TResult Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult Function(int index)? setCurrentImage,
     required TResult orElse(),
   }) {
@@ -193,7 +193,7 @@ abstract class _$$SetListImagesCopyWith<$Res> {
           _$SetListImages value, $Res Function(_$SetListImages) then) =
       __$$SetListImagesCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Gallery> listImages});
+  $Res call({List<GalleryImagesUrl> listImages});
 }
 
 /// @nodoc
@@ -213,7 +213,7 @@ class __$$SetListImagesCopyWithImpl<$Res>
       null == listImages
           ? _value._listImages
           : listImages // ignore: cast_nullable_to_non_nullable
-              as List<Gallery>,
+              as List<GalleryImagesUrl>,
     ));
   }
 }
@@ -221,12 +221,12 @@ class __$$SetListImagesCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SetListImages implements SetListImages {
-  const _$SetListImages(final List<Gallery> listImages)
+  const _$SetListImages(final List<GalleryImagesUrl> listImages)
       : _listImages = listImages;
 
-  final List<Gallery> _listImages;
+  final List<GalleryImagesUrl> _listImages;
   @override
-  List<Gallery> get listImages {
+  List<GalleryImagesUrl> get listImages {
     if (_listImages is EqualUnmodifiableListView) return _listImages;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_listImages);
@@ -260,7 +260,7 @@ class _$SetListImages implements SetListImages {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(List<Gallery> listImages) setListImages,
+    required TResult Function(List<GalleryImagesUrl> listImages) setListImages,
     required TResult Function(int index) setCurrentImage,
   }) {
     return setListImages(listImages);
@@ -270,7 +270,7 @@ class _$SetListImages implements SetListImages {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(List<Gallery> listImages)? setListImages,
+    TResult? Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult? Function(int index)? setCurrentImage,
   }) {
     return setListImages?.call(listImages);
@@ -280,7 +280,7 @@ class _$SetListImages implements SetListImages {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(List<Gallery> listImages)? setListImages,
+    TResult Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult Function(int index)? setCurrentImage,
     required TResult orElse(),
   }) {
@@ -326,9 +326,10 @@ class _$SetListImages implements SetListImages {
 }
 
 abstract class SetListImages implements ImageBannerEvent {
-  const factory SetListImages(final List<Gallery> listImages) = _$SetListImages;
+  const factory SetListImages(final List<GalleryImagesUrl> listImages) =
+      _$SetListImages;
 
-  List<Gallery> get listImages;
+  List<GalleryImagesUrl> get listImages;
   @JsonKey(ignore: true)
   _$$SetListImagesCopyWith<_$SetListImages> get copyWith =>
       throw _privateConstructorUsedError;
@@ -399,7 +400,7 @@ class _$SetCurrentImage implements SetCurrentImage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(List<Gallery> listImages) setListImages,
+    required TResult Function(List<GalleryImagesUrl> listImages) setListImages,
     required TResult Function(int index) setCurrentImage,
   }) {
     return setCurrentImage(index);
@@ -409,7 +410,7 @@ class _$SetCurrentImage implements SetCurrentImage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(List<Gallery> listImages)? setListImages,
+    TResult? Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult? Function(int index)? setCurrentImage,
   }) {
     return setCurrentImage?.call(index);
@@ -419,7 +420,7 @@ class _$SetCurrentImage implements SetCurrentImage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(List<Gallery> listImages)? setListImages,
+    TResult Function(List<GalleryImagesUrl> listImages)? setListImages,
     TResult Function(int index)? setCurrentImage,
     required TResult orElse(),
   }) {
@@ -476,7 +477,7 @@ abstract class SetCurrentImage implements ImageBannerEvent {
 /// @nodoc
 mixin _$ImageBannerState {
   StateStatus? get status => throw _privateConstructorUsedError;
-  List<Gallery>? get listImages => throw _privateConstructorUsedError;
+  List<GalleryImagesUrl>? get listImages => throw _privateConstructorUsedError;
   int? get currentImage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -491,7 +492,9 @@ abstract class $ImageBannerStateCopyWith<$Res> {
       _$ImageBannerStateCopyWithImpl<$Res, ImageBannerState>;
   @useResult
   $Res call(
-      {StateStatus? status, List<Gallery>? listImages, int? currentImage});
+      {StateStatus? status,
+      List<GalleryImagesUrl>? listImages,
+      int? currentImage});
 }
 
 /// @nodoc
@@ -519,7 +522,7 @@ class _$ImageBannerStateCopyWithImpl<$Res, $Val extends ImageBannerState>
       listImages: freezed == listImages
           ? _value.listImages
           : listImages // ignore: cast_nullable_to_non_nullable
-              as List<Gallery>?,
+              as List<GalleryImagesUrl>?,
       currentImage: freezed == currentImage
           ? _value.currentImage
           : currentImage // ignore: cast_nullable_to_non_nullable
@@ -537,7 +540,9 @@ abstract class _$$_ImageBannerStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {StateStatus? status, List<Gallery>? listImages, int? currentImage});
+      {StateStatus? status,
+      List<GalleryImagesUrl>? listImages,
+      int? currentImage});
 }
 
 /// @nodoc
@@ -563,7 +568,7 @@ class __$$_ImageBannerStateCopyWithImpl<$Res>
       listImages: freezed == listImages
           ? _value._listImages
           : listImages // ignore: cast_nullable_to_non_nullable
-              as List<Gallery>?,
+              as List<GalleryImagesUrl>?,
       currentImage: freezed == currentImage
           ? _value.currentImage
           : currentImage // ignore: cast_nullable_to_non_nullable
@@ -576,14 +581,16 @@ class __$$_ImageBannerStateCopyWithImpl<$Res>
 
 class _$_ImageBannerState implements _ImageBannerState {
   const _$_ImageBannerState(
-      {this.status, final List<Gallery>? listImages, this.currentImage})
+      {this.status,
+      final List<GalleryImagesUrl>? listImages,
+      this.currentImage})
       : _listImages = listImages;
 
   @override
   final StateStatus? status;
-  final List<Gallery>? _listImages;
+  final List<GalleryImagesUrl>? _listImages;
   @override
-  List<Gallery>? get listImages {
+  List<GalleryImagesUrl>? get listImages {
     final value = _listImages;
     if (value == null) return null;
     if (_listImages is EqualUnmodifiableListView) return _listImages;
@@ -625,13 +632,13 @@ class _$_ImageBannerState implements _ImageBannerState {
 abstract class _ImageBannerState implements ImageBannerState {
   const factory _ImageBannerState(
       {final StateStatus? status,
-      final List<Gallery>? listImages,
+      final List<GalleryImagesUrl>? listImages,
       final int? currentImage}) = _$_ImageBannerState;
 
   @override
   StateStatus? get status;
   @override
-  List<Gallery>? get listImages;
+  List<GalleryImagesUrl>? get listImages;
   @override
   int? get currentImage;
   @override

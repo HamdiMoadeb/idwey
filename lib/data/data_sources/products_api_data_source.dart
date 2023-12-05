@@ -36,13 +36,14 @@ class ProductApiDataSourceImpl implements ProductApiDataSource {
 
   @override
   Future<ProductDetailsDto> getProduct(int id) async {
-    try {
-      final response = await dio.get("https://idwey.tn/api/product/detail/$id");
-
-      return ProductDetailsDto.fromJson(response.data);
-    } catch (e) {
-      throw Exception(e);
-    }
+    //  try {
+    final response = await dio.get("https://idwey.tn/api/product/detail/$id");
+    print(response.data.toString());
+    return ProductDetailsDto.fromJson(response.data);
+    // } catch (e) {
+    //   print(e);
+    //   throw Exception(e);
+    // }
   }
 
   @override

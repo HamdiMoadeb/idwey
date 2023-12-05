@@ -4,7 +4,7 @@ part of 'image_banner_bloc.dart';
 class ImageBannerState with _$ImageBannerState {
   const factory ImageBannerState({
     StateStatus? status,
-    List<Gallery>? listImages,
+    List<GalleryImagesUrl>? listImages,
     int? currentImage,
   }) = _ImageBannerState;
 

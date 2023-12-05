@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
@@ -43,13 +45,14 @@ class HostApiDataSourceImpl implements HostApiDataSource {
 
   @override
   Future<HostDetails> getHost(int id) async {
-    try {
-      final response = await dio.get("https://idwey.tn/api/hotel/detail/$id/0");
-
-      return HostDetails.fromJson(response.data);
-    } catch (e) {
-      throw Exception(e);
-    }
+    // try {
+    final response = await dio.get("https://idwey.tn/api/hotel/detail/$id/0");
+    log(response.data.toString());
+    return HostDetails.fromJson(response.data);
+    // } catch (e) {
+    //   print(e);
+    //   throw Exception(e);
+    // }
   }
 
   @override

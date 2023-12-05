@@ -100,7 +100,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                               address: state.hostDetails?.row?.address ?? "",
                               minNuits: state.hostDetails?.row?.minNuits ?? 0,
                               extraPrice: state.extraPrice ?? [],
-                              rooms: state.hostDetails?.rooms ?? [],
+                              // rooms: state.hostDetails?.rooms ?? [],
                             ),
                           )
                         : showModalBottomSheet(

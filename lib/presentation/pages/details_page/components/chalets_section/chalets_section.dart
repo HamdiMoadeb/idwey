@@ -64,12 +64,8 @@ class ChaletsSection extends StatelessWidget {
                                         ),
                                     fit: BoxFit.cover,
                                     imageUrl: state.hostDetails?.rooms?[index]
-                                            .imageId ??
-                                        context
-                                            .read<DetailsPageBloc>()
-                                            .getFirstImage(state.hostDetails
-                                                    ?.rooms?[index].gallery ??
-                                                []))),
+                                            .gallery ??
+                                        "")),
                           ),
 
                           Expanded(

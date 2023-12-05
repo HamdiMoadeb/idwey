@@ -5,7 +5,7 @@ class Room {
   final String? title;
   final dynamic content;
   final String? imageId;
-  final List<Gallery>? gallery;
+  final List<GalleryImagesUrl>? gallery;
   final dynamic video;
   final String? price;
   final int? parentId;
@@ -52,8 +52,8 @@ class Room {
         imageId: json["image_id"] is String == true ? json["image_id"] : "",
         gallery: json["gallery"] == null || json["gallery"] is String == true
             ? []
-            : List<Gallery>.from(
-                json["gallery"]!.map((x) => Gallery.fromJson(x))),
+            : List<GalleryImagesUrl>.from(
+                json["gallery"]!.map((x) => GalleryImagesUrl.fromJson(x))),
         video: json["video"],
         price:
             json["price"] is String ? json["price"] : json["price"].toString(),
