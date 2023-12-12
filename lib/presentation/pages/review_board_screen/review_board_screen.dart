@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:heroicons/heroicons.dart';
@@ -8,20 +9,36 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/empty_state_widget/empty_state_widget.dart';
 import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/constants/assets.dart';
-import 'package:idwey/data/models/booking_dto.dart';
+import 'package:idwey/constants/enums.dart';
+import 'package:idwey/data/models/reviews_board_dto.dart';
+import 'package:idwey/presentation/blocs/reviews_board_bloc/reviews_dashboard_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 @RoutePage()
-class ReviewsBoardScreen extends StatefulWidget {
+class ReviewsBoardScreen extends StatefulWidget implements AutoRouteWrapper {
   const ReviewsBoardScreen({Key? key}) : super(key: key);
 
   @override
   State<ReviewsBoardScreen> createState() => _ReviewsBoardScreenState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ReviewsDashboardBloc(),
+      child: this,
+    );
+  }
 }
 
 class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
   final PageController controller = PageController();
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    context.read<ReviewsDashboardBloc>().add(const GetReviews());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,138 +67,245 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                 thickness: 1,
               ),
             )),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.h),
-              child: Text(
-                'Gérer mes avis',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-              ),
-            ),
-
-            /// build filters horizontal scroll
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 4.0,
+        body: BlocBuilder<ReviewsDashboardBloc, ReviewsDashboardState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.h),
+                  child: Text(
+                    'Gérer mes avis',
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 16.w,
-                    ),
-                    FilterItem(
-                      label: 'Hébergement',
-                      icon: Assets.hosts,
-                      onTap: (v) {
-                        /// navigate to screen home
-                        setState(() {
-                          selectedIndex = 0;
-                          controller.animateToPage(0,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        });
-                      },
-                      isSelected: selectedIndex == 0,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    FilterItem(
-                      label: 'Evenement',
-                      icon: Assets.events,
-                      onTap: (v) {
-                        setState(() {
-                          selectedIndex = 1;
-                          controller.animateToPage(1,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        });
-                      },
-                      isSelected: selectedIndex == 1,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    FilterItem(
-                      label: 'Acitvités',
-                      icon: Assets.activities,
-                      onTap: (v) {
-                        setState(() {
-                          selectedIndex = 2;
-                          controller.animateToPage(2,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        });
-                      },
-                      isSelected: selectedIndex == 2,
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    FilterItem(
-                      label: 'Experiences',
-                      icon: Assets.experiences,
-                      onTap: (vv) {
-                        setState(() {
-                          selectedIndex = 3;
-                          controller.animateToPage(3,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        });
-                      },
-                      isSelected: selectedIndex == 3,
-                    ),
-                  ],
-                ),
-              ),
-            ),
 
-            const Divider(
-              thickness: 1,
-            ),
-            Expanded(
-              child: PageView(
-                controller: controller,
-                children: <Widget>[
-                  ListView.separated(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: _buildRoomItem(
-                              bookingDto: BookingDto(
-                                  title: "title", address: "Nabeul")),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return SizedBox(
-                          height: 16.h,
-                        );
-                      },
-                      itemCount: 3),
-                  const EmptyStateWidget(),
-                  const EmptyStateWidget(),
-                  const EmptyStateWidget(),
-                ],
-              ),
-            ),
-            buildRequiredReviewsBar(),
-          ],
+                /// build filters horizontal scroll
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4.0,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 16.w,
+                        ),
+                        FilterItem(
+                          label: 'Hébergement',
+                          icon: Assets.hosts,
+                          onTap: (v) {
+                            /// navigate to screen home
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const OnChangeType('host'));
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const GetReviews());
+                            setState(() {
+                              selectedIndex = 0;
+                              controller.animateToPage(0,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.ease);
+                            });
+                          },
+                          isSelected: selectedIndex == 0,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        FilterItem(
+                          label: 'Evenement',
+                          icon: Assets.events,
+                          onTap: (v) {
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const OnChangeType('event'));
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const GetReviews());
+                            setState(() {
+                              selectedIndex = 1;
+                              controller.animateToPage(1,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.ease);
+                            });
+                          },
+                          isSelected: selectedIndex == 1,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        FilterItem(
+                          label: 'Acitvités',
+                          icon: Assets.activities,
+                          onTap: (v) {
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const OnChangeType('activity'));
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const GetReviews());
+                            setState(() {
+                              selectedIndex = 2;
+                              controller.animateToPage(2,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.ease);
+                            });
+                          },
+                          isSelected: selectedIndex == 2,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        FilterItem(
+                          label: 'Experiences',
+                          icon: Assets.experiences,
+                          onTap: (vv) {
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const OnChangeType('experience'));
+                            context
+                                .read<ReviewsDashboardBloc>()
+                                .add(const GetReviews());
+                            setState(() {
+                              selectedIndex = 3;
+                              controller.animateToPage(3,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.ease);
+                            });
+                          },
+                          isSelected: selectedIndex == 3,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const Divider(
+                  thickness: 1,
+                ),
+                state.status == StateStatus.success
+                    ? Expanded(
+                        child: PageView(
+                          controller: controller,
+                          children: <Widget>[
+                            state.reviewsBoardDto?.reviews?.isNotEmpty == true
+                                ? ListView.separated(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: _buildRoomItem(
+                                            type: state.type ?? "",
+                                            review: state.reviewsBoardDto
+                                                ?.reviews?[index]),
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) {
+                                      return SizedBox(
+                                        height: 16.h,
+                                      );
+                                    },
+                                    itemCount: state
+                                            .reviewsBoardDto?.reviews?.length ??
+                                        0)
+                                : const EmptyStateWidget(),
+                            state.reviewsBoardDto?.reviews?.isNotEmpty == true
+                                ? ListView.separated(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: _buildRoomItem(
+                                            type: state.type ?? "",
+                                            review: state.reviewsBoardDto
+                                                ?.reviews?[index]),
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) {
+                                      return SizedBox(
+                                        height: 16.h,
+                                      );
+                                    },
+                                    itemCount: state
+                                            .reviewsBoardDto?.reviews?.length ??
+                                        0)
+                                : const EmptyStateWidget(),
+                            state.reviewsBoardDto?.reviews?.isNotEmpty == true
+                                ? ListView.separated(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: _buildRoomItem(
+                                            type: state.type ?? "",
+                                            review: state.reviewsBoardDto
+                                                ?.reviews?[index]),
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) {
+                                      return SizedBox(
+                                        height: 16.h,
+                                      );
+                                    },
+                                    itemCount: state
+                                            .reviewsBoardDto?.reviews?.length ??
+                                        0)
+                                : const EmptyStateWidget(),
+                            state.reviewsBoardDto?.reviews?.isNotEmpty == true
+                                ? ListView.separated(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: _buildRoomItem(
+                                            type: state.type ?? "",
+                                            review: state.reviewsBoardDto
+                                                ?.reviews?[index]),
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) {
+                                      return SizedBox(
+                                        height: 16.h,
+                                      );
+                                    },
+                                    itemCount: state
+                                            .reviewsBoardDto?.reviews?.length ??
+                                        0)
+                                : const EmptyStateWidget(),
+                          ],
+                        ),
+                      )
+                    : state.status == StateStatus.loading
+                        ? const Expanded(
+                            child: Center(child: CircularProgressIndicator()))
+                        : const SizedBox(),
+                buildRequiredReviewsBar(
+                    state.reviewsBoardDto?.notreviewed?.totalbookings
+                            .toString() ??
+                        "0",
+                    state.reviewsBoardDto?.notreviewed?.bookingsnotreviewed ??
+                        [],
+                    state.type ?? ""),
+              ],
+            );
+          },
         ));
   }
 
-  Widget _buildRoomItem({BookingDto? bookingDto, bool confirmed = false}) {
+  Widget _buildRoomItem(
+      {Review? review, bool confirmed = false, required String type}) {
     return InkWell(
       onTap: () {
-        GetIt.I<AppRouter>().push(const RequiredReviewsRoute());
+        GetIt.I<AppRouter>()
+            .push(AddReviewRoute(review: review, id: type, type: type));
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -196,7 +320,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+                review?.content ?? "",
                 style: TextStyle(fontSize: 14.sp),
               ),
               SizedBox(
@@ -228,7 +352,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                                   color: Colors.grey,
                                 ),
                             fit: BoxFit.cover,
-                            imageUrl: bookingDto?.pervUrl ?? "")),
+                            imageUrl: "")),
                   ),
                   SizedBox(
                     width: 8.w,
@@ -238,12 +362,12 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${bookingDto?.title ?? ""} | ${bookingDto?.address ?? ""}",
+                          "${review?.serviceTitle ?? ""} | ${review?.address ?? ""}",
                           style: TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 16.sp),
                         ),
                         Text(
-                          "4 months ago",
+                          "${DateTime.now().difference(review!.createdAt!).inDays ~/ 30} months ago",
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14.sp,
@@ -261,7 +385,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                                 style: HeroIconStyle.solid,
                               );
                             },
-                            itemCount: 4,
+                            itemCount: review.globalStars ?? 0,
                           ),
                         )
                       ],
@@ -276,11 +400,15 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
     );
   }
 
-  buildRequiredReviewsBar() {
+  buildRequiredReviewsBar(
+      String nbReviews, List<Bookingsnotreviewed> list, String type) {
     return InkWell(
-      onTap: () {
-        // GetIt.I<AppRouter>().push(const AddReviewRoute());
-      },
+      onTap: nbReviews != "0"
+          ? () {
+              GetIt.I<AppRouter>()
+                  .push(RequiredReviewsRoute(type: type, notreviewed: list));
+            }
+          : null,
       child: Container(
           width: double.infinity,
           height: 40.h,
@@ -289,7 +417,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
           ),
           child: Center(
             child: Text(
-              "(3) Avis requis",
+              "($nbReviews) Avis requis",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.sp,

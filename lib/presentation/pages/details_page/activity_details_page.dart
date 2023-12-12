@@ -158,8 +158,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                                   ),
                                   Visibility(
                                     visible: state.activityDetailsDto?.row
-                                            ?.promotion?.isNotEmpty ??
-                                        false,
+                                            ?.promotion !=
+                                        null,
                                     child: CircleAvatar(
                                       child: Text(
                                         "${state.activityDetailsDto?.row?.promotion}/ DT",
@@ -256,7 +256,27 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                                     state.activityDetailsDto?.row?.mapLng ?? "",
                               ),
                               const Divider(),
-                              const ReviewsSection(reviews: []),
+                              ReviewsSection(
+                                id: state.activityDetailsDto?.row?.id
+                                        .toString() ??
+                                    "",
+                                type: "activity",
+                                canReview:
+                                    state.activityDetailsDto?.canreview == 0
+                                        ? false
+                                        : true,
+                                reviews:
+                                    state.activityDetailsDto?.reviewList ?? [],
+                                averageRating: state.activityDetailsDto?.moyRate
+                                        .toString() ??
+                                    "0",
+                                reviewsNumber: state
+                                        .activityDetailsDto?.reviewList?.length
+                                        .toString() ??
+                                    "0",
+                                listScale:
+                                    state.activityDetailsDto?.reviewScale ?? [],
+                              ),
                             ],
                           ),
                         ),

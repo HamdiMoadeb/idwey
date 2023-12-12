@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:idwey/data/models/experience_details_dto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/models.dart';
 
 abstract class ExperienceApiDataSource {
@@ -33,6 +34,10 @@ class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
   @override
   Future<ExperienceDetailsDto> getExperience(int id) async {
     try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+
+      String userId = preferences.getString("userId") ?? "0";
+      print("https://idwey.tn/api/experience/detail/$id/$userId");
       final response =
           await dio.get("https://idwey.tn/api/experience/detail/$id/0");
       return ExperienceDetailsDto.fromJson(response.data);

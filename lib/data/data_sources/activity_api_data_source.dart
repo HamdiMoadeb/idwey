@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:idwey/data/models/activity_details_dto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/models.dart';
 
 abstract class ActivityApiDataSource {
@@ -34,8 +35,13 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
   @override
   Future<ActivityDetailsDto> getActivity(int id) async {
     try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+
+      String userId = preferences.getString("userId") ?? "0";
+      print("https://idwey.tn/api/activity/detail/$id/$userId");
+
       final response =
-          await dio.get("https://idwey.tn/api/activity/detail/$id/0");
+          await dio.get("https://idwey.tn/api/activity/detail/$id/$userId");
 
       return ActivityDetailsDto.fromJson(response.data);
     } catch (e) {

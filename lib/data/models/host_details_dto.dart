@@ -5,6 +5,8 @@
 import 'dart:convert';
 
 import 'extra_price_dto.dart';
+import 'review_dto.dart';
+import 'review_scale_dto.dart';
 
 HostDetails hostDetailsFromJson(String str) =>
     HostDetails.fromJson(json.decode(str));
@@ -21,7 +23,7 @@ class HostDetails {
   final Map<String, Attribute>? attributes;
   final List<Attribute>? attributes1;
   final List<HotelRelated>? hotelRelated;
-  final List<dynamic>? reviewList;
+  final List<ReviewDto>? reviewList;
   final List<ReviewScale>? reviewScale;
   final int? moyRate;
   final int? canreview;
@@ -66,7 +68,8 @@ class HostDetails {
                 json["hotel_related"]!.map((x) => HotelRelated.fromJson(x))),
         reviewList: json["review_list"] == null
             ? []
-            : List<dynamic>.from(json["review_list"]!.map((x) => x)),
+            : List<ReviewDto>.from(
+                json["review_list"]!.map((x) => ReviewDto.fromJson(x))),
         reviewScale: json["review_scale"] == null
             ? []
             : List<ReviewScale>.from(
@@ -566,26 +569,6 @@ class Room {
         "translations": translations == null
             ? []
             : List<dynamic>.from(translations!.map((x) => x)),
-      };
-}
-
-class ReviewScale {
-  final String? title;
-  final int? stars;
-
-  ReviewScale({
-    this.title,
-    this.stars,
-  });
-
-  factory ReviewScale.fromJson(Map<String, dynamic> json) => ReviewScale(
-        title: json["title"],
-        stars: json["stars"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "title": title,
-        "stars": stars,
       };
 }
 

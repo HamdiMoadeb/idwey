@@ -52,11 +52,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
         return BlocBuilder<DetailsEventPageBloc, DetailsEventPageState>(
             builder: (context, state) {
           print("widget.typeHost");
-          print(state.eventDetailsDto?.attributes);
-          print(state.eventDetailsDto?.attributes!['9']?.child.toString());
-          print(state.eventDetailsDto?.attributes!['9']?.parent.toString());
-          print(state.eventDetailsDto?.attributes!['10']?.parent.toString());
-          print(state.eventDetailsDto?.attributes!['10']?.child.toString());
+          print(state.eventDetailsDto?.row?.promotion);
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -169,9 +165,11 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                   Visibility(
                                     visible: state.eventDetailsDto?.row
                                                 ?.promotion !=
-                                            null ||
+                                            null &&
                                         state.eventDetailsDto?.row?.promotion !=
-                                            "",
+                                            "" &&
+                                        state.eventDetailsDto?.row?.promotion !=
+                                            "null",
                                     child: Padding(
                                       padding: EdgeInsets.only(right: 16.w),
                                       child: CircleAvatar(
@@ -275,7 +273,25 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                 lng: state.eventDetailsDto?.row?.mapLng ?? "",
                               ),
                               const Divider(),
-                              const ReviewsSection(reviews: []),
+                              ReviewsSection(
+                                type: "event",
+                                id: state.eventDetailsDto?.row?.id.toString() ??
+                                    "",
+                                canReview: state.eventDetailsDto?.canreview == 0
+                                    ? false
+                                    : true,
+                                reviews:
+                                    state.eventDetailsDto?.reviewList ?? [],
+                                averageRating: state.eventDetailsDto?.moyRate
+                                        ?.toString() ??
+                                    "0",
+                                reviewsNumber: state
+                                        .eventDetailsDto?.reviewList?.length
+                                        .toString() ??
+                                    "0",
+                                listScale:
+                                    state.eventDetailsDto?.reviewScale ?? [],
+                              ),
                             ],
                           ),
                         ),

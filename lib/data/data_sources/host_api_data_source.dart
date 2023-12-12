@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/data/models/host_dto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class HostApiDataSource {
   Future<List<Host>> getListHosts(int limit, int offset);
@@ -24,7 +25,6 @@ abstract class HostApiDataSource {
 
 class HostApiDataSourceImpl implements HostApiDataSource {
   final Dio dio;
-
   HostApiDataSourceImpl(this.dio);
 
   @override
@@ -46,7 +46,11 @@ class HostApiDataSourceImpl implements HostApiDataSource {
   @override
   Future<HostDetails> getHost(int id) async {
     // try {
-    final response = await dio.get("https://idwey.tn/api/hotel/detail/$id/0");
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    String userId = preferences.getString("userId") ?? "0";
+    final response =
+        await dio.get("https://idwey.tn/api/hotel/detail/$id/$userId");
     log(response.data.toString());
     return HostDetails.fromJson(response.data);
     // } catch (e) {

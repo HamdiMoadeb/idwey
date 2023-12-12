@@ -421,7 +421,10 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
   buildReviewBar() {
     return InkWell(
       onTap: () {
-        GetIt.I<AppRouter>().push(const AddReviewRoute());
+        GetIt.I<AppRouter>().push(AddReviewRoute(
+          id: widget.bookingDto?.id.toString() ?? "",
+          type: "booking",
+        ));
       },
       child: Container(
           width: double.infinity,

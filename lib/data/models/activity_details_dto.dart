@@ -4,6 +4,9 @@
 
 import 'dart:convert';
 
+import 'review_dto.dart';
+import 'review_scale_dto.dart';
+
 ActivityDetailsDto activityDetailsDtoFromJson(String str) =>
     ActivityDetailsDto.fromJson(json.decode(str));
 
@@ -18,7 +21,11 @@ class ActivityDetailsDto {
   final List<GalleryImagesUrl>? galleryImagesUrl;
   final BookingData? bookingData;
   final Map<String, Attribute>? attributes;
-  final List<dynamic>? tourRelated;
+  final List<Attribute>? attributes1;
+  final List<ReviewDto>? reviewList;
+  final List<ReviewScale>? reviewScale;
+  final int? moyRate;
+  final int? canreview;
 
   ActivityDetailsDto({
     this.row,
@@ -28,7 +35,11 @@ class ActivityDetailsDto {
     this.galleryImagesUrl,
     this.bookingData,
     this.attributes,
-    this.tourRelated,
+    this.attributes1,
+    this.reviewList,
+    this.reviewScale,
+    this.moyRate,
+    this.canreview,
   });
 
   factory ActivityDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -46,9 +57,20 @@ class ActivityDetailsDto {
             : BookingData.fromJson(json["booking_data"]),
         attributes: Map.from(json["attributes"]!).map(
             (k, v) => MapEntry<String, Attribute>(k, Attribute.fromJson(v))),
-        tourRelated: json["tour_related"] == null
+        attributes1: json["attributes1"] == null
             ? []
-            : List<dynamic>.from(json["tour_related"]!.map((x) => x)),
+            : List<Attribute>.from(
+                json["attributes1"]!.map((x) => Attribute.fromJson(x))),
+        reviewList: json["review_list"] == null
+            ? []
+            : List<ReviewDto>.from(
+                json["review_list"]!.map((x) => ReviewDto.fromJson(x))),
+        reviewScale: json["review_scale"] == null
+            ? []
+            : List<ReviewScale>.from(
+                json["review_scale"]!.map((x) => ReviewScale.fromJson(x))),
+        moyRate: json["moy_rate"],
+        canreview: json["canreview"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,9 +84,17 @@ class ActivityDetailsDto {
         "booking_data": bookingData?.toJson(),
         "attributes": Map.from(attributes!)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-        "tour_related": tourRelated == null
+        "attributes1": attributes1 == null
             ? []
-            : List<dynamic>.from(tourRelated!.map((x) => x)),
+            : List<dynamic>.from(attributes1!.map((x) => x.toJson())),
+        "review_list": reviewList == null
+            ? []
+            : List<dynamic>.from(reviewList!.map((x) => x)),
+        "review_scale": reviewScale == null
+            ? []
+            : List<dynamic>.from(reviewScale!.map((x) => x.toJson())),
+        "moy_rate": moyRate,
+        "canreview": canreview,
       };
 }
 
@@ -233,8 +263,8 @@ class BookingDataPersonType {
 }
 
 class GalleryImagesUrl {
-  final dynamic large;
-  final dynamic thumb;
+  final String? large;
+  final String? thumb;
 
   GalleryImagesUrl({
     this.large,
@@ -259,7 +289,7 @@ class Row {
   final String? title;
   final String? content;
   final String? catName;
-  final String? translationCatName;
+  final dynamic translationCatName;
   final String? locationName;
   final String? translationLocationName;
   final int? maxPeople;
@@ -268,7 +298,6 @@ class Row {
   final int? isFeatured;
   final String? price;
   final dynamic salePrice;
-  final dynamic promotion;
   final String? duration;
   final String? address;
   final String? mapLat;
@@ -283,6 +312,7 @@ class Row {
   final dynamic hasWishList;
   final List<TourTerm>? tourTerm;
   final Meta? meta;
+  final dynamic promotion;
 
   Row({
     this.id,
@@ -299,7 +329,6 @@ class Row {
     this.isFeatured,
     this.price,
     this.salePrice,
-    this.promotion,
     this.duration,
     this.address,
     this.mapLat,
@@ -314,6 +343,7 @@ class Row {
     this.hasWishList,
     this.tourTerm,
     this.meta,
+    this.promotion,
   });
 
   factory Row.fromJson(Map<String, dynamic> json) => Row(
@@ -333,7 +363,6 @@ class Row {
         salePrice: json["sale_price"],
         duration: json["duration"],
         address: json["address"],
-        promotion: json["promotion"],
         mapLat: json["map_lat"],
         mapLng: json["map_lng"],
         mapZoom: json["map_zoom"],
@@ -351,6 +380,7 @@ class Row {
             : List<TourTerm>.from(
                 json["tour_term"]!.map((x) => TourTerm.fromJson(x))),
         meta: json["meta"] == null ? null : Meta.fromJson(json["meta"]),
+        promotion: json["promotion"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -386,6 +416,7 @@ class Row {
             ? []
             : List<dynamic>.from(tourTerm!.map((x) => x.toJson())),
         "meta": meta?.toJson(),
+        "promotion": promotion,
       };
 }
 

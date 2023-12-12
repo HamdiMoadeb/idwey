@@ -60,12 +60,17 @@ class _DetailsScreenState extends State<DetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsPageBloc, DetailsPageState>(
             builder: (context, state) {
-          print("widget.typeHost");
-          print(state.hostDetails?.attributes);
-          print(state.hostDetails?.attributes!['5']?.child.toString());
-          print(state.hostDetails?.attributes!['5']?.parent.toString());
-          print(state.hostDetails?.attributes!['6']?.parent.toString());
-          print(state.hostDetails?.attributes!['6']?.child.toString());
+          print("widget.reviewwwws");
+          print(state.hostDetails?.reviewScale);
+          print(state.hostDetails?.reviewScale?[0].title);
+          print(state.hostDetails?.reviewScale?[0].stars);
+          print(state.hostDetails?.reviewScale?[1].title);
+          print(state.hostDetails?.reviewScale?[1].stars);
+          print(state.hostDetails?.reviewScale?[2].title);
+          print(state.hostDetails?.reviewScale?[2].stars);
+          print(state.hostDetails?.reviewScale?[3].title);
+          print(state.hostDetails?.reviewScale?[3].stars);
+          print(state.hostDetails?.moyRate);
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -268,8 +273,22 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 lng: state.hostDetails?.row?.mapLng ?? "",
                               ),
                               const Divider(),
-                              const ReviewsSection(
-                                  reviews: ['', '', '', '', '']),
+                              ReviewsSection(
+                                id: state.hostDetails?.row?.id.toString() ?? "",
+                                type: "host",
+                                canReview: state.hostDetails?.canreview == 0
+                                    ? false
+                                    : true,
+                                reviews: state.hostDetails?.reviewList ?? [],
+                                averageRating:
+                                    state.hostDetails?.moyRate.toString() ??
+                                        "0",
+                                reviewsNumber: state
+                                        .hostDetails?.reviewList?.length
+                                        .toString() ??
+                                    "0",
+                                listScale: state.hostDetails?.reviewScale ?? [],
+                              ),
                               const Divider(
                                 thickness: 1,
                               ),

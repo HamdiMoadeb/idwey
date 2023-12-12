@@ -4,6 +4,9 @@
 
 import 'dart:convert';
 
+import 'review_dto.dart';
+import 'review_scale_dto.dart';
+
 ExperienceDetailsDto experienceDetailsDtoFromJson(String str) =>
     ExperienceDetailsDto.fromJson(json.decode(str));
 
@@ -17,7 +20,11 @@ class ExperienceDetailsDto {
   final String? bannerImageUrl;
   final List<GalleryImagesUrl>? galleryImagesUrl;
   final Attributes? attributes;
-  final List<dynamic>? experienceRelated;
+  final List<Attributes1>? attributes1;
+  final List<ReviewDto>? reviewList;
+  final List<ReviewScale>? reviewScale;
+  final int? moyRate;
+  final int? canreview;
 
   ExperienceDetailsDto({
     this.row,
@@ -26,7 +33,11 @@ class ExperienceDetailsDto {
     this.bannerImageUrl,
     this.galleryImagesUrl,
     this.attributes,
-    this.experienceRelated,
+    this.attributes1,
+    this.reviewList,
+    this.reviewScale,
+    this.moyRate,
+    this.canreview,
   });
 
   factory ExperienceDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -42,9 +53,20 @@ class ExperienceDetailsDto {
         attributes: json["attributes"] == null
             ? null
             : Attributes.fromJson(json["attributes"]),
-        experienceRelated: json["experience_related"] == null
+        attributes1: json["attributes1"] == null
             ? []
-            : List<dynamic>.from(json["experience_related"]!.map((x) => x)),
+            : List<Attributes1>.from(
+                json["attributes1"]!.map((x) => Attributes1.fromJson(x))),
+        reviewList: json["review_list"] == null
+            ? []
+            : List<ReviewDto>.from(
+                json["review_list"]!.map((x) => ReviewDto.fromJson(x))),
+        reviewScale: json["review_scale"] == null
+            ? []
+            : List<ReviewScale>.from(
+                json["review_scale"]!.map((x) => ReviewScale.fromJson(x))),
+        moyRate: json["moy_rate"],
+        canreview: json["canreview"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -56,21 +78,29 @@ class ExperienceDetailsDto {
             ? []
             : List<dynamic>.from(galleryImagesUrl!.map((x) => x.toJson())),
         "attributes": attributes?.toJson(),
-        "experience_related": experienceRelated == null
+        "attributes1": attributes1 == null
             ? []
-            : List<dynamic>.from(experienceRelated!.map((x) => x)),
+            : List<dynamic>.from(attributes1!.map((x) => x.toJson())),
+        "review_list": reviewList == null
+            ? []
+            : List<dynamic>.from(reviewList!.map((x) => x)),
+        "review_scale": reviewScale == null
+            ? []
+            : List<dynamic>.from(reviewScale!.map((x) => x.toJson())),
+        "moy_rate": moyRate,
+        "canreview": canreview,
       };
 }
 
 class Attributes {
-  final The11? the11;
+  final Attributes1? the11;
 
   Attributes({
     this.the11,
   });
 
   factory Attributes.fromJson(Map<String, dynamic> json) => Attributes(
-        the11: json["11"] == null ? null : The11.fromJson(json["11"]),
+        the11: json["11"] == null ? null : Attributes1.fromJson(json["11"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -78,20 +108,20 @@ class Attributes {
       };
 }
 
-class The11 {
+class Attributes1 {
   final String? parent;
   final List<dynamic>? translateParent;
   final List<String>? child;
   final List<String>? tranlation;
 
-  The11({
+  Attributes1({
     this.parent,
     this.translateParent,
     this.child,
     this.tranlation,
   });
 
-  factory The11.fromJson(Map<String, dynamic> json) => The11(
+  factory Attributes1.fromJson(Map<String, dynamic> json) => Attributes1(
         parent: json["parent"],
         translateParent: json["translate parent"] == null
             ? []
@@ -117,8 +147,8 @@ class The11 {
 }
 
 class GalleryImagesUrl {
-  final dynamic large;
-  final dynamic thumb;
+  final String? large;
+  final String? thumb;
 
   GalleryImagesUrl({
     this.large,
@@ -146,24 +176,25 @@ class Row {
   final int? isFeatured;
   final String? price;
   final dynamic salePrice;
-  final dynamic promotion;
   final String? duration;
   final String? address;
   final String? mapLat;
   final String? mapLng;
   final int? mapZoom;
-  final String? impactsocial;
+  final dynamic impactsocial;
   final int? bannerImageId;
   final String? gallery;
   final String? catName;
   final String? translationCatName;
   final String? locationName;
-  final dynamic translationLocationName;
-  final String? translationImpactsocial;
+  final String? translationLocationName;
+  final List<ExtraPrice>? extraPrice;
+  final dynamic translationImpactsocial;
   final dynamic location;
   final List<dynamic>? translations;
   final dynamic hasWishList;
   final List<ExperienceTerm>? experienceTerm;
+  final dynamic promotion;
 
   Row({
     this.id,
@@ -173,7 +204,6 @@ class Row {
     this.maxPeople,
     this.isFeatured,
     this.price,
-    this.promotion,
     this.salePrice,
     this.duration,
     this.address,
@@ -187,11 +217,13 @@ class Row {
     this.translationCatName,
     this.locationName,
     this.translationLocationName,
+    this.extraPrice,
     this.translationImpactsocial,
     this.location,
     this.translations,
     this.hasWishList,
     this.experienceTerm,
+    this.promotion,
   });
 
   factory Row.fromJson(Map<String, dynamic> json) => Row(
@@ -208,7 +240,6 @@ class Row {
         mapLat: json["map_lat"],
         mapLng: json["map_lng"],
         mapZoom: json["map_zoom"],
-        promotion: json["promotion"],
         impactsocial: json["impactsocial"],
         bannerImageId: json["banner_image_id"],
         gallery: json["gallery"],
@@ -216,6 +247,10 @@ class Row {
         translationCatName: json["translation_cat_name"],
         locationName: json["location_name"],
         translationLocationName: json["translation_location_name"],
+        extraPrice: json["extra_price"] == null
+            ? []
+            : List<ExtraPrice>.from(
+                json["extra_price"]!.map((x) => ExtraPrice.fromJson(x))),
         translationImpactsocial: json["translation_impactsocial"],
         location: json["location"],
         translations: json["translations"] == null
@@ -226,6 +261,7 @@ class Row {
             ? []
             : List<ExperienceTerm>.from(json["experience_term"]!
                 .map((x) => ExperienceTerm.fromJson(x))),
+        promotion: json["promotion"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -249,6 +285,9 @@ class Row {
         "translation_cat_name": translationCatName,
         "location_name": locationName,
         "translation_location_name": translationLocationName,
+        "extra_price": extraPrice == null
+            ? []
+            : List<dynamic>.from(extraPrice!.map((x) => x.toJson())),
         "translation_impactsocial": translationImpactsocial,
         "location": location,
         "translations": translations == null
@@ -258,6 +297,7 @@ class Row {
         "experience_term": experienceTerm == null
             ? []
             : List<dynamic>.from(experienceTerm!.map((x) => x.toJson())),
+        "promotion": promotion,
       };
 }
 
@@ -302,5 +342,29 @@ class ExperienceTerm {
         "update_user": updateUser,
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
+      };
+}
+
+class ExtraPrice {
+  final String? name;
+  final String? price;
+  final String? type;
+
+  ExtraPrice({
+    this.name,
+    this.price,
+    this.type,
+  });
+
+  factory ExtraPrice.fromJson(Map<String, dynamic> json) => ExtraPrice(
+        name: json["name"],
+        price: json["price"],
+        type: json["type"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "price": price,
+        "type": type,
       };
 }

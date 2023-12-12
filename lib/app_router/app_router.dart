@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/booking_dto.dart';
+import 'package:idwey/data/models/review_scale_dto.dart';
+import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/presentation/dashboard_page/dashboard_page.dart';
 import 'package:idwey/presentation/pages/add_review_screen/add_review_screen.dart';
@@ -31,6 +33,7 @@ import 'package:idwey/presentation/pages/terms_and_conditions/terms_and_conditio
 import 'package:idwey/presentation/pages/terms_of_use/termsScreen.dart';
 
 import '../data/models/extra_price_dto.dart';
+import '../data/models/review_dto.dart';
 import '../presentation/pages/pages.dart';
 
 part 'app_router.gr.dart';

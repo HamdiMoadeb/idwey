@@ -260,7 +260,30 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                                     "",
                               ),
                               const Divider(),
-                              const ReviewsSection(reviews: []),
+                              ReviewsSection(
+                                id: state.experienceDetailsDto?.row?.id
+                                        .toString() ??
+                                    "",
+                                type: 'experience',
+                                canReview:
+                                    state.experienceDetailsDto?.canreview == 0
+                                        ? false
+                                        : true,
+                                reviews:
+                                    state.experienceDetailsDto?.reviewList ??
+                                        [],
+                                averageRating: state
+                                        .experienceDetailsDto?.moyRate
+                                        .toString() ??
+                                    "0",
+                                reviewsNumber: state.experienceDetailsDto
+                                        ?.reviewList?.length
+                                        .toString() ??
+                                    "0",
+                                listScale:
+                                    state.experienceDetailsDto?.reviewScale ??
+                                        [],
+                              ),
                             ],
                           ),
                         ),

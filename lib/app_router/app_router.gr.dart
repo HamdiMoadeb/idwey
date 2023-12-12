@@ -25,9 +25,16 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     AddReviewRoute.name: (routeData) {
+      final args = routeData.argsAs<AddReviewRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AddReviewScreen(),
+        child: WrappedRoute(
+            child: AddReviewScreen(
+          key: args.key,
+          id: args.id,
+          type: args.type,
+          review: args.review,
+        )),
       );
     },
     ArticleDetailsRoute.name: (routeData) {
@@ -193,21 +200,35 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     RequiredReviewsRoute.name: (routeData) {
+      final args = routeData.argsAs<RequiredReviewsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const RequiredReviewsScreen(),
+        child: RequiredReviewsScreen(
+          key: args.key,
+          type: args.type,
+          notreviewed: args.notreviewed,
+        ),
       );
     },
     ReviewsBoardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ReviewsBoardScreen(),
+        child: WrappedRoute(child: const ReviewsBoardScreen()),
       );
     },
     ReviewsRoute.name: (routeData) {
+      final args = routeData.argsAs<ReviewsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ReviewsScreen(),
+        child: ReviewsScreen(
+          key: args.key,
+          reviewsList: args.reviewsList,
+          averageRating: args.averageRating,
+          reviewsNumber: args.reviewsNumber,
+          listScale: args.listScale,
+          id: args.id,
+          type: args.type,
+        ),
       );
     },
     SearchRoute.name: (routeData) {
@@ -325,16 +346,50 @@ class ActivityDetailsRouteArgs {
 
 /// generated route for
 /// [AddReviewScreen]
-class AddReviewRoute extends PageRouteInfo<void> {
-  const AddReviewRoute({List<PageRouteInfo>? children})
-      : super(
+class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
+  AddReviewRoute({
+    Key? key,
+    required String id,
+    required String type,
+    Review? review,
+    List<PageRouteInfo>? children,
+  }) : super(
           AddReviewRoute.name,
+          args: AddReviewRouteArgs(
+            key: key,
+            id: id,
+            type: type,
+            review: review,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AddReviewRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<AddReviewRouteArgs> page =
+      PageInfo<AddReviewRouteArgs>(name);
+}
+
+class AddReviewRouteArgs {
+  const AddReviewRouteArgs({
+    this.key,
+    required this.id,
+    required this.type,
+    this.review,
+  });
+
+  final Key? key;
+
+  final String id;
+
+  final String type;
+
+  final Review? review;
+
+  @override
+  String toString() {
+    return 'AddReviewRouteArgs{key: $key, id: $id, type: $type, review: $review}';
+  }
 }
 
 /// generated route for
@@ -870,16 +925,45 @@ class ProductsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [RequiredReviewsScreen]
-class RequiredReviewsRoute extends PageRouteInfo<void> {
-  const RequiredReviewsRoute({List<PageRouteInfo>? children})
-      : super(
+class RequiredReviewsRoute extends PageRouteInfo<RequiredReviewsRouteArgs> {
+  RequiredReviewsRoute({
+    Key? key,
+    required String type,
+    required List<Bookingsnotreviewed> notreviewed,
+    List<PageRouteInfo>? children,
+  }) : super(
           RequiredReviewsRoute.name,
+          args: RequiredReviewsRouteArgs(
+            key: key,
+            type: type,
+            notreviewed: notreviewed,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'RequiredReviewsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<RequiredReviewsRouteArgs> page =
+      PageInfo<RequiredReviewsRouteArgs>(name);
+}
+
+class RequiredReviewsRouteArgs {
+  const RequiredReviewsRouteArgs({
+    this.key,
+    required this.type,
+    required this.notreviewed,
+  });
+
+  final Key? key;
+
+  final String type;
+
+  final List<Bookingsnotreviewed> notreviewed;
+
+  @override
+  String toString() {
+    return 'RequiredReviewsRouteArgs{key: $key, type: $type, notreviewed: $notreviewed}';
+  }
 }
 
 /// generated route for
@@ -898,16 +982,65 @@ class ReviewsBoardRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ReviewsScreen]
-class ReviewsRoute extends PageRouteInfo<void> {
-  const ReviewsRoute({List<PageRouteInfo>? children})
-      : super(
+class ReviewsRoute extends PageRouteInfo<ReviewsRouteArgs> {
+  ReviewsRoute({
+    Key? key,
+    required List<ReviewDto> reviewsList,
+    String? averageRating,
+    String? reviewsNumber,
+    required List<ReviewScale> listScale,
+    required String id,
+    required String type,
+    List<PageRouteInfo>? children,
+  }) : super(
           ReviewsRoute.name,
+          args: ReviewsRouteArgs(
+            key: key,
+            reviewsList: reviewsList,
+            averageRating: averageRating,
+            reviewsNumber: reviewsNumber,
+            listScale: listScale,
+            id: id,
+            type: type,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ReviewsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<ReviewsRouteArgs> page =
+      PageInfo<ReviewsRouteArgs>(name);
+}
+
+class ReviewsRouteArgs {
+  const ReviewsRouteArgs({
+    this.key,
+    required this.reviewsList,
+    this.averageRating,
+    this.reviewsNumber,
+    required this.listScale,
+    required this.id,
+    required this.type,
+  });
+
+  final Key? key;
+
+  final List<ReviewDto> reviewsList;
+
+  final String? averageRating;
+
+  final String? reviewsNumber;
+
+  final List<ReviewScale> listScale;
+
+  final String id;
+
+  final String type;
+
+  @override
+  String toString() {
+    return 'ReviewsRouteArgs{key: $key, reviewsList: $reviewsList, averageRating: $averageRating, reviewsNumber: $reviewsNumber, listScale: $listScale, id: $id, type: $type}';
+  }
 }
 
 /// generated route for

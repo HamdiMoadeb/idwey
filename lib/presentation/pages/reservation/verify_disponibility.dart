@@ -186,7 +186,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
               price: state.totalPrice == "" ||
                       state.totalPrice == null ||
                       state.nbNights == "0"
-                  ? '${double.parse(widget.salePrice ?? "").toInt().toString()} DT'
+                  ? double.parse(widget.salePrice ?? "").toInt().toString()
                   : '${state.totalPrice.toString()} DT',
             ),
           ),
