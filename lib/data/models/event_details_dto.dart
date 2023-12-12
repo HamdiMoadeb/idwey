@@ -4,6 +4,10 @@
 
 import 'dart:convert';
 
+import 'package:idwey/data/models/review_dto.dart';
+
+import 'review_scale_dto.dart';
+
 EventDetailsDto eventDetailsDtoFromJson(String str) =>
     EventDetailsDto.fromJson(json.decode(str));
 
@@ -20,7 +24,7 @@ class EventDetailsDto {
   final Map<String, Attribute>? attributes;
   final List<Attribute>? attributes1;
   final int? remainingPlaces;
-  final List<dynamic>? reviewList;
+  final List<ReviewDto>? reviewList;
   final List<ReviewScale>? reviewScale;
   final int? moyRate;
   final int? canreview;
@@ -51,7 +55,7 @@ class EventDetailsDto {
             ? []
             : List<GalleryImagesUrl>.from(json["gallery_images_url"]!
                 .map((x) => GalleryImagesUrl.fromJson(x))),
-        authorImageUrl: json["author_image_url"],
+        authorImageUrl: true,
         attributes: Map.from(json["attributes"]!).map(
             (k, v) => MapEntry<String, Attribute>(k, Attribute.fromJson(v))),
         attributes1: json["attributes1"] == null
@@ -61,7 +65,8 @@ class EventDetailsDto {
         remainingPlaces: json["remaining_places"],
         reviewList: json["review_list"] == null
             ? []
-            : List<dynamic>.from(json["review_list"]!.map((x) => x)),
+            : List<ReviewDto>.from(
+                json["review_list"]!.map((x) => ReviewDto.fromJson(x))),
         reviewScale: json["review_scale"] == null
             ? []
             : List<ReviewScale>.from(
@@ -152,26 +157,6 @@ class GalleryImagesUrl {
   Map<String, dynamic> toJson() => {
         "large": large,
         "thumb": thumb,
-      };
-}
-
-class ReviewScale {
-  final String? title;
-  final int? stars;
-
-  ReviewScale({
-    this.title,
-    this.stars,
-  });
-
-  factory ReviewScale.fromJson(Map<String, dynamic> json) => ReviewScale(
-        title: json["title"],
-        stars: json["stars"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "title": title,
-        "stars": stars,
       };
 }
 

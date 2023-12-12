@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
-import 'package:idwey/data/models/reviews_board_dto.dart';
+import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 
-class RoomItemCard extends StatelessWidget {
-  final Bookingsnotreviewed notreviewed;
-  final String type;
+class RoomItemCardBooking extends StatelessWidget {
+  final BookingDto bookingDto;
   final bool confirmed;
   final VoidCallback? callback;
-  const RoomItemCard(
+  const RoomItemCardBooking(
       {Key? key,
-      required this.notreviewed,
+      required this.bookingDto,
       this.confirmed = false,
-      this.callback,
-      required this.type})
+      this.callback})
       : super(key: key);
 
   @override
@@ -29,7 +27,7 @@ class RoomItemCard extends StatelessWidget {
           confirmed
               ? Container(
                   alignment: Alignment.bottomCenter,
-                  height: 330.h,
+                  height: 300.h,
                   margin:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
@@ -37,13 +35,11 @@ class RoomItemCard extends StatelessWidget {
                     color: primaryOrange,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(
-                        bottom: 12.h, top: 12.h, left: 16.w, right: 16.w),
+                    padding: EdgeInsets.only(bottom: 12.h),
                     child: InkWell(
                       onTap: () {
-                        GetIt.I<AppRouter>().push(AddReviewRoute(
-                            id: notreviewed.id.toString() ?? "",
-                            type: "event"));
+                        GetIt.I<AppRouter>()
+                            .push(AddReviewRoute(id: "", type: ""));
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -94,7 +90,7 @@ class RoomItemCard extends StatelessWidget {
                       children: <TextSpan>[
                         TextSpan(
                             text: getReservationType(
-                                notreviewed?.objectModel ?? ""),
+                                bookingDto?.objectModel ?? ""),
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal,
@@ -124,7 +120,7 @@ class RoomItemCard extends StatelessWidget {
                                       color: Colors.grey,
                                     ),
                                 fit: BoxFit.cover,
-                                imageUrl: notreviewed?.image ?? "")),
+                                imageUrl: bookingDto.pervUrl ?? "")),
                       ),
                       SizedBox(
                         width: 8.w,
@@ -134,14 +130,14 @@ class RoomItemCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${notreviewed?.title ?? ""} • ${notreviewed?.address ?? ""}",
+                              "${bookingDto.title ?? ""} • ${bookingDto?.address ?? ""}",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 16.sp),
                             ),
                             SizedBox(
-                              height: notreviewed?.startDate != "" ? 8.h : 0,
+                              height: bookingDto?.startDate != "" ? 8.h : 0,
                             ),
-                            notreviewed?.startDate != ""
+                            bookingDto?.startDate != ""
                                 ? Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -154,7 +150,7 @@ class RoomItemCard extends StatelessWidget {
                                       ),
                                       Text(
                                         DateFormat("dd/MM/yyyy").format(
-                                                notreviewed?.startDate ??
+                                                bookingDto?.startDate ??
                                                     DateTime.now()) ??
                                             "",
                                         style: TextStyle(
@@ -165,7 +161,7 @@ class RoomItemCard extends StatelessWidget {
                                     ],
                                   )
                                 : const SizedBox.shrink(),
-                            notreviewed?.endDate != ""
+                            bookingDto?.endDate != ""
                                 ? Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -178,7 +174,7 @@ class RoomItemCard extends StatelessWidget {
                                       ),
                                       Text(
                                         DateFormat("dd/MM/yyyy").format(
-                                                notreviewed?.endDate ??
+                                                bookingDto?.endDate ??
                                                     DateTime.now()) ??
                                             "",
                                         style: TextStyle(
@@ -199,8 +195,8 @@ class RoomItemCard extends StatelessWidget {
                                       fontSize: 12.sp),
                                 ),
                                 Text(
-                                  notreviewed?.endDate
-                                          ?.difference(notreviewed?.startDate ??
+                                  bookingDto?.endDate
+                                          ?.difference(bookingDto?.startDate ??
                                               DateTime.now())
                                           .inDays
                                           .toString() ??
@@ -212,9 +208,9 @@ class RoomItemCard extends StatelessWidget {
                                 )
                               ],
                             ),
-                            notreviewed?.guests == "" ||
-                                    notreviewed?.guests == "null" ||
-                                    notreviewed?.guests == null
+                            bookingDto?.totalGuests == "" ||
+                                    bookingDto?.totalGuests == "null" ||
+                                    bookingDto?.totalGuests == null
                                 ? const SizedBox.shrink()
                                 : Row(
                                     mainAxisAlignment:
@@ -225,7 +221,8 @@ class RoomItemCard extends StatelessWidget {
                                         style: TextStyle(fontSize: 12.sp),
                                       ),
                                       Text(
-                                        notreviewed?.guests.toString() ?? "",
+                                        bookingDto?.totalGuests.toString() ??
+                                            "",
                                         style: TextStyle(
                                             color: primary,
                                             fontSize: 12.sp,
@@ -248,7 +245,7 @@ class RoomItemCard extends StatelessWidget {
                                       fontSize: 16.sp),
                                 ),
                                 Text(
-                                  "${double.parse(notreviewed?.total ?? "0.00").toInt()} DT",
+                                  "${double.parse(bookingDto?.total ?? "0.00").toInt()} DT",
                                   style: TextStyle(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w500,
@@ -272,7 +269,7 @@ class RoomItemCard extends StatelessWidget {
                       ),
                       Text(
                         DateFormat("dd/MM/yyyy").format(
-                                notreviewed?.createdAt ?? DateTime.now()) ??
+                                bookingDto?.createdAt ?? DateTime.now()) ??
                             "",
                         style: TextStyle(
                             fontSize: 16.sp, fontWeight: FontWeight.w500),

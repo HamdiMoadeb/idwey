@@ -8,6 +8,7 @@ import 'package:idwey/components/room_item_card/room_item_card.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dart';
+import 'package:idwey/presentation/pages/booking_board_screen/room_item_card_booking.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 
@@ -206,8 +207,8 @@ class _BoardPageState extends State<BoardPage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
-                              return RoomItemCard(
-                                bookingDto: state.bookingList?[index],
+                              return RoomItemCardBooking(
+                                bookingDto: state.bookingList![index],
                                 callback: () {
                                   GetIt.I<AppRouter>().push(
                                       DetailsReservationRoute(
@@ -231,8 +232,8 @@ class _BoardPageState extends State<BoardPage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
-                              return RoomItemCard(
-                                bookingDto: state.waitingBookingList?[index],
+                              return RoomItemCardBooking(
+                                bookingDto: state.waitingBookingList![index],
                                 callback: () {
                                   GetIt.I<AppRouter>().push(
                                       DetailsReservationRoute(
@@ -256,8 +257,8 @@ class _BoardPageState extends State<BoardPage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
-                              return RoomItemCard(
-                                bookingDto: state.canceledBookingList?[index],
+                              return RoomItemCardBooking(
+                                bookingDto: state.canceledBookingList![index],
                                 callback: () {
                                   GetIt.I<AppRouter>().push(
                                       DetailsReservationRoute(
@@ -281,8 +282,8 @@ class _BoardPageState extends State<BoardPage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
-                              return RoomItemCard(
-                                bookingDto: state.confirmedBookingList?[index],
+                              return RoomItemCardBooking(
+                                bookingDto: state.confirmedBookingList![index],
                                 callback: () {
                                   GetIt.I<AppRouter>().push(
                                       DetailsReservationRoute(
@@ -307,8 +308,8 @@ class _BoardPageState extends State<BoardPage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
-                              return RoomItemCard(
-                                bookingDto: state.paidBookingList?[index],
+                              return RoomItemCardBooking(
+                                bookingDto: state.paidBookingList![index],
                                 callback: () {
                                   GetIt.I<AppRouter>().push(
                                       DetailsReservationRoute(

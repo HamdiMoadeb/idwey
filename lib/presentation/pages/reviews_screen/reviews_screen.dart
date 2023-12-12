@@ -8,11 +8,27 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/components/cards/card_review.dart';
 import 'package:idwey/components/reviews_bars/reviews_progress_bar.dart';
+import 'package:idwey/data/models/review_dto.dart';
+import 'package:idwey/data/models/review_scale_dto.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 @RoutePage()
 class ReviewsScreen extends StatelessWidget {
-  const ReviewsScreen({Key? key}) : super(key: key);
+  final List<ReviewDto> reviewsList;
+  final String? averageRating;
+  final String? reviewsNumber;
+  final List<ReviewScale> listScale;
+  final String id;
+  final String type;
+  const ReviewsScreen(
+      {Key? key,
+      required this.reviewsList,
+      this.averageRating,
+      this.reviewsNumber,
+      required this.listScale,
+      required this.id,
+      required this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +40,10 @@ class ReviewsScreen extends StatelessWidget {
           child: SafeArea(
             child: CustomButton.primary(
                 onPressed: () {
-                  GetIt.I<AppRouter>().push(const AddReviewRoute());
+                  GetIt.I<AppRouter>().push(AddReviewRoute(
+                    id: id,
+                    type: type,
+                  ));
                 },
                 child: Padding(
                   padding:
@@ -90,7 +109,7 @@ class ReviewsScreen extends StatelessWidget {
                     width: 5.w,
                   ),
                   Text(
-                    '4.95 • 22 reviews',
+                    '$averageRating • $reviewsNumber reviews',
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
@@ -101,26 +120,30 @@ class ReviewsScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 20.h, left: 16.w, right: 16.w),
-              child: ReviewProgressBars(),
+              child: ReviewProgressBars(
+                listScale: listScale,
+              ),
             ),
-            Divider(),
-            ListView.separated(
-                itemBuilder: (context, index) {
-                  return const CardReview(
-                    text:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim.,consectetur adipiscing elit. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. Sed ut purus eget nunc ut dignissim. ",
-                    reviewer: 'Reviewer',
-                    date: '4 months ago',
-                  );
-                },
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                separatorBuilder: (context, index) {
-                  return Divider(
-                    thickness: 1.h,
-                  );
-                },
-                itemCount: 3),
+            const Divider(),
+            reviewsList.isNotEmpty
+                ? ListView.separated(
+                    itemBuilder: (context, index) {
+                      return CardReview(
+                        text: reviewsList[index].content ?? "",
+                        reviewer: reviewsList[index].author?.name ?? "",
+                        date:
+                            '${reviewsList[index].createdAt?.month} months ago',
+                      );
+                    },
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        thickness: 1.h,
+                      );
+                    },
+                    itemCount: 3)
+                : const SizedBox.shrink(),
           ],
         ),
       ),

@@ -2,12 +2,16 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/room_item_card/room_item_card.dart';
-import 'package:idwey/data/models/booking_dto.dart';
+import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 @RoutePage()
 class RequiredReviewsScreen extends StatelessWidget {
-  const RequiredReviewsScreen({Key? key}) : super(key: key);
+  final String type;
+  final List<Bookingsnotreviewed> notreviewed;
+  const RequiredReviewsScreen(
+      {Key? key, required this.type, required this.notreviewed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +60,13 @@ class RequiredReviewsScreen extends StatelessWidget {
             child: ListView.separated(
               itemBuilder: (context, index) {
                 return RoomItemCard(
-                  bookingDto: BookingDto(title: ""),
+                  type: type ?? "",
+                  notreviewed: notreviewed[index],
                   callback: null,
                   confirmed: true,
                 );
               },
-              itemCount: 4,
+              itemCount: notreviewed.length,
               separatorBuilder: (context, index) {
                 return SizedBox(
                   height: 8.h,

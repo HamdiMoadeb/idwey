@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:idwey/data/models/review_scale_dto.dart';
 
 class ReviewProgressBars extends StatelessWidget {
-  final List<double> progressValues = [0.2, 0.4, 0.6, 0.8, 1.0];
+  final List<ReviewScale> listScale;
 
-  ReviewProgressBars({Key? key}) : super(key: key);
+  const ReviewProgressBars({Key? key, required this.listScale})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,30 +14,16 @@ class ReviewProgressBars extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const ReviewProgressBar(
-          progress: 0.2,
-          title: "Excellent",
-        ),
-        SizedBox(height: 10.0.w),
-        const ReviewProgressBar(
-          progress: 0.4,
-          title: "Very Good",
-        ),
-        SizedBox(height: 10.0.w),
-        const ReviewProgressBar(
-          progress: 0.6,
-          title: "Average",
-        ),
-        SizedBox(height: 10.0.w),
-        const ReviewProgressBar(
-          progress: 0.8,
-          title: "Poor",
-        ),
-        SizedBox(height: 10.0.w),
-        const ReviewProgressBar(
-          progress: 1.0,
-          title: "Terrible",
-        ),
+        for (var i = 0; i < listScale.length; i++)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: ReviewProgressBar(
+              progress: listScale[i].stars != null && listScale[i].stars != 0
+                  ? listScale[i].stars! / 5
+                  : 0,
+              title: listScale[i].title ?? "",
+            ),
+          ),
       ],
     );
   }
@@ -58,9 +46,8 @@ class ReviewProgressBar extends StatelessWidget {
           title,
           style: const TextStyle(fontWeight: FontWeight.w500),
         ),
-        Expanded(child: SizedBox(width: 10.0.w)),
-        SizedBox(
-          width: 230.w,
+        SizedBox(width: 10.0.w),
+        Expanded(
           child: LinearProgressIndicator(
             value: progress,
             backgroundColor: Colors.grey[200],

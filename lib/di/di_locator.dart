@@ -5,6 +5,7 @@ import 'package:idwey/data/data_sources/data_sources.dart';
 import 'package:idwey/data/data_sources/fidelity_program_api_data_source.dart';
 import 'package:idwey/data/data_sources/location_api_data_source.dart';
 import 'package:idwey/data/data_sources/reservation_data_source.dart';
+import 'package:idwey/data/data_sources/reviews_api_data_source.dart';
 import 'package:idwey/data/repositories_impl/activity_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/article_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/event_repository_impl.dart';
@@ -13,6 +14,7 @@ import 'package:idwey/data/repositories_impl/fidelity_program_repository_impl.da
 import 'package:idwey/data/repositories_impl/host_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/product_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/repositories_impl.dart';
+import 'package:idwey/data/repositories_impl/reviews_repository_impl.dart';
 import 'package:idwey/domain/repositories/activity_repository.dart';
 import 'package:idwey/domain/repositories/article_repository.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
@@ -22,12 +24,15 @@ import 'package:idwey/domain/repositories/host_repository.dart';
 import 'package:idwey/domain/repositories/location_repository.dart';
 import 'package:idwey/domain/repositories/product_repository.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
+import 'package:idwey/domain/repositories/review_repository.dart';
+import 'package:idwey/domain/usecases/add_review_usecase.dart';
 import 'package:idwey/domain/usecases/check_host_availability.dart';
 import 'package:idwey/domain/usecases/confirm_reservation_usecase.dart';
 import 'package:idwey/domain/usecases/do_checkout_usecase.dart';
 import 'package:idwey/domain/usecases/get_activity_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_article_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_booking_list_usecase.dart';
+import 'package:idwey/domain/usecases/get_dashboard_reviews.dart';
 import 'package:idwey/domain/usecases/get_event_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_experience_details_dto.dart';
 import 'package:idwey/domain/usecases/get_host_details_usecase.dart';
@@ -40,6 +45,7 @@ import 'package:idwey/domain/usecases/get_list_products_usecase.dart';
 import 'package:idwey/domain/usecases/get_locations_usecase.dart';
 import 'package:idwey/domain/usecases/get_monthly_points_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
+import 'package:idwey/domain/usecases/get_rate_settings_usecase.dart';
 import 'package:idwey/domain/usecases/get_total_points_usecase.dart';
 import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
@@ -47,6 +53,7 @@ import 'package:idwey/domain/usecases/search_activity_usecase.dart';
 import 'package:idwey/domain/usecases/search_events_usecase.dart';
 import 'package:idwey/domain/usecases/search_experience_usecase.dart';
 import 'package:idwey/domain/usecases/search_hosts_usecase.dart';
+import 'package:idwey/domain/usecases/update_review_usecase.dart';
 import 'package:idwey/domain/usecases/update_user_usecase.dart';
 import 'package:idwey/domain/usecases/upload_image_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
@@ -139,10 +146,19 @@ Future<void> setup() async {
       () => ReservationApiDataSourceImpl(GetIt.I()));
   GetIt.I.registerLazySingleton<ReservationRepository>(
       () => ReservationRepositoryImpl(GetIt.I()));
+
+  GetIt.I.registerLazySingleton<ReviewsApiDataSource>(
+      () => ReviewsApiDataSourceImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton<ReviewRepository>(
+      () => ReviewRepositoryImpl(GetIt.I()));
   GetIt.I.registerLazySingleton(() => DoCheckoutUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetBookingListUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => UpdateUserUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => UploadImageUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetRateSettingsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => AddReviewUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => UpdateReviewUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetDashboardReviews(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(
       () => ExperienceRepositoryImpl(GetIt.I()));
