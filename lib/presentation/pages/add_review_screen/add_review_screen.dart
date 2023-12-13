@@ -163,7 +163,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                           height: 16.w,
                         ),
                         Container(
-                          height: 300
+                          height: 150
                               .h, // Set the desired height for the text input
                           padding: const EdgeInsets.all(
                               10), // Optional padding for text input
@@ -304,7 +304,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
-                  "Evaluer avec des étoiles(${state.ratesStars![i]['title']})",
+                  "${state.ratesStars![i]['title']}",
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -315,14 +315,8 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
               const Divider(
                 thickness: 1,
               ),
-              Text(
-                "Dans quelle mesure recommanderiez-vous Idwey à vos amis?",
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontSize: 14.sp,
-                    ),
-              ),
               SizedBox(
-                height: 16.h,
+                height: 8.h,
               ),
               Align(
                 alignment: Alignment.center,

@@ -52,15 +52,14 @@ class ChaletsSection extends StatelessWidget {
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.r),
                                 child: CachedNetworkImage(
-                                    placeholder: (context, url) => SizedBox(
-                                        height: 40.h,
-                                        width: 40.h,
-                                        child:
-                                            const CircularProgressIndicator()),
+                                    placeholder: (context, url) => Image.asset(
+                                          Assets.placeholder,
+                                          fit: BoxFit.cover,
+                                        ),
                                     errorWidget: (context, url, error) =>
-                                        const Icon(
-                                          Icons.error,
-                                          color: Colors.grey,
+                                        Image.asset(
+                                          Assets.placeholder,
+                                          fit: BoxFit.cover,
                                         ),
                                     fit: BoxFit.cover,
                                     imageUrl: state.hostDetails?.rooms?[index]

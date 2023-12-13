@@ -343,13 +343,13 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.r),
                         child: CachedNetworkImage(
-                            placeholder: (context, url) => SizedBox(
-                                height: 40.h,
-                                width: 40.h,
-                                child: const CircularProgressIndicator()),
-                            errorWidget: (context, url, error) => const Icon(
-                                  Icons.error,
-                                  color: Colors.grey,
+                            placeholder: (context, url) => Image.asset(
+                                  Assets.placeholder,
+                                  fit: BoxFit.cover,
+                                ),
+                            errorWidget: (context, url, error) => Image.asset(
+                                  Assets.placeholder,
+                                  fit: BoxFit.cover,
                                 ),
                             fit: BoxFit.cover,
                             imageUrl: "")),

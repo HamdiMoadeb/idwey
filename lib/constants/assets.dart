@@ -41,4 +41,5 @@ class Assets {
   static const String dinnerFilter = "assets/breakfastFilter.svg";
   static const String range = "assets/range.svg";
   static const String score = "assets/score.svg";
+  static const String placeholder = "assets/import_placeholder.png";
 }

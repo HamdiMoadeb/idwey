@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
+import 'package:idwey/constants/assets.dart';
 import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
@@ -110,14 +111,14 @@ class RoomItemCardBooking extends StatelessWidget {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.r),
                             child: CachedNetworkImage(
-                                placeholder: (context, url) => SizedBox(
-                                    height: 40.h,
-                                    width: 40.h,
-                                    child: const CircularProgressIndicator()),
+                                placeholder: (context, url) => Image.asset(
+                                      Assets.placeholder,
+                                      fit: BoxFit.cover,
+                                    ),
                                 errorWidget: (context, url, error) =>
-                                    const Icon(
-                                      Icons.error,
-                                      color: Colors.grey,
+                                    Image.asset(
+                                      Assets.placeholder,
+                                      fit: BoxFit.cover,
                                     ),
                                 fit: BoxFit.cover,
                                 imageUrl: bookingDto.pervUrl ?? "")),

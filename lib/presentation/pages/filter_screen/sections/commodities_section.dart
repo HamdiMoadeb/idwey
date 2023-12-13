@@ -45,6 +45,7 @@ class _CommoditiesFilterSectionState extends State<CommoditiesFilterSection> {
             ),
           ),
           ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               final e = widget.extraPrices[index];
               return CommodityFilterComponent(
