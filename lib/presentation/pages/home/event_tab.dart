@@ -108,6 +108,7 @@ class _EventScreenState extends State<EventScreen>
                   url: state.listEvents?[index].imageUrl,
                   isExpired:
                       state.listEvents?[index].isExpired == 1 ? true : false,
+                  isFull: state.listEvents?[index].isfull == 1 ? true : false,
                   date: DateFormat('dd-MM-yyyy').format(
                       state.listEvents?[index].startDate ?? DateTime.now()),
                 ),

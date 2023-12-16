@@ -767,6 +767,7 @@ abstract class _UploadImage implements AppEvent {
 /// @nodoc
 mixin _$AppState {
   StateStatus? get status => throw _privateConstructorUsedError;
+  StateStatus? get updateUserStatus => throw _privateConstructorUsedError;
   bool? get isLoggedIn => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get lastname => throw _privateConstructorUsedError;
@@ -787,6 +788,7 @@ abstract class $AppStateCopyWith<$Res> {
   @useResult
   $Res call(
       {StateStatus? status,
+      StateStatus? updateUserStatus,
       bool? isLoggedIn,
       String? name,
       String? lastname,
@@ -810,6 +812,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @override
   $Res call({
     Object? status = freezed,
+    Object? updateUserStatus = freezed,
     Object? isLoggedIn = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
@@ -822,6 +825,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      updateUserStatus: freezed == updateUserStatus
+          ? _value.updateUserStatus
+          : updateUserStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       isLoggedIn: freezed == isLoggedIn
           ? _value.isLoggedIn
@@ -864,6 +871,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   @useResult
   $Res call(
       {StateStatus? status,
+      StateStatus? updateUserStatus,
       bool? isLoggedIn,
       String? name,
       String? lastname,
@@ -885,6 +893,7 @@ class __$$_AppStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? updateUserStatus = freezed,
     Object? isLoggedIn = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
@@ -897,6 +906,10 @@ class __$$_AppStateCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      updateUserStatus: freezed == updateUserStatus
+          ? _value.updateUserStatus
+          : updateUserStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       isLoggedIn: freezed == isLoggedIn
           ? _value.isLoggedIn
@@ -935,6 +948,7 @@ class __$$_AppStateCopyWithImpl<$Res>
 class _$_AppState implements _AppState {
   const _$_AppState(
       {this.status,
+      this.updateUserStatus,
       this.isLoggedIn,
       this.name,
       this.lastname,
@@ -945,6 +959,8 @@ class _$_AppState implements _AppState {
 
   @override
   final StateStatus? status;
+  @override
+  final StateStatus? updateUserStatus;
   @override
   final bool? isLoggedIn;
   @override
@@ -962,7 +978,7 @@ class _$_AppState implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(status: $status, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id, imageUrl: $imageUrl)';
+    return 'AppState(status: $status, updateUserStatus: $updateUserStatus, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id, imageUrl: $imageUrl)';
   }
 
   @override
@@ -971,6 +987,8 @@ class _$_AppState implements _AppState {
         (other.runtimeType == runtimeType &&
             other is _$_AppState &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.updateUserStatus, updateUserStatus) ||
+                other.updateUserStatus == updateUserStatus) &&
             (identical(other.isLoggedIn, isLoggedIn) ||
                 other.isLoggedIn == isLoggedIn) &&
             (identical(other.name, name) || other.name == name) &&
@@ -984,8 +1002,8 @@ class _$_AppState implements _AppState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, isLoggedIn, name,
-      lastname, email, phone, id, imageUrl);
+  int get hashCode => Object.hash(runtimeType, status, updateUserStatus,
+      isLoggedIn, name, lastname, email, phone, id, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -997,6 +1015,7 @@ class _$_AppState implements _AppState {
 abstract class _AppState implements AppState {
   const factory _AppState(
       {final StateStatus? status,
+      final StateStatus? updateUserStatus,
       final bool? isLoggedIn,
       final String? name,
       final String? lastname,
@@ -1007,6 +1026,8 @@ abstract class _AppState implements AppState {
 
   @override
   StateStatus? get status;
+  @override
+  StateStatus? get updateUserStatus;
   @override
   bool? get isLoggedIn;
   @override

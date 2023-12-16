@@ -19,7 +19,7 @@ class AboutSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
           child: Row(
             children: [
               HeroIcon(

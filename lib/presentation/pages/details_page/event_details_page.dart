@@ -116,7 +116,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                   },
                   stateEvent: state.eventDetailsDto?.row?.isExpired == 1
                       ? StateEvent.isExpired
-                      : StateEvent.isAvailable,
+                      : state.eventDetailsDto?.row?.isfull == 1
+                          ? StateEvent.isFull
+                          : StateEvent.isAvailable,
                   perPerson: "personne",
                   salePrice:
                       double.parse(state.eventDetailsDto?.row?.salePrix ?? "0")
@@ -266,7 +268,6 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                             []
                                         : [],
                               ),
-                              const Divider(),
                               MapSection(
                                 title: state.eventDetailsDto?.row?.title ?? "",
                                 lat: state.eventDetailsDto?.row?.mapLat ?? "",

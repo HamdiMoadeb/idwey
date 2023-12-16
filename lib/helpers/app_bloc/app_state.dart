@@ -4,6 +4,7 @@ part of 'app_bloc.dart';
 class AppState with _$AppState {
   const factory AppState(
       {StateStatus? status,
+      StateStatus? updateUserStatus,
       bool? isLoggedIn,
       String? name,
       String? lastname,
@@ -14,6 +15,7 @@ class AppState with _$AppState {
 
   factory AppState.initial() => const AppState(
       status: StateStatus.init,
+      updateUserStatus: StateStatus.init,
       isLoggedIn: false,
       name: "",
       lastname: "",

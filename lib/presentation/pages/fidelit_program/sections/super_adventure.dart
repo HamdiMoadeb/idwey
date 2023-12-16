@@ -147,9 +147,9 @@ class _SuperAdventureSectionState extends State<SuperAdventureSection> {
                         labelPlacement: LabelPlacement.onTicks,
                         minorTicksPerInterval: 1,
                         onChanged: (SfRangeValues values) {
-                          setState(() {
-                            _values = values;
-                          });
+                          // setState(() {
+                          //   _values = values;
+                          // });
                         },
                       ),
                     ),

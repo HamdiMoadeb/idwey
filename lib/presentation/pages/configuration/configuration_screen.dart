@@ -35,18 +35,25 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
   @override
   void initState() {
     // TODO: implement initState
+
+    context.read<AppBloc>().add(const AppEvent.getUser());
+
+    super.initState();
+  }
+
+  init() {
     nameController.text = context.read<AppBloc>().state.name ?? "";
     emailController.text = context.read<AppBloc>().state.email ?? "";
     phoneController.text = context.read<AppBloc>().state.phone ?? "";
     controller.text = context.read<AppBloc>().state.lastname ?? "";
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppBloc, AppState>(
       listener: (context, state) {
-        if (state.status == StateStatus.loading) {
+        if (state.updateUserStatus == StateStatus.loading ||
+            state.status == StateStatus.loading) {
           showDialog(
               context: context,
               builder: (context) {
@@ -55,13 +62,17 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                 );
               });
         } else if (state.status == StateStatus.success) {
+          init();
+          Navigator.pop(context);
+        } else if (state.updateUserStatus == StateStatus.success) {
+          init();
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("modifications enregistrées avec succès"),
             ),
           );
-        } else if (state.status == StateStatus.error) {
+        } else if (state.updateUserStatus == StateStatus.error) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

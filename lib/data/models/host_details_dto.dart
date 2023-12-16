@@ -519,7 +519,9 @@ class Room {
         id: json["id"],
         title: json["title"],
         content: json["content"],
-        imageId: json["image_id"],
+        imageId: json["image_id"] is String == true
+            ? int.tryParse(json["image_id"])
+            : json["image_id"],
         gallery: json["gallery"],
         video: json["video"],
         price: json["price"],

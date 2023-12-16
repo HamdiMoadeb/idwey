@@ -8,8 +8,10 @@ import '../../../../app_router/app_router.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String? subtitle;
+  final bool? hideSubtitle;
   final VoidCallback? callback;
-  const ProfileHeader({Key? key, this.subtitle, this.callback})
+  const ProfileHeader(
+      {Key? key, this.subtitle, this.callback, this.hideSubtitle})
       : super(key: key);
 
   Future<String> getNameFromPrefs() async {
@@ -58,18 +60,18 @@ class ProfileHeader extends StatelessWidget {
                         userName,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      InkWell(
-                          child: Text(
-                              subtitle ?? 'Montre le profil',
-                              style: TextStyle(
-                                  color: primary,
-                                  decoration: TextDecoration.underline)
-                          ),
-                          onTap: () {
-                            GetIt.I<AppRouter>().push(const ConfigurationRoute());
-                          },
-
-                      ),
+                      hideSubtitle == true
+                          ? const SizedBox.shrink()
+                          : InkWell(
+                              child: Text(subtitle ?? 'Montre le profil',
+                                  style: TextStyle(
+                                      color: primary,
+                                      decoration: TextDecoration.underline)),
+                              onTap: () {
+                                GetIt.I<AppRouter>()
+                                    .push(const ConfigurationRoute());
+                              },
+                            ),
                     ],
                   )
                 ],

@@ -216,31 +216,31 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: 4.h,
                   ),
-                  InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
-                        ),
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (context) {
-                          return SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.9,
-                              child: const ForgetPasswordBottomSheet());
-                        },
-                      );
-                    },
-                    child: Text('Mot de passe oublié ?',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                            fontSize: 12.sp)),
-                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     showModalBottomSheet(
+                  //       shape: const RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.only(
+                  //           topLeft: Radius.circular(20),
+                  //           topRight: Radius.circular(20),
+                  //         ),
+                  //       ),
+                  //       isScrollControlled: true,
+                  //       context: context,
+                  //       builder: (context) {
+                  //         return SizedBox(
+                  //             height: MediaQuery.of(context).size.height * 0.9,
+                  //             child: const ForgetPasswordBottomSheet());
+                  //       },
+                  //     );
+                  //   },
+                  //   child: Text('Mot de passe oublié ?',
+                  //       textAlign: TextAlign.center,
+                  //       style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  //           fontWeight: FontWeight.w500,
+                  //           color: Colors.black,
+                  //           fontSize: 12.sp)),
+                  // ),
                   /*Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: Row(

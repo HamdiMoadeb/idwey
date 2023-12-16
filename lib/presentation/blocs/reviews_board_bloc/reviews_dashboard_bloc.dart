@@ -29,7 +29,7 @@ class ReviewsDashboardBloc
     try {
       final Either<Exception, ReviewsBoardDto> result =
           await GetIt.I<GetDashboardReviews>()
-              .call({"serviceId": "141", "type": state.type}).then((value) {
+              .call({"serviceId": userId, "type": state.type}).then((value) {
         return value;
       });
       result.fold((Exception failure) {

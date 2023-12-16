@@ -25,7 +25,6 @@ class BottomReservationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -104,9 +103,12 @@ class BottomReservationBar extends StatelessWidget {
               //commented for deployment
               SizedBox(
                 width: 220.w,
-                child: stateEvent == StateEvent.isExpired
+                child: stateEvent == StateEvent.isExpired ||
+                        stateEvent == StateEvent.isFull
                     ? CustomButton.secondaryGrey(
-                        child: const Text('Evènement expiré '),
+                        child: Text(stateEvent == StateEvent.isExpired
+                            ? 'Evènement expiré '
+                            : 'Evènement complet'),
                         onPressed: () {},
                       )
                     : CustomButton.primary(

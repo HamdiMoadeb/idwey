@@ -856,7 +856,7 @@ class CommoditiesSection extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: listWidget,
+      children: listWidget + [const Divider()],
     );
   }
 }
