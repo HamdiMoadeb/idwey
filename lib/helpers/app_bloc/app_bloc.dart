@@ -48,8 +48,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             email: decodedToken['email'],
             lastname: decodedToken['last_name'],
             id: decodedToken['id'].toString(),
-            imageUrl: decodedToken['image_url'] ?? "",
+            imageUrl: decodedToken['image_url'] is String == true
+                ? decodedToken['image_url'] ?? ""
+                : "",
             phone: decodedToken['phone']));
+
+        print(state.name);
+        print(state.email);
+        print(state.lastname);
+        print(state.id);
+        print(state.imageUrl);
       }
     } catch (e) {
       print(e);
@@ -60,17 +68,17 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   void updateUser(_UpdateUser event, Emitter<AppState> emit) async {
     SharedPreferences? prefs;
     try {
-      emit(state.copyWith(status: StateStatus.loading));
+      emit(state.copyWith(updateUserStatus: StateStatus.loading));
       prefs = await SharedPreferences.getInstance();
       final result = await GetIt.I<UpdateUserUseCase>().call(event.body);
       result.fold((l) {
-        emit(state.copyWith(status: StateStatus.error));
+        emit(state.copyWith(updateUserStatus: StateStatus.error));
       }, (r) {
-        emit(state.copyWith(status: StateStatus.success));
+        emit(state.copyWith(updateUserStatus: StateStatus.success));
         print("event.body");
         print(r);
         emit(state.copyWith(
-          status: StateStatus.success,
+          updateUserStatus: StateStatus.success,
           name: event.body["first_name"] ?? state.name,
           email: event.body["email"] ?? state.email,
           lastname: event.body["last_name"] ?? state.lastname,
@@ -80,7 +88,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       });
     } catch (e) {
       print(e);
-      emit(state.copyWith(status: StateStatus.error));
+      emit(state.copyWith(updateUserStatus: StateStatus.error));
     }
   }
 

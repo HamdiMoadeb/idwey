@@ -26,6 +26,7 @@ class CustomCard extends StatefulWidget {
   final String? date;
   final bool? isExpired;
   final bool? isFeatured;
+  final bool? isFull;
   bool? isFavorite;
   final Function(bool)? onFavoriteTap;
   final VoidCallback? onTap;
@@ -51,6 +52,7 @@ class CustomCard extends StatefulWidget {
       : cardType = CardType.host,
         duration = null,
         isExpired = null,
+        isFull = null,
         super(key: key);
   CustomCard.event(
       {Key? key,
@@ -66,6 +68,7 @@ class CustomCard extends StatefulWidget {
       this.type,
       this.date,
       this.isExpired,
+      this.isFull,
       this.onFavoriteTap,
       this.isFavorite = false,
       this.isFeatured,
@@ -96,6 +99,7 @@ class CustomCard extends StatefulWidget {
       this.onTap,
       this.discount})
       : cardType = CardType.activity,
+        isFull = null,
         super(key: key);
   CustomCard.experience(
       {Key? key,
@@ -118,6 +122,7 @@ class CustomCard extends StatefulWidget {
       this.onTap,
       this.discount})
       : cardType = CardType.experience,
+        isFull = null,
         super(key: key);
 
   CustomCard.product(
@@ -141,6 +146,7 @@ class CustomCard extends StatefulWidget {
       this.onTap,
       this.discount})
       : cardType = CardType.product,
+        isFull = null,
         super(key: key);
 
   @override
@@ -346,7 +352,8 @@ class _CustomCardState extends State<CustomCard> {
                 ],
               ),
             ),
-            widget.isExpired != null && widget.isExpired == true
+            (widget.isExpired != null && widget.isExpired == true) ||
+                    (widget.isFull != null && widget.isFull == true)
                 ? CustomButton.secondaryGrey(
                     onPressed: () {},
                     child: SizedBox(
@@ -355,7 +362,10 @@ class _CustomCardState extends State<CustomCard> {
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 8.w, vertical: 4.h),
-                          child: Text('Evènement Expiré ',
+                          child: Text(
+                              widget.isExpired == true
+                                  ? 'Evènement Expiré '
+                                  : 'Evènement Complet ',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge!

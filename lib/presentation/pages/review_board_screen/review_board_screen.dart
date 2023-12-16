@@ -194,6 +194,11 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                 state.status == StateStatus.success
                     ? Expanded(
                         child: PageView(
+                          onPageChanged: (index) {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
                           controller: controller,
                           children: <Widget>[
                             state.reviewsBoardDto?.reviews?.isNotEmpty == true

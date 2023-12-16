@@ -250,7 +250,6 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                                         ?.attributes?.the11?.child ??
                                     [],
                               ),
-                              const Divider(),
                               MapSection(
                                 title: state.experienceDetailsDto?.row?.title ??
                                     "",
