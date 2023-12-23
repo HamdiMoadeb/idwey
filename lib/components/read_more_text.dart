@@ -75,7 +75,7 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
             padding: widget.padding,
             child: Html(
               key: _widgetKey,
-              data: widget.description,
+              data: widget.description ?? "",
               style: {
                 "body": Style(
                   maxLines: lines,

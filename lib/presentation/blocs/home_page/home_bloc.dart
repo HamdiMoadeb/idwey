@@ -3,8 +3,20 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/constants/enums.dart';
+import 'package:idwey/data/models/activity_category.dart';
+import 'package:idwey/data/models/activity_page_dto.dart';
+import 'package:idwey/data/models/attribute_dto.dart';
+import 'package:idwey/data/models/attributz.dart';
+import 'package:idwey/data/models/event_page_dto.dart';
+import 'package:idwey/data/models/experience_page_dto.dart';
+import 'package:idwey/data/models/host_page_dto.dart';
 import 'package:idwey/data/models/locations_dto.dart';
 import 'package:idwey/data/models/models.dart';
+import 'package:idwey/domain/usecases/filter_usecase.dart';
+import 'package:idwey/domain/usecases/get_activity_page_usecase.dart';
+import 'package:idwey/domain/usecases/get_event_page_usecase.dart';
+import 'package:idwey/domain/usecases/get_experience_page_usecase.dart';
+import 'package:idwey/domain/usecases/get_host_page_usecase.dart';
 
 import '../../../domain/usecases/get_locations_usecase.dart';
 import '../../../domain/usecases/usecases.dart';
@@ -32,6 +44,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetListLocations>(getListLocations);
     on<GetSearchListActivities>(_getListSearchActivities);
     on<GetSearchListExperiences>(_getListSearchExperiences);
+    on<GetEventPageData>(_getEventPageData);
+    on<GetHostPageData>(_getHostPageData);
+    on<GetExperiencePageData>(_getExperiencePageData);
+    on<GetActivityPageData>(_getActivityPageData);
+    on<SetSelectedActivityCategory>(setSelectedIdsActivity);
+    on<SetSelectedAttributesId>(setSelectedIds);
+    on<SetRangePrices>(setPriceRanges);
+    on<GetFilterListHostsPageData>(_getListFilterHosts);
+    on<GetFilterListEventsPageData>(_getListFilterEvents);
+    on<GetFilterListActivitiesPageData>(_getListFilterActivities);
+    on<GetFilterListExperiencesPageData>(_getListFilterExperiences);
   }
 
   _getUserRole(GetUserRole event, Emitter<HomeState> emit) {}
@@ -49,6 +72,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           endDate: "",
           city: "",
           guests: 0,
+        ));
+      }
+      if (state.isFilter == true) {
+        emit(state.copyWith(
+          listHosts: [],
+          isFilter: false,
+          pageHosts: 0,
+          startDate: "",
+          endDate: "",
+          city: "",
+          guests: 0,
+          selectedAttributesId: [],
+          selectedActivityCategoriesId: [],
+          selectedPriceRanges: [
+            state.minPriceRange ?? "0",
+            state.maxPriceRange ?? "1000"
+          ],
         ));
       }
       if (state.atTheEndOfThePageHosts == true) {
@@ -86,6 +126,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           emit(state.copyWith(
             status: StateStatus.success,
             listHosts: state.listHosts! + success,
+            listAttributes: state.listAttributes,
             isFetching: false,
             atTheEndOfThePageHosts: atTheEndOfThePage,
             pageHosts: nextPage,
@@ -191,6 +232,34 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListEvents(GetListEvent event, Emitter<HomeState> emit) async {
     try {
+      if (state.isSearch == true) {
+        emit(state.copyWith(
+          listEvents: [],
+          isSearch: false,
+          pageEvents: 0,
+          startDate: "",
+          endDate: "",
+          city: "",
+          guests: 0,
+        ));
+      }
+      if (state.isFilter == true) {
+        emit(state.copyWith(
+          listEvents: [],
+          isFilter: false,
+          pageEvents: 0,
+          startDate: "",
+          endDate: "",
+          city: "",
+          guests: 0,
+          selectedAttributesId: [],
+          selectedActivityCategoriesId: [],
+          selectedPriceRanges: [
+            state.minPriceRange ?? "0",
+            state.maxPriceRange ?? "1000"
+          ],
+        ));
+      }
       if (state.atTheEndOfThePageEvents == true) {
         return;
       }
@@ -247,8 +316,153 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+  _getEventPageData(GetEventPageData event, Emitter<HomeState> emit) async {
+    try {
+      final Either<Exception, EventPageDto?> result =
+          await GetIt.I<GetEventPageUseCase>().call({
+        "limit": 10,
+        "offset": 10,
+      });
+
+      result.fold((Exception failure) {
+        emit(state.copyWith(
+          statusEvent: StateStatus.error,
+        ));
+      }, (EventPageDto? success) async {
+        emit(state.copyWith(
+          statusEvent: StateStatus.success,
+          eventPageDto: success,
+        ));
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        statusEvent: StateStatus.error,
+      ));
+    }
+  }
+
+  /// get host page data
+  _getHostPageData(GetHostPageData event, Emitter<HomeState> emit) async {
+    try {
+// Use a default value if state.page is null
+      emit(state.copyWith());
+
+      final Either<Exception, HostPageDto?> result =
+          await GetIt.I<GetHostPageUseCase>().call({
+        "limit": 10,
+        "offset": 10,
+      });
+
+      result.fold((Exception failure) {}, (HostPageDto? success) async {
+        print("success");
+        print(success?.hotelMinMaxPrice);
+        emit(state.copyWith(
+          hostPageDto: success,
+          listAttributes: success?.attributes,
+          minPriceRange: success?.hotelMinMaxPrice?[0],
+          maxPriceRange: success?.hotelMinMaxPrice?[1],
+        ));
+        print("minPriceRange ${state.minPriceRange}");
+        print("maxPriceRange ${state.maxPriceRange}");
+      });
+    } catch (e) {
+      emit(state.copyWith());
+    }
+  }
+
+  /// get activity page data
+  _getActivityPageData(
+      GetActivityPageData event, Emitter<HomeState> emit) async {
+    try {
+      emit(state.copyWith(
+        status: StateStatus.loading,
+      ));
+
+      final Either<Exception, ActivityPageDto?> result =
+          await GetIt.I<GetActivityPageUseCase>().call({
+        "limit": 10,
+        "offset": 10,
+      });
+
+      result.fold((Exception failure) {
+        emit(state.copyWith(
+          status: StateStatus.error,
+        ));
+      }, (ActivityPageDto? success) async {
+        emit(state.copyWith(
+          status: StateStatus.success,
+          activityPageDto: success,
+        ));
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        statusEvent: StateStatus.error,
+      ));
+    }
+  }
+
+  /// get experience page data
+
+  _getExperiencePageData(
+      GetExperiencePageData event, Emitter<HomeState> emit) async {
+    try {
+      emit(state.copyWith(
+        status: StateStatus.loading,
+      ));
+
+      final Either<Exception, ExperiencePageDto?> result =
+          await GetIt.I<GetExperiencePageUseCase>().call({
+        "limit": 10,
+        "offset": 10,
+      });
+
+      result.fold((Exception failure) {
+        emit(state.copyWith(
+          status: StateStatus.error,
+        ));
+      }, (ExperiencePageDto? success) async {
+        emit(state.copyWith(
+          status: StateStatus.success,
+          experiencePageDto: success,
+        ));
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        statusEvent: StateStatus.error,
+      ));
+    }
+  }
+
   _getListExperiences(GetListExperiences event, Emitter<HomeState> emit) async {
     try {
+      if (state.isSearch == true) {
+        emit(state.copyWith(
+          listExperiences: [],
+          isSearch: false,
+          pageExperiences: 0,
+          startDate: "",
+          endDate: "",
+          city: "",
+          guests: 0,
+        ));
+      }
+      if (state.isFilter == true) {
+        emit(state.copyWith(
+          listExperiences: [],
+          isFilter: false,
+          pageExperiences: 0,
+          startDate: "",
+          endDate: "",
+          city: "",
+          guests: 0,
+          selectedAttributesId: [],
+          selectedActivityCategoriesId: [],
+          selectedPriceRanges: [
+            state.minPriceRange ?? "0",
+            state.maxPriceRange ?? "1000"
+          ],
+        ));
+      }
       if (state.atTheEndOfThePageExperiences == true) {
         return;
       }
@@ -274,16 +488,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           isFetching: false,
         ));
       }, (List<Experience>? success) async {
-        if (success != null && success.isNotEmpty) {
+        if (success != null) {
           // Increase nextPage only when new data is received
           nextPage++;
 
           // Check if the server returned fewer items than requested
-          bool atTheEndOfThePage = success.length < 10;
+          bool atTheEndOfThePage = success!.length < 10;
 
           emit(state.copyWith(
             statusExperiences: StateStatus.success,
-            listExperiences: state.listExperiences! + success,
+            listExperiences: state.listExperiences! + success!,
             isFetching: false,
             atTheEndOfThePageExperiences: atTheEndOfThePage,
             pageExperiences: nextPage,
@@ -307,6 +521,34 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListActivities(GetListActivities event, Emitter<HomeState> emit) async {
     try {
+      if (state.isSearch == true) {
+        emit(state.copyWith(
+          listActivities: [],
+          isSearch: false,
+          pageActivities: 0,
+          startDate: "",
+          endDate: "",
+          city: "",
+          guests: 0,
+        ));
+      }
+      if (state.isFilter == true) {
+        emit(state.copyWith(
+          listActivities: [],
+          isFilter: false,
+          pageActivities: 0,
+          startDate: "",
+          endDate: "",
+          city: "",
+          guests: 0,
+          selectedAttributesId: [],
+          selectedActivityCategoriesId: [],
+          selectedPriceRanges: [
+            state.minPriceRange ?? "0",
+            state.maxPriceRange ?? "1000"
+          ],
+        ));
+      }
       if (state.atTheEndOfThePageActivities == true) return;
 
       emit(state.copyWith(
@@ -363,9 +605,54 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   _setSelectedTab(SetSelectedTab event, Emitter<HomeState> emit) async {
-    emit(state.copyWith(
-      selectedTab: event.tab,
-    ));
+    /// switch selected tab => min max range
+    print(event.tab);
+    switch (event.tab) {
+      case 0:
+        emit(state.copyWith(
+          selectedTab: event.tab,
+          minPriceRange: state.hostPageDto?.hotelMinMaxPrice![0],
+          maxPriceRange: state.hostPageDto?.hotelMinMaxPrice![1],
+          listAttributes: state.hostPageDto?.attributes,
+        ));
+        break;
+      case 1:
+        emit(state.copyWith(
+          selectedTab: event.tab,
+          minPriceRange: state.eventPageDto!.eventMinMaxPrice![0],
+          maxPriceRange: state.eventPageDto!.eventMinMaxPrice![1],
+          listAttributes: state.eventPageDto?.attributes,
+        ));
+        break;
+      case 2:
+        emit(state.copyWith(
+          selectedTab: event.tab,
+          minPriceRange: state.activityPageDto!.activityMinMaxPrice![0],
+          maxPriceRange: state.activityPageDto!.activityMinMaxPrice![1],
+          listAttributes: state.activityPageDto?.attributes,
+          listActivityCategories: state.activityPageDto?.activityCategory,
+        ));
+        break;
+      case 3:
+        emit(state.copyWith(
+          selectedTab: event.tab,
+          minPriceRange: state.experiencePageDto?.activityMinMaxPrice![0],
+          maxPriceRange: state.experiencePageDto?.activityMinMaxPrice![1],
+          listAttributes: state.experiencePageDto?.attributes,
+        ));
+        break;
+    }
+
+    print("state.selectedTab");
+    print(state.selectedTab);
+    print("state.minPriceRange");
+    print(state.minPriceRange);
+    print("state.maxPriceRange");
+    print(state.maxPriceRange);
+    print("state.listAttributes");
+    print(state.listAttributes![0].toJson());
+    print("state.listActivityCategories");
+    print(state.listActivityCategories![0].toJson());
   }
 
   void changeStartDate(_ChangeStartDate event, Emitter<HomeState> emit) {
@@ -487,7 +774,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListSearchActivities(
       GetSearchListActivities event, Emitter<HomeState> emit) async {
-
     try {
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
@@ -663,5 +949,387 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } catch (e) {
       print(e);
     }
+  }
+
+  /// set selected ids
+  setSelectedIds(SetSelectedAttributesId event, Emitter<HomeState> emit) async {
+    List<String> selectedIds = List.from(state.selectedAttributesId ?? []);
+    if (selectedIds.contains(event.attributesId)) {
+      selectedIds.remove(event.attributesId);
+    } else {
+      selectedIds.add(event.attributesId);
+    }
+    emit(state.copyWith(
+      selectedAttributesId: selectedIds ?? [],
+    ));
+    print("state.selectedAttributesId");
+    print(state.selectedAttributesId);
+  }
+
+  /// set selected ids
+  setSelectedIdsActivity(
+      SetSelectedActivityCategory event, Emitter<HomeState> emit) async {
+    List<String> selectedIds =
+        List.from(state.selectedActivityCategoriesId ?? []);
+    if (selectedIds.contains(event.id)) {
+      selectedIds.remove(event.id);
+    } else {
+      selectedIds.add(event.id);
+    }
+    emit(state.copyWith(
+      selectedActivityCategoriesId: selectedIds ?? [],
+    ));
+  }
+
+  /// set price ranges
+  setPriceRanges(SetRangePrices event, Emitter<HomeState> emit) async {
+    emit(state.copyWith(
+      selectedPriceRanges: event.str,
+    ));
+    print("event.str");
+    print(state.selectedPriceRanges);
+  }
+
+  /// filter list hosts by selected ids
+  _getListFilterHosts(
+      GetFilterListHostsPageData event, Emitter<HomeState> emit) async {
+    try {
+      /// if is search and is not loading more empty list hosts to load new data
+      if (event.isFetching == false) {
+        emit(state.copyWith(
+          listHosts: [],
+          filterPageHosts: 0,
+          atTheEndOfTheFilterPageHosts: false,
+        ));
+      }
+
+      if (state.atTheEndOfTheFilterPageHosts == true) {
+        return;
+      }
+
+      print("state.listHosts");
+      print(state.listHosts);
+
+      emit(state.copyWith(
+        status:
+            event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
+        isFetching: true,
+      ));
+
+      int nextPage = state.filterPageHosts ??
+          0; // Use a default value if state.page is null
+      final Either<Exception, List<Host>?> result;
+      print("event.isFilter");
+      emit(state.copyWith(isFilter: true));
+      result = await GetIt.I<FilterListHostsUseCase>().call({
+        "limit": 10,
+        "offset": nextPage * 10,
+        "price_range": getSelectedPriceRanges(state.selectedPriceRanges ?? []),
+        "terms": getSelectedIds(state.selectedAttributesId ?? []),
+      });
+
+      result.fold((Exception failure) {
+        emit(state.copyWith(
+          status: StateStatus.error,
+          atTheEndOfTheFilterPageHosts: false,
+          isFetching: false,
+        ));
+      }, (List<Host>? success) async {
+        if (success != null && success.isNotEmpty) {
+          // Increase nextPage only when new data is received
+          nextPage++;
+
+          // Check if the server returned fewer items than requested
+          bool atTheEndOfThePage = success.length < 10;
+
+          emit(state.copyWith(
+            status: StateStatus.success,
+            listHosts: state.listHosts! + success,
+            isFetching: false,
+            atTheEndOfTheFilterPageHosts: atTheEndOfThePage,
+            filterPageHosts: nextPage,
+          ));
+        } else {
+          emit(state.copyWith(
+            status: StateStatus.error,
+            atTheEndOfTheFilterPageHosts:
+                true, // Mark atTheEndOfThePage as true when there is no more data
+            isFetching: false,
+          ));
+        }
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        status: StateStatus.error,
+        isFetching: false,
+      ));
+    }
+  }
+
+  /// filter list events by selected ids
+
+  _getListFilterEvents(
+      GetFilterListEventsPageData event, Emitter<HomeState> emit) async {
+    print(state.atTheEndOfTheFilterPageEvents);
+    print(state.isFilter);
+    print(event.isFetching);
+    try {
+      /// if is search and is not loading more empty list events to load new data
+      if (event.isFetching == false) {
+        emit(state.copyWith(
+          listEvents: [],
+          pageFilterEvents: 0,
+          atTheEndOfTheFilterPageEvents: false,
+        ));
+      }
+
+      if (state.atTheEndOfTheFilterPageEvents == true) {
+        return;
+      }
+
+      print("state.listEvents");
+      print(state.listEvents);
+
+      emit(state.copyWith(
+        status:
+            event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
+        isFetching: true,
+      ));
+
+      int nextPage = state.pageFilterEvents ??
+          0; // Use a default value if state.page is null
+      emit(state.copyWith(isFilter: true));
+
+      final Either<Exception, List<Event>?> result;
+      print("event.isSearch");
+      emit(state.copyWith(isSearch: true));
+      result = await GetIt.I<FilterListEventsUseCase>().call({
+        "limit": 10,
+        "offset": nextPage * 10,
+        "price_range": getSelectedPriceRanges(state.selectedPriceRanges ?? []),
+        "terms": getSelectedIds(state.selectedAttributesId ?? []),
+      });
+
+      result.fold((Exception failure) {
+        emit(state.copyWith(
+          status: StateStatus.error,
+          atTheEndOfTheSearchPageEvents: false,
+          isFetching: false,
+        ));
+      }, (List<Event>? success) async {
+        if (success != null && success.isNotEmpty) {
+          // Increase nextPage only when new data is received
+          nextPage++;
+
+          // Check if the server returned fewer items than requested
+          bool atTheEndOfThePage = success.length < 10;
+
+          emit(state.copyWith(
+            status: StateStatus.success,
+            listEvents: state.listEvents! + success,
+            isFetching: false,
+            atTheEndOfTheFilterPageEvents: atTheEndOfThePage,
+            pageFilterEvents: nextPage,
+          ));
+        } else {
+          emit(state.copyWith(
+            status: StateStatus.error,
+            atTheEndOfTheFilterPageEvents:
+                true, // Mark atTheEndOfThePage as true when
+            // there is no more data
+
+            isFetching: false,
+          ));
+        }
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        status: StateStatus.error,
+        isFetching: false,
+      ));
+    }
+  }
+
+  /// filter list activities by selected ids
+
+  _getListFilterActivities(
+      GetFilterListActivitiesPageData event, Emitter<HomeState> emit) async {
+    print(state.atTheEndOfTheFilterPageActivities);
+    print(state.isFilter);
+    print(event.isFetching);
+    try {
+      /// if is search and is not loading more empty list activities to load new data
+      if (event.isFetching == false) {
+        emit(state.copyWith(
+          listActivities: [],
+          pageFilterActivities: 0,
+          atTheEndOfTheFilterPageActivities: false,
+        ));
+      }
+
+      if (state.atTheEndOfTheFilterPageActivities == true) {
+        return;
+      }
+
+      print("state.listActivities");
+      print(state.listActivities);
+
+      emit(state.copyWith(
+        status:
+            event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
+        isFetching: true,
+      ));
+
+      int nextPage = state.pageFilterActivities ??
+          0; // Use a default value if state.page is null
+      emit(state.copyWith(isFilter: true));
+
+      final Either<Exception, List<Activity>?> result;
+      print("event.isSearch");
+      emit(state.copyWith(isSearch: true));
+      result = await GetIt.I<FilterListActivitiesUseCase>().call({
+        "limit": 10,
+        "offset": nextPage * 10,
+        "price_range": getSelectedPriceRanges(state.selectedPriceRanges ?? []),
+        "terms": getSelectedIds(state.selectedAttributesId ?? []),
+      });
+
+      result.fold((Exception failure) {
+        emit(state.copyWith(
+          status: StateStatus.error,
+          atTheEndOfTheSearchPageActivities: false,
+          isFetching: false,
+        ));
+      }, (List<Activity>? success) async {
+        if (success != null && success.isNotEmpty) {
+          // Increase nextPage only when new data is received
+          nextPage++;
+
+          // Check if the server returned fewer items than requested
+          bool atTheEndOfThePage = success.length < 10;
+
+          emit(state.copyWith(
+            status: StateStatus.success,
+            listActivities: state.listActivities! + success,
+            isFetching: false,
+            atTheEndOfTheFilterPageActivities: atTheEndOfThePage,
+            pageFilterActivities: nextPage,
+          ));
+        } else {
+          emit(state.copyWith(
+            status: StateStatus.error,
+            atTheEndOfTheFilterPageActivities:
+                true, // Mark atTheEndOfThePage as true when
+            // there is no more data
+
+            isFetching: false,
+          ));
+        }
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        status: StateStatus.error,
+        isFetching: false,
+      ));
+    }
+  }
+
+  /// filter experiences by selected ids
+
+  _getListFilterExperiences(
+      GetFilterListExperiencesPageData event, Emitter<HomeState> emit) async {
+    print(state.atTheEndOfTheFilterPageExperiences);
+    print(state.isFilter);
+    print(event.isFetching);
+    try {
+      /// if is search and is not loading more empty list experiences to load new data
+      if (event.isFetching == false) {
+        emit(state.copyWith(
+          listExperiences: [],
+          pageFilterExperiences: 0,
+          atTheEndOfTheFilterPageExperiences: false,
+        ));
+      }
+
+      if (state.atTheEndOfTheFilterPageExperiences == true) {
+        return;
+      }
+
+      print("state.listExperiences");
+      print(state.listExperiences);
+
+      emit(state.copyWith(
+        status:
+            event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
+        isFetching: true,
+      ));
+      int nextPage = state.pageFilterExperiences ??
+          0; // Use a default value if state.page is null
+      emit(state.copyWith(isFilter: true));
+      final Either<Exception, List<Experience>?> result;
+      print("event.isSearch");
+      emit(state.copyWith(isSearch: true));
+      result = await GetIt.I<FilterListExperiencesUseCase>().call({
+        "limit": 10,
+        "offset": nextPage * 10,
+        "price_range": getSelectedPriceRanges(state.selectedPriceRanges ?? []),
+        "terms": getSelectedIds(state.selectedAttributesId ?? []),
+      });
+
+      result.fold((Exception failure) {
+        emit(state.copyWith(
+          status: StateStatus.error,
+          atTheEndOfTheSearchPageExperiences: false,
+          isFetching: false,
+        ));
+      }, (List<Experience>? success) async {
+        if (success != null && success.isNotEmpty) {
+          // Increase nextPage only when new data is received
+          nextPage++;
+
+          // Check if the server returned fewer items than requested
+          bool atTheEndOfThePage = success.length < 10;
+
+          emit(state.copyWith(
+            status: StateStatus.success,
+            listExperiences: state.listExperiences! + success,
+            isFetching: false,
+            atTheEndOfTheFilterPageExperiences: atTheEndOfThePage,
+            pageFilterExperiences: nextPage,
+          ));
+        } else {
+          emit(state.copyWith(
+            status: StateStatus.error,
+            atTheEndOfTheFilterPageExperiences: true, // Mark atThe
+            // there is no more data
+
+            isFetching: false,
+          ));
+        }
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        status: StateStatus.error,
+        isFetching: false,
+      ));
+    }
+  }
+
+  String getSelectedPriceRanges(List<String> stringsList) {
+    String concatenatedString = "";
+    if (state.selectedPriceRanges != null) {
+      concatenatedString = stringsList.join(';');
+    }
+    print("concatenatedString");
+    print(concatenatedString);
+    return concatenatedString;
+  }
+
+  String getSelectedIds(List<String> stringsList) {
+    String concatenatedString = "";
+    if (state.selectedPriceRanges != null) {
+      concatenatedString = stringsList.join(',');
+    }
+    return concatenatedString;
   }
 }

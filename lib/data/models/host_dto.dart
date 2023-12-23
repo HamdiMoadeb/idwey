@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final host = hostFromJson(jsonString);
+
 import 'dart:convert';
 
 Host hostFromJson(String str) => Host.fromJson(json.decode(str));
@@ -12,7 +16,7 @@ class Host {
   final int? isFeatured;
   final String? imageUrl;
   final String? termName;
-  final dynamic translationTermName;
+  final String? translationTermName;
   final String? locationName;
   final String? translationLocationName;
   final String? price;
@@ -23,8 +27,8 @@ class Host {
   final String? typeHost;
   final dynamic salePrice;
   final String? address;
-  final dynamic impactSocial;
-  final dynamic translationImpactSocial;
+  final dynamic impactsocial;
+  final dynamic translationImpactsocial;
   final dynamic promotion;
   final List<dynamic>? translations;
 
@@ -47,8 +51,8 @@ class Host {
     this.typeHost,
     this.salePrice,
     this.address,
-    this.impactSocial,
-    this.translationImpactSocial,
+    this.impactsocial,
+    this.translationImpactsocial,
     this.promotion,
     this.translations,
   });
@@ -72,8 +76,8 @@ class Host {
         typeHost: json["type_host"],
         salePrice: json["sale_price"],
         address: json["address"],
-        impactSocial: json["impactsocial"],
-        translationImpactSocial: json["translation_impactsocial"],
+        impactsocial: json["impactsocial"],
+        translationImpactsocial: json["translation_impactsocial"],
         promotion: json["promotion"],
         translations: json["translations"] == null
             ? []
@@ -99,8 +103,8 @@ class Host {
         "type_host": typeHost,
         "sale_price": salePrice,
         "address": address,
-        "impactsocial": impactSocial,
-        "translation_impactsocial": translationImpactSocial,
+        "impactsocial": impactsocial,
+        "translation_impactsocial": translationImpactsocial,
         "promotion": promotion,
         "translations": translations == null
             ? []

@@ -18,3 +18,7 @@ export 'search_activity_usecase.dart';
 export 'search_experience_usecase.dart';
 export 'get_booking_list_usecase.dart';
 export 'update_user_usecase.dart';
+export 'filter_activities_usecase.dart';
+export 'filter_events_usecase.dart';
+export 'filter_usecase.dart';
+export 'filter_experiences_usecase.dart';

@@ -17,7 +17,6 @@ class Event {
   final DateTime? endDate;
   final dynamic isfull;
   final int? number;
-  final String? promotion;
   final String? difficulty;
   final String? duration;
   final String? prix;
@@ -26,7 +25,8 @@ class Event {
   final dynamic impactsocial;
   final String? imageUrl;
   final String? termName;
-  final String? translationTermName;
+  final dynamic translationTermName;
+  final dynamic promotion;
   final String? translateDifficulty;
   final dynamic translationImpactsocial;
   final List<dynamic>? translations;
@@ -34,7 +34,6 @@ class Event {
   Event({
     this.id,
     this.slug,
-    this.promotion,
     this.title,
     this.startDate,
     this.isExpired,
@@ -50,6 +49,7 @@ class Event {
     this.imageUrl,
     this.termName,
     this.translationTermName,
+    this.promotion,
     this.translateDifficulty,
     this.translationImpactsocial,
     this.translations,
@@ -71,12 +71,12 @@ class Event {
         duration: json["duration"],
         prix: json["prix"],
         salePrix: json["sale_prix"],
-        promotion: json["promotion"],
         address: json["address"],
         impactsocial: json["impactsocial"],
         imageUrl: json["IMAGE_URL"],
         termName: json["term_name"],
         translationTermName: json["translation_term_name"],
+        promotion: json["promotion"],
         translateDifficulty: json["translate_difficulty"],
         translationImpactsocial: json["translation_impactsocial"],
         translations: json["translations"] == null
@@ -94,7 +94,6 @@ class Event {
         "end_date":
             "${endDate!.year.toString().padLeft(4, '0')}-${endDate!.month.toString().padLeft(2, '0')}-${endDate!.day.toString().padLeft(2, '0')}",
         "isfull": isfull,
-        "promotion": promotion,
         "number": number,
         "difficulty": difficulty,
         "duration": duration,
@@ -105,6 +104,7 @@ class Event {
         "IMAGE_URL": imageUrl,
         "term_name": termName,
         "translation_term_name": translationTermName,
+        "promotion": promotion,
         "translate_difficulty": translateDifficulty,
         "translation_impactsocial": translationImpactsocial,
         "translations": translations == null

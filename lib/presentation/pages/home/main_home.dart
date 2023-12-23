@@ -38,6 +38,10 @@ class _MainHomeScreenState extends State<MainHomeScreen>
   void initState() {
     super.initState();
     context.read<AppBloc>().add(const AppEvent.getUser());
+    context.read<HomeBloc>().add(const GetHostPageData(false));
+    context.read<HomeBloc>().add(const GetEventPageData(false));
+    context.read<HomeBloc>().add(const GetActivityPageData(false));
+    context.read<HomeBloc>().add(const GetExperiencePageData(false));
     context.read<HomeBloc>().add(const HomeEvent.getListLocations());
     _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
@@ -88,7 +92,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                   // Remove the indicator
                   unselectedLabelColor: Colors.grey,
                   tabs: [
-                    FilterItem(
+                    FilterItemWidget(
                       label: 'Hébergement',
                       icon: Assets.hosts,
                       onTap: (v) {
@@ -109,7 +113,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                       },
                       isSelected: selectedIndex == 0,
                     ),
-                    FilterItem(
+                    FilterItemWidget(
                       label: 'Evenement',
                       icon: Assets.events,
                       onTap: (v) {
@@ -130,7 +134,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                       },
                       isSelected: selectedIndex == 1,
                     ),
-                    FilterItem(
+                    FilterItemWidget(
                       label: 'Acitvités',
                       icon: Assets.activities,
                       onTap: (v) {
@@ -151,7 +155,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                       },
                       isSelected: selectedIndex == 2,
                     ),
-                    FilterItem(
+                    FilterItemWidget(
                       label: 'Experiences',
                       icon: Assets.experiences,
                       onTap: (vv) {

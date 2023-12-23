@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/activity_api_data_source.dart';
 import 'package:idwey/data/models/activity_details_dto.dart';
 import 'package:idwey/data/models/activity_dto.dart';
+import 'package:idwey/data/models/activity_page_dto.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 
 class ActivityRepositoryImpl implements ActivityRepository {
@@ -36,6 +37,18 @@ class ActivityRepositoryImpl implements ActivityRepository {
     try {
       final result = await dataSource.searchListActivities(
           limit, offset, start, end, adults, address);
+
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, ActivityPageDto>> getActivityDataPage(
+      int limit, int offset) async {
+    try {
+      final result = await dataSource.getActivityPageData(limit, offset);
 
       return Right(result);
     } on Exception catch (e) {

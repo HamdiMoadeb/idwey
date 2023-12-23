@@ -3,58 +3,36 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/image_banner/image_banner_bloc/image_banner_bloc.dart';
 import 'package:idwey/data/data_sources/data_sources.dart';
 import 'package:idwey/data/data_sources/fidelity_program_api_data_source.dart';
+import 'package:idwey/data/data_sources/filter_api_data_source.dart';
 import 'package:idwey/data/data_sources/location_api_data_source.dart';
 import 'package:idwey/data/data_sources/reservation_data_source.dart';
 import 'package:idwey/data/data_sources/reviews_api_data_source.dart';
-import 'package:idwey/data/repositories_impl/activity_repository_impl.dart';
-import 'package:idwey/data/repositories_impl/article_repository_impl.dart';
-import 'package:idwey/data/repositories_impl/event_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/experience_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/fidelity_program_repository_impl.dart';
-import 'package:idwey/data/repositories_impl/host_repository_impl.dart';
+import 'package:idwey/data/repositories_impl/filter_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/product_repository_impl.dart';
 import 'package:idwey/data/repositories_impl/repositories_impl.dart';
 import 'package:idwey/data/repositories_impl/reviews_repository_impl.dart';
-import 'package:idwey/domain/repositories/activity_repository.dart';
-import 'package:idwey/domain/repositories/article_repository.dart';
-import 'package:idwey/domain/repositories/event_repository.dart';
-import 'package:idwey/domain/repositories/exeperience_repository.dart';
 import 'package:idwey/domain/repositories/fidleity_program_repository.dart';
-import 'package:idwey/domain/repositories/host_repository.dart';
+import 'package:idwey/domain/repositories/filter_repository.dart';
 import 'package:idwey/domain/repositories/location_repository.dart';
 import 'package:idwey/domain/repositories/product_repository.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 import 'package:idwey/domain/repositories/review_repository.dart';
 import 'package:idwey/domain/usecases/add_review_usecase.dart';
-import 'package:idwey/domain/usecases/check_host_availability.dart';
-import 'package:idwey/domain/usecases/confirm_reservation_usecase.dart';
-import 'package:idwey/domain/usecases/do_checkout_usecase.dart';
-import 'package:idwey/domain/usecases/get_activity_details_usecase.dart';
-import 'package:idwey/domain/usecases/get_article_details_usecase.dart';
-import 'package:idwey/domain/usecases/get_booking_list_usecase.dart';
+import 'package:idwey/domain/usecases/get_activity_page_usecase.dart';
 import 'package:idwey/domain/usecases/get_dashboard_reviews.dart';
-import 'package:idwey/domain/usecases/get_event_details_usecase.dart';
-import 'package:idwey/domain/usecases/get_experience_details_dto.dart';
-import 'package:idwey/domain/usecases/get_host_details_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_activities_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_articles_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_events_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_experiences_usecase.dart';
-import 'package:idwey/domain/usecases/get_list_hosts.dart';
+import 'package:idwey/domain/usecases/get_event_page_usecase.dart';
+import 'package:idwey/domain/usecases/get_experience_page_usecase.dart';
+import 'package:idwey/domain/usecases/get_host_page_usecase.dart';
 import 'package:idwey/domain/usecases/get_list_products_usecase.dart';
 import 'package:idwey/domain/usecases/get_locations_usecase.dart';
 import 'package:idwey/domain/usecases/get_monthly_points_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
 import 'package:idwey/domain/usecases/get_rate_settings_usecase.dart';
 import 'package:idwey/domain/usecases/get_total_points_usecase.dart';
-import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
-import 'package:idwey/domain/usecases/search_activity_usecase.dart';
-import 'package:idwey/domain/usecases/search_events_usecase.dart';
-import 'package:idwey/domain/usecases/search_experience_usecase.dart';
-import 'package:idwey/domain/usecases/search_hosts_usecase.dart';
 import 'package:idwey/domain/usecases/update_review_usecase.dart';
-import 'package:idwey/domain/usecases/update_user_usecase.dart';
 import 'package:idwey/domain/usecases/upload_image_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
@@ -67,6 +45,7 @@ import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/utils/dio.dart';
 
 import '../data/repositories_impl/location_repository_impl.dart';
+import '../domain/usecases/usecases.dart';
 
 Future<void> setup() async {
   // Initialize AppRouter
@@ -116,6 +95,17 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => SearchListActivityUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => SearchListExperienceUseCase(GetIt.I()));
 
+  /// filter usecases
+  GetIt.I.registerLazySingleton<FilterApiDataSource>(
+      () => FilterApiDataSourceImpl(GetIt.I()));
+  // Domain
+  GetIt.I.registerLazySingleton<FilterRepository>(
+      () => FilterRepositoryImpl(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => FilterListHostsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => FilterListEventsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => FilterListActivitiesUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => FilterListExperiencesUseCase(GetIt.I()));
+
   GetIt.I.registerLazySingleton<ProductApiDataSource>(
       () => ProductApiDataSourceImpl(GetIt.I()));
 
@@ -125,6 +115,10 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => GetProductDetailsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetMonthlyPointsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetTotalPointsUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetEventPageUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetExperiencePageUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetActivityPageUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => GetHostPageUseCase(GetIt.I()));
 
   /// locations
 

@@ -45,6 +45,8 @@ class _EventScreenState extends State<EventScreen>
     if (currentScroll == maxScroll) {
       if (context.read<HomeBloc>().state.isSearch == true) {
         context.read<HomeBloc>().add(const GetSearchListEvent(true));
+      } else if (context.read<HomeBloc>().state.isFilter == true) {
+        context.read<HomeBloc>().add(const GetFilterListEventsPageData(true));
       } else {
         context.read<HomeBloc>().add(const GetListEvent(true));
       }
@@ -56,8 +58,7 @@ class _EventScreenState extends State<EventScreen>
     super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        if (state.statusEvent == StateStatus.loading &&
-            state.listEvents!.isEmpty) {
+        if (state.statusEvent == StateStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -65,7 +66,12 @@ class _EventScreenState extends State<EventScreen>
             state.atTheEndOfThePageEvents == false) {
           return const Center(child: Text("Pas des evénements"));
         } else if (state.statusEvent == StateStatus.error &&
-            state.atTheEndOfThePageEvents == false) {
+            state.atTheEndOfTheSearchPageEvents == false &&
+            state.isSearch == true) {
+          return const Center(child: Text("Pas des evénements"));
+        } else if (state.status == StateStatus.error &&
+            state.atTheEndOfTheFilterPageEvents == false &&
+            state.isFilter == true) {
           return const Center(child: Text("Pas des evénements"));
         } else if (state.statusEvent == StateStatus.success &&
             state.listEvents?.isEmpty == true) {

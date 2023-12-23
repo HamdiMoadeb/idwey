@@ -35,6 +35,17 @@ mixin _$HomeEvent {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +67,17 @@ mixin _$HomeEvent {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +99,17 @@ mixin _$HomeEvent {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -101,6 +134,24 @@ mixin _$HomeEvent {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -122,6 +173,22 @@ mixin _$HomeEvent {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -143,6 +210,22 @@ mixin _$HomeEvent {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -247,6 +330,17 @@ class _$GetUserRole implements GetUserRole {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getUserRole(roleUser);
   }
@@ -271,6 +365,17 @@ class _$GetUserRole implements GetUserRole {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getUserRole?.call(roleUser);
   }
@@ -295,6 +400,17 @@ class _$GetUserRole implements GetUserRole {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getUserRole != null) {
@@ -325,6 +441,24 @@ class _$GetUserRole implements GetUserRole {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getUserRole(this);
   }
@@ -349,6 +483,22 @@ class _$GetUserRole implements GetUserRole {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getUserRole?.call(this);
   }
@@ -373,6 +523,22 @@ class _$GetUserRole implements GetUserRole {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getUserRole != null) {
@@ -473,6 +639,17 @@ class _$GetListHost implements GetListHost {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getListHosts(isFetching);
   }
@@ -497,6 +674,17 @@ class _$GetListHost implements GetListHost {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getListHosts?.call(isFetching);
   }
@@ -521,6 +709,17 @@ class _$GetListHost implements GetListHost {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListHosts != null) {
@@ -551,6 +750,24 @@ class _$GetListHost implements GetListHost {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getListHosts(this);
   }
@@ -575,6 +792,22 @@ class _$GetListHost implements GetListHost {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getListHosts?.call(this);
   }
@@ -599,6 +832,22 @@ class _$GetListHost implements GetListHost {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListHosts != null) {
@@ -672,6 +921,17 @@ class _$GetListLocations implements GetListLocations {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getListLocations();
   }
@@ -696,6 +956,17 @@ class _$GetListLocations implements GetListLocations {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getListLocations?.call();
   }
@@ -720,6 +991,17 @@ class _$GetListLocations implements GetListLocations {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListLocations != null) {
@@ -750,6 +1032,24 @@ class _$GetListLocations implements GetListLocations {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getListLocations(this);
   }
@@ -774,6 +1074,22 @@ class _$GetListLocations implements GetListLocations {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getListLocations?.call(this);
   }
@@ -798,6 +1114,22 @@ class _$GetListLocations implements GetListLocations {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListLocations != null) {
@@ -893,6 +1225,17 @@ class _$GetSearchListHost implements GetSearchListHost {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getSearchListHosts(isFetching);
   }
@@ -917,6 +1260,17 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getSearchListHosts?.call(isFetching);
   }
@@ -941,6 +1295,17 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListHosts != null) {
@@ -971,6 +1336,24 @@ class _$GetSearchListHost implements GetSearchListHost {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getSearchListHosts(this);
   }
@@ -995,6 +1378,22 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getSearchListHosts?.call(this);
   }
@@ -1019,6 +1418,22 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListHosts != null) {
@@ -1119,6 +1534,17 @@ class _$GetListEvent implements GetListEvent {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getListEvents(isFetching);
   }
@@ -1143,6 +1569,17 @@ class _$GetListEvent implements GetListEvent {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getListEvents?.call(isFetching);
   }
@@ -1167,6 +1604,17 @@ class _$GetListEvent implements GetListEvent {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListEvents != null) {
@@ -1197,6 +1645,24 @@ class _$GetListEvent implements GetListEvent {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getListEvents(this);
   }
@@ -1221,6 +1687,22 @@ class _$GetListEvent implements GetListEvent {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getListEvents?.call(this);
   }
@@ -1245,6 +1727,22 @@ class _$GetListEvent implements GetListEvent {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListEvents != null) {
@@ -1346,6 +1844,17 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getSearchListEvents(isFetching);
   }
@@ -1370,6 +1879,17 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getSearchListEvents?.call(isFetching);
   }
@@ -1394,6 +1914,17 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListEvents != null) {
@@ -1424,6 +1955,24 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getSearchListEvents(this);
   }
@@ -1448,6 +1997,22 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getSearchListEvents?.call(this);
   }
@@ -1472,6 +2037,22 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListEvents != null) {
@@ -1574,6 +2155,17 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getSearchListActivities(isFetching);
   }
@@ -1598,6 +2190,17 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getSearchListActivities?.call(isFetching);
   }
@@ -1622,6 +2225,17 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListActivities != null) {
@@ -1652,6 +2266,24 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getSearchListActivities(this);
   }
@@ -1676,6 +2308,22 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getSearchListActivities?.call(this);
   }
@@ -1700,6 +2348,22 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListActivities != null) {
@@ -1803,6 +2467,17 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getSearchListExperiences(isFetching);
   }
@@ -1827,6 +2502,17 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getSearchListExperiences?.call(isFetching);
   }
@@ -1851,6 +2537,17 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListExperiences != null) {
@@ -1881,6 +2578,24 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getSearchListExperiences(this);
   }
@@ -1905,6 +2620,22 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getSearchListExperiences?.call(this);
   }
@@ -1929,6 +2660,22 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getSearchListExperiences != null) {
@@ -2030,6 +2777,17 @@ class _$GetListActivities implements GetListActivities {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getListActivities(isFetching);
   }
@@ -2054,6 +2812,17 @@ class _$GetListActivities implements GetListActivities {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getListActivities?.call(isFetching);
   }
@@ -2078,6 +2847,17 @@ class _$GetListActivities implements GetListActivities {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListActivities != null) {
@@ -2108,6 +2888,24 @@ class _$GetListActivities implements GetListActivities {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getListActivities(this);
   }
@@ -2132,6 +2930,22 @@ class _$GetListActivities implements GetListActivities {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getListActivities?.call(this);
   }
@@ -2156,6 +2970,22 @@ class _$GetListActivities implements GetListActivities {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListActivities != null) {
@@ -2257,6 +3087,17 @@ class _$GetListExperiences implements GetListExperiences {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return getListExperiences(isFetching);
   }
@@ -2281,6 +3122,17 @@ class _$GetListExperiences implements GetListExperiences {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return getListExperiences?.call(isFetching);
   }
@@ -2305,6 +3157,17 @@ class _$GetListExperiences implements GetListExperiences {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListExperiences != null) {
@@ -2335,6 +3198,24 @@ class _$GetListExperiences implements GetListExperiences {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return getListExperiences(this);
   }
@@ -2359,6 +3240,22 @@ class _$GetListExperiences implements GetListExperiences {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return getListExperiences?.call(this);
   }
@@ -2383,6 +3280,22 @@ class _$GetListExperiences implements GetListExperiences {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (getListExperiences != null) {
@@ -2483,6 +3396,17 @@ class _$SetSelectedTab implements SetSelectedTab {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return setSelectedTab(tab);
   }
@@ -2507,6 +3431,17 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return setSelectedTab?.call(tab);
   }
@@ -2531,6 +3466,17 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (setSelectedTab != null) {
@@ -2561,6 +3507,24 @@ class _$SetSelectedTab implements SetSelectedTab {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return setSelectedTab(this);
   }
@@ -2585,6 +3549,22 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return setSelectedTab?.call(this);
   }
@@ -2609,6 +3589,22 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (setSelectedTab != null) {
@@ -2709,6 +3705,17 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return changeStartDate(startDate);
   }
@@ -2733,6 +3740,17 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return changeStartDate?.call(startDate);
   }
@@ -2757,6 +3775,17 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeStartDate != null) {
@@ -2787,6 +3816,24 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return changeStartDate(this);
   }
@@ -2811,6 +3858,22 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return changeStartDate?.call(this);
   }
@@ -2835,6 +3898,22 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeStartDate != null) {
@@ -2934,6 +4013,17 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return changeEndDate(endDate);
   }
@@ -2958,6 +4048,17 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return changeEndDate?.call(endDate);
   }
@@ -2982,6 +4083,17 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeEndDate != null) {
@@ -3012,6 +4124,24 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return changeEndDate(this);
   }
@@ -3036,6 +4166,22 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return changeEndDate?.call(this);
   }
@@ -3060,6 +4206,22 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeEndDate != null) {
@@ -3159,6 +4321,17 @@ class _$_ChangeCity implements _ChangeCity {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return changeCity(city);
   }
@@ -3183,6 +4356,17 @@ class _$_ChangeCity implements _ChangeCity {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return changeCity?.call(city);
   }
@@ -3207,6 +4391,17 @@ class _$_ChangeCity implements _ChangeCity {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeCity != null) {
@@ -3237,6 +4432,24 @@ class _$_ChangeCity implements _ChangeCity {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return changeCity(this);
   }
@@ -3261,6 +4474,22 @@ class _$_ChangeCity implements _ChangeCity {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return changeCity?.call(this);
   }
@@ -3285,6 +4514,22 @@ class _$_ChangeCity implements _ChangeCity {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeCity != null) {
@@ -3385,6 +4630,17 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return changeEmplacement(city);
   }
@@ -3409,6 +4665,17 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return changeEmplacement?.call(city);
   }
@@ -3433,6 +4700,17 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeEmplacement != null) {
@@ -3463,6 +4741,24 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return changeEmplacement(this);
   }
@@ -3487,6 +4783,22 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return changeEmplacement?.call(this);
   }
@@ -3511,6 +4823,22 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeEmplacement != null) {
@@ -3610,6 +4938,17 @@ class _$_ChangeGuests implements _ChangeGuests {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return changeGuests(guests);
   }
@@ -3634,6 +4973,17 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return changeGuests?.call(guests);
   }
@@ -3658,6 +5008,17 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeGuests != null) {
@@ -3688,6 +5049,24 @@ class _$_ChangeGuests implements _ChangeGuests {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return changeGuests(this);
   }
@@ -3712,6 +5091,22 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return changeGuests?.call(this);
   }
@@ -3736,6 +5131,22 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (changeGuests != null) {
@@ -3835,6 +5246,17 @@ class _$_OnSetSearch implements _OnSetSearch {
     required TResult Function(String city) changeEmplacement,
     required TResult Function(int guests) changeGuests,
     required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
   }) {
     return onSetSearch(search);
   }
@@ -3859,6 +5281,17 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult? Function(String city)? changeEmplacement,
     TResult? Function(int guests)? changeGuests,
     TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
   }) {
     return onSetSearch?.call(search);
   }
@@ -3883,6 +5316,17 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult Function(String city)? changeEmplacement,
     TResult Function(int guests)? changeGuests,
     TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
     required TResult orElse(),
   }) {
     if (onSetSearch != null) {
@@ -3913,6 +5357,24 @@ class _$_OnSetSearch implements _OnSetSearch {
     required TResult Function(_ChangeEmplacement value) changeEmplacement,
     required TResult Function(_ChangeGuests value) changeGuests,
     required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
   }) {
     return onSetSearch(this);
   }
@@ -3937,6 +5399,22 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult? Function(_ChangeEmplacement value)? changeEmplacement,
     TResult? Function(_ChangeGuests value)? changeGuests,
     TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
   }) {
     return onSetSearch?.call(this);
   }
@@ -3961,6 +5439,22 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult Function(_ChangeEmplacement value)? changeEmplacement,
     TResult Function(_ChangeGuests value)? changeGuests,
     TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
     required TResult orElse(),
   }) {
     if (onSetSearch != null) {
@@ -3980,9 +5474,3443 @@ abstract class _OnSetSearch implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$GetEventPageDataCopyWith<$Res> {
+  factory _$$GetEventPageDataCopyWith(
+          _$GetEventPageData value, $Res Function(_$GetEventPageData) then) =
+      __$$GetEventPageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetEventPageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetEventPageData>
+    implements _$$GetEventPageDataCopyWith<$Res> {
+  __$$GetEventPageDataCopyWithImpl(
+      _$GetEventPageData _value, $Res Function(_$GetEventPageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetEventPageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetEventPageData implements GetEventPageData {
+  const _$GetEventPageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getEventPageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetEventPageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetEventPageDataCopyWith<_$GetEventPageData> get copyWith =>
+      __$$GetEventPageDataCopyWithImpl<_$GetEventPageData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getEventPageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getEventPageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getEventPageData != null) {
+      return getEventPageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getEventPageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getEventPageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getEventPageData != null) {
+      return getEventPageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetEventPageData implements HomeEvent {
+  const factory GetEventPageData(final bool isFetching) = _$GetEventPageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetEventPageDataCopyWith<_$GetEventPageData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetHostPageDataCopyWith<$Res> {
+  factory _$$GetHostPageDataCopyWith(
+          _$GetHostPageData value, $Res Function(_$GetHostPageData) then) =
+      __$$GetHostPageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetHostPageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetHostPageData>
+    implements _$$GetHostPageDataCopyWith<$Res> {
+  __$$GetHostPageDataCopyWithImpl(
+      _$GetHostPageData _value, $Res Function(_$GetHostPageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetHostPageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetHostPageData implements GetHostPageData {
+  const _$GetHostPageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getHostPageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetHostPageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetHostPageDataCopyWith<_$GetHostPageData> get copyWith =>
+      __$$GetHostPageDataCopyWithImpl<_$GetHostPageData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getHostPageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getHostPageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getHostPageData != null) {
+      return getHostPageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getHostPageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getHostPageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getHostPageData != null) {
+      return getHostPageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetHostPageData implements HomeEvent {
+  const factory GetHostPageData(final bool isFetching) = _$GetHostPageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetHostPageDataCopyWith<_$GetHostPageData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetExperiencePageDataCopyWith<$Res> {
+  factory _$$GetExperiencePageDataCopyWith(_$GetExperiencePageData value,
+          $Res Function(_$GetExperiencePageData) then) =
+      __$$GetExperiencePageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetExperiencePageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetExperiencePageData>
+    implements _$$GetExperiencePageDataCopyWith<$Res> {
+  __$$GetExperiencePageDataCopyWithImpl(_$GetExperiencePageData _value,
+      $Res Function(_$GetExperiencePageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetExperiencePageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetExperiencePageData implements GetExperiencePageData {
+  const _$GetExperiencePageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getExperiencePageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetExperiencePageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetExperiencePageDataCopyWith<_$GetExperiencePageData> get copyWith =>
+      __$$GetExperiencePageDataCopyWithImpl<_$GetExperiencePageData>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getExperiencePageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getExperiencePageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getExperiencePageData != null) {
+      return getExperiencePageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getExperiencePageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getExperiencePageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getExperiencePageData != null) {
+      return getExperiencePageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetExperiencePageData implements HomeEvent {
+  const factory GetExperiencePageData(final bool isFetching) =
+      _$GetExperiencePageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetExperiencePageDataCopyWith<_$GetExperiencePageData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetActivityPageDataCopyWith<$Res> {
+  factory _$$GetActivityPageDataCopyWith(_$GetActivityPageData value,
+          $Res Function(_$GetActivityPageData) then) =
+      __$$GetActivityPageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetActivityPageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetActivityPageData>
+    implements _$$GetActivityPageDataCopyWith<$Res> {
+  __$$GetActivityPageDataCopyWithImpl(
+      _$GetActivityPageData _value, $Res Function(_$GetActivityPageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetActivityPageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetActivityPageData implements GetActivityPageData {
+  const _$GetActivityPageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getActivityPageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetActivityPageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetActivityPageDataCopyWith<_$GetActivityPageData> get copyWith =>
+      __$$GetActivityPageDataCopyWithImpl<_$GetActivityPageData>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getActivityPageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getActivityPageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getActivityPageData != null) {
+      return getActivityPageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getActivityPageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getActivityPageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getActivityPageData != null) {
+      return getActivityPageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetActivityPageData implements HomeEvent {
+  const factory GetActivityPageData(final bool isFetching) =
+      _$GetActivityPageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetActivityPageDataCopyWith<_$GetActivityPageData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetFilterListHostsPageDataCopyWith<$Res> {
+  factory _$$GetFilterListHostsPageDataCopyWith(
+          _$GetFilterListHostsPageData value,
+          $Res Function(_$GetFilterListHostsPageData) then) =
+      __$$GetFilterListHostsPageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetFilterListHostsPageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetFilterListHostsPageData>
+    implements _$$GetFilterListHostsPageDataCopyWith<$Res> {
+  __$$GetFilterListHostsPageDataCopyWithImpl(
+      _$GetFilterListHostsPageData _value,
+      $Res Function(_$GetFilterListHostsPageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetFilterListHostsPageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetFilterListHostsPageData implements GetFilterListHostsPageData {
+  const _$GetFilterListHostsPageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getFilterListHostsPageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetFilterListHostsPageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetFilterListHostsPageDataCopyWith<_$GetFilterListHostsPageData>
+      get copyWith => __$$GetFilterListHostsPageDataCopyWithImpl<
+          _$GetFilterListHostsPageData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getFilterListHostsPageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getFilterListHostsPageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListHostsPageData != null) {
+      return getFilterListHostsPageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getFilterListHostsPageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getFilterListHostsPageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListHostsPageData != null) {
+      return getFilterListHostsPageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetFilterListHostsPageData implements HomeEvent {
+  const factory GetFilterListHostsPageData(final bool isFetching) =
+      _$GetFilterListHostsPageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetFilterListHostsPageDataCopyWith<_$GetFilterListHostsPageData>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetFilterListEventsPageDataCopyWith<$Res> {
+  factory _$$GetFilterListEventsPageDataCopyWith(
+          _$GetFilterListEventsPageData value,
+          $Res Function(_$GetFilterListEventsPageData) then) =
+      __$$GetFilterListEventsPageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetFilterListEventsPageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetFilterListEventsPageData>
+    implements _$$GetFilterListEventsPageDataCopyWith<$Res> {
+  __$$GetFilterListEventsPageDataCopyWithImpl(
+      _$GetFilterListEventsPageData _value,
+      $Res Function(_$GetFilterListEventsPageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetFilterListEventsPageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetFilterListEventsPageData implements GetFilterListEventsPageData {
+  const _$GetFilterListEventsPageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getFilterListEventsPageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetFilterListEventsPageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetFilterListEventsPageDataCopyWith<_$GetFilterListEventsPageData>
+      get copyWith => __$$GetFilterListEventsPageDataCopyWithImpl<
+          _$GetFilterListEventsPageData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getFilterListEventsPageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getFilterListEventsPageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListEventsPageData != null) {
+      return getFilterListEventsPageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getFilterListEventsPageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getFilterListEventsPageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListEventsPageData != null) {
+      return getFilterListEventsPageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetFilterListEventsPageData implements HomeEvent {
+  const factory GetFilterListEventsPageData(final bool isFetching) =
+      _$GetFilterListEventsPageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetFilterListEventsPageDataCopyWith<_$GetFilterListEventsPageData>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetFilterListActivitiesPageDataCopyWith<$Res> {
+  factory _$$GetFilterListActivitiesPageDataCopyWith(
+          _$GetFilterListActivitiesPageData value,
+          $Res Function(_$GetFilterListActivitiesPageData) then) =
+      __$$GetFilterListActivitiesPageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetFilterListActivitiesPageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetFilterListActivitiesPageData>
+    implements _$$GetFilterListActivitiesPageDataCopyWith<$Res> {
+  __$$GetFilterListActivitiesPageDataCopyWithImpl(
+      _$GetFilterListActivitiesPageData _value,
+      $Res Function(_$GetFilterListActivitiesPageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetFilterListActivitiesPageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetFilterListActivitiesPageData
+    implements GetFilterListActivitiesPageData {
+  const _$GetFilterListActivitiesPageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getFilterListActivitiesPageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetFilterListActivitiesPageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetFilterListActivitiesPageDataCopyWith<_$GetFilterListActivitiesPageData>
+      get copyWith => __$$GetFilterListActivitiesPageDataCopyWithImpl<
+          _$GetFilterListActivitiesPageData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getFilterListActivitiesPageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getFilterListActivitiesPageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListActivitiesPageData != null) {
+      return getFilterListActivitiesPageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getFilterListActivitiesPageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getFilterListActivitiesPageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListActivitiesPageData != null) {
+      return getFilterListActivitiesPageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetFilterListActivitiesPageData implements HomeEvent {
+  const factory GetFilterListActivitiesPageData(final bool isFetching) =
+      _$GetFilterListActivitiesPageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetFilterListActivitiesPageDataCopyWith<_$GetFilterListActivitiesPageData>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetFilterListExperiencesPageDataCopyWith<$Res> {
+  factory _$$GetFilterListExperiencesPageDataCopyWith(
+          _$GetFilterListExperiencesPageData value,
+          $Res Function(_$GetFilterListExperiencesPageData) then) =
+      __$$GetFilterListExperiencesPageDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFetching});
+}
+
+/// @nodoc
+class __$$GetFilterListExperiencesPageDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetFilterListExperiencesPageData>
+    implements _$$GetFilterListExperiencesPageDataCopyWith<$Res> {
+  __$$GetFilterListExperiencesPageDataCopyWithImpl(
+      _$GetFilterListExperiencesPageData _value,
+      $Res Function(_$GetFilterListExperiencesPageData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFetching = null,
+  }) {
+    return _then(_$GetFilterListExperiencesPageData(
+      null == isFetching
+          ? _value.isFetching
+          : isFetching // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetFilterListExperiencesPageData
+    implements GetFilterListExperiencesPageData {
+  const _$GetFilterListExperiencesPageData(this.isFetching);
+
+  @override
+  final bool isFetching;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getFilterListExperiencesPageData(isFetching: $isFetching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetFilterListExperiencesPageData &&
+            (identical(other.isFetching, isFetching) ||
+                other.isFetching == isFetching));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFetching);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetFilterListExperiencesPageDataCopyWith<
+          _$GetFilterListExperiencesPageData>
+      get copyWith => __$$GetFilterListExperiencesPageDataCopyWithImpl<
+          _$GetFilterListExperiencesPageData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return getFilterListExperiencesPageData(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return getFilterListExperiencesPageData?.call(isFetching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListExperiencesPageData != null) {
+      return getFilterListExperiencesPageData(isFetching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return getFilterListExperiencesPageData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return getFilterListExperiencesPageData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (getFilterListExperiencesPageData != null) {
+      return getFilterListExperiencesPageData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetFilterListExperiencesPageData implements HomeEvent {
+  const factory GetFilterListExperiencesPageData(final bool isFetching) =
+      _$GetFilterListExperiencesPageData;
+
+  bool get isFetching;
+  @JsonKey(ignore: true)
+  _$$GetFilterListExperiencesPageDataCopyWith<
+          _$GetFilterListExperiencesPageData>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetSelectedAttributesIdCopyWith<$Res> {
+  factory _$$SetSelectedAttributesIdCopyWith(_$SetSelectedAttributesId value,
+          $Res Function(_$SetSelectedAttributesId) then) =
+      __$$SetSelectedAttributesIdCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String attributesId});
+}
+
+/// @nodoc
+class __$$SetSelectedAttributesIdCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$SetSelectedAttributesId>
+    implements _$$SetSelectedAttributesIdCopyWith<$Res> {
+  __$$SetSelectedAttributesIdCopyWithImpl(_$SetSelectedAttributesId _value,
+      $Res Function(_$SetSelectedAttributesId) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? attributesId = null,
+  }) {
+    return _then(_$SetSelectedAttributesId(
+      null == attributesId
+          ? _value.attributesId
+          : attributesId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSelectedAttributesId implements SetSelectedAttributesId {
+  const _$SetSelectedAttributesId(this.attributesId);
+
+  @override
+  final String attributesId;
+
+  @override
+  String toString() {
+    return 'HomeEvent.setSelectedAttributesIds(attributesId: $attributesId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetSelectedAttributesId &&
+            (identical(other.attributesId, attributesId) ||
+                other.attributesId == attributesId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, attributesId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetSelectedAttributesIdCopyWith<_$SetSelectedAttributesId> get copyWith =>
+      __$$SetSelectedAttributesIdCopyWithImpl<_$SetSelectedAttributesId>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return setSelectedAttributesIds(attributesId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return setSelectedAttributesIds?.call(attributesId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (setSelectedAttributesIds != null) {
+      return setSelectedAttributesIds(attributesId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return setSelectedAttributesIds(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return setSelectedAttributesIds?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (setSelectedAttributesIds != null) {
+      return setSelectedAttributesIds(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetSelectedAttributesId implements HomeEvent {
+  const factory SetSelectedAttributesId(final String attributesId) =
+      _$SetSelectedAttributesId;
+
+  String get attributesId;
+  @JsonKey(ignore: true)
+  _$$SetSelectedAttributesIdCopyWith<_$SetSelectedAttributesId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetSelectedActivityCategoryCopyWith<$Res> {
+  factory _$$SetSelectedActivityCategoryCopyWith(
+          _$SetSelectedActivityCategory value,
+          $Res Function(_$SetSelectedActivityCategory) then) =
+      __$$SetSelectedActivityCategoryCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$SetSelectedActivityCategoryCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$SetSelectedActivityCategory>
+    implements _$$SetSelectedActivityCategoryCopyWith<$Res> {
+  __$$SetSelectedActivityCategoryCopyWithImpl(
+      _$SetSelectedActivityCategory _value,
+      $Res Function(_$SetSelectedActivityCategory) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$SetSelectedActivityCategory(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSelectedActivityCategory implements SetSelectedActivityCategory {
+  const _$SetSelectedActivityCategory(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'HomeEvent.setSelectedActivityCategory(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetSelectedActivityCategory &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetSelectedActivityCategoryCopyWith<_$SetSelectedActivityCategory>
+      get copyWith => __$$SetSelectedActivityCategoryCopyWithImpl<
+          _$SetSelectedActivityCategory>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return setSelectedActivityCategory(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return setSelectedActivityCategory?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (setSelectedActivityCategory != null) {
+      return setSelectedActivityCategory(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return setSelectedActivityCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return setSelectedActivityCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (setSelectedActivityCategory != null) {
+      return setSelectedActivityCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetSelectedActivityCategory implements HomeEvent {
+  const factory SetSelectedActivityCategory(final String id) =
+      _$SetSelectedActivityCategory;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$SetSelectedActivityCategoryCopyWith<_$SetSelectedActivityCategory>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetRangePricesCopyWith<$Res> {
+  factory _$$SetRangePricesCopyWith(
+          _$SetRangePrices value, $Res Function(_$SetRangePrices) then) =
+      __$$SetRangePricesCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<String> str});
+}
+
+/// @nodoc
+class __$$SetRangePricesCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$SetRangePrices>
+    implements _$$SetRangePricesCopyWith<$Res> {
+  __$$SetRangePricesCopyWithImpl(
+      _$SetRangePrices _value, $Res Function(_$SetRangePrices) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? str = null,
+  }) {
+    return _then(_$SetRangePrices(
+      null == str
+          ? _value._str
+          : str // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetRangePrices implements SetRangePrices {
+  const _$SetRangePrices(final List<String> str) : _str = str;
+
+  final List<String> _str;
+  @override
+  List<String> get str {
+    if (_str is EqualUnmodifiableListView) return _str;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_str);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.setRangePrices(str: $str)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetRangePrices &&
+            const DeepCollectionEquality().equals(other._str, _str));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_str));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetRangePricesCopyWith<_$SetRangePrices> get copyWith =>
+      __$$SetRangePricesCopyWithImpl<_$SetRangePrices>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+  }) {
+    return setRangePrices(str);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+  }) {
+    return setRangePrices?.call(str);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (setRangePrices != null) {
+      return setRangePrices(str);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+  }) {
+    return setRangePrices(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+  }) {
+    return setRangePrices?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    required TResult orElse(),
+  }) {
+    if (setRangePrices != null) {
+      return setRangePrices(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetRangePrices implements HomeEvent {
+  const factory SetRangePrices(final List<String> str) = _$SetRangePrices;
+
+  List<String> get str;
+  @JsonKey(ignore: true)
+  _$$SetRangePricesCopyWith<_$SetRangePrices> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   String? get title => throw _privateConstructorUsedError;
   StateStatus? get status => throw _privateConstructorUsedError;
+  StateStatus? get statusFilterHosts => throw _privateConstructorUsedError;
   StateStatus? get statusEvent => throw _privateConstructorUsedError;
   StateStatus? get statusActivities => throw _privateConstructorUsedError;
   StateStatus? get statusExperiences => throw _privateConstructorUsedError;
@@ -3995,29 +8923,54 @@ mixin _$HomeState {
   bool? get isFetching => throw _privateConstructorUsedError;
   bool? get atTheEndOfThePageHosts => throw _privateConstructorUsedError;
   bool? get atTheEndOfTheSearchPageHosts => throw _privateConstructorUsedError;
+  bool? get atTheEndOfTheFilterPageHosts => throw _privateConstructorUsedError;
   bool? get atTheEndOfThePageEvents => throw _privateConstructorUsedError;
   bool? get atTheEndOfTheSearchPageEvents => throw _privateConstructorUsedError;
+  bool? get atTheEndOfTheFilterPageEvents => throw _privateConstructorUsedError;
   bool? get atTheEndOfThePageActivities => throw _privateConstructorUsedError;
   bool? get atTheEndOfTheSearchPageActivities =>
+      throw _privateConstructorUsedError;
+  bool? get atTheEndOfTheFilterPageActivities =>
       throw _privateConstructorUsedError;
   bool? get atTheEndOfThePageExperiences => throw _privateConstructorUsedError;
   bool? get atTheEndOfTheSearchPageExperiences =>
       throw _privateConstructorUsedError;
+  bool? get atTheEndOfTheFilterPageExperiences =>
+      throw _privateConstructorUsedError;
   bool? get isSearch => throw _privateConstructorUsedError;
+  bool? get isFilter => throw _privateConstructorUsedError;
   int? get pageHosts => throw _privateConstructorUsedError;
   int? get searchPageHosts => throw _privateConstructorUsedError;
+  int? get filterPageHosts => throw _privateConstructorUsedError;
   int? get pageActivities => throw _privateConstructorUsedError;
   int? get pageSearchActivities => throw _privateConstructorUsedError;
+  int? get pageFilterActivities => throw _privateConstructorUsedError;
   int? get pageExperiences => throw _privateConstructorUsedError;
   int? get pageSearchExperiences => throw _privateConstructorUsedError;
+  int? get pageFilterExperiences => throw _privateConstructorUsedError;
   int? get pageEvents => throw _privateConstructorUsedError;
   int? get pageSearchEvents => throw _privateConstructorUsedError;
+  int? get pageFilterEvents => throw _privateConstructorUsedError;
   int? get selectedTab => throw _privateConstructorUsedError;
   String? get startDate => throw _privateConstructorUsedError;
   String? get endDate => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
   String? get emplacement => throw _privateConstructorUsedError;
   int? get guests => throw _privateConstructorUsedError;
+  EventPageDto? get eventPageDto => throw _privateConstructorUsedError;
+  HostPageDto? get hostPageDto => throw _privateConstructorUsedError;
+  ExperiencePageDto? get experiencePageDto =>
+      throw _privateConstructorUsedError;
+  ActivityPageDto? get activityPageDto => throw _privateConstructorUsedError;
+  String? get minPriceRange => throw _privateConstructorUsedError;
+  String? get maxPriceRange => throw _privateConstructorUsedError;
+  List<AttributeDto>? get listAttributes => throw _privateConstructorUsedError;
+  List<ActivityCategory>? get listActivityCategories =>
+      throw _privateConstructorUsedError;
+  List<String>? get selectedAttributesId => throw _privateConstructorUsedError;
+  List<String>? get selectedActivityCategoriesId =>
+      throw _privateConstructorUsedError;
+  List<String>? get selectedPriceRanges => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -4032,6 +8985,7 @@ abstract class $HomeStateCopyWith<$Res> {
   $Res call(
       {String? title,
       StateStatus? status,
+      StateStatus? statusFilterHosts,
       StateStatus? statusEvent,
       StateStatus? statusActivities,
       StateStatus? statusExperiences,
@@ -4044,27 +8998,47 @@ abstract class $HomeStateCopyWith<$Res> {
       bool? isFetching,
       bool? atTheEndOfThePageHosts,
       bool? atTheEndOfTheSearchPageHosts,
+      bool? atTheEndOfTheFilterPageHosts,
       bool? atTheEndOfThePageEvents,
       bool? atTheEndOfTheSearchPageEvents,
+      bool? atTheEndOfTheFilterPageEvents,
       bool? atTheEndOfThePageActivities,
       bool? atTheEndOfTheSearchPageActivities,
+      bool? atTheEndOfTheFilterPageActivities,
       bool? atTheEndOfThePageExperiences,
       bool? atTheEndOfTheSearchPageExperiences,
+      bool? atTheEndOfTheFilterPageExperiences,
       bool? isSearch,
+      bool? isFilter,
       int? pageHosts,
       int? searchPageHosts,
+      int? filterPageHosts,
       int? pageActivities,
       int? pageSearchActivities,
+      int? pageFilterActivities,
       int? pageExperiences,
       int? pageSearchExperiences,
+      int? pageFilterExperiences,
       int? pageEvents,
       int? pageSearchEvents,
+      int? pageFilterEvents,
       int? selectedTab,
       String? startDate,
       String? endDate,
       String? city,
       String? emplacement,
-      int? guests});
+      int? guests,
+      EventPageDto? eventPageDto,
+      HostPageDto? hostPageDto,
+      ExperiencePageDto? experiencePageDto,
+      ActivityPageDto? activityPageDto,
+      String? minPriceRange,
+      String? maxPriceRange,
+      List<AttributeDto>? listAttributes,
+      List<ActivityCategory>? listActivityCategories,
+      List<String>? selectedAttributesId,
+      List<String>? selectedActivityCategoriesId,
+      List<String>? selectedPriceRanges});
 }
 
 /// @nodoc
@@ -4082,6 +9056,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $Res call({
     Object? title = freezed,
     Object? status = freezed,
+    Object? statusFilterHosts = freezed,
     Object? statusEvent = freezed,
     Object? statusActivities = freezed,
     Object? statusExperiences = freezed,
@@ -4094,27 +9069,47 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? isFetching = freezed,
     Object? atTheEndOfThePageHosts = freezed,
     Object? atTheEndOfTheSearchPageHosts = freezed,
+    Object? atTheEndOfTheFilterPageHosts = freezed,
     Object? atTheEndOfThePageEvents = freezed,
     Object? atTheEndOfTheSearchPageEvents = freezed,
+    Object? atTheEndOfTheFilterPageEvents = freezed,
     Object? atTheEndOfThePageActivities = freezed,
     Object? atTheEndOfTheSearchPageActivities = freezed,
+    Object? atTheEndOfTheFilterPageActivities = freezed,
     Object? atTheEndOfThePageExperiences = freezed,
     Object? atTheEndOfTheSearchPageExperiences = freezed,
+    Object? atTheEndOfTheFilterPageExperiences = freezed,
     Object? isSearch = freezed,
+    Object? isFilter = freezed,
     Object? pageHosts = freezed,
     Object? searchPageHosts = freezed,
+    Object? filterPageHosts = freezed,
     Object? pageActivities = freezed,
     Object? pageSearchActivities = freezed,
+    Object? pageFilterActivities = freezed,
     Object? pageExperiences = freezed,
     Object? pageSearchExperiences = freezed,
+    Object? pageFilterExperiences = freezed,
     Object? pageEvents = freezed,
     Object? pageSearchEvents = freezed,
+    Object? pageFilterEvents = freezed,
     Object? selectedTab = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? city = freezed,
     Object? emplacement = freezed,
     Object? guests = freezed,
+    Object? eventPageDto = freezed,
+    Object? hostPageDto = freezed,
+    Object? experiencePageDto = freezed,
+    Object? activityPageDto = freezed,
+    Object? minPriceRange = freezed,
+    Object? maxPriceRange = freezed,
+    Object? listAttributes = freezed,
+    Object? listActivityCategories = freezed,
+    Object? selectedAttributesId = freezed,
+    Object? selectedActivityCategoriesId = freezed,
+    Object? selectedPriceRanges = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -4124,6 +9119,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      statusFilterHosts: freezed == statusFilterHosts
+          ? _value.statusFilterHosts
+          : statusFilterHosts // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       statusEvent: freezed == statusEvent
           ? _value.statusEvent
@@ -4173,6 +9172,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.atTheEndOfTheSearchPageHosts
           : atTheEndOfTheSearchPageHosts // ignore: cast_nullable_to_non_nullable
               as bool?,
+      atTheEndOfTheFilterPageHosts: freezed == atTheEndOfTheFilterPageHosts
+          ? _value.atTheEndOfTheFilterPageHosts
+          : atTheEndOfTheFilterPageHosts // ignore: cast_nullable_to_non_nullable
+              as bool?,
       atTheEndOfThePageEvents: freezed == atTheEndOfThePageEvents
           ? _value.atTheEndOfThePageEvents
           : atTheEndOfThePageEvents // ignore: cast_nullable_to_non_nullable
@@ -4180,6 +9183,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       atTheEndOfTheSearchPageEvents: freezed == atTheEndOfTheSearchPageEvents
           ? _value.atTheEndOfTheSearchPageEvents
           : atTheEndOfTheSearchPageEvents // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfTheFilterPageEvents: freezed == atTheEndOfTheFilterPageEvents
+          ? _value.atTheEndOfTheFilterPageEvents
+          : atTheEndOfTheFilterPageEvents // ignore: cast_nullable_to_non_nullable
               as bool?,
       atTheEndOfThePageActivities: freezed == atTheEndOfThePageActivities
           ? _value.atTheEndOfThePageActivities
@@ -4190,6 +9197,11 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.atTheEndOfTheSearchPageActivities
           : atTheEndOfTheSearchPageActivities // ignore: cast_nullable_to_non_nullable
               as bool?,
+      atTheEndOfTheFilterPageActivities: freezed ==
+              atTheEndOfTheFilterPageActivities
+          ? _value.atTheEndOfTheFilterPageActivities
+          : atTheEndOfTheFilterPageActivities // ignore: cast_nullable_to_non_nullable
+              as bool?,
       atTheEndOfThePageExperiences: freezed == atTheEndOfThePageExperiences
           ? _value.atTheEndOfThePageExperiences
           : atTheEndOfThePageExperiences // ignore: cast_nullable_to_non_nullable
@@ -4199,9 +9211,18 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.atTheEndOfTheSearchPageExperiences
           : atTheEndOfTheSearchPageExperiences // ignore: cast_nullable_to_non_nullable
               as bool?,
+      atTheEndOfTheFilterPageExperiences: freezed ==
+              atTheEndOfTheFilterPageExperiences
+          ? _value.atTheEndOfTheFilterPageExperiences
+          : atTheEndOfTheFilterPageExperiences // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isSearch: freezed == isSearch
           ? _value.isSearch
           : isSearch // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilter: freezed == isFilter
+          ? _value.isFilter
+          : isFilter // ignore: cast_nullable_to_non_nullable
               as bool?,
       pageHosts: freezed == pageHosts
           ? _value.pageHosts
@@ -4211,6 +9232,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.searchPageHosts
           : searchPageHosts // ignore: cast_nullable_to_non_nullable
               as int?,
+      filterPageHosts: freezed == filterPageHosts
+          ? _value.filterPageHosts
+          : filterPageHosts // ignore: cast_nullable_to_non_nullable
+              as int?,
       pageActivities: freezed == pageActivities
           ? _value.pageActivities
           : pageActivities // ignore: cast_nullable_to_non_nullable
@@ -4218,6 +9243,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       pageSearchActivities: freezed == pageSearchActivities
           ? _value.pageSearchActivities
           : pageSearchActivities // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageFilterActivities: freezed == pageFilterActivities
+          ? _value.pageFilterActivities
+          : pageFilterActivities // ignore: cast_nullable_to_non_nullable
               as int?,
       pageExperiences: freezed == pageExperiences
           ? _value.pageExperiences
@@ -4227,6 +9256,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.pageSearchExperiences
           : pageSearchExperiences // ignore: cast_nullable_to_non_nullable
               as int?,
+      pageFilterExperiences: freezed == pageFilterExperiences
+          ? _value.pageFilterExperiences
+          : pageFilterExperiences // ignore: cast_nullable_to_non_nullable
+              as int?,
       pageEvents: freezed == pageEvents
           ? _value.pageEvents
           : pageEvents // ignore: cast_nullable_to_non_nullable
@@ -4234,6 +9267,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       pageSearchEvents: freezed == pageSearchEvents
           ? _value.pageSearchEvents
           : pageSearchEvents // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageFilterEvents: freezed == pageFilterEvents
+          ? _value.pageFilterEvents
+          : pageFilterEvents // ignore: cast_nullable_to_non_nullable
               as int?,
       selectedTab: freezed == selectedTab
           ? _value.selectedTab
@@ -4259,6 +9296,50 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.guests
           : guests // ignore: cast_nullable_to_non_nullable
               as int?,
+      eventPageDto: freezed == eventPageDto
+          ? _value.eventPageDto
+          : eventPageDto // ignore: cast_nullable_to_non_nullable
+              as EventPageDto?,
+      hostPageDto: freezed == hostPageDto
+          ? _value.hostPageDto
+          : hostPageDto // ignore: cast_nullable_to_non_nullable
+              as HostPageDto?,
+      experiencePageDto: freezed == experiencePageDto
+          ? _value.experiencePageDto
+          : experiencePageDto // ignore: cast_nullable_to_non_nullable
+              as ExperiencePageDto?,
+      activityPageDto: freezed == activityPageDto
+          ? _value.activityPageDto
+          : activityPageDto // ignore: cast_nullable_to_non_nullable
+              as ActivityPageDto?,
+      minPriceRange: freezed == minPriceRange
+          ? _value.minPriceRange
+          : minPriceRange // ignore: cast_nullable_to_non_nullable
+              as String?,
+      maxPriceRange: freezed == maxPriceRange
+          ? _value.maxPriceRange
+          : maxPriceRange // ignore: cast_nullable_to_non_nullable
+              as String?,
+      listAttributes: freezed == listAttributes
+          ? _value.listAttributes
+          : listAttributes // ignore: cast_nullable_to_non_nullable
+              as List<AttributeDto>?,
+      listActivityCategories: freezed == listActivityCategories
+          ? _value.listActivityCategories
+          : listActivityCategories // ignore: cast_nullable_to_non_nullable
+              as List<ActivityCategory>?,
+      selectedAttributesId: freezed == selectedAttributesId
+          ? _value.selectedAttributesId
+          : selectedAttributesId // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      selectedActivityCategoriesId: freezed == selectedActivityCategoriesId
+          ? _value.selectedActivityCategoriesId
+          : selectedActivityCategoriesId // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      selectedPriceRanges: freezed == selectedPriceRanges
+          ? _value.selectedPriceRanges
+          : selectedPriceRanges // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -4273,6 +9354,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   $Res call(
       {String? title,
       StateStatus? status,
+      StateStatus? statusFilterHosts,
       StateStatus? statusEvent,
       StateStatus? statusActivities,
       StateStatus? statusExperiences,
@@ -4285,27 +9367,47 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       bool? isFetching,
       bool? atTheEndOfThePageHosts,
       bool? atTheEndOfTheSearchPageHosts,
+      bool? atTheEndOfTheFilterPageHosts,
       bool? atTheEndOfThePageEvents,
       bool? atTheEndOfTheSearchPageEvents,
+      bool? atTheEndOfTheFilterPageEvents,
       bool? atTheEndOfThePageActivities,
       bool? atTheEndOfTheSearchPageActivities,
+      bool? atTheEndOfTheFilterPageActivities,
       bool? atTheEndOfThePageExperiences,
       bool? atTheEndOfTheSearchPageExperiences,
+      bool? atTheEndOfTheFilterPageExperiences,
       bool? isSearch,
+      bool? isFilter,
       int? pageHosts,
       int? searchPageHosts,
+      int? filterPageHosts,
       int? pageActivities,
       int? pageSearchActivities,
+      int? pageFilterActivities,
       int? pageExperiences,
       int? pageSearchExperiences,
+      int? pageFilterExperiences,
       int? pageEvents,
       int? pageSearchEvents,
+      int? pageFilterEvents,
       int? selectedTab,
       String? startDate,
       String? endDate,
       String? city,
       String? emplacement,
-      int? guests});
+      int? guests,
+      EventPageDto? eventPageDto,
+      HostPageDto? hostPageDto,
+      ExperiencePageDto? experiencePageDto,
+      ActivityPageDto? activityPageDto,
+      String? minPriceRange,
+      String? maxPriceRange,
+      List<AttributeDto>? listAttributes,
+      List<ActivityCategory>? listActivityCategories,
+      List<String>? selectedAttributesId,
+      List<String>? selectedActivityCategoriesId,
+      List<String>? selectedPriceRanges});
 }
 
 /// @nodoc
@@ -4321,6 +9423,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? status = freezed,
+    Object? statusFilterHosts = freezed,
     Object? statusEvent = freezed,
     Object? statusActivities = freezed,
     Object? statusExperiences = freezed,
@@ -4333,27 +9436,47 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? isFetching = freezed,
     Object? atTheEndOfThePageHosts = freezed,
     Object? atTheEndOfTheSearchPageHosts = freezed,
+    Object? atTheEndOfTheFilterPageHosts = freezed,
     Object? atTheEndOfThePageEvents = freezed,
     Object? atTheEndOfTheSearchPageEvents = freezed,
+    Object? atTheEndOfTheFilterPageEvents = freezed,
     Object? atTheEndOfThePageActivities = freezed,
     Object? atTheEndOfTheSearchPageActivities = freezed,
+    Object? atTheEndOfTheFilterPageActivities = freezed,
     Object? atTheEndOfThePageExperiences = freezed,
     Object? atTheEndOfTheSearchPageExperiences = freezed,
+    Object? atTheEndOfTheFilterPageExperiences = freezed,
     Object? isSearch = freezed,
+    Object? isFilter = freezed,
     Object? pageHosts = freezed,
     Object? searchPageHosts = freezed,
+    Object? filterPageHosts = freezed,
     Object? pageActivities = freezed,
     Object? pageSearchActivities = freezed,
+    Object? pageFilterActivities = freezed,
     Object? pageExperiences = freezed,
     Object? pageSearchExperiences = freezed,
+    Object? pageFilterExperiences = freezed,
     Object? pageEvents = freezed,
     Object? pageSearchEvents = freezed,
+    Object? pageFilterEvents = freezed,
     Object? selectedTab = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? city = freezed,
     Object? emplacement = freezed,
     Object? guests = freezed,
+    Object? eventPageDto = freezed,
+    Object? hostPageDto = freezed,
+    Object? experiencePageDto = freezed,
+    Object? activityPageDto = freezed,
+    Object? minPriceRange = freezed,
+    Object? maxPriceRange = freezed,
+    Object? listAttributes = freezed,
+    Object? listActivityCategories = freezed,
+    Object? selectedAttributesId = freezed,
+    Object? selectedActivityCategoriesId = freezed,
+    Object? selectedPriceRanges = freezed,
   }) {
     return _then(_$_HomeState(
       title: freezed == title
@@ -4363,6 +9486,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      statusFilterHosts: freezed == statusFilterHosts
+          ? _value.statusFilterHosts
+          : statusFilterHosts // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       statusEvent: freezed == statusEvent
           ? _value.statusEvent
@@ -4412,6 +9539,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.atTheEndOfTheSearchPageHosts
           : atTheEndOfTheSearchPageHosts // ignore: cast_nullable_to_non_nullable
               as bool?,
+      atTheEndOfTheFilterPageHosts: freezed == atTheEndOfTheFilterPageHosts
+          ? _value.atTheEndOfTheFilterPageHosts
+          : atTheEndOfTheFilterPageHosts // ignore: cast_nullable_to_non_nullable
+              as bool?,
       atTheEndOfThePageEvents: freezed == atTheEndOfThePageEvents
           ? _value.atTheEndOfThePageEvents
           : atTheEndOfThePageEvents // ignore: cast_nullable_to_non_nullable
@@ -4419,6 +9550,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
       atTheEndOfTheSearchPageEvents: freezed == atTheEndOfTheSearchPageEvents
           ? _value.atTheEndOfTheSearchPageEvents
           : atTheEndOfTheSearchPageEvents // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      atTheEndOfTheFilterPageEvents: freezed == atTheEndOfTheFilterPageEvents
+          ? _value.atTheEndOfTheFilterPageEvents
+          : atTheEndOfTheFilterPageEvents // ignore: cast_nullable_to_non_nullable
               as bool?,
       atTheEndOfThePageActivities: freezed == atTheEndOfThePageActivities
           ? _value.atTheEndOfThePageActivities
@@ -4429,6 +9564,11 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.atTheEndOfTheSearchPageActivities
           : atTheEndOfTheSearchPageActivities // ignore: cast_nullable_to_non_nullable
               as bool?,
+      atTheEndOfTheFilterPageActivities: freezed ==
+              atTheEndOfTheFilterPageActivities
+          ? _value.atTheEndOfTheFilterPageActivities
+          : atTheEndOfTheFilterPageActivities // ignore: cast_nullable_to_non_nullable
+              as bool?,
       atTheEndOfThePageExperiences: freezed == atTheEndOfThePageExperiences
           ? _value.atTheEndOfThePageExperiences
           : atTheEndOfThePageExperiences // ignore: cast_nullable_to_non_nullable
@@ -4438,9 +9578,18 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.atTheEndOfTheSearchPageExperiences
           : atTheEndOfTheSearchPageExperiences // ignore: cast_nullable_to_non_nullable
               as bool?,
+      atTheEndOfTheFilterPageExperiences: freezed ==
+              atTheEndOfTheFilterPageExperiences
+          ? _value.atTheEndOfTheFilterPageExperiences
+          : atTheEndOfTheFilterPageExperiences // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isSearch: freezed == isSearch
           ? _value.isSearch
           : isSearch // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilter: freezed == isFilter
+          ? _value.isFilter
+          : isFilter // ignore: cast_nullable_to_non_nullable
               as bool?,
       pageHosts: freezed == pageHosts
           ? _value.pageHosts
@@ -4450,6 +9599,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.searchPageHosts
           : searchPageHosts // ignore: cast_nullable_to_non_nullable
               as int?,
+      filterPageHosts: freezed == filterPageHosts
+          ? _value.filterPageHosts
+          : filterPageHosts // ignore: cast_nullable_to_non_nullable
+              as int?,
       pageActivities: freezed == pageActivities
           ? _value.pageActivities
           : pageActivities // ignore: cast_nullable_to_non_nullable
@@ -4457,6 +9610,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
       pageSearchActivities: freezed == pageSearchActivities
           ? _value.pageSearchActivities
           : pageSearchActivities // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageFilterActivities: freezed == pageFilterActivities
+          ? _value.pageFilterActivities
+          : pageFilterActivities // ignore: cast_nullable_to_non_nullable
               as int?,
       pageExperiences: freezed == pageExperiences
           ? _value.pageExperiences
@@ -4466,6 +9623,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.pageSearchExperiences
           : pageSearchExperiences // ignore: cast_nullable_to_non_nullable
               as int?,
+      pageFilterExperiences: freezed == pageFilterExperiences
+          ? _value.pageFilterExperiences
+          : pageFilterExperiences // ignore: cast_nullable_to_non_nullable
+              as int?,
       pageEvents: freezed == pageEvents
           ? _value.pageEvents
           : pageEvents // ignore: cast_nullable_to_non_nullable
@@ -4473,6 +9634,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
       pageSearchEvents: freezed == pageSearchEvents
           ? _value.pageSearchEvents
           : pageSearchEvents // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageFilterEvents: freezed == pageFilterEvents
+          ? _value.pageFilterEvents
+          : pageFilterEvents // ignore: cast_nullable_to_non_nullable
               as int?,
       selectedTab: freezed == selectedTab
           ? _value.selectedTab
@@ -4498,6 +9663,50 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.guests
           : guests // ignore: cast_nullable_to_non_nullable
               as int?,
+      eventPageDto: freezed == eventPageDto
+          ? _value.eventPageDto
+          : eventPageDto // ignore: cast_nullable_to_non_nullable
+              as EventPageDto?,
+      hostPageDto: freezed == hostPageDto
+          ? _value.hostPageDto
+          : hostPageDto // ignore: cast_nullable_to_non_nullable
+              as HostPageDto?,
+      experiencePageDto: freezed == experiencePageDto
+          ? _value.experiencePageDto
+          : experiencePageDto // ignore: cast_nullable_to_non_nullable
+              as ExperiencePageDto?,
+      activityPageDto: freezed == activityPageDto
+          ? _value.activityPageDto
+          : activityPageDto // ignore: cast_nullable_to_non_nullable
+              as ActivityPageDto?,
+      minPriceRange: freezed == minPriceRange
+          ? _value.minPriceRange
+          : minPriceRange // ignore: cast_nullable_to_non_nullable
+              as String?,
+      maxPriceRange: freezed == maxPriceRange
+          ? _value.maxPriceRange
+          : maxPriceRange // ignore: cast_nullable_to_non_nullable
+              as String?,
+      listAttributes: freezed == listAttributes
+          ? _value._listAttributes
+          : listAttributes // ignore: cast_nullable_to_non_nullable
+              as List<AttributeDto>?,
+      listActivityCategories: freezed == listActivityCategories
+          ? _value._listActivityCategories
+          : listActivityCategories // ignore: cast_nullable_to_non_nullable
+              as List<ActivityCategory>?,
+      selectedAttributesId: freezed == selectedAttributesId
+          ? _value._selectedAttributesId
+          : selectedAttributesId // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      selectedActivityCategoriesId: freezed == selectedActivityCategoriesId
+          ? _value._selectedActivityCategoriesId
+          : selectedActivityCategoriesId // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      selectedPriceRanges: freezed == selectedPriceRanges
+          ? _value._selectedPriceRanges
+          : selectedPriceRanges // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -4508,6 +9717,7 @@ class _$_HomeState implements _HomeState {
   const _$_HomeState(
       {this.title,
       this.status,
+      this.statusFilterHosts,
       this.statusEvent,
       this.statusActivities,
       this.statusExperiences,
@@ -4520,38 +9730,65 @@ class _$_HomeState implements _HomeState {
       this.isFetching,
       this.atTheEndOfThePageHosts,
       this.atTheEndOfTheSearchPageHosts,
+      this.atTheEndOfTheFilterPageHosts,
       this.atTheEndOfThePageEvents,
       this.atTheEndOfTheSearchPageEvents,
+      this.atTheEndOfTheFilterPageEvents,
       this.atTheEndOfThePageActivities,
       this.atTheEndOfTheSearchPageActivities,
+      this.atTheEndOfTheFilterPageActivities,
       this.atTheEndOfThePageExperiences,
       this.atTheEndOfTheSearchPageExperiences,
+      this.atTheEndOfTheFilterPageExperiences,
       this.isSearch,
+      this.isFilter,
       this.pageHosts,
       this.searchPageHosts,
+      this.filterPageHosts,
       this.pageActivities,
       this.pageSearchActivities,
+      this.pageFilterActivities,
       this.pageExperiences,
       this.pageSearchExperiences,
+      this.pageFilterExperiences,
       this.pageEvents,
       this.pageSearchEvents,
+      this.pageFilterEvents,
       this.selectedTab,
       this.startDate,
       this.endDate,
       this.city,
       this.emplacement,
-      this.guests})
+      this.guests,
+      this.eventPageDto,
+      this.hostPageDto,
+      this.experiencePageDto,
+      this.activityPageDto,
+      this.minPriceRange,
+      this.maxPriceRange,
+      final List<AttributeDto>? listAttributes,
+      final List<ActivityCategory>? listActivityCategories,
+      final List<String>? selectedAttributesId,
+      final List<String>? selectedActivityCategoriesId,
+      final List<String>? selectedPriceRanges})
       : _listHosts = listHosts,
         _listEvents = listEvents,
         _listActivities = listActivities,
         _listExperiences = listExperiences,
         _listLocations = listLocations,
-        _emplacementList = emplacementList;
+        _emplacementList = emplacementList,
+        _listAttributes = listAttributes,
+        _listActivityCategories = listActivityCategories,
+        _selectedAttributesId = selectedAttributesId,
+        _selectedActivityCategoriesId = selectedActivityCategoriesId,
+        _selectedPriceRanges = selectedPriceRanges;
 
   @override
   final String? title;
   @override
   final StateStatus? status;
+  @override
+  final StateStatus? statusFilterHosts;
   @override
   final StateStatus? statusEvent;
   @override
@@ -4625,35 +9862,53 @@ class _$_HomeState implements _HomeState {
   @override
   final bool? atTheEndOfTheSearchPageHosts;
   @override
+  final bool? atTheEndOfTheFilterPageHosts;
+  @override
   final bool? atTheEndOfThePageEvents;
   @override
   final bool? atTheEndOfTheSearchPageEvents;
+  @override
+  final bool? atTheEndOfTheFilterPageEvents;
   @override
   final bool? atTheEndOfThePageActivities;
   @override
   final bool? atTheEndOfTheSearchPageActivities;
   @override
+  final bool? atTheEndOfTheFilterPageActivities;
+  @override
   final bool? atTheEndOfThePageExperiences;
   @override
   final bool? atTheEndOfTheSearchPageExperiences;
   @override
+  final bool? atTheEndOfTheFilterPageExperiences;
+  @override
   final bool? isSearch;
+  @override
+  final bool? isFilter;
   @override
   final int? pageHosts;
   @override
   final int? searchPageHosts;
   @override
+  final int? filterPageHosts;
+  @override
   final int? pageActivities;
   @override
   final int? pageSearchActivities;
+  @override
+  final int? pageFilterActivities;
   @override
   final int? pageExperiences;
   @override
   final int? pageSearchExperiences;
   @override
+  final int? pageFilterExperiences;
+  @override
   final int? pageEvents;
   @override
   final int? pageSearchEvents;
+  @override
+  final int? pageFilterEvents;
   @override
   final int? selectedTab;
   @override
@@ -4666,10 +9921,75 @@ class _$_HomeState implements _HomeState {
   final String? emplacement;
   @override
   final int? guests;
+  @override
+  final EventPageDto? eventPageDto;
+  @override
+  final HostPageDto? hostPageDto;
+  @override
+  final ExperiencePageDto? experiencePageDto;
+  @override
+  final ActivityPageDto? activityPageDto;
+  @override
+  final String? minPriceRange;
+  @override
+  final String? maxPriceRange;
+  final List<AttributeDto>? _listAttributes;
+  @override
+  List<AttributeDto>? get listAttributes {
+    final value = _listAttributes;
+    if (value == null) return null;
+    if (_listAttributes is EqualUnmodifiableListView) return _listAttributes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ActivityCategory>? _listActivityCategories;
+  @override
+  List<ActivityCategory>? get listActivityCategories {
+    final value = _listActivityCategories;
+    if (value == null) return null;
+    if (_listActivityCategories is EqualUnmodifiableListView)
+      return _listActivityCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<String>? _selectedAttributesId;
+  @override
+  List<String>? get selectedAttributesId {
+    final value = _selectedAttributesId;
+    if (value == null) return null;
+    if (_selectedAttributesId is EqualUnmodifiableListView)
+      return _selectedAttributesId;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<String>? _selectedActivityCategoriesId;
+  @override
+  List<String>? get selectedActivityCategoriesId {
+    final value = _selectedActivityCategoriesId;
+    if (value == null) return null;
+    if (_selectedActivityCategoriesId is EqualUnmodifiableListView)
+      return _selectedActivityCategoriesId;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<String>? _selectedPriceRanges;
+  @override
+  List<String>? get selectedPriceRanges {
+    final value = _selectedPriceRanges;
+    if (value == null) return null;
+    if (_selectedPriceRanges is EqualUnmodifiableListView)
+      return _selectedPriceRanges;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'HomeState(title: $title, status: $status, statusEvent: $statusEvent, statusActivities: $statusActivities, statusExperiences: $statusExperiences, listHosts: $listHosts, listEvents: $listEvents, listActivities: $listActivities, listExperiences: $listExperiences, listLocations: $listLocations, emplacementList: $emplacementList, isFetching: $isFetching, atTheEndOfThePageHosts: $atTheEndOfThePageHosts, atTheEndOfTheSearchPageHosts: $atTheEndOfTheSearchPageHosts, atTheEndOfThePageEvents: $atTheEndOfThePageEvents, atTheEndOfTheSearchPageEvents: $atTheEndOfTheSearchPageEvents, atTheEndOfThePageActivities: $atTheEndOfThePageActivities, atTheEndOfTheSearchPageActivities: $atTheEndOfTheSearchPageActivities, atTheEndOfThePageExperiences: $atTheEndOfThePageExperiences, atTheEndOfTheSearchPageExperiences: $atTheEndOfTheSearchPageExperiences, isSearch: $isSearch, pageHosts: $pageHosts, searchPageHosts: $searchPageHosts, pageActivities: $pageActivities, pageSearchActivities: $pageSearchActivities, pageExperiences: $pageExperiences, pageSearchExperiences: $pageSearchExperiences, pageEvents: $pageEvents, pageSearchEvents: $pageSearchEvents, selectedTab: $selectedTab, startDate: $startDate, endDate: $endDate, city: $city, emplacement: $emplacement, guests: $guests)';
+    return 'HomeState(title: $title, status: $status, statusFilterHosts: $statusFilterHosts, statusEvent: $statusEvent, statusActivities: $statusActivities, statusExperiences: $statusExperiences, listHosts: $listHosts, listEvents: $listEvents, listActivities: $listActivities, listExperiences: $listExperiences, listLocations: $listLocations, emplacementList: $emplacementList, isFetching: $isFetching, atTheEndOfThePageHosts: $atTheEndOfThePageHosts, atTheEndOfTheSearchPageHosts: $atTheEndOfTheSearchPageHosts, atTheEndOfTheFilterPageHosts: $atTheEndOfTheFilterPageHosts, atTheEndOfThePageEvents: $atTheEndOfThePageEvents, atTheEndOfTheSearchPageEvents: $atTheEndOfTheSearchPageEvents, atTheEndOfTheFilterPageEvents: $atTheEndOfTheFilterPageEvents, atTheEndOfThePageActivities: $atTheEndOfThePageActivities, atTheEndOfTheSearchPageActivities: $atTheEndOfTheSearchPageActivities, atTheEndOfTheFilterPageActivities: $atTheEndOfTheFilterPageActivities, atTheEndOfThePageExperiences: $atTheEndOfThePageExperiences, atTheEndOfTheSearchPageExperiences: $atTheEndOfTheSearchPageExperiences, atTheEndOfTheFilterPageExperiences: $atTheEndOfTheFilterPageExperiences, isSearch: $isSearch, isFilter: $isFilter, pageHosts: $pageHosts, searchPageHosts: $searchPageHosts, filterPageHosts: $filterPageHosts, pageActivities: $pageActivities, pageSearchActivities: $pageSearchActivities, pageFilterActivities: $pageFilterActivities, pageExperiences: $pageExperiences, pageSearchExperiences: $pageSearchExperiences, pageFilterExperiences: $pageFilterExperiences, pageEvents: $pageEvents, pageSearchEvents: $pageSearchEvents, pageFilterEvents: $pageFilterEvents, selectedTab: $selectedTab, startDate: $startDate, endDate: $endDate, city: $city, emplacement: $emplacement, guests: $guests, eventPageDto: $eventPageDto, hostPageDto: $hostPageDto, experiencePageDto: $experiencePageDto, activityPageDto: $activityPageDto, minPriceRange: $minPriceRange, maxPriceRange: $maxPriceRange, listAttributes: $listAttributes, listActivityCategories: $listActivityCategories, selectedAttributesId: $selectedAttributesId, selectedActivityCategoriesId: $selectedActivityCategoriesId, selectedPriceRanges: $selectedPriceRanges)';
   }
 
   @override
@@ -4679,6 +9999,8 @@ class _$_HomeState implements _HomeState {
             other is _$_HomeState &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusFilterHosts, statusFilterHosts) ||
+                other.statusFilterHosts == statusFilterHosts) &&
             (identical(other.statusEvent, statusEvent) ||
                 other.statusEvent == statusEvent) &&
             (identical(other.statusActivities, statusActivities) ||
@@ -4704,44 +10026,65 @@ class _$_HomeState implements _HomeState {
             (identical(other.atTheEndOfTheSearchPageHosts, atTheEndOfTheSearchPageHosts) ||
                 other.atTheEndOfTheSearchPageHosts ==
                     atTheEndOfTheSearchPageHosts) &&
+            (identical(other.atTheEndOfTheFilterPageHosts, atTheEndOfTheFilterPageHosts) ||
+                other.atTheEndOfTheFilterPageHosts ==
+                    atTheEndOfTheFilterPageHosts) &&
             (identical(other.atTheEndOfThePageEvents, atTheEndOfThePageEvents) ||
                 other.atTheEndOfThePageEvents == atTheEndOfThePageEvents) &&
             (identical(other.atTheEndOfTheSearchPageEvents, atTheEndOfTheSearchPageEvents) ||
                 other.atTheEndOfTheSearchPageEvents ==
                     atTheEndOfTheSearchPageEvents) &&
+            (identical(other.atTheEndOfTheFilterPageEvents, atTheEndOfTheFilterPageEvents) ||
+                other.atTheEndOfTheFilterPageEvents ==
+                    atTheEndOfTheFilterPageEvents) &&
             (identical(other.atTheEndOfThePageActivities, atTheEndOfThePageActivities) ||
                 other.atTheEndOfThePageActivities ==
                     atTheEndOfThePageActivities) &&
             (identical(other.atTheEndOfTheSearchPageActivities, atTheEndOfTheSearchPageActivities) ||
                 other.atTheEndOfTheSearchPageActivities ==
                     atTheEndOfTheSearchPageActivities) &&
+            (identical(other.atTheEndOfTheFilterPageActivities, atTheEndOfTheFilterPageActivities) ||
+                other.atTheEndOfTheFilterPageActivities ==
+                    atTheEndOfTheFilterPageActivities) &&
             (identical(other.atTheEndOfThePageExperiences, atTheEndOfThePageExperiences) ||
                 other.atTheEndOfThePageExperiences ==
                     atTheEndOfThePageExperiences) &&
             (identical(other.atTheEndOfTheSearchPageExperiences, atTheEndOfTheSearchPageExperiences) ||
                 other.atTheEndOfTheSearchPageExperiences ==
                     atTheEndOfTheSearchPageExperiences) &&
-            (identical(other.isSearch, isSearch) ||
-                other.isSearch == isSearch) &&
-            (identical(other.pageHosts, pageHosts) ||
-                other.pageHosts == pageHosts) &&
-            (identical(other.searchPageHosts, searchPageHosts) ||
-                other.searchPageHosts == searchPageHosts) &&
-            (identical(other.pageActivities, pageActivities) ||
-                other.pageActivities == pageActivities) &&
-            (identical(other.pageSearchActivities, pageSearchActivities) ||
-                other.pageSearchActivities == pageSearchActivities) &&
-            (identical(other.pageExperiences, pageExperiences) ||
-                other.pageExperiences == pageExperiences) &&
+            (identical(other.atTheEndOfTheFilterPageExperiences, atTheEndOfTheFilterPageExperiences) ||
+                other.atTheEndOfTheFilterPageExperiences == atTheEndOfTheFilterPageExperiences) &&
+            (identical(other.isSearch, isSearch) || other.isSearch == isSearch) &&
+            (identical(other.isFilter, isFilter) || other.isFilter == isFilter) &&
+            (identical(other.pageHosts, pageHosts) || other.pageHosts == pageHosts) &&
+            (identical(other.searchPageHosts, searchPageHosts) || other.searchPageHosts == searchPageHosts) &&
+            (identical(other.filterPageHosts, filterPageHosts) || other.filterPageHosts == filterPageHosts) &&
+            (identical(other.pageActivities, pageActivities) || other.pageActivities == pageActivities) &&
+            (identical(other.pageSearchActivities, pageSearchActivities) || other.pageSearchActivities == pageSearchActivities) &&
+            (identical(other.pageFilterActivities, pageFilterActivities) || other.pageFilterActivities == pageFilterActivities) &&
+            (identical(other.pageExperiences, pageExperiences) || other.pageExperiences == pageExperiences) &&
             (identical(other.pageSearchExperiences, pageSearchExperiences) || other.pageSearchExperiences == pageSearchExperiences) &&
+            (identical(other.pageFilterExperiences, pageFilterExperiences) || other.pageFilterExperiences == pageFilterExperiences) &&
             (identical(other.pageEvents, pageEvents) || other.pageEvents == pageEvents) &&
             (identical(other.pageSearchEvents, pageSearchEvents) || other.pageSearchEvents == pageSearchEvents) &&
+            (identical(other.pageFilterEvents, pageFilterEvents) || other.pageFilterEvents == pageFilterEvents) &&
             (identical(other.selectedTab, selectedTab) || other.selectedTab == selectedTab) &&
             (identical(other.startDate, startDate) || other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.emplacement, emplacement) || other.emplacement == emplacement) &&
-            (identical(other.guests, guests) || other.guests == guests));
+            (identical(other.guests, guests) || other.guests == guests) &&
+            (identical(other.eventPageDto, eventPageDto) || other.eventPageDto == eventPageDto) &&
+            (identical(other.hostPageDto, hostPageDto) || other.hostPageDto == hostPageDto) &&
+            (identical(other.experiencePageDto, experiencePageDto) || other.experiencePageDto == experiencePageDto) &&
+            (identical(other.activityPageDto, activityPageDto) || other.activityPageDto == activityPageDto) &&
+            (identical(other.minPriceRange, minPriceRange) || other.minPriceRange == minPriceRange) &&
+            (identical(other.maxPriceRange, maxPriceRange) || other.maxPriceRange == maxPriceRange) &&
+            const DeepCollectionEquality().equals(other._listAttributes, _listAttributes) &&
+            const DeepCollectionEquality().equals(other._listActivityCategories, _listActivityCategories) &&
+            const DeepCollectionEquality().equals(other._selectedAttributesId, _selectedAttributesId) &&
+            const DeepCollectionEquality().equals(other._selectedActivityCategoriesId, _selectedActivityCategoriesId) &&
+            const DeepCollectionEquality().equals(other._selectedPriceRanges, _selectedPriceRanges));
   }
 
   @override
@@ -4749,6 +10092,7 @@ class _$_HomeState implements _HomeState {
         runtimeType,
         title,
         status,
+        statusFilterHosts,
         statusEvent,
         statusActivities,
         statusExperiences,
@@ -4761,27 +10105,47 @@ class _$_HomeState implements _HomeState {
         isFetching,
         atTheEndOfThePageHosts,
         atTheEndOfTheSearchPageHosts,
+        atTheEndOfTheFilterPageHosts,
         atTheEndOfThePageEvents,
         atTheEndOfTheSearchPageEvents,
+        atTheEndOfTheFilterPageEvents,
         atTheEndOfThePageActivities,
         atTheEndOfTheSearchPageActivities,
+        atTheEndOfTheFilterPageActivities,
         atTheEndOfThePageExperiences,
         atTheEndOfTheSearchPageExperiences,
+        atTheEndOfTheFilterPageExperiences,
         isSearch,
+        isFilter,
         pageHosts,
         searchPageHosts,
+        filterPageHosts,
         pageActivities,
         pageSearchActivities,
+        pageFilterActivities,
         pageExperiences,
         pageSearchExperiences,
+        pageFilterExperiences,
         pageEvents,
         pageSearchEvents,
+        pageFilterEvents,
         selectedTab,
         startDate,
         endDate,
         city,
         emplacement,
-        guests
+        guests,
+        eventPageDto,
+        hostPageDto,
+        experiencePageDto,
+        activityPageDto,
+        minPriceRange,
+        maxPriceRange,
+        const DeepCollectionEquality().hash(_listAttributes),
+        const DeepCollectionEquality().hash(_listActivityCategories),
+        const DeepCollectionEquality().hash(_selectedAttributesId),
+        const DeepCollectionEquality().hash(_selectedActivityCategoriesId),
+        const DeepCollectionEquality().hash(_selectedPriceRanges)
       ]);
 
   @JsonKey(ignore: true)
@@ -4795,6 +10159,7 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final String? title,
       final StateStatus? status,
+      final StateStatus? statusFilterHosts,
       final StateStatus? statusEvent,
       final StateStatus? statusActivities,
       final StateStatus? statusExperiences,
@@ -4807,32 +10172,54 @@ abstract class _HomeState implements HomeState {
       final bool? isFetching,
       final bool? atTheEndOfThePageHosts,
       final bool? atTheEndOfTheSearchPageHosts,
+      final bool? atTheEndOfTheFilterPageHosts,
       final bool? atTheEndOfThePageEvents,
       final bool? atTheEndOfTheSearchPageEvents,
+      final bool? atTheEndOfTheFilterPageEvents,
       final bool? atTheEndOfThePageActivities,
       final bool? atTheEndOfTheSearchPageActivities,
+      final bool? atTheEndOfTheFilterPageActivities,
       final bool? atTheEndOfThePageExperiences,
       final bool? atTheEndOfTheSearchPageExperiences,
+      final bool? atTheEndOfTheFilterPageExperiences,
       final bool? isSearch,
+      final bool? isFilter,
       final int? pageHosts,
       final int? searchPageHosts,
+      final int? filterPageHosts,
       final int? pageActivities,
       final int? pageSearchActivities,
+      final int? pageFilterActivities,
       final int? pageExperiences,
       final int? pageSearchExperiences,
+      final int? pageFilterExperiences,
       final int? pageEvents,
       final int? pageSearchEvents,
+      final int? pageFilterEvents,
       final int? selectedTab,
       final String? startDate,
       final String? endDate,
       final String? city,
       final String? emplacement,
-      final int? guests}) = _$_HomeState;
+      final int? guests,
+      final EventPageDto? eventPageDto,
+      final HostPageDto? hostPageDto,
+      final ExperiencePageDto? experiencePageDto,
+      final ActivityPageDto? activityPageDto,
+      final String? minPriceRange,
+      final String? maxPriceRange,
+      final List<AttributeDto>? listAttributes,
+      final List<ActivityCategory>? listActivityCategories,
+      final List<String>? selectedAttributesId,
+      final List<String>? selectedActivityCategoriesId,
+      final List<String>? selectedPriceRanges}) = _$_HomeState;
 
   @override
   String? get title;
   @override
   StateStatus? get status;
+  @override
+  StateStatus? get statusFilterHosts;
   @override
   StateStatus? get statusEvent;
   @override
@@ -4858,35 +10245,53 @@ abstract class _HomeState implements HomeState {
   @override
   bool? get atTheEndOfTheSearchPageHosts;
   @override
+  bool? get atTheEndOfTheFilterPageHosts;
+  @override
   bool? get atTheEndOfThePageEvents;
   @override
   bool? get atTheEndOfTheSearchPageEvents;
+  @override
+  bool? get atTheEndOfTheFilterPageEvents;
   @override
   bool? get atTheEndOfThePageActivities;
   @override
   bool? get atTheEndOfTheSearchPageActivities;
   @override
+  bool? get atTheEndOfTheFilterPageActivities;
+  @override
   bool? get atTheEndOfThePageExperiences;
   @override
   bool? get atTheEndOfTheSearchPageExperiences;
   @override
+  bool? get atTheEndOfTheFilterPageExperiences;
+  @override
   bool? get isSearch;
+  @override
+  bool? get isFilter;
   @override
   int? get pageHosts;
   @override
   int? get searchPageHosts;
   @override
+  int? get filterPageHosts;
+  @override
   int? get pageActivities;
   @override
   int? get pageSearchActivities;
+  @override
+  int? get pageFilterActivities;
   @override
   int? get pageExperiences;
   @override
   int? get pageSearchExperiences;
   @override
+  int? get pageFilterExperiences;
+  @override
   int? get pageEvents;
   @override
   int? get pageSearchEvents;
+  @override
+  int? get pageFilterEvents;
   @override
   int? get selectedTab;
   @override
@@ -4899,6 +10304,28 @@ abstract class _HomeState implements HomeState {
   String? get emplacement;
   @override
   int? get guests;
+  @override
+  EventPageDto? get eventPageDto;
+  @override
+  HostPageDto? get hostPageDto;
+  @override
+  ExperiencePageDto? get experiencePageDto;
+  @override
+  ActivityPageDto? get activityPageDto;
+  @override
+  String? get minPriceRange;
+  @override
+  String? get maxPriceRange;
+  @override
+  List<AttributeDto>? get listAttributes;
+  @override
+  List<ActivityCategory>? get listActivityCategories;
+  @override
+  List<String>? get selectedAttributesId;
+  @override
+  List<String>? get selectedActivityCategoriesId;
+  @override
+  List<String>? get selectedPriceRanges;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
