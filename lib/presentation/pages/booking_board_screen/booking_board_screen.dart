@@ -83,6 +83,7 @@ class _BookingBoardScreenState extends State<BookingBoardScreen>
               ),
               const ProfileHeader(
                 subtitle: "Liste de souhaits",
+                hideSubtitle: true,
               ),
               const Divider(
                 thickness: 1,

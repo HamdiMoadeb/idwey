@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/data_sources.dart';
 import 'package:idwey/data/models/experience_details_dto.dart';
 import 'package:idwey/data/models/experience_dto.dart';
+import 'package:idwey/data/models/experience_page_dto.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 
 class ExperienceRepositoryImpl implements ExperienceRepository {
@@ -36,6 +37,18 @@ class ExperienceRepositoryImpl implements ExperienceRepository {
     try {
       final result = await dataSource.searchListExperiences(
           limit, offset, start, end, adults, address);
+
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, ExperiencePageDto>> getExperienceDataPage(
+      int limit, int offset) async {
+    try {
+      final result = await dataSource.getExperiencePageData(limit, offset);
 
       return Right(result);
     } on Exception catch (e) {

@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:idwey/data/models/activity_details_dto.dart';
+import 'package:idwey/data/models/activity_page_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/models.dart';
 
 abstract class ActivityApiDataSource {
   Future<List<Activity>> getListActivities(int limit, int offset);
+  Future<ActivityPageDto> getActivityPageData(int limit, int offset);
   Future<ActivityDetailsDto> getActivity(int id);
   Future<List<Activity>> searchListActivities(int limit, int offset,
       String start, String end, int adults, String address);
@@ -65,5 +67,18 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
     });
 
     return listOfActivities;
+  }
+
+  @override
+  Future<ActivityPageDto> getActivityPageData(int limit, int offset) async {
+    try {
+      final response = await dio
+          .get("https://idwey.tn/api/activity?offset=$offset&limit=10");
+      print("response.data");
+      print(response.data);
+      return ActivityPageDto.fromJson(response.data);
+    } catch (e) {
+      throw Exception();
+    }
   }
 }

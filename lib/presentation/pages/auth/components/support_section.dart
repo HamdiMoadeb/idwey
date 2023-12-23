@@ -50,7 +50,7 @@ class SupportSection extends StatelessWidget {
               HeroIcons.informationCircle,
               color: Colors.black,
             ),
-            title: const Text("Comment ca marche ?",
+            title: const Text("Comment ça marche ?",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 )),

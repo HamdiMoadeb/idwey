@@ -4,6 +4,10 @@
 
 import 'dart:convert';
 
+import 'package:idwey/data/models/translation.dart';
+
+import 'attribute_dto.dart';
+import 'attributz.dart';
 import 'extra_price_dto.dart';
 import 'review_dto.dart';
 import 'review_scale_dto.dart';
@@ -105,44 +109,6 @@ class HostDetails {
             : List<dynamic>.from(reviewScale!.map((x) => x.toJson())),
         "moy_rate": moyRate,
         "canreview": canreview,
-      };
-}
-
-class Attribute {
-  final String? parent;
-  final List<String>? translateParent;
-  final List<String>? child;
-  final List<String>? tranlation;
-
-  Attribute({
-    this.parent,
-    this.translateParent,
-    this.child,
-    this.tranlation,
-  });
-
-  factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
-        parent: json["parent"],
-        translateParent: json["translate parent"] == null
-            ? []
-            : List<String>.from(json["translate parent"]!.map((x) => x)),
-        child: json["child"] == null
-            ? []
-            : List<String>.from(json["child"]!.map((x) => x)),
-        tranlation: json["tranlation"] == null
-            ? []
-            : List<String>.from(json["tranlation"]!.map((x) => x)),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "parent": parent,
-        "translate parent": translateParent == null
-            ? []
-            : List<dynamic>.from(translateParent!.map((x) => x)),
-        "child": child == null ? [] : List<dynamic>.from(child!.map((x) => x)),
-        "tranlation": tranlation == null
-            ? []
-            : List<dynamic>.from(tranlation!.map((x) => x)),
       };
 }
 
@@ -379,67 +345,6 @@ class Location {
       };
 }
 
-class Translation {
-  final int? id;
-  final int? originId;
-  final String? locale;
-  final String? name;
-  final String? content;
-  final int? createUser;
-  final int? updateUser;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final List<TripIdea>? tripIdeas;
-
-  Translation({
-    this.id,
-    this.originId,
-    this.locale,
-    this.name,
-    this.content,
-    this.createUser,
-    this.updateUser,
-    this.createdAt,
-    this.updatedAt,
-    this.tripIdeas,
-  });
-
-  factory Translation.fromJson(Map<String, dynamic> json) => Translation(
-        id: json["id"],
-        originId: json["origin_id"],
-        locale: json["locale"],
-        name: json["name"],
-        content: json["content"],
-        createUser: json["create_user"],
-        updateUser: json["update_user"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-        tripIdeas: json["trip_ideas"] == null
-            ? []
-            : List<TripIdea>.from(
-                json["trip_ideas"]!.map((x) => TripIdea.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "origin_id": originId,
-        "locale": locale,
-        "name": name,
-        "content": content,
-        "create_user": createUser,
-        "update_user": updateUser,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
-        "trip_ideas": tripIdeas == null
-            ? []
-            : List<dynamic>.from(tripIdeas!.map((x) => x.toJson())),
-      };
-}
-
 class TripIdea {
   final dynamic imageId;
   final dynamic title;
@@ -519,7 +424,9 @@ class Room {
         id: json["id"],
         title: json["title"],
         content: json["content"],
-        imageId: json["image_id"],
+        imageId: json["image_id"] is String == true
+            ? int.tryParse(json["image_id"])
+            : json["image_id"],
         gallery: json["gallery"],
         video: json["video"],
         price: json["price"],

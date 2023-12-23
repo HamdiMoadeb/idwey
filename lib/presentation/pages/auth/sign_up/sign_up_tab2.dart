@@ -4,12 +4,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
-class SignUpTab2 extends StatelessWidget {
+class SignUpTab2 extends StatefulWidget {
   final TextEditingController emailController;
   final FocusNode focusNode;
   const SignUpTab2(
       {Key? key, required this.emailController, required this.focusNode})
       : super(key: key);
+
+  @override
+  State<SignUpTab2> createState() => _SignUpTab2State();
+}
+
+class _SignUpTab2State extends State<SignUpTab2> {
+  String username = "";
+  @override
+  void initState() {
+    // TODO: implement initState
+    username = context.read<SignUpBloc>().state.firstName ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +34,7 @@ class SignUpTab2 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 20.h),
               child: Text(
-                "Salut ${state.firstName} ! ",
+                "Salut $username ! ",
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       color: primary,
                       fontSize: 24.sp,
@@ -48,7 +61,7 @@ class SignUpTab2 extends StatelessWidget {
               ),
             ),
             TextField(
-              controller: emailController,
+              controller: widget.emailController,
               decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,

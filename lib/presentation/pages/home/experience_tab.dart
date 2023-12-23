@@ -44,6 +44,10 @@ class _ExperienceScreenState extends State<ExperienceScreen>
     if (currentScroll == maxScroll) {
       if (context.read<HomeBloc>().state.isSearch == true) {
         context.read<HomeBloc>().add(const GetSearchListExperiences(true));
+      } else if (context.read<HomeBloc>().state.isFilter == true) {
+        context
+            .read<HomeBloc>()
+            .add(const GetFilterListExperiencesPageData(true));
       } else {
         context.read<HomeBloc>().add(const GetListExperiences(true));
       }
@@ -55,8 +59,7 @@ class _ExperienceScreenState extends State<ExperienceScreen>
     super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        if (state.statusExperiences == StateStatus.loading &&
-            state.listExperiences!.isEmpty) {
+        if (state.statusExperiences == StateStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -64,7 +67,12 @@ class _ExperienceScreenState extends State<ExperienceScreen>
             state.atTheEndOfThePageExperiences == false) {
           return const Center(child: Text("Pas des experiences"));
         } else if (state.statusExperiences == StateStatus.error &&
-            state.atTheEndOfThePageExperiences == false) {
+            state.atTheEndOfThePageExperiences == false &&
+            state.isSearch == true) {
+          return const Center(child: Text("Pas des experiences"));
+        } else if (state.status == StateStatus.error &&
+            state.atTheEndOfTheFilterPageExperiences == false &&
+            state.isFilter == true) {
           return const Center(child: Text("Pas des experiences"));
         } else if (state.statusExperiences == StateStatus.success &&
             state.listExperiences?.isEmpty == true) {

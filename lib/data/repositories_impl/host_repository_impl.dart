@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/host_api_data_source.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/data/models/host_dto.dart';
+import 'package:idwey/data/models/host_page_dto.dart';
 import 'package:idwey/domain/repositories/host_repository.dart';
 
 class HostRepositoryImpl implements HostRepository {
@@ -66,5 +67,18 @@ class HostRepositoryImpl implements HostRepository {
     // } on Exception catch (e) {
     //   return Left(e);
     // }
+  }
+
+  @override
+  Future<Either<Exception, HostPageDto>> getHostPageData(
+      int limit, int offset) async {
+    try {
+      final result = await dataSource.getHostPageData(limit, offset);
+      print("result");
+      print(result);
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
   }
 }

@@ -44,7 +44,7 @@ class HowItWorksScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                 child: Text(
-                  'Comment ca marche ?',
+                  'Comment ça marche ?',
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,

@@ -246,7 +246,6 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                                         ?.attributes!['2']?.child ??
                                     [],
                               ),
-                              const Divider(),
                               MapSection(
                                 title:
                                     state.activityDetailsDto?.row?.title ?? "",

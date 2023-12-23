@@ -266,7 +266,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                         .hostDetails?.attributes!['6']?.child ??
                                     [],
                               ),
-                              const Divider(),
+
                               MapSection(
                                 title: state.hostDetails?.row?.title ?? "",
                                 lat: state.hostDetails?.row?.mapLat ?? "",

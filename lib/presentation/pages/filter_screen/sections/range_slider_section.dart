@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class RangeSliderSection extends StatefulWidget {
-  const RangeSliderSection({Key? key}) : super(key: key);
+  final int min;
+  final int max;
+  const RangeSliderSection({Key? key, required this.min, required this.max})
+      : super(key: key);
 
   @override
   State<RangeSliderSection> createState() => _RangeSliderSectionState();
 }
 
 class _RangeSliderSectionState extends State<RangeSliderSection> {
-  RangeValues _currentRangeValues = const RangeValues(45, 1300);
+  // RangeValues _currentRangeValues = const RangeValues(45, 1300);
   SfRangeValues _values = SfRangeValues(40.0, 80.0);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("miiiiin${widget.min}");
+    print("miiiiin${widget.max}");
+    _values = SfRangeValues(widget.min.toDouble(), widget.max.toDouble());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +49,10 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
           Column(
             children: [
               SfRangeSlider(
-                min: 45.0,
-                max: 1300,
+                min: widget.min.toDouble(),
+                max: widget.max.toDouble(),
                 values: _values,
-                interval: 300,
+                interval: 600,
                 showDividers: true,
                 showTicks: true,
                 showLabels: true,
@@ -50,6 +64,10 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
                   setState(() {
                     _values = values;
                   });
+                  List<String> list = [];
+                  list.add(_values.start.round().toString());
+                  list.add(_values.end.round().toString());
+                  context.read<HomeBloc>().add(HomeEvent.setRangePrices(list));
                 },
               ),
               SizedBox(
@@ -78,7 +96,7 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                           Text(
-                            'DT ${_currentRangeValues.start.round()}',
+                            'DT ${_values.start.round()}',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
@@ -112,7 +130,7 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                           Text(
-                            'DT ${_currentRangeValues.end.round()}',
+                            'DT ${_values.end.round()}',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],

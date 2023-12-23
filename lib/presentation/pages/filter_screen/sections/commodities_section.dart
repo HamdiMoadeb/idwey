@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/extra_price_component/extra_price_component.dart';
+import 'package:idwey/components/filter_item/filter_item.dart';
+import 'package:idwey/domain/entities/filter_item.dart';
+import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/pages/filter_screen/sections/components/filter_component_commodities.dart';
 
 class CommoditiesFilterSection extends StatefulWidget {
-  final List<String> extraPrices;
+  final List<FilterItem> extraPrices;
   final String title;
+  final List<String> selectedIds;
 
-  CommoditiesFilterSection(
-      {Key? key, required this.extraPrices, required this.title})
+  const CommoditiesFilterSection(
+      {Key? key,
+      required this.extraPrices,
+      required this.title,
+      required this.selectedIds})
       : super(key: key);
 
   @override
@@ -24,6 +32,13 @@ class _CommoditiesFilterSectionState extends State<CommoditiesFilterSection> {
   void initState() {
     // TODO: implement initState
     isCheckedList = List.generate(widget.extraPrices.length, (index) => false);
+
+    /// get checked items
+    for (int i = 0; i < widget.extraPrices.length; i++) {
+      if (widget.selectedIds.contains(widget.extraPrices[i].id.toString())) {
+        isCheckedList[i] = true;
+      }
+    }
     super.initState();
   }
 
@@ -51,12 +66,15 @@ class _CommoditiesFilterSectionState extends State<CommoditiesFilterSection> {
               return CommodityFilterComponent(
                 isChecked:
                     isCheckedList[index], // Use the individual checked state
-                title: e ?? "",
+                title: e.name ?? "",
                 onCheck: (bool? v) {
                   setState(() {
                     isCheckedList[index] =
                         v ?? false; // Update the individual checked state
                   });
+                  context
+                      .read<HomeBloc>()
+                      .add(HomeEvent.setSelectedAttributesIds(e.id.toString()));
 
                   /// if checked == true add the extra price to the list else remove it
                   if (v == true) {
@@ -87,7 +105,7 @@ class _CommoditiesFilterSectionState extends State<CommoditiesFilterSection> {
               child: Row(
                 children: [
                   Text(
-                    "Plus",
+                    showMore ? "Moins" : "Plus",
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,

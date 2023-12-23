@@ -52,6 +52,19 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.close,
+                color: Colors.black,
+              ),
+            ),
+          ),
           bottomNavigationBar: BottomAppBar(
             color: Colors.transparent,
             elevation: 0,
