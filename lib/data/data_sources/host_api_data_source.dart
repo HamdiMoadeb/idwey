@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/data/models/host_dto.dart';
+import 'package:idwey/data/models/host_page_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class HostApiDataSource {
   Future<List<Host>> getListHosts(int limit, int offset);
+  Future<HostPageDto> getHostPageData(int limit, int offset);
   Future<List<Host>> searchListHosts(
     int limit,
     int offset,
@@ -115,5 +117,22 @@ class HostApiDataSourceImpl implements HostApiDataSource {
     });
 
     return listOfHosts;
+  }
+
+  @override
+  Future<HostPageDto> getHostPageData(int limit, int offset) async {
+    try {
+      final response =
+          await dio.get("https://idwey.tn/api/hotel?offset=$offset&limit=10");
+
+      print("response.data");
+      print(response.data);
+      print(response.data['hotel_min_max_price']);
+      print(HostPageDto.fromJson(response.data).hotelMinMaxPrice);
+
+      return HostPageDto.fromJson(response.data);
+    } catch (e) {
+      throw Exception();
+    }
   }
 }

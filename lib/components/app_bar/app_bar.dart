@@ -54,7 +54,7 @@ class _FilterListState extends State<FilterList> {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
           children: [
-            FilterItem(
+            FilterItemWidget(
               label: 'Hébergement',
               icon: Assets.inspiration,
               onTap: (v) {
@@ -64,7 +64,7 @@ class _FilterListState extends State<FilterList> {
               },
               isSelected: selectedIndex == 0,
             ),
-            FilterItem(
+            FilterItemWidget(
               label: 'Evenement',
               icon: Assets.inspiration,
               onTap: (v) {
@@ -74,7 +74,7 @@ class _FilterListState extends State<FilterList> {
               },
               isSelected: selectedIndex == 1,
             ),
-            FilterItem(
+            FilterItemWidget(
               label: 'Acitvités',
               icon: Assets.inspiration,
               onTap: (v) {
@@ -84,7 +84,7 @@ class _FilterListState extends State<FilterList> {
               },
               isSelected: selectedIndex == 2,
             ),
-            FilterItem(
+            FilterItemWidget(
               label: 'Produits',
               icon: Assets.inspiration,
               onTap: (v) {
@@ -94,7 +94,7 @@ class _FilterListState extends State<FilterList> {
               },
               isSelected: selectedIndex == 3,
             ),
-            FilterItem(
+            FilterItemWidget(
               label: 'Articles',
               icon: Assets.inspiration,
               onTap: (v) {
@@ -124,7 +124,6 @@ class SearchBox extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-
               GetIt.I<AppRouter>().push(SearchRoute(
                   selectedTab:
                       context.read<HomeBloc>().state.selectedTab ?? 0));

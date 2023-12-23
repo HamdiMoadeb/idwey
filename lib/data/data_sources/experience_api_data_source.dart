@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:idwey/data/models/experience_details_dto.dart';
+import 'package:idwey/data/models/experience_page_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/models.dart';
 
 abstract class ExperienceApiDataSource {
   Future<List<Experience>> getListExperiences(int limit, int offset);
+  Future<ExperiencePageDto> getExperiencePageData(int limit, int offset);
   Future<ExperienceDetailsDto> getExperience(int id);
   Future<List<Experience>> searchListExperiences(int limit, int offset,
       String start, String end, int adults, String address);
@@ -62,5 +64,16 @@ class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
     });
 
     return listOfExperiences;
+  }
+
+  @override
+  Future<ExperiencePageDto> getExperiencePageData(int limit, int offset) async {
+    try {
+      final response = await await dio
+          .get("https://idwey.tn/api/experience?offset=$offset&limit=10");
+      return ExperiencePageDto.fromJson(response.data);
+    } catch (e) {
+      throw Exception();
+    }
   }
 }

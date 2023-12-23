@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     widget.scrollController.addListener(_onScroll);
-
     context.read<HomeBloc>().add(const GetListHost(false));
 
     //  _scrollToTop();
@@ -46,6 +45,8 @@ class _HomeScreenState extends State<HomeScreen>
     if (currentScroll == maxScroll) {
       if (context.read<HomeBloc>().state.isSearch == true) {
         context.read<HomeBloc>().add(const GetSearchListHost(true));
+      } else if (context.read<HomeBloc>().state.isFilter == true) {
+        context.read<HomeBloc>().add(const GetFilterListHostsPageData(true));
       } else {
         context.read<HomeBloc>().add(const GetListHost(true));
       }
@@ -57,18 +58,27 @@ class _HomeScreenState extends State<HomeScreen>
     super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        if (state.status == StateStatus.loading && state.listHosts!.isEmpty) {
+        if (state.status == StateStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfThePageHosts == false) {
+          print('111');
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.error &&
-            state.atTheEndOfTheSearchPageHosts == false) {
+            state.atTheEndOfTheSearchPageHosts == false &&
+            state.isSearch == true) {
+          print("222");
+          return const Center(child: Text("Pas des hébergements"));
+        } else if (state.status == StateStatus.error &&
+            state.atTheEndOfTheFilterPageHosts == false &&
+            state.isFilter == true) {
+          print("333");
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.success &&
             state.listHosts?.isEmpty == true) {
+          print("444");
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.success ||
             state.status == StateStatus.loadingMore &&

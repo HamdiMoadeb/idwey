@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/event_api_data_source.dart';
 import 'package:idwey/data/models/event_details_dto.dart';
 import 'package:idwey/data/models/event_dto.dart';
+import 'package:idwey/data/models/event_page_dto.dart';
 import 'package:idwey/domain/repositories/event_repository.dart';
 
 class EventRepositoryImpl implements EventRepository {
@@ -38,6 +39,17 @@ class EventRepositoryImpl implements EventRepository {
       final result = await dataSource.searchListEvents(
           limit, offset, start, end, adults, address);
 
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, EventPageDto>> getEventPage(
+      int limit, int offset) async {
+    try {
+      final result = await dataSource.getEventPage(limit, offset);
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

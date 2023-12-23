@@ -97,7 +97,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                         SizedBox(
                           width: 16.w,
                         ),
-                        FilterItem(
+                        FilterItemWidget(
                           label: 'Hébergement',
                           icon: Assets.hosts,
                           onTap: (v) {
@@ -120,7 +120,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                         SizedBox(
                           width: 10.w,
                         ),
-                        FilterItem(
+                        FilterItemWidget(
                           label: 'Evenement',
                           icon: Assets.events,
                           onTap: (v) {
@@ -142,7 +142,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                         SizedBox(
                           width: 10.w,
                         ),
-                        FilterItem(
+                        FilterItemWidget(
                           label: 'Acitvités',
                           icon: Assets.activities,
                           onTap: (v) {
@@ -164,7 +164,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                         SizedBox(
                           width: 10.w,
                         ),
-                        FilterItem(
+                        FilterItemWidget(
                           label: 'Experiences',
                           icon: Assets.experiences,
                           onTap: (vv) {

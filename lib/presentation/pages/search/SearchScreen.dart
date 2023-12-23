@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/components/buttons/dropdown_buttom.dart';
-import 'package:idwey/components/filter_item/filter_item.dart';
+import 'package:idwey/components/components.dart';
 import 'package:idwey/components/inputs/date_input.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
@@ -129,7 +129,7 @@ class _SearchScreenState extends State<SearchScreen>
                 // Remove the indicator
                 unselectedLabelColor: Colors.grey,
                 tabs: [
-                  FilterItem(
+                  FilterItemWidget(
                     label: 'Hébergement',
                     icon: Assets.hosts,
                     onTap: (v) {
@@ -151,7 +151,7 @@ class _SearchScreenState extends State<SearchScreen>
                     },
                     isSelected: selectedIndex == 0,
                   ),
-                  FilterItem(
+                  FilterItemWidget(
                     label: 'Evenement',
                     icon: Assets.events,
                     onTap: (v) {
@@ -172,7 +172,7 @@ class _SearchScreenState extends State<SearchScreen>
                     },
                     isSelected: selectedIndex == 1,
                   ),
-                  FilterItem(
+                  FilterItemWidget(
                     label: 'Acitvités',
                     icon: Assets.activities,
                     onTap: (v) {
@@ -193,7 +193,7 @@ class _SearchScreenState extends State<SearchScreen>
                     },
                     isSelected: selectedIndex == 2,
                   ),
-                  FilterItem(
+                  FilterItemWidget(
                     label: 'Experiences',
                     icon: Assets.experiences,
                     onTap: (vv) {

@@ -44,6 +44,10 @@ class _ActivityScreenState extends State<ActivityScreen>
     if (currentScroll == maxScroll) {
       if (context.read<HomeBloc>().state.isSearch == true) {
         context.read<HomeBloc>().add(const GetSearchListActivities(true));
+      } else if (context.read<HomeBloc>().state.isFilter == true) {
+        context
+            .read<HomeBloc>()
+            .add(const GetFilterListActivitiesPageData(true));
       } else {
         context.read<HomeBloc>().add(const GetListActivities(true));
       }
@@ -55,8 +59,7 @@ class _ActivityScreenState extends State<ActivityScreen>
     super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        if (state.statusActivities == StateStatus.loading &&
-            state.listActivities!.isEmpty) {
+        if (state.statusActivities == StateStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -64,7 +67,12 @@ class _ActivityScreenState extends State<ActivityScreen>
             state.atTheEndOfThePageActivities == false) {
           return const Center(child: Text("Pas des activites"));
         } else if (state.statusActivities == StateStatus.error &&
-            state.atTheEndOfThePageActivities == true) {
+            state.atTheEndOfTheSearchPageActivities == true &&
+            state.isSearch == true) {
+          return const Center(child: Text("Pas des activites"));
+        } else if (state.status == StateStatus.error &&
+            state.atTheEndOfTheFilterPageActivities == false &&
+            state.isFilter == true) {
           return const Center(child: Text("Pas des activites"));
         } else if (state.statusActivities == StateStatus.success &&
             state.listActivities!.isEmpty) {
