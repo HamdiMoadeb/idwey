@@ -20,6 +20,7 @@ import 'package:idwey/domain/repositories/product_repository.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 import 'package:idwey/domain/repositories/review_repository.dart';
 import 'package:idwey/domain/usecases/add_review_usecase.dart';
+import 'package:idwey/domain/usecases/do_online_checkout_usecase.dart';
 import 'package:idwey/domain/usecases/get_activity_page_usecase.dart';
 import 'package:idwey/domain/usecases/get_dashboard_reviews.dart';
 import 'package:idwey/domain/usecases/get_event_page_usecase.dart';
@@ -152,6 +153,7 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => GetRateSettingsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => AddReviewUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => UpdateReviewUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => DoOnlineCheckoutUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetDashboardReviews(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(

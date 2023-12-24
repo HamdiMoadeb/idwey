@@ -77,6 +77,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                   "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt()} DT par personne",
                               url: state.eventDetailsDto?.bannerImageUrl ?? "",
                               typeReservation: TypeReservation.event,
+                              perPerson: "personne",
                               //typeHost: widget.eventDetailsDto,
                               salePrice: state.eventDetailsDto?.row?.prix ?? "",
                               price: state.eventDetailsDto?.row?.prix ?? "",
@@ -175,15 +176,19 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                                     child: Padding(
                                       padding: EdgeInsets.only(right: 16.w),
                                       child: CircleAvatar(
-                                        child: Text(
-                                          "-${state.eventDetailsDto?.row?.promotion}‰ ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headlineMedium!
-                                              .copyWith(
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white),
+                                        radius: 24.r,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Text(
+                                            "-${state.eventDetailsDto?.row?.promotion}‰ ",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headlineMedium!
+                                                .copyWith(
+                                                    fontSize: 16.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.white),
+                                          ),
                                         ),
                                       ),
                                     ),

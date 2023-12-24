@@ -24,7 +24,11 @@ class ConfirmReservationEvent with _$ConfirmReservationEvent {
       bool? termsAndConditions) = _OnTermsAndConditionsChecked;
   const factory ConfirmReservationEvent.onOfflinechecked() = _OnOfflineChecked;
   const factory ConfirmReservationEvent.onOnlinechecked() = _OnOnlineChecked;
-  const factory ConfirmReservationEvent.doCheckout() = _DoCheckout;
+  const factory ConfirmReservationEvent.doCheckout(Map<String, dynamic> body) =
+      _DoCheckout;
+  const factory ConfirmReservationEvent.doOnlineCheckout() = _DoOnlineCheckout;
   const factory ConfirmReservationEvent.setParams(
       String code, String customerID) = _setParams;
+  const factory ConfirmReservationEvent.setPaymentRef(String paymentRef) =
+      _SetPaymentRef;
 }

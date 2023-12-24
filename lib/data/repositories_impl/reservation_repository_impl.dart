@@ -22,6 +22,19 @@ class ReservationRepositoryImpl implements ReservationRepository {
   }
 
   @override
+  Future<Either<Exception, Map<String, dynamic>>> doOnlineCheckout(
+      Map<String, dynamic> body) async {
+    // try {
+    final result = await dataSource.doOnlineCheckout(body);
+    print("result");
+    print(result);
+    return Right(result);
+    // } on Exception catch (e) {
+    //   return Left(e);
+    // }
+  }
+
+  @override
   Future<Either<Exception, List<BookingDto>>> getReservationList(
       int params) async {
     try {

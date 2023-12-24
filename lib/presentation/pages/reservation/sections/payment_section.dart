@@ -75,30 +75,30 @@ class _PayementSectionState extends State<PayementSection> {
                   },
                 ),
               ),
-              // ListTile(
-              //   leading: const HeroIcon(
-              //     HeroIcons.creditCard,
-              //     color: Colors.black,
-              //   ),
-              //   title: Text(
-              //     'Online',
-              //     style: TextStyle(
-              //       fontWeight: FontWeight.w500,
-              //       fontSize: 16.h,
-              //     ),
-              //   ),
-              //   trailing: Radio<String>(
-              //     value: "Online",
-              //     groupValue: radioItem,
-              //     onChanged: (String? value) {
-              //       widget.onOnlineChecked!(value!);
-              //       setState(() {
-              //         radioItem = value ?? "";
-              //         widget.online = true;
-              //       });
-              //     },
-              //   ),
-              // ),
+              ListTile(
+                leading: const HeroIcon(
+                  HeroIcons.creditCard,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Online',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.h,
+                  ),
+                ),
+                trailing: Radio<String>(
+                  value: "Online",
+                  groupValue: radioItem,
+                  onChanged: (String? value) {
+                    widget.onOnlineChecked!(value!);
+                    setState(() {
+                      radioItem = value ?? "";
+                      widget.online = true;
+                    });
+                  },
+                ),
+              ),
               Visibility(
                 visible: widget.offline == true,
                 child: Padding(

@@ -81,6 +81,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                                   "",
                               typeReservation: TypeReservation.activity,
                               //typeHost: widget.eventDetailsDto,
+                              perPerson: "personne",
                               salePrice:
                                   state.activityDetailsDto?.row?.price ?? "",
                               price: state.activityDetailsDto?.row?.price ?? "",

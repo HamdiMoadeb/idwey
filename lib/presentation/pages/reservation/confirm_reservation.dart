@@ -1,17 +1,26 @@
+import 'dart:convert';
+
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/buttons/button.dart';
-
+import 'package:idwey/presentation/pages/webview_screen/webvie_screen.dart';
+// Import for Android features.
+import 'package:webview_flutter_android/webview_flutter_android.dart';
+// Import for iOS features.
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 
 import 'package:idwey/theme/app_colors.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import 'sections/payment_section.dart';
 import 'sections/reservation_form.dart';
@@ -84,6 +93,7 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
   TextEditingController dateController = TextEditingController();
   TextEditingController villeController = TextEditingController();
   TextEditingController paysController = TextEditingController();
+
   bool isChecked = false;
   bool offline = false;
   bool online = false;
@@ -278,18 +288,25 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                           primary: primaryOrange,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.r))),
-                      onPressed: state.name?.isEmpty == true ||
-                              state.lastname?.isEmpty == true ||
-                              state.email?.isEmpty == true ||
-                              state.phone?.isEmpty == true ||
-                              state.ville?.isEmpty == true ||
-                              state.termsAndConditions == false ||
-                              state.offline == false
-                          ? null
-                          : () {
-                              context.read<ConfirmReservationBloc>().add(
-                                  const ConfirmReservationEvent.doCheckout());
-                            },
+                      onPressed: state.name?.isNotEmpty == true &&
+                              state.lastname?.isNotEmpty == true &&
+                              state.email?.isNotEmpty == true &&
+                              state.phone?.isNotEmpty == true &&
+                              state.ville?.isNotEmpty == true &&
+                              state.termsAndConditions == true &&
+                              (state.offline == true || state.online == true)
+                          ? () {
+                              if (state.offline == true) {
+                                context.read<ConfirmReservationBloc>().add(
+                                    const ConfirmReservationEvent.doCheckout(
+                                        {}));
+                              } else {
+                                context.read<ConfirmReservationBloc>().add(
+                                    const ConfirmReservationEvent
+                                        .doOnlineCheckout());
+                              }
+                            }
+                          : null,
                       child: Text(
                         'Confirmer la réservation',
                         style: TextStyle(

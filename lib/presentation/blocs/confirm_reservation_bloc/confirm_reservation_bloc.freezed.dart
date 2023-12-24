@@ -32,8 +32,10 @@ mixin _$ConfirmReservationEvent {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,8 +53,10 @@ mixin _$ConfirmReservationEvent {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,8 +74,10 @@ mixin _$ConfirmReservationEvent {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,7 +99,9 @@ mixin _$ConfirmReservationEvent {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,7 +122,9 @@ mixin _$ConfirmReservationEvent {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -135,7 +145,9 @@ mixin _$ConfirmReservationEvent {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -211,8 +223,10 @@ class _$_Started implements _Started {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return started();
   }
@@ -233,8 +247,10 @@ class _$_Started implements _Started {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return started?.call();
   }
@@ -255,8 +271,10 @@ class _$_Started implements _Started {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -284,7 +302,9 @@ class _$_Started implements _Started {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return started(this);
   }
@@ -308,7 +328,9 @@ class _$_Started implements _Started {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return started?.call(this);
   }
@@ -332,7 +354,9 @@ class _$_Started implements _Started {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -397,8 +421,10 @@ class _$_GetUser implements _GetUser {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return getUser();
   }
@@ -419,8 +445,10 @@ class _$_GetUser implements _GetUser {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return getUser?.call();
   }
@@ -441,8 +469,10 @@ class _$_GetUser implements _GetUser {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -470,7 +500,9 @@ class _$_GetUser implements _GetUser {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return getUser(this);
   }
@@ -494,7 +526,9 @@ class _$_GetUser implements _GetUser {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return getUser?.call(this);
   }
@@ -518,7 +552,9 @@ class _$_GetUser implements _GetUser {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -610,8 +646,10 @@ class _$_OnNameChanges implements _OnNameChanges {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return nameChanged(name);
   }
@@ -632,8 +670,10 @@ class _$_OnNameChanges implements _OnNameChanges {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return nameChanged?.call(name);
   }
@@ -654,8 +694,10 @@ class _$_OnNameChanges implements _OnNameChanges {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -683,7 +725,9 @@ class _$_OnNameChanges implements _OnNameChanges {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return nameChanged(this);
   }
@@ -707,7 +751,9 @@ class _$_OnNameChanges implements _OnNameChanges {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return nameChanged?.call(this);
   }
@@ -731,7 +777,9 @@ class _$_OnNameChanges implements _OnNameChanges {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -830,8 +878,10 @@ class _$_OnLastnameChanges implements _OnLastnameChanges {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return lastnameChanged(lastname);
   }
@@ -852,8 +902,10 @@ class _$_OnLastnameChanges implements _OnLastnameChanges {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return lastnameChanged?.call(lastname);
   }
@@ -874,8 +926,10 @@ class _$_OnLastnameChanges implements _OnLastnameChanges {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (lastnameChanged != null) {
@@ -903,7 +957,9 @@ class _$_OnLastnameChanges implements _OnLastnameChanges {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return lastnameChanged(this);
   }
@@ -927,7 +983,9 @@ class _$_OnLastnameChanges implements _OnLastnameChanges {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return lastnameChanged?.call(this);
   }
@@ -951,7 +1009,9 @@ class _$_OnLastnameChanges implements _OnLastnameChanges {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (lastnameChanged != null) {
@@ -1049,8 +1109,10 @@ class _$_OnPhoneChanges implements _OnPhoneChanges {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return phoneChanged(phone);
   }
@@ -1071,8 +1133,10 @@ class _$_OnPhoneChanges implements _OnPhoneChanges {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return phoneChanged?.call(phone);
   }
@@ -1093,8 +1157,10 @@ class _$_OnPhoneChanges implements _OnPhoneChanges {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1122,7 +1188,9 @@ class _$_OnPhoneChanges implements _OnPhoneChanges {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return phoneChanged(this);
   }
@@ -1146,7 +1214,9 @@ class _$_OnPhoneChanges implements _OnPhoneChanges {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return phoneChanged?.call(this);
   }
@@ -1170,7 +1240,9 @@ class _$_OnPhoneChanges implements _OnPhoneChanges {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1267,8 +1339,10 @@ class _$_OnEmailChanges implements _OnEmailChanges {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return emailChanged(email);
   }
@@ -1289,8 +1363,10 @@ class _$_OnEmailChanges implements _OnEmailChanges {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return emailChanged?.call(email);
   }
@@ -1311,8 +1387,10 @@ class _$_OnEmailChanges implements _OnEmailChanges {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -1340,7 +1418,9 @@ class _$_OnEmailChanges implements _OnEmailChanges {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return emailChanged(this);
   }
@@ -1364,7 +1444,9 @@ class _$_OnEmailChanges implements _OnEmailChanges {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return emailChanged?.call(this);
   }
@@ -1388,7 +1470,9 @@ class _$_OnEmailChanges implements _OnEmailChanges {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -1485,8 +1569,10 @@ class _$_OnVilleChanged implements _OnVilleChanged {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return villeChanged(ville);
   }
@@ -1507,8 +1593,10 @@ class _$_OnVilleChanged implements _OnVilleChanged {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return villeChanged?.call(ville);
   }
@@ -1529,8 +1617,10 @@ class _$_OnVilleChanged implements _OnVilleChanged {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (villeChanged != null) {
@@ -1558,7 +1648,9 @@ class _$_OnVilleChanged implements _OnVilleChanged {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return villeChanged(this);
   }
@@ -1582,7 +1674,9 @@ class _$_OnVilleChanged implements _OnVilleChanged {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return villeChanged?.call(this);
   }
@@ -1606,7 +1700,9 @@ class _$_OnVilleChanged implements _OnVilleChanged {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (villeChanged != null) {
@@ -1707,8 +1803,10 @@ class _$_OnSpecialConditionsChanges implements _OnSpecialConditionsChanges {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return specialConditionsChanges(adresse);
   }
@@ -1729,8 +1827,10 @@ class _$_OnSpecialConditionsChanges implements _OnSpecialConditionsChanges {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return specialConditionsChanges?.call(adresse);
   }
@@ -1751,8 +1851,10 @@ class _$_OnSpecialConditionsChanges implements _OnSpecialConditionsChanges {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (specialConditionsChanges != null) {
@@ -1780,7 +1882,9 @@ class _$_OnSpecialConditionsChanges implements _OnSpecialConditionsChanges {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return specialConditionsChanges(this);
   }
@@ -1804,7 +1908,9 @@ class _$_OnSpecialConditionsChanges implements _OnSpecialConditionsChanges {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return specialConditionsChanges?.call(this);
   }
@@ -1828,7 +1934,9 @@ class _$_OnSpecialConditionsChanges implements _OnSpecialConditionsChanges {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (specialConditionsChanges != null) {
@@ -1900,8 +2008,10 @@ class _$_ConfirmReservation implements _ConfirmReservation {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return confirmReservation();
   }
@@ -1922,8 +2032,10 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return confirmReservation?.call();
   }
@@ -1944,8 +2056,10 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (confirmReservation != null) {
@@ -1973,7 +2087,9 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return confirmReservation(this);
   }
@@ -1997,7 +2113,9 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return confirmReservation?.call(this);
   }
@@ -2021,7 +2139,9 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (confirmReservation != null) {
@@ -2087,8 +2207,10 @@ class _$_ValidInformations implements _ValidInformations {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return validInformations();
   }
@@ -2109,8 +2231,10 @@ class _$_ValidInformations implements _ValidInformations {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return validInformations?.call();
   }
@@ -2131,8 +2255,10 @@ class _$_ValidInformations implements _ValidInformations {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (validInformations != null) {
@@ -2160,7 +2286,9 @@ class _$_ValidInformations implements _ValidInformations {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return validInformations(this);
   }
@@ -2184,7 +2312,9 @@ class _$_ValidInformations implements _ValidInformations {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return validInformations?.call(this);
   }
@@ -2208,7 +2338,9 @@ class _$_ValidInformations implements _ValidInformations {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (validInformations != null) {
@@ -2305,8 +2437,10 @@ class _$_OnTermsAndConditionsChecked implements _OnTermsAndConditionsChecked {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return onTermsAndConditionsChecked(termsAndConditions);
   }
@@ -2327,8 +2461,10 @@ class _$_OnTermsAndConditionsChecked implements _OnTermsAndConditionsChecked {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return onTermsAndConditionsChecked?.call(termsAndConditions);
   }
@@ -2349,8 +2485,10 @@ class _$_OnTermsAndConditionsChecked implements _OnTermsAndConditionsChecked {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (onTermsAndConditionsChecked != null) {
@@ -2378,7 +2516,9 @@ class _$_OnTermsAndConditionsChecked implements _OnTermsAndConditionsChecked {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return onTermsAndConditionsChecked(this);
   }
@@ -2402,7 +2542,9 @@ class _$_OnTermsAndConditionsChecked implements _OnTermsAndConditionsChecked {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return onTermsAndConditionsChecked?.call(this);
   }
@@ -2426,7 +2568,9 @@ class _$_OnTermsAndConditionsChecked implements _OnTermsAndConditionsChecked {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (onTermsAndConditionsChecked != null) {
@@ -2498,8 +2642,10 @@ class _$_OnOfflineChecked implements _OnOfflineChecked {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return onOfflinechecked();
   }
@@ -2520,8 +2666,10 @@ class _$_OnOfflineChecked implements _OnOfflineChecked {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return onOfflinechecked?.call();
   }
@@ -2542,8 +2690,10 @@ class _$_OnOfflineChecked implements _OnOfflineChecked {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (onOfflinechecked != null) {
@@ -2571,7 +2721,9 @@ class _$_OnOfflineChecked implements _OnOfflineChecked {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return onOfflinechecked(this);
   }
@@ -2595,7 +2747,9 @@ class _$_OnOfflineChecked implements _OnOfflineChecked {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return onOfflinechecked?.call(this);
   }
@@ -2619,7 +2773,9 @@ class _$_OnOfflineChecked implements _OnOfflineChecked {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (onOfflinechecked != null) {
@@ -2685,8 +2841,10 @@ class _$_OnOnlineChecked implements _OnOnlineChecked {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return onOnlinechecked();
   }
@@ -2707,8 +2865,10 @@ class _$_OnOnlineChecked implements _OnOnlineChecked {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return onOnlinechecked?.call();
   }
@@ -2729,8 +2889,10 @@ class _$_OnOnlineChecked implements _OnOnlineChecked {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (onOnlinechecked != null) {
@@ -2758,7 +2920,9 @@ class _$_OnOnlineChecked implements _OnOnlineChecked {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return onOnlinechecked(this);
   }
@@ -2782,7 +2946,9 @@ class _$_OnOnlineChecked implements _OnOnlineChecked {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return onOnlinechecked?.call(this);
   }
@@ -2806,7 +2972,9 @@ class _$_OnOnlineChecked implements _OnOnlineChecked {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (onOnlinechecked != null) {
@@ -2825,6 +2993,8 @@ abstract class _$$_DoCheckoutCopyWith<$Res> {
   factory _$$_DoCheckoutCopyWith(
           _$_DoCheckout value, $Res Function(_$_DoCheckout) then) =
       __$$_DoCheckoutCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> body});
 }
 
 /// @nodoc
@@ -2834,26 +3004,56 @@ class __$$_DoCheckoutCopyWithImpl<$Res>
   __$$_DoCheckoutCopyWithImpl(
       _$_DoCheckout _value, $Res Function(_$_DoCheckout) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? body = null,
+  }) {
+    return _then(_$_DoCheckout(
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_DoCheckout implements _DoCheckout {
-  const _$_DoCheckout();
+  const _$_DoCheckout(final Map<String, dynamic> body) : _body = body;
+
+  final Map<String, dynamic> _body;
+  @override
+  Map<String, dynamic> get body {
+    if (_body is EqualUnmodifiableMapView) return _body;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_body);
+  }
 
   @override
   String toString() {
-    return 'ConfirmReservationEvent.doCheckout()';
+    return 'ConfirmReservationEvent.doCheckout(body: $body)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DoCheckout);
+        (other.runtimeType == runtimeType &&
+            other is _$_DoCheckout &&
+            const DeepCollectionEquality().equals(other._body, _body));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DoCheckoutCopyWith<_$_DoCheckout> get copyWith =>
+      __$$_DoCheckoutCopyWithImpl<_$_DoCheckout>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2872,10 +3072,12 @@ class _$_DoCheckout implements _DoCheckout {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
-    return doCheckout();
+    return doCheckout(body);
   }
 
   @override
@@ -2894,10 +3096,12 @@ class _$_DoCheckout implements _DoCheckout {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
-    return doCheckout?.call();
+    return doCheckout?.call(body);
   }
 
   @override
@@ -2916,12 +3120,14 @@ class _$_DoCheckout implements _DoCheckout {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (doCheckout != null) {
-      return doCheckout();
+      return doCheckout(body);
     }
     return orElse();
   }
@@ -2945,7 +3151,9 @@ class _$_DoCheckout implements _DoCheckout {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return doCheckout(this);
   }
@@ -2969,7 +3177,9 @@ class _$_DoCheckout implements _DoCheckout {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return doCheckout?.call(this);
   }
@@ -2993,7 +3203,9 @@ class _$_DoCheckout implements _DoCheckout {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (doCheckout != null) {
@@ -3004,7 +3216,211 @@ class _$_DoCheckout implements _DoCheckout {
 }
 
 abstract class _DoCheckout implements ConfirmReservationEvent {
-  const factory _DoCheckout() = _$_DoCheckout;
+  const factory _DoCheckout(final Map<String, dynamic> body) = _$_DoCheckout;
+
+  Map<String, dynamic> get body;
+  @JsonKey(ignore: true)
+  _$$_DoCheckoutCopyWith<_$_DoCheckout> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_DoOnlineCheckoutCopyWith<$Res> {
+  factory _$$_DoOnlineCheckoutCopyWith(
+          _$_DoOnlineCheckout value, $Res Function(_$_DoOnlineCheckout) then) =
+      __$$_DoOnlineCheckoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DoOnlineCheckoutCopyWithImpl<$Res>
+    extends _$ConfirmReservationEventCopyWithImpl<$Res, _$_DoOnlineCheckout>
+    implements _$$_DoOnlineCheckoutCopyWith<$Res> {
+  __$$_DoOnlineCheckoutCopyWithImpl(
+      _$_DoOnlineCheckout _value, $Res Function(_$_DoOnlineCheckout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_DoOnlineCheckout implements _DoOnlineCheckout {
+  const _$_DoOnlineCheckout();
+
+  @override
+  String toString() {
+    return 'ConfirmReservationEvent.doOnlineCheckout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_DoOnlineCheckout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getUser,
+    required TResult Function(String name) nameChanged,
+    required TResult Function(String lastname) lastnameChanged,
+    required TResult Function(String phone) phoneChanged,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String ville) villeChanged,
+    required TResult Function(String adresse) specialConditionsChanges,
+    required TResult Function() confirmReservation,
+    required TResult Function() validInformations,
+    required TResult Function(bool? termsAndConditions)
+        onTermsAndConditionsChecked,
+    required TResult Function() onOfflinechecked,
+    required TResult Function() onOnlinechecked,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
+    required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
+  }) {
+    return doOnlineCheckout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getUser,
+    TResult? Function(String name)? nameChanged,
+    TResult? Function(String lastname)? lastnameChanged,
+    TResult? Function(String phone)? phoneChanged,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String ville)? villeChanged,
+    TResult? Function(String adresse)? specialConditionsChanges,
+    TResult? Function()? confirmReservation,
+    TResult? Function()? validInformations,
+    TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
+    TResult? Function()? onOfflinechecked,
+    TResult? Function()? onOnlinechecked,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
+    TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
+  }) {
+    return doOnlineCheckout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getUser,
+    TResult Function(String name)? nameChanged,
+    TResult Function(String lastname)? lastnameChanged,
+    TResult Function(String phone)? phoneChanged,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String ville)? villeChanged,
+    TResult Function(String adresse)? specialConditionsChanges,
+    TResult Function()? confirmReservation,
+    TResult Function()? validInformations,
+    TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
+    TResult Function()? onOfflinechecked,
+    TResult Function()? onOnlinechecked,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
+    TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
+    required TResult orElse(),
+  }) {
+    if (doOnlineCheckout != null) {
+      return doOnlineCheckout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_OnNameChanges value) nameChanged,
+    required TResult Function(_OnLastnameChanges value) lastnameChanged,
+    required TResult Function(_OnPhoneChanges value) phoneChanged,
+    required TResult Function(_OnEmailChanges value) emailChanged,
+    required TResult Function(_OnVilleChanged value) villeChanged,
+    required TResult Function(_OnSpecialConditionsChanges value)
+        specialConditionsChanges,
+    required TResult Function(_ConfirmReservation value) confirmReservation,
+    required TResult Function(_ValidInformations value) validInformations,
+    required TResult Function(_OnTermsAndConditionsChecked value)
+        onTermsAndConditionsChecked,
+    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
+    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
+    required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
+  }) {
+    return doOnlineCheckout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_OnNameChanges value)? nameChanged,
+    TResult? Function(_OnLastnameChanges value)? lastnameChanged,
+    TResult? Function(_OnPhoneChanges value)? phoneChanged,
+    TResult? Function(_OnEmailChanges value)? emailChanged,
+    TResult? Function(_OnVilleChanged value)? villeChanged,
+    TResult? Function(_OnSpecialConditionsChanges value)?
+        specialConditionsChanges,
+    TResult? Function(_ConfirmReservation value)? confirmReservation,
+    TResult? Function(_ValidInformations value)? validInformations,
+    TResult? Function(_OnTermsAndConditionsChecked value)?
+        onTermsAndConditionsChecked,
+    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
+    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
+    TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
+  }) {
+    return doOnlineCheckout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetUser value)? getUser,
+    TResult Function(_OnNameChanges value)? nameChanged,
+    TResult Function(_OnLastnameChanges value)? lastnameChanged,
+    TResult Function(_OnPhoneChanges value)? phoneChanged,
+    TResult Function(_OnEmailChanges value)? emailChanged,
+    TResult Function(_OnVilleChanged value)? villeChanged,
+    TResult Function(_OnSpecialConditionsChanges value)?
+        specialConditionsChanges,
+    TResult Function(_ConfirmReservation value)? confirmReservation,
+    TResult Function(_ValidInformations value)? validInformations,
+    TResult Function(_OnTermsAndConditionsChecked value)?
+        onTermsAndConditionsChecked,
+    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
+    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
+    TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
+    required TResult orElse(),
+  }) {
+    if (doOnlineCheckout != null) {
+      return doOnlineCheckout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DoOnlineCheckout implements ConfirmReservationEvent {
+  const factory _DoOnlineCheckout() = _$_DoOnlineCheckout;
 }
 
 /// @nodoc
@@ -3094,8 +3510,10 @@ class _$_setParams implements _setParams {
         onTermsAndConditionsChecked,
     required TResult Function() onOfflinechecked,
     required TResult Function() onOnlinechecked,
-    required TResult Function() doCheckout,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
     required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
   }) {
     return setParams(code, customerID);
   }
@@ -3116,8 +3534,10 @@ class _$_setParams implements _setParams {
     TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult? Function()? onOfflinechecked,
     TResult? Function()? onOnlinechecked,
-    TResult? Function()? doCheckout,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
     TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
   }) {
     return setParams?.call(code, customerID);
   }
@@ -3138,8 +3558,10 @@ class _$_setParams implements _setParams {
     TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
     TResult Function()? onOfflinechecked,
     TResult Function()? onOnlinechecked,
-    TResult Function()? doCheckout,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
     TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (setParams != null) {
@@ -3167,7 +3589,9 @@ class _$_setParams implements _setParams {
     required TResult Function(_OnOfflineChecked value) onOfflinechecked,
     required TResult Function(_OnOnlineChecked value) onOnlinechecked,
     required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
     required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
   }) {
     return setParams(this);
   }
@@ -3191,7 +3615,9 @@ class _$_setParams implements _setParams {
     TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
   }) {
     return setParams?.call(this);
   }
@@ -3215,7 +3641,9 @@ class _$_setParams implements _setParams {
     TResult Function(_OnOfflineChecked value)? onOfflinechecked,
     TResult Function(_OnOnlineChecked value)? onOnlinechecked,
     TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
     TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
     required TResult orElse(),
   }) {
     if (setParams != null) {
@@ -3233,6 +3661,237 @@ abstract class _setParams implements ConfirmReservationEvent {
   String get customerID;
   @JsonKey(ignore: true)
   _$$_setParamsCopyWith<_$_setParams> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SetPaymentRefCopyWith<$Res> {
+  factory _$$_SetPaymentRefCopyWith(
+          _$_SetPaymentRef value, $Res Function(_$_SetPaymentRef) then) =
+      __$$_SetPaymentRefCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String paymentRef});
+}
+
+/// @nodoc
+class __$$_SetPaymentRefCopyWithImpl<$Res>
+    extends _$ConfirmReservationEventCopyWithImpl<$Res, _$_SetPaymentRef>
+    implements _$$_SetPaymentRefCopyWith<$Res> {
+  __$$_SetPaymentRefCopyWithImpl(
+      _$_SetPaymentRef _value, $Res Function(_$_SetPaymentRef) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? paymentRef = null,
+  }) {
+    return _then(_$_SetPaymentRef(
+      null == paymentRef
+          ? _value.paymentRef
+          : paymentRef // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetPaymentRef implements _SetPaymentRef {
+  const _$_SetPaymentRef(this.paymentRef);
+
+  @override
+  final String paymentRef;
+
+  @override
+  String toString() {
+    return 'ConfirmReservationEvent.setPaymentRef(paymentRef: $paymentRef)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetPaymentRef &&
+            (identical(other.paymentRef, paymentRef) ||
+                other.paymentRef == paymentRef));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, paymentRef);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SetPaymentRefCopyWith<_$_SetPaymentRef> get copyWith =>
+      __$$_SetPaymentRefCopyWithImpl<_$_SetPaymentRef>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getUser,
+    required TResult Function(String name) nameChanged,
+    required TResult Function(String lastname) lastnameChanged,
+    required TResult Function(String phone) phoneChanged,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String ville) villeChanged,
+    required TResult Function(String adresse) specialConditionsChanges,
+    required TResult Function() confirmReservation,
+    required TResult Function() validInformations,
+    required TResult Function(bool? termsAndConditions)
+        onTermsAndConditionsChecked,
+    required TResult Function() onOfflinechecked,
+    required TResult Function() onOnlinechecked,
+    required TResult Function(Map<String, dynamic> body) doCheckout,
+    required TResult Function() doOnlineCheckout,
+    required TResult Function(String code, String customerID) setParams,
+    required TResult Function(String paymentRef) setPaymentRef,
+  }) {
+    return setPaymentRef(paymentRef);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getUser,
+    TResult? Function(String name)? nameChanged,
+    TResult? Function(String lastname)? lastnameChanged,
+    TResult? Function(String phone)? phoneChanged,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String ville)? villeChanged,
+    TResult? Function(String adresse)? specialConditionsChanges,
+    TResult? Function()? confirmReservation,
+    TResult? Function()? validInformations,
+    TResult? Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
+    TResult? Function()? onOfflinechecked,
+    TResult? Function()? onOnlinechecked,
+    TResult? Function(Map<String, dynamic> body)? doCheckout,
+    TResult? Function()? doOnlineCheckout,
+    TResult? Function(String code, String customerID)? setParams,
+    TResult? Function(String paymentRef)? setPaymentRef,
+  }) {
+    return setPaymentRef?.call(paymentRef);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getUser,
+    TResult Function(String name)? nameChanged,
+    TResult Function(String lastname)? lastnameChanged,
+    TResult Function(String phone)? phoneChanged,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String ville)? villeChanged,
+    TResult Function(String adresse)? specialConditionsChanges,
+    TResult Function()? confirmReservation,
+    TResult Function()? validInformations,
+    TResult Function(bool? termsAndConditions)? onTermsAndConditionsChecked,
+    TResult Function()? onOfflinechecked,
+    TResult Function()? onOnlinechecked,
+    TResult Function(Map<String, dynamic> body)? doCheckout,
+    TResult Function()? doOnlineCheckout,
+    TResult Function(String code, String customerID)? setParams,
+    TResult Function(String paymentRef)? setPaymentRef,
+    required TResult orElse(),
+  }) {
+    if (setPaymentRef != null) {
+      return setPaymentRef(paymentRef);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_OnNameChanges value) nameChanged,
+    required TResult Function(_OnLastnameChanges value) lastnameChanged,
+    required TResult Function(_OnPhoneChanges value) phoneChanged,
+    required TResult Function(_OnEmailChanges value) emailChanged,
+    required TResult Function(_OnVilleChanged value) villeChanged,
+    required TResult Function(_OnSpecialConditionsChanges value)
+        specialConditionsChanges,
+    required TResult Function(_ConfirmReservation value) confirmReservation,
+    required TResult Function(_ValidInformations value) validInformations,
+    required TResult Function(_OnTermsAndConditionsChecked value)
+        onTermsAndConditionsChecked,
+    required TResult Function(_OnOfflineChecked value) onOfflinechecked,
+    required TResult Function(_OnOnlineChecked value) onOnlinechecked,
+    required TResult Function(_DoCheckout value) doCheckout,
+    required TResult Function(_DoOnlineCheckout value) doOnlineCheckout,
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_SetPaymentRef value) setPaymentRef,
+  }) {
+    return setPaymentRef(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_OnNameChanges value)? nameChanged,
+    TResult? Function(_OnLastnameChanges value)? lastnameChanged,
+    TResult? Function(_OnPhoneChanges value)? phoneChanged,
+    TResult? Function(_OnEmailChanges value)? emailChanged,
+    TResult? Function(_OnVilleChanged value)? villeChanged,
+    TResult? Function(_OnSpecialConditionsChanges value)?
+        specialConditionsChanges,
+    TResult? Function(_ConfirmReservation value)? confirmReservation,
+    TResult? Function(_ValidInformations value)? validInformations,
+    TResult? Function(_OnTermsAndConditionsChecked value)?
+        onTermsAndConditionsChecked,
+    TResult? Function(_OnOfflineChecked value)? onOfflinechecked,
+    TResult? Function(_OnOnlineChecked value)? onOnlinechecked,
+    TResult? Function(_DoCheckout value)? doCheckout,
+    TResult? Function(_DoOnlineCheckout value)? doOnlineCheckout,
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_SetPaymentRef value)? setPaymentRef,
+  }) {
+    return setPaymentRef?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetUser value)? getUser,
+    TResult Function(_OnNameChanges value)? nameChanged,
+    TResult Function(_OnLastnameChanges value)? lastnameChanged,
+    TResult Function(_OnPhoneChanges value)? phoneChanged,
+    TResult Function(_OnEmailChanges value)? emailChanged,
+    TResult Function(_OnVilleChanged value)? villeChanged,
+    TResult Function(_OnSpecialConditionsChanges value)?
+        specialConditionsChanges,
+    TResult Function(_ConfirmReservation value)? confirmReservation,
+    TResult Function(_ValidInformations value)? validInformations,
+    TResult Function(_OnTermsAndConditionsChecked value)?
+        onTermsAndConditionsChecked,
+    TResult Function(_OnOfflineChecked value)? onOfflinechecked,
+    TResult Function(_OnOnlineChecked value)? onOnlinechecked,
+    TResult Function(_DoCheckout value)? doCheckout,
+    TResult Function(_DoOnlineCheckout value)? doOnlineCheckout,
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_SetPaymentRef value)? setPaymentRef,
+    required TResult orElse(),
+  }) {
+    if (setPaymentRef != null) {
+      return setPaymentRef(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetPaymentRef implements ConfirmReservationEvent {
+  const factory _SetPaymentRef(final String paymentRef) = _$_SetPaymentRef;
+
+  String get paymentRef;
+  @JsonKey(ignore: true)
+  _$$_SetPaymentRefCopyWith<_$_SetPaymentRef> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3258,6 +3917,7 @@ mixin _$ConfirmReservationState {
   String? get specialConditions => throw _privateConstructorUsedError;
   String? get code => throw _privateConstructorUsedError;
   String? get customerID => throw _privateConstructorUsedError;
+  String? get paymentRef => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ConfirmReservationStateCopyWith<ConfirmReservationState> get copyWith =>
@@ -3290,7 +3950,8 @@ abstract class $ConfirmReservationStateCopyWith<$Res> {
       String? ville,
       String? specialConditions,
       String? code,
-      String? customerID});
+      String? customerID,
+      String? paymentRef});
 }
 
 /// @nodoc
@@ -3327,6 +3988,7 @@ class _$ConfirmReservationStateCopyWithImpl<$Res,
     Object? specialConditions = freezed,
     Object? code = freezed,
     Object? customerID = freezed,
+    Object? paymentRef = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -3409,6 +4071,10 @@ class _$ConfirmReservationStateCopyWithImpl<$Res,
           ? _value.customerID
           : customerID // ignore: cast_nullable_to_non_nullable
               as String?,
+      paymentRef: freezed == paymentRef
+          ? _value.paymentRef
+          : paymentRef // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -3441,7 +4107,8 @@ abstract class _$$_ConfirmReservationStateCopyWith<$Res>
       String? ville,
       String? specialConditions,
       String? code,
-      String? customerID});
+      String? customerID,
+      String? paymentRef});
 }
 
 /// @nodoc
@@ -3476,6 +4143,7 @@ class __$$_ConfirmReservationStateCopyWithImpl<$Res>
     Object? specialConditions = freezed,
     Object? code = freezed,
     Object? customerID = freezed,
+    Object? paymentRef = freezed,
   }) {
     return _then(_$_ConfirmReservationState(
       status: freezed == status
@@ -3558,6 +4226,10 @@ class __$$_ConfirmReservationStateCopyWithImpl<$Res>
           ? _value.customerID
           : customerID // ignore: cast_nullable_to_non_nullable
               as String?,
+      paymentRef: freezed == paymentRef
+          ? _value.paymentRef
+          : paymentRef // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -3585,7 +4257,8 @@ class _$_ConfirmReservationState implements _ConfirmReservationState {
       this.ville,
       this.specialConditions,
       this.code,
-      this.customerID});
+      this.customerID,
+      this.paymentRef});
 
   @override
   final StateStatus? status;
@@ -3627,10 +4300,12 @@ class _$_ConfirmReservationState implements _ConfirmReservationState {
   final String? code;
   @override
   final String? customerID;
+  @override
+  final String? paymentRef;
 
   @override
   String toString() {
-    return 'ConfirmReservationState(status: $status, checkoutStatus: $checkoutStatus, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, nbNights: $nbNights, guests: $guests, termsAndConditions: $termsAndConditions, offline: $offline, online: $online, validInformations: $validInformations, ville: $ville, specialConditions: $specialConditions, code: $code, customerID: $customerID)';
+    return 'ConfirmReservationState(status: $status, checkoutStatus: $checkoutStatus, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, nbNights: $nbNights, guests: $guests, termsAndConditions: $termsAndConditions, offline: $offline, online: $online, validInformations: $validInformations, ville: $ville, specialConditions: $specialConditions, code: $code, customerID: $customerID, paymentRef: $paymentRef)';
   }
 
   @override
@@ -3667,7 +4342,9 @@ class _$_ConfirmReservationState implements _ConfirmReservationState {
                 other.specialConditions == specialConditions) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.customerID, customerID) ||
-                other.customerID == customerID));
+                other.customerID == customerID) &&
+            (identical(other.paymentRef, paymentRef) ||
+                other.paymentRef == paymentRef));
   }
 
   @override
@@ -3692,7 +4369,8 @@ class _$_ConfirmReservationState implements _ConfirmReservationState {
         ville,
         specialConditions,
         code,
-        customerID
+        customerID,
+        paymentRef
       ]);
 
   @JsonKey(ignore: true)
@@ -3725,7 +4403,8 @@ abstract class _ConfirmReservationState implements ConfirmReservationState {
       final String? ville,
       final String? specialConditions,
       final String? code,
-      final String? customerID}) = _$_ConfirmReservationState;
+      final String? customerID,
+      final String? paymentRef}) = _$_ConfirmReservationState;
 
   @override
   StateStatus? get status;
@@ -3767,6 +4446,8 @@ abstract class _ConfirmReservationState implements ConfirmReservationState {
   String? get code;
   @override
   String? get customerID;
+  @override
+  String? get paymentRef;
   @override
   @JsonKey(ignore: true)
   _$$_ConfirmReservationStateCopyWith<_$_ConfirmReservationState>
