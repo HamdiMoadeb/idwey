@@ -185,7 +185,7 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
                                 "country": "TN",
                                 "customer_notes":
                                     widget.state.specialConditions,
-                                "payment_gateway": "online_payment",
+                                "payment_gateway": "konnect_payment",
                                 "paymentRef": widget.state.paymentRef,
                               }));
                         }
