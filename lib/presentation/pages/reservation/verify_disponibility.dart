@@ -182,7 +182,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                       state.availableChalet?.isEmpty == true
                   ? "Sélectionner votre chalet"
                   : "Réserver",
-              perPerson: "nuit",
+              perPerson: widget.perPerson == "nuit" ? "nuit" : "personne",
               price: state.totalPrice == "" ||
                       state.totalPrice == null ||
                       state.nbNights == "0"

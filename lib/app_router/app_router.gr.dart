@@ -181,6 +181,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HowItWorksScreen(),
       );
     },
+    InAppWebViewRoute.name: (routeData) {
+      final args = routeData.argsAs<InAppWebViewRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: InAppWebViewScreen(
+          key: args.key,
+          url: args.url,
+          state: args.state,
+        ),
+      );
+    },
     InspirationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -879,6 +890,49 @@ class HowItWorksRoute extends PageRouteInfo<void> {
   static const String name = 'HowItWorksRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [InAppWebViewScreen]
+class InAppWebViewRoute extends PageRouteInfo<InAppWebViewRouteArgs> {
+  InAppWebViewRoute({
+    Key? key,
+    required String url,
+    required ConfirmReservationState state,
+    List<PageRouteInfo>? children,
+  }) : super(
+          InAppWebViewRoute.name,
+          args: InAppWebViewRouteArgs(
+            key: key,
+            url: url,
+            state: state,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'InAppWebViewRoute';
+
+  static const PageInfo<InAppWebViewRouteArgs> page =
+      PageInfo<InAppWebViewRouteArgs>(name);
+}
+
+class InAppWebViewRouteArgs {
+  const InAppWebViewRouteArgs({
+    this.key,
+    required this.url,
+    required this.state,
+  });
+
+  final Key? key;
+
+  final String url;
+
+  final ConfirmReservationState state;
+
+  @override
+  String toString() {
+    return 'InAppWebViewRouteArgs{key: $key, url: $url, state: $state}';
+  }
 }
 
 /// generated route for

@@ -195,9 +195,9 @@ class _CustomCardState extends State<CustomCard> {
                               badgeSize: 70.r,
                               textSpan: TextSpan(
                                 text: "${widget.discount}%",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 12,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w500),
                               ))
                           : null,

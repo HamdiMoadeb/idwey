@@ -10,6 +10,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/buttons/button.dart';
+import 'package:idwey/presentation/pages/webview_screen/webvie_screen.dart';
 // Import for Android features.
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 // Import for iOS features.
@@ -97,103 +98,6 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
   bool offline = false;
   bool online = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Dio dio = Dio();
-  final KONNECT_API_KEY = "654a56cf228ef6b9d3bcac3b:U4qdkC6tbhtpudrMn";
-  final KONNECT_RECEIVER_WALLET_ID = "654a56cf228ef6b9d3bcac3f";
-  final KONNECT_PAYMENT_URL =
-      "https://api.preprod.konnect.network/api/v2/payments/init-payment";
-  void initiatePayment() async {
-    Map<String, String> headers = {
-      'x-api-key': KONNECT_API_KEY,
-    };
-
-    Map<String, dynamic> requestBody = {
-      "receiverWalletId": KONNECT_RECEIVER_WALLET_ID,
-      "token": "TND",
-      "amount": 10000,
-      "type": "immediate",
-      "description": "payment description",
-      "acceptedPaymentMethods": ["wallet", "bank_card", "e-DINAR"],
-      "lifespan": 10,
-      "checkoutForm": true,
-      "addPaymentFeesToAmount": true,
-      "firstName": "John",
-      "lastName": "Doe",
-      "phoneNumber": "22777777",
-      "email": "john.doe@gmail.com",
-      "orderId": "1234657",
-      "webhook": "https://merchant.tech/api/notification_payment",
-      "silentWebhook": true,
-      "successUrl": "http://102.219.178.96:5776/success",
-      "failUrl": "http://102.219.178.96:5776/failed",
-      "theme": "light"
-    };
-    print("requestBody");
-    print(requestBody);
-    try {
-      var response = await dio.post(
-        KONNECT_PAYMENT_URL,
-        data: jsonEncode(requestBody),
-        options: Options(headers: headers),
-      );
-      print(response.data);
-      print(response.statusCode);
-      if (response.statusCode == 200) {
-        // Process the response here
-        // Redirect the user to the payment URL provided in the response
-        String paymentUrl = jsonDecode(jsonEncode(response.data))['payUrl'];
-        // Redirect the user to paymentUrl
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          InAppWebViewController _webViewController;
-          return Scaffold(
-            appBar: AppBar(title: const Text('Flutter Simple Example')),
-            body: InAppWebView(
-              initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
-              shouldOverrideUrlLoading: (controller, url) async {
-                return NavigationActionPolicy.ALLOW;
-              },
-              onWebViewCreated: (InAppWebViewController controller) {
-                _webViewController = controller;
-              },
-              onLoadStart: (controller, url) {
-                setState(() {
-                  print('Page started loading: $url');
-                });
-              },
-              onLoadStop: (controller, url) {
-                setState(() {
-                  print('Page finished loading: $url');
-                });
-              },
-              initialOptions: InAppWebViewGroupOptions(
-                  crossPlatform: InAppWebViewOptions(
-                    useShouldInterceptAjaxRequest: true,
-                    useShouldInterceptFetchRequest: true,
-                    useShouldOverrideUrlLoading: true,
-                    javaScriptEnabled: true,
-                    cacheEnabled: true,
-                    //    clearCache:true,
-                  ),
-                  ios: IOSInAppWebViewOptions(
-                    allowsInlineMediaPlayback: true,
-                  ),
-                  android: AndroidInAppWebViewOptions(
-                    domStorageEnabled: true,
-                    useHybridComposition: true,
-                    databaseEnabled: true,
-                  )),
-            ),
-          );
-        }));
-      } else {
-        // Handle other status codes (error handling)
-      }
-    } catch (e) {
-      print("error");
-      print(e);
-      // Handle exceptions
-    }
-  }
 
   @override
   void initState() {
@@ -384,20 +288,25 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                           primary: primaryOrange,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.r))),
-                      onPressed: state.name?.isEmpty == true ||
-                              state.lastname?.isEmpty == true ||
-                              state.email?.isEmpty == true ||
-                              state.phone?.isEmpty == true ||
-                              state.ville?.isEmpty == true ||
-                              state.termsAndConditions == false ||
-                              state.offline == false
+                      onPressed: state.name?.isNotEmpty == true &&
+                              state.lastname?.isNotEmpty == true &&
+                              state.email?.isNotEmpty == true &&
+                              state.phone?.isNotEmpty == true &&
+                              state.ville?.isNotEmpty == true &&
+                              state.termsAndConditions == true &&
+                              (state.offline == true || state.online == true)
                           ? () {
-                              initiatePayment();
+                              if (state.offline == true) {
+                                context.read<ConfirmReservationBloc>().add(
+                                    const ConfirmReservationEvent.doCheckout(
+                                        {}));
+                              } else {
+                                context.read<ConfirmReservationBloc>().add(
+                                    const ConfirmReservationEvent
+                                        .doOnlineCheckout());
+                              }
                             }
-                          : () {
-                              context.read<ConfirmReservationBloc>().add(
-                                  const ConfirmReservationEvent.doCheckout());
-                            },
+                          : null,
                       child: Text(
                         'Confirmer la réservation',
                         style: TextStyle(

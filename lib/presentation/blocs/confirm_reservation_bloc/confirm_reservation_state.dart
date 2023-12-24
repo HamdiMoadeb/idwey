@@ -23,6 +23,7 @@ class ConfirmReservationState with _$ConfirmReservationState {
     String? specialConditions,
     String? code,
     String? customerID,
+    String? paymentRef,
   }) = _ConfirmReservationState;
 
   factory ConfirmReservationState.initial() => ConfirmReservationState(
@@ -47,5 +48,6 @@ class ConfirmReservationState with _$ConfirmReservationState {
         specialConditions: "",
         code: "",
         customerID: "",
+        paymentRef: "",
       );
 }

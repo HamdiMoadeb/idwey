@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/domain/usecases/do_checkout_usecase.dart';
+import 'package:idwey/domain/usecases/do_online_checkout_usecase.dart';
 import 'package:idwey/utils/form_utils.dart';
 import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -28,6 +33,8 @@ class ConfirmReservationBloc
     on<_OnOnlineChecked>(onOnlineChecked);
     on<_DoCheckout>(doCheckout);
     on<_setParams>(setParams);
+    on<_SetPaymentRef>(setPaymentRef);
+    on<_DoOnlineCheckout>(doOnlineCheckout);
   }
 
   void getUser(_GetUser event, Emitter<ConfirmReservationState> emit) async {
@@ -130,6 +137,41 @@ class ConfirmReservationBloc
     emit(state.copyWith(online: false, offline: true));
   }
 
+  /// set payment ref
+
+  void setPaymentRef(
+      _SetPaymentRef event, Emitter<ConfirmReservationState> emit) async {
+    emit(state.copyWith(code: event.paymentRef));
+  }
+
+  /// do online checkout
+
+  void doOnlineCheckout(
+      _DoOnlineCheckout event, Emitter<ConfirmReservationState> emit) async {
+    try {
+      final result = await GetIt.I<DoOnlineCheckoutUseCase>().call({});
+
+      result.fold((l) {}, (r) {
+        if (r != null) {
+          emit(state.copyWith(paymentRef: r['paymentRef']));
+          // Process the response here
+          // Redirect the user to the payment URL provided in the response
+          String paymentUrl = jsonDecode(jsonEncode(r))['payUrl'];
+          GetIt.I<AppRouter>().push(InAppWebViewRoute(
+            url: paymentUrl,
+            state: state,
+          ));
+
+          /// Redirect the user to paymentUrl
+        } else {
+          // Handle other status codes (error handling)
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   /// on terms and conditions checked
 
   void onTermsAndConditionsChecked(_OnTermsAndConditionsChecked event,
@@ -141,18 +183,24 @@ class ConfirmReservationBloc
       _DoCheckout event, Emitter<ConfirmReservationState> emit) async {
     emit(state.copyWith(checkoutStatus: StateStatus.loading));
     try {
-      final result = await GetIt.I<DoCheckoutUseCase>().call({
-        "code": state.code,
-        "customer_id": state.customerID,
-        "first_name": state.name,
-        "last_name": state.lastname,
-        "phone": state.phone,
-        "email": state.email,
-        "city": state.ville,
-        "country": "TN",
-        "customer_notes": state.specialConditions,
-        "payment_gateway": "offline_payment"
-      });
+      print("do checkout");
+      print(event.body);
+      final result =
+          await GetIt.I<DoCheckoutUseCase>().call(event.body.isEmpty == true
+              ? {
+                  "code": state.code,
+                  "customer_id": state.customerID,
+                  "first_name": state.name,
+                  "last_name": state.lastname,
+                  "phone": state.phone,
+                  "email": state.email,
+                  "city": state.ville,
+                  "country": "TN",
+                  "customer_notes": state.specialConditions,
+                  "payment_gateway": "offline_payment",
+                  "paymentRef": "",
+                }
+              : event.body);
 
       result.fold((l) async {
         print("confirm reservation llllllllll");

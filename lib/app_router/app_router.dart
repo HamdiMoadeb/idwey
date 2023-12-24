@@ -5,6 +5,7 @@ import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/data/models/review_scale_dto.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
+import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/presentation/dashboard_page/dashboard_page.dart';
 import 'package:idwey/presentation/pages/add_review_screen/add_review_screen.dart';
 import 'package:idwey/presentation/pages/assurance/assurance_page.dart';
@@ -31,6 +32,7 @@ import 'package:idwey/presentation/pages/review_board_screen/review_board_screen
 import 'package:idwey/presentation/pages/reviews_screen/reviews_screen.dart';
 import 'package:idwey/presentation/pages/terms_and_conditions/terms_and_conditions_screen.dart';
 import 'package:idwey/presentation/pages/terms_of_use/termsScreen.dart';
+import 'package:idwey/presentation/pages/webview_screen/webvie_screen.dart';
 
 import '../data/models/extra_price_dto.dart';
 import '../data/models/review_dto.dart';
@@ -86,5 +88,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: ReviewsBoardRoute.page),
     AutoRoute(page: RequiredReviewsRoute.page),
     AutoRoute(page: FilterRoute.page),
+    AutoRoute(page: InAppWebViewRoute.page),
   ];
 }

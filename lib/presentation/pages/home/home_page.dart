@@ -76,10 +76,6 @@ class _HomeScreenState extends State<HomeScreen>
             state.isFilter == true) {
           print("333");
           return const Center(child: Text("Pas des hébergements"));
-        } else if (state.status == StateStatus.success &&
-            state.listHosts?.isEmpty == true) {
-          print("444");
-          return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.success ||
             state.status == StateStatus.loadingMore &&
                 state.listHosts!.isNotEmpty) {

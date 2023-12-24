@@ -60,17 +60,6 @@ class _DetailsScreenState extends State<DetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsPageBloc, DetailsPageState>(
             builder: (context, state) {
-          print("widget.reviewwwws");
-          print(state.hostDetails?.reviewScale);
-          print(state.hostDetails?.reviewScale?[0].title);
-          print(state.hostDetails?.reviewScale?[0].stars);
-          print(state.hostDetails?.reviewScale?[1].title);
-          print(state.hostDetails?.reviewScale?[1].stars);
-          print(state.hostDetails?.reviewScale?[2].title);
-          print(state.hostDetails?.reviewScale?[2].stars);
-          print(state.hostDetails?.reviewScale?[3].title);
-          print(state.hostDetails?.reviewScale?[3].stars);
-          print(state.hostDetails?.moyRate);
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -127,9 +116,13 @@ class _DetailsScreenState extends State<DetailsScreen>
                   },
                   nbNuit: state.hostDetails?.row?.minNuits ?? 0,
                   perPerson: "nuit",
-                  salePrice: state.hostDetails?.row?.salePrice ?? "",
-                  price:
-                      "${double.parse(state.hostDetails?.row?.price ?? "0").toInt().toString()}",
+                  salePrice:
+                      double.parse(state.hostDetails?.row?.salePrice ?? "0")
+                          .toInt()
+                          .toString(),
+                  price: double.parse(state.hostDetails?.row?.price ?? "0")
+                      .toInt()
+                      .toString(),
                 ),
               ),
               body: Stack(
@@ -172,7 +165,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                         false,
                                     child: CircleAvatar(
                                       child: Text(
-                                        "${state.hostDetails?.row?.promotion}/ DT",
+                                        "${state.hostDetails?.row?.promotion}/ %",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headlineMedium!

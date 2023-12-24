@@ -80,6 +80,7 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                               url: state.experienceDetailsDto?.bannerImageUrl ??
                                   "",
                               typeReservation: TypeReservation.experience,
+                              perPerson: "personne",
                               //typeHost: widget.eventDetailsDto,
                               salePrice:
                                   state.experienceDetailsDto?.row?.price ?? "",
@@ -119,10 +120,14 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                           );
                   },
                   perPerson: "personne",
-                  salePrice:
-                      "${double.parse(state.experienceDetailsDto?.row?.salePrice ?? "0").toInt().toString()}",
-                  price:
-                      "${double.parse(state.experienceDetailsDto?.row?.price ?? "0").toInt().toString()}",
+                  salePrice: double.parse(
+                          state.experienceDetailsDto?.row?.salePrice ?? "0")
+                      .toInt()
+                      .toString(),
+                  price: double.parse(
+                          state.experienceDetailsDto?.row?.price ?? "0")
+                      .toInt()
+                      .toString(),
                 ),
               ),
               body: Stack(
