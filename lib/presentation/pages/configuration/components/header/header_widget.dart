@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,8 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HeaderWidget extends StatefulWidget {
   final String title;
@@ -25,6 +27,7 @@ class HeaderWidget extends StatefulWidget {
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> {
+  PickedFile _pickedFile = PickedFile("");
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -39,7 +42,10 @@ class _HeaderWidgetState extends State<HeaderWidget> {
           child: Column(
             children: [
               EditableCircleAvatar(
-                  imageUrl: widget.imageUrl,
+                  imageUrl: widget.imageUrl == ""
+                      ? "https://placehold.co/600x400/png"
+                      : widget.imageUrl,
+                  image: _pickedFile.path,
                   onEditPressed: () {
                     requestPermissions();
                   }),
@@ -110,6 +116,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
         'file': await MultipartFile.fromFile(pickedFile.path)
       };
 
+      /// Upload image
+      /// set image into avatar widget
+      _pickedFile = pickedFile;
       context.read<AppBloc>().add(
             AppEvent.uploadImage(map),
           );
@@ -119,23 +128,29 @@ class _HeaderWidgetState extends State<HeaderWidget> {
 
 class EditableCircleAvatar extends StatelessWidget {
   final String imageUrl;
+  final String? image;
   final Function()? onEditPressed;
 
   const EditableCircleAvatar({
     Key? key,
     required this.imageUrl,
     this.onEditPressed,
+    this.image,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print("imageUrl444444444");
+    print(imageUrl);
     return Stack(
       children: [
         CircleAvatar(
           radius: 52,
           child: CircleAvatar(
             radius: 50.0, // Adjust the size as needed
-            backgroundImage: NetworkImage(imageUrl),
+            backgroundImage: imageUrl == ""
+                ? FileImage(File(image ?? ""))
+                : NetworkImage(imageUrl) as ImageProvider,
             backgroundColor: Colors.white,
           ),
         ),

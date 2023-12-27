@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/components.dart';
@@ -19,7 +20,7 @@ import 'package:idwey/presentation/pages/details_page/components/reviews_section
 import 'package:idwey/presentation/pages/details_page/components/terms_section/terms_section.dart';
 import 'package:idwey/presentation/pages/details_page/components/type_capacite_section/type_capacite_section.dart';
 import 'package:idwey/theme/app_colors.dart';
-import 'package:heroicons/heroicons.dart';
+
 import 'components/chalets_section/chalets_section.dart';
 
 @RoutePage()
@@ -116,10 +117,10 @@ class _DetailsScreenState extends State<DetailsScreen>
                   },
                   nbNuit: state.hostDetails?.row?.minNuits ?? 0,
                   perPerson: "nuit",
-                  salePrice:
-                      double.parse(state.hostDetails?.row?.salePrice ?? "0")
-                          .toInt()
-                          .toString(),
+                  salePrice: double.parse(
+                          state.hostDetails?.row?.salePrice?.toString() ?? "0")
+                      .toInt()
+                      .toString(),
                   price: double.parse(state.hostDetails?.row?.price ?? "0")
                       .toInt()
                       .toString(),
@@ -160,19 +161,23 @@ class _DetailsScreenState extends State<DetailsScreen>
                                     ),
                                   ),
                                   Visibility(
-                                    visible: state.hostDetails?.row?.promotion
-                                            ?.isNotEmpty ??
-                                        false,
-                                    child: CircleAvatar(
-                                      child: Text(
-                                        "${state.hostDetails?.row?.promotion}/ %",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineMedium!
-                                            .copyWith(
-                                                fontSize: 30.sp,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.black),
+                                    visible:
+                                        state.hostDetails?.row?.promotion !=
+                                            null,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: CircleAvatar(
+                                        radius: 24.r,
+                                        child: Text(
+                                          "${state.hostDetails?.row?.promotion} %",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium!
+                                              .copyWith(
+                                                  fontSize: 16.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.white),
+                                        ),
                                       ),
                                     ),
                                   ),

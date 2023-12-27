@@ -7,6 +7,8 @@ abstract class AuthRepository {
   Future<Either<Exception, Map<String, dynamic>>> signUp(
       Map<String, dynamic> params);
 
+  Future<Either<Exception, void>> logout();
+
   Future<Either<Exception, String>> updateUser(Map<String, dynamic> params);
 
   Future<Either<Exception, void>> uploadImage(Map<String, dynamic> params);

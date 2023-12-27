@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:idwey/domain/usecases/delete_user_account_usecase.dart';
 import 'package:idwey/domain/usecases/update_user_usecase.dart';
 import 'package:idwey/domain/usecases/upload_image_usecase.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -8,9 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/enums.dart';
 
+part 'app_bloc.freezed.dart';
 part 'app_event.dart';
 part 'app_state.dart';
-part 'app_bloc.freezed.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(AppState.initial()) {
@@ -18,6 +19,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<_GetUser>(getUser);
     on<_UpdateUser>(updateUser);
     on<_UploadImage>(uploadImage);
+    on<_Logout>(logout);
   }
 
   void setLoggedIn(_SetLoggedIn event, Emitter<AppState> emit) async {
@@ -111,6 +113,24 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     } catch (e) {
       print(e);
       emit(state.copyWith(status: StateStatus.error));
+    }
+  }
+
+  void logout(_Logout event, Emitter<AppState> emit) async {
+    SharedPreferences? prefs;
+    try {
+      emit(state.copyWith(
+          deleteUserStatus: StateStatus.loading, status: StateStatus.init));
+      final result = await GetIt.I<DeleteUserUseCase>().call({});
+      print(result);
+      print("result***********");
+      prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+      print("prefs.clear()***********");
+      emit(state.copyWith(deleteUserStatus: StateStatus.success));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(deleteUserStatus: StateStatus.error));
     }
   }
 }

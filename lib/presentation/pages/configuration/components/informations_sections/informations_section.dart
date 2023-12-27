@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InfosSection extends StatefulWidget {
   final String? label;
-  final Widget child;
-  const InfosSection({Key? key, this.label, required this.child})
+  final Widget? child;
+  final VoidCallback? onTap;
+  const InfosSection({Key? key, this.label, this.child, this.onTap})
       : super(key: key);
 
   @override
@@ -16,11 +17,12 @@ class _InfosSectionState extends State<InfosSection> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          showForm = !showForm;
-        });
-      },
+      onTap: widget.onTap ??
+          () {
+            setState(() {
+              showForm = !showForm;
+            });
+          },
       child: Card(
           margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           shape: RoundedRectangleBorder(
@@ -44,12 +46,14 @@ class _InfosSectionState extends State<InfosSection> {
                 ),
               ),
               Visibility(
-                visible: showForm,
+                visible: showForm && widget.child != null,
                 child: const Divider(
                   thickness: 1,
                 ),
               ),
-              Visibility(visible: showForm, child: widget.child)
+              Visibility(
+                  visible: showForm && widget.child != null,
+                  child: widget.child ?? const SizedBox.shrink()),
             ],
           )),
     );

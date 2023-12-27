@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -61,8 +62,8 @@ class ProfileFooter extends StatelessWidget {
                             .read<AppBloc>()
                             .add(const AppEvent.setLoggedIn());
 
-                        //GetIt.I<AppRouter>().pop();
-                        GetIt.I<AppRouter>().navigate(const MainHomeRoute());
+                        context.router.root.pop();
+                        GetIt.I<AppRouter>().navigate(const DashboardRoute());
                       });
                     }),
                 Text(
