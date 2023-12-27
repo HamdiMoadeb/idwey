@@ -4,16 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/domain/usecases/register_usecase.dart';
-import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/utils/form_utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+part 'sign_up_bloc.freezed.dart';
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
-part 'sign_up_bloc.freezed.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc() : super(SignUpState.initial()) {
@@ -79,8 +76,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               status: StateStatus.error, errorText: r['messages']['email'][0]));
         } else {
           emit(state.copyWith(status: StateStatus.success));
-          GetIt.I<AppRouter>().popUntilRoot();
-          GetIt.I<AppBloc>().add(const AppEvent.setLoggedIn());
           //GetIt.I<AppRouter>().push(const DashboardRoute());
         }
       });

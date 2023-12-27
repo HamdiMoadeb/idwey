@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthApiDataSource {
@@ -40,9 +42,18 @@ class AuthApiDataSourceImpl implements AuthApiDataSource {
   }
 
   @override
-  Future<void> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logout() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      String? id = prefs.getString('userId');
+      print("id");
+      print(id);
+      final result = await dio.post("https://idwey.tn/api/user/delete/$id");
+      print("result");
+      print(result);
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   @override

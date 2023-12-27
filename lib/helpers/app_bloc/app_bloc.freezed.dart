@@ -23,6 +23,7 @@ mixin _$AppEvent {
     required TResult Function() getUser,
     required TResult Function(Map<String, dynamic> body) updateUser,
     required TResult Function(Map<String, dynamic> body) uploadImage,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$AppEvent {
     TResult? Function()? getUser,
     TResult? Function(Map<String, dynamic> body)? updateUser,
     TResult? Function(Map<String, dynamic> body)? uploadImage,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$AppEvent {
     TResult Function()? getUser,
     TResult Function(Map<String, dynamic> body)? updateUser,
     TResult Function(Map<String, dynamic> body)? uploadImage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$AppEvent {
     required TResult Function(_GetUser value) getUser,
     required TResult Function(_UpdateUser value) updateUser,
     required TResult Function(_UploadImage value) uploadImage,
+    required TResult Function(_Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$AppEvent {
     TResult? Function(_GetUser value)? getUser,
     TResult? Function(_UpdateUser value)? updateUser,
     TResult? Function(_UploadImage value)? uploadImage,
+    TResult? Function(_Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$AppEvent {
     TResult Function(_GetUser value)? getUser,
     TResult Function(_UpdateUser value)? updateUser,
     TResult Function(_UploadImage value)? uploadImage,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +140,7 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     required TResult Function() getUser,
     required TResult Function(Map<String, dynamic> body) updateUser,
     required TResult Function(Map<String, dynamic> body) uploadImage,
+    required TResult Function() logout,
   }) {
     return setLoggedIn();
   }
@@ -146,6 +153,7 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult? Function()? getUser,
     TResult? Function(Map<String, dynamic> body)? updateUser,
     TResult? Function(Map<String, dynamic> body)? uploadImage,
+    TResult? Function()? logout,
   }) {
     return setLoggedIn?.call();
   }
@@ -158,6 +166,7 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult Function()? getUser,
     TResult Function(Map<String, dynamic> body)? updateUser,
     TResult Function(Map<String, dynamic> body)? uploadImage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (setLoggedIn != null) {
@@ -174,6 +183,7 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     required TResult Function(_GetUser value) getUser,
     required TResult Function(_UpdateUser value) updateUser,
     required TResult Function(_UploadImage value) uploadImage,
+    required TResult Function(_Logout value) logout,
   }) {
     return setLoggedIn(this);
   }
@@ -186,6 +196,7 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult? Function(_GetUser value)? getUser,
     TResult? Function(_UpdateUser value)? updateUser,
     TResult? Function(_UploadImage value)? uploadImage,
+    TResult? Function(_Logout value)? logout,
   }) {
     return setLoggedIn?.call(this);
   }
@@ -198,6 +209,7 @@ class _$_SetLoggedIn implements _SetLoggedIn {
     TResult Function(_GetUser value)? getUser,
     TResult Function(_UpdateUser value)? updateUser,
     TResult Function(_UploadImage value)? uploadImage,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (setLoggedIn != null) {
@@ -254,6 +266,7 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     required TResult Function() getUser,
     required TResult Function(Map<String, dynamic> body) updateUser,
     required TResult Function(Map<String, dynamic> body) uploadImage,
+    required TResult Function() logout,
   }) {
     return setLoggedOut();
   }
@@ -266,6 +279,7 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult? Function()? getUser,
     TResult? Function(Map<String, dynamic> body)? updateUser,
     TResult? Function(Map<String, dynamic> body)? uploadImage,
+    TResult? Function()? logout,
   }) {
     return setLoggedOut?.call();
   }
@@ -278,6 +292,7 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult Function()? getUser,
     TResult Function(Map<String, dynamic> body)? updateUser,
     TResult Function(Map<String, dynamic> body)? uploadImage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (setLoggedOut != null) {
@@ -294,6 +309,7 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     required TResult Function(_GetUser value) getUser,
     required TResult Function(_UpdateUser value) updateUser,
     required TResult Function(_UploadImage value) uploadImage,
+    required TResult Function(_Logout value) logout,
   }) {
     return setLoggedOut(this);
   }
@@ -306,6 +322,7 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult? Function(_GetUser value)? getUser,
     TResult? Function(_UpdateUser value)? updateUser,
     TResult? Function(_UploadImage value)? uploadImage,
+    TResult? Function(_Logout value)? logout,
   }) {
     return setLoggedOut?.call(this);
   }
@@ -318,6 +335,7 @@ class _$_SetLoggedOut implements _SetLoggedOut {
     TResult Function(_GetUser value)? getUser,
     TResult Function(_UpdateUser value)? updateUser,
     TResult Function(_UploadImage value)? uploadImage,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (setLoggedOut != null) {
@@ -373,6 +391,7 @@ class _$_GetUser implements _GetUser {
     required TResult Function() getUser,
     required TResult Function(Map<String, dynamic> body) updateUser,
     required TResult Function(Map<String, dynamic> body) uploadImage,
+    required TResult Function() logout,
   }) {
     return getUser();
   }
@@ -385,6 +404,7 @@ class _$_GetUser implements _GetUser {
     TResult? Function()? getUser,
     TResult? Function(Map<String, dynamic> body)? updateUser,
     TResult? Function(Map<String, dynamic> body)? uploadImage,
+    TResult? Function()? logout,
   }) {
     return getUser?.call();
   }
@@ -397,6 +417,7 @@ class _$_GetUser implements _GetUser {
     TResult Function()? getUser,
     TResult Function(Map<String, dynamic> body)? updateUser,
     TResult Function(Map<String, dynamic> body)? uploadImage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -413,6 +434,7 @@ class _$_GetUser implements _GetUser {
     required TResult Function(_GetUser value) getUser,
     required TResult Function(_UpdateUser value) updateUser,
     required TResult Function(_UploadImage value) uploadImage,
+    required TResult Function(_Logout value) logout,
   }) {
     return getUser(this);
   }
@@ -425,6 +447,7 @@ class _$_GetUser implements _GetUser {
     TResult? Function(_GetUser value)? getUser,
     TResult? Function(_UpdateUser value)? updateUser,
     TResult? Function(_UploadImage value)? uploadImage,
+    TResult? Function(_Logout value)? logout,
   }) {
     return getUser?.call(this);
   }
@@ -437,6 +460,7 @@ class _$_GetUser implements _GetUser {
     TResult Function(_GetUser value)? getUser,
     TResult Function(_UpdateUser value)? updateUser,
     TResult Function(_UploadImage value)? uploadImage,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -525,6 +549,7 @@ class _$_UpdateUser implements _UpdateUser {
     required TResult Function() getUser,
     required TResult Function(Map<String, dynamic> body) updateUser,
     required TResult Function(Map<String, dynamic> body) uploadImage,
+    required TResult Function() logout,
   }) {
     return updateUser(body);
   }
@@ -537,6 +562,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult? Function()? getUser,
     TResult? Function(Map<String, dynamic> body)? updateUser,
     TResult? Function(Map<String, dynamic> body)? uploadImage,
+    TResult? Function()? logout,
   }) {
     return updateUser?.call(body);
   }
@@ -549,6 +575,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult Function()? getUser,
     TResult Function(Map<String, dynamic> body)? updateUser,
     TResult Function(Map<String, dynamic> body)? uploadImage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (updateUser != null) {
@@ -565,6 +592,7 @@ class _$_UpdateUser implements _UpdateUser {
     required TResult Function(_GetUser value) getUser,
     required TResult Function(_UpdateUser value) updateUser,
     required TResult Function(_UploadImage value) uploadImage,
+    required TResult Function(_Logout value) logout,
   }) {
     return updateUser(this);
   }
@@ -577,6 +605,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult? Function(_GetUser value)? getUser,
     TResult? Function(_UpdateUser value)? updateUser,
     TResult? Function(_UploadImage value)? uploadImage,
+    TResult? Function(_Logout value)? logout,
   }) {
     return updateUser?.call(this);
   }
@@ -589,6 +618,7 @@ class _$_UpdateUser implements _UpdateUser {
     TResult Function(_GetUser value)? getUser,
     TResult Function(_UpdateUser value)? updateUser,
     TResult Function(_UploadImage value)? uploadImage,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (updateUser != null) {
@@ -682,6 +712,7 @@ class _$_UploadImage implements _UploadImage {
     required TResult Function() getUser,
     required TResult Function(Map<String, dynamic> body) updateUser,
     required TResult Function(Map<String, dynamic> body) uploadImage,
+    required TResult Function() logout,
   }) {
     return uploadImage(body);
   }
@@ -694,6 +725,7 @@ class _$_UploadImage implements _UploadImage {
     TResult? Function()? getUser,
     TResult? Function(Map<String, dynamic> body)? updateUser,
     TResult? Function(Map<String, dynamic> body)? uploadImage,
+    TResult? Function()? logout,
   }) {
     return uploadImage?.call(body);
   }
@@ -706,6 +738,7 @@ class _$_UploadImage implements _UploadImage {
     TResult Function()? getUser,
     TResult Function(Map<String, dynamic> body)? updateUser,
     TResult Function(Map<String, dynamic> body)? uploadImage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (uploadImage != null) {
@@ -722,6 +755,7 @@ class _$_UploadImage implements _UploadImage {
     required TResult Function(_GetUser value) getUser,
     required TResult Function(_UpdateUser value) updateUser,
     required TResult Function(_UploadImage value) uploadImage,
+    required TResult Function(_Logout value) logout,
   }) {
     return uploadImage(this);
   }
@@ -734,6 +768,7 @@ class _$_UploadImage implements _UploadImage {
     TResult? Function(_GetUser value)? getUser,
     TResult? Function(_UpdateUser value)? updateUser,
     TResult? Function(_UploadImage value)? uploadImage,
+    TResult? Function(_Logout value)? logout,
   }) {
     return uploadImage?.call(this);
   }
@@ -746,6 +781,7 @@ class _$_UploadImage implements _UploadImage {
     TResult Function(_GetUser value)? getUser,
     TResult Function(_UpdateUser value)? updateUser,
     TResult Function(_UploadImage value)? uploadImage,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (uploadImage != null) {
@@ -765,9 +801,134 @@ abstract class _UploadImage implements AppEvent {
 }
 
 /// @nodoc
+abstract class _$$_LogoutCopyWith<$Res> {
+  factory _$$_LogoutCopyWith(_$_Logout value, $Res Function(_$_Logout) then) =
+      __$$_LogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogoutCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$_Logout>
+    implements _$$_LogoutCopyWith<$Res> {
+  __$$_LogoutCopyWithImpl(_$_Logout _value, $Res Function(_$_Logout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Logout implements _Logout {
+  const _$_Logout();
+
+  @override
+  String toString() {
+    return 'AppEvent.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Logout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() setLoggedIn,
+    required TResult Function() setLoggedOut,
+    required TResult Function() getUser,
+    required TResult Function(Map<String, dynamic> body) updateUser,
+    required TResult Function(Map<String, dynamic> body) uploadImage,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? setLoggedIn,
+    TResult? Function()? setLoggedOut,
+    TResult? Function()? getUser,
+    TResult? Function(Map<String, dynamic> body)? updateUser,
+    TResult? Function(Map<String, dynamic> body)? uploadImage,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? setLoggedIn,
+    TResult Function()? setLoggedOut,
+    TResult Function()? getUser,
+    TResult Function(Map<String, dynamic> body)? updateUser,
+    TResult Function(Map<String, dynamic> body)? uploadImage,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetLoggedIn value) setLoggedIn,
+    required TResult Function(_SetLoggedOut value) setLoggedOut,
+    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_UpdateUser value) updateUser,
+    required TResult Function(_UploadImage value) uploadImage,
+    required TResult Function(_Logout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetLoggedIn value)? setLoggedIn,
+    TResult? Function(_SetLoggedOut value)? setLoggedOut,
+    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_UpdateUser value)? updateUser,
+    TResult? Function(_UploadImage value)? uploadImage,
+    TResult? Function(_Logout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetLoggedIn value)? setLoggedIn,
+    TResult Function(_SetLoggedOut value)? setLoggedOut,
+    TResult Function(_GetUser value)? getUser,
+    TResult Function(_UpdateUser value)? updateUser,
+    TResult Function(_UploadImage value)? uploadImage,
+    TResult Function(_Logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Logout implements AppEvent {
+  const factory _Logout() = _$_Logout;
+}
+
+/// @nodoc
 mixin _$AppState {
   StateStatus? get status => throw _privateConstructorUsedError;
   StateStatus? get updateUserStatus => throw _privateConstructorUsedError;
+  StateStatus? get deleteUserStatus => throw _privateConstructorUsedError;
   bool? get isLoggedIn => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get lastname => throw _privateConstructorUsedError;
@@ -789,6 +950,7 @@ abstract class $AppStateCopyWith<$Res> {
   $Res call(
       {StateStatus? status,
       StateStatus? updateUserStatus,
+      StateStatus? deleteUserStatus,
       bool? isLoggedIn,
       String? name,
       String? lastname,
@@ -813,6 +975,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $Res call({
     Object? status = freezed,
     Object? updateUserStatus = freezed,
+    Object? deleteUserStatus = freezed,
     Object? isLoggedIn = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
@@ -829,6 +992,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       updateUserStatus: freezed == updateUserStatus
           ? _value.updateUserStatus
           : updateUserStatus // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      deleteUserStatus: freezed == deleteUserStatus
+          ? _value.deleteUserStatus
+          : deleteUserStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       isLoggedIn: freezed == isLoggedIn
           ? _value.isLoggedIn
@@ -872,6 +1039,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   $Res call(
       {StateStatus? status,
       StateStatus? updateUserStatus,
+      StateStatus? deleteUserStatus,
       bool? isLoggedIn,
       String? name,
       String? lastname,
@@ -894,6 +1062,7 @@ class __$$_AppStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? updateUserStatus = freezed,
+    Object? deleteUserStatus = freezed,
     Object? isLoggedIn = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
@@ -910,6 +1079,10 @@ class __$$_AppStateCopyWithImpl<$Res>
       updateUserStatus: freezed == updateUserStatus
           ? _value.updateUserStatus
           : updateUserStatus // ignore: cast_nullable_to_non_nullable
+              as StateStatus?,
+      deleteUserStatus: freezed == deleteUserStatus
+          ? _value.deleteUserStatus
+          : deleteUserStatus // ignore: cast_nullable_to_non_nullable
               as StateStatus?,
       isLoggedIn: freezed == isLoggedIn
           ? _value.isLoggedIn
@@ -949,6 +1122,7 @@ class _$_AppState implements _AppState {
   const _$_AppState(
       {this.status,
       this.updateUserStatus,
+      this.deleteUserStatus,
       this.isLoggedIn,
       this.name,
       this.lastname,
@@ -961,6 +1135,8 @@ class _$_AppState implements _AppState {
   final StateStatus? status;
   @override
   final StateStatus? updateUserStatus;
+  @override
+  final StateStatus? deleteUserStatus;
   @override
   final bool? isLoggedIn;
   @override
@@ -978,7 +1154,7 @@ class _$_AppState implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(status: $status, updateUserStatus: $updateUserStatus, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id, imageUrl: $imageUrl)';
+    return 'AppState(status: $status, updateUserStatus: $updateUserStatus, deleteUserStatus: $deleteUserStatus, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id, imageUrl: $imageUrl)';
   }
 
   @override
@@ -989,6 +1165,8 @@ class _$_AppState implements _AppState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.updateUserStatus, updateUserStatus) ||
                 other.updateUserStatus == updateUserStatus) &&
+            (identical(other.deleteUserStatus, deleteUserStatus) ||
+                other.deleteUserStatus == deleteUserStatus) &&
             (identical(other.isLoggedIn, isLoggedIn) ||
                 other.isLoggedIn == isLoggedIn) &&
             (identical(other.name, name) || other.name == name) &&
@@ -1003,7 +1181,7 @@ class _$_AppState implements _AppState {
 
   @override
   int get hashCode => Object.hash(runtimeType, status, updateUserStatus,
-      isLoggedIn, name, lastname, email, phone, id, imageUrl);
+      deleteUserStatus, isLoggedIn, name, lastname, email, phone, id, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -1016,6 +1194,7 @@ abstract class _AppState implements AppState {
   const factory _AppState(
       {final StateStatus? status,
       final StateStatus? updateUserStatus,
+      final StateStatus? deleteUserStatus,
       final bool? isLoggedIn,
       final String? name,
       final String? lastname,
@@ -1028,6 +1207,8 @@ abstract class _AppState implements AppState {
   StateStatus? get status;
   @override
   StateStatus? get updateUserStatus;
+  @override
+  StateStatus? get deleteUserStatus;
   @override
   bool? get isLoggedIn;
   @override

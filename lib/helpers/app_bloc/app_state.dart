@@ -5,6 +5,7 @@ class AppState with _$AppState {
   const factory AppState(
       {StateStatus? status,
       StateStatus? updateUserStatus,
+      StateStatus? deleteUserStatus,
       bool? isLoggedIn,
       String? name,
       String? lastname,
@@ -16,6 +17,7 @@ class AppState with _$AppState {
   factory AppState.initial() => const AppState(
       status: StateStatus.init,
       updateUserStatus: StateStatus.init,
+      deleteUserStatus: StateStatus.init,
       isLoggedIn: false,
       name: "",
       lastname: "",

@@ -22,3 +22,4 @@ export 'filter_activities_usecase.dart';
 export 'filter_events_usecase.dart';
 export 'filter_usecase.dart';
 export 'filter_experiences_usecase.dart';
+export 'delete_user_account_usecase.dart';

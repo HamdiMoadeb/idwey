@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/buttons/button.dart';
@@ -7,9 +7,10 @@ import 'package:idwey/constants/enums.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/pages/configuration/components/informations_sections/security_form.dart';
 import 'package:idwey/theme/app_colors.dart';
+
 import 'components/header/header_widget.dart';
-import 'components/informations_sections/primary_info_form.dart';
 import 'components/informations_sections/informations_section.dart';
+import 'components/informations_sections/primary_info_form.dart';
 import 'components/informations_sections/secondary_info_form.dart';
 
 @RoutePage()
@@ -53,7 +54,9 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
     return BlocConsumer<AppBloc, AppState>(
       listener: (context, state) {
         if (state.updateUserStatus == StateStatus.loading ||
-            state.status == StateStatus.loading) {
+            state.status == StateStatus.loading ||
+            state.deleteUserStatus == StateStatus.loading) {
+          print("loading");
           showDialog(
               context: context,
               builder: (context) {
@@ -62,9 +65,21 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                 );
               });
         } else if (state.status == StateStatus.success) {
+          print("success");
           init();
           Navigator.pop(context);
+        } else if (state.deleteUserStatus == StateStatus.success) {
+          print("delete334556");
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Compte supprimé avec succès"),
+            ),
+          );
+          context.router.root.popUntilRoot();
+          //  context.router.push(const DashboardRoute());
+          context.read<AppBloc>().add(const AppEvent.setLoggedIn());
         } else if (state.updateUserStatus == StateStatus.success) {
+          print("successupdate");
           init();
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
@@ -171,7 +186,8 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                 HeaderWidget(
                   title: state.name ?? state.email ?? "",
                   subtitle: "Membre depuis juin 2023",
-                  imageUrl: state.imageUrl ?? "",
+                  imageUrl:
+                      state.imageUrl ?? "https://placehold.co/600x400.png",
                 ),
                 InfosSection(
                   label: "Informations primaires",
@@ -196,6 +212,37 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                     newPasswordController: newPasswordController,
                     confirmPasswordController: confirmPasswordController,
                   ),
+                ),
+                InfosSection(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text("Suppression du compte"),
+                            content: const Text(
+                                "Êtes-vous sûr de vouloir supprimer votre compte ?"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Annuler"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  context
+                                      .read<AppBloc>()
+                                      .add(const AppEvent.logout());
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Supprimer"),
+                              ),
+                            ],
+                          );
+                        });
+                  },
+                  label: "Suppression du compte",
                 ),
               ],
             ),

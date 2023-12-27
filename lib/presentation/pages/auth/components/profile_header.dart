@@ -46,7 +46,8 @@ class ProfileHeader extends StatelessWidget {
             future: getImageFromPrefs(),
             builder: (context, imageSnapshot) {
               final userName = nameSnapshot.data ?? "";
-              final imageUrl = imageSnapshot.data ?? "";
+              final imageUrl =
+                  imageSnapshot.data ?? "https://placehold.co/600x400.png";
 
               return Row(
                 children: [

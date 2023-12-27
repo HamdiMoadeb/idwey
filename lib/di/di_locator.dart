@@ -154,6 +154,7 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => AddReviewUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => UpdateReviewUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => DoOnlineCheckoutUseCase(GetIt.I()));
+  GetIt.I.registerLazySingleton(() => DeleteUserUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetDashboardReviews(GetIt.I()));
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(

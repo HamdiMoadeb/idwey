@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/constants/enums.dart';
+import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
@@ -38,6 +40,8 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
         } else if (state.status == StateStatus.success) {
           print("success");
           context.read<SignUpBloc>().initStatus();
+          context.router.root.popUntilRoot();
+          GetIt.I<AppBloc>().add(const AppEvent.setLoggedIn());
         } else if (state.status == StateStatus.error) {
           print("error");
           ScaffoldMessenger.of(context).showSnackBar(
