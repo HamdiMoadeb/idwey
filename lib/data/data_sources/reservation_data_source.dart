@@ -17,8 +17,8 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
   final Dio dio;
 
   ReservationApiDataSourceImpl(this.dio);
-  final KONNECT_API_KEY = "654a56cf228ef6b9d3bcac3b:U4qdkC6tbhtpudrMn";
-  final KONNECT_RECEIVER_WALLET_ID = "654a56cf228ef6b9d3bcac3f";
+  final KONNECT_API_KEY = "647dc9678e0b604b113fe847:wwNkfEdEY8uPVpuVdP46TxHCj";
+  final KONNECT_RECEIVER_WALLET_ID = "647dc9678e0b604b113fe84a";
   final KONNECT_PAYMENT_URL =
       "https://api.preprod.konnect.network/api/v2/payments/init-payment";
   @override
