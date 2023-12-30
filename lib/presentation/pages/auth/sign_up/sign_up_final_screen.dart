@@ -122,7 +122,7 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
                       padding: EdgeInsets.symmetric(vertical: 8.h),
                       child: const Text('Get Started'),
                     ),
-                    onPressed: isChecked == true
+                    onPressed: isChecked == true && state.isValid == true
                         ? () {
                             context
                                 .read<SignUpBloc>()

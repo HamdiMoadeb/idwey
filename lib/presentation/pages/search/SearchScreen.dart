@@ -6,8 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:idwey/components/buttons/button.dart';
-import 'package:idwey/components/buttons/dropdown_buttom.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/components/inputs/date_input.dart';
 import 'package:idwey/constants/assets.dart';
@@ -28,10 +26,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  late ScrollController hostScrollController = ScrollController();
-  late ScrollController eventScrollController = ScrollController();
-  late ScrollController activityScrollController = ScrollController();
-  late ScrollController experienceScrollController = ScrollController();
+
   int selectedIndex = 0;
   int guests = 1;
   bool? showDatePicker = false;
@@ -87,10 +82,6 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   void dispose() {
     _tabController.dispose();
-    hostScrollController.dispose();
-    eventScrollController.dispose();
-    activityScrollController.dispose();
-    experienceScrollController.dispose();
 
     super.dispose();
   }
@@ -135,13 +126,6 @@ class _SearchScreenState extends State<SearchScreen>
                     onTap: (v) {
                       /// navigate to screen home
                       setState(() {
-                        if (hostScrollController.hasClients) {
-                          if (hostScrollController.position.pixels > 0) {
-                            hostScrollController.animateTo(0,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeInOut);
-                          }
-                        }
                         selectedIndex = 0;
                         _tabController.index = 0;
                         context
@@ -156,13 +140,6 @@ class _SearchScreenState extends State<SearchScreen>
                     icon: Assets.events,
                     onTap: (v) {
                       setState(() {
-                        if (eventScrollController.hasClients) {
-                          if (eventScrollController.position.pixels > 0) {
-                            eventScrollController.animateTo(0,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeInOut);
-                          }
-                        }
                         selectedIndex = 1;
                         _tabController.index = 1;
                         context
@@ -177,13 +154,6 @@ class _SearchScreenState extends State<SearchScreen>
                     icon: Assets.activities,
                     onTap: (v) {
                       setState(() {
-                        if (activityScrollController.hasClients) {
-                          if (activityScrollController.position.pixels > 0) {
-                            activityScrollController.animateTo(0,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeInOut);
-                          }
-                        }
                         selectedIndex = 2;
                         _tabController.index = 2;
                         context
@@ -198,13 +168,6 @@ class _SearchScreenState extends State<SearchScreen>
                     icon: Assets.experiences,
                     onTap: (vv) {
                       setState(() {
-                        if (experienceScrollController.hasClients) {
-                          if (experienceScrollController.position.pixels > 0) {
-                            experienceScrollController.animateTo(0,
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeInOut);
-                          }
-                        }
                         selectedIndex = 3;
                         _tabController.index = 3;
                         context

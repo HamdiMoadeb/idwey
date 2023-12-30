@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
-import 'package:idwey/presentation/pages/configuration/components/informations_sections/security_form.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 import 'components/header/header_widget.dart';
@@ -205,14 +204,14 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                     aboutController: aboutcontroller,
                   ),
                 ),
-                InfosSection(
-                  label: "Sécurité",
-                  child: SecurityForm(
-                    oldPasswordController: oldPasswordController,
-                    newPasswordController: newPasswordController,
-                    confirmPasswordController: confirmPasswordController,
-                  ),
-                ),
+                // InfosSection(
+                //   label: "Sécurité",
+                //   child: SecurityForm(
+                //     oldPasswordController: oldPasswordController,
+                //     newPasswordController: newPasswordController,
+                //     confirmPasswordController: confirmPasswordController,
+                //   ),
+                // ),
                 InfosSection(
                   onTap: () {
                     showDialog(

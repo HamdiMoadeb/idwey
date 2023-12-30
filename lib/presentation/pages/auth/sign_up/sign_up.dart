@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
@@ -202,8 +202,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           onPressed: () {
                             if (currentPage == 2) {
+                              print('****');
+                              print(state.firstName);
+                              print(state.email);
+                              print(state.password);
+                              print(state.confirmPassword);
+                              print(state.isValid);
+                              print(state.password?.isEmpty);
+                              print(state.confirmPassword?.isEmpty);
                               if (state.firstName == null ||
                                   state.firstName!.isEmpty ||
+                                  state.email == null ||
+                                  state.email!.isEmpty ||
+                                  state.password == null ||
+                                  state.password!.isEmpty ||
+                                  state.confirmPassword == null ||
+                                  state.confirmPassword!.isEmpty ||
+                                  state.confirmPassword
+                                          ?.compareTo(state.password!) !=
+                                      0 ||
                                   state.isValid == false) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
@@ -227,7 +244,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   print('****name controller is empty');
                                   return;
                                 } else if (currentPage == 1 &&
-                                    emailController.text.isEmpty == true) {
+                                    state.email?.isEmpty == true) {
+                                  setState(() {
+                                    isRightScrollEnabled = false;
+                                  });
+                                  print('****email controller is empty');
+                                  return;
+                                } else if (currentPage == 1 &&
+                                    emailController.text.isEmpty == true &&
+                                    state.email == null) {
                                   setState(() {
                                     isRightScrollEnabled = false;
                                   });
@@ -241,7 +266,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   print('****password controller is empty');
                                   return;
                                 } else if (currentPage == 1 &&
-                                    emailController.text.isNotEmpty) {
+                                    emailController.text.isNotEmpty &&
+                                    state.email?.isNotEmpty == true) {
                                   setState(() {
                                     isRightScrollEnabled = true;
                                   });
@@ -250,6 +276,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       duration: const Duration(milliseconds: 3),
                                       curve: Curves.easeInOut);
                                 } else {
+                                  print('elllllllse');
                                   setState(() {
                                     isRightScrollEnabled = true;
                                   });
