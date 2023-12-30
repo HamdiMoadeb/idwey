@@ -1,16 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
-import 'package:idwey/components/room_item_card/room_item_card.dart';
 import 'package:idwey/constants/enums.dart';
-import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dart';
 import 'package:idwey/presentation/pages/booking_board_screen/room_item_card_booking.dart';
-import 'package:idwey/theme/app_colors.dart';
-import 'package:intl/intl.dart';
 
 class BoardPage extends StatefulWidget {
   const BoardPage({Key? key}) : super(key: key);
@@ -200,10 +195,14 @@ class _BoardPageState extends State<BoardPage> {
               Expanded(
                 child: PageView(
                   controller: controller,
+                  onPageChanged: (index) {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                  },
                   children: <Widget>[
                     state.bookingList?.isNotEmpty == true
                         ? ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
@@ -228,7 +227,6 @@ class _BoardPageState extends State<BoardPage> {
                           ),
                     state.waitingBookingList?.isNotEmpty == true
                         ? ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
@@ -253,7 +251,6 @@ class _BoardPageState extends State<BoardPage> {
                           ),
                     state.canceledBookingList?.isNotEmpty == true
                         ? ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
@@ -278,7 +275,6 @@ class _BoardPageState extends State<BoardPage> {
                           ),
                     state.confirmedBookingList?.isNotEmpty == true
                         ? ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
@@ -304,7 +300,6 @@ class _BoardPageState extends State<BoardPage> {
                           ),
                     state.paidBookingList?.isNotEmpty == true
                         ? ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {

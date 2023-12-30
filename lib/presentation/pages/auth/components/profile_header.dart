@@ -82,7 +82,9 @@ class ProfileHeader extends StatelessWidget {
         },
       ),
       trailing: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          GetIt.I<AppRouter>().push(const ConfigurationRoute());
+        },
         icon: const Icon(
           Icons.arrow_forward_ios,
           color: Colors.black,

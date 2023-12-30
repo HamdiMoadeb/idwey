@@ -230,43 +230,6 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 16),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const HeroIcon(
-                                HeroIcons.homeModern,
-                                size: 20,
-                              ),
-                              SizedBox(
-                                width: 16.w,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Détails de  l’établissement ",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Tout voir",
-                                    style: TextStyle(
-                                        color: primary,
-                                        decoration: TextDecoration.underline),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
                         const Divider(
                           thickness: 1,
                         ),
@@ -381,7 +344,7 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
               ),
             ),
           ));
-    } else if (status == "waiting") {
+    } else if (status == "processing") {
       return Container(
           width: double.infinity,
           height: 25.h,

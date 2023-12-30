@@ -42,10 +42,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
           child: Column(
             children: [
               EditableCircleAvatar(
-                  imageUrl: widget.imageUrl == ""
-                      ? "https://placehold.co/600x400/png"
-                      : widget.imageUrl,
-                  image: _pickedFile.path,
+                  imageUrl: widget.imageUrl ?? "",
+                  image: _pickedFile.path ?? "",
                   onEditPressed: () {
                     requestPermissions();
                   }),
@@ -127,7 +125,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
 }
 
 class EditableCircleAvatar extends StatelessWidget {
-  final String imageUrl;
+  final String? imageUrl;
   final String? image;
   final Function()? onEditPressed;
 
@@ -142,15 +140,23 @@ class EditableCircleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     print("imageUrl444444444");
     print(imageUrl);
+    print(imageUrl == null);
+    print(imageUrl?.isNotEmpty);
+    print("imaaaage$image");
+    print(image == null);
+    print(image?.isNotEmpty == true);
+
     return Stack(
       children: [
         CircleAvatar(
           radius: 52,
           child: CircleAvatar(
             radius: 50.0, // Adjust the size as needed
-            backgroundImage: imageUrl == ""
+            backgroundImage: image?.isNotEmpty == true
                 ? FileImage(File(image ?? ""))
-                : NetworkImage(imageUrl) as ImageProvider,
+                : NetworkImage(imageUrl?.isNotEmpty == true
+                    ? imageUrl ?? ""
+                    : "https://placehold.co/600x400/png") as ImageProvider,
             backgroundColor: Colors.white,
           ),
         ),

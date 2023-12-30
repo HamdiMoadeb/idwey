@@ -1,23 +1,19 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
-import 'package:idwey/data/models/event_details_dto.dart';
 import 'package:idwey/data/models/extra_price_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/domain/usecases/check_host_availability.dart';
 import 'package:idwey/domain/usecases/confirm_reservation_usecase.dart';
-import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:intl/intl.dart';
 
+part 'reservation_bloc.freezed.dart';
 part 'reservation_event.dart';
 part 'reservation_state.dart';
-part 'reservation_bloc.freezed.dart';
 
 class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
   ReservationBloc() : super(ReservationState.initial()) {
@@ -113,21 +109,51 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       totalPrice: (double.parse(state.price!) * int.parse(event.nbNights))
           .toInt()
           .toString(),
+      totalPriceOnSale: state.salePrice == "null" ||
+              state.salePrice == null ||
+              state.salePrice == ""
+          ? ""
+          : (double.parse(state.salePrice ?? "0.00") *
+                  int.parse(event.nbNights))
+              .toInt()
+              .toString(),
     ));
   }
 
   void onSelectGuests(
       _OnSelectGuests event, Emitter<ReservationState> emit) async {
+    print('*************');
+    print("event.guests${event.guests}");
+    print("state.totalPrice${state.totalPrice}");
+    print("state.totalPriceOnSale${state.totalPriceOnSale}");
+    print("salePrice${state.salePrice}");
+    print("price${state.price}");
+
     emit(state.copyWith(
       guests: event.guests,
     ));
+    print('*************2222222');
+    print("event.guests${state.guests}");
+    emit(state.copyWith(
+      totalPrice:
+          (double.parse(state.price!) * state.guests!).toInt().toString(),
+      totalPriceOnSale: state.salePrice == "null" ||
+              state.salePrice == null ||
+              state.salePrice == ""
+          ? "0.00"
+          : (double.parse(state.salePrice!) * state.guests!).toInt().toString(),
+    ));
     print('*************');
     print(state.totalPrice);
+    print(state.totalPriceOnSale);
     print(state.guests);
   }
 
   ///set params
   void setParams(_setParams event, Emitter<ReservationState> emit) async {
+    print("setParams");
+    print(event.price);
+    print(event.salePrice);
     emit(state.copyWith(
       id: event.id,
       url: event.url,
@@ -142,8 +168,14 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       checkIn: event.checkIn,
       checkOut: event.checkOut,
       activityDuration: event.activityDuration,
-      totalPrice: double.parse(event.salePrice ?? "0.00").toInt().toString(),
+      totalPrice: double.parse(event.price ?? "0.00").toInt().toString(),
+      totalPriceOnSale: double.tryParse(event.salePrice ?? "0.00").toString(),
     ));
+
+    print("state.totalPrice");
+    print(state.totalPrice);
+    print("state.totalPriceOnSale");
+    print(state.totalPriceOnSale);
   }
 
   void addToCart(
@@ -224,8 +256,11 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
         dateFin: state.checkOut ?? "",
         adultes: state.guests.toString() ?? "",
         total: state.totalPrice == ""
-            ? double.parse(state.salePrice ?? "").toInt().toString()
+            ? double.parse(state.price ?? "").toInt().toString()
             : state.totalPrice.toString(),
+        totalOnSale: state.totalPriceOnSale == ""
+            ? double.parse(state.salePrice ?? "").toInt().toString()
+            : state.totalPriceOnSale.toString(),
         nuits: state.nbNights ?? "",
         id: state.id.toString(),
         address: state.address,

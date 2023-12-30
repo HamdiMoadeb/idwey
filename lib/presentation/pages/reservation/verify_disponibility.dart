@@ -111,9 +111,11 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<ReservationBloc, ReservationState>(
       listener: (context, state) {
-        if (state.status == StateStatus.loading) {
+        if (state.status == StateStatus.loading ||
+            state.addToCartStatus == StateStatus.loading) {
           showLoadingDialog();
-        } else if (state.status == StateStatus.error) {
+        } else if (state.status == StateStatus.error ||
+            state.addToCartStatus == StateStatus.error) {
           print("error");
           Navigator.of(context).pop();
           _scaffoldMessenger?.showSnackBar(
@@ -125,7 +127,8 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
           context
               .read<ReservationBloc>()
               .add(const ReservationEvent.initStatus());
-        } else if (state.status == StateStatus.success) {
+        } else if (state.status == StateStatus.success ||
+            state.addToCartStatus == StateStatus.success) {
           print("success");
           if (state.availableChalet?.isNotEmpty == true) {
             //Navigator.pop(context);
@@ -139,7 +142,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                 .read<ReservationBloc>()
                 .add(const ReservationEvent.initStatus());
           } else if (state.available == false) {
-            Navigator.pop(context);
+            //Navigator.pop(context);
             _scaffoldMessenger?.showSnackBar(
               SnackBar(
                 content: Text(state.errorText ?? ""),
@@ -182,12 +185,17 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                       state.availableChalet?.isEmpty == true
                   ? "Sélectionner votre chalet"
                   : "Réserver",
+              salePrice:
+                  state.totalPriceOnSale == "" || state.totalPriceOnSale == null
+                      ? double.tryParse(widget.salePrice ?? "")
+                              ?.toInt()
+                              .toString() ??
+                          ""
+                      : state.totalPriceOnSale.toString(),
               perPerson: widget.perPerson == "nuit" ? "nuit" : "personne",
-              price: state.totalPrice == "" ||
-                      state.totalPrice == null ||
-                      state.nbNights == "0"
-                  ? double.parse(widget.salePrice ?? "").toInt().toString()
-                  : '${state.totalPrice.toString()} DT',
+              price: state.totalPrice == "" || state.totalPrice == null
+                  ? double.parse(widget.price ?? "").toInt().toString()
+                  : state.totalPrice.toString(),
             ),
           ),
           appBar: AppBar(

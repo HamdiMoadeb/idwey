@@ -79,7 +79,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                               typeReservation: TypeReservation.event,
                               perPerson: "personne",
                               //typeHost: widget.eventDetailsDto,
-                              salePrice: state.eventDetailsDto?.row?.prix ?? "",
+                              salePrice:
+                                  state.eventDetailsDto?.row?.salePrix ?? "",
                               price: state.eventDetailsDto?.row?.prix ?? "",
 
                               id: state.eventDetailsDto?.row?.id.toString() ??

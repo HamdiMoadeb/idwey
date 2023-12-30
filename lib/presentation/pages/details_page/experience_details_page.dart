@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/components.dart';
@@ -16,7 +17,6 @@ import 'package:idwey/presentation/pages/details_page/components/map_section/map
 import 'package:idwey/presentation/pages/details_page/components/reviews_section/reviews_section.dart';
 import 'package:idwey/presentation/pages/details_page/components/type_capacite_section/type_capacite_section.dart';
 import 'package:idwey/theme/app_colors.dart';
-import 'package:heroicons/heroicons.dart';
 
 @RoutePage()
 class ExperienceDetailsScreen extends StatefulWidget {
@@ -83,7 +83,8 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                               perPerson: "personne",
                               //typeHost: widget.eventDetailsDto,
                               salePrice:
-                                  state.experienceDetailsDto?.row?.price ?? "",
+                                  state.experienceDetailsDto?.row?.salePrice ??
+                                      "",
                               price:
                                   state.experienceDetailsDto?.row?.price ?? "",
 

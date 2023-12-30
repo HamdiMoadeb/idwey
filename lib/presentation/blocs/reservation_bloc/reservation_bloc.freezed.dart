@@ -2180,6 +2180,7 @@ mixin _$ReservationState {
   String? get checkOut => throw _privateConstructorUsedError;
   bool? get available => throw _privateConstructorUsedError;
   String? get totalPrice => throw _privateConstructorUsedError;
+  String? get totalPriceOnSale => throw _privateConstructorUsedError;
   String? get nbNights => throw _privateConstructorUsedError;
   int? get guests => throw _privateConstructorUsedError;
   String? get activityDuration => throw _privateConstructorUsedError;
@@ -2220,6 +2221,7 @@ abstract class $ReservationStateCopyWith<$Res> {
       String? checkOut,
       bool? available,
       String? totalPrice,
+      String? totalPriceOnSale,
       String? nbNights,
       int? guests,
       String? activityDuration,
@@ -2262,6 +2264,7 @@ class _$ReservationStateCopyWithImpl<$Res, $Val extends ReservationState>
     Object? checkOut = freezed,
     Object? available = freezed,
     Object? totalPrice = freezed,
+    Object? totalPriceOnSale = freezed,
     Object? nbNights = freezed,
     Object? guests = freezed,
     Object? activityDuration = freezed,
@@ -2320,6 +2323,10 @@ class _$ReservationStateCopyWithImpl<$Res, $Val extends ReservationState>
       totalPrice: freezed == totalPrice
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalPriceOnSale: freezed == totalPriceOnSale
+          ? _value.totalPriceOnSale
+          : totalPriceOnSale // ignore: cast_nullable_to_non_nullable
               as String?,
       nbNights: freezed == nbNights
           ? _value.nbNights
@@ -2412,6 +2419,7 @@ abstract class _$$_ReservationStateCopyWith<$Res>
       String? checkOut,
       bool? available,
       String? totalPrice,
+      String? totalPriceOnSale,
       String? nbNights,
       int? guests,
       String? activityDuration,
@@ -2452,6 +2460,7 @@ class __$$_ReservationStateCopyWithImpl<$Res>
     Object? checkOut = freezed,
     Object? available = freezed,
     Object? totalPrice = freezed,
+    Object? totalPriceOnSale = freezed,
     Object? nbNights = freezed,
     Object? guests = freezed,
     Object? activityDuration = freezed,
@@ -2510,6 +2519,10 @@ class __$$_ReservationStateCopyWithImpl<$Res>
       totalPrice: freezed == totalPrice
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalPriceOnSale: freezed == totalPriceOnSale
+          ? _value.totalPriceOnSale
+          : totalPriceOnSale // ignore: cast_nullable_to_non_nullable
               as String?,
       nbNights: freezed == nbNights
           ? _value.nbNights
@@ -2597,6 +2610,7 @@ class _$_ReservationState implements _ReservationState {
       this.checkOut,
       this.available,
       this.totalPrice,
+      this.totalPriceOnSale,
       this.nbNights,
       this.guests,
       this.activityDuration,
@@ -2639,6 +2653,8 @@ class _$_ReservationState implements _ReservationState {
   final bool? available;
   @override
   final String? totalPrice;
+  @override
+  final String? totalPriceOnSale;
   @override
   final String? nbNights;
   @override
@@ -2708,7 +2724,7 @@ class _$_ReservationState implements _ReservationState {
 
   @override
   String toString() {
-    return 'ReservationState(status: $status, addToCartStatus: $addToCartStatus, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, nbNights: $nbNights, guests: $guests, activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, errorText: $errorText, selectedRooms: $selectedRooms, selectedRoomsObject: $selectedRoomsObject, availableChalet: $availableChalet, extraPrice: $extraPrice)';
+    return 'ReservationState(status: $status, addToCartStatus: $addToCartStatus, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, totalPriceOnSale: $totalPriceOnSale, nbNights: $nbNights, guests: $guests, activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, errorText: $errorText, selectedRooms: $selectedRooms, selectedRoomsObject: $selectedRoomsObject, availableChalet: $availableChalet, extraPrice: $extraPrice)';
   }
 
   @override
@@ -2731,6 +2747,8 @@ class _$_ReservationState implements _ReservationState {
                 other.available == available) &&
             (identical(other.totalPrice, totalPrice) ||
                 other.totalPrice == totalPrice) &&
+            (identical(other.totalPriceOnSale, totalPriceOnSale) ||
+                other.totalPriceOnSale == totalPriceOnSale) &&
             (identical(other.nbNights, nbNights) ||
                 other.nbNights == nbNights) &&
             (identical(other.guests, guests) || other.guests == guests) &&
@@ -2774,6 +2792,7 @@ class _$_ReservationState implements _ReservationState {
         checkOut,
         available,
         totalPrice,
+        totalPriceOnSale,
         nbNights,
         guests,
         activityDuration,
@@ -2812,6 +2831,7 @@ abstract class _ReservationState implements ReservationState {
       final String? checkOut,
       final bool? available,
       final String? totalPrice,
+      final String? totalPriceOnSale,
       final String? nbNights,
       final int? guests,
       final String? activityDuration,
@@ -2850,6 +2870,8 @@ abstract class _ReservationState implements ReservationState {
   bool? get available;
   @override
   String? get totalPrice;
+  @override
+  String? get totalPriceOnSale;
   @override
   String? get nbNights;
   @override

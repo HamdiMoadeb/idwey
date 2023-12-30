@@ -6,9 +6,9 @@ import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/booking_dto.dart';
 import 'package:idwey/domain/usecases/get_booking_list_usecase.dart';
 
+part 'booking_page_bloc.freezed.dart';
 part 'booking_page_event.dart';
 part 'booking_page_state.dart';
-part 'booking_page_bloc.freezed.dart';
 
 class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
   BookingPageBloc() : super(BookingPageState.initial()) {
@@ -48,7 +48,7 @@ class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
             }
           });
           state.bookingList?.forEach((element) {
-            if (element.status == 'waiting') {
+            if (element.status == 'processing') {
               waitingBookingList.add(element);
             }
           });

@@ -69,6 +69,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   void updateUser(_UpdateUser event, Emitter<AppState> emit) async {
     SharedPreferences? prefs;
+    print("updaaaaaate");
     try {
       emit(state.copyWith(updateUserStatus: StateStatus.loading));
       prefs = await SharedPreferences.getInstance();
@@ -79,6 +80,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         emit(state.copyWith(updateUserStatus: StateStatus.success));
         print("event.body");
         print(r);
+        Map<String, dynamic> decodedToken = JwtDecoder.decode(r);
+        prefs!.setString("token", r);
         emit(state.copyWith(
           updateUserStatus: StateStatus.success,
           name: event.body["first_name"] ?? state.name,
@@ -86,7 +89,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           lastname: event.body["last_name"] ?? state.lastname,
           id: event.body["id"] ?? state.id,
           phone: event.body["phone"] ?? state.phone,
+          imageUrl: decodedToken['image_url'] is String == true
+              ? decodedToken['image_url'] ?? ""
+              : "",
         ));
+        print(state.name);
+        print(state.email);
+        print(state.lastname);
+        GetIt.I<AppBloc>().add(const _GetUser());
       });
     } catch (e) {
       print(e);
@@ -99,6 +109,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   void uploadImage(_UploadImage event, Emitter<AppState> emit) async {
     try {
       emit(state.copyWith(status: StateStatus.loading));
+      print("uploadImage");
+      print(event.body["file"]);
       Map<String, dynamic> body = {
         "image": event.body["file"],
         "id": state.id,
@@ -108,6 +120,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       result.fold((l) {
         emit(state.copyWith(status: StateStatus.error));
       }, (r) {
+        print("uploadImage success");
         emit(state.copyWith(status: StateStatus.success));
       });
     } catch (e) {

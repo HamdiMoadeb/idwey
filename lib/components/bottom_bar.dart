@@ -74,7 +74,8 @@ class BottomReservationBar extends StatelessWidget {
                       visible: salePrice.isNotEmpty &&
                               salePrice != "0" &&
                               salePrice != 0 &&
-                              salePrice != "0.00"
+                              salePrice != "0.00" &&
+                              salePrice != "null"
                           ? true
                           : false,
                       child: Text("$price DT",
@@ -88,7 +89,8 @@ class BottomReservationBar extends StatelessWidget {
                       salePrice.isNotEmpty &&
                               salePrice != "0" &&
                               salePrice != 0 &&
-                              salePrice != "0.00"
+                              salePrice != "0.00" &&
+                              salePrice != "null"
                           ? "$salePrice DT / $perPerson"
                           : "$price DT / $perPerson",
                       style: Theme.of(context).textTheme.displayLarge?.copyWith(

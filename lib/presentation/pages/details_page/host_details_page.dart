@@ -86,7 +86,9 @@ class _DetailsScreenState extends State<DetailsScreen>
                               url: state.hostDetails?.bannerImageUrl ?? "",
                               typeReservation: TypeReservation.host,
                               typeHost: widget.typeHost,
-                              salePrice: state.hostDetails?.row?.price ?? "",
+                              salePrice: state.hostDetails?.row?.salePrice
+                                      .toString() ??
+                                  "",
                               price: state.hostDetails?.row?.price ?? "",
                               perPerson:
                                   state.hostDetails?.row?.perPerson ?? "",
