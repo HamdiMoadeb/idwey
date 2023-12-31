@@ -5,10 +5,7 @@
 import 'dart:convert';
 
 import 'activity_category.dart';
-import 'activity_page_dto.dart';
-import 'attribute_dto.dart';
 import 'attributz.dart';
-import 'host_details_dto.dart';
 
 ExperiencePageDto experiencePageDtoFromJson(String str) =>
     ExperiencePageDto.fromJson(json.decode(str));

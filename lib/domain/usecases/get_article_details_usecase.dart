@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:idwey/data/models/article_details_dto.dart';
-import 'package:idwey/data/models/event_details_dto.dart';
 import 'package:idwey/domain/repositories/repositories.dart';
 
 import 'usecase.dart';

@@ -91,7 +91,7 @@ class RoomItemCardBooking extends StatelessWidget {
                       children: <TextSpan>[
                         TextSpan(
                             text: getReservationType(
-                                bookingDto?.objectModel ?? ""),
+                                bookingDto.objectModel ?? ""),
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal,
@@ -131,14 +131,14 @@ class RoomItemCardBooking extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${bookingDto.title ?? ""} • ${bookingDto?.address ?? ""}",
+                              "${bookingDto.title ?? ""} • ${bookingDto.address ?? ""}",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 16.sp),
                             ),
                             SizedBox(
-                              height: bookingDto?.startDate != "" ? 8.h : 0,
+                              height: bookingDto.startDate != "" ? 8.h : 0,
                             ),
-                            bookingDto?.startDate != ""
+                            bookingDto.startDate != ""
                                 ? Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -151,7 +151,7 @@ class RoomItemCardBooking extends StatelessWidget {
                                       ),
                                       Text(
                                         DateFormat("dd/MM/yyyy").format(
-                                                bookingDto?.startDate ??
+                                                bookingDto.startDate ??
                                                     DateTime.now()) ??
                                             "",
                                         style: TextStyle(
@@ -162,7 +162,7 @@ class RoomItemCardBooking extends StatelessWidget {
                                     ],
                                   )
                                 : const SizedBox.shrink(),
-                            bookingDto?.endDate != ""
+                            bookingDto.endDate != ""
                                 ? Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -175,7 +175,7 @@ class RoomItemCardBooking extends StatelessWidget {
                                       ),
                                       Text(
                                         DateFormat("dd/MM/yyyy").format(
-                                                bookingDto?.endDate ??
+                                                bookingDto.endDate ??
                                                     DateTime.now()) ??
                                             "",
                                         style: TextStyle(
@@ -196,8 +196,8 @@ class RoomItemCardBooking extends StatelessWidget {
                                       fontSize: 12.sp),
                                 ),
                                 Text(
-                                  bookingDto?.endDate
-                                          ?.difference(bookingDto?.startDate ??
+                                  bookingDto.endDate
+                                          ?.difference(bookingDto.startDate ??
                                               DateTime.now())
                                           .inDays
                                           .toString() ??
@@ -209,9 +209,9 @@ class RoomItemCardBooking extends StatelessWidget {
                                 )
                               ],
                             ),
-                            bookingDto?.totalGuests == "" ||
-                                    bookingDto?.totalGuests == "null" ||
-                                    bookingDto?.totalGuests == null
+                            bookingDto.totalGuests == "" ||
+                                    bookingDto.totalGuests == "null" ||
+                                    bookingDto.totalGuests == null
                                 ? const SizedBox.shrink()
                                 : Row(
                                     mainAxisAlignment:
@@ -222,8 +222,7 @@ class RoomItemCardBooking extends StatelessWidget {
                                         style: TextStyle(fontSize: 12.sp),
                                       ),
                                       Text(
-                                        bookingDto?.totalGuests.toString() ??
-                                            "",
+                                        bookingDto.totalGuests.toString() ?? "",
                                         style: TextStyle(
                                             color: primary,
                                             fontSize: 12.sp,
@@ -246,7 +245,7 @@ class RoomItemCardBooking extends StatelessWidget {
                                       fontSize: 16.sp),
                                 ),
                                 Text(
-                                  "${double.parse(bookingDto?.total ?? "0.00").toInt()} DT",
+                                  "${double.parse(bookingDto.total ?? "0.00").toInt()} DT",
                                   style: TextStyle(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w500,
@@ -270,7 +269,7 @@ class RoomItemCardBooking extends StatelessWidget {
                       ),
                       Text(
                         DateFormat("dd/MM/yyyy").format(
-                                bookingDto?.createdAt ?? DateTime.now()) ??
+                                bookingDto.createdAt ?? DateTime.now()) ??
                             "",
                         style: TextStyle(
                             fontSize: 16.sp, fontWeight: FontWeight.w500),

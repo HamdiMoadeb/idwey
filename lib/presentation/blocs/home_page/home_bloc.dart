@@ -5,14 +5,12 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/activity_category.dart';
 import 'package:idwey/data/models/activity_page_dto.dart';
-import 'package:idwey/data/models/attribute_dto.dart';
 import 'package:idwey/data/models/attributz.dart';
 import 'package:idwey/data/models/event_page_dto.dart';
 import 'package:idwey/data/models/experience_page_dto.dart';
 import 'package:idwey/data/models/host_page_dto.dart';
 import 'package:idwey/data/models/locations_dto.dart';
 import 'package:idwey/data/models/models.dart';
-import 'package:idwey/domain/usecases/filter_usecase.dart';
 import 'package:idwey/domain/usecases/get_activity_page_usecase.dart';
 import 'package:idwey/domain/usecases/get_event_page_usecase.dart';
 import 'package:idwey/domain/usecases/get_experience_page_usecase.dart';
@@ -60,8 +58,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getUserRole(GetUserRole event, Emitter<HomeState> emit) {}
 
   _getListHosts(GetListHost event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfThePageHosts");
-    print(state.atTheEndOfThePageHosts);
     try {
       if (state.isSearch == true) {
         emit(state.copyWith(
@@ -103,7 +99,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           state.pageHosts ?? 0; // Use a default value if state.page is null
       final Either<Exception, List<Host>?> result;
 
-      print("******* is not sezrch");
       result = await GetIt.I<GetListHostsUseCase>().call({
         "limit": 10,
         "offset": nextPage * 10,
@@ -151,10 +146,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   /// get list search hosts
 
   _getListSearchHosts(GetSearchListHost event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfTheSearchPageHosts");
-    print(state.atTheEndOfTheSearchPageHosts);
-    print(state.isSearch);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
@@ -169,9 +160,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listHosts");
-      print(state.listHosts);
-
       emit(state.copyWith(
         status:
             event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
@@ -181,7 +169,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.searchPageHosts ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Host>?> result;
-      print("event.isSearch");
+
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<SearchListHostsUseCase>().call({
         "limit": 10,
@@ -354,16 +342,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       });
 
       result.fold((Exception failure) {}, (HostPageDto? success) async {
-        print("success");
-        print(success?.hotelMinMaxPrice);
         emit(state.copyWith(
           hostPageDto: success,
           listAttributes: success?.attributes,
           minPriceRange: success?.hotelMinMaxPrice?[0],
           maxPriceRange: success?.hotelMinMaxPrice?[1],
         ));
-        print("minPriceRange ${state.minPriceRange}");
-        print("maxPriceRange ${state.maxPriceRange}");
       });
     } catch (e) {
       emit(state.copyWith());
@@ -493,11 +477,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           nextPage++;
 
           // Check if the server returned fewer items than requested
-          bool atTheEndOfThePage = success!.length < 10;
+          bool atTheEndOfThePage = success.length < 10;
 
           emit(state.copyWith(
             statusExperiences: StateStatus.success,
-            listExperiences: state.listExperiences! + success!,
+            listExperiences: state.listExperiences! + success,
             isFetching: false,
             atTheEndOfThePageExperiences: atTheEndOfThePage,
             pageExperiences: nextPage,
@@ -606,7 +590,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _setSelectedTab(SetSelectedTab event, Emitter<HomeState> emit) async {
     /// switch selected tab => min max range
-    print(event.tab);
     switch (event.tab) {
       case 0:
         emit(state.copyWith(
@@ -642,41 +625,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ));
         break;
     }
-
-    print("state.selectedTab");
-    print(state.selectedTab);
-    print("state.minPriceRange");
-    print(state.minPriceRange);
-    print("state.maxPriceRange");
-    print(state.maxPriceRange);
-    print("state.listAttributes");
-    print(state.listAttributes![0].toJson());
-    print("state.listActivityCategories");
-    print(state.listActivityCategories![0].toJson());
   }
 
   void changeStartDate(_ChangeStartDate event, Emitter<HomeState> emit) {
     emit(state.copyWith(startDate: event.startDate));
-    print("state.startDate");
-    print(state.startDate);
   }
 
   void changeEndDate(_ChangeEndDate event, Emitter<HomeState> emit) {
     emit(state.copyWith(endDate: event.endDate));
-    print("state.endDate");
-    print(state.endDate);
   }
 
   void changeCity(_ChangeCity event, Emitter<HomeState> emit) {
     emit(state.copyWith(city: event.city));
-    print("state.city");
-    print(state.city);
   }
 
   void changeEmplacement(_ChangeEmplacement event, Emitter<HomeState> emit) {
     emit(state.copyWith(emplacement: event.city));
-    print("state.location");
-    print(state.emplacement);
   }
 
   void changeGuests(_ChangeGuests event, Emitter<HomeState> emit) {
@@ -691,10 +655,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListSearchEvents(
       GetSearchListEvent event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfThePageEvents");
-    print(state.atTheEndOfTheSearchPageEvents);
-    print(state.isSearch);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
@@ -709,9 +669,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listEvents");
-      print(state.listEvents);
-
       emit(state.copyWith(
         status:
             event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
@@ -721,7 +678,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.pageSearchEvents ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Event>?> result;
-      print("event.isSearch");
+
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<SearchListEventsUseCase>().call({
         "limit": 10,
@@ -797,7 +754,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.pageSearchActivities ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Activity>?> result;
-      print("event.isSearch");
+
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<SearchListActivityUseCase>().call({
         "limit": 10,
@@ -850,10 +807,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListSearchExperiences(
       GetSearchListExperiences event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfTheSearchPageExperiences");
-    print(state.atTheEndOfTheSearchPageExperiences);
-    print(state.isSearch);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
@@ -868,9 +821,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listExperiences");
-      print(state.listExperiences);
-
       emit(state.copyWith(
         statusExperiences:
             event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
@@ -880,7 +830,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.pageSearchExperiences ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Experience>?> result;
-      print("event.isSearch");
+
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<SearchListExperienceUseCase>().call({
         "limit": 10,
@@ -946,9 +896,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         } else {}
       });
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   /// set selected ids
@@ -962,8 +910,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(
       selectedAttributesId: selectedIds ?? [],
     ));
-    print("state.selectedAttributesId");
-    print(state.selectedAttributesId);
   }
 
   /// set selected ids
@@ -986,8 +932,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(
       selectedPriceRanges: event.str,
     ));
-    print("event.str");
-    print(state.selectedPriceRanges);
   }
 
   /// filter list hosts by selected ids
@@ -1007,9 +951,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listHosts");
-      print(state.listHosts);
-
       emit(state.copyWith(
         status:
             event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
@@ -1019,7 +960,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.filterPageHosts ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Host>?> result;
-      print("event.isFilter");
+
       emit(state.copyWith(isFilter: true));
       result = await GetIt.I<FilterListHostsUseCase>().call({
         "limit": 10,
@@ -1070,9 +1011,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListFilterEvents(
       GetFilterListEventsPageData event, Emitter<HomeState> emit) async {
-    print(state.atTheEndOfTheFilterPageEvents);
-    print(state.isFilter);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list events to load new data
       if (event.isFetching == false) {
@@ -1087,9 +1025,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listEvents");
-      print(state.listEvents);
-
       emit(state.copyWith(
         status:
             event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
@@ -1101,7 +1036,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(isFilter: true));
 
       final Either<Exception, List<Event>?> result;
-      print("event.isSearch");
+
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<FilterListEventsUseCase>().call({
         "limit": 10,
@@ -1154,9 +1089,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListFilterActivities(
       GetFilterListActivitiesPageData event, Emitter<HomeState> emit) async {
-    print(state.atTheEndOfTheFilterPageActivities);
-    print(state.isFilter);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list activities to load new data
       if (event.isFetching == false) {
@@ -1171,9 +1103,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listActivities");
-      print(state.listActivities);
-
       emit(state.copyWith(
         status:
             event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
@@ -1185,7 +1114,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(isFilter: true));
 
       final Either<Exception, List<Activity>?> result;
-      print("event.isSearch");
+
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<FilterListActivitiesUseCase>().call({
         "limit": 10,
@@ -1238,9 +1167,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListFilterExperiences(
       GetFilterListExperiencesPageData event, Emitter<HomeState> emit) async {
-    print(state.atTheEndOfTheFilterPageExperiences);
-    print(state.isFilter);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list experiences to load new data
       if (event.isFetching == false) {
@@ -1255,9 +1181,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listExperiences");
-      print(state.listExperiences);
-
       emit(state.copyWith(
         status:
             event.isFetching ? StateStatus.loadingMore : StateStatus.loading,
@@ -1267,7 +1190,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           0; // Use a default value if state.page is null
       emit(state.copyWith(isFilter: true));
       final Either<Exception, List<Experience>?> result;
-      print("event.isSearch");
+
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<FilterListExperiencesUseCase>().call({
         "limit": 10,
@@ -1320,8 +1243,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (state.selectedPriceRanges != null) {
       concatenatedString = stringsList.join(';');
     }
-    print("concatenatedString");
-    print(concatenatedString);
+
     return concatenatedString;
   }
 

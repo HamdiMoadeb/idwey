@@ -40,7 +40,6 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
       SharedPreferences preferences = await SharedPreferences.getInstance();
 
       String userId = preferences.getString("userId") ?? "0";
-      print("https://idwey.tn/api/activity/detail/$id/$userId");
 
       final response =
           await dio.get("https://idwey.tn/api/activity/detail/$id/$userId");
@@ -55,13 +54,10 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
   Future<List<Activity>> searchListActivities(int limit, int offset,
       String start, String end, int adults, String address) async {
     List<Activity> listOfActivities = [];
-    print(
-        "https://idwey.tn/api/activity?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+
     final response = await dio.get(
         "https://idwey.tn/api/activity?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
 
-    print("response.data");
-    print(response.data);
     response.data['rows'].forEach((data) {
       listOfActivities.add(Activity.fromJson(data));
     });
@@ -74,8 +70,7 @@ class ActivityApiDataSourceImpl implements ActivityApiDataSource {
     try {
       final response = await dio
           .get("https://idwey.tn/api/activity?offset=$offset&limit=10");
-      print("response.data");
-      print(response.data);
+
       return ActivityPageDto.fromJson(response.data);
     } catch (e) {
       throw Exception();

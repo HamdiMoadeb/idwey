@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/constants/enums.dart';
-import 'package:idwey/data/models/review_scale_dto.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/presentation/blocs/add_review_bloc/add_review_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
@@ -44,9 +43,6 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    print(widget.review?.reviewMeta?.length ?? 0);
-    print(widget.id ?? 0);
-    print(widget.type ?? 0);
     context.read<AddReviewBloc>().add(SetParams(widget.id, widget.type));
     reviewController.addListener(() {
       context.read<AddReviewBloc>().add(SetComment(reviewController.text));
@@ -69,9 +65,6 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
           .read<AddReviewBloc>()
           .add(SetComment(widget.review?.content ?? ""));
       reviewController.text = widget.review?.content ?? "";
-
-      print(jsonDecode(jsonEncode(widget.review!.reviewMeta))
-          .cast<Map<String, dynamic>>());
 
       context.read<AddReviewBloc>().add(SetRateSettings(
           jsonDecode(jsonEncode(widget.review!.reviewMeta))
@@ -334,7 +327,6 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                     color: Colors.amber,
                   ),
                   onRatingUpdate: (rating) {
-                    print(rating);
                     context.read<AddReviewBloc>().add(SetRate(
                         state.ratesStars![i]['title'] ?? "", rating.toInt()));
                   },

@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/components.dart';
-import 'package:idwey/components/verify_disponibility_bottom_sheet_content/bottom_sheet.dart';
-import 'package:idwey/constants/assets.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
-import 'package:idwey/utils/form_utils.dart';
 
 @RoutePage()
 class SignInScreen extends StatefulWidget {
@@ -69,11 +65,8 @@ class _SignInScreenState extends State<SignInScreen> {
         if (state.status == StateStatus.loading) {
           showLoadingDialog();
         } else if (state.status == StateStatus.success) {
-          print("success");
-
           context.read<SignInBloc>().initStatus();
         } else if (state.status == StateStatus.error) {
-          print("error");
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

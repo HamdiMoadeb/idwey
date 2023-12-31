@@ -239,9 +239,6 @@ class _SearchScreenState extends State<SearchScreen>
                       ),
                     ),
                     onPressed: () async {
-                      print("state.selectedTab");
-                      print(state.selectedTab);
-
                       if (state.selectedTab == 0) {
                         context
                             .read<HomeBloc>()

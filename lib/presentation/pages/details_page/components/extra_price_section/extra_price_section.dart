@@ -9,7 +9,8 @@ import '../../../../../data/models/extra_price_dto.dart';
 class ExtraPriceSection extends StatefulWidget {
   final List<ExtraPrice> extraPrices;
 
-  ExtraPriceSection({Key? key, required this.extraPrices}) : super(key: key);
+  const ExtraPriceSection({Key? key, required this.extraPrices})
+      : super(key: key);
 
   @override
   State<ExtraPriceSection> createState() => _ExtraPriceSectionState();
@@ -70,7 +71,7 @@ class _ExtraPriceSectionState extends State<ExtraPriceSection> {
             );
           }).toList(),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

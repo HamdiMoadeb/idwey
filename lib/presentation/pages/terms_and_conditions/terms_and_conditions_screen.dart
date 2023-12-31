@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +16,7 @@ class TermsAndConditionsScreen extends StatefulWidget {
 }
 
 class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool showAcceptButton = false;
   double progress = 0;
   @override
@@ -63,7 +62,7 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500)),
                         ))
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
                 SizedBox(
                   height: 16.h,
                 ),
@@ -71,7 +70,7 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
                     onPressed: () {
                       _scrollController.animateTo(
                         _scrollController.position.maxScrollExtent,
-                        duration: Duration(seconds: 2),
+                        duration: const Duration(seconds: 2),
                         curve: Curves.fastOutSlowIn,
                       );
                     },

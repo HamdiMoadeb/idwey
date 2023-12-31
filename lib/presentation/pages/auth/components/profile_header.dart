@@ -16,7 +16,7 @@ class ProfileHeader extends StatelessWidget {
 
   Future<String> getNameFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    String? token = prefs!.getString('token');
+    String? token = prefs.getString('token');
     if (token != null) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       return decodedToken['first_name'] + " " + decodedToken['last_name'];
@@ -27,7 +27,7 @@ class ProfileHeader extends StatelessWidget {
 
   Future<String> getImageFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    String? token = prefs!.getString('token');
+    String? token = prefs.getString('token');
     if (token != null) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       return decodedToken['image_url'];
@@ -59,7 +59,7 @@ class ProfileHeader extends StatelessWidget {
                     children: [
                       Text(
                         userName,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       hideSubtitle == true
                           ? const SizedBox.shrink()

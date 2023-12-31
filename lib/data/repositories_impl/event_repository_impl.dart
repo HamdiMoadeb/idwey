@@ -24,8 +24,7 @@ class EventRepositoryImpl implements EventRepository {
   Future<Either<Exception, EventDetailsDto>> getEvent(int id) async {
     try {
       final result = await dataSource.getEvent(id);
-      print("result");
-      print(result);
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

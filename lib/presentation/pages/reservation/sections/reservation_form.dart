@@ -45,7 +45,6 @@ class _ReservationSectionState extends State<ReservationSection> {
   @override
   void initState() {
     // TODO: implement initState
-    print('activity duration ${widget.activityDuration}');
     super.initState();
   }
 
@@ -315,7 +314,7 @@ class _ReservationSectionState extends State<ReservationSection> {
                                     ],
                                   ),
                                 ),
-                            Divider(),
+                            const Divider(),
                             SizedBox(
                               height: 16.h,
                             ),

@@ -61,8 +61,7 @@ class HostRepositoryImpl implements HostRepository {
     // try {
     final result = await dataSource.searchListHosts(
         limit, offset, start, end, adults, address);
-    print("result");
-    print(result);
+
     return Right(result);
     // } on Exception catch (e) {
     //   return Left(e);
@@ -74,8 +73,7 @@ class HostRepositoryImpl implements HostRepository {
       int limit, int offset) async {
     try {
       final result = await dataSource.getHostPageData(limit, offset);
-      print("result");
-      print(result);
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

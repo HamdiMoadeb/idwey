@@ -35,10 +35,7 @@ class _CustomDropDownMenuButtonState extends State<CustomDropDownMenuButton> {
     // TODO: implement initState
     dropdownIsVisible = widget.showDropDown!;
     selectedOption = widget.selectedOption ?? "";
-    print("dropdownIsVisible");
-    print(dropdownIsVisible);
-    print("selectedOption");
-    print(selectedOption);
+
     super.initState();
   }
 
@@ -82,8 +79,6 @@ class _CustomDropDownMenuButtonState extends State<CustomDropDownMenuButton> {
                   ),
                 ),
                 suggestionsCallback: (pattern) {
-                  print("pattern");
-                  print(pattern);
                   return widget.items.where((item) =>
                       item.toLowerCase().contains(pattern.toLowerCase()));
                 },
@@ -107,8 +102,6 @@ class _CustomDropDownMenuButtonState extends State<CustomDropDownMenuButton> {
                 },
                 onSuggestionSelected: (suggestion) {
                   setState(() {
-                    print("suggestion");
-                    print(suggestion);
                     selectedOption = suggestion;
 
                     dropdownIsVisible = !dropdownIsVisible;
@@ -204,10 +197,6 @@ class _EmplacementDropDownMenuButtonState
     // TODO: implement initState
     dropdownIsVisible = widget.showDropDown!;
     selectedOption = widget.selectedOption ?? "";
-    print("dropdownIsVisible");
-    print(dropdownIsVisible);
-    print("selectedOption");
-    print(selectedOption);
     super.initState();
   }
 
@@ -251,8 +240,6 @@ class _EmplacementDropDownMenuButtonState
                   ),
                 ),
                 suggestionsCallback: (pattern) {
-                  print("pattern");
-                  print(pattern);
                   return widget.items.where((item) =>
                       item.toLowerCase().contains(pattern.toLowerCase()));
                 },
@@ -276,8 +263,6 @@ class _EmplacementDropDownMenuButtonState
                 },
                 onSuggestionSelected: (suggestion) {
                   setState(() {
-                    print("suggestion");
-                    print(suggestion);
                     selectedOption = suggestion;
 
                     dropdownIsVisible = !dropdownIsVisible;

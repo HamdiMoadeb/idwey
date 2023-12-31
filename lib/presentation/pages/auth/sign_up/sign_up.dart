@@ -39,8 +39,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void toggleRightScroll() {
     setState(() {
       isRightScrollEnabled = !isRightScrollEnabled;
-      print("isRightScrollEnabled");
-      print(isRightScrollEnabled);
     });
   }
 
@@ -202,14 +200,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           onPressed: () {
                             if (currentPage == 2) {
-                              print('****');
-                              print(state.firstName);
-                              print(state.email);
-                              print(state.password);
-                              print(state.confirmPassword);
-                              print(state.isValid);
-                              print(state.password?.isEmpty);
-                              print(state.confirmPassword?.isEmpty);
                               if (state.firstName == null ||
                                   state.firstName!.isEmpty ||
                                   state.email == null ||
@@ -230,7 +220,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                 );
                               } else {
-                                print('****');
                                 GetIt.I<AppRouter>()
                                     .push(const SignUpFinalRoute());
                               }
@@ -241,14 +230,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   setState(() {
                                     isRightScrollEnabled = false;
                                   });
-                                  print('****name controller is empty');
                                   return;
                                 } else if (currentPage == 1 &&
                                     state.email?.isEmpty == true) {
                                   setState(() {
                                     isRightScrollEnabled = false;
                                   });
-                                  print('****email controller is empty');
                                   return;
                                 } else if (currentPage == 1 &&
                                     emailController.text.isEmpty == true &&
@@ -256,14 +243,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   setState(() {
                                     isRightScrollEnabled = false;
                                   });
-                                  print('****email controller is empty');
                                   return;
                                 } else if (currentPage == 2 &&
                                     passwordController.text.isEmpty == true) {
                                   setState(() {
                                     isRightScrollEnabled = false;
                                   });
-                                  print('****password controller is empty');
                                   return;
                                 } else if (currentPage == 1 &&
                                     emailController.text.isNotEmpty &&
@@ -276,7 +261,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       duration: const Duration(milliseconds: 3),
                                       curve: Curves.easeInOut);
                                 } else {
-                                  print('elllllllse');
                                   setState(() {
                                     isRightScrollEnabled = true;
                                   });

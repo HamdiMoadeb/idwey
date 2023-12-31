@@ -12,8 +12,6 @@ class GetLocationsUseCase
   @override
   Future<Either<Exception, List<LocationsDto>>> call(
       Map<String, dynamic> body) async {
-    print("body");
-    print(body);
     return await repository.getLocations();
   }
 }

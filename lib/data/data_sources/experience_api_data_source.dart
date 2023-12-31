@@ -39,7 +39,7 @@ class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
       SharedPreferences preferences = await SharedPreferences.getInstance();
 
       String userId = preferences.getString("userId") ?? "0";
-      print("https://idwey.tn/api/experience/detail/$id/$userId");
+
       final response =
           await dio.get("https://idwey.tn/api/experience/detail/$id/0");
       return ExperienceDetailsDto.fromJson(response.data);
@@ -52,13 +52,10 @@ class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
   Future<List<Experience>> searchListExperiences(int limit, int offset,
       String start, String end, int adults, String address) async {
     List<Experience> listOfExperiences = [];
-    print(
-        "https://idwey.tn/api/experience?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+
     final response = await dio.get(
         "https://idwey.tn/api/experience?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
 
-    print("response.data");
-    print(response.data);
     response.data['rows'].forEach((data) {
       listOfExperiences.add(Experience.fromJson(data));
     });
@@ -69,7 +66,7 @@ class ExperienceApiDataSourceImpl implements ExperienceApiDataSource {
   @override
   Future<ExperiencePageDto> getExperiencePageData(int limit, int offset) async {
     try {
-      final response = await await dio
+      final response = await dio
           .get("https://idwey.tn/api/experience?offset=$offset&limit=10");
       return ExperiencePageDto.fromJson(response.data);
     } catch (e) {

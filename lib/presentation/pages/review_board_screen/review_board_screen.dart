@@ -305,8 +305,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
         ));
   }
 
-  Widget _buildRoomItem(
-      {Review? review, bool confirmed = false, required String type}) {
+  Widget _buildRoomItem({Review? review, required String type}) {
     return InkWell(
       onTap: () {
         GetIt.I<AppRouter>()

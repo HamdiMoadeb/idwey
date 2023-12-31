@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:idwey/data/models/booking_dto.dart';
-import 'package:idwey/data/models/host_details_dto.dart';
-import 'package:idwey/data/models/host_dto.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,8 +26,7 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
       "https://idwey.tn/api/booking/doCheckout",
       data: body,
     );
-    print("response");
-    print(response.data);
+
     return response.data;
     // } catch (e) {
     //   throw Exception(e);
@@ -42,8 +39,7 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
       final response = await dio.get(
         "https://idwey.tn/api/user/booking-history/$params",
       );
-      print("response");
-      print(response.data);
+
       return (response.data as List)
           .map((e) => BookingDto.fromJson(e))
           .toList();
@@ -56,11 +52,9 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
   Future<Map<String, dynamic>> doOnlineCheckout(
       Map<String, dynamic> body) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs!.getString('token');
+    String? token = prefs.getString('token');
     if (token != null) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-      print("decodedToken");
-      print(decodedToken);
 
       Map<String, String> headers = {
         'x-api-key': KONNECT_API_KEY,
@@ -87,19 +81,16 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
         "failUrl": "http://102.219.178.96:5776/failed",
         "theme": "light"
       };
-      print("requestBody");
-      print(requestBody);
+
       try {
         var response = await dio.post(
           KONNECT_PAYMENT_URL,
           data: jsonEncode(requestBody),
           options: Options(headers: headers),
         );
-        print(response.data);
-        print(response.statusCode);
+
         return response.data;
       } catch (e) {
-        print(e);
         throw Exception(e);
       }
     } else {

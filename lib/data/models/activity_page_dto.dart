@@ -7,8 +7,6 @@ import 'dart:convert';
 import 'package:idwey/data/models/attributz.dart';
 
 import 'activity_category.dart';
-import 'attribute_dto.dart';
-import 'host_details_dto.dart';
 
 ActivityPageDto activityPageDtoFromJson(String str) =>
     ActivityPageDto.fromJson(json.decode(str));

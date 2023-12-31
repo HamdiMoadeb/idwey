@@ -45,13 +45,11 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
           status: StateStatus.error,
         ));
       }, (r) async {
-        print("r['disponible']");
-        print(r);
         if (state.typeHost == "Par Chalet") {
           List<dynamic> list = json.decode(jsonEncode(r));
-          print(list);
+
           List<Room> rooms = list.map((data) => Room.fromJson(data)).toList();
-          print(rooms);
+
           emit(state.copyWith(
               status: StateStatus.success,
               availableChalet: rooms,
@@ -63,8 +61,6 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
             totalPrice: r['price'].toString() ?? "",
           ));
 
-          print("state.available");
-          print(state.available);
           if (state.available == true) {
             emit(state.copyWith(
               errorText: "",
@@ -94,10 +90,7 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
   }
 
   initStatus(_InitStatus event, Emitter<ReservationState> emit) {
-    print("initStatus");
     emit(state.copyWith(status: StateStatus.init));
-    print("state.status");
-    print(state.status);
   }
 
   void onSelectDates(
@@ -122,18 +115,10 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
 
   void onSelectGuests(
       _OnSelectGuests event, Emitter<ReservationState> emit) async {
-    print('*************');
-    print("event.guests${event.guests}");
-    print("state.totalPrice${state.totalPrice}");
-    print("state.totalPriceOnSale${state.totalPriceOnSale}");
-    print("salePrice${state.salePrice}");
-    print("price${state.price}");
-
     emit(state.copyWith(
       guests: event.guests,
     ));
-    print('*************2222222');
-    print("event.guests${state.guests}");
+
     emit(state.copyWith(
       totalPrice:
           (double.parse(state.price!) * state.guests!).toInt().toString(),
@@ -143,17 +128,10 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
           ? "0.00"
           : (double.parse(state.salePrice!) * state.guests!).toInt().toString(),
     ));
-    print('*************');
-    print(state.totalPrice);
-    print(state.totalPriceOnSale);
-    print(state.guests);
   }
 
   ///set params
   void setParams(_setParams event, Emitter<ReservationState> emit) async {
-    print("setParams");
-    print(event.price);
-    print(event.salePrice);
     emit(state.copyWith(
       id: event.id,
       url: event.url,
@@ -171,11 +149,6 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       totalPrice: double.parse(event.price ?? "0.00").toInt().toString(),
       totalPriceOnSale: double.tryParse(event.salePrice ?? "0.00").toString(),
     ));
-
-    print("state.totalPrice");
-    print(state.totalPrice);
-    print("state.totalPriceOnSale");
-    print(state.totalPriceOnSale);
   }
 
   void addToCart(
@@ -238,13 +211,10 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     final result = await GetIt.I<ConfirmReservationUseCase>().call(map);
 
     result.fold((l) async {
-      print("confirm reservation llllllllll");
       emit(state.copyWith(
         addToCartStatus: StateStatus.error,
       ));
     }, (r) async {
-      print("confirm reservation");
-      print(r);
       emit(state.copyWith(
         addToCartStatus: StateStatus.success,
       ));
@@ -290,9 +260,6 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     // Update the state with the new list
     emit(state.copyWith(
         selectedRooms: updatedExtraPrice, selectedRoomsObject: updatedRooms));
-
-    print("state.extraPrice");
-    print(updatedExtraPrice); // Print the updated list
   }
 
   void onUnSelectRoom(
@@ -306,9 +273,6 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     // Update the state with the new list
     emit(state.copyWith(
         selectedRooms: updatedExtraPrice, selectedRoomsObject: updatedRooms));
-
-    print("state.extraPrice");
-    print(updatedExtraPrice); // Print the updated list
   }
 
   getServiceType(TypeReservation typeReservation) {

@@ -35,7 +35,7 @@ class ConfirmReservationState with _$ConfirmReservationState {
         phone: "",
         checkIn: DateFormat('dd/MM/yyyy').format(DateTime.now()),
         checkOut: DateFormat('dd/MM/yyyy')
-            .format(DateTime.now().add(Duration(days: 1))),
+            .format(DateTime.now().add(const Duration(days: 1))),
         available: false,
         totalPrice: "",
         nbNights: "",

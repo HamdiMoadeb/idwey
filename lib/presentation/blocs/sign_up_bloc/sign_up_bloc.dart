@@ -26,17 +26,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     bool isValid =
         event.password.isNotEmpty && FormsUtils().isEmailValid(event.password);
 
-    print("emaaail validation");
-    print(isValid == true);
     if (isValid == true) {
       emit(state.copyWith(email: event.password, isValid: isValid));
     } else {
       emit(state.copyWith(isValid: isValid));
     }
-
-    print("state.email");
-    print(state.email?.isEmpty == true);
-    print(state.email == null);
   }
 
   /// on set password
@@ -44,8 +38,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   void setPassword(_SetPassword event, Emitter<SignUpState> emit) {
     bool isValid =
         event.email.isNotEmpty && FormsUtils().isPasswordValid(event.email);
-    print("isValid");
-    print(isValid);
+
     if (isValid) {
       emit(state.copyWith(password: event.email, isValid: isValid));
     } else {
@@ -58,15 +51,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   void setConfirmPassword(
       _SetConfirmPassword event, Emitter<SignUpState> emit) {
     bool isValid = event.email == state.password;
-    print("isValidconfirmpassword");
-    print(isValid);
+
     if (isValid) {
       emit(state.copyWith(confirmPassword: event.email, isValid: isValid));
     } else {
       emit(state.copyWith(isValid: isValid));
     }
-    print(state.isValid);
-    print(state.password);
   }
 
   /// on set first name
@@ -81,7 +71,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   void onSignUp(_SignUp event, Emitter<SignUpState> emit) async {
     emit(state.copyWith(status: StateStatus.loading));
-    print('1111');
+
     try {
       Map<String, dynamic> body = {
         "first_name": state.firstName,
@@ -92,7 +82,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       };
       final Either<Exception, Map<String, dynamic>> response =
           await GetIt.I<RegisterUseCase>().call(jsonDecode(jsonEncode(body)));
-      print('222222');
+
       response.fold((l) {
         emit(state.copyWith(status: StateStatus.error));
       }, (r) async {

@@ -1,9 +1,4 @@
-import 'dart:convert';
-
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
-import 'package:idwey/app_router/app_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthApiDataSource {
@@ -31,10 +26,6 @@ class AuthApiDataSourceImpl implements AuthApiDataSource {
         data: params,
       );
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.data}');
-
-      print("token111111111");
       return response.data;
     } catch (e) {
       throw Exception(e);
@@ -46,11 +37,8 @@ class AuthApiDataSourceImpl implements AuthApiDataSource {
     try {
       final prefs = await SharedPreferences.getInstance();
       String? id = prefs.getString('userId');
-      print("id");
-      print(id);
+
       final result = await dio.post("https://idwey.tn/api/user/delete/$id");
-      print("result");
-      print(result);
     } catch (e) {
       throw Exception(e);
     }
@@ -62,10 +50,6 @@ class AuthApiDataSourceImpl implements AuthApiDataSource {
       var url = 'https://idwey.tn/api/register';
       var response = await dio.post(url, data: params);
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.data}');
-
-      print("token111111111");
       return response.data;
     } catch (e) {
       throw Exception(e);
@@ -78,11 +62,8 @@ class AuthApiDataSourceImpl implements AuthApiDataSource {
       var url = 'https://idwey.tn/api/user/updateSetting';
       var response = await dio.put(url, data: params);
 
-      print('Response status: ${response.data}');
-      print("token111111111");
       return response.data;
     } catch (e) {
-      print(e);
       throw Exception(e);
     }
   }
@@ -90,21 +71,16 @@ class AuthApiDataSourceImpl implements AuthApiDataSource {
   @override
   Future<void> uploadImage(Map<String, dynamic> params) async {
     try {
-      print("token111111111");
-      print(params);
       final formData = FormData.fromMap(params);
-      print("formData");
-      print(formData);
+
       final response = await dio.post(
         'https://idwey.tn/api/user/image',
         data: formData,
       );
 
       // Handle the API response here
-      print('Response: ${response.data}');
     } catch (e) {
       // Handle errors
-      print('Error: $e');
     }
   }
 }

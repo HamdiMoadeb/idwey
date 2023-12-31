@@ -116,7 +116,6 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
           showLoadingDialog();
         } else if (state.status == StateStatus.error ||
             state.addToCartStatus == StateStatus.error) {
-          print("error");
           Navigator.of(context).pop();
           _scaffoldMessenger?.showSnackBar(
             const SnackBar(
@@ -129,7 +128,6 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
               .add(const ReservationEvent.initStatus());
         } else if (state.status == StateStatus.success ||
             state.addToCartStatus == StateStatus.success) {
-          print("success");
           if (state.availableChalet?.isNotEmpty == true) {
             //Navigator.pop(context);
           }
@@ -157,8 +155,6 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
         }
       },
       builder: (context, state) {
-        print("state.totalPrice");
-        print(state.totalPrice);
         return Scaffold(
           bottomNavigationBar: BottomAppBar(
             elevation: 0,

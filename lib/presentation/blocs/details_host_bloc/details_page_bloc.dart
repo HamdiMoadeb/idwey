@@ -62,9 +62,6 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
 
     // Update the state with the new list
     emit(state.copyWith(extraPrice: updatedExtraPrice));
-
-    print("state.extraPrice");
-    print(updatedExtraPrice); // Print the updated list
   }
 
   void onExtraPriceUnChecked(
@@ -75,8 +72,5 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
 
     // Update the state with the new list
     emit(state.copyWith(extraPrice: updatedExtraPrice));
-
-    print("state.extraPrice");
-    print(updatedExtraPrice); // Print the updated list
   }
 }

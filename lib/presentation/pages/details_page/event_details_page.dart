@@ -51,8 +51,6 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsEventPageBloc, DetailsEventPageState>(
             builder: (context, state) {
-          print("widget.typeHost");
-          print(state.eventDetailsDto?.row?.promotion);
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),

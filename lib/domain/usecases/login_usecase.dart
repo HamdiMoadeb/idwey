@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:idwey/data/models/product_details_dto.dart';
 import 'package:idwey/domain/repositories/auth_repository.dart';
-import 'package:idwey/domain/repositories/product_repository.dart';
 
 import 'usecase.dart';
 

@@ -40,7 +40,7 @@ class _InfosSectionState extends State<InfosSection> {
                 title: Text(
                   widget.label ?? "",
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.arrow_forward_ios,
                   color: Colors.black,
                 ),
