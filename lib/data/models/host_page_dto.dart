@@ -6,7 +6,6 @@ import 'dart:convert';
 
 import 'package:idwey/data/models/host_dto.dart';
 
-import 'attribute_dto.dart';
 import 'attributz.dart';
 
 HostPageDto hostPageDtoFromJson(String str) =>

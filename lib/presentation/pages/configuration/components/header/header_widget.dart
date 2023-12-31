@@ -75,7 +75,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     PermissionStatus status = await Permission.camera.request();
 
     if (status.isGranted) {
-      print("granted");
       showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -98,9 +97,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
               ));
         },
       );
-    } else if (status.isDenied) {
-      print("denied");
-    }
+    } else if (status.isDenied) {}
   }
 
   Future<void> _pickImage(ImageSource source) async {
@@ -108,8 +105,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     final pickedFile = await picker.getImage(source: source);
 
     if (pickedFile != null) {
-      print(pickedFile.path);
-
       Map<String, dynamic> map = {
         'file': await MultipartFile.fromFile(pickedFile.path)
       };
@@ -138,14 +133,6 @@ class EditableCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("imageUrl444444444");
-    print(imageUrl);
-    print(imageUrl == null);
-    print(imageUrl?.isNotEmpty);
-    print("imaaaage$image");
-    print(image == null);
-    print(image?.isNotEmpty == true);
-
     return Stack(
       children: [
         CircleAvatar(

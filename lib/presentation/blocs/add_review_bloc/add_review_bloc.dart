@@ -57,7 +57,6 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
     emit(state.copyWith(
       review: event.comment,
     ));
-    print(state.review);
   }
 
   void getRateSettings(
@@ -65,8 +64,6 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
     emit(state.copyWith(
       statusRateSettings: StateStatus.loading,
     ));
-    print("state.serviceID");
-    print(state.serviceID);
 
     try {
       final Either<Exception, dynamic> result =
@@ -75,8 +72,7 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
               .then((value) {
         return value;
       });
-      print("result");
-      print(result);
+
       result.fold((Exception failure) {
         emit(state.copyWith(
           statusRateSettings: StateStatus.error,
@@ -88,8 +84,6 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
                   ratesStars: jsonDecode(jsonEncode(success))
                       .cast<Map<String, dynamic>>(),
                 )),
-                print("state.ratesStars"),
-                print(state.ratesStars),
               });
     } catch (e) {
       emit(state.copyWith(
@@ -136,8 +130,6 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
     emit(state.copyWith(
       ratesStars: event.listRates,
     ));
-    print("state.ratesStars");
-    print(state.ratesStars);
   }
 
   void updateReview(UpdateReview event, Emitter<AddReviewState> emit) async {

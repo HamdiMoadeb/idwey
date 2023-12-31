@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,7 +7,6 @@ import 'package:idwey/constants/enums.dart';
 import 'package:idwey/domain/usecases/login_usecase.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/utils/form_utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -52,14 +49,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       response.fold((l) {
         emit(state.copyWith(status: StateStatus.error));
       }, (r) {
-        print("r*********");
-        print(r);
         if (r['error'] == true) {
           emit(state.copyWith(
               status: StateStatus.error,
               errorText: r['messages']['message_error'][0]));
-          print("state.errorText");
-          print(state.errorText);
         } else {
           emit(state.copyWith(status: StateStatus.success));
           GetIt.I<AppRouter>().popUntilRoot();

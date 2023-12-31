@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:idwey/data/models/host_dto.dart';
 import 'package:idwey/data/models/locations_dto.dart';
 
 abstract class LocationApiDataSource {

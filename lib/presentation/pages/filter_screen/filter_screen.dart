@@ -33,8 +33,7 @@ class _FilterScreenState extends State<FilterScreen> {
   void initState() {
     // TODO: implement initState
     getListAttributes(context.read<HomeBloc>().state.listAttributes ?? []);
-    print("initState");
-    print(context.read<HomeBloc>().state.isFilter);
+
     super.initState();
   }
 
@@ -42,9 +41,6 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        print("state.eventPageDto?.eventMinMaxPrice");
-        print(state.eventPageDto?.eventMinMaxPrice![0]);
-        print(state.eventPageDto?.eventMinMaxPrice![1]);
         return ClipRRect(
           borderRadius: BorderRadius.circular(20.r),
           child: Scaffold(
@@ -78,7 +74,6 @@ class _FilterScreenState extends State<FilterScreen> {
                       child: InkWell(
                         onTap: () {
                           if (state.selectedTab == 0) {
-                            print("111111");
                             context
                                 .read<HomeBloc>()
                                 .add(const HomeEvent.getListHosts(false));
@@ -118,9 +113,6 @@ class _FilterScreenState extends State<FilterScreen> {
                         child: Text("Apply Filter"),
                       ),
                       onPressed: () async {
-                        print("state.selectedTab");
-                        print(state.selectedTab);
-
                         if (state.selectedTab == 0) {
                           context.read<HomeBloc>().add(
                               const HomeEvent.getFilterListHostsPageData(

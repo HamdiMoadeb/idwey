@@ -16,13 +16,11 @@ class RangeSliderSection extends StatefulWidget {
 
 class _RangeSliderSectionState extends State<RangeSliderSection> {
   // RangeValues _currentRangeValues = const RangeValues(45, 1300);
-  SfRangeValues _values = SfRangeValues(40.0, 80.0);
+  SfRangeValues _values = const SfRangeValues(40.0, 80.0);
 
   @override
   void initState() {
     // TODO: implement initState
-    print("miiiiin${widget.min}");
-    print("miiiiin${widget.max}");
     _values = SfRangeValues(widget.min.toDouble(), widget.max.toDouble());
     super.initState();
   }

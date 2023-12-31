@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -171,7 +168,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
                 .difference(v.value!.startDate!)
                 .inDays
                 .toString();
-            print('nbuits $nbNuits');
+
             widget.onDateRangeChanged(v);
             start = DateFormat('dd').format(dateTime);
             end = DateFormat('dd').format(dateTime2);

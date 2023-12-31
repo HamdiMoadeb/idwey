@@ -56,7 +56,7 @@ class _AssuranceScreenState extends State<AssuranceScreen> {
                         style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff000000)),
+                            color: const Color(0xff000000)),
                       ),
                       SizedBox(height: 20.h),
                       SizedBox(

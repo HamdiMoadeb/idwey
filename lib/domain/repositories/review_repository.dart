@@ -1,7 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:idwey/data/models/booking_dto.dart';
-import 'package:idwey/data/models/models.dart';
-import 'package:idwey/data/models/review_dto.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
 
 abstract class ReviewRepository {

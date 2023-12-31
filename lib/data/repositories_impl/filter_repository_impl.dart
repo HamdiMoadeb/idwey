@@ -14,8 +14,6 @@ class FilterRepositoryImpl implements FilterRepository {
   @override
   Future<Either<Exception, List<Host>>> filterHosts(
       Map<String, dynamic> body) async {
-    print("datasource*****************");
-
     // try {
     final result = await dataSource.filterHosts(body);
     return Right(result);

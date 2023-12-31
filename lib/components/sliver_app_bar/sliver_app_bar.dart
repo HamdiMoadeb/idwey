@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:idwey/components/image_banner/image_banner.dart';
 import 'package:idwey/theme/app_colors.dart';
 
 class CustomSliverAppBar extends StatefulWidget {
@@ -26,7 +25,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
       automaticallyImplyLeading: false,
       floating: true,
       backgroundColor: Colors.transparent,
-      actions: [
+      actions: const [
         // Container(
         //   height: 40.h,
         //   width: 40.h,

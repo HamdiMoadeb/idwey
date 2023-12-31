@@ -1,9 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:idwey/theme/app_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class PayementSection extends StatefulWidget {
   bool? offline;
@@ -133,7 +130,7 @@ class _PayementSectionState extends State<PayementSection> {
                           ],
                         ),
                         textAlign: TextAlign.left,
-                        textHeightBehavior: TextHeightBehavior(),
+                        textHeightBehavior: const TextHeightBehavior(),
                       ),
                       SizedBox(height: 16.h),
                       RichText(
@@ -163,7 +160,7 @@ class _PayementSectionState extends State<PayementSection> {
                           ],
                         ),
                         textAlign: TextAlign.left,
-                        textHeightBehavior: TextHeightBehavior(),
+                        textHeightBehavior: const TextHeightBehavior(),
                       ),
                     ],
                   ),

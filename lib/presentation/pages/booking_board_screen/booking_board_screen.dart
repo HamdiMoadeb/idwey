@@ -43,8 +43,6 @@ class _BookingBoardScreenState extends State<BookingBoardScreen>
       listener: (context, state) {
         // TODO: implement listener
         if (state.status == StateStatus.success) {
-          print("state.id");
-          print(state.id);
           context.read<BookingPageBloc>().add(BookingPageEvent.getBookingList(
               int.parse(context.read<AppBloc>().state.id ?? "0")));
         }

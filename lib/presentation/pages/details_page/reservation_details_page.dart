@@ -325,8 +325,6 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
   }
 
   buildStatusBar(String status) {
-    print(status);
-    print("stataus");
     if (status == "cancelled") {
       return Container(
           width: double.infinity,

@@ -5,6 +5,8 @@ import 'package:idwey/theme/app_colors.dart';
 
 @RoutePage()
 class TermsScreen extends StatelessWidget {
+  const TermsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -55,7 +55,6 @@ class ProfileFooter extends StatelessWidget {
                       style: TextStyle(decoration: TextDecoration.underline),
                     ),
                     onTap: () async {
-                      print('***************');
                       await SharedPreferences.getInstance().then((prefs) {
                         prefs.clear();
                         context

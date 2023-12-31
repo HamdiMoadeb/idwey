@@ -18,8 +18,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (body != null && body.keys.contains('token')) {
         await prefs.setString("token", body['token']);
       }
-      print("result");
-      print(result);
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);
@@ -34,11 +33,10 @@ class AuthRepositoryImpl implements AuthRepository {
       Map<String, dynamic> body = jsonDecode(jsonEncode(result));
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      if (body != null && body.keys.contains('token')) {
+      if (body.keys.contains('token')) {
         await prefs.setString("token", body['token']);
       }
-      print("result");
-      print(result);
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);
@@ -51,8 +49,6 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final result = await dataSource.updateUser(params);
 
-      print("result");
-      print(result);
       return Right(result);
     } on Exception catch (e) {
       return Left(e);
@@ -65,7 +61,6 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final result = await dataSource.uploadImage(params);
 
-      print("result");
       return Right(result);
     } on Exception catch (e) {
       return Left(e);
@@ -76,7 +71,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Exception, void>> logout() async {
     try {
       final result = await dataSource.logout();
-      print("result");
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

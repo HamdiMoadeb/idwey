@@ -38,12 +38,10 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
         if (state.status == StateStatus.loading) {
           showLoadingDialog();
         } else if (state.status == StateStatus.success) {
-          print("success");
           context.read<SignUpBloc>().initStatus();
           context.router.root.popUntilRoot();
           GetIt.I<AppBloc>().add(const AppEvent.setLoggedIn());
         } else if (state.status == StateStatus.error) {
-          print("error");
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errorText ?? "Une erreur s'est produite"),

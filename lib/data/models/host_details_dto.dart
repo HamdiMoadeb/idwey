@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'package:idwey/data/models/translation.dart';
 
 import 'attribute_dto.dart';
-import 'attributz.dart';
 import 'extra_price_dto.dart';
 import 'review_dto.dart';
 import 'review_scale_dto.dart';

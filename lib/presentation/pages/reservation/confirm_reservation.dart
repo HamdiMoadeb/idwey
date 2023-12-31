@@ -151,11 +151,6 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
       controller.text =
           context.read<ConfirmReservationBloc>().state.lastname ?? "";
     });
-
-    print(nameController.text);
-    print(emailController.text);
-    print(phoneController.text);
-    print(controller.text);
   }
 
   void _showDialog(BuildContext context) {
@@ -273,8 +268,8 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(vertical: 8.h),
+                          backgroundColor: primaryOrange,
                           elevation: 0,
-                          primary: primaryOrange,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.r))),
                       onPressed: state.name?.isNotEmpty == true &&

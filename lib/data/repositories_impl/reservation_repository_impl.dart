@@ -13,8 +13,7 @@ class ReservationRepositoryImpl implements ReservationRepository {
       Map<String, dynamic> body) async {
     // try {
     final result = await dataSource.doCheckout(body);
-    print("result");
-    print(result);
+
     return Right(result);
     // } on Exception catch (e) {
     //   return Left(e);
@@ -26,8 +25,7 @@ class ReservationRepositoryImpl implements ReservationRepository {
       Map<String, dynamic> body) async {
     // try {
     final result = await dataSource.doOnlineCheckout(body);
-    print("result");
-    print(result);
+
     return Right(result);
     // } on Exception catch (e) {
     //   return Left(e);
@@ -39,8 +37,7 @@ class ReservationRepositoryImpl implements ReservationRepository {
       int params) async {
     try {
       final result = await dataSource.getReservationList(params);
-      print("result");
-      print(result);
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

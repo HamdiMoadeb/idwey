@@ -64,17 +64,14 @@ class _HomeScreenState extends State<HomeScreen>
           );
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfThePageHosts == false) {
-          print('111');
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfTheSearchPageHosts == false &&
             state.isSearch == true) {
-          print("222");
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfTheFilterPageHosts == false &&
             state.isFilter == true) {
-          print("333");
           return const Center(child: Text("Pas des hébergements"));
         } else if (state.status == StateStatus.success ||
             state.status == StateStatus.loadingMore &&
@@ -99,8 +96,6 @@ class _HomeScreenState extends State<HomeScreen>
                 shrinkWrap: true,
                 controller: widget.scrollController,
                 itemBuilder: (context, index) {
-                  print(state.listHosts?[index].title);
-                  print(state.listHosts?[index].typeHost);
                   return CustomCard.host(
                     onTap: () {
                       appRouter.push(DetailsRoute(

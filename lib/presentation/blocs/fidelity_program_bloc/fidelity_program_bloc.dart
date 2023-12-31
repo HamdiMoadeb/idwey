@@ -27,8 +27,7 @@ class FidelityProgramBloc
     ));
     final Either<Exception, Map<String, dynamic>?> result =
         await GetIt.I<GetMonthlyPointsUseCase>().call(userId ?? "");
-    print("result");
-    print(result);
+
     result.fold((Exception failure) {
       emit(state.copyWith(
         status: StateStatus.error,
@@ -57,8 +56,7 @@ class FidelityProgramBloc
     ));
     final Either<Exception, Map<String, dynamic>?> result =
         await GetIt.I<GetTotalPointsUseCase>().call(userId ?? "");
-    print("result");
-    print(result);
+
     result.fold((Exception failure) {
       emit(state.copyWith(
         statusRange: StateStatus.error,
@@ -70,8 +68,6 @@ class FidelityProgramBloc
           totalPoints: success["pointniveau1"].toString(),
           totalPoints2: success["pointniveau2"].toString(),
         ));
-        print(state.totalPoints);
-        print(state.totalPoints2);
       } else {
         emit(state.copyWith(
           statusRange: StateStatus.error,

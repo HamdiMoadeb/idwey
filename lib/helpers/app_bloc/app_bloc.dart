@@ -37,13 +37,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     try {
       emit(state.copyWith(status: StateStatus.loading));
       prefs = await SharedPreferences.getInstance();
-      String? token = prefs!.getString('token');
+      String? token = prefs.getString('token');
       if (token != null) {
         Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-        print("decodedToken");
-        print(decodedToken);
+
         await prefs.setString("userId", decodedToken['id'].toString());
-        print(decodedToken['id'].toString());
+
         emit(state.copyWith(
             status: StateStatus.success,
             name: decodedToken['first_name'],
@@ -54,22 +53,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 ? decodedToken['image_url'] ?? ""
                 : "",
             phone: decodedToken['phone']));
-
-        print(state.name);
-        print(state.email);
-        print(state.lastname);
-        print(state.id);
-        print(state.imageUrl);
       }
     } catch (e) {
-      print(e);
       emit(state.copyWith(status: StateStatus.error));
     }
   }
 
   void updateUser(_UpdateUser event, Emitter<AppState> emit) async {
     SharedPreferences? prefs;
-    print("updaaaaaate");
+
     try {
       emit(state.copyWith(updateUserStatus: StateStatus.loading));
       prefs = await SharedPreferences.getInstance();
@@ -78,8 +70,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         emit(state.copyWith(updateUserStatus: StateStatus.error));
       }, (r) {
         emit(state.copyWith(updateUserStatus: StateStatus.success));
-        print("event.body");
-        print(r);
+
         Map<String, dynamic> decodedToken = JwtDecoder.decode(r);
         prefs!.setString("token", r);
         emit(state.copyWith(
@@ -93,13 +84,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               ? decodedToken['image_url'] ?? ""
               : "",
         ));
-        print(state.name);
-        print(state.email);
-        print(state.lastname);
+
         GetIt.I<AppBloc>().add(const _GetUser());
       });
     } catch (e) {
-      print(e);
       emit(state.copyWith(updateUserStatus: StateStatus.error));
     }
   }
@@ -109,8 +97,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   void uploadImage(_UploadImage event, Emitter<AppState> emit) async {
     try {
       emit(state.copyWith(status: StateStatus.loading));
-      print("uploadImage");
-      print(event.body["file"]);
+
       Map<String, dynamic> body = {
         "image": event.body["file"],
         "id": state.id,
@@ -120,11 +107,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       result.fold((l) {
         emit(state.copyWith(status: StateStatus.error));
       }, (r) {
-        print("uploadImage success");
         emit(state.copyWith(status: StateStatus.success));
       });
     } catch (e) {
-      print(e);
       emit(state.copyWith(status: StateStatus.error));
     }
   }
@@ -135,14 +120,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(state.copyWith(
           deleteUserStatus: StateStatus.loading, status: StateStatus.init));
       final result = await GetIt.I<DeleteUserUseCase>().call({});
-      print(result);
-      print("result***********");
+
       prefs = await SharedPreferences.getInstance();
       await prefs.clear();
-      print("prefs.clear()***********");
+
       emit(state.copyWith(deleteUserStatus: StateStatus.success));
     } catch (e) {
-      print(e);
       emit(state.copyWith(deleteUserStatus: StateStatus.error));
     }
   }

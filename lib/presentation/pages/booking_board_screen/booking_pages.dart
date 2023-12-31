@@ -48,7 +48,7 @@ class _BoardPageState extends State<BoardPage> {
                         },
                         child: Container(
                             margin: const EdgeInsets.only(left: 16),
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                                 border: Border.all(
                                     color: selectedIndex == 0

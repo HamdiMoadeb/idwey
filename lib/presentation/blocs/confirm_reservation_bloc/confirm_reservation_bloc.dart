@@ -42,12 +42,10 @@ class ConfirmReservationBloc
     try {
       emit(state.copyWith(status: StateStatus.loading));
       prefs = await SharedPreferences.getInstance();
-      String? token = prefs!.getString('token');
+      String? token = prefs.getString('token');
       if (token != null) {
         Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-        print("decodedToken");
-        print(decodedToken);
-        print(decodedToken['id'].toString());
+
         emit(state.copyWith(
             status: StateStatus.success,
             name: decodedToken['first_name'],
@@ -57,7 +55,6 @@ class ConfirmReservationBloc
             phone: decodedToken['phone']));
       }
     } catch (e) {
-      print(e);
       emit(state.copyWith(status: StateStatus.error));
     }
   }
@@ -119,8 +116,6 @@ class ConfirmReservationBloc
     } else {
       emit(state.copyWith(validInformations: false));
     }
-    print("state.validInformations");
-    print(state.validInformations);
   }
 
   /// on online checked
@@ -167,9 +162,7 @@ class ConfirmReservationBloc
           // Handle other status codes (error handling)
         }
       });
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   /// on terms and conditions checked
@@ -183,8 +176,6 @@ class ConfirmReservationBloc
       _DoCheckout event, Emitter<ConfirmReservationState> emit) async {
     emit(state.copyWith(checkoutStatus: StateStatus.loading));
     try {
-      print("do checkout");
-      print(event.body);
       final result =
           await GetIt.I<DoCheckoutUseCase>().call(event.body.isEmpty == true
               ? {
@@ -203,19 +194,15 @@ class ConfirmReservationBloc
               : event.body);
 
       result.fold((l) async {
-        print("confirm reservation llllllllll");
         emit(state.copyWith(
           checkoutStatus: StateStatus.error,
         ));
       }, (r) async {
-        print("confirm reservation");
-        print(r);
         emit(state.copyWith(
           checkoutStatus: StateStatus.success,
         ));
       });
     } catch (e) {
-      print(e);
       emit(state.copyWith(checkoutStatus: StateStatus.error));
     }
   }

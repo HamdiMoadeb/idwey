@@ -108,8 +108,7 @@ class _ChaletsSectionDisponibilityState
                                         fit: BoxFit.cover,
                                       ),
                                   fit: BoxFit.cover,
-                                  imageUrl:
-                                      widget.rooms?[index].imageId ?? "")),
+                                  imageUrl: widget.rooms[index].imageId ?? "")),
                         ),
 
                         Expanded(
@@ -119,7 +118,7 @@ class _ChaletsSectionDisponibilityState
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.rooms?[index].title ?? "",
+                                  widget.rooms[index].title ?? "",
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -134,7 +133,7 @@ class _ChaletsSectionDisponibilityState
                                       width: 5.w,
                                     ),
                                     Text(
-                                      " • X${widget.rooms?[index].adults ?? ""}",
+                                      " • X${widget.rooms[index].adults ?? ""}",
                                     ),
                                   ],
                                 ),
@@ -149,7 +148,7 @@ class _ChaletsSectionDisponibilityState
                                       width: 5.w,
                                     ),
                                     Text(
-                                      " • X${widget.rooms?[index].adults ?? ""}",
+                                      " • X${widget.rooms[index].adults ?? ""}",
                                     ),
                                   ],
                                 ),
@@ -183,7 +182,7 @@ class _ChaletsSectionDisponibilityState
                 height: 16.h,
               );
             },
-            itemCount: widget.rooms!.length),
+            itemCount: widget.rooms.length),
       ],
     );
   }

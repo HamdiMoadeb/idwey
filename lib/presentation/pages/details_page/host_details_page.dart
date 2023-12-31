@@ -42,8 +42,6 @@ class _DetailsScreenState extends State<DetailsScreen>
 
   @override
   void initState() {
-    print("widget.typeHost");
-    print(widget.typeHost);
     BlocProvider.of<DetailsPageBloc>(context)
         .add(DetailsPageEvent.getHostDetails(widget.id ?? 0));
 

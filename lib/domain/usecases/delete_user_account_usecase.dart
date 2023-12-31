@@ -8,8 +8,6 @@ class DeleteUserUseCase extends UseCase<dynamic, Map<String, dynamic>> {
 
   @override
   Future<Either<Exception, void>> call(Map<String, dynamic> params) async {
-    print("params");
-    print(params);
     return await repository.logout();
   }
 }

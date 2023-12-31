@@ -10,8 +10,6 @@ class ConfirmReservationUseCase
   @override
   Future<Either<Exception, Map<String, dynamic>>> call(
       Map<String, dynamic> params) async {
-    print("params");
-    print(params);
     return await repository.confirmHostReservation(params);
   }
 }

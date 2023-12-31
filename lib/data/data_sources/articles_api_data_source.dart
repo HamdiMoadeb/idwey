@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:idwey/data/models/activity_details_dto.dart';
 import 'package:idwey/data/models/article_details_dto.dart';
 import '../models/models.dart';
 

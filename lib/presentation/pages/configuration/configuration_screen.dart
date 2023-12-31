@@ -55,7 +55,6 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
         if (state.updateUserStatus == StateStatus.loading ||
             state.status == StateStatus.loading ||
             state.deleteUserStatus == StateStatus.loading) {
-          print("loading");
           showDialog(
               context: context,
               builder: (context) {
@@ -64,11 +63,9 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                 );
               });
         } else if (state.status == StateStatus.success) {
-          print("success");
           init();
           Navigator.pop(context);
         } else if (state.deleteUserStatus == StateStatus.success) {
-          print("delete334556");
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Compte supprimé avec succès"),
@@ -78,7 +75,6 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
           //  context.router.push(const DashboardRoute());
           context.read<AppBloc>().add(const AppEvent.setLoggedIn());
         } else if (state.updateUserStatus == StateStatus.success) {
-          print("successupdate");
           init();
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(

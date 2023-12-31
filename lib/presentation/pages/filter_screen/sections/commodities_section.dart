@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:idwey/components/extra_price_component/extra_price_component.dart';
-import 'package:idwey/components/filter_item/filter_item.dart';
 import 'package:idwey/domain/entities/filter_item.dart';
 import 'package:idwey/presentation/blocs/blocs.dart';
 import 'package:idwey/presentation/pages/filter_screen/sections/components/filter_component_commodities.dart';

@@ -27,7 +27,7 @@ class _FidelityProgramScreenState extends State<FidelityProgramScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    print("initState");
+
     BlocProvider.of<FidelityProgramBloc>(context)
         .add(const FidelityProgramEvent.getMonthlyPoints());
     BlocProvider.of<FidelityProgramBloc>(context)

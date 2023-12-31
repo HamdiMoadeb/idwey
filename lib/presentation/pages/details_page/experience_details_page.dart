@@ -52,9 +52,6 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
       builder: (context, appState) {
         return BlocBuilder<DetailsExperiencePageBloc,
             DetailsExperiencePageState>(builder: (context, state) {
-          print("widget.typeHost");
-          print(state.experienceDetailsDto?.attributes?.the11?.child);
-
           if (state.status == StateStatus.loading) {
             return const Center(
               child: Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -168,7 +165,7 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                                     visible: state.experienceDetailsDto?.row
                                             ?.promotion
                                             ?.toString()
-                                            ?.isNotEmpty ??
+                                            .isNotEmpty ??
                                         false,
                                     child: CircleAvatar(
                                       child: Text(

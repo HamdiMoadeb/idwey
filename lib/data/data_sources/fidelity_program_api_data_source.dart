@@ -13,12 +13,9 @@ class FidelityProgramApiDataSourceImpl implements FidelityProgramApiDataSource {
   @override
   Future<Map<String, dynamic>> getMonthlyPoint(String userId) async {
     try {
-      print("userId");
-      print("https://idwey.tn/api/user/monthpoint/$userId");
       final response =
           await dio.get("https://idwey.tn/api/user/monthpoint/$userId");
-      print("response.data");
-      print(response.data);
+
       return response.data;
     } catch (e) {
       throw Exception(e);
@@ -30,8 +27,7 @@ class FidelityProgramApiDataSourceImpl implements FidelityProgramApiDataSource {
     try {
       final response =
           await dio.get("https://idwey.tn/api/user/totalpoint/$userId");
-      print("response.data");
-      print(response.data);
+
       return response.data;
     } catch (e) {
       throw Exception(e);

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:idwey/data/models/event_details_dto.dart';
 import 'package:idwey/data/models/event_page_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,9 +25,6 @@ class EventApiDataSourceImpl implements EventApiDataSource {
     final response =
         await dio.get("https://idwey.tn/api/event?offset=$offset&limit=10");
 
-    print("response.data");
-    print(response.data);
-
     response.data['rows'].forEach((data) {
       listOfHosts.add(Event.fromJson(data));
     });
@@ -41,16 +37,13 @@ class EventApiDataSourceImpl implements EventApiDataSource {
 
   @override
   Future<EventDetailsDto> getEvent(int id) async {
-    print("id");
-    print(id);
     // try {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     String userId = preferences.getString("userId") ?? "0";
     final response =
         await dio.get("https://idwey.tn/api/event/detail/$id/$userId)");
-    print("result222222");
-    print(response);
+
     return EventDetailsDto.fromJson(response.data);
     // } catch (e) {
     //   throw Exception(e);
@@ -61,12 +54,10 @@ class EventApiDataSourceImpl implements EventApiDataSource {
   Future<List<Event>> searchListEvents(int limit, int offset, String start,
       String end, int adults, String address) async {
     List<Event> listOfHosts = [];
-    print(
-        "https://idwey.tn/api/event?offset=$offset&limit=$limit&address$address=&start$start=&end=$end");
+
     final response = await dio.get(
         "https://idwey.tn/api/event?offset=$offset&limit=$limit&address=$address&start=$start&end=$end");
-    print("response.data");
-    print(response.data);
+
     response.data['rows'].forEach((data) {
       listOfHosts.add(Event.fromJson(data));
     });
@@ -79,9 +70,6 @@ class EventApiDataSourceImpl implements EventApiDataSource {
     try {
       final response =
           await dio.get("https://idwey.tn/api/event?offset=$offset&limit=10");
-
-      print("response.data");
-      print(response.data);
 
       return EventPageDto.fromJson(response.data);
     } catch (e) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/constants/enums.dart';
 
@@ -568,7 +567,8 @@ class CommoditiesSection extends StatelessWidget {
               SizedBox(
                 height: 20.h,
                 width: 20.h,
-                child: Icon(Icons.sports_esports_outlined, color: Colors.black),
+                child: const Icon(Icons.sports_esports_outlined,
+                    color: Colors.black),
               ),
               SizedBox(
                 width: 15.w,

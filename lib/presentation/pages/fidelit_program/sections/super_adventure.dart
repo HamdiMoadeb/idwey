@@ -22,11 +22,10 @@ class _SuperAdventureSectionState extends State<SuperAdventureSection> {
   @override
   void initState() {
     // TODO: implement initState
-    print(widget.points);
-    print(widget.points2);
+
     _values = SfRangeValues(
         double.parse(widget.points), double.parse(widget.points2));
-    print(_values);
+
     super.initState();
   }
 

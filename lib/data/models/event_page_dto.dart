@@ -6,10 +6,8 @@ import 'dart:convert';
 
 import 'package:idwey/data/models/translation.dart';
 
-import 'attribute_dto.dart';
 import 'attributz.dart';
 import 'event_dto.dart';
-import 'host_details_dto.dart';
 
 EventPageDto eventPageDtoFromJson(String str) =>
     EventPageDto.fromJson(json.decode(str));

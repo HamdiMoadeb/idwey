@@ -69,8 +69,6 @@ class BookingPageBloc extends Bloc<BookingPageEvent, BookingPageState> {
           ));
         }
       });
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 }

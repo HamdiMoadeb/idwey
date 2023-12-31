@@ -9,8 +9,6 @@ class CheckHostAvailabilityUseCase
 
   @override
   Future<Either<Exception, dynamic>> call(Map<String, dynamic> params) async {
-    print("params");
-    print(params);
     return await repository.checkHostAvailability(
         params['type'],
         params['id'],

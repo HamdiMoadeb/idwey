@@ -62,7 +62,7 @@ class _MapPositionState extends State<MapPosition> {
     mapController = controller;
   }
 
-  Set<Marker> markers = Set();
+  Set<Marker> markers = {};
 
   @override
   void initState() {

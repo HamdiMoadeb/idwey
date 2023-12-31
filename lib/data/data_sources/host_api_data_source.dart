@@ -76,7 +76,7 @@ class HostApiDataSourceImpl implements HostApiDataSource {
         url =
             "https://idwey.tn/api/experience/checkAvailability?start_date=$checkIn&children=0&experience_id=$id&adults=$adults";
       }
-      print("url:$url");
+
       final response = await dio.get(url);
 
       return response.data;
@@ -93,8 +93,7 @@ class HostApiDataSourceImpl implements HostApiDataSource {
       "https://idwey.tn/api/booking/addToCart",
       data: body,
     );
-    print("response");
-    print(response.data);
+
     return response.data;
     // } catch (e) {
     //   throw Exception(e);
@@ -105,13 +104,10 @@ class HostApiDataSourceImpl implements HostApiDataSource {
   Future<List<Host>> searchListHosts(int limit, int offset, String start,
       String end, int adults, String address) async {
     List<Host> listOfHosts = [];
-    print(
-        "https://idwey.tn/api/hotel?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
+
     final response = await dio.get(
         "https://idwey.tn/api/hotel?offset=$offset&limit=$limit&start=$start&end=$end&address=$address&adults=$adults");
 
-    print("response.data");
-    print(response.data);
     response.data['rows'].forEach((data) {
       listOfHosts.add(Host.fromJson(data));
     });
@@ -124,11 +120,6 @@ class HostApiDataSourceImpl implements HostApiDataSource {
     try {
       final response =
           await dio.get("https://idwey.tn/api/hotel?offset=$offset&limit=10");
-
-      print("response.data");
-      print(response.data);
-      print(response.data['hotel_min_max_price']);
-      print(HostPageDto.fromJson(response.data).hotelMinMaxPrice);
 
       return HostPageDto.fromJson(response.data);
     } catch (e) {

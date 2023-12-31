@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:idwey/data/models/booking_dto.dart';
-import 'package:idwey/data/models/models.dart';
 
 abstract class ReservationRepository {
   Future<Either<Exception, Map<String, dynamic>>> doCheckout(

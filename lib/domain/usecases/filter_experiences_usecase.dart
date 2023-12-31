@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:idwey/data/models/activity_dto.dart';
 import 'package:idwey/data/models/experience_dto.dart';
 import 'package:idwey/domain/repositories/filter_repository.dart';
 

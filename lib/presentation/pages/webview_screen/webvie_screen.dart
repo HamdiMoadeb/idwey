@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:get_it/get_it.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -40,25 +39,12 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
           ContextMenuItem(
               title: "Special",
               action: () async {
-                print("Menu item Special clicked!");
-                print(await webViewController?.getSelectedText());
                 await webViewController?.clearFocus();
               })
         ],
-        onCreateContextMenu: (hitTestResult) async {
-          print("onCreateContextMenu");
-          print(hitTestResult.extra);
-          print(await webViewController?.getSelectedText());
-        },
-        onHideContextMenu: () {
-          print("onHideContextMenu");
-        },
-        onContextMenuActionItemClicked: (contextMenuItemClicked) async {
-          print("onContextMenuActionItemClicked: " +
-              "id.toString()" +
-              " " +
-              contextMenuItemClicked.title);
-        });
+        onCreateContextMenu: (hitTestResult) async {},
+        onHideContextMenu: () {},
+        onContextMenuActionItemClicked: (contextMenuItemClicked) async {});
 
     pullToRefreshController = kIsWeb ||
             ![TargetPlatform.iOS, TargetPlatform.android]
@@ -153,25 +139,14 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
                     onWebViewCreated: (controller) async {
                       webViewController = controller;
                     },
-                    onLoadResource: (controller, resource) {
-                      print("Started at: " +
-                          resource.startTime.toString() +
-                          "ms ---> duration: " +
-                          resource.duration.toString() +
-                          "ms " +
-                          resource.url.toString());
-                    },
+                    onLoadResource: (controller, resource) {},
                     onLoadStart: (controller, url) async {
                       setState(() {
-                        print("onloadstart $url");
-                        print(url.toString());
                         urlController.text = url.toString();
-                        print(
-                            "${url.toString().contains("http://102.219.178.96:5776/success")}*********");
+
                         if (url.toString().contains(
                                 "http://102.219.178.96:5776/success") ==
                             true) {
-                          print("success**********");
                           context
                               .read<ConfirmReservationBloc>()
                               .add(ConfirmReservationEvent.doCheckout({
@@ -240,12 +215,7 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
                       });
                     },
 
-                    onConsoleMessage: (controller, consoleMessage) {
-                      print("consoleMessage");
-                      print(consoleMessage);
-                      print(consoleMessage.messageLevel);
-                      print(consoleMessage.message);
-                    },
+                    onConsoleMessage: (controller, consoleMessage) {},
                   ),
                   progress < 1.0
                       ? LinearProgressIndicator(value: progress)
@@ -257,13 +227,13 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
               alignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  child: Icon(Icons.arrow_back),
+                  child: const Icon(Icons.arrow_back),
                   onPressed: () {
                     webViewController?.goBack();
                   },
                 ),
                 ElevatedButton(
-                  child: Icon(Icons.arrow_forward),
+                  child: const Icon(Icons.arrow_forward),
                   onPressed: () {
                     webViewController?.goForward();
                   },

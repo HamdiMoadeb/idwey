@@ -39,7 +39,7 @@ class ExtraPriceSectionDisponibility extends StatelessWidget {
                   ))
               .toList(),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }
