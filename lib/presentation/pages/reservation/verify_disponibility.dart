@@ -78,15 +78,6 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
     );
   }
 
-  ScaffoldMessengerState? _scaffoldMessenger;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Access the ScaffoldMessenger here.
-    _scaffoldMessenger = ScaffoldMessenger.of(context);
-  }
-
   @override
   void initState() {
     // TODO: implement initState
@@ -118,7 +109,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
             state.addToCartStatus == StateStatus.error) {
           print("error");
           Navigator.of(context).pop();
-          _scaffoldMessenger?.showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Une erreur s'est produite"),
               backgroundColor: Colors.red,
@@ -127,8 +118,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
           context
               .read<ReservationBloc>()
               .add(const ReservationEvent.initStatus());
-        } else if (state.status == StateStatus.success ||
-            state.addToCartStatus == StateStatus.success) {
+        } else if (state.status == StateStatus.success) {
           print("success");
           if (state.availableChalet?.isNotEmpty == true) {
             //Navigator.pop(context);
@@ -142,23 +132,23 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                 .read<ReservationBloc>()
                 .add(const ReservationEvent.initStatus());
           } else if (state.available == false) {
-            //Navigator.pop(context);
-            _scaffoldMessenger?.showSnackBar(
+            print("unaaaaavailable");
+            Navigator.of(context).pop();
+            context
+                .read<ReservationBloc>()
+                .add(const ReservationEvent.initStatus());
+            ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.errorText ?? ""),
                 backgroundColor: Colors.red,
               ),
             );
-            //Navigator.pop(context);
-            context
-                .read<ReservationBloc>()
-                .add(const ReservationEvent.initStatus());
           }
+        } else if (state.addToCartStatus == StateStatus.success) {
+          Navigator.of(context).pop();
         }
       },
       builder: (context, state) {
-        print("state.totalPrice");
-        print(state.totalPrice);
         return Scaffold(
           bottomNavigationBar: BottomAppBar(
             elevation: 0,
@@ -187,13 +177,15 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                   : "Réserver",
               salePrice:
                   state.totalPriceOnSale == "" || state.totalPriceOnSale == null
-                      ? double.tryParse(widget.salePrice ?? "")
+                      ? double.tryParse(widget.salePrice ?? "0.00")
                               ?.toInt()
                               .toString() ??
-                          ""
+                          "0"
                       : state.totalPriceOnSale.toString(),
               perPerson: widget.perPerson == "nuit" ? "nuit" : "personne",
-              price: state.totalPrice == "" || state.totalPrice == null
+              price: state.totalPrice == "" ||
+                      state.totalPrice == null ||
+                      state.totalPrice == "null"
                   ? double.parse(widget.price ?? "").toInt().toString()
                   : state.totalPrice.toString(),
             ),

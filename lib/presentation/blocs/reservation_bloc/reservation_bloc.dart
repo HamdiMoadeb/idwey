@@ -94,7 +94,6 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
   }
 
   initStatus(_InitStatus event, Emitter<ReservationState> emit) {
-    print("initStatus");
     emit(state.copyWith(status: StateStatus.init));
     print("state.status");
     print(state.status);
@@ -169,7 +168,8 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       checkOut: event.checkOut,
       activityDuration: event.activityDuration,
       totalPrice: double.parse(event.price ?? "0.00").toInt().toString(),
-      totalPriceOnSale: double.tryParse(event.salePrice ?? "0.00").toString(),
+      totalPriceOnSale:
+          double.tryParse(event.salePrice ?? "0.00")?.toInt().toString(),
     ));
 
     print("state.totalPrice");

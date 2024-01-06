@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +9,6 @@ import 'package:idwey/components/cards/card_type.dart';
 import 'package:idwey/components/chips/chip.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/theme/app_colors.dart';
-import 'dart:math' as math;
 
 class CustomCard extends StatefulWidget {
   final String? title;
@@ -388,19 +389,15 @@ class _CustomCardState extends State<CustomCard> {
                               horizontal: 8.w, vertical: 4.h),
                           child: widget.cardType == CardType.product
                               ? Text('Votre commande = ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500))
+                                  style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500))
                               : Text('Réserver Maintenant = ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
+                                  style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500)),
                         ),
                         SvgPicture.asset(
                           Assets.tree,

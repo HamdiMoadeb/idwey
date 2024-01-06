@@ -32,6 +32,7 @@ class ReviewsBoardScreen extends StatefulWidget implements AutoRouteWrapper {
 
 class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
   final PageController controller = PageController();
+  final ScrollController scrollController = ScrollController();
   int selectedIndex = 0;
 
   @override
@@ -87,6 +88,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                 /// build filters horizontal scroll
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
+                  controller: scrollController,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 4.0,
@@ -197,6 +199,9 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                           onPageChanged: (index) {
                             setState(() {
                               selectedIndex = index;
+                              scrollController.animateTo(selectedIndex * 100.w,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.ease);
                             });
                           },
                           controller: controller,

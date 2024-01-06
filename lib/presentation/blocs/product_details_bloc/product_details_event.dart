@@ -9,4 +9,6 @@ class ProductDetailsEvent with _$ProductDetailsEvent {
 
   const factory ProductDetailsEvent.addToCart(TypeReservation typeReservation) =
       AddToCart;
+
+  const factory ProductDetailsEvent.initStatus() = InitStatus;
 }

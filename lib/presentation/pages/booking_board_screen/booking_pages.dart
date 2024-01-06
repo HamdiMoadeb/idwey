@@ -16,6 +16,7 @@ class BoardPage extends StatefulWidget {
 
 class _BoardPageState extends State<BoardPage> {
   final PageController controller = PageController();
+  final ScrollController scrollController = ScrollController();
   int selectedIndex = 0;
 
   @override
@@ -32,6 +33,7 @@ class _BoardPageState extends State<BoardPage> {
               /// build filters horizontal scroll
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
+                controller: scrollController,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                   child: Row(
@@ -198,6 +200,9 @@ class _BoardPageState extends State<BoardPage> {
                   onPageChanged: (index) {
                     setState(() {
                       selectedIndex = index;
+                      scrollController.animateTo(selectedIndex * 100.0,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.ease);
                     });
                   },
                   children: <Widget>[

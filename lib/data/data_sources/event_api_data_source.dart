@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:idwey/data/models/event_details_dto.dart';
 import 'package:idwey/data/models/event_page_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,39 +21,39 @@ class EventApiDataSourceImpl implements EventApiDataSource {
   @override
   Future<List<Event>> getListEvents(int limit, int offset) async {
     List<Event> listOfHosts = [];
-    //try {
-    final response =
-        await dio.get("https://idwey.tn/api/event?offset=$offset&limit=10");
+    try {
+      final response =
+          await dio.get("https://idwey.tn/api/event?offset=$offset&limit=10");
 
-    print("response.data");
-    print(response.data);
+      print("response.data");
+      print(response.data);
 
-    response.data['rows'].forEach((data) {
-      listOfHosts.add(Event.fromJson(data));
-    });
+      response.data['rows'].forEach((data) {
+        listOfHosts.add(Event.fromJson(data));
+      });
 
-    return listOfHosts;
-    // } catch (e) {
-    //   throw Exception();
-    // }
+      return listOfHosts;
+    } catch (e) {
+      throw Exception();
+    }
   }
 
   @override
   Future<EventDetailsDto> getEvent(int id) async {
     print("id");
     print(id);
-    // try {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+    try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    String userId = preferences.getString("userId") ?? "0";
-    final response =
-        await dio.get("https://idwey.tn/api/event/detail/$id/$userId)");
-    print("result222222");
-    print(response);
-    return EventDetailsDto.fromJson(response.data);
-    // } catch (e) {
-    //   throw Exception(e);
-    // }
+      String userId = preferences.getString("userId") ?? "0";
+      final response =
+          await dio.get("https://idwey.tn/api/event/detail/$id/$userId)");
+      print("result222222");
+      print(response);
+      return EventDetailsDto.fromJson(response.data);
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   @override

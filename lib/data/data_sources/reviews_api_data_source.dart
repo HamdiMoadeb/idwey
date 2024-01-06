@@ -1,8 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:idwey/data/models/booking_dto.dart';
-import 'package:idwey/data/models/host_details_dto.dart';
-import 'package:idwey/data/models/host_dto.dart';
-import 'package:idwey/data/models/review_dto.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
 
 abstract class ReviewsApiDataSource {
@@ -35,18 +31,18 @@ class ReviewsApiDataSourceImpl implements ReviewsApiDataSource {
 
   @override
   Future<dynamic> getRateSettings(String serviceID) async {
-    // try {
-    print("https://idwey.tn/api/ratesetting/$serviceID");
-    final response =
-        await dio.get("https://idwey.tn/api/ratesetting/$serviceID");
-    print("response.data");
-    print(response.data);
+    try {
+      print("https://idwey.tn/api/ratesetting/$serviceID");
+      final response =
+          await dio.get("https://idwey.tn/api/ratesetting/$serviceID");
+      print("response.data");
+      print(response.data);
 
-    return response.data;
-    // } catch (e) {
-    //   print(e);
-    //   throw Exception();
-    // }
+      return response.data;
+    } catch (e) {
+      print(e);
+      throw Exception();
+    }
   }
 
   @override
