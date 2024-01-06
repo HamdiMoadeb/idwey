@@ -21,6 +21,7 @@ mixin _$ProductDetailsEvent {
     required TResult Function(int id) getDetailsProduct,
     required TResult Function(int id) addProduct,
     required TResult Function(TypeReservation typeReservation) addToCart,
+    required TResult Function() initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$ProductDetailsEvent {
     TResult? Function(int id)? getDetailsProduct,
     TResult? Function(int id)? addProduct,
     TResult? Function(TypeReservation typeReservation)? addToCart,
+    TResult? Function()? initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$ProductDetailsEvent {
     TResult Function(int id)? getDetailsProduct,
     TResult Function(int id)? addProduct,
     TResult Function(TypeReservation typeReservation)? addToCart,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$ProductDetailsEvent {
     required TResult Function(GetDetailsProduct value) getDetailsProduct,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(AddToCart value) addToCart,
+    required TResult Function(InitStatus value) initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$ProductDetailsEvent {
     TResult? Function(GetDetailsProduct value)? getDetailsProduct,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(AddToCart value)? addToCart,
+    TResult? Function(InitStatus value)? initStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$ProductDetailsEvent {
     TResult Function(GetDetailsProduct value)? getDetailsProduct,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(AddToCart value)? addToCart,
+    TResult Function(InitStatus value)? initStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +153,7 @@ class _$GetDetailsProduct implements GetDetailsProduct {
     required TResult Function(int id) getDetailsProduct,
     required TResult Function(int id) addProduct,
     required TResult Function(TypeReservation typeReservation) addToCart,
+    required TResult Function() initStatus,
   }) {
     return getDetailsProduct(id);
   }
@@ -157,6 +164,7 @@ class _$GetDetailsProduct implements GetDetailsProduct {
     TResult? Function(int id)? getDetailsProduct,
     TResult? Function(int id)? addProduct,
     TResult? Function(TypeReservation typeReservation)? addToCart,
+    TResult? Function()? initStatus,
   }) {
     return getDetailsProduct?.call(id);
   }
@@ -167,6 +175,7 @@ class _$GetDetailsProduct implements GetDetailsProduct {
     TResult Function(int id)? getDetailsProduct,
     TResult Function(int id)? addProduct,
     TResult Function(TypeReservation typeReservation)? addToCart,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) {
     if (getDetailsProduct != null) {
@@ -181,6 +190,7 @@ class _$GetDetailsProduct implements GetDetailsProduct {
     required TResult Function(GetDetailsProduct value) getDetailsProduct,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(AddToCart value) addToCart,
+    required TResult Function(InitStatus value) initStatus,
   }) {
     return getDetailsProduct(this);
   }
@@ -191,6 +201,7 @@ class _$GetDetailsProduct implements GetDetailsProduct {
     TResult? Function(GetDetailsProduct value)? getDetailsProduct,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(AddToCart value)? addToCart,
+    TResult? Function(InitStatus value)? initStatus,
   }) {
     return getDetailsProduct?.call(this);
   }
@@ -201,6 +212,7 @@ class _$GetDetailsProduct implements GetDetailsProduct {
     TResult Function(GetDetailsProduct value)? getDetailsProduct,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(AddToCart value)? addToCart,
+    TResult Function(InitStatus value)? initStatus,
     required TResult orElse(),
   }) {
     if (getDetailsProduct != null) {
@@ -286,6 +298,7 @@ class _$AddProduct implements AddProduct {
     required TResult Function(int id) getDetailsProduct,
     required TResult Function(int id) addProduct,
     required TResult Function(TypeReservation typeReservation) addToCart,
+    required TResult Function() initStatus,
   }) {
     return addProduct(id);
   }
@@ -296,6 +309,7 @@ class _$AddProduct implements AddProduct {
     TResult? Function(int id)? getDetailsProduct,
     TResult? Function(int id)? addProduct,
     TResult? Function(TypeReservation typeReservation)? addToCart,
+    TResult? Function()? initStatus,
   }) {
     return addProduct?.call(id);
   }
@@ -306,6 +320,7 @@ class _$AddProduct implements AddProduct {
     TResult Function(int id)? getDetailsProduct,
     TResult Function(int id)? addProduct,
     TResult Function(TypeReservation typeReservation)? addToCart,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -320,6 +335,7 @@ class _$AddProduct implements AddProduct {
     required TResult Function(GetDetailsProduct value) getDetailsProduct,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(AddToCart value) addToCart,
+    required TResult Function(InitStatus value) initStatus,
   }) {
     return addProduct(this);
   }
@@ -330,6 +346,7 @@ class _$AddProduct implements AddProduct {
     TResult? Function(GetDetailsProduct value)? getDetailsProduct,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(AddToCart value)? addToCart,
+    TResult? Function(InitStatus value)? initStatus,
   }) {
     return addProduct?.call(this);
   }
@@ -340,6 +357,7 @@ class _$AddProduct implements AddProduct {
     TResult Function(GetDetailsProduct value)? getDetailsProduct,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(AddToCart value)? addToCart,
+    TResult Function(InitStatus value)? initStatus,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -426,6 +444,7 @@ class _$AddToCart implements AddToCart {
     required TResult Function(int id) getDetailsProduct,
     required TResult Function(int id) addProduct,
     required TResult Function(TypeReservation typeReservation) addToCart,
+    required TResult Function() initStatus,
   }) {
     return addToCart(typeReservation);
   }
@@ -436,6 +455,7 @@ class _$AddToCart implements AddToCart {
     TResult? Function(int id)? getDetailsProduct,
     TResult? Function(int id)? addProduct,
     TResult? Function(TypeReservation typeReservation)? addToCart,
+    TResult? Function()? initStatus,
   }) {
     return addToCart?.call(typeReservation);
   }
@@ -446,6 +466,7 @@ class _$AddToCart implements AddToCart {
     TResult Function(int id)? getDetailsProduct,
     TResult Function(int id)? addProduct,
     TResult Function(TypeReservation typeReservation)? addToCart,
+    TResult Function()? initStatus,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -460,6 +481,7 @@ class _$AddToCart implements AddToCart {
     required TResult Function(GetDetailsProduct value) getDetailsProduct,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(AddToCart value) addToCart,
+    required TResult Function(InitStatus value) initStatus,
   }) {
     return addToCart(this);
   }
@@ -470,6 +492,7 @@ class _$AddToCart implements AddToCart {
     TResult? Function(GetDetailsProduct value)? getDetailsProduct,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(AddToCart value)? addToCart,
+    TResult? Function(InitStatus value)? initStatus,
   }) {
     return addToCart?.call(this);
   }
@@ -480,6 +503,7 @@ class _$AddToCart implements AddToCart {
     TResult Function(GetDetailsProduct value)? getDetailsProduct,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(AddToCart value)? addToCart,
+    TResult Function(InitStatus value)? initStatus,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -496,6 +520,120 @@ abstract class AddToCart implements ProductDetailsEvent {
   @JsonKey(ignore: true)
   _$$AddToCartCopyWith<_$AddToCart> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitStatusCopyWith<$Res> {
+  factory _$$InitStatusCopyWith(
+          _$InitStatus value, $Res Function(_$InitStatus) then) =
+      __$$InitStatusCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitStatusCopyWithImpl<$Res>
+    extends _$ProductDetailsEventCopyWithImpl<$Res, _$InitStatus>
+    implements _$$InitStatusCopyWith<$Res> {
+  __$$InitStatusCopyWithImpl(
+      _$InitStatus _value, $Res Function(_$InitStatus) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitStatus implements InitStatus {
+  const _$InitStatus();
+
+  @override
+  String toString() {
+    return 'ProductDetailsEvent.initStatus()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitStatus);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int id) getDetailsProduct,
+    required TResult Function(int id) addProduct,
+    required TResult Function(TypeReservation typeReservation) addToCart,
+    required TResult Function() initStatus,
+  }) {
+    return initStatus();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int id)? getDetailsProduct,
+    TResult? Function(int id)? addProduct,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
+    TResult? Function()? initStatus,
+  }) {
+    return initStatus?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id)? getDetailsProduct,
+    TResult Function(int id)? addProduct,
+    TResult Function(TypeReservation typeReservation)? addToCart,
+    TResult Function()? initStatus,
+    required TResult orElse(),
+  }) {
+    if (initStatus != null) {
+      return initStatus();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetDetailsProduct value) getDetailsProduct,
+    required TResult Function(AddProduct value) addProduct,
+    required TResult Function(AddToCart value) addToCart,
+    required TResult Function(InitStatus value) initStatus,
+  }) {
+    return initStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetDetailsProduct value)? getDetailsProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(AddToCart value)? addToCart,
+    TResult? Function(InitStatus value)? initStatus,
+  }) {
+    return initStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetDetailsProduct value)? getDetailsProduct,
+    TResult Function(AddProduct value)? addProduct,
+    TResult Function(AddToCart value)? addToCart,
+    TResult Function(InitStatus value)? initStatus,
+    required TResult orElse(),
+  }) {
+    if (initStatus != null) {
+      return initStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitStatus implements ProductDetailsEvent {
+  const factory InitStatus() = _$InitStatus;
 }
 
 /// @nodoc

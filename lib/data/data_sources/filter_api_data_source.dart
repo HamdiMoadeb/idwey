@@ -35,20 +35,20 @@ class FilterApiDataSourceImpl implements FilterApiDataSource {
     print(prices);
     print(
         "https://idwey.tn/api/hotel?offset=$offset&limit=10&price_range=$prices&terms=$terms");
-    //  try {
-    final response = await dio.get(
-        "https://idwey.tn/api/hotel?offset=$offset&limit=10&price_range=$prices&terms=$terms");
+    try {
+      final response = await dio.get(
+          "https://idwey.tn/api/hotel?offset=$offset&limit=10&price_range=$prices&terms=$terms");
 
-    print(response.data['rows'].toString());
+      print(response.data['rows'].toString());
 
-    response.data['rows'].forEach((data) {
-      listOfHosts.add(Host.fromJson(data));
-    });
+      response.data['rows'].forEach((data) {
+        listOfHosts.add(Host.fromJson(data));
+      });
 
-    return listOfHosts;
-    // } catch (e) {
-    //   throw Exception();
-    // }
+      return listOfHosts;
+    } catch (e) {
+      throw Exception();
+    }
   }
 
   @override
@@ -62,7 +62,7 @@ class FilterApiDataSourceImpl implements FilterApiDataSource {
       print(prices);
       print(
           "https://idwey.tn/api/activity?offset=$offset&limit=10&price_range=$prices&terms=$terms");
-      //  try {
+
       final response = await dio.get(
           "https://idwey.tn/api/activity?offset=$offset&limit=10&price_range=$prices&terms=$terms");
 

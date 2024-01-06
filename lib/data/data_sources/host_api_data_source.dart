@@ -89,6 +89,9 @@ class HostApiDataSourceImpl implements HostApiDataSource {
   Future<Map<String, dynamic>> confirmHostReservation(
       Map<String, dynamic> body) async {
     // try {
+    print("body");
+    print(body);
+    print("https://idwey.tn/api/booking/addToCart");
     final response = await dio.post(
       "https://idwey.tn/api/booking/addToCart",
       data: body,

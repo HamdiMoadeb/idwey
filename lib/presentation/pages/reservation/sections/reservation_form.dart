@@ -46,6 +46,7 @@ class _ReservationSectionState extends State<ReservationSection> {
   void initState() {
     // TODO: implement initState
     print('activity duration ${widget.activityDuration}');
+    print("totaaaal ${widget.total} ");
     super.initState();
   }
 

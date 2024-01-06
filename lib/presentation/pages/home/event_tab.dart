@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
-
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -72,9 +71,6 @@ class _EventScreenState extends State<EventScreen>
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfTheFilterPageEvents == false &&
             state.isFilter == true) {
-          return const Center(child: Text("Pas des evénements"));
-        } else if (state.statusEvent == StateStatus.success &&
-            state.listEvents?.isEmpty == true) {
           return const Center(child: Text("Pas des evénements"));
         } else if (state.statusEvent == StateStatus.success ||
             state.statusEvent == StateStatus.loadingMore &&

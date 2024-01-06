@@ -8,9 +8,9 @@ import 'package:idwey/data/models/product_details_dto.dart';
 import 'package:idwey/domain/usecases/confirm_reservation_usecase.dart';
 import 'package:idwey/domain/usecases/get_products_details_usecase.dart';
 
+part 'product_details_bloc.freezed.dart';
 part 'product_details_event.dart';
 part 'product_details_state.dart';
-part 'product_details_bloc.freezed.dart';
 
 class ProductDetailsBloc
     extends Bloc<ProductDetailsEvent, ProductDetailsState> {
@@ -18,6 +18,7 @@ class ProductDetailsBloc
     on<GetDetailsProduct>(_getDetailsProduct);
     on<AddProduct>(_addProduct);
     on<AddToCart>(addToCart);
+    on<InitStatus>(initStatus);
   }
 
   _getDetailsProduct(
@@ -52,50 +53,55 @@ class ProductDetailsBloc
   void addToCart(AddToCart event, Emitter<ProductDetailsState> emit) async {
     emit(state.copyWith(
         addToCartStatus: StateStatus.loading, status: StateStatus.success));
-    //  try {
-    Map<String, dynamic> map = {};
-    map = {
-      "number": state.productNumber,
-      "extra_price": [],
-      "promo_code": "",
-      "service_id": state.productDetailsDto?.row?.id,
-      "service_type": "product"
-    };
+    try {
+      Map<String, dynamic> map = {};
+      map = {
+        "number": state.productNumber,
+        "extra_price": [],
+        "promo_code": "",
+        "service_id": state.productDetailsDto?.row?.id,
+        "service_type": "product"
+      };
 
-    final result = await GetIt.I<ConfirmReservationUseCase>().call(map);
+      final result = await GetIt.I<ConfirmReservationUseCase>().call(map);
 
-    result.fold((l) async {
-
+      result.fold((l) async {
+        emit(state.copyWith(
+            addToCartStatus: StateStatus.error, status: StateStatus.success));
+      }, (r) async {
+        print("r************product_details_bloc**************");
+        print(r);
+        print(r['booking']['price']);
+        emit(state.copyWith(
+            addToCartStatus: StateStatus.success, status: StateStatus.success));
+        GetIt.I<AppRouter>().push(ConfirmReservationRoute(
+          price: state.productDetailsDto?.row?.price,
+          typeReservation: event.typeReservation,
+          url: state.productDetailsDto?.bannerImageUrl ?? "",
+          hostName: state.productDetailsDto?.row?.title ?? "",
+          // dateDebut: state.checkIn ?? "",
+          // dateFin: state.checkOut ?? "",
+          adultes: state.productNumber.toString() ?? "",
+          // totalOnSale: r['booking']['price'].toString(),
+          total:
+              double.parse(r['booking']['price'].toString()).toInt().toString(),
+          //  nuits: state.nbNights ?? "",
+          id: state.productDetailsDto?.toString(),
+          code: r['booking']['code'],
+          customerId: "",
+          // selectedRooms: selectedRooms,
+        ));
+      });
+    } catch (e) {
       emit(state.copyWith(
-          addToCartStatus: StateStatus.error, status: StateStatus.success));
-    }, (r) async {
-
-      emit(state.copyWith(
-          addToCartStatus: StateStatus.success, status: StateStatus.success));
-      GetIt.I<AppRouter>().push(ConfirmReservationRoute(
-        price: state.productDetailsDto?.row?.price,
-        typeReservation: event.typeReservation,
-        url: state.productDetailsDto?.bannerImageUrl ?? "",
-        hostName: state.productDetailsDto?.row?.title ?? "",
-        // dateDebut: state.checkIn ?? "",
-        // dateFin: state.checkOut ?? "",
-        adultes: state.productNumber.toString() ?? "",
-        total: (state.productNumber! *
-                double.parse(state.productDetailsDto?.row?.price ?? ""))
-            .toInt()
-            .toString(),
-        //  nuits: state.nbNights ?? "",
-        id: state.productDetailsDto?.toString(),
-        code: r['booking']['code'],
-        customerId: "",
-        // selectedRooms: selectedRooms,
+        addToCartStatus: StateStatus.error,
       ));
-    });
+    }
+  }
 
-    // } catch (e) {
-    //   emit(state.copyWith(
-    //     addToCartStatus: StateStatus.error,
-    //   ));
-    // }
+  initStatus(InitStatus event, Emitter<ProductDetailsState> emit) {
+    emit(state.copyWith(
+      addToCartStatus: StateStatus.init,
+    ));
   }
 }

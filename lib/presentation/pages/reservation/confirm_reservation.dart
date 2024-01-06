@@ -237,6 +237,8 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
           return const Scaffold(
               body: Center(child: CircularProgressIndicator()));
         } else if (state.status == StateStatus.success) {
+          print("totttttaaaaaaal");
+          print(widget.total);
           return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.grey[200],
@@ -325,7 +327,8 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                       activityDuration: widget.activityDuration,
                       total: widget.totalOnSale == "" ||
                               widget.totalOnSale == "null" ||
-                              widget.totalOnSale == "0.00"
+                              widget.totalOnSale == "0.00" ||
+                              widget.totalOnSale == null
                           ? " ${widget.total} DT"
                           : " ${widget.totalOnSale} DT",
                     ),
