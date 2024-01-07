@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/helpers/app_bloc/app_bloc.dart';
 import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dart';
@@ -12,23 +11,14 @@ import 'package:idwey/theme/app_colors.dart';
 import 'booking_pages.dart';
 
 @RoutePage()
-class BookingBoardScreen extends StatefulWidget implements AutoRouteWrapper {
+class BookingBoardScreen extends StatefulWidget {
   const BookingBoardScreen({Key? key}) : super(key: key);
 
   @override
   State<BookingBoardScreen> createState() => _BookingBoardScreenState();
-
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => GetIt.I<BookingPageBloc>(),
-      child: this,
-    );
-  }
 }
 
-class _BookingBoardScreenState extends State<BookingBoardScreen>
-    with TickerProviderStateMixin {
+class _BookingBoardScreenState extends State<BookingBoardScreen> {
   @override
   void initState() {
     context.read<AppBloc>().add(const AppEvent.getUser());

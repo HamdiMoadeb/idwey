@@ -114,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen>
                     type: state.listHosts?[index].typeHost,
                     term: state.listHosts?[index].termName,
                     url: state.listHosts?[index].imageUrl,
+                    salePrice: state.listHosts?[index].salePrice.toString(),
                     isFeatured: state.listHosts?[index].isFeatured != null &&
                             state.listHosts?[index].isFeatured == 1
                         ? true

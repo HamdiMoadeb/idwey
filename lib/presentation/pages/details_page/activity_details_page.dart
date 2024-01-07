@@ -76,7 +76,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen>
                         ? GetIt.I<AppRouter>().push(
                             VerifyDisponibilityRoute(
                               subtitle:
-                                  "${double.parse(state.activityDetailsDto?.row?.price ?? '0').toInt()} DT par personne",
+                                  "${double.parse(state.activityDetailsDto?.row?.salePrice ?? state.activityDetailsDto?.row?.price ?? "").toInt()} DT par personne",
                               url: state.activityDetailsDto?.bannerImageUrl ??
                                   "",
                               typeReservation: TypeReservation.activity,

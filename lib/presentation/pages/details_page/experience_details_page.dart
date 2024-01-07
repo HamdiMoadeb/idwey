@@ -76,7 +76,7 @@ class _ExperienceDetailsScreenState extends State<ExperienceDetailsScreen>
                         ? GetIt.I<AppRouter>().push(
                             VerifyDisponibilityRoute(
                               subtitle:
-                                  "${double.parse(state.experienceDetailsDto?.row?.price ?? '0').toInt()} DT par personne",
+                                  "${double.parse(state.experienceDetailsDto?.row?.salePrice ?? state.experienceDetailsDto?.row?.price ?? "0").toInt()} DT par personne",
                               url: state.experienceDetailsDto?.bannerImageUrl ??
                                   "",
                               typeReservation: TypeReservation.experience,

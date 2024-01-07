@@ -101,6 +101,8 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
 
   void onSelectDates(
       _OnSelectDates event, Emitter<ReservationState> emit) async {
+    print("NBBBBBBB");
+    print(event.nbNights);
     emit(state.copyWith(
       checkIn: event.startDate,
       checkOut: event.endDate,
@@ -133,15 +135,19 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     ));
     print('*************2222222');
     print("event.guests${state.guests}");
-    emit(state.copyWith(
-      totalPrice:
-          (double.parse(state.price!) * state.guests!).toInt().toString(),
-      totalPriceOnSale: state.salePrice == "null" ||
-              state.salePrice == null ||
-              state.salePrice == ""
-          ? "0.00"
-          : (double.parse(state.salePrice!) * state.guests!).toInt().toString(),
-    ));
+    if (state.typeHost != "host") {
+      emit(state.copyWith(
+        totalPrice:
+            (double.parse(state.price!) * state.guests!).toInt().toString(),
+        totalPriceOnSale: state.salePrice == "null" ||
+                state.salePrice == null ||
+                state.salePrice == ""
+            ? "0.00"
+            : (double.parse(state.salePrice!) * state.guests!)
+                .toInt()
+                .toString(),
+      ));
+    }
     print('*************');
     print(state.totalPrice);
     print(state.totalPriceOnSale);

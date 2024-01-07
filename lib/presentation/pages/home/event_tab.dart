@@ -104,6 +104,7 @@ class _EventScreenState extends State<EventScreen>
                   title: state.listEvents?[index].title,
                   adress: state.listEvents?[index].address,
                   price: state.listEvents?[index].prix,
+                  salePrice: state.listEvents?[index].salePrix.toString(),
                   term: state.listEvents?[index].termName != null
                       ? getTermName(state.listEvents?[index].termName ?? "")
                       : "",

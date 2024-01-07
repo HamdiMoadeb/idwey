@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
-
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
@@ -112,6 +111,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                   price: state.listActivities?[index].price,
                   type: state.listActivities?[index].title,
                   duration: state.listActivities?[index].duration,
+                  salePrice: state.listActivities?[index].salePrice.toString(),
                   isFeatured: state.listActivities?[index].isFeatured != null &&
                           state.listActivities?[index].isFeatured == 1
                       ? true
