@@ -164,10 +164,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
           setState(() {
             dateTime = v.value.startDate ?? DateTime.now();
             dateTime2 = v.value.endDate ?? DateTime.now();
-            nbNuits = v.value!.endDate!
-                .difference(v.value!.startDate!)
-                .inDays
-                .toString();
+            nbNuits = dateTime2.difference(dateTime).inDays.toString();
             print('nbuits $nbNuits');
             widget.onDateRangeChanged(v);
             start = DateFormat('dd').format(dateTime);

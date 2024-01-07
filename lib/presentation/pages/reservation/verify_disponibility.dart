@@ -131,12 +131,10 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
             context
                 .read<ReservationBloc>()
                 .add(const ReservationEvent.initStatus());
-          } else if (state.available == false) {
+          } else if (state.available == false &&
+              state.errorText?.isNotEmpty == true) {
             print("unaaaaavailable");
             Navigator.of(context).pop();
-            context
-                .read<ReservationBloc>()
-                .add(const ReservationEvent.initStatus());
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.errorText ?? ""),
@@ -144,6 +142,9 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
               ),
             );
           }
+          context
+              .read<ReservationBloc>()
+              .add(const ReservationEvent.initStatus());
         } else if (state.addToCartStatus == StateStatus.success) {
           Navigator.of(context).pop();
         }
