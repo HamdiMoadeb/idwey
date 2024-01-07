@@ -131,12 +131,10 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
             context
                 .read<ReservationBloc>()
                 .add(const ReservationEvent.initStatus());
-          } else if (state.available == false) {
+          } else if (state.available == false &&
+              state.errorText?.isNotEmpty == true) {
             print("unaaaaavailable");
             Navigator.of(context).pop();
-            context
-                .read<ReservationBloc>()
-                .add(const ReservationEvent.initStatus());
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.errorText ?? ""),
@@ -144,6 +142,9 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
               ),
             );
           }
+          context
+              .read<ReservationBloc>()
+              .add(const ReservationEvent.initStatus());
         } else if (state.addToCartStatus == StateStatus.success) {
           Navigator.of(context).pop();
         }
@@ -296,14 +297,20 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                           onDateRangeChanged: (v) {
                             context.read<ReservationBloc>().add(
                                   ReservationEvent.onSelectDates(
-                                    DateFormat('yyyy-MM-dd')
-                                        .format(v.value!.startDate!),
-                                    DateFormat('yyyy-MM-dd')
-                                        .format(v.value!.endDate!),
+                                    DateFormat('yyyy-MM-dd').format(
+                                        v.value!.startDate ?? DateTime.now()),
+                                    DateFormat('yyyy-MM-dd').format(
+                                        v.value!.endDate ?? DateTime.now()),
                                     v.value!.endDate!
-                                        .difference(v.value!.startDate!)
-                                        .inDays
-                                        .toString(),
+                                                .difference(v.value!.startDate!)
+                                                .inDays
+                                                .toString() ==
+                                            "0"
+                                        ? "1"
+                                        : v.value!.endDate!
+                                            .difference(v.value!.startDate!)
+                                            .inDays
+                                            .toString(),
                                   ),
                                 );
                           },

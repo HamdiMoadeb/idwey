@@ -79,6 +79,8 @@ class MyApp extends StatelessWidget {
                   GetIt.I<ConfirmReservationBloc>()),
           BlocProvider(
               create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
+          BlocProvider(
+              create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
         ],
         child: ScreenUtilInit(
             designSize: const Size(375, 812),

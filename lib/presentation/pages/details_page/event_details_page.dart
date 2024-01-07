@@ -74,7 +74,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                         ? GetIt.I<AppRouter>().push(
                             VerifyDisponibilityRoute(
                               subtitle:
-                                  "${double.parse(state.eventDetailsDto?.row?.prix ?? "0").toInt()} DT par personne",
+                                  "${double.parse(state.eventDetailsDto?.row?.salePrix ?? state.eventDetailsDto?.row?.prix ?? "").toInt()} DT par personne",
                               url: state.eventDetailsDto?.bannerImageUrl ?? "",
                               typeReservation: TypeReservation.event,
                               perPerson: "personne",

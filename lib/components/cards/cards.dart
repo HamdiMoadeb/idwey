@@ -16,6 +16,7 @@ class CustomCard extends StatefulWidget {
   final String? adress;
   final String? url;
   final String? price;
+  final String? salePrice;
   final String? nbPerson;
   final String? type;
   final bool? fromHomepage;
@@ -49,7 +50,8 @@ class CustomCard extends StatefulWidget {
       this.isFavorite = false,
       this.isFeatured,
       this.onTap,
-      this.discount})
+      this.discount,
+      this.salePrice})
       : cardType = CardType.host,
         duration = null,
         isExpired = null,
@@ -74,7 +76,8 @@ class CustomCard extends StatefulWidget {
       this.isFavorite = false,
       this.isFeatured,
       this.onTap,
-      this.discount})
+      this.discount,
+      this.salePrice})
       : cardType = CardType.event,
         duration = null,
         super(key: key);
@@ -98,7 +101,8 @@ class CustomCard extends StatefulWidget {
       this.duration,
       this.isFeatured,
       this.onTap,
-      this.discount})
+      this.discount,
+      this.salePrice})
       : cardType = CardType.activity,
         isFull = null,
         super(key: key);
@@ -121,7 +125,8 @@ class CustomCard extends StatefulWidget {
       this.duration,
       this.isFeatured,
       this.onTap,
-      this.discount})
+      this.discount,
+      this.salePrice})
       : cardType = CardType.experience,
         isFull = null,
         super(key: key);
@@ -145,7 +150,8 @@ class CustomCard extends StatefulWidget {
       this.duration,
       this.isFeatured,
       this.onTap,
-      this.discount})
+      this.discount,
+      this.salePrice})
       : cardType = CardType.product,
         isFull = null,
         super(key: key);
@@ -309,10 +315,38 @@ class _CustomCardState extends State<CustomCard> {
                           ),
                         ),
                   Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        "${double.parse(widget.price ?? "0").toInt().toString()} DT",
-                        style: Theme.of(context).textTheme.titleSmall,
+                      Column(
+                        children: [
+                          Visibility(
+                            visible: widget.salePrice?.isNotEmpty == true &&
+                                    widget.salePrice != "0" &&
+                                    widget.salePrice != 0 &&
+                                    widget.salePrice != "0.00" &&
+                                    widget.salePrice != "null"
+                                ? true
+                                : false,
+                            child: Text(
+                                "${double.parse("${widget.price}").toInt().toString()} DT",
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: primaryOrange,
+                                  decoration: TextDecoration.lineThrough,
+                                )),
+                          ),
+                          Text(
+                            widget.salePrice?.isNotEmpty == true &&
+                                    widget.salePrice != "0" &&
+                                    widget.salePrice != 0 &&
+                                    widget.salePrice != "0.00" &&
+                                    widget.salePrice != "null"
+                                ? "${double.parse("${widget.salePrice}").toInt().toString()} DT"
+                                : "${double.parse("${widget.price}").toInt().toString()} DT",
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        ],
                       ),
                       Row(
                         children: [

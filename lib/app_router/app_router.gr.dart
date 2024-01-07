@@ -62,7 +62,7 @@ abstract class _$AppRouter extends RootStackRouter {
     BookingBoardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: const BookingBoardScreen()),
+        child: const BookingBoardScreen(),
       );
     },
     ConfigurationRoute.name: (routeData) {

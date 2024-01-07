@@ -85,7 +85,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                               subtitle: "13 ans ou plus",
                               url: state.hostDetails?.bannerImageUrl ?? "",
                               typeReservation: TypeReservation.host,
-                              typeHost: widget.typeHost,
+                              typeHost: "host",
                               salePrice: state.hostDetails?.row?.salePrice
                                       .toString() ??
                                   "",

@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/cards/cards.dart';
 import 'package:idwey/constants/enums.dart';
-
 import 'package:idwey/presentation/blocs/home_page/home_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
@@ -112,6 +111,7 @@ class _ExperienceScreenState extends State<ExperienceScreen>
                   price: state.listExperiences?[index].price,
                   type: state.listExperiences?[index].catName,
                   duration: state.listExperiences?[index].duration,
+                  salePrice: state.listExperiences?[index].salePrice.toString(),
                   isFeatured:
                       state.listExperiences?[index].isFeatured != null &&
                               state.listExperiences?[index].isFeatured == 1
