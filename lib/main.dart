@@ -29,6 +29,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final AppRouter appRouter = GetIt.I<AppRouter>();
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -77,8 +78,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (BuildContext context) =>
                   GetIt.I<ConfirmReservationBloc>()),
-          BlocProvider(
-              create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
           BlocProvider(
               create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
         ],

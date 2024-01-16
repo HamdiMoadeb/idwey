@@ -43,7 +43,7 @@ class ReservationState with _$ReservationState {
         checkIn: DateFormat('dd/MM/yyyy').format(DateTime.now()),
         checkOut: DateFormat('dd/MM/yyyy')
             .format(DateTime.now().add(Duration(days: 1))),
-        available: false,
+        available: null,
         totalPrice: "",
         nbNights: "0",
         guests: 1,
