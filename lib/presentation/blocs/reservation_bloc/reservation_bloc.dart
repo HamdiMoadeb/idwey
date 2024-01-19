@@ -29,7 +29,10 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
 
   void checkHostAvailability(
       _CheckAvailability event, Emitter<ReservationState> emit) async {
-    emit(state.copyWith(status: StateStatus.loading));
+    List<Room> rooms = [];
+    String errorText =
+        "une erreur est produite , veuillez réessayer ultérieurement";
+    emit(state.copyWith(status: StateStatus.loading, available: null));
     try {
       final result = await GetIt.I<CheckHostAvailabilityUseCase>().call({
         'type': event.type,
@@ -43,6 +46,7 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       result.fold((l) async {
         emit(state.copyWith(
           status: StateStatus.error,
+          errorText: errorText,
         ));
       }, (r) async {
         print("r['disponible']");
@@ -50,59 +54,58 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
         if (state.typeHost == "Par Chalet") {
           List<dynamic> list = json.decode(jsonEncode(r));
           print(list);
-          List<Room> rooms = list.map((data) => Room.fromJson(data)).toList();
+          rooms = list.map((data) => Room.fromJson(data)).toList();
           print(rooms);
-          emit(state.copyWith(
-              status: StateStatus.success,
-              availableChalet: rooms,
-              available: null));
         } else {
-          emit(state.copyWith(
-            status: StateStatus.success,
-            available: r['disponible'] ?? false,
-            totalPrice: r['price'].toString() ?? "",
-          ));
-
-          print("state.available");
-          print(state.available);
-          if (state.available == true) {
-            emit(state.copyWith(
-              errorText: "",
-            ));
+          if (r['status'] == 0) {
+            errorText = r["message"] == ""
+                ? 'une erreur est produite , veuillez réessayer ultérieurement'
+                : r['message'];
+          } else if (r['disponible'] == true) {
+            errorText = "";
           } else {
             if (event.type == TypeReservation.activity.toString()) {
-              emit(state.copyWith(
-                available: false,
-                errorText: r["messages"] == []
-                    ? 'une erreur est produite , veuillez réessayer ultérieurement'
-                    : 'Le nombre minimum des invités est 7',
-              ));
+              errorText = r["messages"] == []
+                  ? 'une erreur est produite , veuillez réessayer ultérieurement'
+                  : r['messages'][0];
             } else {
-              emit(state.copyWith(
-                available: false,
-                errorText: r["messages"] == []
-                    ? 'une erreur est produite , veuillez réessayer ultérieurement'
-                    : "Essayez de sélectionner une autre date. Cette date n'est pas disponible",
-              ));
+              errorText = r["messages"] == []
+                  ? 'une erreur est produite , veuillez réessayer ultérieurement'
+                  : r['messages'][0];
             }
           }
         }
+
+        emit(state.copyWith(
+          status: r['status'] == 0 ? StateStatus.error : StateStatus.success,
+          availableChalet: rooms,
+          available: event.type == TypeReservation.activity.toString()
+              ? false
+              : r['disponible'] ?? false,
+          totalPrice: r['price'].toString() ?? "",
+          errorText: errorText,
+        ));
       });
     } on Exception catch (_) {
-      emit(state.copyWith(status: StateStatus.error));
+      emit(state.copyWith(
+        status: StateStatus.error,
+        errorText:
+            "une erreur est produite , veuillez réessayer ultérieurement",
+      ));
     }
   }
 
   initStatus(_InitStatus event, Emitter<ReservationState> emit) {
-    emit(state.copyWith(status: StateStatus.init));
+    emit(state.copyWith(status: StateStatus.init, available: null));
     print("state.status");
     print(state.status);
   }
 
   void onSelectDates(
       _OnSelectDates event, Emitter<ReservationState> emit) async {
-    print("NBBBBBBB");
-    print(event.nbNights);
+    int guests = state.guests ?? 1;
+    int nbNights = int.parse(event.nbNights ?? "1");
+
     emit(state.copyWith(
       checkIn: event.startDate,
       checkOut: event.endDate,
@@ -123,35 +126,28 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
 
   void onSelectGuests(
       _OnSelectGuests event, Emitter<ReservationState> emit) async {
-    print('*************');
-    print("event.guests${event.guests}");
-    print("state.totalPrice${state.totalPrice}");
-    print("state.totalPriceOnSale${state.totalPriceOnSale}");
-    print("salePrice${state.salePrice}");
-    print("price${state.price}");
-
     emit(state.copyWith(
       guests: event.guests,
     ));
-    print('*************2222222');
-    print("event.guests${state.guests}");
-    if (state.typeHost != "host") {
-      emit(state.copyWith(
-        totalPrice:
-            (double.parse(state.price!) * state.guests!).toInt().toString(),
-        totalPriceOnSale: state.salePrice == "null" ||
-                state.salePrice == null ||
-                state.salePrice == ""
-            ? "0.00"
-            : (double.parse(state.salePrice!) * state.guests!)
-                .toInt()
-                .toString(),
-      ));
-    }
-    print('*************');
-    print(state.totalPrice);
-    print(state.totalPriceOnSale);
-    print(state.guests);
+
+    /// if per person == nuit
+    /// totalPrice = (price * guests ) * nbNights
+    /// totalPriceOnSale = (salePrice * guests ) * nbNights
+    int guests = state.perPerson == "nuit" ? 1 : state.guests ?? 1;
+    int nbNights = state.nbNights == "0" ? 1 : int.parse(state.nbNights ?? "1");
+
+    emit(state.copyWith(
+      totalPrice:
+          (double.parse(state.price!) * guests * nbNights).toInt().toString(),
+      totalPriceOnSale: state.salePrice == "null" ||
+              state.salePrice == null ||
+              state.salePrice == ""
+          ? "0.00"
+          : (double.parse(state.salePrice!) * guests * nbNights)
+              .toInt()
+              .toString(),
+    ));
+    //}
   }
 
   ///set params
@@ -188,101 +184,99 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       _ConfirmReservation event, Emitter<ReservationState> emit) async {
     emit(state.copyWith(
         addToCartStatus: StateStatus.loading, status: StateStatus.init));
-    //  try {
-    Map<String, dynamic> map = {};
-    if (event.typeReservation == TypeReservation.host) {
-      map = {
-        "start_date": state.checkIn,
-        "end_date": state.checkOut,
-        "adults": state.guests,
-        "children": 0,
-        "extra_price":
-            state.extraPrice?.map((extraPrice) => extraPrice.toJson()).toList(),
-        "rooms": state.selectedRooms,
-        "promo_code": "",
-        "service_id": state.id,
-        "service_type":
-            event.typeReservation == TypeReservation.host ? "host" : "event"
-      };
-    } else if (event.typeReservation == TypeReservation.event) {
-      map = {
-        "start_date": state.checkIn,
-        "number": state.guests,
-        "extra_price": [],
-        "promo_code": "",
-        "service_id": state.id,
-        "service_type": "event"
-      };
-    } else if (event.typeReservation == TypeReservation.activity) {
-      map = {
-        "start_date": state.checkIn,
-        "end_date": state.checkOut,
-        "adults": state.guests,
-        "children": 0,
-        "extra_price":
-            state.extraPrice?.map((extraPrice) => extraPrice.toJson()).toList(),
-        "rooms": state.selectedRooms,
-        "promo_code": "",
-        "service_id": state.id,
-        "service_type": "activity"
-      };
-    } else if (event.typeReservation == TypeReservation.experience) {
-      map = {
-        "start_date": state.checkIn,
-        "end_date": state.checkOut,
-        "adults": state.guests,
-        "children": 0,
-        "extra_price":
-            state.extraPrice?.map((extraPrice) => extraPrice.toJson()).toList(),
-        "rooms": state.selectedRooms,
-        "promo_code": "",
-        "service_id": state.id,
-        "service_type": "experience"
-      };
-    }
+    try {
+      Map<String, dynamic> map = {};
+      if (event.typeReservation == TypeReservation.host) {
+        map = {
+          "start_date": state.checkIn,
+          "end_date": state.checkOut,
+          "adults": state.guests,
+          "children": 0,
+          "extra_price": state.extraPrice
+              ?.map((extraPrice) => extraPrice.toJson())
+              .toList(),
+          "rooms": state.selectedRooms,
+          "promo_code": "",
+          "service_id": state.id,
+          "service_type":
+              event.typeReservation == TypeReservation.host ? "host" : "event"
+        };
+      } else if (event.typeReservation == TypeReservation.event) {
+        map = {
+          "start_date": state.checkIn,
+          "number": state.guests,
+          "extra_price": [],
+          "promo_code": "",
+          "service_id": state.id,
+          "service_type": "event"
+        };
+      } else if (event.typeReservation == TypeReservation.activity) {
+        map = {
+          "start_date": state.checkIn,
+          "end_date": state.checkOut,
+          "adults": state.guests,
+          "children": 0,
+          "extra_price": state.extraPrice
+              ?.map((extraPrice) => extraPrice.toJson())
+              .toList(),
+          "rooms": state.selectedRooms,
+          "promo_code": "",
+          "service_id": state.id,
+          "service_type": "activity"
+        };
+      } else if (event.typeReservation == TypeReservation.experience) {
+        map = {
+          "start_date": state.checkIn,
+          "end_date": state.checkOut,
+          "adults": state.guests,
+          "children": 0,
+          "extra_price": state.extraPrice
+              ?.map((extraPrice) => extraPrice.toJson())
+              .toList(),
+          "rooms": state.selectedRooms,
+          "promo_code": "",
+          "service_id": state.id,
+          "service_type": "experience"
+        };
+      }
 
-    final result = await GetIt.I<ConfirmReservationUseCase>().call(map);
+      final result = await GetIt.I<ConfirmReservationUseCase>().call(map);
 
-    result.fold((l) async {
-      print("confirm reservation llllllllll");
+      result.fold((l) async {
+        print("confirm reservation llllllllll");
+        emit(state.copyWith(
+          addToCartStatus: StateStatus.error,
+        ));
+      }, (r) async {
+        print("confirm reservation");
+        print(r);
+        emit(state.copyWith(
+          addToCartStatus: StateStatus.success,
+        ));
+        GetIt.I<AppRouter>().push(ConfirmReservationRoute(
+          typeReservation: event.typeReservation,
+          url: state.url ?? "",
+          hostName: state.title,
+          dateDebut: state.checkIn ?? "",
+          dateFin: state.checkOut ?? "",
+          adultes: state.guests.toString(),
+          total: r['booking']['price'].toString(),
+          totalOnSale: r['booking']['price'].toString(),
+          nuits: state.nbNights ?? "",
+          id: state.id.toString(),
+          address: state.address,
+          rooms: state.selectedRoomsObject,
+          code: r['booking']['code'],
+          customerId: "",
+          activityDuration: state.activityDuration,
+          // selectedRooms: selectedRooms,
+        ));
+      });
+    } catch (e) {
       emit(state.copyWith(
         addToCartStatus: StateStatus.error,
       ));
-    }, (r) async {
-      print("confirm reservation");
-      print(r);
-      emit(state.copyWith(
-        addToCartStatus: StateStatus.success,
-      ));
-      GetIt.I<AppRouter>().push(ConfirmReservationRoute(
-        typeReservation: event.typeReservation,
-        url: state.url ?? "",
-        hostName: state.title,
-        dateDebut: state.checkIn ?? "",
-        dateFin: state.checkOut ?? "",
-        adultes: state.guests.toString() ?? "",
-        total: state.totalPrice == ""
-            ? double.parse(state.price ?? "").toInt().toString()
-            : state.totalPrice.toString(),
-        totalOnSale: state.totalPriceOnSale == ""
-            ? double.parse(state.salePrice ?? "").toInt().toString()
-            : state.totalPriceOnSale.toString(),
-        nuits: state.nbNights ?? "",
-        id: state.id.toString(),
-        address: state.address,
-        rooms: state.selectedRoomsObject,
-        code: r['booking']['code'],
-        customerId: "",
-        activityDuration: state.activityDuration,
-        // selectedRooms: selectedRooms,
-      ));
-    });
-
-    // } catch (e) {
-    //   emit(state.copyWith(
-    //     addToCartStatus: StateStatus.error,
-    //   ));
-    // }
+    }
   }
 
   void onSelectRoom(

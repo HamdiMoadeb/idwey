@@ -118,7 +118,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                           );
                   },
                   nbNuit: state.hostDetails?.row?.minNuits ?? 0,
-                  perPerson: "nuit",
+                  perPerson: state.hostDetails?.row?.perPerson ?? "",
                   salePrice: double.parse(
                           state.hostDetails?.row?.salePrice?.toString() ?? "0")
                       .toInt()

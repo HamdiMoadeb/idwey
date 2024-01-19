@@ -7,6 +7,7 @@ import 'package:idwey/components/inputs/date_input.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/extra_price_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
+import 'package:idwey/helpers/services/context_extension.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/presentation/pages/details_page/components/product_page_header/product_page_header.dart';
 import 'package:idwey/presentation/pages/reservation/sections/chalets_section.dart';
@@ -78,9 +79,25 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
     );
   }
 
+  void showSnackBar({
+    required String content,
+    VoidCallback? action,
+    String? label,
+  }) {
+    context.showSnackBar(
+      content: content,
+      action: action,
+      label: label,
+    );
+  }
+
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     // TODO: implement initState
+    print("widget.perPerson");
+    print(widget.perPerson);
     context.read<ReservationBloc>().add(ReservationEvent.setParams(
         widget.activityDuration,
         widget.id,
@@ -102,51 +119,40 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<ReservationBloc, ReservationState>(
       listener: (context, state) {
+        // ScaffoldMessenger.of(context).clearSnackBars();
+
+        print("state33333");
+        print(state);
         if (state.status == StateStatus.loading ||
             state.addToCartStatus == StateStatus.loading) {
           showLoadingDialog();
         } else if (state.status == StateStatus.error ||
             state.addToCartStatus == StateStatus.error) {
           print("error");
-          Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Une erreur s'est produite"),
-              backgroundColor: Colors.red,
-            ),
-          );
+          Navigator.pop(context);
+          showSnackBar(content: state.errorText ?? '');
           context
               .read<ReservationBloc>()
               .add(const ReservationEvent.initStatus());
-        } else if (state.status == StateStatus.success) {
-          print("success");
-          if (state.availableChalet?.isNotEmpty == true) {
-            //Navigator.pop(context);
-          }
-          if (state.available == true) {
-            context
-                .read<ReservationBloc>()
-                .add(ReservationEvent.addToCart(widget.typeReservation));
-            Navigator.of(context).pop();
-            context
-                .read<ReservationBloc>()
-                .add(const ReservationEvent.initStatus());
-          } else if (state.available == false &&
-              state.errorText?.isNotEmpty == true) {
-            print("unaaaaavailable");
-            Navigator.of(context).pop();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.errorText ?? ""),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
+        } else if (state.status == StateStatus.success &&
+            state.available == true) {
+          print("available");
+          context
+              .read<ReservationBloc>()
+              .add(ReservationEvent.addToCart(widget.typeReservation));
+          Navigator.pop(context);
+        } else if (state.status == StateStatus.success &&
+            state.available == false &&
+            state.errorText?.isNotEmpty == true) {
+          print("unaaaaavailable");
+
+          Navigator.pop(context);
+          showSnackBar(content: state.errorText ?? '');
           context
               .read<ReservationBloc>()
               .add(const ReservationEvent.initStatus());
         } else if (state.addToCartStatus == StateStatus.success) {
-          Navigator.of(context).pop();
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
@@ -301,16 +307,19 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                                         v.value!.startDate ?? DateTime.now()),
                                     DateFormat('yyyy-MM-dd').format(
                                         v.value!.endDate ?? DateTime.now()),
-                                    v.value!.endDate!
-                                                .difference(v.value!.startDate!)
-                                                .inDays
-                                                .toString() ==
-                                            "0"
+                                    v.value!.endDate == null
                                         ? "1"
                                         : v.value!.endDate!
-                                            .difference(v.value!.startDate!)
-                                            .inDays
-                                            .toString(),
+                                                    .difference(
+                                                        v.value!.startDate!)
+                                                    .inDays
+                                                    .toString() ==
+                                                "0"
+                                            ? "1"
+                                            : v.value!.endDate!
+                                                .difference(v.value!.startDate!)
+                                                .inDays
+                                                .toString(),
                                   ),
                                 );
                           },
@@ -351,19 +360,19 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                               i, widget.salePrice.toString()));
                     },
                   ),
-                  Visibility(
-                    visible: widget.typeReservation == TypeReservation.activity,
-                    child: CustomHeader(
-                      index: 1,
-                      title: 'Enfant',
-                      subtitle: '13 ans ou plus',
-                      onchange: (i) {
-                        context.read<ReservationBloc>().add(
-                            ReservationEvent.onSelectGuests(
-                                i, widget.salePrice.toString()));
-                      },
-                    ),
-                  ),
+                  // Visibility(
+                  //   visible: widget.typeReservation == TypeReservation.activity,
+                  //   child: CustomHeader(
+                  //     index: 1,
+                  //     title: 'Enfant',
+                  //     subtitle: '13 ans ou plus',
+                  //     onchange: (i) {
+                  //       context.read<ReservationBloc>().add(
+                  //           ReservationEvent.onSelectGuests(
+                  //               i, widget.salePrice.toString()));
+                  //     },
+                  //   ),
+                  // ),
                   widget.extraPrice?.isNotEmpty == true
                       ? ExtraPriceSectionDisponibility(
                           extraPrices: widget.extraPrice ?? [])

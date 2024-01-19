@@ -60,6 +60,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   webview_flutter: ^4.4.2
   flutter_inappwebview: ^5.8.0
+  fluttertoast: ^8.2.4
 dev_dependencies:
 
   flutter_test:

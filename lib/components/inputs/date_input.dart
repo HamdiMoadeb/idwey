@@ -93,7 +93,8 @@ class _CustomDateInputState extends State<CustomDateInput> {
                     color: Colors.black,
                   ),
                   hintText: "Arrivée",
-                  text: DateFormat('dd/MM/yyyy').format(dateTime),
+                  text: DateFormat('dd/MM/yyyy')
+                      .format(dateTime ?? DateTime.now()),
                 ),
                 const SizedBox(width: 10),
                 CustomDateContainer(
@@ -104,7 +105,8 @@ class _CustomDateInputState extends State<CustomDateInput> {
                     color: Colors.black,
                   ),
                   hintText: "Départ",
-                  text: DateFormat('dd/MM/yyyy').format(dateTime2),
+                  text: DateFormat('dd/MM/yyyy')
+                      .format(dateTime2 ?? DateTime.now()),
                 ),
               ],
             ),
@@ -116,8 +118,8 @@ class _CustomDateInputState extends State<CustomDateInput> {
 
 //  DateTimeRange? picked;
   String nbNuits = "1";
-  DateTime dateTime = DateTime.now();
-  DateTime dateTime2 = DateTime.now();
+  DateTime? dateTime = DateTime.now();
+  DateTime? dateTime2 = DateTime.now();
   String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
   String end = DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -164,21 +166,20 @@ class _CustomDateInputState extends State<CustomDateInput> {
           setState(() {
             dateTime = v.value.startDate ?? DateTime.now();
             dateTime2 = v.value.endDate ?? DateTime.now();
-            nbNuits = dateTime2.difference(dateTime).inDays.toString();
+            nbNuits = dateTime2!.difference(dateTime!).inDays.toString();
             print('nbuits $nbNuits');
             widget.onDateRangeChanged(v);
-            start = DateFormat('dd').format(dateTime);
-            end = DateFormat('dd').format(dateTime2);
+            start = DateFormat('dd').format(dateTime!);
+            end = DateFormat('dd').format(dateTime2!);
             dateRange =
-                '$start ${getMonthAbbreviation(dateTime.month)}- $end ${getMonthAbbreviation(dateTime2.month)}';
+                '$start ${getMonthAbbreviation(dateTime!.month)}- $end ${getMonthAbbreviation(dateTime2!.month)}';
           });
         },
         backgroundColor: Colors.white,
         view: DateRangePickerView.month,
         selectionMode: DateRangePickerSelectionMode.range,
         initialSelectedRange: PickerDateRange(
-            DateTime.now().subtract(const Duration(days: 2)),
-            DateTime.now().add(const Duration(days: 3))),
+            dateTime ?? DateTime.now(), dateTime2 ?? DateTime.now()),
       ),
     );
   }
