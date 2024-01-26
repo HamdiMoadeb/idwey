@@ -87,15 +87,22 @@ class MyApp extends StatelessWidget {
             splitScreenMode: true,
             builder: (context, child) {
               return MaterialApp.router(
-                theme: ThemeData(
-                    textTheme: textTheme,
-                    inputDecorationTheme: inputDecorationTheme,
-                    primarySwatch: materialPrimary,
-                    splashColor: Colors.white,
-                    fontFamily: 'Inter'),
-                routerConfig: appRouter.config(),
-                debugShowCheckedModeBanner: false,
-              );
+                  theme: ThemeData(
+                      textTheme: textTheme,
+                      inputDecorationTheme: inputDecorationTheme,
+                      primarySwatch: materialPrimary,
+                      splashColor: Colors.white,
+                      fontFamily: 'Inter'),
+                  routerConfig: appRouter.config(),
+                  debugShowCheckedModeBanner: false,
+                  builder: (context, child) {
+                    return MediaQuery(
+                      data: MediaQuery.of(context).copyWith(
+                        textScaleFactor: 1.0,
+                      ),
+                      child: child!,
+                    );
+                  });
             }));
   }
 }
