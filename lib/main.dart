@@ -22,8 +22,17 @@ final getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final window = WidgetsFlutterBinding.ensureInitialized();
+  await _ensureScreenSize(window);
   await setup();
   runApp(MyApp());
+}
+
+Future<void> _ensureScreenSize(window) async {
+  return window.viewConfiguration.geometry.isEmpty
+      ? Future.delayed(
+          const Duration(milliseconds: 10), () => _ensureScreenSize(window))
+      : Future.value();
 }
 
 class MyApp extends StatelessWidget {
@@ -81,28 +90,34 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
         ],
-        child: ScreenUtilInit(
-            designSize: const Size(375, 812),
-            minTextAdapt: true,
-            splitScreenMode: true,
-            builder: (context, child) {
-              return MaterialApp.router(
-                  theme: ThemeData(
-                      textTheme: textTheme,
-                      inputDecorationTheme: inputDecorationTheme,
-                      primarySwatch: materialPrimary,
-                      splashColor: Colors.white,
-                      fontFamily: 'Inter'),
-                  routerConfig: appRouter.config(),
-                  debugShowCheckedModeBanner: false,
-                  builder: (context, child) {
-                    return MediaQuery(
-                      data: MediaQuery.of(context).copyWith(
-                        textScaleFactor: 1.0,
-                      ),
-                      child: child!,
-                    );
-                  });
-            }));
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaleFactor: 1.0,
+          ),
+          child: ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              splitScreenMode: true,
+              builder: (context, child) {
+                return MaterialApp.router(
+                    theme: ThemeData(
+                        textTheme: textTheme,
+                        inputDecorationTheme: inputDecorationTheme,
+                        primarySwatch: materialPrimary,
+                        splashColor: Colors.white,
+                        fontFamily: 'Inter'),
+                    routerConfig: appRouter.config(),
+                    debugShowCheckedModeBanner: false,
+                    builder: (context, child) {
+                      ScreenUtil.ensureScreenSizeAndInit(context);
+                      return MediaQuery(
+                        data: MediaQuery.of(context).copyWith(
+                          textScaleFactor: 1.0,
+                        ),
+                        child: child!,
+                      );
+                    });
+              }),
+        ));
   }
 }
