@@ -22,17 +22,9 @@ final getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final window = WidgetsFlutterBinding.ensureInitialized();
-  await _ensureScreenSize(window);
+
   await setup();
   runApp(MyApp());
-}
-
-Future<void> _ensureScreenSize(window) async {
-  return window.viewConfiguration.geometry.isEmpty
-      ? Future.delayed(
-          const Duration(milliseconds: 10), () => _ensureScreenSize(window))
-      : Future.value();
 }
 
 class MyApp extends StatelessWidget {

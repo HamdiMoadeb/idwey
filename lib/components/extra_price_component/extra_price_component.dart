@@ -8,13 +8,15 @@ class ExtraPriceComponent extends StatefulWidget {
   final Function(int i)? onchange;
   final Function(bool? v)? onCheck;
   final bool? isChecked;
+  final int? quantity;
   const ExtraPriceComponent(
       {Key? key,
       required this.title,
       required this.subtitle,
       this.onchange,
       this.onCheck,
-      this.isChecked})
+      this.isChecked,
+      required this.quantity})
       : super(key: key);
 
   @override
@@ -67,7 +69,7 @@ class _ExtraPriceComponentState extends State<ExtraPriceComponent> {
             width: 16.w,
           ),
           CustomCounter(
-            initialValue: 0,
+            initialValue: widget.quantity ?? 1,
             onChanged: widget.onchange ?? (int i) {},
           ),
         ],

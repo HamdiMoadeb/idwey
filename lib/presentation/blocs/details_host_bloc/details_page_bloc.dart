@@ -8,8 +8,8 @@ import 'package:idwey/domain/usecases/get_host_details_usecase.dart';
 
 import '../../../data/models/extra_price_dto.dart';
 
-part 'details_page_event.dart';
 part 'details_page_bloc.freezed.dart';
+part 'details_page_event.dart';
 part 'details_page_state.dart';
 
 class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
@@ -17,11 +17,14 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
     on<GetHostDetails>(_getDetailsHost);
     on<_OnExtraPriceChecked>(onExtraPriceChecked);
     on<_OnExtraPriceUnChecked>(onExtraPriceUnChecked);
+    on<_OnExtraPriceQuantityChanged>(onExtraPriceQuantityChanged);
   }
 
   _getDetailsHost(GetHostDetails event, Emitter<DetailsPageState> emit) async {
     emit(state.copyWith(
       status: StateStatus.loading,
+      extraPrice: [],
+      extraPriceTotal: 0.0,
     ));
     final Either<Exception, HostDetails?> result =
         await GetIt.I<GetHostUseCase>().call({"id": event.id});
@@ -57,11 +60,20 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
   void onExtraPriceChecked(
       _OnExtraPriceChecked event, Emitter<DetailsPageState> emit) async {
     // Create a new list with the updated values
+    print("event.extraPrice.quantity");
+    print(event.extraPrice.quantity);
     final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
     updatedExtraPrice.add(event.extraPrice);
 
     // Update the state with the new list
-    emit(state.copyWith(extraPrice: updatedExtraPrice));
+    emit(state.copyWith(
+        extraPrice: updatedExtraPrice,
+        extraPriceTotal: updatedExtraPrice.fold(
+            0,
+            (previousValue, element) =>
+                previousValue! +
+                double.parse(element.price ?? "0.00") *
+                    (element.quantity ?? 1))));
 
     print("state.extraPrice");
     print(updatedExtraPrice); // Print the updated list
@@ -70,13 +82,58 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
   void onExtraPriceUnChecked(
       _OnExtraPriceUnChecked event, Emitter<DetailsPageState> emit) async {
     // Create a new list with the updated values
+    print("event.extraPrice.quantityremoove");
+    print(event.extraPrice.quantity);
     final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
     updatedExtraPrice.remove(event.extraPrice);
 
     // Update the state with the new list
-    emit(state.copyWith(extraPrice: updatedExtraPrice));
+    /// remove the extra price prices from the extra price total
+
+    emit(state.copyWith(
+        extraPrice: updatedExtraPrice,
+        extraPriceTotal: updatedExtraPrice.fold(
+            0,
+            (previousValue, element) =>
+                previousValue! +
+                double.parse(element.price ?? "0.00") *
+                    (element.quantity ?? 1))));
 
     print("state.extraPrice");
     print(updatedExtraPrice); // Print the updated list
+  }
+
+  /// This method is called when the user changes the quantity of an extra price
+
+  void onExtraPriceQuantityChanged(_OnExtraPriceQuantityChanged event,
+      Emitter<DetailsPageState> emit) async {
+    /// Create a new list with the updated values
+    /// check if the extra price is already in the list
+
+    if (state.extraPrice != null) {
+      final index = state.extraPrice!
+          .indexWhere((element) => element.name == event.extraPrice.name);
+      if (index != -1) {
+        final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
+        updatedExtraPrice[index] = event.extraPrice;
+
+        /// Update the state with the new list
+        emit(state.copyWith(
+            extraPrice: updatedExtraPrice,
+            extraPriceTotal: updatedExtraPrice.fold(
+                0,
+                (previousValue, element) =>
+                    previousValue! +
+                    double.parse(element.price ?? "0.00") *
+                        (element.quantity ?? 1))));
+
+        print("state.extraPricetotlaaa");
+        print(state.extraPriceTotal); // Print the updated list
+      }
+    } else {
+      final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
+      updatedExtraPrice.add(event.extraPrice);
+      emit(state.copyWith(extraPrice: updatedExtraPrice));
+    }
   }
 }

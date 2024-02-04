@@ -9,6 +9,7 @@ class FidelityProgramState with _$FidelityProgramState {
     String? monthlyPoints,
     String? totalPoints,
     String? totalPoints2,
+    String? points,
     String? rank,
     List<String>? list,
     List<String>? listContent,
@@ -21,6 +22,7 @@ class FidelityProgramState with _$FidelityProgramState {
         monthlyPoints: "0",
         totalPoints: "0",
         totalPoints2: "0",
+        points: "0",
         rank: "0",
         list: [
           "Réservez et Gagner ",

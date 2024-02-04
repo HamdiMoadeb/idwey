@@ -57,6 +57,10 @@ class _EventScreenState extends State<EventScreen>
     super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
+        print("********223344");
+        print(state.status == StateStatus.error &&
+            state.atTheEndOfTheFilterPageEvents == false &&
+            state.isFilter == true);
         if (state.statusEvent == StateStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
@@ -67,11 +71,18 @@ class _EventScreenState extends State<EventScreen>
         } else if (state.statusEvent == StateStatus.error &&
             state.atTheEndOfTheSearchPageEvents == false &&
             state.isSearch == true) {
+          print("state.isSearch ${state.isSearch}");
           return const Center(child: Text("Pas des evénements"));
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfTheFilterPageEvents == false &&
             state.isFilter == true) {
+          print("state.isFilter ${state.isFilter}");
           return const Center(child: Text("Pas des evénements"));
+        } else if (state.status == StateStatus.success &&
+            state.listEvents?.isEmpty == true &&
+            state.isFilter == true) {
+          print("333");
+          return const Center(child: Text("Pas des événements"));
         } else if (state.statusEvent == StateStatus.success ||
             state.statusEvent == StateStatus.loadingMore &&
                 state.listEvents!.isNotEmpty) {

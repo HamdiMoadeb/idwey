@@ -11,6 +11,7 @@ import 'package:idwey/presentation/pages/filter_screen/sections/commodities_sect
 import 'package:idwey/presentation/pages/filter_screen/sections/host_service_section.dart';
 import 'package:idwey/presentation/pages/filter_screen/sections/property_section.dart';
 import 'package:idwey/theme/app_colors.dart';
+
 import 'sections/range_slider_section.dart';
 
 @RoutePage()
@@ -78,11 +79,12 @@ class _FilterScreenState extends State<FilterScreen> {
                       child: InkWell(
                         onTap: () {
                           if (state.selectedTab == 0) {
-                            print("111111");
+                            print("00000");
                             context
                                 .read<HomeBloc>()
                                 .add(const HomeEvent.getListHosts(false));
                           } else if (state.selectedTab == 1) {
+                            print("111111");
                             context
                                 .read<HomeBloc>()
                                 .add(const HomeEvent.getListEvents(false));
@@ -91,6 +93,8 @@ class _FilterScreenState extends State<FilterScreen> {
                                 .read<HomeBloc>()
                                 .add(const HomeEvent.getListActivities(false));
                           } else if (state.selectedTab == 3) {
+                            print("333333");
+
                             context
                                 .read<HomeBloc>()
                                 .add(const HomeEvent.getListExperiences(false));
@@ -153,18 +157,18 @@ class _FilterScreenState extends State<FilterScreen> {
                     height: 30.h,
                   ),
                   RangeSliderSection(
-                    min: state.isFilter == true
-                        ? double.tryParse(state.selectedPriceRanges![0])
-                                ?.toInt() ??
-                            0
-                        : double.tryParse(state.minPriceRange ?? "0.00")!
-                            .toInt(),
-                    max: state.isFilter == true
-                        ? double.tryParse(state.selectedPriceRanges![1])
-                                ?.toInt() ??
-                            1000
-                        : double.tryParse(state.maxPriceRange ?? "1000.00")!
-                            .toInt(),
+                    values: [
+                      double.tryParse(
+                              state.selectedPriceRanges?[0] ?? "0.00") ??
+                          0,
+                      double.tryParse(
+                              state.selectedPriceRanges?[1] ?? "0.00") ??
+                          1000
+                    ],
+                    min:
+                        double.tryParse(state.minPriceRange ?? "0.00")!.toInt(),
+                    max: double.tryParse(state.maxPriceRange ?? "1000.00")!
+                        .toInt(),
                   ),
                   const Divider(
                     thickness: 1,

@@ -142,7 +142,7 @@ class ReviewsScreen extends StatelessWidget {
                         thickness: 1.h,
                       );
                     },
-                    itemCount: 3)
+                    itemCount: reviewsList.length)
                 : const SizedBox.shrink(),
           ],
         ),

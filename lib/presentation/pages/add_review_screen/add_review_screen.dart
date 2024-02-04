@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/constants/enums.dart';
-import 'package:idwey/data/models/review_scale_dto.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/presentation/blocs/add_review_bloc/add_review_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
@@ -44,6 +43,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    print("widget.review?.content");
     print(widget.review?.reviewMeta?.length ?? 0);
     print(widget.id ?? 0);
     print(widget.type ?? 0);
@@ -205,7 +205,9 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                             : const SizedBox.shrink(),
                         CustomButton.secondaryBlack(
                             onPressed: () {
-                              widget.review != null
+                              print("widget.review");
+                              print(widget.review);
+                              widget.review == null
                                   ? context
                                       .read<AddReviewBloc>()
                                       .add(const AddReview())

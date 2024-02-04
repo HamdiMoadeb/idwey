@@ -5,14 +5,12 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/activity_category.dart';
 import 'package:idwey/data/models/activity_page_dto.dart';
-import 'package:idwey/data/models/attribute_dto.dart';
 import 'package:idwey/data/models/attributz.dart';
 import 'package:idwey/data/models/event_page_dto.dart';
 import 'package:idwey/data/models/experience_page_dto.dart';
 import 'package:idwey/data/models/host_page_dto.dart';
 import 'package:idwey/data/models/locations_dto.dart';
 import 'package:idwey/data/models/models.dart';
-import 'package:idwey/domain/usecases/filter_usecase.dart';
 import 'package:idwey/domain/usecases/get_activity_page_usecase.dart';
 import 'package:idwey/domain/usecases/get_event_page_usecase.dart';
 import 'package:idwey/domain/usecases/get_experience_page_usecase.dart';
@@ -21,9 +19,9 @@ import 'package:idwey/domain/usecases/get_host_page_usecase.dart';
 import '../../../domain/usecases/get_locations_usecase.dart';
 import '../../../domain/usecases/usecases.dart';
 
+part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
-part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState.initial()) {
@@ -231,6 +229,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   _getListEvents(GetListEvent event, Emitter<HomeState> emit) async {
+    print("state.isFilter111111");
+    print(state.isFilter);
+
     try {
       if (state.isSearch == true) {
         emit(state.copyWith(
@@ -261,6 +262,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ));
       }
       if (state.atTheEndOfThePageEvents == true) {
+        print("state.atTheEndOfThePageEvents");
         return;
       }
       emit(state.copyWith(
@@ -291,6 +293,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
           // Check if the server returned fewer items than requested
           bool atTheEndOfThePage = success.length < 10;
+
+          print("success");
+          print(success.length);
 
           emit(state.copyWith(
             statusEvent: StateStatus.success,
@@ -464,6 +469,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ));
       }
       if (state.atTheEndOfThePageExperiences == true) {
+        print("atTheEndOfThePageExperiences");
         return;
       }
       emit(state.copyWith(
@@ -494,6 +500,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
           // Check if the server returned fewer items than requested
           bool atTheEndOfThePage = success!.length < 10;
+          print("success");
+          print(success.length);
 
           emit(state.copyWith(
             statusExperiences: StateStatus.success,
@@ -1070,6 +1078,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListFilterEvents(
       GetFilterListEventsPageData event, Emitter<HomeState> emit) async {
+    print("event.isFiiilter");
     print(state.atTheEndOfTheFilterPageEvents);
     print(state.isFilter);
     print(event.isFetching);
@@ -1113,7 +1122,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       result.fold((Exception failure) {
         emit(state.copyWith(
           status: StateStatus.error,
-          atTheEndOfTheSearchPageEvents: false,
+          atTheEndOfTheFilterPageEvents: false,
           isFetching: false,
         ));
       }, (List<Event>? success) async {
@@ -1247,6 +1256,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(state.copyWith(
           listExperiences: [],
           pageFilterExperiences: 0,
+          atTheEndOfThePageExperiences: false,
           atTheEndOfTheFilterPageExperiences: false,
         ));
       }
@@ -1279,7 +1289,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       result.fold((Exception failure) {
         emit(state.copyWith(
           status: StateStatus.error,
-          atTheEndOfTheSearchPageExperiences: false,
+          atTheEndOfTheFilterPageExperiences: false,
           isFetching: false,
         ));
       }, (List<Experience>? success) async {

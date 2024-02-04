@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
@@ -82,6 +82,7 @@ class _FidelityProgramScreenState extends State<FidelityProgramScreen> {
                       child: SuperAdventureSection(
                         points: state.totalPoints ?? "0",
                         points2: state.totalPoints2 ?? "0",
+                        initialPoints: state.points ?? "0",
                       ),
                     ),
                     ListView.separated(

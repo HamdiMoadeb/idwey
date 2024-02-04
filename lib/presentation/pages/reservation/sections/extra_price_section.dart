@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/components/extra_price_component/extra_price_component.dart';
+import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 
 import '../../../../data/models/extra_price_dto.dart';
 
@@ -33,9 +35,16 @@ class ExtraPriceSectionDisponibility extends StatelessWidget {
         Column(
           children: extraPrices
               .map((e) => ExtraPriceComponent(
+                    quantity: e.quantity ?? 1,
                     title: e.name ?? "",
                     subtitle: e.price ?? "",
-                    onchange: (int i) {},
+                    onchange: (int i) {
+                      /// update quantity inside extra price object
+                      print("extra price quantity changed");
+                      print(i);
+                      context.read<ReservationBloc>().add(
+                          ReservationEvent.onExtraPriceQuantityChanged(e, i));
+                    },
                   ))
               .toList(),
         ),

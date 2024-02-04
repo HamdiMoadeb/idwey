@@ -7,7 +7,9 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 class RangeSliderSection extends StatefulWidget {
   final int min;
   final int max;
-  const RangeSliderSection({Key? key, required this.min, required this.max})
+  final List<double>? values;
+  const RangeSliderSection(
+      {Key? key, required this.min, required this.max, required this.values})
       : super(key: key);
 
   @override
@@ -22,8 +24,12 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
   void initState() {
     // TODO: implement initState
     print("miiiiin${widget.min}");
-    print("miiiiin${widget.max}");
-    _values = SfRangeValues(widget.min.toDouble(), widget.max.toDouble());
+    print("maax${widget.max}");
+    print("values${widget.values}");
+    _values = SfRangeValues(
+        widget.values?[0].toDouble(), widget.values?[1].toDouble());
+
+    print("values${_values.start} ${_values.end}");
     super.initState();
   }
 
@@ -52,7 +58,7 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
                 min: widget.min.toDouble(),
                 max: widget.max.toDouble(),
                 values: _values,
-                interval: 600,
+                interval: 500,
                 showDividers: true,
                 showTicks: true,
                 showLabels: true,
@@ -96,7 +102,7 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                           Text(
-                            'DT ${_values.start.round()}',
+                            'DT ${_values.start.round() == 0 ? widget.min : _values.start.round()}',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
@@ -130,7 +136,7 @@ class _RangeSliderSectionState extends State<RangeSliderSection> {
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                           Text(
-                            'DT ${_values.end.round()}',
+                            'DT ${_values.end.round() == 0 ? widget.max : _values.end.round()}',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],

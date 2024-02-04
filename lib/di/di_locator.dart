@@ -159,6 +159,7 @@ Future<void> setup() async {
   // Domain
   GetIt.I.registerLazySingleton<ExperienceRepository>(
       () => ExperienceRepositoryImpl(GetIt.I()));
+
   GetIt.I.registerLazySingleton(() => GetListExperiencesUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => GetExperienceDetailsUseCase(GetIt.I()));
   GetIt.I.registerLazySingleton(() => HomeBloc());

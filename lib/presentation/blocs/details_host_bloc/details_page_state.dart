@@ -8,6 +8,7 @@ class DetailsPageState with _$DetailsPageState {
     HostDetails? hostDetails,
     List<ExtraPrice>? extraPrice,
     List<Map<String, dynamic>>? extraPriceObjet,
+    double? extraPriceTotal,
   }) = _DetailsPageState;
 
   factory DetailsPageState.initial() => const DetailsPageState(
@@ -16,5 +17,6 @@ class DetailsPageState with _$DetailsPageState {
         hostDetails: null,
         extraPrice: [],
         extraPriceObjet: [],
+        extraPriceTotal: 0.0,
       );
 }

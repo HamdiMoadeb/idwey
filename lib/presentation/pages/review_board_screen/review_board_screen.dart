@@ -213,6 +213,10 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                                     itemBuilder: (context, index) {
                                       return ListTile(
                                         title: _buildRoomItem(
+                                            serviceID: state.reviewsBoardDto
+                                                    ?.reviews?[index].id
+                                                    .toString() ??
+                                                "",
                                             type: state.type ?? "",
                                             review: state.reviewsBoardDto
                                                 ?.reviews?[index]),
@@ -234,6 +238,10 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                                     itemBuilder: (context, index) {
                                       return ListTile(
                                         title: _buildRoomItem(
+                                            serviceID: state.reviewsBoardDto
+                                                    ?.reviews?[index].id
+                                                    .toString() ??
+                                                "",
                                             type: state.type ?? "",
                                             review: state.reviewsBoardDto
                                                 ?.reviews?[index]),
@@ -255,6 +263,10 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                                     itemBuilder: (context, index) {
                                       return ListTile(
                                         title: _buildRoomItem(
+                                            serviceID: state.reviewsBoardDto
+                                                    ?.reviews?[index].id
+                                                    .toString() ??
+                                                "",
                                             type: state.type ?? "",
                                             review: state.reviewsBoardDto
                                                 ?.reviews?[index]),
@@ -276,6 +288,10 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                                     itemBuilder: (context, index) {
                                       return ListTile(
                                         title: _buildRoomItem(
+                                            serviceID: state.reviewsBoardDto
+                                                    ?.reviews?[index].id
+                                                    .toString() ??
+                                                "",
                                             type: state.type ?? "",
                                             review: state.reviewsBoardDto
                                                 ?.reviews?[index]),
@@ -311,11 +327,14 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
   }
 
   Widget _buildRoomItem(
-      {Review? review, bool confirmed = false, required String type}) {
+      {Review? review,
+      bool confirmed = false,
+      required String type,
+      required String serviceID}) {
     return InkWell(
       onTap: () {
         GetIt.I<AppRouter>()
-            .push(AddReviewRoute(review: review, id: type, type: type));
+            .push(AddReviewRoute(review: review, id: serviceID, type: type));
       },
       child: Card(
         shape: RoundedRectangleBorder(

@@ -43,6 +43,8 @@ mixin _$ReservationEvent {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +74,8 @@ mixin _$ReservationEvent {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +105,7 @@ mixin _$ReservationEvent {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +119,8 @@ mixin _$ReservationEvent {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -126,6 +133,8 @@ mixin _$ReservationEvent {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -138,6 +147,8 @@ mixin _$ReservationEvent {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -402,6 +413,8 @@ class _$_setParams implements _setParams {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return setParams(activityDuration, id, url, title, address, typeHost,
         salePrice, perPerson, minNuits, checkIn, checkOut, extraPrice, price);
@@ -435,6 +448,8 @@ class _$_setParams implements _setParams {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return setParams?.call(activityDuration, id, url, title, address, typeHost,
         salePrice, perPerson, minNuits, checkIn, checkOut, extraPrice, price);
@@ -468,6 +483,7 @@ class _$_setParams implements _setParams {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (setParams != null) {
@@ -488,6 +504,8 @@ class _$_setParams implements _setParams {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return setParams(this);
   }
@@ -503,6 +521,8 @@ class _$_setParams implements _setParams {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return setParams?.call(this);
   }
@@ -518,6 +538,8 @@ class _$_setParams implements _setParams {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (setParams != null) {
@@ -701,6 +723,8 @@ class _$_CheckAvailability implements _CheckAvailability {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return checkAvailability(type, id, checkIn, checkOut, adults, children);
   }
@@ -733,6 +757,8 @@ class _$_CheckAvailability implements _CheckAvailability {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return checkAvailability?.call(
         type, id, checkIn, checkOut, adults, children);
@@ -766,6 +792,7 @@ class _$_CheckAvailability implements _CheckAvailability {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (checkAvailability != null) {
@@ -785,6 +812,8 @@ class _$_CheckAvailability implements _CheckAvailability {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return checkAvailability(this);
   }
@@ -800,6 +829,8 @@ class _$_CheckAvailability implements _CheckAvailability {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return checkAvailability?.call(this);
   }
@@ -815,6 +846,8 @@ class _$_CheckAvailability implements _CheckAvailability {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (checkAvailability != null) {
@@ -951,6 +984,8 @@ class _$_OnSelectDates implements _OnSelectDates {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectDates(startDate, endDate, nbNights);
   }
@@ -983,6 +1018,8 @@ class _$_OnSelectDates implements _OnSelectDates {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectDates?.call(startDate, endDate, nbNights);
   }
@@ -1015,6 +1052,7 @@ class _$_OnSelectDates implements _OnSelectDates {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onSelectDates != null) {
@@ -1034,6 +1072,8 @@ class _$_OnSelectDates implements _OnSelectDates {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectDates(this);
   }
@@ -1049,6 +1089,8 @@ class _$_OnSelectDates implements _OnSelectDates {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectDates?.call(this);
   }
@@ -1064,6 +1106,8 @@ class _$_OnSelectDates implements _OnSelectDates {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onSelectDates != null) {
@@ -1183,6 +1227,8 @@ class _$_OnSelectGuests implements _OnSelectGuests {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectGuests(guests, price);
   }
@@ -1215,6 +1261,8 @@ class _$_OnSelectGuests implements _OnSelectGuests {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectGuests?.call(guests, price);
   }
@@ -1247,6 +1295,7 @@ class _$_OnSelectGuests implements _OnSelectGuests {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onSelectGuests != null) {
@@ -1266,6 +1315,8 @@ class _$_OnSelectGuests implements _OnSelectGuests {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectGuests(this);
   }
@@ -1281,6 +1332,8 @@ class _$_OnSelectGuests implements _OnSelectGuests {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectGuests?.call(this);
   }
@@ -1296,6 +1349,8 @@ class _$_OnSelectGuests implements _OnSelectGuests {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onSelectGuests != null) {
@@ -1407,6 +1462,8 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return addToCart(typeReservation);
   }
@@ -1439,6 +1496,8 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return addToCart?.call(typeReservation);
   }
@@ -1471,6 +1530,7 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -1490,6 +1550,8 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return addToCart(this);
   }
@@ -1505,6 +1567,8 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return addToCart?.call(this);
   }
@@ -1520,6 +1584,8 @@ class _$_ConfirmReservation implements _ConfirmReservation {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -1628,6 +1694,8 @@ class _$_OnSelectChalet implements _OnSelectChalet {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectChalet(chalet);
   }
@@ -1660,6 +1728,8 @@ class _$_OnSelectChalet implements _OnSelectChalet {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectChalet?.call(chalet);
   }
@@ -1692,6 +1762,7 @@ class _$_OnSelectChalet implements _OnSelectChalet {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onSelectChalet != null) {
@@ -1711,6 +1782,8 @@ class _$_OnSelectChalet implements _OnSelectChalet {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectChalet(this);
   }
@@ -1726,6 +1799,8 @@ class _$_OnSelectChalet implements _OnSelectChalet {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return onSelectChalet?.call(this);
   }
@@ -1741,6 +1816,8 @@ class _$_OnSelectChalet implements _OnSelectChalet {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onSelectChalet != null) {
@@ -1848,6 +1925,8 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return onUnSelectChalet(chalet);
   }
@@ -1880,6 +1959,8 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return onUnSelectChalet?.call(chalet);
   }
@@ -1912,6 +1993,7 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onUnSelectChalet != null) {
@@ -1931,6 +2013,8 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return onUnSelectChalet(this);
   }
@@ -1946,6 +2030,8 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return onUnSelectChalet?.call(this);
   }
@@ -1961,6 +2047,8 @@ class _$_OnUnSelectChalet implements _OnUnSelectChalet {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (onUnSelectChalet != null) {
@@ -2042,6 +2130,8 @@ class _$_InitStatus implements _InitStatus {
     required TResult Function(Room chalet) onSelectChalet,
     required TResult Function(Room chalet) onUnSelectChalet,
     required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
   }) {
     return initStatus();
   }
@@ -2074,6 +2164,8 @@ class _$_InitStatus implements _InitStatus {
     TResult? Function(Room chalet)? onSelectChalet,
     TResult? Function(Room chalet)? onUnSelectChalet,
     TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
   }) {
     return initStatus?.call();
   }
@@ -2106,6 +2198,7 @@ class _$_InitStatus implements _InitStatus {
     TResult Function(Room chalet)? onSelectChalet,
     TResult Function(Room chalet)? onUnSelectChalet,
     TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (initStatus != null) {
@@ -2125,6 +2218,8 @@ class _$_InitStatus implements _InitStatus {
     required TResult Function(_OnSelectChalet value) onSelectChalet,
     required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
     required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
   }) {
     return initStatus(this);
   }
@@ -2140,6 +2235,8 @@ class _$_InitStatus implements _InitStatus {
     TResult? Function(_OnSelectChalet value)? onSelectChalet,
     TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
   }) {
     return initStatus?.call(this);
   }
@@ -2155,6 +2252,8 @@ class _$_InitStatus implements _InitStatus {
     TResult Function(_OnSelectChalet value)? onSelectChalet,
     TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
     TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
     required TResult orElse(),
   }) {
     if (initStatus != null) {
@@ -2166,6 +2265,252 @@ class _$_InitStatus implements _InitStatus {
 
 abstract class _InitStatus implements ReservationEvent {
   const factory _InitStatus() = _$_InitStatus;
+}
+
+/// @nodoc
+abstract class _$$_OnExtraPriceQuantityChangedCopyWith<$Res> {
+  factory _$$_OnExtraPriceQuantityChangedCopyWith(
+          _$_OnExtraPriceQuantityChanged value,
+          $Res Function(_$_OnExtraPriceQuantityChanged) then) =
+      __$$_OnExtraPriceQuantityChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ExtraPrice extraPrice, int i});
+}
+
+/// @nodoc
+class __$$_OnExtraPriceQuantityChangedCopyWithImpl<$Res>
+    extends _$ReservationEventCopyWithImpl<$Res, _$_OnExtraPriceQuantityChanged>
+    implements _$$_OnExtraPriceQuantityChangedCopyWith<$Res> {
+  __$$_OnExtraPriceQuantityChangedCopyWithImpl(
+      _$_OnExtraPriceQuantityChanged _value,
+      $Res Function(_$_OnExtraPriceQuantityChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? extraPrice = null,
+    Object? i = null,
+  }) {
+    return _then(_$_OnExtraPriceQuantityChanged(
+      null == extraPrice
+          ? _value.extraPrice
+          : extraPrice // ignore: cast_nullable_to_non_nullable
+              as ExtraPrice,
+      null == i
+          ? _value.i
+          : i // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnExtraPriceQuantityChanged implements _OnExtraPriceQuantityChanged {
+  const _$_OnExtraPriceQuantityChanged(this.extraPrice, this.i);
+
+  @override
+  final ExtraPrice extraPrice;
+  @override
+  final int i;
+
+  @override
+  String toString() {
+    return 'ReservationEvent.onExtraPriceQuantityChanged(extraPrice: $extraPrice, i: $i)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnExtraPriceQuantityChanged &&
+            (identical(other.extraPrice, extraPrice) ||
+                other.extraPrice == extraPrice) &&
+            (identical(other.i, i) || other.i == i));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, extraPrice, i);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnExtraPriceQuantityChangedCopyWith<_$_OnExtraPriceQuantityChanged>
+      get copyWith => __$$_OnExtraPriceQuantityChangedCopyWithImpl<
+          _$_OnExtraPriceQuantityChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            String? checkIn,
+            String? checkOut,
+            List<ExtraPrice>? extraPrice,
+            String? price)
+        setParams,
+    required TResult Function(String type, int id, String checkIn,
+            String checkOut, String adults, String children)
+        checkAvailability,
+    required TResult Function(String startDate, String endDate, String nbNights)
+        onSelectDates,
+    required TResult Function(int guests, String price) onSelectGuests,
+    required TResult Function(TypeReservation typeReservation) addToCart,
+    required TResult Function(Room chalet) onSelectChalet,
+    required TResult Function(Room chalet) onUnSelectChalet,
+    required TResult Function() initStatus,
+    required TResult Function(ExtraPrice extraPrice, int i)
+        onExtraPriceQuantityChanged,
+  }) {
+    return onExtraPriceQuantityChanged(extraPrice, i);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            String? checkIn,
+            String? checkOut,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult? Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
+        checkAvailability,
+    TResult? Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult? Function(int guests, String price)? onSelectGuests,
+    TResult? Function(TypeReservation typeReservation)? addToCart,
+    TResult? Function(Room chalet)? onSelectChalet,
+    TResult? Function(Room chalet)? onUnSelectChalet,
+    TResult? Function()? initStatus,
+    TResult? Function(ExtraPrice extraPrice, int i)?
+        onExtraPriceQuantityChanged,
+  }) {
+    return onExtraPriceQuantityChanged?.call(extraPrice, i);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String? activityDuration,
+            String? id,
+            String? url,
+            String? title,
+            String? address,
+            String? typeHost,
+            String? salePrice,
+            String? perPerson,
+            int? minNuits,
+            String? checkIn,
+            String? checkOut,
+            List<ExtraPrice>? extraPrice,
+            String? price)?
+        setParams,
+    TResult Function(String type, int id, String checkIn, String checkOut,
+            String adults, String children)?
+        checkAvailability,
+    TResult Function(String startDate, String endDate, String nbNights)?
+        onSelectDates,
+    TResult Function(int guests, String price)? onSelectGuests,
+    TResult Function(TypeReservation typeReservation)? addToCart,
+    TResult Function(Room chalet)? onSelectChalet,
+    TResult Function(Room chalet)? onUnSelectChalet,
+    TResult Function()? initStatus,
+    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
+    required TResult orElse(),
+  }) {
+    if (onExtraPriceQuantityChanged != null) {
+      return onExtraPriceQuantityChanged(extraPrice, i);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_setParams value) setParams,
+    required TResult Function(_CheckAvailability value) checkAvailability,
+    required TResult Function(_OnSelectDates value) onSelectDates,
+    required TResult Function(_OnSelectGuests value) onSelectGuests,
+    required TResult Function(_ConfirmReservation value) addToCart,
+    required TResult Function(_OnSelectChalet value) onSelectChalet,
+    required TResult Function(_OnUnSelectChalet value) onUnSelectChalet,
+    required TResult Function(_InitStatus value) initStatus,
+    required TResult Function(_OnExtraPriceQuantityChanged value)
+        onExtraPriceQuantityChanged,
+  }) {
+    return onExtraPriceQuantityChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_setParams value)? setParams,
+    TResult? Function(_CheckAvailability value)? checkAvailability,
+    TResult? Function(_OnSelectDates value)? onSelectDates,
+    TResult? Function(_OnSelectGuests value)? onSelectGuests,
+    TResult? Function(_ConfirmReservation value)? addToCart,
+    TResult? Function(_OnSelectChalet value)? onSelectChalet,
+    TResult? Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult? Function(_InitStatus value)? initStatus,
+    TResult? Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
+  }) {
+    return onExtraPriceQuantityChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_setParams value)? setParams,
+    TResult Function(_CheckAvailability value)? checkAvailability,
+    TResult Function(_OnSelectDates value)? onSelectDates,
+    TResult Function(_OnSelectGuests value)? onSelectGuests,
+    TResult Function(_ConfirmReservation value)? addToCart,
+    TResult Function(_OnSelectChalet value)? onSelectChalet,
+    TResult Function(_OnUnSelectChalet value)? onUnSelectChalet,
+    TResult Function(_InitStatus value)? initStatus,
+    TResult Function(_OnExtraPriceQuantityChanged value)?
+        onExtraPriceQuantityChanged,
+    required TResult orElse(),
+  }) {
+    if (onExtraPriceQuantityChanged != null) {
+      return onExtraPriceQuantityChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnExtraPriceQuantityChanged implements ReservationEvent {
+  const factory _OnExtraPriceQuantityChanged(
+          final ExtraPrice extraPrice, final int i) =
+      _$_OnExtraPriceQuantityChanged;
+
+  ExtraPrice get extraPrice;
+  int get i;
+  @JsonKey(ignore: true)
+  _$$_OnExtraPriceQuantityChangedCopyWith<_$_OnExtraPriceQuantityChanged>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2198,6 +2543,7 @@ mixin _$ReservationState {
   List<Room>? get selectedRoomsObject => throw _privateConstructorUsedError;
   List<Room>? get availableChalet => throw _privateConstructorUsedError;
   List<ExtraPrice>? get extraPrice => throw _privateConstructorUsedError;
+  double? get extraPriceTotal => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ReservationStateCopyWith<ReservationState> get copyWith =>
@@ -2238,7 +2584,8 @@ abstract class $ReservationStateCopyWith<$Res> {
       List<int>? selectedRooms,
       List<Room>? selectedRoomsObject,
       List<Room>? availableChalet,
-      List<ExtraPrice>? extraPrice});
+      List<ExtraPrice>? extraPrice,
+      double? extraPriceTotal});
 }
 
 /// @nodoc
@@ -2282,6 +2629,7 @@ class _$ReservationStateCopyWithImpl<$Res, $Val extends ReservationState>
     Object? selectedRoomsObject = freezed,
     Object? availableChalet = freezed,
     Object? extraPrice = freezed,
+    Object? extraPriceTotal = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -2396,6 +2744,10 @@ class _$ReservationStateCopyWithImpl<$Res, $Val extends ReservationState>
           ? _value.extraPrice
           : extraPrice // ignore: cast_nullable_to_non_nullable
               as List<ExtraPrice>?,
+      extraPriceTotal: freezed == extraPriceTotal
+          ? _value.extraPriceTotal
+          : extraPriceTotal // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -2436,7 +2788,8 @@ abstract class _$$_ReservationStateCopyWith<$Res>
       List<int>? selectedRooms,
       List<Room>? selectedRoomsObject,
       List<Room>? availableChalet,
-      List<ExtraPrice>? extraPrice});
+      List<ExtraPrice>? extraPrice,
+      double? extraPriceTotal});
 }
 
 /// @nodoc
@@ -2478,6 +2831,7 @@ class __$$_ReservationStateCopyWithImpl<$Res>
     Object? selectedRoomsObject = freezed,
     Object? availableChalet = freezed,
     Object? extraPrice = freezed,
+    Object? extraPriceTotal = freezed,
   }) {
     return _then(_$_ReservationState(
       status: freezed == status
@@ -2592,6 +2946,10 @@ class __$$_ReservationStateCopyWithImpl<$Res>
           ? _value._extraPrice
           : extraPrice // ignore: cast_nullable_to_non_nullable
               as List<ExtraPrice>?,
+      extraPriceTotal: freezed == extraPriceTotal
+          ? _value.extraPriceTotal
+          : extraPriceTotal // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -2627,7 +2985,8 @@ class _$_ReservationState implements _ReservationState {
       final List<int>? selectedRooms,
       final List<Room>? selectedRoomsObject,
       final List<Room>? availableChalet,
-      final List<ExtraPrice>? extraPrice})
+      final List<ExtraPrice>? extraPrice,
+      this.extraPriceTotal})
       : _selectedRooms = selectedRooms,
         _selectedRoomsObject = selectedRoomsObject,
         _availableChalet = availableChalet,
@@ -2723,8 +3082,11 @@ class _$_ReservationState implements _ReservationState {
   }
 
   @override
+  final double? extraPriceTotal;
+
+  @override
   String toString() {
-    return 'ReservationState(status: $status, addToCartStatus: $addToCartStatus, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, totalPriceOnSale: $totalPriceOnSale, nbNights: $nbNights, guests: $guests, activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, errorText: $errorText, selectedRooms: $selectedRooms, selectedRoomsObject: $selectedRoomsObject, availableChalet: $availableChalet, extraPrice: $extraPrice)';
+    return 'ReservationState(status: $status, addToCartStatus: $addToCartStatus, name: $name, lastname: $lastname, email: $email, phone: $phone, checkIn: $checkIn, checkOut: $checkOut, available: $available, totalPrice: $totalPrice, totalPriceOnSale: $totalPriceOnSale, nbNights: $nbNights, guests: $guests, activityDuration: $activityDuration, id: $id, url: $url, title: $title, address: $address, typeHost: $typeHost, salePrice: $salePrice, perPerson: $perPerson, minNuits: $minNuits, price: $price, errorText: $errorText, selectedRooms: $selectedRooms, selectedRoomsObject: $selectedRoomsObject, availableChalet: $availableChalet, extraPrice: $extraPrice, extraPriceTotal: $extraPriceTotal)';
   }
 
   @override
@@ -2776,7 +3138,9 @@ class _$_ReservationState implements _ReservationState {
             const DeepCollectionEquality()
                 .equals(other._availableChalet, _availableChalet) &&
             const DeepCollectionEquality()
-                .equals(other._extraPrice, _extraPrice));
+                .equals(other._extraPrice, _extraPrice) &&
+            (identical(other.extraPriceTotal, extraPriceTotal) ||
+                other.extraPriceTotal == extraPriceTotal));
   }
 
   @override
@@ -2809,7 +3173,8 @@ class _$_ReservationState implements _ReservationState {
         const DeepCollectionEquality().hash(_selectedRooms),
         const DeepCollectionEquality().hash(_selectedRoomsObject),
         const DeepCollectionEquality().hash(_availableChalet),
-        const DeepCollectionEquality().hash(_extraPrice)
+        const DeepCollectionEquality().hash(_extraPrice),
+        extraPriceTotal
       ]);
 
   @JsonKey(ignore: true)
@@ -2848,7 +3213,8 @@ abstract class _ReservationState implements ReservationState {
       final List<int>? selectedRooms,
       final List<Room>? selectedRoomsObject,
       final List<Room>? availableChalet,
-      final List<ExtraPrice>? extraPrice}) = _$_ReservationState;
+      final List<ExtraPrice>? extraPrice,
+      final double? extraPriceTotal}) = _$_ReservationState;
 
   @override
   StateStatus? get status;
@@ -2906,6 +3272,8 @@ abstract class _ReservationState implements ReservationState {
   List<Room>? get availableChalet;
   @override
   List<ExtraPrice>? get extraPrice;
+  @override
+  double? get extraPriceTotal;
   @override
   @JsonKey(ignore: true)
   _$$_ReservationStateCopyWith<_$_ReservationState> get copyWith =>

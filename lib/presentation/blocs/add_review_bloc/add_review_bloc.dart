@@ -9,9 +9,9 @@ import 'package:idwey/domain/usecases/add_review_usecase.dart';
 import 'package:idwey/domain/usecases/get_rate_settings_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+part 'add_review_bloc.freezed.dart';
 part 'add_review_event.dart';
 part 'add_review_state.dart';
-part 'add_review_bloc.freezed.dart';
 
 class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
   AddReviewBloc() : super(AddReviewState.initial()) {
@@ -145,17 +145,16 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
       updateReviewStatus: StateStatus.loading,
     ));
     SharedPreferences preferences = await SharedPreferences.getInstance();
-
+    print("updaaate review");
     String userId = preferences.getString("userId") ?? "0";
     try {
       final Either<Exception, dynamic> result =
           await GetIt.I<AddReviewUseCase>().call({
-        "review_service_type": state.serviceType ?? "",
-        "review_service_id": state.serviceID ?? "",
-        "customer_id": userId,
+        "review_id": state.serviceID ?? "",
         "review_content": state.review ?? "",
-        "review_stats": state.rates ?? [],
+        "review_stats": state.ratesStars ?? []
       });
+
       result.fold((Exception failure) {
         emit(state.copyWith(
           updateReviewStatus: StateStatus.error,

@@ -25,6 +25,7 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     on<_OnSelectChalet>(onSelectRoom);
     on<_OnUnSelectChalet>(onUnSelectRoom);
     on<_InitStatus>(initStatus);
+    on<_OnExtraPriceQuantityChanged>(onExtraPriceQuantityChanged);
   }
 
   void checkHostAvailability(
@@ -67,11 +68,11 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
             if (event.type == TypeReservation.activity.toString()) {
               errorText = r["messages"] == []
                   ? 'une erreur est produite , veuillez réessayer ultérieurement'
-                  : r['messages'][0];
+                  : r['messages'][0].toString();
             } else {
               errorText = r["messages"] == []
                   ? 'une erreur est produite , veuillez réessayer ultérieurement'
-                  : r['messages'][0];
+                  : r['messages'][0].toString();
             }
           }
         }
@@ -79,9 +80,7 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
         emit(state.copyWith(
           status: r['status'] == 0 ? StateStatus.error : StateStatus.success,
           availableChalet: rooms,
-          available: event.type == TypeReservation.activity.toString()
-              ? false
-              : r['disponible'] ?? false,
+          available: r['disponible'] ?? false,
           totalPrice: r['price'].toString() ?? "",
           errorText: errorText,
         ));
@@ -154,6 +153,16 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
   void setParams(_setParams event, Emitter<ReservationState> emit) async {
     print("setParams");
     print(event.price);
+
+    /// get extra price total from extra price list
+    ///
+    double extraPriceTotal = 0.0;
+    if (event.extraPrice != null) {
+      for (var element in event.extraPrice!) {
+        extraPriceTotal +=
+            double.parse(element.price ?? "0.00") * (element.quantity ?? 1);
+      }
+    }
     print(event.salePrice);
     emit(state.copyWith(
       id: event.id,
@@ -166,12 +175,16 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       minNuits: event.minNuits,
       price: event.price,
       extraPrice: event.extraPrice,
+      extraPriceTotal: extraPriceTotal,
       checkIn: event.checkIn,
       checkOut: event.checkOut,
       activityDuration: event.activityDuration,
-      totalPrice: double.parse(event.price ?? "0.00").toInt().toString(),
-      totalPriceOnSale:
-          double.tryParse(event.salePrice ?? "0.00")?.toInt().toString(),
+      totalPrice: (extraPriceTotal + double.parse(event.price ?? "0.00"))
+          .toInt()
+          .toString(),
+      totalPriceOnSale: (double.tryParse(event.salePrice ?? "0.00") ?? 0.00)
+          .toInt()
+          .toString(),
     ));
 
     print("state.totalPrice");
@@ -318,6 +331,46 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       return "event";
     } else if (typeReservation == TypeReservation.activity) {
       return "activity";
+    }
+  }
+
+  void onExtraPriceQuantityChanged(_OnExtraPriceQuantityChanged event,
+      Emitter<ReservationState> emit) async {
+    /// Create a new list with the updated values
+    /// check if the extra price is already in the list
+
+    if (state.extraPrice != null) {
+      final index = state.extraPrice!
+          .indexWhere((element) => element.name == event.extraPrice.name);
+      if (index != -1) {
+        final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
+        updatedExtraPrice[index] = event.extraPrice;
+        double total = updatedExtraPrice.fold(
+            0,
+            (previousValue, element) =>
+                previousValue! +
+                double.parse(element.price ?? "0.00") * event.i);
+        print("totalExtraaaaaa");
+        print(total);
+
+        /// Update the state with the new list
+        emit(state.copyWith(
+          extraPrice: updatedExtraPrice,
+          extraPriceTotal: total,
+          totalPrice:
+              (total + double.parse(state.price ?? "0.00")).toInt().toString(),
+          totalPriceOnSale: (double.tryParse(state.salePrice ?? "0.00") ?? 0.00)
+              .toInt()
+              .toString(),
+        ));
+
+        print("state.extraPricetotlaaa");
+        print(state.extraPriceTotal); // Print the updated list
+      }
+    } else {
+      final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
+      updatedExtraPrice.add(event.extraPrice);
+      emit(state.copyWith(extraPrice: updatedExtraPrice));
     }
   }
 }

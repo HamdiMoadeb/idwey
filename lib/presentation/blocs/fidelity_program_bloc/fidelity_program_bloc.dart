@@ -7,9 +7,9 @@ import 'package:idwey/domain/usecases/get_monthly_points_usecase.dart';
 import 'package:idwey/domain/usecases/get_total_points_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+part 'fidelity_program_bloc.freezed.dart';
 part 'fidelity_program_event.dart';
 part 'fidelity_program_state.dart';
-part 'fidelity_program_bloc.freezed.dart';
 
 class FidelityProgramBloc
     extends Bloc<FidelityProgramEvent, FidelityProgramState> {
@@ -69,6 +69,7 @@ class FidelityProgramBloc
           statusRange: StateStatus.success,
           totalPoints: success["pointniveau1"].toString(),
           totalPoints2: success["pointniveau2"].toString(),
+          points: success["point"].toString(),
         ));
         print(state.totalPoints);
         print(state.totalPoints2);

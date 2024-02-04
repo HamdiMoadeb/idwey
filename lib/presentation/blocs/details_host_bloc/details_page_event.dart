@@ -9,4 +9,6 @@ class DetailsPageEvent with _$DetailsPageEvent {
       _OnExtraPriceUnChecked;
   const factory DetailsPageEvent.onChangExtraPriceNumber(
       ExtraPrice extraPrice, int i) = _OnChangedExtraPriceNumber;
+  const factory DetailsPageEvent.onExtraPriceQuantityChanged(
+      ExtraPrice extraPrice, int i) = _OnExtraPriceQuantityChanged;
 }

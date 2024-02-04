@@ -7,12 +7,12 @@ import 'package:idwey/components/inputs/date_input.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/extra_price_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
-import 'package:idwey/helpers/services/context_extension.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/presentation/pages/details_page/components/product_page_header/product_page_header.dart';
 import 'package:idwey/presentation/pages/reservation/sections/chalets_section.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import 'sections/extra_price_section.dart';
 
@@ -79,16 +79,12 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
     );
   }
 
-  void showSnackBar({
-    required String content,
-    VoidCallback? action,
-    String? label,
-  }) {
-    context.showSnackBar(
-      content: content,
-      action: action,
-      label: label,
-    );
+  void showErrorSnackbar(String event, ScaffoldMessengerState context) {
+    if (event != null) {
+      context.showSnackBar(new SnackBar(
+        content: new Text(event),
+      ));
+    }
   }
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -130,7 +126,8 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
             state.addToCartStatus == StateStatus.error) {
           print("error");
           Navigator.pop(context);
-          showSnackBar(content: state.errorText ?? '');
+          showErrorSnackbar(
+              state.errorText ?? '', ScaffoldMessenger.of(context));
           context
               .read<ReservationBloc>()
               .add(const ReservationEvent.initStatus());
@@ -147,7 +144,9 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
           print("unaaaaavailable");
 
           Navigator.pop(context);
-          showSnackBar(content: state.errorText ?? '');
+          showErrorSnackbar(
+              state.errorText ?? '', ScaffoldMessenger.of(context));
+
           context
               .read<ReservationBloc>()
               .add(const ReservationEvent.initStatus());
@@ -300,28 +299,49 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                           thickness: 1,
                         ),
                         CustomDateInput(
+                          selectionMode:
+                              widget.typeReservation == TypeReservation.host ||
+                                      widget.typeReservation ==
+                                          TypeReservation.event
+                                  ? DateRangePickerSelectionMode.range
+                                  : DateRangePickerSelectionMode.single,
                           onDateRangeChanged: (v) {
-                            context.read<ReservationBloc>().add(
-                                  ReservationEvent.onSelectDates(
-                                    DateFormat('yyyy-MM-dd').format(
-                                        v.value!.startDate ?? DateTime.now()),
-                                    DateFormat('yyyy-MM-dd').format(
-                                        v.value!.endDate ?? DateTime.now()),
-                                    v.value!.endDate == null
-                                        ? "1"
-                                        : v.value!.endDate!
+                            widget.typeReservation == TypeReservation.host ||
+                                    widget.typeReservation ==
+                                        TypeReservation.event
+                                ? context.read<ReservationBloc>().add(
+                                      ReservationEvent.onSelectDates(
+                                        DateFormat('yyyy-MM-dd').format(
+                                            v.value?.startDate ??
+                                                DateTime.now()),
+                                        DateFormat('yyyy-MM-dd').format(
+                                            v.value?.endDate ?? DateTime.now()),
+                                        v.value?.endDate == null
+                                            ? "1"
+                                            : v.value?.endDate!
+                                                        .difference(
+                                                            v.value?.startDate!)
+                                                        .inDays
+                                                        .toString() ==
+                                                    "0"
+                                                ? "1"
+                                                : v.value!.endDate!
                                                     .difference(
                                                         v.value!.startDate!)
                                                     .inDays
-                                                    .toString() ==
-                                                "0"
-                                            ? "1"
-                                            : v.value!.endDate!
-                                                .difference(v.value!.startDate!)
-                                                .inDays
-                                                .toString(),
-                                  ),
-                                );
+                                                    .toString(),
+                                      ),
+                                    )
+                                : context.read<ReservationBloc>().add(
+                                      ReservationEvent.onSelectDates(
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(v.value ?? DateTime.now()),
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(v.value ?? DateTime.now()),
+                                        1.toString(),
+                                      ),
+                                    );
+                            ;
                           },
                         ),
                       ],

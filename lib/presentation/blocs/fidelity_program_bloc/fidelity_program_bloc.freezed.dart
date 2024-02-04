@@ -287,6 +287,7 @@ mixin _$FidelityProgramState {
   String? get monthlyPoints => throw _privateConstructorUsedError;
   String? get totalPoints => throw _privateConstructorUsedError;
   String? get totalPoints2 => throw _privateConstructorUsedError;
+  String? get points => throw _privateConstructorUsedError;
   String? get rank => throw _privateConstructorUsedError;
   List<String>? get list => throw _privateConstructorUsedError;
   List<String>? get listContent => throw _privateConstructorUsedError;
@@ -309,6 +310,7 @@ abstract class $FidelityProgramStateCopyWith<$Res> {
       String? monthlyPoints,
       String? totalPoints,
       String? totalPoints2,
+      String? points,
       String? rank,
       List<String>? list,
       List<String>? listContent});
@@ -334,6 +336,7 @@ class _$FidelityProgramStateCopyWithImpl<$Res,
     Object? monthlyPoints = freezed,
     Object? totalPoints = freezed,
     Object? totalPoints2 = freezed,
+    Object? points = freezed,
     Object? rank = freezed,
     Object? list = freezed,
     Object? listContent = freezed,
@@ -362,6 +365,10 @@ class _$FidelityProgramStateCopyWithImpl<$Res,
       totalPoints2: freezed == totalPoints2
           ? _value.totalPoints2
           : totalPoints2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      points: freezed == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
               as String?,
       rank: freezed == rank
           ? _value.rank
@@ -394,6 +401,7 @@ abstract class _$$_FidelityProgramStateCopyWith<$Res>
       String? monthlyPoints,
       String? totalPoints,
       String? totalPoints2,
+      String? points,
       String? rank,
       List<String>? list,
       List<String>? listContent});
@@ -416,6 +424,7 @@ class __$$_FidelityProgramStateCopyWithImpl<$Res>
     Object? monthlyPoints = freezed,
     Object? totalPoints = freezed,
     Object? totalPoints2 = freezed,
+    Object? points = freezed,
     Object? rank = freezed,
     Object? list = freezed,
     Object? listContent = freezed,
@@ -445,6 +454,10 @@ class __$$_FidelityProgramStateCopyWithImpl<$Res>
           ? _value.totalPoints2
           : totalPoints2 // ignore: cast_nullable_to_non_nullable
               as String?,
+      points: freezed == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as String?,
       rank: freezed == rank
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
@@ -471,6 +484,7 @@ class _$_FidelityProgramState implements _FidelityProgramState {
       this.monthlyPoints,
       this.totalPoints,
       this.totalPoints2,
+      this.points,
       this.rank,
       final List<String>? list,
       final List<String>? listContent})
@@ -489,6 +503,8 @@ class _$_FidelityProgramState implements _FidelityProgramState {
   final String? totalPoints;
   @override
   final String? totalPoints2;
+  @override
+  final String? points;
   @override
   final String? rank;
   final List<String>? _list;
@@ -513,7 +529,7 @@ class _$_FidelityProgramState implements _FidelityProgramState {
 
   @override
   String toString() {
-    return 'FidelityProgramState(title: $title, status: $status, statusRange: $statusRange, monthlyPoints: $monthlyPoints, totalPoints: $totalPoints, totalPoints2: $totalPoints2, rank: $rank, list: $list, listContent: $listContent)';
+    return 'FidelityProgramState(title: $title, status: $status, statusRange: $statusRange, monthlyPoints: $monthlyPoints, totalPoints: $totalPoints, totalPoints2: $totalPoints2, points: $points, rank: $rank, list: $list, listContent: $listContent)';
   }
 
   @override
@@ -531,6 +547,7 @@ class _$_FidelityProgramState implements _FidelityProgramState {
                 other.totalPoints == totalPoints) &&
             (identical(other.totalPoints2, totalPoints2) ||
                 other.totalPoints2 == totalPoints2) &&
+            (identical(other.points, points) || other.points == points) &&
             (identical(other.rank, rank) || other.rank == rank) &&
             const DeepCollectionEquality().equals(other._list, _list) &&
             const DeepCollectionEquality()
@@ -546,6 +563,7 @@ class _$_FidelityProgramState implements _FidelityProgramState {
       monthlyPoints,
       totalPoints,
       totalPoints2,
+      points,
       rank,
       const DeepCollectionEquality().hash(_list),
       const DeepCollectionEquality().hash(_listContent));
@@ -566,6 +584,7 @@ abstract class _FidelityProgramState implements FidelityProgramState {
       final String? monthlyPoints,
       final String? totalPoints,
       final String? totalPoints2,
+      final String? points,
       final String? rank,
       final List<String>? list,
       final List<String>? listContent}) = _$_FidelityProgramState;
@@ -582,6 +601,8 @@ abstract class _FidelityProgramState implements FidelityProgramState {
   String? get totalPoints;
   @override
   String? get totalPoints2;
+  @override
+  String? get points;
   @override
   String? get rank;
   @override

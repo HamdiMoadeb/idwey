@@ -9,9 +9,13 @@ import 'date_container.dart';
 
 class CustomDateInput extends StatefulWidget {
   final bool? showDatesContainers;
+  final DateRangePickerSelectionMode selectionMode;
   final Function(DateRangePickerSelectionChangedArgs) onDateRangeChanged;
   const CustomDateInput(
-      {Key? key, this.showDatesContainers, required this.onDateRangeChanged})
+      {Key? key,
+      this.showDatesContainers,
+      required this.onDateRangeChanged,
+      this.selectionMode = DateRangePickerSelectionMode.range})
       : super(key: key);
 
   @override
@@ -163,21 +167,34 @@ class _CustomDateInputState extends State<CustomDateInput> {
           });
         },
         onSelectionChanged: (v) {
-          setState(() {
-            dateTime = v.value.startDate ?? DateTime.now();
-            dateTime2 = v.value.endDate ?? DateTime.now();
-            nbNuits = dateTime2!.difference(dateTime!).inDays.toString();
-            print('nbuits $nbNuits');
-            widget.onDateRangeChanged(v);
-            start = DateFormat('dd').format(dateTime!);
-            end = DateFormat('dd').format(dateTime2!);
-            dateRange =
-                '$start ${getMonthAbbreviation(dateTime!.month)}- $end ${getMonthAbbreviation(dateTime2!.month)}';
-          });
+          print("v.value22222222");
+          print(v.value);
+          if (widget.selectionMode == DateRangePickerSelectionMode.single) {
+            setState(() {
+              dateTime = v.value ?? DateTime.now();
+              dateTime2 = v.value ?? DateTime.now();
+              dateRange =
+                  '${DateFormat('dd').format(dateTime!)} ${getMonthAbbreviation(dateTime!.month)}';
+              widget.onDateRangeChanged(v);
+            });
+            return;
+          } else {
+            setState(() {
+              dateTime = v.value.startDate ?? DateTime.now();
+              dateTime2 = v.value.endDate ?? DateTime.now();
+              nbNuits = dateTime2!.difference(dateTime!).inDays.toString();
+              print('nbuits $nbNuits');
+              widget.onDateRangeChanged(v);
+              start = DateFormat('dd').format(dateTime!);
+              end = DateFormat('dd').format(dateTime2!);
+              dateRange =
+                  '$start ${getMonthAbbreviation(dateTime!.month)}- $end ${getMonthAbbreviation(dateTime2!.month)}';
+            });
+          }
         },
         backgroundColor: Colors.white,
         view: DateRangePickerView.month,
-        selectionMode: DateRangePickerSelectionMode.range,
+        selectionMode: widget.selectionMode,
         initialSelectedRange: PickerDateRange(
             dateTime ?? DateTime.now(), dateTime2 ?? DateTime.now()),
       ),

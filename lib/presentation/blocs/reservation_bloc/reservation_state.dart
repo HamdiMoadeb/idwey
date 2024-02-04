@@ -31,6 +31,7 @@ class ReservationState with _$ReservationState {
     List<Room>? selectedRoomsObject,
     List<Room>? availableChalet,
     List<ExtraPrice>? extraPrice,
+    double? extraPriceTotal,
   }) = _ReservationState;
 
   factory ReservationState.initial() => ReservationState(
@@ -62,6 +63,7 @@ class ReservationState with _$ReservationState {
         selectedRooms: [],
         selectedRoomsObject: [],
         extraPrice: [],
+        extraPriceTotal: 0.0,
         availableChalet: [],
       );
 }

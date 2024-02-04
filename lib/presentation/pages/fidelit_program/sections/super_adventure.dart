@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:idwey/theme/app_colors.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SuperAdventureSection extends StatefulWidget {
   final String points;
   final String points2;
+  final String initialPoints;
   const SuperAdventureSection(
-      {Key? key, required this.points, required this.points2})
+      {Key? key,
+      required this.points,
+      required this.points2,
+      required this.initialPoints})
       : super(key: key);
 
   @override
@@ -24,8 +28,8 @@ class _SuperAdventureSectionState extends State<SuperAdventureSection> {
     // TODO: implement initState
     print(widget.points);
     print(widget.points2);
-    _values = SfRangeValues(
-        double.parse(widget.points), double.parse(widget.points2));
+    _values =
+        SfRangeValues(double.parse("0.00"), double.parse(widget.initialPoints));
     print(_values);
     super.initState();
   }
@@ -105,7 +109,9 @@ class _SuperAdventureSectionState extends State<SuperAdventureSection> {
                       ),
                       child: SfRangeSlider(
                         min: 0.0,
-                        max: 3000.0,
+                        max: widget.points2 == "0"
+                            ? 1000.0
+                            : double.parse(widget.points2),
                         values: _values,
                         // interval: 1500,
                         //showDividers: true,

@@ -107,7 +107,7 @@ class HomeState with _$HomeState {
       listActivityCategories: [],
       selectedAttributesId: [],
       selectedActivityCategoriesId: [],
-      selectedPriceRanges: [],
+      selectedPriceRanges: ["0.00", "0.00"],
       isFilter: false,
       filterPageHosts: 0,
       pageFilterActivities: 0,

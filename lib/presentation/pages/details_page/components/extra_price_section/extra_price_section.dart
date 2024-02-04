@@ -43,13 +43,24 @@ class _ExtraPriceSectionState extends State<ExtraPriceSection> {
         Column(
           children: widget.extraPrices.asMap().entries.map((entry) {
             final int index = entry.key;
-            final ExtraPrice e = entry.value;
+            ExtraPrice e = entry.value;
             return ExtraPriceComponent(
+              quantity: e.quantity ?? 1,
               isChecked:
                   isCheckedList[index], // Use the individual checked state
               title: e.name ?? "",
               subtitle: e.price ?? "",
-              onchange: (int i) {},
+              onchange: (int i) {
+                /// update quantity inside extra price object
+                e = ExtraPrice(
+                  name: e.name,
+                  price: e.price,
+                  quantity: i,
+                );
+                context
+                    .read<DetailsPageBloc>()
+                    .add(DetailsPageEvent.onExtraPriceQuantityChanged(e, i));
+              },
               onCheck: (bool? v) {
                 setState(() {
                   isCheckedList[index] =
