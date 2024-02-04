@@ -10,6 +10,7 @@ class UpdateReviewUseCase extends UseCase<dynamic, Map<String, dynamic>> {
   Future<Either<Exception, String>> call(Map<String, dynamic> params) async {
     print("params");
     print(params);
+
     return await repository.updateReview(params);
   }
 }

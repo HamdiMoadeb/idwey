@@ -144,9 +144,7 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
     emit(state.copyWith(
       updateReviewStatus: StateStatus.loading,
     ));
-    SharedPreferences preferences = await SharedPreferences.getInstance();
     print("updaaate review");
-    String userId = preferences.getString("userId") ?? "0";
     try {
       final Either<Exception, dynamic> result =
           await GetIt.I<AddReviewUseCase>().call({

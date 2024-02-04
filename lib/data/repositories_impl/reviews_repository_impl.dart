@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:idwey/data/data_sources/reviews_api_data_source.dart';
-import 'package:idwey/data/models/review_dto.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/domain/repositories/review_repository.dart';
 
