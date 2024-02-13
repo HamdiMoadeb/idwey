@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,10 +23,13 @@ import 'theme/text_theme.dart';
 final getIt = GetIt.instance;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await setup();
-  runApp(MyApp());
+  await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await setup();
+    runApp(MyApp());
+  }, (Object error, StackTrace stackTrace) {
+    print('error: $error');
+  });
 }
 
 class MyApp extends StatelessWidget {
