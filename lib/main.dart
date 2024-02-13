@@ -23,6 +23,7 @@ import 'theme/text_theme.dart';
 final getIt = GetIt.instance;
 
 /// Setup the application
+///  zzkerjfrkjekrjf
 void main() async {
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
