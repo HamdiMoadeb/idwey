@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
@@ -23,23 +22,24 @@ import 'theme/text_theme.dart';
 final getIt = GetIt.instance;
 
 /// Setup the application
-///  zzkerjfrkjekrjf
 void main() async {
-  await runZonedGuarded(() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await setup();
-    runApp(MyApp());
-  }, (Object error, StackTrace stackTrace) {
-    print('error: $error');
-  });
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-  final AppRouter appRouter = GetIt.I<AppRouter>();
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final AppRouter appRouter = GetIt.I<AppRouter>();
+    SystemChrome.setPreferredOrientations(
+      <DeviceOrientation>[
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown
+      ],
+    );
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -89,34 +89,40 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
         ],
-        child: MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaleFactor: 1.0,
-          ),
-          child: ScreenUtilInit(
-              designSize: const Size(375, 812),
-              minTextAdapt: true,
-              splitScreenMode: true,
-              builder: (context, child) {
-                return MaterialApp.router(
-                    theme: ThemeData(
+        child: ScreenUtilInit(
+            designSize: Size(375, 812),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
+              return MaterialApp.router(
+                theme: ThemeData(
+                    textTheme: textTheme,
+                    inputDecorationTheme: inputDecorationTheme,
+                    primarySwatch: materialPrimary,
+                    splashColor: Colors.white,
+                    fontFamily: 'Inter'),
+                routerConfig: appRouter.config(),
+                debugShowCheckedModeBanner: false,
+                builder: (context, widget) {
+                  //add this line
+                  ScreenUtil.init(context);
+                  return MediaQuery(
+                    //Setting font does not change with system font size
+                    data: MediaQuery.of(context).copyWith(
+                      textScaleFactor: 1.0,
+                    ),
+                    child: Theme(
+                      data: ThemeData(
+                        primarySwatch: materialPrimary,
                         textTheme: textTheme,
                         inputDecorationTheme: inputDecorationTheme,
-                        primarySwatch: materialPrimary,
-                        splashColor: Colors.white,
-                        fontFamily: 'Inter'),
-                    routerConfig: appRouter.config(),
-                    debugShowCheckedModeBanner: false,
-                    builder: (context, child) {
-                      ScreenUtil.ensureScreenSizeAndInit(context);
-                      return MediaQuery(
-                        data: MediaQuery.of(context).copyWith(
-                          textScaleFactor: 1.0,
-                        ),
-                        child: child!,
-                      );
-                    });
-              }),
-        ));
+                        fontFamily: 'Inter',
+                      ),
+                      child: widget!,
+                    ),
+                  );
+                },
+              );
+            }));
   }
 }
