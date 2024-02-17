@@ -148,6 +148,7 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
         print("state.extraPricetotlaaa");
         print(state.extraPriceTotal); // Print the updated list
       } else {
+        ///update git the extra price
         print("doexn't exist in the list******");
       }
     } else {
