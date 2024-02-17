@@ -60,8 +60,7 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
   void onExtraPriceChecked(
       _OnExtraPriceChecked event, Emitter<DetailsPageState> emit) async {
     // Create a new list with the updated values
-    print("event.extraPrice.quantity");
-    print(event.extraPrice.quantity);
+
     final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
 
     final index = updatedExtraPrice
@@ -74,13 +73,6 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
       updatedExtraPrice.add(event.extraPrice);
     }
 
-    /// print list of extra price
-
-    for (var i = 0; i < updatedExtraPrice.length; i++) {
-      print(updatedExtraPrice[i].name);
-      print(updatedExtraPrice[i].quantity);
-    }
-
     // Update the state with the new list
     emit(state.copyWith(
         extraPrice: updatedExtraPrice,
@@ -90,21 +82,14 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
                 previousValue! +
                 double.parse(element.price ?? "0.00") *
                     (element.quantity ?? 1))));
-
-    print("state.extraPrice");
-    print(updatedExtraPrice); // Print the updated list
   }
 
   void onExtraPriceUnChecked(
       _OnExtraPriceUnChecked event, Emitter<DetailsPageState> emit) async {
-    // Create a new list with the updated values
-    print("event.extraPrice.quantityremoove");
-    print(event.extraPrice.quantity);
     final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
     updatedExtraPrice
         .removeWhere((element) => element.name == event.extraPrice.name);
-    print("event.extraPrice.quantityremoove");
-    print(updatedExtraPrice);
+
     // Update the state with the new list
     /// remove the extra price prices from the extra price total
 
@@ -116,9 +101,6 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
                 previousValue! +
                 double.parse(element.price ?? "0.00") *
                     (element.quantity ?? 1))));
-
-    print("state.extraPriceTotal");
-    print(state.extraPriceTotal); // Print the updated list
   }
 
   /// This method is called when the user changes the quantity of an extra price
@@ -144,21 +126,13 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
                     previousValue! +
                     double.parse(element.price ?? "0.00") *
                         (element.quantity ?? 1))));
-
-        print("state.extraPricetotlaaa");
-        print(state.extraPriceTotal); // Print the updated list
       } else {
         ///update git the extra price
         print("doexn't exist in the list******");
       }
     } else {
-      /// change user test
-      // final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
-      // updatedExtraPrice.add(event.extraPrice);
-      // emit(state.copyWith(extraPrice: updatedExtraPrice));
-
-      print("state.updatedExtraPrice");
-      print(state.extraPrice); // Print the updated list
+      // Print the updated list
+      print("doexn't exist in the list");
     }
   }
 }
