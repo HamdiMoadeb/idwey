@@ -151,6 +151,7 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
         print("doexn't exist in the list******");
       }
     } else {
+      /// change user test
       // final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
       // updatedExtraPrice.add(event.extraPrice);
       // emit(state.copyWith(extraPrice: updatedExtraPrice));
