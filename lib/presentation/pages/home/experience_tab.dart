@@ -69,6 +69,10 @@ class _ExperienceScreenState extends State<ExperienceScreen>
             state.atTheEndOfThePageExperiences == false &&
             state.isSearch == true) {
           return const Center(child: Text("Pas des experiences"));
+        } else if (state.statusExperiences == StateStatus.error &&
+            state.atTheEndOfThePageExperiences == true &&
+            state.isSearch == true) {
+          return const Center(child: Text("Pas des experiences"));
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfTheFilterPageExperiences == false &&
             state.isFilter == true) {

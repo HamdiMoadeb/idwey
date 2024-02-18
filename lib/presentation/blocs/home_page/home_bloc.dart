@@ -77,6 +77,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           endDate: "",
           city: "",
           guests: 0,
+          atTheEndOfThePageHosts: false,
         ));
       }
       if (state.isFilter == true) {
@@ -89,6 +90,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           endDate: "",
           city: "",
           guests: 0,
+          atTheEndOfThePageHosts: false,
           selectedAttributesId: [],
           selectedActivityCategoriesId: [],
           selectedPriceRanges: [
@@ -157,10 +159,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   /// get list search hosts
 
   _getListSearchHosts(GetSearchListHost event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfTheSearchPageHosts");
-    print(state.atTheEndOfTheSearchPageHosts);
-    print(state.isSearch);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
@@ -245,6 +243,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(state.copyWith(
           listEvents: [],
           isSearch: false,
+          atTheEndOfThePageEvents: false,
           pageEvents: 0,
           startDate: "",
           endDate: "",
@@ -454,6 +453,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           listExperiences: [],
           isSearch: false,
           pageExperiences: 0,
+          atTheEndOfThePageExperiences: false,
           startDate: "",
           endDate: "",
           city: "",
@@ -469,6 +469,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           endDate: "",
           city: "",
           guests: 0,
+          atTheEndOfThePageExperiences: false,
           selectedAttributesId: [],
           selectedActivityCategoriesId: [],
           selectedPriceRanges: [
@@ -541,6 +542,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (state.isSearch == true) {
         emit(state.copyWith(
           listActivities: [],
+          atTheEndOfThePageActivities: false,
           isSearch: false,
           pageActivities: 0,
           startDate: "",
@@ -558,6 +560,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           endDate: "",
           city: "",
           guests: 0,
+          atTheEndOfThePageActivities: false,
           selectedAttributesId: [],
           selectedActivityCategoriesId: [],
           selectedPriceRanges: [
@@ -867,10 +870,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListSearchExperiences(
       GetSearchListExperiences event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfTheSearchPageExperiences");
-    print(state.atTheEndOfTheSearchPageExperiences);
-    print(state.isSearch);
-    print(event.isFetching);
     try {
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
@@ -938,6 +937,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         }
       });
+      print("state.listExperiencesSuceess");
+      print(state.listExperiences);
+      print(state.statusExperiences);
+      print(state.isFetching);
+      print(state.atTheEndOfTheSearchPageExperiences);
+      print(state.isSearch);
     } catch (e) {
       emit(state.copyWith(
         statusExperiences: StateStatus.error,

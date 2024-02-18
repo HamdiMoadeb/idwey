@@ -57,10 +57,6 @@ class _EventScreenState extends State<EventScreen>
     super.build(context);
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        print("********223344");
-        print(state.status == StateStatus.error &&
-            state.atTheEndOfTheFilterPageEvents == false &&
-            state.isFilter == true);
         if (state.statusEvent == StateStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
