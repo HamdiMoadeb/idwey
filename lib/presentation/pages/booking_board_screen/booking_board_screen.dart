@@ -22,8 +22,11 @@ class _BookingBoardScreenState extends State<BookingBoardScreen> {
   @override
   void initState() {
     context.read<AppBloc>().add(const AppEvent.getUser());
-    context.read<BookingPageBloc>().add(BookingPageEvent.getBookingList(
-        int.parse(context.read<AppBloc>().state.id ?? "0")));
+    Future.delayed(const Duration(milliseconds: 500), () {
+      context.read<BookingPageBloc>().add(BookingPageEvent.getBookingList(
+          int.tryParse(context.read<AppBloc>().state.id ?? "0")!));
+    });
+
     super.initState();
   }
 
