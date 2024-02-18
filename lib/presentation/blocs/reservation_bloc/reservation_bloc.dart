@@ -109,7 +109,8 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
       checkIn: event.startDate,
       checkOut: event.endDate,
       nbNights: event.nbNights,
-      totalPrice: (double.parse(state.price!) * int.parse(event.nbNights))
+      totalPrice: ((double.parse(state.price!) * int.parse(event.nbNights)) +
+              state.extraPriceTotal!)
           .toInt()
           .toString(),
       totalPriceOnSale: state.salePrice == "null" ||
@@ -117,7 +118,8 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
               state.salePrice == ""
           ? ""
           : (double.parse(state.salePrice ?? "0.00") *
-                  int.parse(event.nbNights))
+                      int.parse(event.nbNights) +
+                  state.extraPriceTotal!)
               .toInt()
               .toString(),
     ));
@@ -136,13 +138,16 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     int nbNights = state.nbNights == "0" ? 1 : int.parse(state.nbNights ?? "1");
 
     emit(state.copyWith(
-      totalPrice:
-          (double.parse(state.price!) * guests * nbNights).toInt().toString(),
+      totalPrice: (double.parse(state.price!) * guests * nbNights +
+              state.extraPriceTotal!)
+          .toInt()
+          .toString(),
       totalPriceOnSale: state.salePrice == "null" ||
               state.salePrice == null ||
               state.salePrice == ""
           ? "0.00"
-          : (double.parse(state.salePrice!) * guests * nbNights)
+          : (double.parse(state.salePrice!) * guests * nbNights +
+                  state.extraPriceTotal!)
               .toInt()
               .toString(),
     ));
@@ -352,25 +357,32 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
                 double.parse(element.price ?? "0.00") * event.i);
         print("totalExtraaaaaa");
         print(total);
+        double totalPrice =
+            double.parse(state.totalPrice ?? "0.00") - state.extraPriceTotal!;
+        print("totalPrice");
+        print(totalPrice);
+        double totalPriceOnSale =
+            double.parse(state.totalPriceOnSale ?? "0.00") -
+                state.extraPriceTotal!;
+
+        /// update total price with the new total of extra price
 
         /// Update the state with the new list
         emit(state.copyWith(
           extraPrice: updatedExtraPrice,
           extraPriceTotal: total,
-          totalPrice:
-              (total + double.parse(state.price ?? "0.00")).toInt().toString(),
-          totalPriceOnSale: (double.tryParse(state.salePrice ?? "0.00") ?? 0.00)
-              .toInt()
-              .toString(),
+          totalPrice: (total + totalPrice).toInt().toString(),
+          totalPriceOnSale:
+              (double.tryParse(state.totalPriceOnSale ?? "0.00") ?? 0.00)
+                  .toInt()
+                  .toString(),
         ));
 
         print("state.extraPricetotlaaa");
         print(state.extraPriceTotal); // Print the updated list
       }
     } else {
-      final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
-      updatedExtraPrice.add(event.extraPrice);
-      emit(state.copyWith(extraPrice: updatedExtraPrice));
+      print("state.extraPrice is empty");
     }
   }
 }

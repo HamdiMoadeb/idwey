@@ -46,6 +46,10 @@ mixin _$HomeEvent {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +82,10 @@ mixin _$HomeEvent {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -110,6 +118,10 @@ mixin _$HomeEvent {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -152,6 +164,10 @@ mixin _$HomeEvent {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -189,6 +205,10 @@ mixin _$HomeEvent {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -226,6 +246,10 @@ mixin _$HomeEvent {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -341,6 +365,10 @@ class _$GetUserRole implements GetUserRole {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getUserRole(roleUser);
   }
@@ -376,6 +404,10 @@ class _$GetUserRole implements GetUserRole {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getUserRole?.call(roleUser);
   }
@@ -411,6 +443,10 @@ class _$GetUserRole implements GetUserRole {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getUserRole != null) {
@@ -459,6 +495,10 @@ class _$GetUserRole implements GetUserRole {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getUserRole(this);
   }
@@ -499,6 +539,10 @@ class _$GetUserRole implements GetUserRole {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getUserRole?.call(this);
   }
@@ -539,6 +583,10 @@ class _$GetUserRole implements GetUserRole {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getUserRole != null) {
@@ -650,6 +698,10 @@ class _$GetListHost implements GetListHost {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getListHosts(isFetching);
   }
@@ -685,6 +737,10 @@ class _$GetListHost implements GetListHost {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getListHosts?.call(isFetching);
   }
@@ -720,6 +776,10 @@ class _$GetListHost implements GetListHost {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListHosts != null) {
@@ -768,6 +828,10 @@ class _$GetListHost implements GetListHost {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getListHosts(this);
   }
@@ -808,6 +872,10 @@ class _$GetListHost implements GetListHost {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getListHosts?.call(this);
   }
@@ -848,6 +916,10 @@ class _$GetListHost implements GetListHost {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListHosts != null) {
@@ -932,6 +1004,10 @@ class _$GetListLocations implements GetListLocations {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getListLocations();
   }
@@ -967,6 +1043,10 @@ class _$GetListLocations implements GetListLocations {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getListLocations?.call();
   }
@@ -1002,6 +1082,10 @@ class _$GetListLocations implements GetListLocations {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListLocations != null) {
@@ -1050,6 +1134,10 @@ class _$GetListLocations implements GetListLocations {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getListLocations(this);
   }
@@ -1090,6 +1178,10 @@ class _$GetListLocations implements GetListLocations {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getListLocations?.call(this);
   }
@@ -1130,6 +1222,10 @@ class _$GetListLocations implements GetListLocations {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListLocations != null) {
@@ -1236,6 +1332,10 @@ class _$GetSearchListHost implements GetSearchListHost {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getSearchListHosts(isFetching);
   }
@@ -1271,6 +1371,10 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getSearchListHosts?.call(isFetching);
   }
@@ -1306,6 +1410,10 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListHosts != null) {
@@ -1354,6 +1462,10 @@ class _$GetSearchListHost implements GetSearchListHost {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getSearchListHosts(this);
   }
@@ -1394,6 +1506,10 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getSearchListHosts?.call(this);
   }
@@ -1434,6 +1550,10 @@ class _$GetSearchListHost implements GetSearchListHost {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListHosts != null) {
@@ -1545,6 +1665,10 @@ class _$GetListEvent implements GetListEvent {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getListEvents(isFetching);
   }
@@ -1580,6 +1704,10 @@ class _$GetListEvent implements GetListEvent {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getListEvents?.call(isFetching);
   }
@@ -1615,6 +1743,10 @@ class _$GetListEvent implements GetListEvent {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListEvents != null) {
@@ -1663,6 +1795,10 @@ class _$GetListEvent implements GetListEvent {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getListEvents(this);
   }
@@ -1703,6 +1839,10 @@ class _$GetListEvent implements GetListEvent {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getListEvents?.call(this);
   }
@@ -1743,6 +1883,10 @@ class _$GetListEvent implements GetListEvent {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListEvents != null) {
@@ -1855,6 +1999,10 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getSearchListEvents(isFetching);
   }
@@ -1890,6 +2038,10 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getSearchListEvents?.call(isFetching);
   }
@@ -1925,6 +2077,10 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListEvents != null) {
@@ -1973,6 +2129,10 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getSearchListEvents(this);
   }
@@ -2013,6 +2173,10 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getSearchListEvents?.call(this);
   }
@@ -2053,6 +2217,10 @@ class _$GetSearchListEvent implements GetSearchListEvent {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListEvents != null) {
@@ -2166,6 +2334,10 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getSearchListActivities(isFetching);
   }
@@ -2201,6 +2373,10 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getSearchListActivities?.call(isFetching);
   }
@@ -2236,6 +2412,10 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListActivities != null) {
@@ -2284,6 +2464,10 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getSearchListActivities(this);
   }
@@ -2324,6 +2508,10 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getSearchListActivities?.call(this);
   }
@@ -2364,6 +2552,10 @@ class _$GetSearchListActivities implements GetSearchListActivities {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListActivities != null) {
@@ -2478,6 +2670,10 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getSearchListExperiences(isFetching);
   }
@@ -2513,6 +2709,10 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getSearchListExperiences?.call(isFetching);
   }
@@ -2548,6 +2748,10 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListExperiences != null) {
@@ -2596,6 +2800,10 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getSearchListExperiences(this);
   }
@@ -2636,6 +2844,10 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getSearchListExperiences?.call(this);
   }
@@ -2676,6 +2888,10 @@ class _$GetSearchListExperiences implements GetSearchListExperiences {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getSearchListExperiences != null) {
@@ -2788,6 +3004,10 @@ class _$GetListActivities implements GetListActivities {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getListActivities(isFetching);
   }
@@ -2823,6 +3043,10 @@ class _$GetListActivities implements GetListActivities {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getListActivities?.call(isFetching);
   }
@@ -2858,6 +3082,10 @@ class _$GetListActivities implements GetListActivities {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListActivities != null) {
@@ -2906,6 +3134,10 @@ class _$GetListActivities implements GetListActivities {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getListActivities(this);
   }
@@ -2946,6 +3178,10 @@ class _$GetListActivities implements GetListActivities {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getListActivities?.call(this);
   }
@@ -2986,6 +3222,10 @@ class _$GetListActivities implements GetListActivities {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListActivities != null) {
@@ -3098,6 +3338,10 @@ class _$GetListExperiences implements GetListExperiences {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getListExperiences(isFetching);
   }
@@ -3133,6 +3377,10 @@ class _$GetListExperiences implements GetListExperiences {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getListExperiences?.call(isFetching);
   }
@@ -3168,6 +3416,10 @@ class _$GetListExperiences implements GetListExperiences {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListExperiences != null) {
@@ -3216,6 +3468,10 @@ class _$GetListExperiences implements GetListExperiences {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getListExperiences(this);
   }
@@ -3256,6 +3512,10 @@ class _$GetListExperiences implements GetListExperiences {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getListExperiences?.call(this);
   }
@@ -3296,6 +3556,10 @@ class _$GetListExperiences implements GetListExperiences {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getListExperiences != null) {
@@ -3407,6 +3671,10 @@ class _$SetSelectedTab implements SetSelectedTab {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return setSelectedTab(tab);
   }
@@ -3442,6 +3710,10 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return setSelectedTab?.call(tab);
   }
@@ -3477,6 +3749,10 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setSelectedTab != null) {
@@ -3525,6 +3801,10 @@ class _$SetSelectedTab implements SetSelectedTab {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return setSelectedTab(this);
   }
@@ -3565,6 +3845,10 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return setSelectedTab?.call(this);
   }
@@ -3605,6 +3889,10 @@ class _$SetSelectedTab implements SetSelectedTab {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setSelectedTab != null) {
@@ -3716,6 +4004,10 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return changeStartDate(startDate);
   }
@@ -3751,6 +4043,10 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return changeStartDate?.call(startDate);
   }
@@ -3786,6 +4082,10 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeStartDate != null) {
@@ -3834,6 +4134,10 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return changeStartDate(this);
   }
@@ -3874,6 +4178,10 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return changeStartDate?.call(this);
   }
@@ -3914,6 +4222,10 @@ class _$_ChangeStartDate implements _ChangeStartDate {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeStartDate != null) {
@@ -4024,6 +4336,10 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return changeEndDate(endDate);
   }
@@ -4059,6 +4375,10 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return changeEndDate?.call(endDate);
   }
@@ -4094,6 +4414,10 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeEndDate != null) {
@@ -4142,6 +4466,10 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return changeEndDate(this);
   }
@@ -4182,6 +4510,10 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return changeEndDate?.call(this);
   }
@@ -4222,6 +4554,10 @@ class _$_ChangeEndDate implements _ChangeEndDate {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeEndDate != null) {
@@ -4332,6 +4668,10 @@ class _$_ChangeCity implements _ChangeCity {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return changeCity(city);
   }
@@ -4367,6 +4707,10 @@ class _$_ChangeCity implements _ChangeCity {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return changeCity?.call(city);
   }
@@ -4402,6 +4746,10 @@ class _$_ChangeCity implements _ChangeCity {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeCity != null) {
@@ -4450,6 +4798,10 @@ class _$_ChangeCity implements _ChangeCity {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return changeCity(this);
   }
@@ -4490,6 +4842,10 @@ class _$_ChangeCity implements _ChangeCity {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return changeCity?.call(this);
   }
@@ -4530,6 +4886,10 @@ class _$_ChangeCity implements _ChangeCity {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeCity != null) {
@@ -4641,6 +5001,10 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return changeEmplacement(city);
   }
@@ -4676,6 +5040,10 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return changeEmplacement?.call(city);
   }
@@ -4711,6 +5079,10 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeEmplacement != null) {
@@ -4759,6 +5131,10 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return changeEmplacement(this);
   }
@@ -4799,6 +5175,10 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return changeEmplacement?.call(this);
   }
@@ -4839,6 +5219,10 @@ class _$_ChangeEmplacement implements _ChangeEmplacement {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeEmplacement != null) {
@@ -4949,6 +5333,10 @@ class _$_ChangeGuests implements _ChangeGuests {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return changeGuests(guests);
   }
@@ -4984,6 +5372,10 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return changeGuests?.call(guests);
   }
@@ -5019,6 +5411,10 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeGuests != null) {
@@ -5067,6 +5463,10 @@ class _$_ChangeGuests implements _ChangeGuests {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return changeGuests(this);
   }
@@ -5107,6 +5507,10 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return changeGuests?.call(this);
   }
@@ -5147,6 +5551,10 @@ class _$_ChangeGuests implements _ChangeGuests {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (changeGuests != null) {
@@ -5257,6 +5665,10 @@ class _$_OnSetSearch implements _OnSetSearch {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return onSetSearch(search);
   }
@@ -5292,6 +5704,10 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return onSetSearch?.call(search);
   }
@@ -5327,6 +5743,10 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (onSetSearch != null) {
@@ -5375,6 +5795,10 @@ class _$_OnSetSearch implements _OnSetSearch {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return onSetSearch(this);
   }
@@ -5415,6 +5839,10 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return onSetSearch?.call(this);
   }
@@ -5455,6 +5883,10 @@ class _$_OnSetSearch implements _OnSetSearch {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (onSetSearch != null) {
@@ -5566,6 +5998,10 @@ class _$GetEventPageData implements GetEventPageData {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getEventPageData(isFetching);
   }
@@ -5601,6 +6037,10 @@ class _$GetEventPageData implements GetEventPageData {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getEventPageData?.call(isFetching);
   }
@@ -5636,6 +6076,10 @@ class _$GetEventPageData implements GetEventPageData {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getEventPageData != null) {
@@ -5684,6 +6128,10 @@ class _$GetEventPageData implements GetEventPageData {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getEventPageData(this);
   }
@@ -5724,6 +6172,10 @@ class _$GetEventPageData implements GetEventPageData {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getEventPageData?.call(this);
   }
@@ -5764,6 +6216,10 @@ class _$GetEventPageData implements GetEventPageData {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getEventPageData != null) {
@@ -5875,6 +6331,10 @@ class _$GetHostPageData implements GetHostPageData {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getHostPageData(isFetching);
   }
@@ -5910,6 +6370,10 @@ class _$GetHostPageData implements GetHostPageData {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getHostPageData?.call(isFetching);
   }
@@ -5945,6 +6409,10 @@ class _$GetHostPageData implements GetHostPageData {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getHostPageData != null) {
@@ -5993,6 +6461,10 @@ class _$GetHostPageData implements GetHostPageData {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getHostPageData(this);
   }
@@ -6033,6 +6505,10 @@ class _$GetHostPageData implements GetHostPageData {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getHostPageData?.call(this);
   }
@@ -6073,6 +6549,10 @@ class _$GetHostPageData implements GetHostPageData {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getHostPageData != null) {
@@ -6185,6 +6665,10 @@ class _$GetExperiencePageData implements GetExperiencePageData {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getExperiencePageData(isFetching);
   }
@@ -6220,6 +6704,10 @@ class _$GetExperiencePageData implements GetExperiencePageData {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getExperiencePageData?.call(isFetching);
   }
@@ -6255,6 +6743,10 @@ class _$GetExperiencePageData implements GetExperiencePageData {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getExperiencePageData != null) {
@@ -6303,6 +6795,10 @@ class _$GetExperiencePageData implements GetExperiencePageData {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getExperiencePageData(this);
   }
@@ -6343,6 +6839,10 @@ class _$GetExperiencePageData implements GetExperiencePageData {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getExperiencePageData?.call(this);
   }
@@ -6383,6 +6883,10 @@ class _$GetExperiencePageData implements GetExperiencePageData {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getExperiencePageData != null) {
@@ -6496,6 +7000,10 @@ class _$GetActivityPageData implements GetActivityPageData {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getActivityPageData(isFetching);
   }
@@ -6531,6 +7039,10 @@ class _$GetActivityPageData implements GetActivityPageData {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getActivityPageData?.call(isFetching);
   }
@@ -6566,6 +7078,10 @@ class _$GetActivityPageData implements GetActivityPageData {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getActivityPageData != null) {
@@ -6614,6 +7130,10 @@ class _$GetActivityPageData implements GetActivityPageData {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getActivityPageData(this);
   }
@@ -6654,6 +7174,10 @@ class _$GetActivityPageData implements GetActivityPageData {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getActivityPageData?.call(this);
   }
@@ -6694,6 +7218,10 @@ class _$GetActivityPageData implements GetActivityPageData {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getActivityPageData != null) {
@@ -6809,6 +7337,10 @@ class _$GetFilterListHostsPageData implements GetFilterListHostsPageData {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getFilterListHostsPageData(isFetching);
   }
@@ -6844,6 +7376,10 @@ class _$GetFilterListHostsPageData implements GetFilterListHostsPageData {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getFilterListHostsPageData?.call(isFetching);
   }
@@ -6879,6 +7415,10 @@ class _$GetFilterListHostsPageData implements GetFilterListHostsPageData {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListHostsPageData != null) {
@@ -6927,6 +7467,10 @@ class _$GetFilterListHostsPageData implements GetFilterListHostsPageData {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getFilterListHostsPageData(this);
   }
@@ -6967,6 +7511,10 @@ class _$GetFilterListHostsPageData implements GetFilterListHostsPageData {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getFilterListHostsPageData?.call(this);
   }
@@ -7007,6 +7555,10 @@ class _$GetFilterListHostsPageData implements GetFilterListHostsPageData {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListHostsPageData != null) {
@@ -7122,6 +7674,10 @@ class _$GetFilterListEventsPageData implements GetFilterListEventsPageData {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getFilterListEventsPageData(isFetching);
   }
@@ -7157,6 +7713,10 @@ class _$GetFilterListEventsPageData implements GetFilterListEventsPageData {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getFilterListEventsPageData?.call(isFetching);
   }
@@ -7192,6 +7752,10 @@ class _$GetFilterListEventsPageData implements GetFilterListEventsPageData {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListEventsPageData != null) {
@@ -7240,6 +7804,10 @@ class _$GetFilterListEventsPageData implements GetFilterListEventsPageData {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getFilterListEventsPageData(this);
   }
@@ -7280,6 +7848,10 @@ class _$GetFilterListEventsPageData implements GetFilterListEventsPageData {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getFilterListEventsPageData?.call(this);
   }
@@ -7320,6 +7892,10 @@ class _$GetFilterListEventsPageData implements GetFilterListEventsPageData {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListEventsPageData != null) {
@@ -7436,6 +8012,10 @@ class _$GetFilterListActivitiesPageData
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getFilterListActivitiesPageData(isFetching);
   }
@@ -7471,6 +8051,10 @@ class _$GetFilterListActivitiesPageData
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getFilterListActivitiesPageData?.call(isFetching);
   }
@@ -7506,6 +8090,10 @@ class _$GetFilterListActivitiesPageData
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListActivitiesPageData != null) {
@@ -7554,6 +8142,10 @@ class _$GetFilterListActivitiesPageData
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getFilterListActivitiesPageData(this);
   }
@@ -7594,6 +8186,10 @@ class _$GetFilterListActivitiesPageData
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getFilterListActivitiesPageData?.call(this);
   }
@@ -7634,6 +8230,10 @@ class _$GetFilterListActivitiesPageData
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListActivitiesPageData != null) {
@@ -7751,6 +8351,10 @@ class _$GetFilterListExperiencesPageData
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return getFilterListExperiencesPageData(isFetching);
   }
@@ -7786,6 +8390,10 @@ class _$GetFilterListExperiencesPageData
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return getFilterListExperiencesPageData?.call(isFetching);
   }
@@ -7821,6 +8429,10 @@ class _$GetFilterListExperiencesPageData
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListExperiencesPageData != null) {
@@ -7869,6 +8481,10 @@ class _$GetFilterListExperiencesPageData
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return getFilterListExperiencesPageData(this);
   }
@@ -7909,6 +8525,10 @@ class _$GetFilterListExperiencesPageData
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return getFilterListExperiencesPageData?.call(this);
   }
@@ -7949,6 +8569,10 @@ class _$GetFilterListExperiencesPageData
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (getFilterListExperiencesPageData != null) {
@@ -8063,6 +8687,10 @@ class _$SetSelectedAttributesId implements SetSelectedAttributesId {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return setSelectedAttributesIds(attributesId);
   }
@@ -8098,6 +8726,10 @@ class _$SetSelectedAttributesId implements SetSelectedAttributesId {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return setSelectedAttributesIds?.call(attributesId);
   }
@@ -8133,6 +8765,10 @@ class _$SetSelectedAttributesId implements SetSelectedAttributesId {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setSelectedAttributesIds != null) {
@@ -8181,6 +8817,10 @@ class _$SetSelectedAttributesId implements SetSelectedAttributesId {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return setSelectedAttributesIds(this);
   }
@@ -8221,6 +8861,10 @@ class _$SetSelectedAttributesId implements SetSelectedAttributesId {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return setSelectedAttributesIds?.call(this);
   }
@@ -8261,6 +8905,10 @@ class _$SetSelectedAttributesId implements SetSelectedAttributesId {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setSelectedAttributesIds != null) {
@@ -8375,6 +9023,10 @@ class _$SetSelectedActivityCategory implements SetSelectedActivityCategory {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return setSelectedActivityCategory(id);
   }
@@ -8410,6 +9062,10 @@ class _$SetSelectedActivityCategory implements SetSelectedActivityCategory {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return setSelectedActivityCategory?.call(id);
   }
@@ -8445,6 +9101,10 @@ class _$SetSelectedActivityCategory implements SetSelectedActivityCategory {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setSelectedActivityCategory != null) {
@@ -8493,6 +9153,10 @@ class _$SetSelectedActivityCategory implements SetSelectedActivityCategory {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return setSelectedActivityCategory(this);
   }
@@ -8533,6 +9197,10 @@ class _$SetSelectedActivityCategory implements SetSelectedActivityCategory {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return setSelectedActivityCategory?.call(this);
   }
@@ -8573,6 +9241,10 @@ class _$SetSelectedActivityCategory implements SetSelectedActivityCategory {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setSelectedActivityCategory != null) {
@@ -8690,6 +9362,10 @@ class _$SetRangePrices implements SetRangePrices {
     required TResult Function(String attributesId) setSelectedAttributesIds,
     required TResult Function(String id) setSelectedActivityCategory,
     required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
   }) {
     return setRangePrices(str);
   }
@@ -8725,6 +9401,10 @@ class _$SetRangePrices implements SetRangePrices {
     TResult? Function(String attributesId)? setSelectedAttributesIds,
     TResult? Function(String id)? setSelectedActivityCategory,
     TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
   }) {
     return setRangePrices?.call(str);
   }
@@ -8760,6 +9440,10 @@ class _$SetRangePrices implements SetRangePrices {
     TResult Function(String attributesId)? setSelectedAttributesIds,
     TResult Function(String id)? setSelectedActivityCategory,
     TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setRangePrices != null) {
@@ -8808,6 +9492,10 @@ class _$SetRangePrices implements SetRangePrices {
     required TResult Function(SetSelectedActivityCategory value)
         setSelectedActivityCategory,
     required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
   }) {
     return setRangePrices(this);
   }
@@ -8848,6 +9536,10 @@ class _$SetRangePrices implements SetRangePrices {
     TResult? Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
   }) {
     return setRangePrices?.call(this);
   }
@@ -8888,6 +9580,10 @@ class _$SetRangePrices implements SetRangePrices {
     TResult Function(SetSelectedActivityCategory value)?
         setSelectedActivityCategory,
     TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
     required TResult orElse(),
   }) {
     if (setRangePrices != null) {
@@ -8904,6 +9600,1210 @@ abstract class SetRangePrices implements HomeEvent {
   @JsonKey(ignore: true)
   _$$SetRangePricesCopyWith<_$SetRangePrices> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitFilterCopyWith<$Res> {
+  factory _$$InitFilterCopyWith(
+          _$InitFilter value, $Res Function(_$InitFilter) then) =
+      __$$InitFilterCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitFilterCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$InitFilter>
+    implements _$$InitFilterCopyWith<$Res> {
+  __$$InitFilterCopyWithImpl(
+      _$InitFilter _value, $Res Function(_$InitFilter) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitFilter implements InitFilter {
+  const _$InitFilter();
+
+  @override
+  String toString() {
+    return 'HomeEvent.initFilter()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitFilter);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
+  }) {
+    return initFilter();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
+  }) {
+    return initFilter?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilter != null) {
+      return initFilter();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
+  }) {
+    return initFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
+  }) {
+    return initFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilter != null) {
+      return initFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitFilter implements HomeEvent {
+  const factory InitFilter() = _$InitFilter;
+}
+
+/// @nodoc
+abstract class _$$InitFilterEventCopyWith<$Res> {
+  factory _$$InitFilterEventCopyWith(
+          _$InitFilterEvent value, $Res Function(_$InitFilterEvent) then) =
+      __$$InitFilterEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitFilterEventCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$InitFilterEvent>
+    implements _$$InitFilterEventCopyWith<$Res> {
+  __$$InitFilterEventCopyWithImpl(
+      _$InitFilterEvent _value, $Res Function(_$InitFilterEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitFilterEvent implements InitFilterEvent {
+  const _$InitFilterEvent();
+
+  @override
+  String toString() {
+    return 'HomeEvent.initFilterEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitFilterEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
+  }) {
+    return initFilterEvent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
+  }) {
+    return initFilterEvent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilterEvent != null) {
+      return initFilterEvent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
+  }) {
+    return initFilterEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
+  }) {
+    return initFilterEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilterEvent != null) {
+      return initFilterEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitFilterEvent implements HomeEvent {
+  const factory InitFilterEvent() = _$InitFilterEvent;
+}
+
+/// @nodoc
+abstract class _$$InitFilterActivityCopyWith<$Res> {
+  factory _$$InitFilterActivityCopyWith(_$InitFilterActivity value,
+          $Res Function(_$InitFilterActivity) then) =
+      __$$InitFilterActivityCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitFilterActivityCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$InitFilterActivity>
+    implements _$$InitFilterActivityCopyWith<$Res> {
+  __$$InitFilterActivityCopyWithImpl(
+      _$InitFilterActivity _value, $Res Function(_$InitFilterActivity) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitFilterActivity implements InitFilterActivity {
+  const _$InitFilterActivity();
+
+  @override
+  String toString() {
+    return 'HomeEvent.initFilterActivity()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitFilterActivity);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
+  }) {
+    return initFilterActivity();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
+  }) {
+    return initFilterActivity?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilterActivity != null) {
+      return initFilterActivity();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
+  }) {
+    return initFilterActivity(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
+  }) {
+    return initFilterActivity?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilterActivity != null) {
+      return initFilterActivity(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitFilterActivity implements HomeEvent {
+  const factory InitFilterActivity() = _$InitFilterActivity;
+}
+
+/// @nodoc
+abstract class _$$InitFilterExperienceCopyWith<$Res> {
+  factory _$$InitFilterExperienceCopyWith(_$InitFilterExperience value,
+          $Res Function(_$InitFilterExperience) then) =
+      __$$InitFilterExperienceCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitFilterExperienceCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$InitFilterExperience>
+    implements _$$InitFilterExperienceCopyWith<$Res> {
+  __$$InitFilterExperienceCopyWithImpl(_$InitFilterExperience _value,
+      $Res Function(_$InitFilterExperience) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitFilterExperience implements InitFilterExperience {
+  const _$InitFilterExperience();
+
+  @override
+  String toString() {
+    return 'HomeEvent.initFilterExperience()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitFilterExperience);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String roleUser) getUserRole,
+    required TResult Function(bool isFetching) getListHosts,
+    required TResult Function() getListLocations,
+    required TResult Function(bool isFetching) getSearchListHosts,
+    required TResult Function(bool isFetching) getListEvents,
+    required TResult Function(bool isFetching) getSearchListEvents,
+    required TResult Function(bool isFetching) getSearchListActivities,
+    required TResult Function(bool isFetching) getSearchListExperiences,
+    required TResult Function(bool isFetching) getListActivities,
+    required TResult Function(bool isFetching) getListExperiences,
+    required TResult Function(int tab) setSelectedTab,
+    required TResult Function(String startDate) changeStartDate,
+    required TResult Function(String endDate) changeEndDate,
+    required TResult Function(String city) changeCity,
+    required TResult Function(String city) changeEmplacement,
+    required TResult Function(int guests) changeGuests,
+    required TResult Function(bool search) onSetSearch,
+    required TResult Function(bool isFetching) getEventPageData,
+    required TResult Function(bool isFetching) getHostPageData,
+    required TResult Function(bool isFetching) getExperiencePageData,
+    required TResult Function(bool isFetching) getActivityPageData,
+    required TResult Function(bool isFetching) getFilterListHostsPageData,
+    required TResult Function(bool isFetching) getFilterListEventsPageData,
+    required TResult Function(bool isFetching) getFilterListActivitiesPageData,
+    required TResult Function(bool isFetching) getFilterListExperiencesPageData,
+    required TResult Function(String attributesId) setSelectedAttributesIds,
+    required TResult Function(String id) setSelectedActivityCategory,
+    required TResult Function(List<String> str) setRangePrices,
+    required TResult Function() initFilter,
+    required TResult Function() initFilterEvent,
+    required TResult Function() initFilterActivity,
+    required TResult Function() initFilterExperience,
+  }) {
+    return initFilterExperience();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String roleUser)? getUserRole,
+    TResult? Function(bool isFetching)? getListHosts,
+    TResult? Function()? getListLocations,
+    TResult? Function(bool isFetching)? getSearchListHosts,
+    TResult? Function(bool isFetching)? getListEvents,
+    TResult? Function(bool isFetching)? getSearchListEvents,
+    TResult? Function(bool isFetching)? getSearchListActivities,
+    TResult? Function(bool isFetching)? getSearchListExperiences,
+    TResult? Function(bool isFetching)? getListActivities,
+    TResult? Function(bool isFetching)? getListExperiences,
+    TResult? Function(int tab)? setSelectedTab,
+    TResult? Function(String startDate)? changeStartDate,
+    TResult? Function(String endDate)? changeEndDate,
+    TResult? Function(String city)? changeCity,
+    TResult? Function(String city)? changeEmplacement,
+    TResult? Function(int guests)? changeGuests,
+    TResult? Function(bool search)? onSetSearch,
+    TResult? Function(bool isFetching)? getEventPageData,
+    TResult? Function(bool isFetching)? getHostPageData,
+    TResult? Function(bool isFetching)? getExperiencePageData,
+    TResult? Function(bool isFetching)? getActivityPageData,
+    TResult? Function(bool isFetching)? getFilterListHostsPageData,
+    TResult? Function(bool isFetching)? getFilterListEventsPageData,
+    TResult? Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult? Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult? Function(String attributesId)? setSelectedAttributesIds,
+    TResult? Function(String id)? setSelectedActivityCategory,
+    TResult? Function(List<String> str)? setRangePrices,
+    TResult? Function()? initFilter,
+    TResult? Function()? initFilterEvent,
+    TResult? Function()? initFilterActivity,
+    TResult? Function()? initFilterExperience,
+  }) {
+    return initFilterExperience?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String roleUser)? getUserRole,
+    TResult Function(bool isFetching)? getListHosts,
+    TResult Function()? getListLocations,
+    TResult Function(bool isFetching)? getSearchListHosts,
+    TResult Function(bool isFetching)? getListEvents,
+    TResult Function(bool isFetching)? getSearchListEvents,
+    TResult Function(bool isFetching)? getSearchListActivities,
+    TResult Function(bool isFetching)? getSearchListExperiences,
+    TResult Function(bool isFetching)? getListActivities,
+    TResult Function(bool isFetching)? getListExperiences,
+    TResult Function(int tab)? setSelectedTab,
+    TResult Function(String startDate)? changeStartDate,
+    TResult Function(String endDate)? changeEndDate,
+    TResult Function(String city)? changeCity,
+    TResult Function(String city)? changeEmplacement,
+    TResult Function(int guests)? changeGuests,
+    TResult Function(bool search)? onSetSearch,
+    TResult Function(bool isFetching)? getEventPageData,
+    TResult Function(bool isFetching)? getHostPageData,
+    TResult Function(bool isFetching)? getExperiencePageData,
+    TResult Function(bool isFetching)? getActivityPageData,
+    TResult Function(bool isFetching)? getFilterListHostsPageData,
+    TResult Function(bool isFetching)? getFilterListEventsPageData,
+    TResult Function(bool isFetching)? getFilterListActivitiesPageData,
+    TResult Function(bool isFetching)? getFilterListExperiencesPageData,
+    TResult Function(String attributesId)? setSelectedAttributesIds,
+    TResult Function(String id)? setSelectedActivityCategory,
+    TResult Function(List<String> str)? setRangePrices,
+    TResult Function()? initFilter,
+    TResult Function()? initFilterEvent,
+    TResult Function()? initFilterActivity,
+    TResult Function()? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilterExperience != null) {
+      return initFilterExperience();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserRole value) getUserRole,
+    required TResult Function(GetListHost value) getListHosts,
+    required TResult Function(GetListLocations value) getListLocations,
+    required TResult Function(GetSearchListHost value) getSearchListHosts,
+    required TResult Function(GetListEvent value) getListEvents,
+    required TResult Function(GetSearchListEvent value) getSearchListEvents,
+    required TResult Function(GetSearchListActivities value)
+        getSearchListActivities,
+    required TResult Function(GetSearchListExperiences value)
+        getSearchListExperiences,
+    required TResult Function(GetListActivities value) getListActivities,
+    required TResult Function(GetListExperiences value) getListExperiences,
+    required TResult Function(SetSelectedTab value) setSelectedTab,
+    required TResult Function(_ChangeStartDate value) changeStartDate,
+    required TResult Function(_ChangeEndDate value) changeEndDate,
+    required TResult Function(_ChangeCity value) changeCity,
+    required TResult Function(_ChangeEmplacement value) changeEmplacement,
+    required TResult Function(_ChangeGuests value) changeGuests,
+    required TResult Function(_OnSetSearch value) onSetSearch,
+    required TResult Function(GetEventPageData value) getEventPageData,
+    required TResult Function(GetHostPageData value) getHostPageData,
+    required TResult Function(GetExperiencePageData value)
+        getExperiencePageData,
+    required TResult Function(GetActivityPageData value) getActivityPageData,
+    required TResult Function(GetFilterListHostsPageData value)
+        getFilterListHostsPageData,
+    required TResult Function(GetFilterListEventsPageData value)
+        getFilterListEventsPageData,
+    required TResult Function(GetFilterListActivitiesPageData value)
+        getFilterListActivitiesPageData,
+    required TResult Function(GetFilterListExperiencesPageData value)
+        getFilterListExperiencesPageData,
+    required TResult Function(SetSelectedAttributesId value)
+        setSelectedAttributesIds,
+    required TResult Function(SetSelectedActivityCategory value)
+        setSelectedActivityCategory,
+    required TResult Function(SetRangePrices value) setRangePrices,
+    required TResult Function(InitFilter value) initFilter,
+    required TResult Function(InitFilterEvent value) initFilterEvent,
+    required TResult Function(InitFilterActivity value) initFilterActivity,
+    required TResult Function(InitFilterExperience value) initFilterExperience,
+  }) {
+    return initFilterExperience(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserRole value)? getUserRole,
+    TResult? Function(GetListHost value)? getListHosts,
+    TResult? Function(GetListLocations value)? getListLocations,
+    TResult? Function(GetSearchListHost value)? getSearchListHosts,
+    TResult? Function(GetListEvent value)? getListEvents,
+    TResult? Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult? Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult? Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult? Function(GetListActivities value)? getListActivities,
+    TResult? Function(GetListExperiences value)? getListExperiences,
+    TResult? Function(SetSelectedTab value)? setSelectedTab,
+    TResult? Function(_ChangeStartDate value)? changeStartDate,
+    TResult? Function(_ChangeEndDate value)? changeEndDate,
+    TResult? Function(_ChangeCity value)? changeCity,
+    TResult? Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult? Function(_ChangeGuests value)? changeGuests,
+    TResult? Function(_OnSetSearch value)? onSetSearch,
+    TResult? Function(GetEventPageData value)? getEventPageData,
+    TResult? Function(GetHostPageData value)? getHostPageData,
+    TResult? Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult? Function(GetActivityPageData value)? getActivityPageData,
+    TResult? Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult? Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult? Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult? Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult? Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult? Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult? Function(SetRangePrices value)? setRangePrices,
+    TResult? Function(InitFilter value)? initFilter,
+    TResult? Function(InitFilterEvent value)? initFilterEvent,
+    TResult? Function(InitFilterActivity value)? initFilterActivity,
+    TResult? Function(InitFilterExperience value)? initFilterExperience,
+  }) {
+    return initFilterExperience?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserRole value)? getUserRole,
+    TResult Function(GetListHost value)? getListHosts,
+    TResult Function(GetListLocations value)? getListLocations,
+    TResult Function(GetSearchListHost value)? getSearchListHosts,
+    TResult Function(GetListEvent value)? getListEvents,
+    TResult Function(GetSearchListEvent value)? getSearchListEvents,
+    TResult Function(GetSearchListActivities value)? getSearchListActivities,
+    TResult Function(GetSearchListExperiences value)? getSearchListExperiences,
+    TResult Function(GetListActivities value)? getListActivities,
+    TResult Function(GetListExperiences value)? getListExperiences,
+    TResult Function(SetSelectedTab value)? setSelectedTab,
+    TResult Function(_ChangeStartDate value)? changeStartDate,
+    TResult Function(_ChangeEndDate value)? changeEndDate,
+    TResult Function(_ChangeCity value)? changeCity,
+    TResult Function(_ChangeEmplacement value)? changeEmplacement,
+    TResult Function(_ChangeGuests value)? changeGuests,
+    TResult Function(_OnSetSearch value)? onSetSearch,
+    TResult Function(GetEventPageData value)? getEventPageData,
+    TResult Function(GetHostPageData value)? getHostPageData,
+    TResult Function(GetExperiencePageData value)? getExperiencePageData,
+    TResult Function(GetActivityPageData value)? getActivityPageData,
+    TResult Function(GetFilterListHostsPageData value)?
+        getFilterListHostsPageData,
+    TResult Function(GetFilterListEventsPageData value)?
+        getFilterListEventsPageData,
+    TResult Function(GetFilterListActivitiesPageData value)?
+        getFilterListActivitiesPageData,
+    TResult Function(GetFilterListExperiencesPageData value)?
+        getFilterListExperiencesPageData,
+    TResult Function(SetSelectedAttributesId value)? setSelectedAttributesIds,
+    TResult Function(SetSelectedActivityCategory value)?
+        setSelectedActivityCategory,
+    TResult Function(SetRangePrices value)? setRangePrices,
+    TResult Function(InitFilter value)? initFilter,
+    TResult Function(InitFilterEvent value)? initFilterEvent,
+    TResult Function(InitFilterActivity value)? initFilterActivity,
+    TResult Function(InitFilterExperience value)? initFilterExperience,
+    required TResult orElse(),
+  }) {
+    if (initFilterExperience != null) {
+      return initFilterExperience(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitFilterExperience implements HomeEvent {
+  const factory InitFilterExperience() = _$InitFilterExperience;
 }
 
 /// @nodoc

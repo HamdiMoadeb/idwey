@@ -942,6 +942,7 @@ mixin _$DetailsPageState {
   StateStatus? get status => throw _privateConstructorUsedError;
   HostDetails? get hostDetails => throw _privateConstructorUsedError;
   List<ExtraPrice>? get extraPrice => throw _privateConstructorUsedError;
+  List<ExtraPrice>? get extraPriceDraft => throw _privateConstructorUsedError;
   List<Map<String, dynamic>>? get extraPriceObjet =>
       throw _privateConstructorUsedError;
   double? get extraPriceTotal => throw _privateConstructorUsedError;
@@ -962,6 +963,7 @@ abstract class $DetailsPageStateCopyWith<$Res> {
       StateStatus? status,
       HostDetails? hostDetails,
       List<ExtraPrice>? extraPrice,
+      List<ExtraPrice>? extraPriceDraft,
       List<Map<String, dynamic>>? extraPriceObjet,
       double? extraPriceTotal});
 }
@@ -983,6 +985,7 @@ class _$DetailsPageStateCopyWithImpl<$Res, $Val extends DetailsPageState>
     Object? status = freezed,
     Object? hostDetails = freezed,
     Object? extraPrice = freezed,
+    Object? extraPriceDraft = freezed,
     Object? extraPriceObjet = freezed,
     Object? extraPriceTotal = freezed,
   }) {
@@ -1002,6 +1005,10 @@ class _$DetailsPageStateCopyWithImpl<$Res, $Val extends DetailsPageState>
       extraPrice: freezed == extraPrice
           ? _value.extraPrice
           : extraPrice // ignore: cast_nullable_to_non_nullable
+              as List<ExtraPrice>?,
+      extraPriceDraft: freezed == extraPriceDraft
+          ? _value.extraPriceDraft
+          : extraPriceDraft // ignore: cast_nullable_to_non_nullable
               as List<ExtraPrice>?,
       extraPriceObjet: freezed == extraPriceObjet
           ? _value.extraPriceObjet
@@ -1028,6 +1035,7 @@ abstract class _$$_DetailsPageStateCopyWith<$Res>
       StateStatus? status,
       HostDetails? hostDetails,
       List<ExtraPrice>? extraPrice,
+      List<ExtraPrice>? extraPriceDraft,
       List<Map<String, dynamic>>? extraPriceObjet,
       double? extraPriceTotal});
 }
@@ -1047,6 +1055,7 @@ class __$$_DetailsPageStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? hostDetails = freezed,
     Object? extraPrice = freezed,
+    Object? extraPriceDraft = freezed,
     Object? extraPriceObjet = freezed,
     Object? extraPriceTotal = freezed,
   }) {
@@ -1066,6 +1075,10 @@ class __$$_DetailsPageStateCopyWithImpl<$Res>
       extraPrice: freezed == extraPrice
           ? _value._extraPrice
           : extraPrice // ignore: cast_nullable_to_non_nullable
+              as List<ExtraPrice>?,
+      extraPriceDraft: freezed == extraPriceDraft
+          ? _value._extraPriceDraft
+          : extraPriceDraft // ignore: cast_nullable_to_non_nullable
               as List<ExtraPrice>?,
       extraPriceObjet: freezed == extraPriceObjet
           ? _value._extraPriceObjet
@@ -1087,9 +1100,11 @@ class _$_DetailsPageState implements _DetailsPageState {
       this.status,
       this.hostDetails,
       final List<ExtraPrice>? extraPrice,
+      final List<ExtraPrice>? extraPriceDraft,
       final List<Map<String, dynamic>>? extraPriceObjet,
       this.extraPriceTotal})
       : _extraPrice = extraPrice,
+        _extraPriceDraft = extraPriceDraft,
         _extraPriceObjet = extraPriceObjet;
 
   @override
@@ -1104,6 +1119,16 @@ class _$_DetailsPageState implements _DetailsPageState {
     final value = _extraPrice;
     if (value == null) return null;
     if (_extraPrice is EqualUnmodifiableListView) return _extraPrice;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ExtraPrice>? _extraPriceDraft;
+  @override
+  List<ExtraPrice>? get extraPriceDraft {
+    final value = _extraPriceDraft;
+    if (value == null) return null;
+    if (_extraPriceDraft is EqualUnmodifiableListView) return _extraPriceDraft;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1123,7 +1148,7 @@ class _$_DetailsPageState implements _DetailsPageState {
 
   @override
   String toString() {
-    return 'DetailsPageState(title: $title, status: $status, hostDetails: $hostDetails, extraPrice: $extraPrice, extraPriceObjet: $extraPriceObjet, extraPriceTotal: $extraPriceTotal)';
+    return 'DetailsPageState(title: $title, status: $status, hostDetails: $hostDetails, extraPrice: $extraPrice, extraPriceDraft: $extraPriceDraft, extraPriceObjet: $extraPriceObjet, extraPriceTotal: $extraPriceTotal)';
   }
 
   @override
@@ -1138,6 +1163,8 @@ class _$_DetailsPageState implements _DetailsPageState {
             const DeepCollectionEquality()
                 .equals(other._extraPrice, _extraPrice) &&
             const DeepCollectionEquality()
+                .equals(other._extraPriceDraft, _extraPriceDraft) &&
+            const DeepCollectionEquality()
                 .equals(other._extraPriceObjet, _extraPriceObjet) &&
             (identical(other.extraPriceTotal, extraPriceTotal) ||
                 other.extraPriceTotal == extraPriceTotal));
@@ -1150,6 +1177,7 @@ class _$_DetailsPageState implements _DetailsPageState {
       status,
       hostDetails,
       const DeepCollectionEquality().hash(_extraPrice),
+      const DeepCollectionEquality().hash(_extraPriceDraft),
       const DeepCollectionEquality().hash(_extraPriceObjet),
       extraPriceTotal);
 
@@ -1166,6 +1194,7 @@ abstract class _DetailsPageState implements DetailsPageState {
       final StateStatus? status,
       final HostDetails? hostDetails,
       final List<ExtraPrice>? extraPrice,
+      final List<ExtraPrice>? extraPriceDraft,
       final List<Map<String, dynamic>>? extraPriceObjet,
       final double? extraPriceTotal}) = _$_DetailsPageState;
 
@@ -1177,6 +1206,8 @@ abstract class _DetailsPageState implements DetailsPageState {
   HostDetails? get hostDetails;
   @override
   List<ExtraPrice>? get extraPrice;
+  @override
+  List<ExtraPrice>? get extraPriceDraft;
   @override
   List<Map<String, dynamic>>? get extraPriceObjet;
   @override

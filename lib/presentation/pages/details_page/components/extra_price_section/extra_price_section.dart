@@ -17,72 +17,87 @@ class ExtraPriceSection extends StatefulWidget {
 
 class _ExtraPriceSectionState extends State<ExtraPriceSection> {
   List<bool> isCheckedList = [];
+  List<int> quantityList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     isCheckedList = List.generate(widget.extraPrices.length, (index) => false);
+    quantityList = List.generate(widget.extraPrices.length, (index) => 1);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: 20.h),
-          child: Text(
-            'Prix extra',
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontWeight: FontWeight.w500),
-          ),
-        ),
-        Column(
-          children: widget.extraPrices.asMap().entries.map((entry) {
-            final int index = entry.key;
-            ExtraPrice e = entry.value;
-            return ExtraPriceComponent(
-              quantity: e.quantity ?? 1,
-              isChecked:
-                  isCheckedList[index], // Use the individual checked state
-              title: e.name ?? "",
-              subtitle: e.price ?? "",
-              onchange: (int i) {
-                /// update quantity inside extra price object
-                e = ExtraPrice(
-                  name: e.name,
-                  price: e.price,
-                  quantity: i,
-                );
-                context
-                    .read<DetailsPageBloc>()
-                    .add(DetailsPageEvent.onExtraPriceQuantityChanged(e, i));
-              },
-              onCheck: (bool? v) {
-                setState(() {
-                  isCheckedList[index] =
-                      v ?? false; // Update the individual checked state
-                });
+    return BlocBuilder<DetailsPageBloc, DetailsPageState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 20.h),
+              child: Text(
+                'Prix extra',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.w500),
+              ),
+            ),
+            Column(
+              children: widget.extraPrices.asMap().entries.map((entry) {
+                final int index = entry.key;
+                ExtraPrice e = entry.value;
+                return ExtraPriceComponent(
+                  quantity: quantityList[index],
+                  isChecked:
+                      isCheckedList[index], // Use the individual checked state
+                  title: e.name ?? "",
+                  subtitle: e.price ?? "",
+                  onchange: (int i) {
+                    /// update quantity inside extra price object
+                    e = ExtraPrice(
+                      name: e.name,
+                      price: e.price,
+                      quantity: i,
+                    );
 
-                /// if checked == true add the extra price to the list else remove it
-                if (v == true) {
-                  context
-                      .read<DetailsPageBloc>()
-                      .add(DetailsPageEvent.onExtraPriceChecked(e));
-                } else {
-                  context
-                      .read<DetailsPageBloc>()
-                      .add(DetailsPageEvent.onExtraPriceUnChecked(e));
-                }
-              },
-            );
-          }).toList(),
-        ),
-        Divider(),
-      ],
+                    quantityList[index] = i;
+                    context.read<DetailsPageBloc>().add(
+                        DetailsPageEvent.onExtraPriceQuantityChanged(e, i));
+                  },
+                  onCheck: (bool? v) {
+                    setState(() {
+                      isCheckedList[index] =
+                          v ?? false; // Update the individual checked state
+                    });
+
+                    /// if checked == true add the extra price to the list else remove it
+                    if (v == true) {
+                      setState(() {
+                        e = ExtraPrice(
+                          name: e.name,
+                          price: e.price,
+                          quantity: quantityList[index],
+                        );
+                      });
+
+                      context
+                          .read<DetailsPageBloc>()
+                          .add(DetailsPageEvent.onExtraPriceChecked(e));
+                    } else {
+                      context
+                          .read<DetailsPageBloc>()
+                          .add(DetailsPageEvent.onExtraPriceUnChecked(e));
+                    }
+                  },
+                );
+              }).toList(),
+            ),
+            Divider(),
+          ],
+        );
+      },
     );
   }
 }

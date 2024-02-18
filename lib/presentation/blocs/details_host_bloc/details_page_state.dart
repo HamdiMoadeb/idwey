@@ -7,6 +7,7 @@ class DetailsPageState with _$DetailsPageState {
     StateStatus? status,
     HostDetails? hostDetails,
     List<ExtraPrice>? extraPrice,
+    List<ExtraPrice>? extraPriceDraft,
     List<Map<String, dynamic>>? extraPriceObjet,
     double? extraPriceTotal,
   }) = _DetailsPageState;
@@ -17,6 +18,7 @@ class DetailsPageState with _$DetailsPageState {
         hostDetails: null,
         extraPrice: [],
         extraPriceObjet: [],
+        extraPriceDraft: [],
         extraPriceTotal: 0.0,
       );
 }
