@@ -52,4 +52,5 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.setSelectedActivityCategory(String id) =
       SetSelectedActivityCategory;
   const factory HomeEvent.setRangePrices(List<String> str) = SetRangePrices;
+  const factory HomeEvent.initFilter() = InitFilter;
 }

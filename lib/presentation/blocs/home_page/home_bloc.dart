@@ -53,6 +53,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetFilterListEventsPageData>(_getListFilterEvents);
     on<GetFilterListActivitiesPageData>(_getListFilterActivities);
     on<GetFilterListExperiencesPageData>(_getListFilterExperiences);
+    on<InitFilter>(initFilter);
+  }
+
+  initFilter(InitFilter event, Emitter<HomeState> emit) {
+    emit(state.copyWith(
+      isFilter: true,
+    ));
   }
 
   _getUserRole(GetUserRole event, Emitter<HomeState> emit) {}
@@ -73,6 +80,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ));
       }
       if (state.isFilter == true) {
+        print('isFilter');
         emit(state.copyWith(
           listHosts: [],
           isFilter: false,
@@ -255,6 +263,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           guests: 0,
           selectedAttributesId: [],
           selectedActivityCategoriesId: [],
+          atTheEndOfThePageEvents: false,
           selectedPriceRanges: [
             state.minPriceRange ?? "0",
             state.maxPriceRange ?? "1000"

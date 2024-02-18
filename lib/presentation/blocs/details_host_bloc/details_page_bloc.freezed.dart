@@ -25,7 +25,6 @@ mixin _$DetailsPageEvent {
         onChangExtraPriceNumber,
     required TResult Function(ExtraPrice extraPrice, int i)
         onExtraPriceQuantityChanged,
-    required TResult Function(List<ExtraPrice> list) setExtraPriceList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,7 +35,6 @@ mixin _$DetailsPageEvent {
     TResult? Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult? Function(ExtraPrice extraPrice, int i)?
         onExtraPriceQuantityChanged,
-    TResult? Function(List<ExtraPrice> list)? setExtraPriceList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,7 +44,6 @@ mixin _$DetailsPageEvent {
     TResult Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
     TResult Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
-    TResult Function(List<ExtraPrice> list)? setExtraPriceList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,7 +57,6 @@ mixin _$DetailsPageEvent {
         onChangExtraPriceNumber,
     required TResult Function(_OnExtraPriceQuantityChanged value)
         onExtraPriceQuantityChanged,
-    required TResult Function(_SetExtraPriceList value) setExtraPriceList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,7 +68,6 @@ mixin _$DetailsPageEvent {
         onChangExtraPriceNumber,
     TResult? Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult? Function(_SetExtraPriceList value)? setExtraPriceList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -83,7 +78,6 @@ mixin _$DetailsPageEvent {
     TResult Function(_OnChangedExtraPriceNumber value)? onChangExtraPriceNumber,
     TResult Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult Function(_SetExtraPriceList value)? setExtraPriceList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -178,7 +172,6 @@ class _$GetHostDetails implements GetHostDetails {
         onChangExtraPriceNumber,
     required TResult Function(ExtraPrice extraPrice, int i)
         onExtraPriceQuantityChanged,
-    required TResult Function(List<ExtraPrice> list) setExtraPriceList,
   }) {
     return getHostDetails(id);
   }
@@ -192,7 +185,6 @@ class _$GetHostDetails implements GetHostDetails {
     TResult? Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult? Function(ExtraPrice extraPrice, int i)?
         onExtraPriceQuantityChanged,
-    TResult? Function(List<ExtraPrice> list)? setExtraPriceList,
   }) {
     return getHostDetails?.call(id);
   }
@@ -205,7 +197,6 @@ class _$GetHostDetails implements GetHostDetails {
     TResult Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
     TResult Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
-    TResult Function(List<ExtraPrice> list)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (getHostDetails != null) {
@@ -225,7 +216,6 @@ class _$GetHostDetails implements GetHostDetails {
         onChangExtraPriceNumber,
     required TResult Function(_OnExtraPriceQuantityChanged value)
         onExtraPriceQuantityChanged,
-    required TResult Function(_SetExtraPriceList value) setExtraPriceList,
   }) {
     return getHostDetails(this);
   }
@@ -240,7 +230,6 @@ class _$GetHostDetails implements GetHostDetails {
         onChangExtraPriceNumber,
     TResult? Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult? Function(_SetExtraPriceList value)? setExtraPriceList,
   }) {
     return getHostDetails?.call(this);
   }
@@ -254,7 +243,6 @@ class _$GetHostDetails implements GetHostDetails {
     TResult Function(_OnChangedExtraPriceNumber value)? onChangExtraPriceNumber,
     TResult Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult Function(_SetExtraPriceList value)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (getHostDetails != null) {
@@ -346,7 +334,6 @@ class _$_OnExtraPriceChecked implements _OnExtraPriceChecked {
         onChangExtraPriceNumber,
     required TResult Function(ExtraPrice extraPrice, int i)
         onExtraPriceQuantityChanged,
-    required TResult Function(List<ExtraPrice> list) setExtraPriceList,
   }) {
     return onExtraPriceChecked(extraPrice);
   }
@@ -360,7 +347,6 @@ class _$_OnExtraPriceChecked implements _OnExtraPriceChecked {
     TResult? Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult? Function(ExtraPrice extraPrice, int i)?
         onExtraPriceQuantityChanged,
-    TResult? Function(List<ExtraPrice> list)? setExtraPriceList,
   }) {
     return onExtraPriceChecked?.call(extraPrice);
   }
@@ -373,7 +359,6 @@ class _$_OnExtraPriceChecked implements _OnExtraPriceChecked {
     TResult Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
     TResult Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
-    TResult Function(List<ExtraPrice> list)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onExtraPriceChecked != null) {
@@ -393,7 +378,6 @@ class _$_OnExtraPriceChecked implements _OnExtraPriceChecked {
         onChangExtraPriceNumber,
     required TResult Function(_OnExtraPriceQuantityChanged value)
         onExtraPriceQuantityChanged,
-    required TResult Function(_SetExtraPriceList value) setExtraPriceList,
   }) {
     return onExtraPriceChecked(this);
   }
@@ -408,7 +392,6 @@ class _$_OnExtraPriceChecked implements _OnExtraPriceChecked {
         onChangExtraPriceNumber,
     TResult? Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult? Function(_SetExtraPriceList value)? setExtraPriceList,
   }) {
     return onExtraPriceChecked?.call(this);
   }
@@ -422,7 +405,6 @@ class _$_OnExtraPriceChecked implements _OnExtraPriceChecked {
     TResult Function(_OnChangedExtraPriceNumber value)? onChangExtraPriceNumber,
     TResult Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult Function(_SetExtraPriceList value)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onExtraPriceChecked != null) {
@@ -515,7 +497,6 @@ class _$_OnExtraPriceUnChecked implements _OnExtraPriceUnChecked {
         onChangExtraPriceNumber,
     required TResult Function(ExtraPrice extraPrice, int i)
         onExtraPriceQuantityChanged,
-    required TResult Function(List<ExtraPrice> list) setExtraPriceList,
   }) {
     return onExtraPriceUnChecked(extraPrice);
   }
@@ -529,7 +510,6 @@ class _$_OnExtraPriceUnChecked implements _OnExtraPriceUnChecked {
     TResult? Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult? Function(ExtraPrice extraPrice, int i)?
         onExtraPriceQuantityChanged,
-    TResult? Function(List<ExtraPrice> list)? setExtraPriceList,
   }) {
     return onExtraPriceUnChecked?.call(extraPrice);
   }
@@ -542,7 +522,6 @@ class _$_OnExtraPriceUnChecked implements _OnExtraPriceUnChecked {
     TResult Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
     TResult Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
-    TResult Function(List<ExtraPrice> list)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onExtraPriceUnChecked != null) {
@@ -562,7 +541,6 @@ class _$_OnExtraPriceUnChecked implements _OnExtraPriceUnChecked {
         onChangExtraPriceNumber,
     required TResult Function(_OnExtraPriceQuantityChanged value)
         onExtraPriceQuantityChanged,
-    required TResult Function(_SetExtraPriceList value) setExtraPriceList,
   }) {
     return onExtraPriceUnChecked(this);
   }
@@ -577,7 +555,6 @@ class _$_OnExtraPriceUnChecked implements _OnExtraPriceUnChecked {
         onChangExtraPriceNumber,
     TResult? Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult? Function(_SetExtraPriceList value)? setExtraPriceList,
   }) {
     return onExtraPriceUnChecked?.call(this);
   }
@@ -591,7 +568,6 @@ class _$_OnExtraPriceUnChecked implements _OnExtraPriceUnChecked {
     TResult Function(_OnChangedExtraPriceNumber value)? onChangExtraPriceNumber,
     TResult Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult Function(_SetExtraPriceList value)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onExtraPriceUnChecked != null) {
@@ -694,7 +670,6 @@ class _$_OnChangedExtraPriceNumber implements _OnChangedExtraPriceNumber {
         onChangExtraPriceNumber,
     required TResult Function(ExtraPrice extraPrice, int i)
         onExtraPriceQuantityChanged,
-    required TResult Function(List<ExtraPrice> list) setExtraPriceList,
   }) {
     return onChangExtraPriceNumber(extraPrice, i);
   }
@@ -708,7 +683,6 @@ class _$_OnChangedExtraPriceNumber implements _OnChangedExtraPriceNumber {
     TResult? Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult? Function(ExtraPrice extraPrice, int i)?
         onExtraPriceQuantityChanged,
-    TResult? Function(List<ExtraPrice> list)? setExtraPriceList,
   }) {
     return onChangExtraPriceNumber?.call(extraPrice, i);
   }
@@ -721,7 +695,6 @@ class _$_OnChangedExtraPriceNumber implements _OnChangedExtraPriceNumber {
     TResult Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
     TResult Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
-    TResult Function(List<ExtraPrice> list)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onChangExtraPriceNumber != null) {
@@ -741,7 +714,6 @@ class _$_OnChangedExtraPriceNumber implements _OnChangedExtraPriceNumber {
         onChangExtraPriceNumber,
     required TResult Function(_OnExtraPriceQuantityChanged value)
         onExtraPriceQuantityChanged,
-    required TResult Function(_SetExtraPriceList value) setExtraPriceList,
   }) {
     return onChangExtraPriceNumber(this);
   }
@@ -756,7 +728,6 @@ class _$_OnChangedExtraPriceNumber implements _OnChangedExtraPriceNumber {
         onChangExtraPriceNumber,
     TResult? Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult? Function(_SetExtraPriceList value)? setExtraPriceList,
   }) {
     return onChangExtraPriceNumber?.call(this);
   }
@@ -770,7 +741,6 @@ class _$_OnChangedExtraPriceNumber implements _OnChangedExtraPriceNumber {
     TResult Function(_OnChangedExtraPriceNumber value)? onChangExtraPriceNumber,
     TResult Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult Function(_SetExtraPriceList value)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onChangExtraPriceNumber != null) {
@@ -874,7 +844,6 @@ class _$_OnExtraPriceQuantityChanged implements _OnExtraPriceQuantityChanged {
         onChangExtraPriceNumber,
     required TResult Function(ExtraPrice extraPrice, int i)
         onExtraPriceQuantityChanged,
-    required TResult Function(List<ExtraPrice> list) setExtraPriceList,
   }) {
     return onExtraPriceQuantityChanged(extraPrice, i);
   }
@@ -888,7 +857,6 @@ class _$_OnExtraPriceQuantityChanged implements _OnExtraPriceQuantityChanged {
     TResult? Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult? Function(ExtraPrice extraPrice, int i)?
         onExtraPriceQuantityChanged,
-    TResult? Function(List<ExtraPrice> list)? setExtraPriceList,
   }) {
     return onExtraPriceQuantityChanged?.call(extraPrice, i);
   }
@@ -901,7 +869,6 @@ class _$_OnExtraPriceQuantityChanged implements _OnExtraPriceQuantityChanged {
     TResult Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
     TResult Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
     TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
-    TResult Function(List<ExtraPrice> list)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onExtraPriceQuantityChanged != null) {
@@ -921,7 +888,6 @@ class _$_OnExtraPriceQuantityChanged implements _OnExtraPriceQuantityChanged {
         onChangExtraPriceNumber,
     required TResult Function(_OnExtraPriceQuantityChanged value)
         onExtraPriceQuantityChanged,
-    required TResult Function(_SetExtraPriceList value) setExtraPriceList,
   }) {
     return onExtraPriceQuantityChanged(this);
   }
@@ -936,7 +902,6 @@ class _$_OnExtraPriceQuantityChanged implements _OnExtraPriceQuantityChanged {
         onChangExtraPriceNumber,
     TResult? Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult? Function(_SetExtraPriceList value)? setExtraPriceList,
   }) {
     return onExtraPriceQuantityChanged?.call(this);
   }
@@ -950,7 +915,6 @@ class _$_OnExtraPriceQuantityChanged implements _OnExtraPriceQuantityChanged {
     TResult Function(_OnChangedExtraPriceNumber value)? onChangExtraPriceNumber,
     TResult Function(_OnExtraPriceQuantityChanged value)?
         onExtraPriceQuantityChanged,
-    TResult Function(_SetExtraPriceList value)? setExtraPriceList,
     required TResult orElse(),
   }) {
     if (onExtraPriceQuantityChanged != null) {
@@ -970,180 +934,6 @@ abstract class _OnExtraPriceQuantityChanged implements DetailsPageEvent {
   @JsonKey(ignore: true)
   _$$_OnExtraPriceQuantityChangedCopyWith<_$_OnExtraPriceQuantityChanged>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_SetExtraPriceListCopyWith<$Res> {
-  factory _$$_SetExtraPriceListCopyWith(_$_SetExtraPriceList value,
-          $Res Function(_$_SetExtraPriceList) then) =
-      __$$_SetExtraPriceListCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<ExtraPrice> list});
-}
-
-/// @nodoc
-class __$$_SetExtraPriceListCopyWithImpl<$Res>
-    extends _$DetailsPageEventCopyWithImpl<$Res, _$_SetExtraPriceList>
-    implements _$$_SetExtraPriceListCopyWith<$Res> {
-  __$$_SetExtraPriceListCopyWithImpl(
-      _$_SetExtraPriceList _value, $Res Function(_$_SetExtraPriceList) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? list = null,
-  }) {
-    return _then(_$_SetExtraPriceList(
-      null == list
-          ? _value._list
-          : list // ignore: cast_nullable_to_non_nullable
-              as List<ExtraPrice>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SetExtraPriceList implements _SetExtraPriceList {
-  const _$_SetExtraPriceList(final List<ExtraPrice> list) : _list = list;
-
-  final List<ExtraPrice> _list;
-  @override
-  List<ExtraPrice> get list {
-    if (_list is EqualUnmodifiableListView) return _list;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_list);
-  }
-
-  @override
-  String toString() {
-    return 'DetailsPageEvent.setExtraPriceList(list: $list)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SetExtraPriceList &&
-            const DeepCollectionEquality().equals(other._list, _list));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SetExtraPriceListCopyWith<_$_SetExtraPriceList> get copyWith =>
-      __$$_SetExtraPriceListCopyWithImpl<_$_SetExtraPriceList>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int id) getHostDetails,
-    required TResult Function(ExtraPrice extraPrice) onExtraPriceChecked,
-    required TResult Function(ExtraPrice extraPrice) onExtraPriceUnChecked,
-    required TResult Function(ExtraPrice extraPrice, int i)
-        onChangExtraPriceNumber,
-    required TResult Function(ExtraPrice extraPrice, int i)
-        onExtraPriceQuantityChanged,
-    required TResult Function(List<ExtraPrice> list) setExtraPriceList,
-  }) {
-    return setExtraPriceList(list);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? getHostDetails,
-    TResult? Function(ExtraPrice extraPrice)? onExtraPriceChecked,
-    TResult? Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
-    TResult? Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
-    TResult? Function(ExtraPrice extraPrice, int i)?
-        onExtraPriceQuantityChanged,
-    TResult? Function(List<ExtraPrice> list)? setExtraPriceList,
-  }) {
-    return setExtraPriceList?.call(list);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? getHostDetails,
-    TResult Function(ExtraPrice extraPrice)? onExtraPriceChecked,
-    TResult Function(ExtraPrice extraPrice)? onExtraPriceUnChecked,
-    TResult Function(ExtraPrice extraPrice, int i)? onChangExtraPriceNumber,
-    TResult Function(ExtraPrice extraPrice, int i)? onExtraPriceQuantityChanged,
-    TResult Function(List<ExtraPrice> list)? setExtraPriceList,
-    required TResult orElse(),
-  }) {
-    if (setExtraPriceList != null) {
-      return setExtraPriceList(list);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetHostDetails value) getHostDetails,
-    required TResult Function(_OnExtraPriceChecked value) onExtraPriceChecked,
-    required TResult Function(_OnExtraPriceUnChecked value)
-        onExtraPriceUnChecked,
-    required TResult Function(_OnChangedExtraPriceNumber value)
-        onChangExtraPriceNumber,
-    required TResult Function(_OnExtraPriceQuantityChanged value)
-        onExtraPriceQuantityChanged,
-    required TResult Function(_SetExtraPriceList value) setExtraPriceList,
-  }) {
-    return setExtraPriceList(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GetHostDetails value)? getHostDetails,
-    TResult? Function(_OnExtraPriceChecked value)? onExtraPriceChecked,
-    TResult? Function(_OnExtraPriceUnChecked value)? onExtraPriceUnChecked,
-    TResult? Function(_OnChangedExtraPriceNumber value)?
-        onChangExtraPriceNumber,
-    TResult? Function(_OnExtraPriceQuantityChanged value)?
-        onExtraPriceQuantityChanged,
-    TResult? Function(_SetExtraPriceList value)? setExtraPriceList,
-  }) {
-    return setExtraPriceList?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetHostDetails value)? getHostDetails,
-    TResult Function(_OnExtraPriceChecked value)? onExtraPriceChecked,
-    TResult Function(_OnExtraPriceUnChecked value)? onExtraPriceUnChecked,
-    TResult Function(_OnChangedExtraPriceNumber value)? onChangExtraPriceNumber,
-    TResult Function(_OnExtraPriceQuantityChanged value)?
-        onExtraPriceQuantityChanged,
-    TResult Function(_SetExtraPriceList value)? setExtraPriceList,
-    required TResult orElse(),
-  }) {
-    if (setExtraPriceList != null) {
-      return setExtraPriceList(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SetExtraPriceList implements DetailsPageEvent {
-  const factory _SetExtraPriceList(final List<ExtraPrice> list) =
-      _$_SetExtraPriceList;
-
-  List<ExtraPrice> get list;
-  @JsonKey(ignore: true)
-  _$$_SetExtraPriceListCopyWith<_$_SetExtraPriceList> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

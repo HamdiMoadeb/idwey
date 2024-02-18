@@ -34,8 +34,7 @@ class _FilterScreenState extends State<FilterScreen> {
   void initState() {
     // TODO: implement initState
     getListAttributes(context.read<HomeBloc>().state.listAttributes ?? []);
-    print("initState");
-    print(context.read<HomeBloc>().state.isFilter);
+
     super.initState();
   }
 
@@ -43,9 +42,6 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        print("state.eventPageDto?.eventMinMaxPrice");
-        print(state.eventPageDto?.eventMinMaxPrice![0]);
-        print(state.eventPageDto?.eventMinMaxPrice![1]);
         return ClipRRect(
           borderRadius: BorderRadius.circular(20.r),
           child: Scaffold(
@@ -79,21 +75,33 @@ class _FilterScreenState extends State<FilterScreen> {
                       child: InkWell(
                         onTap: () {
                           if (state.selectedTab == 0) {
-                            print("00000");
+                            context
+                                .read<HomeBloc>()
+                                .add(const HomeEvent.initFilter());
+
                             context
                                 .read<HomeBloc>()
                                 .add(const HomeEvent.getListHosts(false));
                           } else if (state.selectedTab == 1) {
-                            print("111111");
+                            context
+                                .read<HomeBloc>()
+                                .add(const HomeEvent.initFilter());
+
                             context
                                 .read<HomeBloc>()
                                 .add(const HomeEvent.getListEvents(false));
                           } else if (state.selectedTab == 2) {
                             context
                                 .read<HomeBloc>()
+                                .add(const HomeEvent.initFilter());
+
+                            context
+                                .read<HomeBloc>()
                                 .add(const HomeEvent.getListActivities(false));
                           } else if (state.selectedTab == 3) {
-                            print("333333");
+                            context
+                                .read<HomeBloc>()
+                                .add(const HomeEvent.initFilter());
 
                             context
                                 .read<HomeBloc>()
