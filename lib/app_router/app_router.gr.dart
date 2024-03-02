@@ -240,6 +240,7 @@ abstract class _$AppRouter extends RootStackRouter {
           listScale: args.listScale,
           id: args.id,
           type: args.type,
+          canReview: args.canReview,
         ),
       );
     },
@@ -1051,6 +1052,7 @@ class ReviewsRoute extends PageRouteInfo<ReviewsRouteArgs> {
     required List<ReviewScale> listScale,
     required String id,
     required String type,
+    required bool canReview,
     List<PageRouteInfo>? children,
   }) : super(
           ReviewsRoute.name,
@@ -1062,6 +1064,7 @@ class ReviewsRoute extends PageRouteInfo<ReviewsRouteArgs> {
             listScale: listScale,
             id: id,
             type: type,
+            canReview: canReview,
           ),
           initialChildren: children,
         );
@@ -1081,6 +1084,7 @@ class ReviewsRouteArgs {
     required this.listScale,
     required this.id,
     required this.type,
+    required this.canReview,
   });
 
   final Key? key;
@@ -1097,9 +1101,11 @@ class ReviewsRouteArgs {
 
   final String type;
 
+  final bool canReview;
+
   @override
   String toString() {
-    return 'ReviewsRouteArgs{key: $key, reviewsList: $reviewsList, averageRating: $averageRating, reviewsNumber: $reviewsNumber, listScale: $listScale, id: $id, type: $type}';
+    return 'ReviewsRouteArgs{key: $key, reviewsList: $reviewsList, averageRating: $averageRating, reviewsNumber: $reviewsNumber, listScale: $listScale, id: $id, type: $type, canReview: $canReview}';
   }
 }
 

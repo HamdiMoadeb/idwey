@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/domain/usecases/add_review_usecase.dart';
 import 'package:idwey/domain/usecases/get_rate_settings_usecase.dart';
+import 'package:idwey/domain/usecases/update_review_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'add_review_bloc.freezed.dart';
@@ -147,13 +148,14 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
     print("updaaate review");
     try {
       final Either<Exception, dynamic> result =
-          await GetIt.I<AddReviewUseCase>().call({
+          await GetIt.I<UpdateReviewUseCase>().call({
         "review_id": state.serviceID ?? "",
         "review_content": state.review ?? "",
         "review_stats": state.ratesStars ?? []
       });
 
       result.fold((Exception failure) {
+        print("failure$failure");
         emit(state.copyWith(
           updateReviewStatus: StateStatus.error,
         ));

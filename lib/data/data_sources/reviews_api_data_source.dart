@@ -61,18 +61,12 @@ class ReviewsApiDataSourceImpl implements ReviewsApiDataSource {
   Future<String> updateReview(Map<String, dynamic> body) async {
     print("updateReview");
     print(body);
-    body = {
-      "review_id": 163,
-      "review_content": "nice job333333",
-      "review_stats": [
-        {"stars": 5, "title": "Service"},
-        {"stars": 5, "title": "Equipement"},
-        {"stars": 5, "title": "Safety"},
-        {"stars": 5, "title": "Cleanliness"}
-      ]
-    };
+
+
     final response =
-        await dio.put("https://idwey.tn/api/updatereviewApi", data: body);
+        await dio.put("https://idwey.tn/api/updatereviewApi", data: body,
+
+        );
     print("response.data");
     print(response);
     return response.data;

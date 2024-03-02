@@ -362,7 +362,7 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
         print("totalPrice");
         print(totalPrice);
         double totalPriceOnSale =
-            double.parse(state.totalPriceOnSale ?? "0.00") -
+            double.tryParse(state.totalPriceOnSale ?? "0.00")??0.00 -
                 state.extraPriceTotal!;
 
         /// update total price with the new total of extra price

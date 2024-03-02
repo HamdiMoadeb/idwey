@@ -81,12 +81,14 @@ class _CustomHeaderState extends State<CustomHeader> {
 
 class CustomCounter extends StatefulWidget {
   final int initialValue;
+  final int?  min;
   final ValueChanged<int> onChanged;
 
   const CustomCounter({
     Key? key,
     required this.initialValue,
     required this.onChanged,
+    this.min
   }) : super(key: key);
 
   @override
@@ -104,6 +106,7 @@ class _CustomCounterState extends State<CustomCounter> {
 
   @override
   Widget build(BuildContext context) {
+    final minValue = widget.min ?? 1;
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey[200]!,
@@ -114,7 +117,7 @@ class _CustomCounterState extends State<CustomCounter> {
           IconButton(
             icon: const Icon(Icons.remove),
             onPressed: () {
-              if (_counter > 1) {
+              if (_counter > minValue) {
                 setState(() {
                   _counter--;
                   widget.onChanged(_counter);

@@ -122,8 +122,8 @@ class _CustomDateInputState extends State<CustomDateInput> {
 
 //  DateTimeRange? picked;
   String nbNuits = "1";
-  DateTime? dateTime = DateTime.now();
-  DateTime? dateTime2 = DateTime.now();
+  DateTime? dateTime ;
+  DateTime? dateTime2 ;
   String start = DateFormat('dd/MM/yyyy').format(DateTime.now());
   String end = DateFormat('dd/MM/yyyy').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
@@ -148,6 +148,10 @@ class _CustomDateInputState extends State<CustomDateInput> {
         ],
       ),
       child: SfDateRangePicker(
+        controller: null,
+        initialDisplayDate: null,
+        initialSelectedDate: null,
+        showTodayButton: false,
         selectableDayPredicate: (v) {
           if (v.isBefore(DateTime.now())) {
             return false;
@@ -156,8 +160,6 @@ class _CustomDateInputState extends State<CustomDateInput> {
         },
         showActionButtons: true,
         showNavigationArrow: true,
-        initialDisplayDate: DateTime.now(),
-        initialSelectedDate: DateTime.now(),
         confirmText: 'Valider',
         cancelText: 'Reinitialiser',
         headerHeight: 100,
@@ -169,6 +171,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
         onSelectionChanged: (v) {
           print("v.value22222222");
           print(v.value);
+          print(v.value.startDate.isAfter(DateTime.now()));
           if (widget.selectionMode == DateRangePickerSelectionMode.single) {
             setState(() {
               dateTime = v.value ?? DateTime.now();
@@ -180,23 +183,23 @@ class _CustomDateInputState extends State<CustomDateInput> {
             return;
           } else {
             setState(() {
-              dateTime = v.value.startDate ?? DateTime.now();
-              dateTime2 = v.value.endDate ?? DateTime.now();
-              nbNuits = dateTime2!.difference(dateTime!).inDays.toString();
+              dateTime = v.value.startDate ;
+              dateTime2 = v.value.endDate ;
+              nbNuits = dateTime2 != null && dateTime != null ? dateTime2!.difference(dateTime!).inDays.toString():"0";
               print('nbuits $nbNuits');
               widget.onDateRangeChanged(v);
-              start = DateFormat('dd').format(dateTime!);
-              end = DateFormat('dd').format(dateTime2!);
-              dateRange =
-                  '$start ${getMonthAbbreviation(dateTime!.month)}- $end ${getMonthAbbreviation(dateTime2!.month)}';
+              start = dateTime != null ?DateFormat('dd').format(dateTime!):"";
+              end = dateTime2 != null ? DateFormat('dd').format(dateTime2!):"";
+              dateRange = dateTime2 != null && dateTime != null  ?
+                  '$start ${getMonthAbbreviation(dateTime!.month)}- $end ${getMonthAbbreviation(dateTime2!.month)}':"";
             });
           }
         },
         backgroundColor: Colors.white,
         view: DateRangePickerView.month,
         selectionMode: widget.selectionMode,
-        initialSelectedRange: PickerDateRange(
-            dateTime ?? DateTime.now(), dateTime2 ?? DateTime.now()),
+        initialSelectedRange: dateTime != null || dateTime2 != null ?PickerDateRange(
+            dateTime , dateTime2 ):null,
       ),
     );
   }

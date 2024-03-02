@@ -88,6 +88,9 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
         if (state.status == StateStatus.success) {
           Navigator.pop(context);
           _showDialog(context);
+        }else  if (state.updateReviewStatus == StateStatus.success) {
+          Navigator.pop(context);
+          _showUpdatedDialog(context);
         } else if (state.status == StateStatus.error) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -274,6 +277,57 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                   child: const Text('Trouvez votre prochaine aventure'),
                   onPressed: () {
                     context.router.popUntilRoot();
+                  },
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
+  void _showUpdatedDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Icon(
+                  Icons.check_circle,
+                  size: 100,
+                  color: primaryOrange,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text('Félicitations \n votre avis est bien modifié',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    )),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                CustomButton.primary(
+                  child: const Text('Ok'),
+                  onPressed: () {
+                    context.router.pop();
                   },
                 )
               ],

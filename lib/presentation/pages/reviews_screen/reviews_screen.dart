@@ -20,6 +20,7 @@ class ReviewsScreen extends StatelessWidget {
   final List<ReviewScale> listScale;
   final String id;
   final String type;
+  final bool canReview;
   const ReviewsScreen(
       {Key? key,
       required this.reviewsList,
@@ -27,13 +28,14 @@ class ReviewsScreen extends StatelessWidget {
       this.reviewsNumber,
       required this.listScale,
       required this.id,
-      required this.type})
+      required this.type, required this.canReview})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print("widget.canREviewwww${canReview}");
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: canReview== true ? BottomAppBar(
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 16),
@@ -71,7 +73,7 @@ class ReviewsScreen extends StatelessWidget {
                 )),
           ),
         ),
-      ),
+      ):const SizedBox.shrink(),
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

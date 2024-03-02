@@ -33,6 +33,9 @@ class ReviewsSection extends StatefulWidget {
 }
 
 class _ReviewsSectionState extends State<ReviewsSection> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -104,6 +107,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
                   averageRating: widget.averageRating,
                   reviewsNumber: widget.reviewsNumber,
                   listScale: widget.listScale,
+                  canReview: widget.canReview
                 ));
               }),
         )

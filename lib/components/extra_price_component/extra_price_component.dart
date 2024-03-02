@@ -69,6 +69,7 @@ class _ExtraPriceComponentState extends State<ExtraPriceComponent> {
             width: 16.w,
           ),
           CustomCounter(
+            min: 0,
             initialValue: widget.quantity ?? 1,
             onChanged: widget.onchange ?? (int i) {},
           ),
