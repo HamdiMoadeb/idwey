@@ -35,6 +35,7 @@ class ReservationEvent with _$ReservationEvent {
   const factory ReservationEvent.onUnSelectChalet(Room chalet) =
       _OnUnSelectChalet;
   const factory ReservationEvent.initStatus() = _InitStatus;
+  const factory ReservationEvent.initAddToCartStatus() = InitAddToCartStatus;
   const factory ReservationEvent.onExtraPriceQuantityChanged(
       ExtraPrice extraPrice, int i) = _OnExtraPriceQuantityChanged;
 }

@@ -152,6 +152,9 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
               .add(const ReservationEvent.initStatus());
         } else if (state.addToCartStatus == StateStatus.success) {
           Navigator.pop(context);
+          context
+              .read<ReservationBloc>()
+              .add(const ReservationEvent.initAddToCartStatus());
         }
       },
       builder: (context, state) {

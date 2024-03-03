@@ -25,6 +25,7 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     on<_OnSelectChalet>(onSelectRoom);
     on<_OnUnSelectChalet>(onUnSelectRoom);
     on<_InitStatus>(initStatus);
+    on<InitAddToCartStatus>(initAddToCartStatus);
     on<_OnExtraPriceQuantityChanged>(onExtraPriceQuantityChanged);
   }
 
@@ -95,7 +96,13 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
   }
 
   initStatus(_InitStatus event, Emitter<ReservationState> emit) {
-    emit(state.copyWith(status: StateStatus.init, available: null));
+    emit(state.copyWith(status: StateStatus.init, available: null,));
+    print("state.status");
+    print(state.status);
+  }
+
+  initAddToCartStatus(InitAddToCartStatus event, Emitter<ReservationState> emit) {
+    emit(state.copyWith(addToCartStatus: StateStatus.init, available: null,));
     print("state.status");
     print(state.status);
   }

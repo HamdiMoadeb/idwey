@@ -47,7 +47,7 @@ class HostApiDataSourceImpl implements HostApiDataSource {
 
   @override
   Future<HostDetails> getHost(int id) async {
-    // try {
+     try {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     String userId = preferences.getString("userId") ?? "0";
@@ -55,10 +55,10 @@ class HostApiDataSourceImpl implements HostApiDataSource {
         await dio.get("https://idwey.tn/api/hotel/detail/$id/$userId");
     log(response.data.toString());
     return HostDetails.fromJson(response.data);
-    // } catch (e) {
-    //   print(e);
-    //   throw Exception(e);
-    // }
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    }
   }
 
   @override
