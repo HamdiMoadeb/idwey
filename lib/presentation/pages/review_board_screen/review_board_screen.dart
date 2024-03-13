@@ -15,19 +15,13 @@ import 'package:idwey/presentation/blocs/reviews_board_bloc/reviews_dashboard_bl
 import 'package:idwey/theme/app_colors.dart';
 
 @RoutePage()
-class ReviewsBoardScreen extends StatefulWidget implements AutoRouteWrapper {
+class ReviewsBoardScreen extends StatefulWidget {
   const ReviewsBoardScreen({Key? key}) : super(key: key);
 
   @override
   State<ReviewsBoardScreen> createState() => _ReviewsBoardScreenState();
 
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ReviewsDashboardBloc(),
-      child: this,
-    );
-  }
+
 }
 
 class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
@@ -43,6 +37,8 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<ReviewsDashboardBloc, ReviewsDashboardState>(
+  builder: (context, state) {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -68,9 +64,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                 thickness: 1,
               ),
             )),
-        body: BlocBuilder<ReviewsDashboardBloc, ReviewsDashboardState>(
-          builder: (context, state) {
-            return Column(
+        body:  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
@@ -321,9 +315,9 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                         [],
                     state.type ?? ""),
               ],
-            );
-          },
-        ));
+            ));
+  },
+);
   }
 
   Widget _buildRoomItem(
@@ -335,6 +329,8 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
       onTap: () {
         GetIt.I<AppRouter>()
             .push(AddReviewRoute(review: review, id: serviceID, type: type));
+
+        GetIt.I<ReviewsDashboardBloc>().add(const GetReviews());
       },
       child: Card(
         shape: RoundedRectangleBorder(

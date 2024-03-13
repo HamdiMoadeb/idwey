@@ -11,6 +11,7 @@ import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dar
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
+import 'package:idwey/presentation/blocs/reviews_board_bloc/reviews_dashboard_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/theme/input_theme.dart';
@@ -88,6 +89,8 @@ class MyApp extends StatelessWidget {
                   GetIt.I<ConfirmReservationBloc>()),
           BlocProvider(
               create: (BuildContext context) => GetIt.I<BookingPageBloc>()),
+          BlocProvider(
+              create: (BuildContext context) => GetIt.I<ReviewsDashboardBloc>()),
         ],
         child: ScreenUtilInit(
             designSize: Size(375, 812),

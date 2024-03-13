@@ -121,7 +121,7 @@ class RoomItemCardBooking extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                 fit: BoxFit.cover,
-                                imageUrl: bookingDto.pervUrl ?? "")),
+                                imageUrl: bookingDto.image ?? "")),
                       ),
                       SizedBox(
                         width: 8.w,

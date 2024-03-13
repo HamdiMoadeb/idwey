@@ -22,10 +22,13 @@ mixin _$AddReviewEvent {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,9 +37,11 @@ mixin _$AddReviewEvent {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,9 +50,11 @@ mixin _$AddReviewEvent {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,9 +64,11 @@ mixin _$AddReviewEvent {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,9 +77,11 @@ mixin _$AddReviewEvent {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,9 +90,11 @@ mixin _$AddReviewEvent {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,10 +160,13 @@ class _$GetRateSettings implements GetRateSettings {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) {
     return getRateSettings();
   }
@@ -162,9 +178,11 @@ class _$GetRateSettings implements GetRateSettings {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) {
     return getRateSettings?.call();
   }
@@ -176,9 +194,11 @@ class _$GetRateSettings implements GetRateSettings {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (getRateSettings != null) {
@@ -194,9 +214,11 @@ class _$GetRateSettings implements GetRateSettings {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) {
     return getRateSettings(this);
   }
@@ -208,9 +230,11 @@ class _$GetRateSettings implements GetRateSettings {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) {
     return getRateSettings?.call(this);
   }
@@ -222,9 +246,11 @@ class _$GetRateSettings implements GetRateSettings {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (getRateSettings != null) {
@@ -280,10 +306,13 @@ class _$AddReview implements AddReview {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) {
     return addReview();
   }
@@ -295,9 +324,11 @@ class _$AddReview implements AddReview {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) {
     return addReview?.call();
   }
@@ -309,9 +340,11 @@ class _$AddReview implements AddReview {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (addReview != null) {
@@ -327,9 +360,11 @@ class _$AddReview implements AddReview {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) {
     return addReview(this);
   }
@@ -341,9 +376,11 @@ class _$AddReview implements AddReview {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) {
     return addReview?.call(this);
   }
@@ -355,9 +392,11 @@ class _$AddReview implements AddReview {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (addReview != null) {
@@ -413,10 +452,13 @@ class _$UpdateReview implements UpdateReview {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) {
     return updateReview();
   }
@@ -428,9 +470,11 @@ class _$UpdateReview implements UpdateReview {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) {
     return updateReview?.call();
   }
@@ -442,9 +486,11 @@ class _$UpdateReview implements UpdateReview {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (updateReview != null) {
@@ -460,9 +506,11 @@ class _$UpdateReview implements UpdateReview {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) {
     return updateReview(this);
   }
@@ -474,9 +522,11 @@ class _$UpdateReview implements UpdateReview {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) {
     return updateReview?.call(this);
   }
@@ -488,9 +538,11 @@ class _$UpdateReview implements UpdateReview {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (updateReview != null) {
@@ -578,10 +630,13 @@ class _$SetRate implements SetRate {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) {
     return setRate(title, rate);
   }
@@ -593,9 +648,11 @@ class _$SetRate implements SetRate {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) {
     return setRate?.call(title, rate);
   }
@@ -607,9 +664,11 @@ class _$SetRate implements SetRate {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setRate != null) {
@@ -625,9 +684,11 @@ class _$SetRate implements SetRate {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) {
     return setRate(this);
   }
@@ -639,9 +700,11 @@ class _$SetRate implements SetRate {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) {
     return setRate?.call(this);
   }
@@ -653,9 +716,11 @@ class _$SetRate implements SetRate {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setRate != null) {
@@ -672,6 +737,192 @@ abstract class SetRate implements AddReviewEvent {
   int get rate;
   @JsonKey(ignore: true)
   _$$SetRateCopyWith<_$SetRate> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateRateCopyWith<$Res> {
+  factory _$$UpdateRateCopyWith(
+          _$UpdateRate value, $Res Function(_$UpdateRate) then) =
+      __$$UpdateRateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String title, int rate});
+}
+
+/// @nodoc
+class __$$UpdateRateCopyWithImpl<$Res>
+    extends _$AddReviewEventCopyWithImpl<$Res, _$UpdateRate>
+    implements _$$UpdateRateCopyWith<$Res> {
+  __$$UpdateRateCopyWithImpl(
+      _$UpdateRate _value, $Res Function(_$UpdateRate) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? rate = null,
+  }) {
+    return _then(_$UpdateRate(
+      null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateRate implements UpdateRate {
+  const _$UpdateRate(this.title, this.rate);
+
+  @override
+  final String title;
+  @override
+  final int rate;
+
+  @override
+  String toString() {
+    return 'AddReviewEvent.updateRate(title: $title, rate: $rate)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateRate &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.rate, rate) || other.rate == rate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, title, rate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateRateCopyWith<_$UpdateRate> get copyWith =>
+      __$$UpdateRateCopyWithImpl<_$UpdateRate>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getRateSettings,
+    required TResult Function() addReview,
+    required TResult Function() updateReview,
+    required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
+    required TResult Function(String comment) setComment,
+    required TResult Function(String id, String type) setParams,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
+  }) {
+    return updateRate(title, rate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getRateSettings,
+    TResult? Function()? addReview,
+    TResult? Function()? updateReview,
+    TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
+    TResult? Function(String comment)? setComment,
+    TResult? Function(String id, String type)? setParams,
+    TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
+  }) {
+    return updateRate?.call(title, rate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getRateSettings,
+    TResult Function()? addReview,
+    TResult Function()? updateReview,
+    TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
+    TResult Function(String comment)? setComment,
+    TResult Function(String id, String type)? setParams,
+    TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
+    required TResult orElse(),
+  }) {
+    if (updateRate != null) {
+      return updateRate(title, rate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetRateSettings value) getRateSettings,
+    required TResult Function(AddReview value) addReview,
+    required TResult Function(UpdateReview value) updateReview,
+    required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
+    required TResult Function(SetComment value) setComment,
+    required TResult Function(SetParams value) setParams,
+    required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
+  }) {
+    return updateRate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetRateSettings value)? getRateSettings,
+    TResult? Function(AddReview value)? addReview,
+    TResult? Function(UpdateReview value)? updateReview,
+    TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
+    TResult? Function(SetComment value)? setComment,
+    TResult? Function(SetParams value)? setParams,
+    TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
+  }) {
+    return updateRate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetRateSettings value)? getRateSettings,
+    TResult Function(AddReview value)? addReview,
+    TResult Function(UpdateReview value)? updateReview,
+    TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
+    TResult Function(SetComment value)? setComment,
+    TResult Function(SetParams value)? setParams,
+    TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
+    required TResult orElse(),
+  }) {
+    if (updateRate != null) {
+      return updateRate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateRate implements AddReviewEvent {
+  const factory UpdateRate(final String title, final int rate) = _$UpdateRate;
+
+  String get title;
+  int get rate;
+  @JsonKey(ignore: true)
+  _$$UpdateRateCopyWith<_$UpdateRate> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -743,10 +994,13 @@ class _$SetComment implements SetComment {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) {
     return setComment(comment);
   }
@@ -758,9 +1012,11 @@ class _$SetComment implements SetComment {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) {
     return setComment?.call(comment);
   }
@@ -772,9 +1028,11 @@ class _$SetComment implements SetComment {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setComment != null) {
@@ -790,9 +1048,11 @@ class _$SetComment implements SetComment {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) {
     return setComment(this);
   }
@@ -804,9 +1064,11 @@ class _$SetComment implements SetComment {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) {
     return setComment?.call(this);
   }
@@ -818,9 +1080,11 @@ class _$SetComment implements SetComment {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setComment != null) {
@@ -915,10 +1179,13 @@ class _$SetParams implements SetParams {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) {
     return setParams(id, type);
   }
@@ -930,9 +1197,11 @@ class _$SetParams implements SetParams {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) {
     return setParams?.call(id, type);
   }
@@ -944,9 +1213,11 @@ class _$SetParams implements SetParams {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setParams != null) {
@@ -962,9 +1233,11 @@ class _$SetParams implements SetParams {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) {
     return setParams(this);
   }
@@ -976,9 +1249,11 @@ class _$SetParams implements SetParams {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) {
     return setParams?.call(this);
   }
@@ -990,9 +1265,11 @@ class _$SetParams implements SetParams {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setParams != null) {
@@ -1088,10 +1365,13 @@ class _$SetRateSettings implements SetRateSettings {
     required TResult Function() addReview,
     required TResult Function() updateReview,
     required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
     required TResult Function(String comment) setComment,
     required TResult Function(String id, String type) setParams,
     required TResult Function(List<Map<String, dynamic>> listRates)
         setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
   }) {
     return setRateSettings(listRates);
   }
@@ -1103,9 +1383,11 @@ class _$SetRateSettings implements SetRateSettings {
     TResult? Function()? addReview,
     TResult? Function()? updateReview,
     TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
     TResult? Function(String comment)? setComment,
     TResult? Function(String id, String type)? setParams,
     TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
   }) {
     return setRateSettings?.call(listRates);
   }
@@ -1117,9 +1399,11 @@ class _$SetRateSettings implements SetRateSettings {
     TResult Function()? addReview,
     TResult Function()? updateReview,
     TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
     TResult Function(String comment)? setComment,
     TResult Function(String id, String type)? setParams,
     TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setRateSettings != null) {
@@ -1135,9 +1419,11 @@ class _$SetRateSettings implements SetRateSettings {
     required TResult Function(AddReview value) addReview,
     required TResult Function(UpdateReview value) updateReview,
     required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
     required TResult Function(SetComment value) setComment,
     required TResult Function(SetParams value) setParams,
     required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
   }) {
     return setRateSettings(this);
   }
@@ -1149,9 +1435,11 @@ class _$SetRateSettings implements SetRateSettings {
     TResult? Function(AddReview value)? addReview,
     TResult? Function(UpdateReview value)? updateReview,
     TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
     TResult? Function(SetComment value)? setComment,
     TResult? Function(SetParams value)? setParams,
     TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
   }) {
     return setRateSettings?.call(this);
   }
@@ -1163,9 +1451,11 @@ class _$SetRateSettings implements SetRateSettings {
     TResult Function(AddReview value)? addReview,
     TResult Function(UpdateReview value)? updateReview,
     TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
     TResult Function(SetComment value)? setComment,
     TResult Function(SetParams value)? setParams,
     TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
     required TResult orElse(),
   }) {
     if (setRateSettings != null) {
@@ -1182,6 +1472,193 @@ abstract class SetRateSettings implements AddReviewEvent {
   List<Map<String, dynamic>> get listRates;
   @JsonKey(ignore: true)
   _$$SetRateSettingsCopyWith<_$SetRateSettings> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateRateSettingsCopyWith<$Res> {
+  factory _$$UpdateRateSettingsCopyWith(_$UpdateRateSettings value,
+          $Res Function(_$UpdateRateSettings) then) =
+      __$$UpdateRateSettingsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Map<String, dynamic>> listRates});
+}
+
+/// @nodoc
+class __$$UpdateRateSettingsCopyWithImpl<$Res>
+    extends _$AddReviewEventCopyWithImpl<$Res, _$UpdateRateSettings>
+    implements _$$UpdateRateSettingsCopyWith<$Res> {
+  __$$UpdateRateSettingsCopyWithImpl(
+      _$UpdateRateSettings _value, $Res Function(_$UpdateRateSettings) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listRates = null,
+  }) {
+    return _then(_$UpdateRateSettings(
+      null == listRates
+          ? _value._listRates
+          : listRates // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateRateSettings implements UpdateRateSettings {
+  const _$UpdateRateSettings(final List<Map<String, dynamic>> listRates)
+      : _listRates = listRates;
+
+  final List<Map<String, dynamic>> _listRates;
+  @override
+  List<Map<String, dynamic>> get listRates {
+    if (_listRates is EqualUnmodifiableListView) return _listRates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listRates);
+  }
+
+  @override
+  String toString() {
+    return 'AddReviewEvent.updateRateSettings(listRates: $listRates)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateRateSettings &&
+            const DeepCollectionEquality()
+                .equals(other._listRates, _listRates));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_listRates));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateRateSettingsCopyWith<_$UpdateRateSettings> get copyWith =>
+      __$$UpdateRateSettingsCopyWithImpl<_$UpdateRateSettings>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getRateSettings,
+    required TResult Function() addReview,
+    required TResult Function() updateReview,
+    required TResult Function(String title, int rate) setRate,
+    required TResult Function(String title, int rate) updateRate,
+    required TResult Function(String comment) setComment,
+    required TResult Function(String id, String type) setParams,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        setRateSettings,
+    required TResult Function(List<Map<String, dynamic>> listRates)
+        updateRateSettings,
+  }) {
+    return updateRateSettings(listRates);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getRateSettings,
+    TResult? Function()? addReview,
+    TResult? Function()? updateReview,
+    TResult? Function(String title, int rate)? setRate,
+    TResult? Function(String title, int rate)? updateRate,
+    TResult? Function(String comment)? setComment,
+    TResult? Function(String id, String type)? setParams,
+    TResult? Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult? Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
+  }) {
+    return updateRateSettings?.call(listRates);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getRateSettings,
+    TResult Function()? addReview,
+    TResult Function()? updateReview,
+    TResult Function(String title, int rate)? setRate,
+    TResult Function(String title, int rate)? updateRate,
+    TResult Function(String comment)? setComment,
+    TResult Function(String id, String type)? setParams,
+    TResult Function(List<Map<String, dynamic>> listRates)? setRateSettings,
+    TResult Function(List<Map<String, dynamic>> listRates)? updateRateSettings,
+    required TResult orElse(),
+  }) {
+    if (updateRateSettings != null) {
+      return updateRateSettings(listRates);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetRateSettings value) getRateSettings,
+    required TResult Function(AddReview value) addReview,
+    required TResult Function(UpdateReview value) updateReview,
+    required TResult Function(SetRate value) setRate,
+    required TResult Function(UpdateRate value) updateRate,
+    required TResult Function(SetComment value) setComment,
+    required TResult Function(SetParams value) setParams,
+    required TResult Function(SetRateSettings value) setRateSettings,
+    required TResult Function(UpdateRateSettings value) updateRateSettings,
+  }) {
+    return updateRateSettings(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetRateSettings value)? getRateSettings,
+    TResult? Function(AddReview value)? addReview,
+    TResult? Function(UpdateReview value)? updateReview,
+    TResult? Function(SetRate value)? setRate,
+    TResult? Function(UpdateRate value)? updateRate,
+    TResult? Function(SetComment value)? setComment,
+    TResult? Function(SetParams value)? setParams,
+    TResult? Function(SetRateSettings value)? setRateSettings,
+    TResult? Function(UpdateRateSettings value)? updateRateSettings,
+  }) {
+    return updateRateSettings?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetRateSettings value)? getRateSettings,
+    TResult Function(AddReview value)? addReview,
+    TResult Function(UpdateReview value)? updateReview,
+    TResult Function(SetRate value)? setRate,
+    TResult Function(UpdateRate value)? updateRate,
+    TResult Function(SetComment value)? setComment,
+    TResult Function(SetParams value)? setParams,
+    TResult Function(SetRateSettings value)? setRateSettings,
+    TResult Function(UpdateRateSettings value)? updateRateSettings,
+    required TResult orElse(),
+  }) {
+    if (updateRateSettings != null) {
+      return updateRateSettings(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateRateSettings implements AddReviewEvent {
+  const factory UpdateRateSettings(final List<Map<String, dynamic>> listRates) =
+      _$UpdateRateSettings;
+
+  List<Map<String, dynamic>> get listRates;
+  @JsonKey(ignore: true)
+  _$$UpdateRateSettingsCopyWith<_$UpdateRateSettings> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

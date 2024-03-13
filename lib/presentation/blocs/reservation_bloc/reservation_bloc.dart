@@ -172,7 +172,7 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
     if (event.extraPrice != null) {
       for (var element in event.extraPrice!) {
         extraPriceTotal +=
-            double.parse(element.price ?? "0.00") * (element.quantity ?? 1);
+            double.parse(element.price ?? "0.00") * (element.number ?? 1);
       }
     }
     print(event.salePrice);

@@ -13,26 +13,26 @@ class ExtraPrice {
   final String? name;
   final String? price;
   final String? type;
-  final int? quantity;
+  final int? number;
 
   ExtraPrice({
     this.name,
     this.price,
     this.type,
-    this.quantity,
+    this.number,
   });
 
   factory ExtraPrice.fromJson(Map<String, dynamic> json) => ExtraPrice(
         name: json["name"],
         price: json["price"],
         type: json["type"],
-        quantity: json["quantity"],
+        number: json["number"],
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "price": price,
         "type": type,
-        "quantity": quantity,
+        "number": number,
       };
 }

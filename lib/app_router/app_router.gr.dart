@@ -225,7 +225,7 @@ abstract class _$AppRouter extends RootStackRouter {
     ReviewsBoardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: const ReviewsBoardScreen()),
+        child: const ReviewsBoardScreen(),
       );
     },
     ReviewsRoute.name: (routeData) {

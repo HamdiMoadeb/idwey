@@ -171,7 +171,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
         onSelectionChanged: (v) {
           print("v.value22222222");
           print(v.value);
-          print(v.value.startDate.isAfter(DateTime.now()));
+          //print(v.value.startDate.isAfter(DateTime.now()));
           if (widget.selectionMode == DateRangePickerSelectionMode.single) {
             setState(() {
               dateTime = v.value ?? DateTime.now();
