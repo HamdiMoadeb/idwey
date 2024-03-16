@@ -74,9 +74,19 @@ class _EventScreenState extends State<EventScreen>
             state.isFilter == true) {
           print("state.isFilter ${state.isFilter}");
           return const Center(child: Text("Pas des evénements"));
-        } else if (state.status == StateStatus.success &&
+        }  else if (state.status == StateStatus.error &&
+            state.atTheEndOfTheSearchPageEvents == false &&
+            state.isSearch == true) {
+          print("state.isSearch ${state.isSearch}");
+          return const Center(child: Text("Pas des evénements"));
+        }else if (state.status == StateStatus.success &&
             state.listEvents?.isEmpty == true &&
             state.isFilter == true) {
+          print("333");
+          return const Center(child: Text("Pas des événements"));
+        } else if (state.status == StateStatus.success &&
+            state.listEvents?.isEmpty == true &&
+            state.isSearch == true) {
           print("333");
           return const Center(child: Text("Pas des événements"));
         } else if (state.statusEvent == StateStatus.success ||

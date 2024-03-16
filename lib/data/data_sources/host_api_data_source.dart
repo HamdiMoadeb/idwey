@@ -116,6 +116,8 @@ class HostApiDataSourceImpl implements HostApiDataSource {
     print("response.data");
     print(response.data);
     response.data['rows'].forEach((data) {
+      print("Host.fromJson(data)");
+      print(Host.fromJson(data));
       listOfHosts.add(Host.fromJson(data));
     });
 

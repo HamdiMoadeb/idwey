@@ -45,9 +45,13 @@ class _MainHomeScreenState extends State<MainHomeScreen>
     _tabController.addListener(() {
       setState(() {
         selectedIndex = (_tabController.index).round();
-
+        /// animate to the selected tab
+        ///_tabController.animation.value returns double
+       print("context.read<HomeBloc>().state.selectedTab");
+       print(context.read<HomeBloc>().state.selectedTab);
         //_tabController.animation.value returns double
       });
+
     });
   }
 
@@ -64,7 +68,10 @@ class _MainHomeScreenState extends State<MainHomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
+    return BlocConsumer<HomeBloc, HomeState>(
+      listener: (context, state) {
+
+      },
       builder: (context, state) {
         return Scaffold(
             appBar: PreferredSize(
@@ -76,7 +83,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                 backgroundColor: Colors.white,
                 automaticallyImplyLeading: false,
                 //title: SearchBox(),
-                flexibleSpace: const SearchBox(),
+                flexibleSpace:  SearchBox(tabController: _tabController,),
                 bottom: TabBar(
                   isScrollable: true,
                   padding:

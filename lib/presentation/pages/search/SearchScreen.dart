@@ -16,8 +16,9 @@ import 'package:intl/intl.dart';
 
 @RoutePage()
 class SearchScreen extends StatefulWidget {
+  TabController tabController;
   final int selectedTab;
-  const SearchScreen({Key? key, required this.selectedTab}) : super(key: key);
+   SearchScreen({Key? key, required this.selectedTab, required this.tabController}) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -25,7 +26,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+ // late TabController _tabController;
 
   int selectedIndex = 0;
   int guests = 1;
@@ -70,18 +71,18 @@ class _SearchScreenState extends State<SearchScreen>
   void initState() {
     super.initState();
     selectedIndex = context.read<HomeBloc>().state.selectedTab ?? 0;
-    _tabController = TabController(length: 4, vsync: this);
-    _tabController.addListener(() {
-      setState(() {
-        selectedIndex = (_tabController.index).round();
-        //_tabController.animation.value returns double
-      });
-    });
+    // _tabController = TabController(length: 4, vsync: this);
+    // _tabController.addListener(() {
+    //   setState(() {
+    //     selectedIndex = (_tabController.index).round();
+    //     //_tabController.animation.value returns double
+    //   });
+    // });
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+   // _tabController.dispose();
 
     super.dispose();
   }
@@ -113,7 +114,7 @@ class _SearchScreenState extends State<SearchScreen>
                 padding: EdgeInsets.only(bottom: 16.h, left: 8.w, right: 12.w),
                 indicatorPadding: EdgeInsets.symmetric(horizontal: 16.w),
                 // Reduce padding between tabs
-                controller: _tabController,
+                controller: widget.tabController,
                 labelColor: Colors.grey,
                 labelPadding: EdgeInsets.only(left: 8.w),
                 indicator: const BoxDecoration(),
@@ -127,7 +128,7 @@ class _SearchScreenState extends State<SearchScreen>
                       /// navigate to screen home
                       setState(() {
                         selectedIndex = 0;
-                        _tabController.index = 0;
+                        widget.tabController.index = 0;
                         context
                             .read<HomeBloc>()
                             .add(const HomeEvent.setSelectedTab(0));
@@ -141,7 +142,7 @@ class _SearchScreenState extends State<SearchScreen>
                     onTap: (v) {
                       setState(() {
                         selectedIndex = 1;
-                        _tabController.index = 1;
+                        widget.tabController.index = 1;
                         context
                             .read<HomeBloc>()
                             .add(const HomeEvent.setSelectedTab(1));
@@ -155,7 +156,7 @@ class _SearchScreenState extends State<SearchScreen>
                     onTap: (v) {
                       setState(() {
                         selectedIndex = 2;
-                        _tabController.index = 2;
+                        widget.tabController.index = 2;
                         context
                             .read<HomeBloc>()
                             .add(const HomeEvent.setSelectedTab(2));
@@ -169,7 +170,7 @@ class _SearchScreenState extends State<SearchScreen>
                     onTap: (vv) {
                       setState(() {
                         selectedIndex = 3;
-                        _tabController.index = 3;
+                        widget.tabController.index = 3;
                         context
                             .read<HomeBloc>()
                             .add(const HomeEvent.setSelectedTab(3));
