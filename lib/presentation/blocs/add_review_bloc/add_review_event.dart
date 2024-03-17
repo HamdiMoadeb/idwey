@@ -6,8 +6,12 @@ class AddReviewEvent with _$AddReviewEvent {
   const factory AddReviewEvent.addReview() = AddReview;
   const factory AddReviewEvent.updateReview() = UpdateReview;
   const factory AddReviewEvent.setRate(String title, int rate) = SetRate;
+  const factory AddReviewEvent.updateRate(String title, int rate) = UpdateRate;
   const factory AddReviewEvent.setComment(String comment) = SetComment;
   const factory AddReviewEvent.setParams(String id, String type) = SetParams;
   const factory AddReviewEvent.setRateSettings(
       List<Map<String, dynamic>> listRates) = SetRateSettings;
+
+  const factory AddReviewEvent.updateRateSettings(
+      List<Map<String, dynamic>> listRates) = UpdateRateSettings;
 }

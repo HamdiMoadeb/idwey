@@ -225,7 +225,7 @@ abstract class _$AppRouter extends RootStackRouter {
     ReviewsBoardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: const ReviewsBoardScreen()),
+        child: const ReviewsBoardScreen(),
       );
     },
     ReviewsRoute.name: (routeData) {
@@ -251,6 +251,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: SearchScreen(
           key: args.key,
           selectedTab: args.selectedTab,
+          tabController: args.tabController,
         ),
       );
     },
@@ -1115,12 +1116,14 @@ class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
   SearchRoute({
     Key? key,
     required int selectedTab,
+    required TabController tabController,
     List<PageRouteInfo>? children,
   }) : super(
           SearchRoute.name,
           args: SearchRouteArgs(
             key: key,
             selectedTab: selectedTab,
+            tabController: tabController,
           ),
           initialChildren: children,
         );
@@ -1134,15 +1137,18 @@ class SearchRouteArgs {
   const SearchRouteArgs({
     this.key,
     required this.selectedTab,
+    required this.tabController,
   });
 
   final Key? key;
 
   final int selectedTab;
 
+  final TabController tabController;
+
   @override
   String toString() {
-    return 'SearchRouteArgs{key: $key, selectedTab: $selectedTab}';
+    return 'SearchRouteArgs{key: $key, selectedTab: $selectedTab, tabController: $tabController}';
   }
 }
 

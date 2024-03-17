@@ -68,7 +68,9 @@ class ReviewsApiDataSourceImpl implements ReviewsApiDataSource {
 
         );
     print("response.data");
-    print(response);
+    print(response.data);
+    print("response.statusCode");
+    print(response.statusCode);
     return response.data;
   }
 }

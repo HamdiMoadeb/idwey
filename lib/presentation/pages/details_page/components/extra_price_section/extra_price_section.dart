@@ -59,7 +59,7 @@ class _ExtraPriceSectionState extends State<ExtraPriceSection> {
                     e = ExtraPrice(
                       name: e.name,
                       price: e.price,
-                      quantity: i,
+                      number: i,
                     );
 
                     quantityList[index] = i;
@@ -78,7 +78,7 @@ class _ExtraPriceSectionState extends State<ExtraPriceSection> {
                         e = ExtraPrice(
                           name: e.name,
                           price: e.price,
-                          quantity: quantityList[index],
+                          number: quantityList[index],
                         );
                       });
 

@@ -18,7 +18,15 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
     on<_OnExtraPriceChecked>(onExtraPriceChecked);
     on<_OnExtraPriceUnChecked>(onExtraPriceUnChecked);
     on<_OnExtraPriceQuantityChanged>(onExtraPriceQuantityChanged);
+on<_SetTypeHost>(onSetTypeHost);
   }
+
+  onSetTypeHost(_SetTypeHost event, Emitter<DetailsPageState> emit) {
+    emit(state.copyWith(
+      typeHost: event.typeHost,
+    ));
+  }
+
 
   _getDetailsHost(GetHostDetails event, Emitter<DetailsPageState> emit) async {
     emit(state.copyWith(
@@ -63,6 +71,11 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
 
     final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
 
+    /// add extra price type to extra price from the state
+    print("helloooooo");
+    print(state.extraPrice!.length);
+
+
     final index = updatedExtraPrice
         .indexWhere((element) => element.name == event.extraPrice.name);
 
@@ -70,7 +83,16 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
       print("alreaady exist");
       // updatedExtraPrice[index] = event.extraPrice;
     } else {
-      updatedExtraPrice.add(event.extraPrice);
+      ExtraPrice extraPrice = ExtraPrice(
+        name: event.extraPrice.name,
+        price: event.extraPrice.price,
+        type: state.hostDetails!.row!.perPerson,
+        number: event.extraPrice.number,
+      );
+    print("new extra price");
+    print(extraPrice.toJson());
+
+      updatedExtraPrice.add(extraPrice);
     }
 
     // Update the state with the new list
@@ -81,7 +103,7 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
             (previousValue, element) =>
                 previousValue! +
                 double.parse(element.price ?? "0.00") *
-                    (element.quantity ?? 1))));
+                    (element.number ?? 1))));
   }
 
   void onExtraPriceUnChecked(
@@ -100,7 +122,7 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
             (previousValue, element) =>
                 previousValue! +
                 double.parse(element.price ?? "0.00") *
-                    (element.quantity ?? 1))));
+                    (element.number ?? 1))));
   }
 
   /// This method is called when the user changes the quantity of an extra price
@@ -115,8 +137,17 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
           .indexWhere((element) => element.name == event.extraPrice.name);
       if (index != -1) {
         final updatedExtraPrice = List<ExtraPrice>.from(state.extraPrice ?? []);
-        updatedExtraPrice[index] = event.extraPrice;
 
+        ExtraPrice extraPrice = ExtraPrice(
+          name: event.extraPrice.name,
+          price: event.extraPrice.price,
+          type: state.hostDetails!.row!.perPerson,
+          number: event.extraPrice.number,
+        );
+
+        updatedExtraPrice[index] = extraPrice;
+        print("new extra price");
+        print(extraPrice.toJson());
         /// Update the state with the new list
         emit(state.copyWith(
             extraPrice: updatedExtraPrice,
@@ -125,7 +156,7 @@ class DetailsPageBloc extends Bloc<DetailsPageEvent, DetailsPageState> {
                 (previousValue, element) =>
                     previousValue! +
                     double.parse(element.price ?? "0.00") *
-                        (element.quantity ?? 1))));
+                        (element.number ?? 1))));
       } else {
         ///update git the extra price
         print("doexn't exist in the list******");

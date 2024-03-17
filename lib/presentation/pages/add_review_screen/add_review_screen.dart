@@ -12,6 +12,8 @@ import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/presentation/blocs/add_review_bloc/add_review_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 
+import '../../blocs/reviews_board_bloc/reviews_dashboard_bloc.dart';
+
 @RoutePage()
 class AddReviewScreen extends StatefulWidget implements AutoRouteWrapper {
   final String id;
@@ -109,129 +111,136 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: Container(
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                    color: materialPrimary.withOpacity(0.8),
-                    borderRadius: BorderRadius.circular(50)),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              bottom: const PreferredSize(
-                preferredSize: Size.fromHeight(20),
-                child: Divider(
-                  thickness: 1,
-                ),
-              )),
-          body: state.statusRateSettings == StateStatus.success ||
-                  state.ratesStars?.isNotEmpty == true
-              ? SingleChildScrollView(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(
-                          children: [
-                            const HeroIcon(HeroIcons.chatBubbleLeftEllipsis),
-                            SizedBox(
-                              width: 16.w,
-                            ),
-                            Text(
-                              'Votre avis nous intéresse',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 16.sp,
-                                  ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 16.w,
-                        ),
-                        Container(
-                          height: 150
-                              .h, // Set the desired height for the text input
-                          padding: const EdgeInsets.all(
-                              10), // Optional padding for text input
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey, // Set border color
-                              width: 1, // Set border width
-                            ),
-                            borderRadius: BorderRadius.circular(10
-                                .r), // Optional: Apply border radius for a rounded look
-                          ),
-                          child: TextField(
-                            controller: reviewController,
-                            focusNode: reviewFocusNode,
-                            maxLines: null, // Allow multiple lines of text
-                            keyboardType: TextInputType
-                                .multiline, // Enable multiline input
-                            decoration: InputDecoration(
-                              hintText:
-                                  'Ajouter votre avis..', // Placeholder text
-                              hintStyle: TextStyle(
-                                  color: Colors.grey, fontSize: 10.sp),
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              errorBorder: InputBorder.none,
-                              disabledBorder:
-                                  InputBorder.none, // Remove the default border
-                              contentPadding: EdgeInsets.zero, // Remove padding
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16.w,
-                        ),
-                        state.ratesStars?.isNotEmpty == true
-                            ? starsCard(state)
-                            : const SizedBox.shrink(),
-                        CustomButton.secondaryBlack(
-                            onPressed: () {
-                              print("widget.review");
-                              print(widget.review);
-                              widget.review == null
-                                  ? context
-                                      .read<AddReviewBloc>()
-                                      .add(const AddReview())
-                                  : context
-                                      .read<AddReviewBloc>()
-                                      .add(const UpdateReview());
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Soumettre",
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ))
-                      ],
+        return WillPopScope(
+          onWillPop: () async {
+            BlocProvider.of<ReviewsDashboardBloc>(context)
+                .add(const GetReviews());
+            return true;
+          },
+          child: Scaffold(
+            appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: Container(
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: materialPrimary.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(50)),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
                     ),
                   ),
-                )
-              : const Center(
-                  child: SizedBox.shrink(),
                 ),
+                bottom: const PreferredSize(
+                  preferredSize: Size.fromHeight(20),
+                  child: Divider(
+                    thickness: 1,
+                  ),
+                )),
+            body: state.statusRateSettings == StateStatus.success ||
+                    state.ratesStars?.isNotEmpty == true
+                ? SingleChildScrollView(
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            children: [
+                              const HeroIcon(HeroIcons.chatBubbleLeftEllipsis),
+                              SizedBox(
+                                width: 16.w,
+                              ),
+                              Text(
+                                'Votre avis nous intéresse',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 16.sp,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 16.w,
+                          ),
+                          Container(
+                            height: 150
+                                .h, // Set the desired height for the text input
+                            padding: const EdgeInsets.all(
+                                10), // Optional padding for text input
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Colors.grey, // Set border color
+                                width: 1, // Set border width
+                              ),
+                              borderRadius: BorderRadius.circular(10
+                                  .r), // Optional: Apply border radius for a rounded look
+                            ),
+                            child: TextField(
+                              controller: reviewController,
+                              focusNode: reviewFocusNode,
+                              maxLines: null, // Allow multiple lines of text
+                              keyboardType: TextInputType
+                                  .multiline, // Enable multiline input
+                              decoration: InputDecoration(
+                                hintText:
+                                    'Ajouter votre avis..', // Placeholder text
+                                hintStyle: TextStyle(
+                                    color: Colors.grey, fontSize: 10.sp),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder:
+                                    InputBorder.none, // Remove the default border
+                                contentPadding: EdgeInsets.zero, // Remove padding
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16.w,
+                          ),
+                          state.ratesStars?.isNotEmpty == true
+                              ? starsCard(state)
+                              : const SizedBox.shrink(),
+                          CustomButton.secondaryBlack(
+                              onPressed: () {
+                                print("widget.review");
+                                print(widget.review);
+                                widget.review == null
+                                    ? context
+                                        .read<AddReviewBloc>()
+                                        .add(const AddReview())
+                                    : context
+                                        .read<AddReviewBloc>()
+                                        .add(const UpdateReview());
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Soumettre",
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  )
+                : const Center(
+                    child: SizedBox.shrink(),
+                  ),
+          ),
         );
       },
     );
@@ -327,7 +336,9 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                 CustomButton.primary(
                   child: const Text('Ok'),
                   onPressed: () {
+
                     context.router.pop();
+                    BlocProvider.of<ReviewsDashboardBloc>(context).add(const GetReviews());
                   },
                 )
               ],
@@ -378,7 +389,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                 alignment: Alignment.center,
                 child: RatingBar.builder(
                   initialRating:
-                      double.parse(state.ratesStars![i]['stars'] ?? "0.00") ??
+                      double.parse(state.ratesStars![i]['stars'].toString() ?? "0.00") ??
                           0,
                   minRating: 1,
                   direction: Axis.horizontal,
@@ -391,7 +402,11 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                   ),
                   onRatingUpdate: (rating) {
                     print(rating);
-                    context.read<AddReviewBloc>().add(SetRate(
+                    widget.review == null
+                        ? context.read<AddReviewBloc>().add(SetRate(
+                            state.ratesStars![i]['title'] ?? "", rating.toInt()))
+                        :
+                    context.read<AddReviewBloc>().add(UpdateRate(
                         state.ratesStars![i]['title'] ?? "", rating.toInt()));
                   },
                 ),

@@ -11,4 +11,5 @@ class DetailsPageEvent with _$DetailsPageEvent {
       ExtraPrice extraPrice, int i) = _OnChangedExtraPriceNumber;
   const factory DetailsPageEvent.onExtraPriceQuantityChanged(
       ExtraPrice extraPrice, int i) = _OnExtraPriceQuantityChanged;
+  const factory DetailsPageEvent.setTypeHost(String typeHost) = _SetTypeHost;
 }

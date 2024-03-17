@@ -113,7 +113,8 @@ class _FilterListState extends State<FilterList> {
 }
 
 class SearchBox extends StatelessWidget {
-  const SearchBox({Key? key}) : super(key: key);
+  TabController  tabController;
+   SearchBox({Key? key,required this.tabController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +126,7 @@ class SearchBox extends StatelessWidget {
           InkWell(
             onTap: () {
               GetIt.I<AppRouter>().push(SearchRoute(
+                tabController: tabController,
                   selectedTab:
                       context.read<HomeBloc>().state.selectedTab ?? 0));
             },

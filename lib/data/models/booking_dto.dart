@@ -33,6 +33,7 @@ class BookingDto {
   final String? firstName;
   final String? lastName;
   final String? phone;
+  final String? image;
   final dynamic address;
   final dynamic address2;
   final dynamic city;
@@ -96,6 +97,7 @@ class BookingDto {
     this.paidVendor,
     this.objectChildId,
     this.number,
+    this.image,
     this.startTime,
     this.offlineMode,
     this.promoCode,
@@ -112,6 +114,7 @@ class BookingDto {
         gateway: json["gateway"],
         objectId: json["object_id"],
         objectModel: json["object_model"],
+        image: json["image"],
         startDate: json["start_date"] == null
             ? null
             : DateTime.parse(json["start_date"]),

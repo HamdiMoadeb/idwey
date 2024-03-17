@@ -41,12 +41,14 @@ import 'package:idwey/presentation/blocs/booking_page_bloc/booking_page_bloc.dar
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/presentation/blocs/inspiration_page/inspiration_bloc.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
+import 'package:idwey/presentation/blocs/reviews_board_bloc/reviews_dashboard_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:idwey/presentation/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:idwey/utils/dio.dart';
 
 import '../data/repositories_impl/location_repository_impl.dart';
 import '../domain/usecases/usecases.dart';
+import '../presentation/blocs/add_review_bloc/add_review_bloc.dart';
 
 Future<void> setup() async {
   // Initialize AppRouter
@@ -178,4 +180,5 @@ Future<void> setup() async {
   GetIt.I.registerLazySingleton(() => ReservationBloc());
   GetIt.I.registerLazySingleton(() => ConfirmReservationBloc());
   GetIt.I.registerLazySingleton(() => BookingPageBloc());
+  GetIt.I.registerLazySingleton(() => ReviewsDashboardBloc());
 }

@@ -59,18 +59,23 @@ class EventApiDataSourceImpl implements EventApiDataSource {
   @override
   Future<List<Event>> searchListEvents(int limit, int offset, String start,
       String end, int adults, String address) async {
-    List<Event> listOfHosts = [];
-    print(
-        "https://idwey.tn/api/event?offset=$offset&limit=$limit&address$address=&start$start=&end=$end");
-    final response = await dio.get(
-        "https://idwey.tn/api/event?offset=$offset&limit=$limit&address=$address&start=$start&end=$end");
-    print("response.data");
-    print(response.data);
-    response.data['rows'].forEach((data) {
-      listOfHosts.add(Event.fromJson(data));
-    });
+    try{
+      List<Event> listOfHosts = [];
+      print(
+          "https://idwey.tn/api/event?offset=$offset&limit=$limit&address$address=&start$start=&end=$end");
+      final response = await dio.get(
+          "https://idwey.tn/api/event?offset=$offset&limit=$limit&address=$address&start=$start&end=$end");
+      print("response.data");
+      print(response.data);
+      response.data['rows'].forEach((data) {
+        listOfHosts.add(Event.fromJson(data));
+      });
 
-    return listOfHosts;
+      return listOfHosts;
+    }catch(e){
+      throw Exception(e);
+    }
+
   }
 
   @override

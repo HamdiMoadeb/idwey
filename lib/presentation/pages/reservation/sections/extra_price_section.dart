@@ -35,7 +35,7 @@ class ExtraPriceSectionDisponibility extends StatelessWidget {
         Column(
           children: extraPrices
               .map((e) => ExtraPriceComponent(
-                    quantity: e.quantity ?? 1,
+                    quantity: e.number ?? 1,
                     title: e.name ?? "",
                     subtitle: e.price ?? "",
                     onchange: (int i) {

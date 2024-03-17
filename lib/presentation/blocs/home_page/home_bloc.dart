@@ -161,6 +161,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getListSearchHosts(GetSearchListHost event, Emitter<HomeState> emit) async {
     try {
       /// if is search and is not loading more empty list hosts to load new data
+      ///
+
       if (event.isFetching == false) {
         emit(state.copyWith(
           listHosts: [],
@@ -184,6 +186,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       int nextPage = state.searchPageHosts ??
           0; // Use a default value if state.page is null
+
+
       final Either<Exception, List<Host>?> result;
       print("event.isSearch");
       emit(state.copyWith(isSearch: true));
@@ -237,6 +241,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getListEvents(GetListEvent event, Emitter<HomeState> emit) async {
     print("state.isFilter111111");
     print(state.isFilter);
+    print(state.isSearch);
 
     try {
       if (state.isSearch == true) {
@@ -665,14 +670,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     print("state.selectedTab");
     print(state.selectedTab);
-    print("state.minPriceRange");
-    print(state.minPriceRange);
-    print("state.maxPriceRange");
-    print(state.maxPriceRange);
-    print("state.listAttributes");
-    print(state.listAttributes![0].toJson());
-    print("state.listActivityCategories");
-    print(state.listActivityCategories![0].toJson());
+
   }
 
   void changeStartDate(_ChangeStartDate event, Emitter<HomeState> emit) {
@@ -716,6 +714,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     print(state.isSearch);
     print(event.isFetching);
     try {
+
+      print("event.isSearch");
+      emit(state.copyWith(isSearch: true));
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -739,7 +740,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ));
 
       int nextPage = state.pageSearchEvents ??
-          0; // Use a default value if state.page is null
+          0;
+
+    // Use a default value if state.page is null
       final Either<Exception, List<Event>?> result;
       print("event.isSearch");
       emit(state.copyWith(isSearch: true));

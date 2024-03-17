@@ -23,6 +23,8 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
     on<GetRateSettings>(getRateSettings);
     on<SetRateSettings>(setRateSettings);
     on<UpdateReview>(updateReview);
+    on<UpdateRate>(updateRate);
+    on<UpdateRateSettings>(updateRateSettings);
   }
   void setParams(SetParams event, Emitter<AddReviewState> emit) async {
     emit(state.copyWith(
@@ -52,6 +54,31 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
               ],
       ),
     );
+  }
+
+
+  void updateRate(UpdateRate event, Emitter<AddReviewState> emit) async {
+    print("state.rates");
+    print(state.ratesStars);
+    List<Map<String, dynamic>> updatesRates = List.from(state.ratesStars ?? []);
+    /// updatesRates = state.rates ?? [];
+    for (int i = 0; i < updatesRates.length; i++) {
+      if (updatesRates[i]["title"] == event.title) {
+        updatesRates[i]["stars"] = event.rate;
+      }
+    }
+
+    print("updatesRates");
+    print(updatesRates);
+
+    emit(
+      state.copyWith(
+        ratesStars: updatesRates,
+      ),
+    );
+
+    print("state.rates");
+    print(state.rates);
   }
 
   void setComment(SetComment event, Emitter<AddReviewState> emit) async {
@@ -146,6 +173,7 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
       updateReviewStatus: StateStatus.loading,
     ));
     print("updaaate review");
+
     try {
       final Either<Exception, dynamic> result =
           await GetIt.I<UpdateReviewUseCase>().call({
@@ -170,5 +198,14 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
         updateReviewStatus: StateStatus.error,
       ));
     }
+  }
+
+
+  updateRateSettings(UpdateRateSettings event, Emitter<AddReviewState> emit) async {
+    emit(state.copyWith(
+      ratesStars: event.listRates,
+    ));
+    print("state.ratesStars");
+    print(state.ratesStars);
   }
 }
