@@ -3,8 +3,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/constants/enums.dart';
+import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
@@ -391,8 +394,8 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                                   text: ' les Termes et conditions.\n',
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      // final Uri uri = Uri.parse(Urls.TERMS_URL);
-                                      // launchUrl(uri);
+                                      GetIt.I<AppRouter>()
+                                          .push(const TermsRoute());
                                     },
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,

@@ -100,6 +100,7 @@ class _ReservationFormState extends State<ReservationForm> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: 0.4.sw,
@@ -153,6 +154,7 @@ class _ReservationFormState extends State<ReservationForm> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: 0.4.sw,
@@ -176,9 +178,9 @@ class _ReservationFormState extends State<ReservationForm> {
                               focusNode: villeFocusNode,
                               hintText: "Ville",
                               controller: widget.villeController,
-                              // errorText: state.validInformations == false
-                              //     ? "Veuillez remplir ce champ"
-                              //     : null,
+                              errorText:  widget.villeController.text.isEmpty
+                                  ? "Veuillez remplir ce champ"
+                                  : null,
                               keyboardType: TextInputType.name,
                               foregroundColor: Colors.grey,
                             ),

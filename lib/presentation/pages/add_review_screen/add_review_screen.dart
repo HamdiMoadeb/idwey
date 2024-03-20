@@ -389,7 +389,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                 alignment: Alignment.center,
                 child: RatingBar.builder(
                   initialRating:
-                      double.parse(state.ratesStars![i]['stars'].toString() ?? "0.00") ??
+                      double.tryParse(state.ratesStars![i]['stars'].toString() ?? "0.00") ??
                           0,
                   minRating: 1,
                   direction: Axis.horizontal,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:idwey/constants/assets.dart';
 import 'package:idwey/constants/enums.dart';
+import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/theme/app_colors.dart';
 
@@ -82,15 +83,14 @@ class _ReservationSectionState extends State<ReservationSection> {
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return _buildRoomItem(
-                          widget.rooms?[index].imageId ?? "",
+                          widget.rooms?[index].image?? "",
                           widget.rooms![index].title ?? "",
                           widget.address ?? "",
                           widget.dateDebut ?? "",
                           widget.dateFin ?? "",
                           widget.nuits ?? "",
                           widget.adultes ?? "",
-                          (double.parse(widget.rooms![index].price!) *
-                                      int.parse(widget.nuits ?? ""))
+                          (double.parse(widget.rooms![index].price!))
                                   .toInt()
                                   .toString() ??
                               "",
@@ -376,7 +376,7 @@ class _ReservationSectionState extends State<ReservationSection> {
     double total = 0;
     for (var room in list) {
       total +=
-          double.parse(room.price ?? "0") * double.parse(widget.nuits ?? "0");
+          double.parse(room.price ?? "0") ;
     }
     return total.toInt();
   }
