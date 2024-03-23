@@ -18,7 +18,7 @@ HostDetails hostDetailsFromJson(String str) =>
 String hostDetailsToJson(HostDetails data) => json.encode(data.toJson());
 
 class HostDetails {
-  final Row? row;
+  final RowObject? row;
   final List<Room>? rooms;
   final int? eur;
   final int? usd;
@@ -49,7 +49,7 @@ class HostDetails {
   });
 
   factory HostDetails.fromJson(Map<String, dynamic> json) => HostDetails(
-        row: json["row"] == null ? null : Row.fromJson(json["row"]),
+        row: json["row"] == null ? null : RowObject.fromJson(json["row"]),
         rooms: json["rooms"] == null
             ? []
             : List<Room>.from(json["rooms"]!.map((x) => Room.fromJson(x))),
@@ -377,8 +377,10 @@ class Room {
   final int? id;
   final String? title;
   final String? content;
-  final int? imageId;
+  final String? imageId;
+  final String? image;
   final String? gallery;
+ // final List<GalleryImagesUrl>? gallery;
   final dynamic video;
   final String? price;
   final int? parentId;
@@ -395,6 +397,7 @@ class Room {
   final DateTime? updatedAt;
   final dynamic perpChildPrice;
   final List<dynamic>? translations;
+
 
   Room({
     this.id,
@@ -418,18 +421,21 @@ class Room {
     this.updatedAt,
     this.perpChildPrice,
     this.translations,
+    this.image,
   });
 
   factory Room.fromJson(Map<String, dynamic> json) => Room(
         id: json["id"],
         title: json["title"],
         content: json["content"],
-        imageId: json["image_id"] is String == true
-            ? int.tryParse(json["image_id"])
+        imageId: json["image_id"] is int == true
+            ? json["image_id"].toString()
             : json["image_id"],
         gallery: json["gallery"],
         video: json["video"],
-        price: json["price"],
+        price: json["price"] is int == true
+            ? json["price"].toString()
+            : json["price"],
         parentId: json["parent_id"],
         number: json["number"],
         beds: json["beds"],
@@ -450,6 +456,7 @@ class Room {
         translations: json["translations"] == null
             ? []
             : List<dynamic>.from(json["translations"]!.map((x) => x)),
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -476,10 +483,11 @@ class Room {
         "translations": translations == null
             ? []
             : List<dynamic>.from(translations!.map((x) => x)),
+        "image": image,
       };
 }
 
-class Row {
+class RowObject {
   final int? id;
   final String? title;
   final String? content;
@@ -510,7 +518,7 @@ class Row {
   final List<dynamic>? translations;
   final List<Term>? terms;
 
-  Row({
+  RowObject({
     this.id,
     this.title,
     this.content,
@@ -542,7 +550,7 @@ class Row {
     this.terms,
   });
 
-  factory Row.fromJson(Map<String, dynamic> json) => Row(
+  factory RowObject.fromJson(Map<String, dynamic> json) => RowObject(
         id: json["id"],
         title: json["title"],
         content: json["content"],

@@ -20,7 +20,6 @@ import 'package:idwey/presentation/pages/details_page/components/reviews_section
 import 'package:idwey/presentation/pages/details_page/components/terms_section/terms_section.dart';
 import 'package:idwey/presentation/pages/details_page/components/type_capacite_section/type_capacite_section.dart';
 import 'package:idwey/theme/app_colors.dart';
-
 import 'components/chalets_section/chalets_section.dart';
 
 @RoutePage()
@@ -87,7 +86,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                               subtitle: "13 ans ou plus",
                               url: state.hostDetails?.bannerImageUrl ?? "",
                               typeReservation: TypeReservation.host,
-                              typeHost: "host",
+                              typeHost: widget.typeHost ?? "",
                               salePrice: state.hostDetails?.row?.salePrice
                                       .toString() ??
                                   "",
@@ -99,7 +98,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                               address: state.hostDetails?.row?.address ?? "",
                               minNuits: state.hostDetails?.row?.minNuits ?? 0,
                               extraPrice: state.extraPrice ?? [],
-                              //rooms: state.hostDetails?.rooms ?? [],
+                              rooms: state.hostDetails?.rooms?? [],
                             ),
                           )
                         : showModalBottomSheet(

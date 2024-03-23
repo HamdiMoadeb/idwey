@@ -56,36 +56,36 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
-            child: Text(
-              "Identifiant de la reservation",
-              style: TextStyle(
-                fontSize: 16.sp,
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: Row(
-              children: [
-                Text(
-                  "#" + widget.bookingDto!.id.toString(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16.sp,
-                  ),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                const Icon(Icons.copy),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 16.h,
-          ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+          //   child: Text(
+          //     "Identifiant de la reservation",
+          //     style: TextStyle(
+          //       fontSize: 16.sp,
+          //     ),
+          //   ),
+          // ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 16.w),
+          //   child: Row(
+          //     children: [
+          //       Text(
+          //         "#" + widget.bookingDto!.id.toString(),
+          //         style: TextStyle(
+          //           fontWeight: FontWeight.w500,
+          //           fontSize: 16.sp,
+          //         ),
+          //       ),
+          //       const SizedBox(
+          //         width: 8,
+          //       ),
+          //       const Icon(Icons.copy),
+          //     ],
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 16.h,
+          // ),
           buildStatusBar(widget.bookingDto?.status ?? ""),
           Expanded(
             child: DefaultTabController(
@@ -280,17 +280,12 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
                         ),
                         _buildInfoItem(
                             title: "Ville",
-                            value: widget.bookingDto?.address ?? ""),
-                        const Divider(
-                          thickness: 1,
-                        ),
-                        _buildInfoItem(
-                            title: "Pays",
                             value: widget.bookingDto?.city ?? ""),
+
                         const Divider(
                           thickness: 1,
                         ),
-                        _buildInfoItem(
+                       widget.bookingDto?.customerNotes == "" ||widget.bookingDto?.customerNotes == null ? SizedBox():_buildInfoItem(
                             title: "Condition special",
                             value: widget.bookingDto?.customerNotes ?? ""),
                       ],
@@ -358,6 +353,23 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
               style: TextStyle(
                 fontSize: 12.sp,
                 color: Colors.black,
+              ),
+            ),
+          ));
+    } else if (status == "paid") {
+      return Container(
+          width: double.infinity,
+          height: 25.h,
+          decoration: const BoxDecoration(
+            color: Colors.green,
+          ),
+          child: Center(
+            child: Text(
+              "Le statut de la réservation : Payé",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 12.sp,
+                color: Colors.white,
               ),
             ),
           ));

@@ -6,7 +6,7 @@ import 'package:idwey/components/bottom_bar.dart';
 import 'package:idwey/components/inputs/date_input.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/extra_price_dto.dart';
-import 'package:idwey/data/models/room_dto.dart';
+import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 import 'package:idwey/presentation/pages/details_page/components/product_page_header/product_page_header.dart';
 import 'package:idwey/presentation/pages/reservation/sections/chalets_section.dart';
@@ -49,8 +49,7 @@ class VerifyDisponibilityScreen extends StatefulWidget
       this.minNuits,
       this.price,
       required this.url,
-      this.extraPrice,
-      this.rooms,
+      this.extraPrice, this.rooms,
       this.startDate,
       this.endDate,
       this.subtitle})
@@ -79,7 +78,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
     );
   }
 
-  void showErrorSnackbar(String event, ScaffoldMessengerState context) {
+   showErrorSnackbar(String event, ScaffoldMessengerState context) {
     if (event != null) {
       context.showSnackBar(new SnackBar(
         content: new Text(event),
@@ -162,8 +161,15 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
           bottomNavigationBar: BottomAppBar(
             elevation: 0,
             child: BottomReservationBar(
-              onPressed: state.guests == 0
-                  ? null
+              onPressed: state.typeHost == "Par Chalet" && state.availableChalet?.isNotEmpty == true
+                    &&  state.selectedRooms?.isEmpty == true
+                  ? (){
+                /// show error message
+
+                showErrorSnackbar(
+                    "Veuillez sélectionner un chalet", ScaffoldMessenger.of(context));
+
+              }
                   : () {
                       state.typeHost == "Par Chalet" &&
                                   state.availableChalet?.isNotEmpty == true ||
@@ -402,7 +408,7 @@ class _VerifyDisponibilityScreenState extends State<VerifyDisponibilityScreen> {
                       : const SizedBox.shrink(),
                   state.availableChalet?.isNotEmpty == true
                       ? ChaletsSectionDisponibility(
-                          rooms: widget.rooms ?? [],
+                          rooms: state.availableChalet ?? [],
                           price: widget.price,
                         )
                       : const SizedBox.shrink(),

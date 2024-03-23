@@ -199,7 +199,7 @@ class _CustomInputState extends State<CustomInput> {
                     ? errorColor
                     : regularStateColor)),
             errorStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: widget.errorText != null ? errorColor : null)));
+                color: widget.errorText != null ? errorColor : null,fontSize: 12)));
   }
 
   Widget? _buildPrefix(Color color) {

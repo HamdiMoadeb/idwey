@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/extra_price_dto.dart';
-import 'package:idwey/data/models/room_dto.dart';
+import 'package:idwey/data/models/host_details_dto.dart';
 import 'package:idwey/domain/usecases/check_host_availability.dart';
 import 'package:idwey/domain/usecases/confirm_reservation_usecase.dart';
 import 'package:intl/intl.dart';
@@ -51,13 +51,26 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
           errorText: errorText,
         ));
       }, (r) async {
+        print("state.typeHost");
+        print(state.typeHost);
         print("r['disponible']");
         print(r);
         if (state.typeHost == "Par Chalet") {
+          print("r['disponible']chaaaalet");
           List<dynamic> list = json.decode(jsonEncode(r));
           print(list);
           rooms = list.map((data) => Room.fromJson(data)).toList();
           print(rooms);
+
+          emit(state.copyWith(
+            status: StateStatus.success,
+            availableChalet: rooms,
+            available: true,
+            //totalPrice: r['price'].toString() ?? "",
+            errorText: errorText,
+          ));
+
+
         } else {
           if (r['status'] == 0) {
             errorText = r["message"] == ""
@@ -76,15 +89,16 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
                   : r['messages'][0].toString();
             }
           }
+
+          emit(state.copyWith(
+            status: r['status'] == 0 ? StateStatus.error : StateStatus.success,
+            available: r['disponible'] ?? false,
+            totalPrice: r['price'].toString() ?? "",
+            errorText: errorText,
+          ));
         }
 
-        emit(state.copyWith(
-          status: r['status'] == 0 ? StateStatus.error : StateStatus.success,
-          availableChalet: rooms,
-          available: r['disponible'] ?? false,
-          totalPrice: r['price'].toString() ?? "",
-          errorText: errorText,
-        ));
+
       });
     } on Exception catch (_) {
       emit(state.copyWith(

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/presentation/blocs/reservation_bloc/reservation_bloc.dart';
 
 import '../../../../constants/assets.dart';
+import '../../../../data/models/host_details_dto.dart';
 
 class ChaletsSectionDisponibility extends StatefulWidget {
   final List<Room> rooms;
@@ -108,8 +108,7 @@ class _ChaletsSectionDisponibilityState
                                         fit: BoxFit.cover,
                                       ),
                                   fit: BoxFit.cover,
-                                  imageUrl:
-                                      widget.rooms?[index].imageId ?? "")),
+                                  imageUrl: widget.rooms[index].image ?? "")),
                         ),
 
                         Expanded(
