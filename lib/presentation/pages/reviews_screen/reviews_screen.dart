@@ -11,6 +11,7 @@ import 'package:idwey/components/reviews_bars/reviews_progress_bar.dart';
 import 'package:idwey/data/models/review_dto.dart';
 import 'package:idwey/data/models/review_scale_dto.dart';
 import 'package:idwey/theme/app_colors.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class ReviewsScreen extends StatelessWidget {
@@ -133,8 +134,7 @@ class ReviewsScreen extends StatelessWidget {
                       return CardReview(
                         text: reviewsList[index].content ?? "",
                         reviewer: reviewsList[index].author?.name ?? "",
-                        date:
-                            '${reviewsList[index].createdAt?.month} months ago',
+                        date: DateFormat('yyyy-MM-dd').format(reviewsList[index].createdAt!),
                       );
                     },
                     shrinkWrap: true,

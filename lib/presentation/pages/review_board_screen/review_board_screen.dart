@@ -13,6 +13,7 @@ import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
 import 'package:idwey/presentation/blocs/reviews_board_bloc/reviews_dashboard_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class ReviewsBoardScreen extends StatefulWidget {
@@ -392,7 +393,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                               fontWeight: FontWeight.w500, fontSize: 16.sp),
                         ),
                         Text(
-                          "${DateTime.now().difference(review!.createdAt!).inDays ~/ 30} months ago",
+                          DateFormat('yyyy-MM-dd').format(review!.createdAt!),
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14.sp,
