@@ -64,7 +64,7 @@ class ProfileHeader extends StatelessWidget {
                       hideSubtitle == true
                           ? const SizedBox.shrink()
                           : InkWell(
-                              child: Text(subtitle ?? 'Montre le profil',
+                              child: Text(subtitle ?? 'Modifier le profil',
                                   style: TextStyle(
                                       color: primary,
                                       decoration: TextDecoration.underline)),

@@ -54,7 +54,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
                   const SizedBox(width: 10),
                   RichText(
                     text: TextSpan(
-                      text: "Les dates sont :",
+                      text: "Date : ",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,

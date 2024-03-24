@@ -31,8 +31,8 @@ class FidelityProgramState with _$FidelityProgramState {
         ],
         listContent: [
           "Gagner des récompenses à chaque niveau et à chaque mois",
-          "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+          "Devenez l'aventurier du mois en accumulant le plus de points !",
+          "À chaque niveau, une surprise vous attend ! Dès que vous atteignez votre objectif, une récompense vous est offerte.",
         ],
       );
 }

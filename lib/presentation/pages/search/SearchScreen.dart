@@ -392,7 +392,7 @@ class _SearchScreenState extends State<SearchScreen>
                                         ),
                                         children: [
                                           TextSpan(
-                                            text: '${state.guests} invités',
+                                            text: '${state.guests} personnes',
                                             style: TextStyle(
                                               color: primary,
                                               fontWeight: FontWeight.bold,

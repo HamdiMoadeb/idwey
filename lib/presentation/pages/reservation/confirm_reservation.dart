@@ -180,7 +180,7 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text('Félicitations pour votre réservation ',
+                const Text('Merci pour votre réservation',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

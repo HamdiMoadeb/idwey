@@ -17,7 +17,7 @@ class SignUpTab1 extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 20.h),
           child: Text(
-            "Explorez idwey",
+            "En quelques clic, on y est presque",
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   fontWeight: FontWeight.w500,
                   color: primary,

@@ -42,7 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 60.0, left: 16.0, bottom: 16.0),
-                        child: Text('Profile',
+                        child: Text('Mon profil',
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineLarge!
@@ -80,7 +80,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 16.h),
                       child: Column(
                         children: [
-                          Text('Bienvenue à IDWEY',
+                          Text('Que l\'aventure commence',
                               style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,

@@ -156,7 +156,7 @@ class SearchBox extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Recherchez votre Idwey',
+                            Text('Rechercher',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14.sp,

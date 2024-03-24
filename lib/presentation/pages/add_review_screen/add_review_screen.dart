@@ -229,7 +229,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Soumettre",
+                                  "Publier",
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ))
@@ -265,7 +265,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text('Félicitations \n votre avis est bien reçu',
+                const Text('Merci \n Votre avis a bien été publier',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -275,7 +275,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                   height: 10,
                 ),
                 const Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+                  "Merci pour votre contribution à améliorer nos services",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),
@@ -326,7 +326,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                   height: 10,
                 ),
                 const Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+                  "Merci pour votre contribution à améliorer nos services",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),

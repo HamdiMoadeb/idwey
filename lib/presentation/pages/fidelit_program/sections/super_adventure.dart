@@ -130,7 +130,7 @@ class _SuperAdventureSectionState extends State<SuperAdventureSection> {
                           return double.parse(actualValue.toString())
                                   .toInt()
                                   .toString() +
-                              "points";
+                              " points";
                         },
                         endThumbIcon: Container(
                             decoration: BoxDecoration(

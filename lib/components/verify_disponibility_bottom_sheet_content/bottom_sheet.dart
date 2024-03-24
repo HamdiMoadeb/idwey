@@ -35,7 +35,7 @@ class DraggableBottomSheet extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.h),
             child: Column(
               children: [
-                Text('Bienvenue à IDWEY',
+                Text('Que l\'aventure commence ',
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

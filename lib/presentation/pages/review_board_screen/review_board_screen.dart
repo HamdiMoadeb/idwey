@@ -442,7 +442,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
           ),
           child: Center(
             child: Text(
-              "($nbReviews) Avis requis",
+              "($nbReviews) Avis attendus",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16.sp,

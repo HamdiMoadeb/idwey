@@ -120,7 +120,7 @@ class _SignUpFinalScreenState extends State<SignUpFinalScreen> {
                   CustomButton.primary(
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.h),
-                      child: const Text('Get Started'),
+                      child: const Text('Commercer votre experience'),
                     ),
                     onPressed: isChecked == true && state.isValid == true
                         ? () {

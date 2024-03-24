@@ -127,7 +127,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     CustomButton.primary(
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text("Apply Filter"),
+                        child: Text("Affiner la recherche"),
                       ),
                       onPressed: () async {
                         print("state.selectedTab");

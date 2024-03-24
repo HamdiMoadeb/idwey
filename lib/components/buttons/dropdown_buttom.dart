@@ -62,7 +62,7 @@ class _CustomDropDownMenuButtonState extends State<CustomDropDownMenuButton> {
                 textFieldConfiguration: TextFieldConfiguration(
                   controller: _typeAheadController,
                   decoration: InputDecoration(
-                    labelText: 'Trouver votre destination',
+                    labelText: 'Où allez-vous, région, votre destination',
                     labelStyle: Theme.of(context)
                         .textTheme
                         .labelMedium!
@@ -146,7 +146,7 @@ class _CustomDropDownMenuButtonState extends State<CustomDropDownMenuButton> {
                   const SizedBox(width: 10),
                   RichText(
                     text: TextSpan(
-                      text: "Prochaine destination : ",
+                      text: "Destination : ",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,

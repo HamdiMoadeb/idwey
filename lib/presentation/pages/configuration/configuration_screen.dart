@@ -189,7 +189,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                       state.imageUrl ?? "https://placehold.co/600x400.png",
                 ),
                 InfosSection(
-                  label: "Informations primaires",
+                  label: "Informations de base",
                   child: PrimaryInfoForm(
                       controller: controller,
                       nameController: nameController,
@@ -197,7 +197,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                       phoneController: phoneController),
                 ),
                 InfosSection(
-                  label: "Informations secondaires",
+                  label: "Profil avancé",
                   child: SecondaryInfoForm(
                     professionController: professionController,
                     interestsController: interestsController,
