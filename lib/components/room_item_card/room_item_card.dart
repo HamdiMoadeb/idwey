@@ -29,10 +29,11 @@ class RoomItemCard extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            height: 300.h,
+            height: 270.h,
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
               color: primaryOrange,
+              borderRadius: BorderRadius.circular(10.r),
             ),
           ),
           Column(
@@ -269,7 +270,7 @@ class RoomItemCard extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       GetIt.I<AppRouter>().push(AddReviewRoute(
-                          id: notreviewed.id.toString() ?? "", type: "event"));
+                          id: notreviewed.id.toString() ?? "", type: type));
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,

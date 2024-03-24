@@ -32,6 +32,9 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
 
   @override
   void initState() {
+    context
+        .read<ReviewsDashboardBloc>()
+        .add(const OnChangeType('host'));
     context.read<ReviewsDashboardBloc>().add(const GetReviews());
     super.initState();
   }
@@ -326,6 +329,9 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
       bool confirmed = false,
       required String type,
       required String serviceID}) {
+
+    print("review $review");
+    print("type $type");
     return InkWell(
       onTap: () {
         GetIt.I<AppRouter>()

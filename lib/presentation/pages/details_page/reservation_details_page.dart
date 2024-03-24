@@ -185,13 +185,13 @@ class _DetailsReservationScreenState extends State<DetailsReservationScreen> {
                                     ),
                                   ),
                                   Text(
-                                      "${widget.bookingDto?.address ?? ""} ${widget.bookingDto?.city ?? ""}Tunisia"),
-                                  Text(
-                                    "Obtenir l'itinéraire",
-                                    style: TextStyle(
-                                        color: primary,
-                                        decoration: TextDecoration.underline),
-                                  ),
+                                      "${widget.bookingDto?.address ?? ""} ${widget.bookingDto?.city ?? ""} Tunisia"),
+                                  // Text(
+                                  //   "Obtenir l'itinéraire",
+                                  //   style: TextStyle(
+                                  //       color: primary,
+                                  //       decoration: TextDecoration.underline),
+                                  // ),
                                 ],
                               ),
                             ],

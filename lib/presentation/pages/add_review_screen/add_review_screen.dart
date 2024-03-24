@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/components.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/reviews_board_dto.dart';
@@ -248,6 +249,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
 
   void _showDialog(BuildContext context) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -286,6 +288,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                   child: const Text('Trouvez votre prochaine aventure'),
                   onPressed: () {
                     context.router.popUntilRoot();
+                    context.router.push(const DashboardRoute());
                   },
                 )
               ],
@@ -299,6 +302,7 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
 
   void _showUpdatedDialog(BuildContext context) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
