@@ -270,7 +270,7 @@ class RoomItemCard extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       GetIt.I<AppRouter>().push(AddReviewRoute(
-                          id: notreviewed.id.toString() ?? "", type: type));
+                          id: notreviewed.objectId.toString() ?? "", type: type));
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,

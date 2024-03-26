@@ -134,8 +134,9 @@ class Review {
   final String? address;
   final int? globalStars;
   final String? objectModel;
+  final String? image;
 
-  Review({
+  Review( {
     this.id,
     this.content,
     this.createdAt,
@@ -144,6 +145,7 @@ class Review {
     this.address,
     this.globalStars,
     this.objectModel,
+    this.image,
   });
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
@@ -160,6 +162,7 @@ class Review {
         address: json["address"],
         globalStars: json["global_stars"],
         objectModel: json["object_model"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -173,6 +176,7 @@ class Review {
         "address": address,
         "global_stars": globalStars,
         "object_model": objectModel,
+        "image": image,
       };
 }
 

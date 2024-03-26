@@ -8,7 +8,6 @@ import 'package:idwey/app_router/app_router.dart';
 import 'package:idwey/components/buttons/button.dart';
 import 'package:idwey/constants/enums.dart';
 import 'package:idwey/data/models/host_details_dto.dart';
-import 'package:idwey/data/models/room_dto.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 

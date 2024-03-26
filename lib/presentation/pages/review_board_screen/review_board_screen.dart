@@ -384,7 +384,7 @@ class _ReviewsBoardScreenState extends State<ReviewsBoardScreen> {
                                   fit: BoxFit.cover,
                                 ),
                             fit: BoxFit.cover,
-                            imageUrl: "")),
+                            imageUrl: review?.image ?? "")),
                   ),
                   SizedBox(
                     width: 8.w,

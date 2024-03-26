@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:get_it/get_it.dart';
 import 'package:idwey/presentation/blocs/confirm_reservation_bloc/confirm_reservation_bloc.dart';
 import 'package:idwey/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -88,7 +87,7 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
     return WillPopScope(
       onWillPop: () async {
         //Navigator.pop(context);
-        context.router.popUntilRoot();
+        context.router.pop();
         return true;
       },
       child: Scaffold(
@@ -120,7 +119,7 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
               child: IconButton(
                 onPressed: () {
                   //Navigator.pop(context);
-                  context.router.popUntilRoot();
+                  context.router.pop();
                 },
                 icon: const Icon(
                   Icons.arrow_back,
