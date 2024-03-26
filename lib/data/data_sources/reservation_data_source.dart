@@ -18,7 +18,7 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
   final KONNECT_API_KEY = "647dc9678e0b604b113fe847:wwNkfEdEY8uPVpuVdP46TxHCj";
   final KONNECT_RECEIVER_WALLET_ID = "647dc9678e0b604b113fe84a";
   final KONNECT_PAYMENT_URL =
-      "https://api.preprod.konnect.network/api/v2/payments/init-payment";
+      "https://api.konnect.network/api/v2/payments/init-payment";
   @override
   Future<Map<String, dynamic>> doCheckout(Map<String, dynamic> body) async {
     try {
