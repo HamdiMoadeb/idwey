@@ -28,7 +28,7 @@ class ConfirmReservationEvent with _$ConfirmReservationEvent {
       _DoCheckout;
   const factory ConfirmReservationEvent.doOnlineCheckout() = _DoOnlineCheckout;
   const factory ConfirmReservationEvent.setParams(
-      String code, String customerID) = _setParams;
+      String code, String customerID,String totlaPrice) = _setParams;
   const factory ConfirmReservationEvent.setPaymentRef(String paymentRef) =
       _SetPaymentRef;
 }

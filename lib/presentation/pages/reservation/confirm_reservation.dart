@@ -138,7 +138,7 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
 
     context
         .read<ConfirmReservationBloc>()
-        .add(ConfirmReservationEvent.setParams(widget.code, ""));
+        .add(ConfirmReservationEvent.setParams(widget.code, "",widget.total??widget.totalOnSale??"0"));
     super.initState();
   }
 

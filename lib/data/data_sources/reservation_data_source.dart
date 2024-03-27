@@ -67,7 +67,7 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
       Map<String, dynamic> requestBody = {
         "receiverWalletId": KONNECT_RECEIVER_WALLET_ID,
         "token": "TND",
-        "amount": 10000,
+        "amount": "${body['amount']}000",
         "type": "immediate",
         "description": "payment description",
         "acceptedPaymentMethods": ["wallet", "bank_card", "e-DINAR"],

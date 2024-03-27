@@ -149,7 +149,9 @@ class ConfirmReservationBloc
   void doOnlineCheckout(
       _DoOnlineCheckout event, Emitter<ConfirmReservationState> emit) async {
     try {
-      final result = await GetIt.I<DoOnlineCheckoutUseCase>().call({});
+      final result = await GetIt.I<DoOnlineCheckoutUseCase>().call({
+        "amount": state.totalPrice,
+      });
 
       result.fold((l) {}, (r) {
         if (r != null) {
@@ -224,6 +226,7 @@ class ConfirmReservationBloc
       _setParams event, Emitter<ConfirmReservationState> emit) async {
     emit(state.copyWith(
       code: event.code,
+      totalPrice: event.totlaPrice,
     ));
   }
 }
