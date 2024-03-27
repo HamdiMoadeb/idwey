@@ -81,8 +81,8 @@ class ReservationApiDataSourceImpl implements ReservationApiDataSource {
         "orderId": "1234657",
         "webhook": "https://merchant.tech/api/notification_payment",
         "silentWebhook": true,
-        "successUrl": "http://102.219.178.96:5776/success",
-        "failUrl": "http://102.219.178.96:5776/failed",
+        "successUrl": "https://idwey.tn/bookingApi/success",
+        "failUrl": "https://idwey.tn/bookingApi/failed",
         "theme": "light"
       };
       print("requestBody");
