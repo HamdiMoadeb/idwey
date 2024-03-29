@@ -42,12 +42,17 @@ class ReviewProgressBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
+      Expanded(
+      flex: 1,
+      child:
         Text(
           title,
           style: const TextStyle(fontWeight: FontWeight.w500),
         ),
+      ),
         SizedBox(width: 10.0.w),
         Expanded(
+          flex: 2,
           child: LinearProgressIndicator(
             value: progress,
             backgroundColor: Colors.grey[200],
@@ -59,7 +64,7 @@ class ReviewProgressBar extends StatelessWidget {
         ),
         SizedBox(width: 20.0.w),
         Text(
-          (progress * 10).round().toString(),
+          (progress * 5).round().toString(),
           style: const TextStyle(fontWeight: FontWeight.w500),
         ),
         // Add spacing between progress bars

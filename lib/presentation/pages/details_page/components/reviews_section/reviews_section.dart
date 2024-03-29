@@ -94,7 +94,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
                 child: Text(
-                  "Afficher les ${widget.reviewsNumber}  avis",
+                  "Afficher les avis",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.black, fontWeight: FontWeight.w500),
                 ),
