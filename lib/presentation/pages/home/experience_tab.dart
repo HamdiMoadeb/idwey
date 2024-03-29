@@ -67,15 +67,15 @@ class _ExperienceScreenState extends State<ExperienceScreen>
           return const Center(child: Text("Pas des experiences"));
         } else if (state.statusExperiences == StateStatus.error &&
             state.atTheEndOfThePageExperiences == false &&
-            state.isSearch == true) {
+            state.isSearchExperience == true) {
           return const Center(child: Text("Pas des experiences"));
         } else if (state.statusExperiences == StateStatus.error &&
             state.atTheEndOfThePageExperiences == true &&
-            state.isSearch == true) {
+            state.isSearchExperience == true) {
           return const Center(child: Text("Pas des experiences"));
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfTheFilterPageExperiences == false &&
-            state.isFilter == true) {
+            state.isFilterExperience == true) {
           return const Center(child: Text("Pas des experiences"));
         } else if (state.statusExperiences == StateStatus.success &&
             state.listExperiences?.isEmpty == true) {

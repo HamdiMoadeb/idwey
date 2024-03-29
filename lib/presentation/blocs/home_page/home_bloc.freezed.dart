@@ -9395,7 +9395,13 @@ mixin _$HomeState {
   bool? get atTheEndOfTheFilterPageExperiences =>
       throw _privateConstructorUsedError;
   bool? get isSearch => throw _privateConstructorUsedError;
+  bool? get isSearchEvent => throw _privateConstructorUsedError;
+  bool? get isSearchActivity => throw _privateConstructorUsedError;
+  bool? get isSearchExperience => throw _privateConstructorUsedError;
   bool? get isFilter => throw _privateConstructorUsedError;
+  bool? get isFilterEvent => throw _privateConstructorUsedError;
+  bool? get isFilterActivity => throw _privateConstructorUsedError;
+  bool? get isFilterExperience => throw _privateConstructorUsedError;
   int? get pageHosts => throw _privateConstructorUsedError;
   int? get searchPageHosts => throw _privateConstructorUsedError;
   int? get filterPageHosts => throw _privateConstructorUsedError;
@@ -9466,7 +9472,13 @@ abstract class $HomeStateCopyWith<$Res> {
       bool? atTheEndOfTheSearchPageExperiences,
       bool? atTheEndOfTheFilterPageExperiences,
       bool? isSearch,
+      bool? isSearchEvent,
+      bool? isSearchActivity,
+      bool? isSearchExperience,
       bool? isFilter,
+      bool? isFilterEvent,
+      bool? isFilterActivity,
+      bool? isFilterExperience,
       int? pageHosts,
       int? searchPageHosts,
       int? filterPageHosts,
@@ -9537,7 +9549,13 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? atTheEndOfTheSearchPageExperiences = freezed,
     Object? atTheEndOfTheFilterPageExperiences = freezed,
     Object? isSearch = freezed,
+    Object? isSearchEvent = freezed,
+    Object? isSearchActivity = freezed,
+    Object? isSearchExperience = freezed,
     Object? isFilter = freezed,
+    Object? isFilterEvent = freezed,
+    Object? isFilterActivity = freezed,
+    Object? isFilterExperience = freezed,
     Object? pageHosts = freezed,
     Object? searchPageHosts = freezed,
     Object? filterPageHosts = freezed,
@@ -9677,9 +9695,33 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.isSearch
           : isSearch // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isSearchEvent: freezed == isSearchEvent
+          ? _value.isSearchEvent
+          : isSearchEvent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSearchActivity: freezed == isSearchActivity
+          ? _value.isSearchActivity
+          : isSearchActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSearchExperience: freezed == isSearchExperience
+          ? _value.isSearchExperience
+          : isSearchExperience // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isFilter: freezed == isFilter
           ? _value.isFilter
           : isFilter // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilterEvent: freezed == isFilterEvent
+          ? _value.isFilterEvent
+          : isFilterEvent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilterActivity: freezed == isFilterActivity
+          ? _value.isFilterActivity
+          : isFilterActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilterExperience: freezed == isFilterExperience
+          ? _value.isFilterExperience
+          : isFilterExperience // ignore: cast_nullable_to_non_nullable
               as bool?,
       pageHosts: freezed == pageHosts
           ? _value.pageHosts
@@ -9835,7 +9877,13 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       bool? atTheEndOfTheSearchPageExperiences,
       bool? atTheEndOfTheFilterPageExperiences,
       bool? isSearch,
+      bool? isSearchEvent,
+      bool? isSearchActivity,
+      bool? isSearchExperience,
       bool? isFilter,
+      bool? isFilterEvent,
+      bool? isFilterActivity,
+      bool? isFilterExperience,
       int? pageHosts,
       int? searchPageHosts,
       int? filterPageHosts,
@@ -9904,7 +9952,13 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? atTheEndOfTheSearchPageExperiences = freezed,
     Object? atTheEndOfTheFilterPageExperiences = freezed,
     Object? isSearch = freezed,
+    Object? isSearchEvent = freezed,
+    Object? isSearchActivity = freezed,
+    Object? isSearchExperience = freezed,
     Object? isFilter = freezed,
+    Object? isFilterEvent = freezed,
+    Object? isFilterActivity = freezed,
+    Object? isFilterExperience = freezed,
     Object? pageHosts = freezed,
     Object? searchPageHosts = freezed,
     Object? filterPageHosts = freezed,
@@ -10044,9 +10098,33 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.isSearch
           : isSearch // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isSearchEvent: freezed == isSearchEvent
+          ? _value.isSearchEvent
+          : isSearchEvent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSearchActivity: freezed == isSearchActivity
+          ? _value.isSearchActivity
+          : isSearchActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSearchExperience: freezed == isSearchExperience
+          ? _value.isSearchExperience
+          : isSearchExperience // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isFilter: freezed == isFilter
           ? _value.isFilter
           : isFilter // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilterEvent: freezed == isFilterEvent
+          ? _value.isFilterEvent
+          : isFilterEvent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilterActivity: freezed == isFilterActivity
+          ? _value.isFilterActivity
+          : isFilterActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFilterExperience: freezed == isFilterExperience
+          ? _value.isFilterExperience
+          : isFilterExperience // ignore: cast_nullable_to_non_nullable
               as bool?,
       pageHosts: freezed == pageHosts
           ? _value.pageHosts
@@ -10198,7 +10276,13 @@ class _$_HomeState implements _HomeState {
       this.atTheEndOfTheSearchPageExperiences,
       this.atTheEndOfTheFilterPageExperiences,
       this.isSearch,
+      this.isSearchEvent,
+      this.isSearchActivity,
+      this.isSearchExperience,
       this.isFilter,
+      this.isFilterEvent,
+      this.isFilterActivity,
+      this.isFilterExperience,
       this.pageHosts,
       this.searchPageHosts,
       this.filterPageHosts,
@@ -10341,7 +10425,19 @@ class _$_HomeState implements _HomeState {
   @override
   final bool? isSearch;
   @override
+  final bool? isSearchEvent;
+  @override
+  final bool? isSearchActivity;
+  @override
+  final bool? isSearchExperience;
+  @override
   final bool? isFilter;
+  @override
+  final bool? isFilterEvent;
+  @override
+  final bool? isFilterActivity;
+  @override
+  final bool? isFilterExperience;
   @override
   final int? pageHosts;
   @override
@@ -10446,7 +10542,7 @@ class _$_HomeState implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(title: $title, status: $status, statusFilterHosts: $statusFilterHosts, statusEvent: $statusEvent, statusActivities: $statusActivities, statusExperiences: $statusExperiences, listHosts: $listHosts, listEvents: $listEvents, listActivities: $listActivities, listExperiences: $listExperiences, listLocations: $listLocations, emplacementList: $emplacementList, isFetching: $isFetching, atTheEndOfThePageHosts: $atTheEndOfThePageHosts, atTheEndOfTheSearchPageHosts: $atTheEndOfTheSearchPageHosts, atTheEndOfTheFilterPageHosts: $atTheEndOfTheFilterPageHosts, atTheEndOfThePageEvents: $atTheEndOfThePageEvents, atTheEndOfTheSearchPageEvents: $atTheEndOfTheSearchPageEvents, atTheEndOfTheFilterPageEvents: $atTheEndOfTheFilterPageEvents, atTheEndOfThePageActivities: $atTheEndOfThePageActivities, atTheEndOfTheSearchPageActivities: $atTheEndOfTheSearchPageActivities, atTheEndOfTheFilterPageActivities: $atTheEndOfTheFilterPageActivities, atTheEndOfThePageExperiences: $atTheEndOfThePageExperiences, atTheEndOfTheSearchPageExperiences: $atTheEndOfTheSearchPageExperiences, atTheEndOfTheFilterPageExperiences: $atTheEndOfTheFilterPageExperiences, isSearch: $isSearch, isFilter: $isFilter, pageHosts: $pageHosts, searchPageHosts: $searchPageHosts, filterPageHosts: $filterPageHosts, pageActivities: $pageActivities, pageSearchActivities: $pageSearchActivities, pageFilterActivities: $pageFilterActivities, pageExperiences: $pageExperiences, pageSearchExperiences: $pageSearchExperiences, pageFilterExperiences: $pageFilterExperiences, pageEvents: $pageEvents, pageSearchEvents: $pageSearchEvents, pageFilterEvents: $pageFilterEvents, selectedTab: $selectedTab, startDate: $startDate, endDate: $endDate, city: $city, emplacement: $emplacement, guests: $guests, eventPageDto: $eventPageDto, hostPageDto: $hostPageDto, experiencePageDto: $experiencePageDto, activityPageDto: $activityPageDto, minPriceRange: $minPriceRange, maxPriceRange: $maxPriceRange, listAttributes: $listAttributes, listActivityCategories: $listActivityCategories, selectedAttributesId: $selectedAttributesId, selectedActivityCategoriesId: $selectedActivityCategoriesId, selectedPriceRanges: $selectedPriceRanges)';
+    return 'HomeState(title: $title, status: $status, statusFilterHosts: $statusFilterHosts, statusEvent: $statusEvent, statusActivities: $statusActivities, statusExperiences: $statusExperiences, listHosts: $listHosts, listEvents: $listEvents, listActivities: $listActivities, listExperiences: $listExperiences, listLocations: $listLocations, emplacementList: $emplacementList, isFetching: $isFetching, atTheEndOfThePageHosts: $atTheEndOfThePageHosts, atTheEndOfTheSearchPageHosts: $atTheEndOfTheSearchPageHosts, atTheEndOfTheFilterPageHosts: $atTheEndOfTheFilterPageHosts, atTheEndOfThePageEvents: $atTheEndOfThePageEvents, atTheEndOfTheSearchPageEvents: $atTheEndOfTheSearchPageEvents, atTheEndOfTheFilterPageEvents: $atTheEndOfTheFilterPageEvents, atTheEndOfThePageActivities: $atTheEndOfThePageActivities, atTheEndOfTheSearchPageActivities: $atTheEndOfTheSearchPageActivities, atTheEndOfTheFilterPageActivities: $atTheEndOfTheFilterPageActivities, atTheEndOfThePageExperiences: $atTheEndOfThePageExperiences, atTheEndOfTheSearchPageExperiences: $atTheEndOfTheSearchPageExperiences, atTheEndOfTheFilterPageExperiences: $atTheEndOfTheFilterPageExperiences, isSearch: $isSearch, isSearchEvent: $isSearchEvent, isSearchActivity: $isSearchActivity, isSearchExperience: $isSearchExperience, isFilter: $isFilter, isFilterEvent: $isFilterEvent, isFilterActivity: $isFilterActivity, isFilterExperience: $isFilterExperience, pageHosts: $pageHosts, searchPageHosts: $searchPageHosts, filterPageHosts: $filterPageHosts, pageActivities: $pageActivities, pageSearchActivities: $pageSearchActivities, pageFilterActivities: $pageFilterActivities, pageExperiences: $pageExperiences, pageSearchExperiences: $pageSearchExperiences, pageFilterExperiences: $pageFilterExperiences, pageEvents: $pageEvents, pageSearchEvents: $pageSearchEvents, pageFilterEvents: $pageFilterEvents, selectedTab: $selectedTab, startDate: $startDate, endDate: $endDate, city: $city, emplacement: $emplacement, guests: $guests, eventPageDto: $eventPageDto, hostPageDto: $hostPageDto, experiencePageDto: $experiencePageDto, activityPageDto: $activityPageDto, minPriceRange: $minPriceRange, maxPriceRange: $maxPriceRange, listAttributes: $listAttributes, listActivityCategories: $listActivityCategories, selectedAttributesId: $selectedAttributesId, selectedActivityCategoriesId: $selectedActivityCategoriesId, selectedPriceRanges: $selectedPriceRanges)';
   }
 
   @override
@@ -10512,7 +10608,13 @@ class _$_HomeState implements _HomeState {
             (identical(other.atTheEndOfTheFilterPageExperiences, atTheEndOfTheFilterPageExperiences) ||
                 other.atTheEndOfTheFilterPageExperiences == atTheEndOfTheFilterPageExperiences) &&
             (identical(other.isSearch, isSearch) || other.isSearch == isSearch) &&
+            (identical(other.isSearchEvent, isSearchEvent) || other.isSearchEvent == isSearchEvent) &&
+            (identical(other.isSearchActivity, isSearchActivity) || other.isSearchActivity == isSearchActivity) &&
+            (identical(other.isSearchExperience, isSearchExperience) || other.isSearchExperience == isSearchExperience) &&
             (identical(other.isFilter, isFilter) || other.isFilter == isFilter) &&
+            (identical(other.isFilterEvent, isFilterEvent) || other.isFilterEvent == isFilterEvent) &&
+            (identical(other.isFilterActivity, isFilterActivity) || other.isFilterActivity == isFilterActivity) &&
+            (identical(other.isFilterExperience, isFilterExperience) || other.isFilterExperience == isFilterExperience) &&
             (identical(other.pageHosts, pageHosts) || other.pageHosts == pageHosts) &&
             (identical(other.searchPageHosts, searchPageHosts) || other.searchPageHosts == searchPageHosts) &&
             (identical(other.filterPageHosts, filterPageHosts) || other.filterPageHosts == filterPageHosts) &&
@@ -10573,7 +10675,13 @@ class _$_HomeState implements _HomeState {
         atTheEndOfTheSearchPageExperiences,
         atTheEndOfTheFilterPageExperiences,
         isSearch,
+        isSearchEvent,
+        isSearchActivity,
+        isSearchExperience,
         isFilter,
+        isFilterEvent,
+        isFilterActivity,
+        isFilterExperience,
         pageHosts,
         searchPageHosts,
         filterPageHosts,
@@ -10640,7 +10748,13 @@ abstract class _HomeState implements HomeState {
       final bool? atTheEndOfTheSearchPageExperiences,
       final bool? atTheEndOfTheFilterPageExperiences,
       final bool? isSearch,
+      final bool? isSearchEvent,
+      final bool? isSearchActivity,
+      final bool? isSearchExperience,
       final bool? isFilter,
+      final bool? isFilterEvent,
+      final bool? isFilterActivity,
+      final bool? isFilterExperience,
       final int? pageHosts,
       final int? searchPageHosts,
       final int? filterPageHosts,
@@ -10724,7 +10838,19 @@ abstract class _HomeState implements HomeState {
   @override
   bool? get isSearch;
   @override
+  bool? get isSearchEvent;
+  @override
+  bool? get isSearchActivity;
+  @override
+  bool? get isSearchExperience;
+  @override
   bool? get isFilter;
+  @override
+  bool? get isFilterEvent;
+  @override
+  bool? get isFilterActivity;
+  @override
+  bool? get isFilterExperience;
   @override
   int? get pageHosts;
   @override

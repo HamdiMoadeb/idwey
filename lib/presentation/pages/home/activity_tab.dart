@@ -67,14 +67,14 @@ class _ActivityScreenState extends State<ActivityScreen>
           return const Center(child: Text("Pas des activites"));
         } else if (state.statusActivities == StateStatus.error &&
             state.atTheEndOfTheSearchPageActivities == true &&
-            state.isSearch == true) {
+            state.isSearchActivity == true) {
           return const Center(child: Text("Pas des activites"));
         } else if (state.status == StateStatus.error &&
             state.atTheEndOfTheFilterPageActivities == false &&
-            state.isFilter == true) {
+            state.isFilterActivity == true) {
           return const Center(child: Text("Pas des activites"));
         } else if (state.statusActivities == StateStatus.success &&
-            state.listActivities!.isEmpty) {
+            state.listActivities!.isEmpty && state.atTheEndOfThePageActivities == true) {
           return const Center(child: Text("Pas des activites"));
         } else if (state.statusActivities == StateStatus.success ||
             state.statusActivities == StateStatus.loadingMore &&

@@ -114,6 +114,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           context
                               .read<HomeBloc>()
                               .add(const HomeEvent.setSelectedTab(0));
+                            context.read<HomeBloc>().add(
+                                const GetListHost(false));
+
                         });
                       },
                       isSelected: selectedIndex == 0,
@@ -135,6 +138,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           context
                               .read<HomeBloc>()
                               .add(const HomeEvent.setSelectedTab(1));
+                            context.read<HomeBloc>().add(
+                                const GetListEvent(false));
+
                         });
                       },
                       isSelected: selectedIndex == 1,
@@ -156,6 +162,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           context
                               .read<HomeBloc>()
                               .add(const HomeEvent.setSelectedTab(2));
+                            context.read<HomeBloc>().add(
+                                const GetListActivities(false));
+
                         });
                       },
                       isSelected: selectedIndex == 2,
@@ -178,6 +187,9 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                           context
                               .read<HomeBloc>()
                               .add(const HomeEvent.setSelectedTab(3));
+                            context.read<HomeBloc>().add(
+                                const GetListExperiences(false));
+
                         });
                       },
                       isSelected: selectedIndex == 3,

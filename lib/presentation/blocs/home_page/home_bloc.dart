@@ -162,7 +162,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       /// if is search and is not loading more empty list hosts to load new data
       ///
-
+      emit(state.copyWith(
+        atTheEndOfThePageHosts: false,
+        atTheEndOfTheFilterPageHosts: false,
+      ));
       if (event.isFetching == false) {
         emit(state.copyWith(
           listHosts: [],
@@ -240,14 +243,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListEvents(GetListEvent event, Emitter<HomeState> emit) async {
     print("state.isFilter111111");
-    print(state.isFilter);
-    print(state.isSearch);
+    print(state.isFilterEvent);
+    print(state.isSearchEvent);
+    print(state.atTheEndOfThePageEvents);
 
     try {
-      if (state.isSearch == true) {
+      if (state.isSearchEvent == true) {
         emit(state.copyWith(
           listEvents: [],
-          isSearch: false,
+          isSearchEvent: false,
           atTheEndOfThePageEvents: false,
           pageEvents: 0,
           startDate: "",
@@ -256,10 +260,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           guests: 0,
         ));
       }
-      if (state.isFilter == true) {
+      if (state.isFilterEvent == true) {
         emit(state.copyWith(
           listEvents: [],
-          isFilter: false,
+          isFilterEvent: false,
           pageEvents: 0,
           startDate: "",
           endDate: "",
@@ -453,10 +457,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListExperiences(GetListExperiences event, Emitter<HomeState> emit) async {
     try {
-      if (state.isSearch == true) {
+      if (state.isSearchExperience == true) {
         emit(state.copyWith(
           listExperiences: [],
-          isSearch: false,
+          isSearchExperience: false,
           pageExperiences: 0,
           atTheEndOfThePageExperiences: false,
           startDate: "",
@@ -465,10 +469,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           guests: 0,
         ));
       }
-      if (state.isFilter == true) {
+      if (state.isFilterExperience == true) {
         emit(state.copyWith(
           listExperiences: [],
-          isFilter: false,
+          isFilterExperience: false,
           pageExperiences: 0,
           startDate: "",
           endDate: "",
@@ -544,11 +548,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListActivities(GetListActivities event, Emitter<HomeState> emit) async {
     try {
-      if (state.isSearch == true) {
+      if (state.isSearchActivity == true) {
         emit(state.copyWith(
           listActivities: [],
           atTheEndOfThePageActivities: false,
-          isSearch: false,
+          isSearchActivity: false,
           pageActivities: 0,
           startDate: "",
           endDate: "",
@@ -556,10 +560,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           guests: 0,
         ));
       }
-      if (state.isFilter == true) {
+      if (state.isFilterActivity == true) {
         emit(state.copyWith(
           listActivities: [],
-          isFilter: false,
+          isFilterActivity: false,
           pageActivities: 0,
           startDate: "",
           endDate: "",
@@ -711,12 +715,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetSearchListEvent event, Emitter<HomeState> emit) async {
     print("state.atTheEndOfThePageEvents");
     print(state.atTheEndOfTheSearchPageEvents);
-    print(state.isSearch);
-    print(event.isFetching);
-    try {
+    print(state.atTheEndOfThePageEvents);
 
+
+    try {
+      emit(state.copyWith(
+        atTheEndOfThePageEvents: false,
+        atTheEndOfTheFilterPageEvents: false,
+      ));
       print("event.isSearch");
-      emit(state.copyWith(isSearch: true));
+      emit(state.copyWith(isSearchEvent: true));
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -745,7 +753,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     // Use a default value if state.page is null
       final Either<Exception, List<Event>?> result;
       print("event.isSearch");
-      emit(state.copyWith(isSearch: true));
+      emit(state.copyWith(isSearchEvent: true));
       result = await GetIt.I<SearchListEventsUseCase>().call({
         "limit": 10,
         "offset": nextPage * 10,
@@ -785,6 +793,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         }
       });
+
+      print("state.atTheEndOfThePageEvents");
+      print(state.atTheEndOfTheSearchPageEvents);
+      print(state.atTheEndOfThePageEvents);
+      print(state.isSearchEvent);
     } catch (e) {
       emit(state.copyWith(
         status: StateStatus.error,
@@ -798,6 +811,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getListSearchActivities(
       GetSearchListActivities event, Emitter<HomeState> emit) async {
     try {
+      emit(state.copyWith(
+        atTheEndOfThePageActivities: false,
+        atTheEndOfTheFilterPageActivities: false,
+      ));
+
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -821,7 +839,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           0; // Use a default value if state.page is null
       final Either<Exception, List<Activity>?> result;
       print("event.isSearch");
-      emit(state.copyWith(isSearch: true));
+      emit(state.copyWith(isSearchActivity: true));
       result = await GetIt.I<SearchListActivityUseCase>().call({
         "limit": 10,
         "offset": nextPage * 10,
@@ -874,6 +892,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getListSearchExperiences(
       GetSearchListExperiences event, Emitter<HomeState> emit) async {
     try {
+      emit(state.copyWith(
+        atTheEndOfThePageExperiences: false,
+        atTheEndOfTheFilterPageExperiences: false,
+      ));
+
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -900,7 +923,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           0; // Use a default value if state.page is null
       final Either<Exception, List<Experience>?> result;
       print("event.isSearch");
-      emit(state.copyWith(isSearch: true));
+      emit(state.copyWith(isSearchExperience: true));
       result = await GetIt.I<SearchListExperienceUseCase>().call({
         "limit": 10,
         "offset": nextPage * 10,
@@ -1019,6 +1042,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getListFilterHosts(
       GetFilterListHostsPageData event, Emitter<HomeState> emit) async {
     try {
+      emit(state.copyWith(
+        atTheEndOfThePageHosts: false,
+        atTheEndOfTheSearchPageHosts: false,
+      ));
       /// if is search and is not loading more empty list hosts to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -1097,9 +1124,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetFilterListEventsPageData event, Emitter<HomeState> emit) async {
     print("event.isFiiilter");
     print(state.atTheEndOfTheFilterPageEvents);
-    print(state.isFilter);
+    print(state.isFilterEvent);
     print(event.isFetching);
     try {
+      emit(state.copyWith(
+        atTheEndOfThePageEvents: false,
+        atTheEndOfTheSearchPageEvents: false,
+      ));
       /// if is search and is not loading more empty list events to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -1128,7 +1159,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final Either<Exception, List<Event>?> result;
       print("event.isSearch");
-      emit(state.copyWith(isSearch: true));
+      emit(state.copyWith(isFilterEvent: true));
       result = await GetIt.I<FilterListEventsUseCase>().call({
         "limit": 10,
         "offset": nextPage * 10,
@@ -1181,9 +1212,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getListFilterActivities(
       GetFilterListActivitiesPageData event, Emitter<HomeState> emit) async {
     print(state.atTheEndOfTheFilterPageActivities);
-    print(state.isFilter);
+    print(state.isFilterActivity);
     print(event.isFetching);
     try {
+      emit(state.copyWith(
+        atTheEndOfThePageActivities: false,
+        atTheEndOfTheSearchPageActivities: false,
+      ));
       /// if is search and is not loading more empty list activities to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -1208,7 +1243,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       int nextPage = state.pageFilterActivities ??
           0; // Use a default value if state.page is null
-      emit(state.copyWith(isFilter: true));
+      emit(state.copyWith(isFilterActivity: true));
 
       final Either<Exception, List<Activity>?> result;
       print("event.isSearch");
@@ -1268,6 +1303,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     print(state.isFilter);
     print(event.isFetching);
     try {
+      emit(state.copyWith(
+        atTheEndOfThePageExperiences: false,
+        atTheEndOfTheSearchPageExperiences: false,
+      ));
       /// if is search and is not loading more empty list experiences to load new data
       if (event.isFetching == false) {
         emit(state.copyWith(
@@ -1292,7 +1331,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ));
       int nextPage = state.pageFilterExperiences ??
           0; // Use a default value if state.page is null
-      emit(state.copyWith(isFilter: true));
+      emit(state.copyWith(isFilterExperience: true));
       final Either<Exception, List<Experience>?> result;
       print("event.isSearch");
       emit(state.copyWith(isSearch: true));
