@@ -86,8 +86,8 @@ class _InAppWebViewScreenState extends State<InAppWebViewScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        //Navigator.pop(context);
-        context.router.pop();
+        Navigator.pop(context);
+        //context.router.pop();
         return true;
       },
       child: Scaffold(

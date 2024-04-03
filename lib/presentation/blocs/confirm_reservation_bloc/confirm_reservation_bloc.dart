@@ -215,6 +215,9 @@ class ConfirmReservationBloc
         emit(state.copyWith(
           checkoutStatus: StateStatus.success,
         ));
+        /// navigate to booking board route after success
+        GetIt.I<AppRouter>().popUntilRoot();
+        GetIt.I<AppRouter>().navigate(const BookingBoardRoute());
       });
     } catch (e) {
       print(e);
