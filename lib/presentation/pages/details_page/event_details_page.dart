@@ -121,6 +121,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen>
                       : state.eventDetailsDto?.row?.isfull == 1
                           ? StateEvent.isFull
                           : StateEvent.isAvailable,
+                  title: "Réserver maintenant",
                   perPerson: "personne",
                   salePrice:
                       double.parse(state.eventDetailsDto?.row?.salePrix ?? "0")

@@ -40,7 +40,7 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
     for (int i = 0; i < rates.length; i++) {
       if (rates[i]["title"] == event.title) {
         isExist = true;
-        rates[i]["rate"] = event.rate;
+        rates[i]["stars"] = event.rate;
       }
     }
 
@@ -50,7 +50,7 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
             ? rates
             : [
                 ...rates,
-                {"title": event.title, "rate": event.rate}
+                {"title": event.title, "stars": event.rate}
               ],
       ),
     );
