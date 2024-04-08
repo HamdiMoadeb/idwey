@@ -6,16 +6,17 @@ import 'package:idwey/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PayementSection extends StatefulWidget {
-  bool? offline;
   bool? online;
+  bool? offline;
   final Function(String)? onOfflineChecked;
   final Function(String)? onOnlineChecked;
   PayementSection({
     Key? key,
-    this.offline,
-    this.online,
+
     required this.onOfflineChecked,
-    this.onOnlineChecked,
+    required this.onOnlineChecked,
+    this.online,
+    this.offline,
   }) : super(key: key);
 
   @override
@@ -25,8 +26,11 @@ class PayementSection extends StatefulWidget {
 class _PayementSectionState extends State<PayementSection> {
   String radioItem = '';
   bool isChecked = false;
+  bool? online ;
+  bool? offline ;
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: EdgeInsets.only(top: 16.h, left: 16.h, right: 16.h),
       decoration: BoxDecoration(
@@ -70,7 +74,11 @@ class _PayementSectionState extends State<PayementSection> {
                     widget.onOfflineChecked!(value!);
                     setState(() {
                       radioItem = value ?? "";
-                      widget.offline = true;
+                      offline = true;
+                      online = false;
+                      print('*****');
+                      print(online);
+                      print(offline);
                     });
                   },
                 ),
@@ -94,13 +102,17 @@ class _PayementSectionState extends State<PayementSection> {
                     widget.onOnlineChecked!(value!);
                     setState(() {
                       radioItem = value ?? "";
-                      widget.online = true;
+                      online = true;
+                      offline = false;
+                      print('*****');
+                      print(online);
+                      print(offline);
                     });
                   },
                 ),
               ),
               Visibility(
-                visible: widget.offline == true,
+                visible: offline == true,
                 child: Padding(
                   padding:
                       EdgeInsets.only(bottom: 16.h, left: 16.h, right: 16.h),
@@ -108,23 +120,24 @@ class _PayementSectionState extends State<PayementSection> {
                     children: [
                       RichText(
                         text: TextSpan(
-                          text: "- Des frais bancaires de ",
+                          text: "- Pour confirmer votre réservation, veuillez effectuer votre paiement dans un délai de ",
                           style: TextStyle(
                             fontSize: 16.h,
                             color: Colors.black,
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: '1,6 %',
+                              text: '48 heures',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16.h,
                                 color: Colors.black,
+                                 decoration: TextDecoration.underline,
                               ),
                             ),
                             TextSpan(
                               text:
-                                  "seront prélevés sur les paiements en ligne pour carte nationales.",
+                                  ".",
                               style: TextStyle(
                                 fontSize: 16.h,
                                 color: Colors.black,
@@ -138,24 +151,16 @@ class _PayementSectionState extends State<PayementSection> {
                       SizedBox(height: 16.h),
                       RichText(
                         text: TextSpan(
-                          text: "- Des frais bancaires de ",
+                          text: "- Pour plus d'information contacter :",
                           style: TextStyle(
                             fontSize: 16.h,
                             color: Colors.black,
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: '3,1 %',
+                              text: '31 106 666',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.h,
-                                color: Colors.black,
-                              ),
-                            ),
-                            TextSpan(
-                              text:
-                                  "seront prélevés sur les paiements en ligne pour carte internationales.",
-                              style: TextStyle(
                                 fontSize: 16.h,
                                 color: Colors.black,
                               ),
@@ -166,6 +171,41 @@ class _PayementSectionState extends State<PayementSection> {
                         textHeightBehavior: TextHeightBehavior(),
                       ),
                     ],
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: online == true,
+                child: Padding(
+                  padding:
+                  EdgeInsets.only(bottom: 16.h, left: 16.h, right: 16.h),
+                  child: RichText(
+                    text: TextSpan(
+                      text: "- Des frais bancaires de ",
+                      style: TextStyle(
+                        fontSize: 16.h,
+                        color: Colors.black,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '1.6 %',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.h,
+                            color: Colors.black,
+                          ),
+                        ),
+                    TextSpan(
+                      text: "seront prélevés sur les paiements en ligne.",
+                      style: TextStyle(
+                        fontSize: 16.h,
+                        color: Colors.black,
+                      ),
+                    ),
+                      ],
+                    ),
+                    textAlign: TextAlign.left,
+                    textHeightBehavior: TextHeightBehavior(),
                   ),
                 ),
               )

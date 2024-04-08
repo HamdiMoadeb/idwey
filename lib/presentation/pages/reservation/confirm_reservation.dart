@@ -347,8 +347,8 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                     ),
                     // const AssuranceSection(),
                     PayementSection(
-                      offline: offline,
                       online: online,
+                      offline: offline,
                       onOnlineChecked: (String v) {
                         setState(() {
                           online = v == "Online";
@@ -358,7 +358,7 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                       },
                       onOfflineChecked: (String v) {
                         setState(() {
-                          offline = v == 'Offline';
+                          offline = v == "Offline";
                         });
                         context.read<ConfirmReservationBloc>().add(
                             const ConfirmReservationEvent.onOfflinechecked());
