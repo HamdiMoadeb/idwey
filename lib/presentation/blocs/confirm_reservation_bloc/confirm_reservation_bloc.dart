@@ -128,6 +128,8 @@ class ConfirmReservationBloc
   void onOnlineChecked(
       _OnOnlineChecked event, Emitter<ConfirmReservationState> emit) async {
     emit(state.copyWith(online: true, offline: false));
+    print("state.online");
+    print(state.online);
   }
 
   /// on offline checked
@@ -149,10 +151,11 @@ class ConfirmReservationBloc
   void doOnlineCheckout(
       _DoOnlineCheckout event, Emitter<ConfirmReservationState> emit) async {
     try {
+
+      emit(state.copyWith(online: true));
       final result = await GetIt.I<DoOnlineCheckoutUseCase>().call({
         "amount": state.totalPrice,
       });
-
       result.fold((l) {}, (r) {
         if (r != null) {
           emit(state.copyWith(paymentRef: r['paymentRef']));
@@ -214,11 +217,18 @@ class ConfirmReservationBloc
         print(r);
         emit(state.copyWith(
           checkoutStatus: StateStatus.success,
+          online: event.body.isEmpty == true ? false : true,
         ));
-        /// navigate to booking board route after success
-        GetIt.I<AppRouter>().popUntilRoot();
-        GetIt.I<AppRouter>().navigate(const BookingBoardRoute());
+
+        print("state.online");
+        print(state.online);
+
+        if(state.online == true){
+          GetIt.I<AppRouter>().popUntilRoot();
+          GetIt.I<AppRouter>().navigate(const BookingBoardRoute());
+        }
       });
+
     } catch (e) {
       print(e);
       emit(state.copyWith(checkoutStatus: StateStatus.error));

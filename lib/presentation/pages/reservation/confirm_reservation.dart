@@ -230,8 +230,13 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
           showLoadingDialog();
         }
         if (state.checkoutStatus == StateStatus.success) {
-          Navigator.pop(context);
-          _showDialog(context);
+         print("state.onlineListener");
+          print(state.online);
+
+            Navigator.pop(context);
+            _showDialog(context);
+
+
         }
       },
       builder: (context, state) {
