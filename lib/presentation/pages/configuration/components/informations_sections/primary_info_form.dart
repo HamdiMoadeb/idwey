@@ -8,6 +8,7 @@ class PrimaryInfoForm extends StatefulWidget {
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
+  final TextEditingController addressController;
 
   const PrimaryInfoForm({
     Key? key,
@@ -15,6 +16,7 @@ class PrimaryInfoForm extends StatefulWidget {
     required this.nameController,
     required this.emailController,
     required this.phoneController,
+    required this.addressController,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class _PrimaryInfoFormState extends State<PrimaryInfoForm> {
   FocusNode nameFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
   FocusNode phoneFocusNode = FocusNode();
+  FocusNode addressFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -98,12 +101,35 @@ class _PrimaryInfoFormState extends State<PrimaryInfoForm> {
           SizedBox(
             height: 16.h,
           ),
-          CustomInput(
-            focusNode: phoneFocusNode,
-            hintText: "Numéro de téléphone",
-            controller: widget.phoneController,
-            keyboardType: TextInputType.number,
-            foregroundColor: Colors.grey,
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 0.4.sw,
+                child: CustomInput(
+                  focusNode: phoneFocusNode,
+                  hintText: "Numéro de téléphone",
+                  controller: widget.phoneController,
+                  keyboardType: TextInputType.number,
+                  foregroundColor: Colors.grey,
+                ),
+              ),
+              SizedBox(
+                width: 16.w,
+              ),
+              SizedBox(
+                width: 0.4.sw,
+                child: CustomInput(
+                  focusNode: addressFocusNode,
+                  hintText: "Ville",
+                  controller: widget.addressController,
+                  keyboardType: TextInputType.text,
+                  foregroundColor: Colors.grey,
+                ),
+              ),
+            ],
           ),
         ],
       ),

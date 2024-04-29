@@ -12,6 +12,7 @@ class AppState with _$AppState {
       String? email,
       String? phone,
       String? id,
+          String? city,
       String? imageUrl}) = _AppState;
 
   factory AppState.initial() => const AppState(
@@ -24,5 +25,6 @@ class AppState with _$AppState {
       email: "",
       phone: "",
       id: "",
+      city: "",
       imageUrl: "");
 }

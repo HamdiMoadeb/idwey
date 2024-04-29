@@ -31,6 +31,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
   TextEditingController oldPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
 
   @override
   void initState() {
@@ -46,6 +47,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
     emailController.text = context.read<AppBloc>().state.email ?? "";
     phoneController.text = context.read<AppBloc>().state.phone ?? "";
     controller.text = context.read<AppBloc>().state.lastname ?? "";
+    addressController.text = context.read<AppBloc>().state.city ?? "";
   }
 
   @override
@@ -191,6 +193,7 @@ class _ConfigurationScreenState extends State<ConfigurationScreen> {
                 InfosSection(
                   label: "Informations de base",
                   child: PrimaryInfoForm(
+                    addressController: addressController,
                       controller: controller,
                       nameController: nameController,
                       emailController: emailController,

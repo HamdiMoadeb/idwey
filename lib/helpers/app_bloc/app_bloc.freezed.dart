@@ -935,6 +935,7 @@ mixin _$AppState {
   String? get email => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -957,6 +958,7 @@ abstract class $AppStateCopyWith<$Res> {
       String? email,
       String? phone,
       String? id,
+      String? city,
       String? imageUrl});
 }
 
@@ -982,6 +984,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? email = freezed,
     Object? phone = freezed,
     Object? id = freezed,
+    Object? city = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1021,6 +1024,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -1046,6 +1053,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       String? email,
       String? phone,
       String? id,
+      String? city,
       String? imageUrl});
 }
 
@@ -1069,6 +1077,7 @@ class __$$_AppStateCopyWithImpl<$Res>
     Object? email = freezed,
     Object? phone = freezed,
     Object? id = freezed,
+    Object? city = freezed,
     Object? imageUrl = freezed,
   }) {
     return _then(_$_AppState(
@@ -1108,6 +1117,10 @@ class __$$_AppStateCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -1129,6 +1142,7 @@ class _$_AppState implements _AppState {
       this.email,
       this.phone,
       this.id,
+      this.city,
       this.imageUrl});
 
   @override
@@ -1150,11 +1164,13 @@ class _$_AppState implements _AppState {
   @override
   final String? id;
   @override
+  final String? city;
+  @override
   final String? imageUrl;
 
   @override
   String toString() {
-    return 'AppState(status: $status, updateUserStatus: $updateUserStatus, deleteUserStatus: $deleteUserStatus, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id, imageUrl: $imageUrl)';
+    return 'AppState(status: $status, updateUserStatus: $updateUserStatus, deleteUserStatus: $deleteUserStatus, isLoggedIn: $isLoggedIn, name: $name, lastname: $lastname, email: $email, phone: $phone, id: $id, city: $city, imageUrl: $imageUrl)';
   }
 
   @override
@@ -1175,13 +1191,25 @@ class _$_AppState implements _AppState {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.city, city) || other.city == city) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, updateUserStatus,
-      deleteUserStatus, isLoggedIn, name, lastname, email, phone, id, imageUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      updateUserStatus,
+      deleteUserStatus,
+      isLoggedIn,
+      name,
+      lastname,
+      email,
+      phone,
+      id,
+      city,
+      imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -1201,6 +1229,7 @@ abstract class _AppState implements AppState {
       final String? email,
       final String? phone,
       final String? id,
+      final String? city,
       final String? imageUrl}) = _$_AppState;
 
   @override
@@ -1221,6 +1250,8 @@ abstract class _AppState implements AppState {
   String? get phone;
   @override
   String? get id;
+  @override
+  String? get city;
   @override
   String? get imageUrl;
   @override

@@ -21,6 +21,7 @@ class RoomItemCardBooking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       onTap: callback ?? () {},
       child: Stack(
@@ -186,28 +187,31 @@ class RoomItemCardBooking extends StatelessWidget {
                                     ],
                                   )
                                 : const SizedBox.shrink(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Nuits',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.sp),
-                                ),
-                                Text(
-                                  bookingDto?.endDate
-                                          ?.difference(bookingDto?.startDate ??
-                                              DateTime.now())
-                                          .inDays
-                                          .toString() ??
-                                      "",
-                                  style: TextStyle(
-                                      color: primary,
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500),
-                                )
-                              ],
+                            Visibility(
+                              visible: getReservationType(bookingDto.objectModel??"")== "Hébergement",
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Nuits',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.sp),
+                                  ),
+                                  Text(
+                                    bookingDto?.endDate
+                                            ?.difference(bookingDto?.startDate ??
+                                                DateTime.now())
+                                            .inDays
+                                            .toString() ??
+                                        "",
+                                    style: TextStyle(
+                                        color: primary,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              ),
                             ),
                             bookingDto?.totalGuests == "" ||
                                     bookingDto?.totalGuests == "null" ||
@@ -294,8 +298,9 @@ class RoomItemCardBooking extends StatelessWidget {
         return "Activité";
       case "event":
         return "Événement";
-      case "Experience":
+      case "experience":
         return "Experience";
+
       default:
         return "";
     }
