@@ -189,7 +189,7 @@ class _ConfirmReservationScreenState extends State<ConfirmReservationScreen> {
                   height: 10,
                 ),
                 const Text(
-                  "L'équipe Idwey vous contactera bientôt. Consultez votre tableau de bord pour suivre le statut ",
+                  "Consultez votre tableau de bord pour suivre le statut ",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),
