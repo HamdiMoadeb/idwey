@@ -45,11 +45,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
     _tabController.addListener(() {
       setState(() {
         selectedIndex = (_tabController.index).round();
-        /// animate to the selected tab
-        ///_tabController.animation.value returns double
-       print("context.read<HomeBloc>().state.selectedTab");
-       print(context.read<HomeBloc>().state.selectedTab);
-        //_tabController.animation.value returns double
+
       });
 
     });

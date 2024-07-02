@@ -130,8 +130,6 @@ class _FilterScreenState extends State<FilterScreen> {
                         child: Text("Affiner la recherche"),
                       ),
                       onPressed: () async {
-                        print("state.selectedTab");
-                        print(state.selectedTab);
 
                         if (state.selectedTab == 0) {
                           context.read<HomeBloc>().add(

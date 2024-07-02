@@ -65,8 +65,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   _getUserRole(GetUserRole event, Emitter<HomeState> emit) {}
 
   _getListHosts(GetListHost event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfThePageHosts");
-    print(state.atTheEndOfThePageHosts);
+
     try {
       if (state.isSearch == true) {
         emit(state.copyWith(
@@ -81,7 +80,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ));
       }
       if (state.isFilter == true) {
-        print('isFilter');
         emit(state.copyWith(
           listHosts: [],
           isFilter: false,
@@ -111,7 +109,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           state.pageHosts ?? 0; // Use a default value if state.page is null
       final Either<Exception, List<Host>?> result;
 
-      print("******* is not sezrch");
       result = await GetIt.I<GetListHostsUseCase>().call({
         "limit": 10,
         "offset": nextPage * 10,
@@ -178,8 +175,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listHosts");
-      print(state.listHosts);
+
 
       emit(state.copyWith(
         status:
@@ -192,7 +188,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
       final Either<Exception, List<Host>?> result;
-      print("event.isSearch");
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<SearchListHostsUseCase>().call({
         "limit": 10,
@@ -242,10 +237,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   _getListEvents(GetListEvent event, Emitter<HomeState> emit) async {
-    print("state.isFilter111111");
-    print(state.isFilterEvent);
-    print(state.isSearchEvent);
-    print(state.atTheEndOfThePageEvents);
+
 
     try {
       if (state.isSearchEvent == true) {
@@ -279,7 +271,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ));
       }
       if (state.atTheEndOfThePageEvents == true) {
-        print("state.atTheEndOfThePageEvents");
         return;
       }
       emit(state.copyWith(
@@ -311,8 +302,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           // Check if the server returned fewer items than requested
           bool atTheEndOfThePage = success.length < 10;
 
-          print("success");
-          print(success.length);
 
           emit(state.copyWith(
             statusEvent: StateStatus.success,
@@ -376,16 +365,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       });
 
       result.fold((Exception failure) {}, (HostPageDto? success) async {
-        print("success");
-        print(success?.hotelMinMaxPrice);
+
         emit(state.copyWith(
           hostPageDto: success,
           listAttributes: success?.attributes,
           minPriceRange: success?.hotelMinMaxPrice?[0],
           maxPriceRange: success?.hotelMinMaxPrice?[1],
         ));
-        print("minPriceRange ${state.minPriceRange}");
-        print("maxPriceRange ${state.maxPriceRange}");
+
       });
     } catch (e) {
       emit(state.copyWith());
@@ -488,7 +475,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ));
       }
       if (state.atTheEndOfThePageExperiences == true) {
-        print("atTheEndOfThePageExperiences");
         return;
       }
       emit(state.copyWith(
@@ -519,8 +505,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
           // Check if the server returned fewer items than requested
           bool atTheEndOfThePage = success!.length < 10;
-          print("success");
-          print(success.length);
+
 
           emit(state.copyWith(
             statusExperiences: StateStatus.success,
@@ -635,7 +620,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _setSelectedTab(SetSelectedTab event, Emitter<HomeState> emit) async {
     /// switch selected tab => min max range
-    print(event.tab);
     switch (event.tab) {
       case 0:
         emit(state.copyWith(
@@ -672,33 +656,28 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         break;
     }
 
-    print("state.selectedTab");
-    print(state.selectedTab);
+
 
   }
 
   void changeStartDate(_ChangeStartDate event, Emitter<HomeState> emit) {
     emit(state.copyWith(startDate: event.startDate));
-    print("state.startDate");
-    print(state.startDate);
+
   }
 
   void changeEndDate(_ChangeEndDate event, Emitter<HomeState> emit) {
     emit(state.copyWith(endDate: event.endDate));
-    print("state.endDate");
-    print(state.endDate);
+
   }
 
   void changeCity(_ChangeCity event, Emitter<HomeState> emit) {
     emit(state.copyWith(city: event.city));
-    print("state.city");
-    print(state.city);
+
   }
 
   void changeEmplacement(_ChangeEmplacement event, Emitter<HomeState> emit) {
     emit(state.copyWith(emplacement: event.city));
-    print("state.location");
-    print(state.emplacement);
+
   }
 
   void changeGuests(_ChangeGuests event, Emitter<HomeState> emit) {
@@ -713,9 +692,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListSearchEvents(
       GetSearchListEvent event, Emitter<HomeState> emit) async {
-    print("state.atTheEndOfThePageEvents");
-    print(state.atTheEndOfTheSearchPageEvents);
-    print(state.atTheEndOfThePageEvents);
+
 
 
     try {
@@ -738,8 +715,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listEvents");
-      print(state.listEvents);
+
 
       emit(state.copyWith(
         status:
@@ -752,7 +728,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     // Use a default value if state.page is null
       final Either<Exception, List<Event>?> result;
-      print("event.isSearch");
       emit(state.copyWith(isSearchEvent: true));
       result = await GetIt.I<SearchListEventsUseCase>().call({
         "limit": 10,
@@ -794,10 +769,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         }
       });
 
-      print("state.atTheEndOfThePageEvents");
-      print(state.atTheEndOfTheSearchPageEvents);
-      print(state.atTheEndOfThePageEvents);
-      print(state.isSearchEvent);
     } catch (e) {
       emit(state.copyWith(
         status: StateStatus.error,
@@ -838,7 +809,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.pageSearchActivities ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Activity>?> result;
-      print("event.isSearch");
       emit(state.copyWith(isSearchActivity: true));
       result = await GetIt.I<SearchListActivityUseCase>().call({
         "limit": 10,
@@ -910,8 +880,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listExperiences");
-      print(state.listExperiences);
 
       emit(state.copyWith(
         statusExperiences:
@@ -922,7 +890,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.pageSearchExperiences ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Experience>?> result;
-      print("event.isSearch");
       emit(state.copyWith(isSearchExperience: true));
       result = await GetIt.I<SearchListExperienceUseCase>().call({
         "limit": 10,
@@ -963,12 +930,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ));
         }
       });
-      print("state.listExperiencesSuceess");
-      print(state.listExperiences);
-      print(state.statusExperiences);
-      print(state.isFetching);
-      print(state.atTheEndOfTheSearchPageExperiences);
-      print(state.isSearch);
+
     } catch (e) {
       emit(state.copyWith(
         statusExperiences: StateStatus.error,
@@ -1010,8 +972,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(
       selectedAttributesId: selectedIds ?? [],
     ));
-    print("state.selectedAttributesId");
-    print(state.selectedAttributesId);
+
   }
 
   /// set selected ids
@@ -1034,8 +995,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(
       selectedPriceRanges: event.str,
     ));
-    print("event.str");
-    print(state.selectedPriceRanges);
+
   }
 
   /// filter list hosts by selected ids
@@ -1059,8 +1019,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listHosts");
-      print(state.listHosts);
 
       emit(state.copyWith(
         status:
@@ -1071,7 +1029,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       int nextPage = state.filterPageHosts ??
           0; // Use a default value if state.page is null
       final Either<Exception, List<Host>?> result;
-      print("event.isFilter");
       emit(state.copyWith(isFilter: true));
       result = await GetIt.I<FilterListHostsUseCase>().call({
         "limit": 10,
@@ -1122,10 +1079,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListFilterEvents(
       GetFilterListEventsPageData event, Emitter<HomeState> emit) async {
-    print("event.isFiiilter");
-    print(state.atTheEndOfTheFilterPageEvents);
-    print(state.isFilterEvent);
-    print(event.isFetching);
+
     try {
       emit(state.copyWith(
         atTheEndOfThePageEvents: false,
@@ -1144,8 +1098,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listEvents");
-      print(state.listEvents);
+
 
       emit(state.copyWith(
         status:
@@ -1158,7 +1111,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(isFilter: true));
 
       final Either<Exception, List<Event>?> result;
-      print("event.isSearch");
       emit(state.copyWith(isFilterEvent: true));
       result = await GetIt.I<FilterListEventsUseCase>().call({
         "limit": 10,
@@ -1211,9 +1163,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListFilterActivities(
       GetFilterListActivitiesPageData event, Emitter<HomeState> emit) async {
-    print(state.atTheEndOfTheFilterPageActivities);
-    print(state.isFilterActivity);
-    print(event.isFetching);
+
     try {
       emit(state.copyWith(
         atTheEndOfThePageActivities: false,
@@ -1232,8 +1182,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listActivities");
-      print(state.listActivities);
 
       emit(state.copyWith(
         status:
@@ -1246,7 +1194,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(isFilterActivity: true));
 
       final Either<Exception, List<Activity>?> result;
-      print("event.isSearch");
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<FilterListActivitiesUseCase>().call({
         "limit": 10,
@@ -1299,9 +1246,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   _getListFilterExperiences(
       GetFilterListExperiencesPageData event, Emitter<HomeState> emit) async {
-    print(state.atTheEndOfTheFilterPageExperiences);
-    print(state.isFilter);
-    print(event.isFetching);
+
     try {
       emit(state.copyWith(
         atTheEndOfThePageExperiences: false,
@@ -1321,8 +1266,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return;
       }
 
-      print("state.listExperiences");
-      print(state.listExperiences);
+
 
       emit(state.copyWith(
         status:
@@ -1333,7 +1277,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           0; // Use a default value if state.page is null
       emit(state.copyWith(isFilterExperience: true));
       final Either<Exception, List<Experience>?> result;
-      print("event.isSearch");
       emit(state.copyWith(isSearch: true));
       result = await GetIt.I<FilterListExperiencesUseCase>().call({
         "limit": 10,
@@ -1386,8 +1329,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (state.selectedPriceRanges != null) {
       concatenatedString = stringsList.join(';');
     }
-    print("concatenatedString");
-    print(concatenatedString);
+
     return concatenatedString;
   }
 

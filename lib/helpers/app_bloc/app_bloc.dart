@@ -40,8 +40,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       String? token = prefs!.getString('token');
       if (token != null) {
         Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-        print("decodedToken");
-        print(decodedToken);
+
         await prefs.setString("userId", decodedToken['id'].toString());
         emit(state.copyWith(
             status: StateStatus.success,
